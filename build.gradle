@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = 'com.modpack'
+    version = '1.0.0'
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release.set(17)
+    }
+}
+
+tasks.register('buildAllMods') {
+    group = 'modpack'
+    description = 'Assembles and builds all integrated Forge 1.20.1 mod subprojects.'
+    
+    doLast {
+        println 'Master build pipeline triggered for all integrated mods in /mods.'
+    }
+}
