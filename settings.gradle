@@ -1,8 +1,9 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://maven.neoforged.net/releases' }
         maven { url = 'https://maven.parchmentmc.org' }
+        mavenCentral()
     }
 }
 
@@ -10,9 +11,9 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 
-rootProject.name = 'minecraft-forge-1.20.1-modpack'
+rootProject.name = 'minecraft-neoforge-1.21.1-modpack'
 
-// Automatically discovers and includes all sub-projects in /mods as composite builds
+// Automatically discovers and includes all subprojects in /mods as composite builds
 def modsDir = file('mods')
 if (modsDir.exists() && modsDir.isDirectory()) {
     modsDir.eachDir { dir ->
