@@ -102,6 +102,55 @@
   ],
   "mods": [
     {
+      "id": "towns-and-towers",
+      "name": "Towns and Towers",
+      "upstream": "https://github.com/Cristelknight/Towns-and-Towers.git",
+      "branch": "26.1",
+      "type": "submodule"
+    },
+    {
+      "id": "ctov",
+      "name": "ChoiceTheorem's Overhauled Village",
+      "upstream": "https://github.com/ChoiceTheorem/ChoiceTheorem-s-overhauled-village.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "moogs-voyager-structures",
+      "name": "Moog's Voyager Structures",
+      "upstream": "https://github.com/Moog-s-Mods/MoogsVoyagerStructures.git",
+      "branch": "1.21-datapack",
+      "type": "submodule"
+    },
+    {
+      "id": "structory",
+      "name": "Structory",
+      "upstream": "https://github.com/Stardust-Labs-MC/Structory.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
+      "id": "structory-towers",
+      "name": "Structory: Towers",
+      "upstream": "https://github.com/Stardust-Labs-MC/Structory-Towers.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
+      "id": "tax-ocean-villager",
+      "name": "Tax' Ocean Villager",
+      "upstream": "https://github.com/Taknax/Tax-Ocean-Villager.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "friends-and-foes",
+      "name": "Friends&Foes",
+      "upstream": "https://github.com/Faboslav/friends-and-foes.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
       "id": "dungeons-plus",
       "name": "Dungeons Plus",
       "upstream": "https://gitlab.com/modding-legacy/dungeons-plus.git",
