@@ -28,6 +28,13 @@
   ],
   "mods": [
     {
+      "id": "hexcasting",
+      "name": "Hex Casting",
+      "upstream": "https://github.com/FallingColors/HexMod.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "origins",
       "name": "Origins",
       "upstream": "https://github.com/apace100/origins-fabric.git",
