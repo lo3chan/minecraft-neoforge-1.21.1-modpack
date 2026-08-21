@@ -1,0 +1,23 @@
+{
+  "name": "Custom Forge 1.20.1 Modpack",
+  "version": "1.0.0",
+  "minecraft": {
+    "version": "1.20.1",
+    "modloader": "forge",
+    "forgeVersion": "47.3.22",
+    "javaVersion": 17
+  },
+  "build": {
+    "strategy": "composite",
+    "modsDirectory": "mods"
+  },
+  "mods": [
+    {
+      "id": "example-mod",
+      "name": "Example Mod",
+      "upstream": "https://github.com/example/example-mod.git",
+      "branch": "1.20.1",
+      "type": "submodule"
+    }
+  ]
+}
