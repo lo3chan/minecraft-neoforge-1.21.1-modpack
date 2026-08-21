@@ -28,6 +28,14 @@
   ],
   "libraries": [
     {
+      "id": "structure-gel-api",
+      "name": "Structure Gel API",
+      "description": "Required by Dungeons Plus structure generation",
+      "upstream": "https://gitlab.com/modding-legacy/structure-gel-api.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
       "id": "yungs-api",
       "name": "YUNG's API",
       "description": "Required by all YUNG's Better structure mods",
@@ -93,6 +101,13 @@
     }
   ],
   "mods": [
+    {
+      "id": "dungeons-plus",
+      "name": "Dungeons Plus",
+      "upstream": "https://gitlab.com/modding-legacy/dungeons-plus.git",
+      "branch": "master",
+      "type": "submodule"
+    },
     {
       "id": "yungs-better-dungeons",
       "name": "YUNG's Better Dungeons",
