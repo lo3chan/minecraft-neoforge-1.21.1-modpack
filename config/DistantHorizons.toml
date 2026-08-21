@@ -1,0 +1,13 @@
+# Distant Horizons Configuration tuned for C2ME compatibility
+[worldGenerator]
+chunkGenerationMode = "INTERNAL"
+numberOfThreads = 2
+
+[lodBuilding]
+threadPriority = "LOW"
+minY = -64
+maxY = 320
+
+[graphics]
+quality = "HIGH"
+lodChunkRenderDistance = 128
