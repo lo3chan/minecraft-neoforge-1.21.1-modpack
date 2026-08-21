@@ -20,6 +20,20 @@
   ],
   "mods": [
     {
+      "id": "rottencreatures",
+      "name": "Rotten Creatures",
+      "upstream": "https://github.com/teamfusion/rottencreatures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "thegraveyard",
+      "name": "The Graveyard",
+      "upstream": "https://github.com/finallion/The-Graveyard-FORGE.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
       "id": "sodium",
       "name": "Sodium (NeoForge / Multi-Loader)",
       "upstream": "https://github.com/CaffeineMC/sodium-fabric.git",
