@@ -1,0 +1,21 @@
+# C2ME Configuration optimized for Distant Horizons compatibility
+version = 3
+
+[threadedWorldGen]
+enabled = true
+allowThreadedWorldGen = true
+reducedWorkerThreads = false
+
+[asyncChunkLoading]
+enabled = true
+
+[chunkPrioritization]
+enabled = true
+
+[vanillaWorldGenOptimizations]
+dynamicPriority = true
+useFastBiomeHexLookup = true
+
+[ioSystem]
+async = true
+priority = "HIGH"
