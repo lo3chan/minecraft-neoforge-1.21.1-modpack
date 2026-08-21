@@ -110,6 +110,20 @@
   ],
   "mods": [
     {
+      "id": "guard-villagers",
+      "name": "Guard Villagers",
+      "upstream": "https://github.com/mrsterner/GuardVillagers.git",
+      "branch": "1.20.1",
+      "type": "submodule"
+    },
+    {
+      "id": "golems-are-friends-not-fodder",
+      "name": "Golems Are Friends Not Fodder",
+      "upstream": "https://github.com/LobsterJonn/GolemsAreFriendsNotFodder.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "eternal-nether",
       "name": "Eternal Nether",
       "upstream": "https://github.com/Fuzss/eternal-nether.git",
