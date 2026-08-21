@@ -102,6 +102,27 @@
   ],
   "mods": [
     {
+      "id": "dungeons-and-taverns",
+      "name": "Dungeons and Taverns",
+      "upstream": "https://github.com/servernotdie/Dungeons_and_Taverns.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "moogs-nether-structures",
+      "name": "Moog's Nether Structures",
+      "upstream": "https://github.com/Moog-s-Mods/MoogsNetherStructures2.git",
+      "branch": "1.21-datapack",
+      "type": "submodule"
+    },
+    {
+      "id": "moogs-bountiful-structures",
+      "name": "Moog's Bountiful Structures",
+      "upstream": "https://github.com/Moog-s-Mods/Moogs-Bountiful-Structures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "towns-and-towers",
       "name": "Towns and Towers",
       "upstream": "https://github.com/Cristelknight/Towns-and-Towers.git",
