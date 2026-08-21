@@ -1,6 +1,6 @@
-# Minecraft Forge 1.20.1 Master Modpack Workspace
+# Minecraft NeoForge 1.21.1 Master Modpack Workspace
 
-Master multi-mod source repository and porting workspace for Minecraft Forge 1.20.1.
+Master multi-mod source repository and porting workspace for Minecraft NeoForge 1.21.1.
 
 ---
 
@@ -9,7 +9,7 @@ Master multi-mod source repository and porting workspace for Minecraft Forge 1.2
 ```text
 ├── modpack.json         # Master manifest listing mods, upstream repos, branches & build targets
 ├── settings.gradle      # Composite build orchestrator automatically including all subprojects in /mods
-├── build.gradle         # Root Gradle build script
+├── build.gradle         # Root Gradle build script (Java 21 / NeoForge 1.21.1)
 ├── sync_mods.py         # Automation script to pull, submodule, or sync upstream repositories
 └── mods/                # Submodules / cloned source repositories for individual mods
     ├── mod-a/
@@ -21,7 +21,7 @@ Master multi-mod source repository and porting workspace for Minecraft Forge 1.2
 ## 🚀 Getting Started
 
 ### 1. Requirements
-- **JDK 17** (Temurin or Adoptium recommended)
+- **JDK 21** (Temurin 21 or Microsoft OpenJDK 21 required for NeoForge 1.21.1)
 - **Git**
 - **Python 3.8+** (for `sync_mods.py`)
 
