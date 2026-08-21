@@ -42,9 +42,9 @@
     },
     {
       "id": "c2me",
-      "name": "C2ME (Concurrent Chunk Management Engine)",
-      "upstream": "https://github.com/RelativityMC/C2ME-fabric.git",
-      "branch": "1.21.1",
+      "name": "C2ME NeoForge",
+      "upstream": "https://github.com/RelativityMC/C2ME-neoforge.git",
+      "branch": "dev/26.1.2",
       "type": "submodule"
     },
     {
