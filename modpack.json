@@ -28,6 +28,14 @@
   ],
   "libraries": [
     {
+      "id": "puzzles-lib",
+      "name": "Puzzles Lib",
+      "description": "Required by Eternal Nether and Fuzss multi-loader mods",
+      "upstream": "https://github.com/Fuzss/puzzles-lib.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "structure-gel-api",
       "name": "Structure Gel API",
       "description": "Required by Dungeons Plus structure generation",
@@ -101,6 +109,13 @@
     }
   ],
   "mods": [
+    {
+      "id": "eternal-nether",
+      "name": "Eternal Nether",
+      "upstream": "https://github.com/Fuzss/eternal-nether.git",
+      "branch": "main",
+      "type": "submodule"
+    },
     {
       "id": "dungeons-and-taverns",
       "name": "Dungeons and Taverns",
