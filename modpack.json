@@ -41,6 +41,13 @@
       "type": "submodule"
     },
     {
+      "id": "c2me",
+      "name": "C2ME (Concurrent Chunk Management Engine)",
+      "upstream": "https://github.com/RelativityMC/C2ME-fabric.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
       "id": "ferritecore",
       "name": "FerriteCore",
       "upstream": "https://github.com/malte0811/FerriteCore.git",
