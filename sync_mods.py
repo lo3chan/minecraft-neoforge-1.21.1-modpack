@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 sync_mods.py
-Automated sync and clone utility for Minecraft NeoForge 1.21.1 mod sources.
-Reads modpack.json and clones/submodules upstream mod sources into /mods with fallback.
+Automated sync and clone utility for Minecraft NeoForge 1.21.1 mod sources and API libraries.
+Reads modpack.json and clones/submodules upstream mod and library sources into /mods with fallback.
 """
 
 import json
@@ -21,6 +21,38 @@ def run_cmd(cmd, cwd=None):
             print(res.stdout.strip())
     return res.returncode == 0
 
+def sync_entry(entry, base_dir, root_dir, category_label):
+    entry_id = entry.get("id")
+    upstream = entry.get("upstream")
+    branch = entry.get("branch", "main")
+    sync_type = entry.get("type", "submodule")
+    name = entry.get("name", entry_id)
+
+    if not entry_id or not upstream:
+        return
+
+    target_path = base_dir / entry_id
+    if target_path.exists():
+        print(f"\n[{category_label}] [{name}] Existing repository found at {target_path}. Updating...")
+        run_cmd(["git", "fetch", "--all"], cwd=target_path)
+        if not run_cmd(["git", "checkout", branch], cwd=target_path):
+            print(f"[{entry_id}] Branch '{branch}' not found locally. Checking out default HEAD...")
+            run_cmd(["git", "checkout", "HEAD"], cwd=target_path)
+        run_cmd(["git", "pull"], cwd=target_path)
+    else:
+        print(f"\n[{category_label}] [{name}] Ingesting upstream: {upstream} (preferred branch: {branch})...")
+        if sync_type == "submodule":
+            rel_path = f"mods/{entry_id}"
+            success = run_cmd(["git", "submodule", "add", "-b", branch, upstream, rel_path], cwd=root_dir)
+            if not success:
+                print(f"[{entry_id}] Submodule branch '{branch}' failed. Adding with default remote branch...")
+                run_cmd(["git", "submodule", "add", upstream, rel_path], cwd=root_dir)
+        else:
+            success = run_cmd(["git", "clone", "-b", branch, upstream, str(target_path)])
+            if not success:
+                print(f"[{entry_id}] Clone branch '{branch}' failed. Cloning default remote branch...")
+                run_cmd(["git", "clone", upstream, str(target_path)])
+
 def main():
     root_dir = Path(__file__).parent
     config_file = root_dir / "modpack.json"
@@ -35,44 +67,26 @@ def main():
     with open(config_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    libraries = data.get("libraries", [])
     mods = data.get("mods", [])
+
     print(f"==================================================")
-    print(f"Syncing {len(mods)} mods for Minecraft NeoForge 1.21.1")
+    print(f"Syncing {len(libraries)} Core Libraries & {len(mods)} Mods for NeoForge 1.21.1")
     print(f"==================================================")
 
+    # Sync Core API Libraries first
+    if libraries:
+        print(f"\n--- Syncing {len(libraries)} Core API Libraries ---")
+        for lib in libraries:
+            sync_entry(lib, mods_dir, root_dir, "LIBRARY")
+
+    # Sync Content & Performance Mods
+    print(f"\n--- Syncing {len(mods)} Content & Performance Mods ---")
     for mod in mods:
-        mod_id = mod.get("id")
-        upstream = mod.get("upstream")
-        branch = mod.get("branch", "main")
-        sync_type = mod.get("type", "submodule")
-
-        if not mod_id or not upstream:
-            continue
-
-        target_path = mods_dir / mod_id
-        if target_path.exists():
-            print(f"\n[{mod_id}] Existing repository found at {target_path}. Updating...")
-            run_cmd(["git", "fetch", "--all"], cwd=target_path)
-            if not run_cmd(["git", "checkout", branch], cwd=target_path):
-                print(f"[{mod_id}] Branch '{branch}' not found locally. Checking out default HEAD...")
-                run_cmd(["git", "checkout", "HEAD"], cwd=target_path)
-            run_cmd(["git", "pull"], cwd=target_path)
-        else:
-            print(f"\n[{mod_id}] Ingesting upstream: {upstream} (preferred branch: {branch})...")
-            if sync_type == "submodule":
-                rel_path = f"mods/{mod_id}"
-                success = run_cmd(["git", "submodule", "add", "-b", branch, upstream, rel_path], cwd=root_dir)
-                if not success:
-                    print(f"[{mod_id}] Submodule branch '{branch}' failed. Adding with default remote branch...")
-                    run_cmd(["git", "submodule", "add", upstream, rel_path], cwd=root_dir)
-            else:
-                success = run_cmd(["git", "clone", "-b", branch, upstream, str(target_path)])
-                if not success:
-                    print(f"[{mod_id}] Clone branch '{branch}' failed. Cloning default remote branch...")
-                    run_cmd(["git", "clone", upstream, str(target_path)])
+        sync_entry(mod, mods_dir, root_dir, "MOD")
 
     print("\n==================================================")
-    print("All mod sources synchronized successfully into /mods!")
+    print("All core libraries and mod sources synchronized successfully into /mods!")
     print("==================================================")
 
 if __name__ == "__main__":
