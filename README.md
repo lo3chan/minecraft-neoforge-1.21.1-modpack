@@ -1,6 +1,6 @@
 # Minecraft NeoForge 1.21.1 Master Modpack Workspace
 
-Master multi-mod source repository and porting workspace for Minecraft NeoForge 1.21.1.
+Master multi-mod source repository and porting workspace for **Minecraft NeoForge 1.21.1**.
 
 ---
 
@@ -11,10 +11,26 @@ Master multi-mod source repository and porting workspace for Minecraft NeoForge 
 ├── settings.gradle      # Composite build orchestrator automatically including all subprojects in /mods
 ├── build.gradle         # Root Gradle build script (Java 21 / NeoForge 1.21.1)
 ├── sync_mods.py         # Automation script to pull, submodule, or sync upstream repositories
+├── shaderpacks/         # Client shaderpacks (Eclipse Shaders)
 └── mods/                # Submodules / cloned source repositories for individual mods
-    ├── mod-a/
-    └── mod-b/
+    ├── sodium/
+    ├── iris/
+    ├── distant-horizons/
+    ├── ferritecore/
+    └── ...
 ```
+
+---
+
+## ⚡ Integrated Performance Suite (19 Mods)
+
+| Category | Mods Included |
+|---|---|
+| **Rendering & GPU** | **Sodium**, **Iris Shaders**, **Distant Horizons**, **ImmediatelyFast**, **Entity Culling**, **More Culling** |
+| **Memory & RAM** | **FerriteCore**, **ModernFix**, **BadOptimizations**, **Mods Optimizer** |
+| **Tick & Server Performance** | **Radon (Lithium)**, **Alternate Current**, **FastSuite**, **Clumps** |
+| **World Gen & Profiling** | **Noisium**, **Chunky**, **Spark** |
+| **UI & Shader Extras** | **Reese's Sodium Options**, **Sodium Extra**, **Eclipse Shaders** (`shaderpacks/`) |
 
 ---
 
@@ -26,7 +42,7 @@ Master multi-mod source repository and porting workspace for Minecraft NeoForge 
 - **Python 3.8+** (for `sync_mods.py`)
 
 ### 2. Synchronize Mod Sources
-To fetch all mod sources configured in `modpack.json`:
+To clone / submodule all 19 mod sources configured in `modpack.json`:
 ```bash
 python sync_mods.py
 ```
