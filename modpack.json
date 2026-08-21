@@ -21,21 +21,21 @@
   "mods": [
     {
       "id": "sodium",
-      "name": "Sodium",
+      "name": "Sodium (NeoForge / Multi-Loader)",
       "upstream": "https://github.com/CaffeineMC/sodium-fabric.git",
       "branch": "1.21.1",
       "type": "submodule"
     },
     {
       "id": "iris",
-      "name": "Iris Shaders",
+      "name": "Iris Shaders (NeoForge)",
       "upstream": "https://github.com/IrisShaders/Iris.git",
       "branch": "1.21.1",
       "type": "submodule"
     },
     {
       "id": "distant-horizons",
-      "name": "Distant Horizons",
+      "name": "Distant Horizons (NeoForge)",
       "upstream": "https://gitlab.com/distant-horizons/distant-horizons.git",
       "branch": "main",
       "type": "submodule"
@@ -49,14 +49,14 @@
     },
     {
       "id": "ferritecore",
-      "name": "FerriteCore",
+      "name": "FerriteCore (NeoForge)",
       "upstream": "https://github.com/malte0811/FerriteCore.git",
       "branch": "1.21.x",
       "type": "submodule"
     },
     {
       "id": "modernfix",
-      "name": "ModernFix",
+      "name": "ModernFix (NeoForge)",
       "upstream": "https://github.com/embeddedt/ModernFix.git",
       "branch": "1.21.x",
       "type": "submodule"
@@ -70,91 +70,91 @@
     },
     {
       "id": "alternate-current",
-      "name": "Alternate Current",
-      "upstream": "https://github.com/Space-Concepts/Alternate-Current.git",
+      "name": "Alternate Current (NeoForge)",
+      "upstream": "https://github.com/SpaceWalkerRS/alternate-current.git",
       "branch": "main",
       "type": "submodule"
     },
     {
       "id": "immediatelyfast",
-      "name": "ImmediatelyFast",
+      "name": "ImmediatelyFast (NeoForge)",
       "upstream": "https://github.com/RaphiMC/ImmediatelyFast.git",
       "branch": "main",
       "type": "submodule"
     },
     {
       "id": "entityculling",
-      "name": "Entity Culling",
+      "name": "Entity Culling (NeoForge)",
       "upstream": "https://github.com/tr7zw/EntityCulling.git",
       "branch": "1.21.1",
       "type": "submodule"
     },
     {
       "id": "moreculling",
-      "name": "More Culling",
+      "name": "More Culling (NeoForge)",
       "upstream": "https://github.com/FxMorin/MoreCulling.git",
-      "branch": "1.21.1",
+      "branch": "master",
       "type": "submodule"
     },
     {
       "id": "noisium",
-      "name": "Noisium",
+      "name": "Noisium (NeoForge)",
       "upstream": "https://github.com/astei/noisium.git",
       "branch": "1.21.1",
       "type": "submodule"
     },
     {
       "id": "badoptimizations",
-      "name": "BadOptimizations",
+      "name": "BadOptimizations (NeoForge)",
       "upstream": "https://github.com/SomeoneElseCode/BadOptimizations.git",
       "branch": "main",
       "type": "submodule"
     },
     {
       "id": "fastsuite",
-      "name": "FastSuite",
+      "name": "FastSuite (NeoForge)",
       "upstream": "https://github.com/Shadows-of-Fire/FastSuite.git",
       "branch": "1.21.x",
       "type": "submodule"
     },
     {
       "id": "clumps",
-      "name": "Clumps",
+      "name": "Clumps (NeoForge)",
       "upstream": "https://github.com/jaredlll08/Clumps.git",
       "branch": "1.21.1",
       "type": "submodule"
     },
     {
       "id": "chunky",
-      "name": "Chunky",
+      "name": "Chunky (NeoForge)",
       "upstream": "https://github.com/pop4959/Chunky.git",
       "branch": "master",
       "type": "submodule"
     },
     {
       "id": "spark",
-      "name": "Spark",
+      "name": "Spark (NeoForge)",
       "upstream": "https://github.com/lucko/spark.git",
       "branch": "master",
       "type": "submodule"
     },
     {
       "id": "reeses-sodium-options",
-      "name": "Reese's Sodium Options",
+      "name": "Reese's Sodium Options (NeoForge)",
       "upstream": "https://github.com/FlashyReese/reeses-sodium-options.git",
-      "branch": "1.21.1",
+      "branch": "main",
       "type": "submodule"
     },
     {
       "id": "sodium-extra",
-      "name": "Sodium Extra",
-      "upstream": "https://github.com/FlashyReese/sodium-extra-fabric.git",
-      "branch": "1.21.1",
+      "name": "Sodium Extra (NeoForge)",
+      "upstream": "https://github.com/FlashyReese/sodium-extra.git",
+      "branch": "main",
       "type": "submodule"
     },
     {
       "id": "mods-optimizer",
-      "name": "Mods Optimizer",
+      "name": "Mods Optimizer (NeoForge)",
       "upstream": "https://github.com/SettingDust/mods-optimizer.git",
       "branch": "main",
       "type": "submodule"
