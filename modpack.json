@@ -20,6 +20,20 @@
   ],
   "mods": [
     {
+      "id": "soundphysics",
+      "name": "Sound Physics Remastered",
+      "upstream": "https://github.com/WhiteMoZJ/Sound-Physics-Remastered-Fix-Patch.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "truedarkness",
+      "name": "True Darkness (Enhanced Darkness)",
+      "upstream": "https://github.com/EntonioDMI/enhanced-darkness.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "tanshugetrees",
       "name": "Tan's Huge Trees",
       "upstream": "https://github.com/TannyJungMC/TansHugeTrees.git",
