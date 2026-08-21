@@ -28,6 +28,76 @@
   ],
   "mods": [
     {
+      "id": "betterrecipebook",
+      "name": "Better Recipe Book",
+      "upstream": "https://github.com/mrshmllow/BetterRecipeBook.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "craftingtweaks",
+      "name": "Crafting Tweaks",
+      "upstream": "https://github.com/TwelveIterations/CraftingTweaks.git",
+      "branch": "26.2",
+      "type": "submodule"
+    },
+    {
+      "id": "bettercombat",
+      "name": "Better Combat",
+      "upstream": "https://github.com/ZsoltMolnarrr/BetterCombat.git",
+      "branch": "26.2",
+      "type": "submodule"
+    },
+    {
+      "id": "rpgtitles",
+      "name": "RPG Titles",
+      "upstream": "https://github.com/skxlor/RPG-Titles.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "jade",
+      "name": "Jade (HUD Information)",
+      "upstream": "https://github.com/Snownee/Jade.git",
+      "branch": "26.3-fabric",
+      "type": "submodule"
+    },
+    {
+      "id": "appleskin",
+      "name": "AppleSkin",
+      "upstream": "https://github.com/squeek502/AppleSkin.git",
+      "branch": "1.16-forge",
+      "type": "submodule"
+    },
+    {
+      "id": "mousetweaks",
+      "name": "Mouse Tweaks",
+      "upstream": "https://github.com/YaLTeR/MouseTweaks.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "visuality",
+      "name": "Visuality",
+      "upstream": "https://github.com/PinkGoosik/visuality.git",
+      "branch": "26.2",
+      "type": "submodule"
+    },
+    {
+      "id": "ambientsounds",
+      "name": "AmbientSounds",
+      "upstream": "https://github.com/CreativeMD/AmbientSounds.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "presencefootsteps",
+      "name": "Presence Footsteps",
+      "upstream": "https://github.com/Hurricaaane/Presence-Footsteps.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
       "id": "psi",
       "name": "Psi",
       "upstream": "https://github.com/VazkiiMods/Psi.git",
