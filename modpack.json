@@ -11,12 +11,145 @@
     "strategy": "composite",
     "modsDirectory": "mods"
   },
+  "shaderpacks": [
+    {
+      "name": "Eclipse Shaders",
+      "path": "shaderpacks/Eclipse",
+      "format": "iris"
+    }
+  ],
   "mods": [
     {
-      "id": "example-mod",
-      "name": "Example Mod",
-      "upstream": "https://github.com/example/example-mod.git",
+      "id": "sodium",
+      "name": "Sodium",
+      "upstream": "https://github.com/CaffeineMC/sodium-fabric.git",
       "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "iris",
+      "name": "Iris Shaders",
+      "upstream": "https://github.com/IrisShaders/Iris.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "distant-horizons",
+      "name": "Distant Horizons",
+      "upstream": "https://gitlab.com/distant-horizons/distant-horizons.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "ferritecore",
+      "name": "FerriteCore",
+      "upstream": "https://github.com/malte0811/FerriteCore.git",
+      "branch": "1.21.x",
+      "type": "submodule"
+    },
+    {
+      "id": "modernfix",
+      "name": "ModernFix",
+      "upstream": "https://github.com/embeddedt/ModernFix.git",
+      "branch": "1.21.x",
+      "type": "submodule"
+    },
+    {
+      "id": "radon",
+      "name": "Radon (Lithium NeoForge)",
+      "upstream": "https://github.com/Asek3/Radon.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "alternate-current",
+      "name": "Alternate Current",
+      "upstream": "https://github.com/Space-Concepts/Alternate-Current.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "immediatelyfast",
+      "name": "ImmediatelyFast",
+      "upstream": "https://github.com/RaphiMC/ImmediatelyFast.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "entityculling",
+      "name": "Entity Culling",
+      "upstream": "https://github.com/tr7zw/EntityCulling.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "moreculling",
+      "name": "More Culling",
+      "upstream": "https://github.com/FxMorin/MoreCulling.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "noisium",
+      "name": "Noisium",
+      "upstream": "https://github.com/astei/noisium.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "badoptimizations",
+      "name": "BadOptimizations",
+      "upstream": "https://github.com/SomeoneElseCode/BadOptimizations.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "fastsuite",
+      "name": "FastSuite",
+      "upstream": "https://github.com/Shadows-of-Fire/FastSuite.git",
+      "branch": "1.21.x",
+      "type": "submodule"
+    },
+    {
+      "id": "clumps",
+      "name": "Clumps",
+      "upstream": "https://github.com/jaredlll08/Clumps.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "chunky",
+      "name": "Chunky",
+      "upstream": "https://github.com/pop4959/Chunky.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "spark",
+      "name": "Spark",
+      "upstream": "https://github.com/lucko/spark.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "reeses-sodium-options",
+      "name": "Reese's Sodium Options",
+      "upstream": "https://github.com/FlashyReese/reeses-sodium-options.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "sodium-extra",
+      "name": "Sodium Extra",
+      "upstream": "https://github.com/FlashyReese/sodium-extra-fabric.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "mods-optimizer",
+      "name": "Mods Optimizer",
+      "upstream": "https://github.com/SettingDust/mods-optimizer.git",
+      "branch": "main",
       "type": "submodule"
     }
   ]
