@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 sync_mods.py
-Automated sync and clone utility for Minecraft Forge 1.20.1 mod sources.
+Automated sync and clone utility for Minecraft NeoForge 1.21.1 mod sources.
 Reads modpack.json and clones/submodules upstream mod sources into /mods.
 """
 
@@ -41,7 +41,7 @@ def main():
     for mod in mods:
         mod_id = mod.get("id")
         upstream = mod.get("upstream")
-        branch = mod.get("branch", "1.20.1")
+        branch = mod.get("branch", "1.21.1")
         sync_type = mod.get("type", "submodule")
 
         if not mod_id or not upstream:
