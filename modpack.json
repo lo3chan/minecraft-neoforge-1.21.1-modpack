@@ -28,6 +28,14 @@
   ],
   "libraries": [
     {
+      "id": "yungs-api",
+      "name": "YUNG's API",
+      "description": "Required by all YUNG's Better structure mods",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-API.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
       "id": "patchouli",
       "name": "Patchouli",
       "description": "Required by Psi & Hex Casting",
@@ -85,6 +93,160 @@
     }
   ],
   "mods": [
+    {
+      "id": "yungs-better-dungeons",
+      "name": "YUNG's Better Dungeons",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Dungeons.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-strongholds",
+      "name": "YUNG's Better Strongholds",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Strongholds.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-mineshafts",
+      "name": "YUNG's Better Mineshafts",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Mineshafts.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-desert-temples",
+      "name": "YUNG's Better Desert Temples",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Desert-Temples.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-ocean-monuments",
+      "name": "YUNG's Better Ocean Monuments",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Ocean-Monuments.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-witch-huts",
+      "name": "YUNG's Better Witch Huts",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Witch-Huts.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-jungle-temples",
+      "name": "YUNG's Better Jungle Temples",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Jungle-Temples.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-nether-fortresses",
+      "name": "YUNG's Better Nether Fortresses",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-Nether-Fortresses.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-better-end-island",
+      "name": "YUNG's Better End Island",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Better-End-Island.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-bridges",
+      "name": "YUNG's Bridges",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Bridges.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-extras",
+      "name": "YUNG's Extras",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Extras.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "yungs-menu-tweaks",
+      "name": "YUNG's Menu Tweaks",
+      "upstream": "https://github.com/YUNG-GANG/YUNGs-Menu-Tweaks.git",
+      "branch": "26.1.2",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-bridges",
+      "name": "Macaw's Bridges",
+      "upstream": "https://github.com/sketchmacaw/Bridges.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-doors",
+      "name": "Macaw's Doors",
+      "upstream": "https://github.com/sketchmacaw/MacawsDoors.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-trapdoors",
+      "name": "Macaw's Trapdoors",
+      "upstream": "https://github.com/sketchmacaw/MacawsTrapdoors.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-windows",
+      "name": "Macaw's Windows",
+      "upstream": "https://github.com/sketchmacaw/MacawsWindows.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-fences-walls",
+      "name": "Macaw's Fences and Walls",
+      "upstream": "https://github.com/sketchmacaw/MacawsFencesWalls.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-roofs",
+      "name": "Macaw's Roofs",
+      "upstream": "https://github.com/sketchmacaw/MacawsRoofs.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-furniture",
+      "name": "Macaw's Furniture",
+      "upstream": "https://github.com/sketchmacaw/MacawsFurniture.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-lights-lamps",
+      "name": "Macaw's Lights and Lamps",
+      "upstream": "https://github.com/sketchmacaw/MacawsLightsLamps.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-paths-pavings",
+      "name": "Macaw's Paths and Pavings",
+      "upstream": "https://github.com/sketchmacaw/MacawsPathsPavings.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "macaws-paintings",
+      "name": "Macaw's Paintings",
+      "upstream": "https://github.com/sketchmacaw/MacawsPaintings.git",
+      "branch": "main",
+      "type": "submodule"
+    },
     {
       "id": "hexcasting",
       "name": "Hex Casting",
