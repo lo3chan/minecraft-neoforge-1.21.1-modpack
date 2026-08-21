@@ -18,7 +18,43 @@
       "format": "iris"
     }
   ],
+  "datapacks": [
+    {
+      "id": "explorify",
+      "name": "Explorify",
+      "source": "https://modrinth.com/datapack/explorify",
+      "path": "datapacks/explorify"
+    }
+  ],
   "mods": [
+    {
+      "id": "betterarcheology",
+      "name": "Better Archaeology",
+      "upstream": "https://github.com/Pandarix/BetterArcheology.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
+      "id": "repurposedstructures",
+      "name": "Repurposed Structures",
+      "upstream": "https://github.com/TelepathicGrunt/RepurposedStructures.git",
+      "branch": "26.1-MDG",
+      "type": "submodule"
+    },
+    {
+      "id": "nostructureoverlap",
+      "name": "No Structure Overlap",
+      "upstream": "https://github.com/Ankinkun/NoStructureOverlap.git",
+      "branch": "2.0.0-for-1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "nyfsspiders",
+      "name": "Nyf's Spiders",
+      "upstream": "https://github.com/Nyfaria/NyfsSpiders.git",
+      "branch": "1.19.3",
+      "type": "submodule"
+    },
     {
       "id": "soundphysics",
       "name": "Sound Physics Remastered",
