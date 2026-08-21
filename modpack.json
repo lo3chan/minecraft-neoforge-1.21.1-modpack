@@ -28,6 +28,13 @@
   ],
   "mods": [
     {
+      "id": "origins",
+      "name": "Origins",
+      "upstream": "https://github.com/apace100/origins-fabric.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
       "id": "betterrecipebook",
       "name": "Better Recipe Book",
       "upstream": "https://github.com/mrshmllow/BetterRecipeBook.git",
