@@ -26,6 +26,64 @@
       "path": "datapacks/explorify"
     }
   ],
+  "libraries": [
+    {
+      "id": "patchouli",
+      "name": "Patchouli",
+      "description": "Required by Psi & Hex Casting",
+      "upstream": "https://github.com/VazkiiMods/Patchouli.git",
+      "branch": "26.1",
+      "type": "submodule"
+    },
+    {
+      "id": "architectury-api",
+      "name": "Architectury API",
+      "description": "Required by Origins, Presence Footsteps & Multi-loader mods",
+      "upstream": "https://github.com/architectury/architectury-api.git",
+      "branch": "1.19.2",
+      "type": "submodule"
+    },
+    {
+      "id": "cloth-config",
+      "name": "Cloth Config API",
+      "description": "Required by Better Combat, Sodium Extra & UI mods",
+      "upstream": "https://github.com/shedaniel/cloth-config.git",
+      "branch": "v8",
+      "type": "submodule"
+    },
+    {
+      "id": "player-animator",
+      "name": "playerAnimator",
+      "description": "Required by Better Combat for animation playback",
+      "upstream": "https://github.com/KosmX/minecraftPlayerAnimator.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "yacl",
+      "name": "YetAnotherConfigLib (YACL)",
+      "description": "Required by Iris Shaders and modern NeoForge UI",
+      "upstream": "https://github.com/isXander/YetAnotherConfigLib.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "curios",
+      "name": "Curios API (NeoForge)",
+      "description": "Accessory & trinket slot API for spell foci and artifacts",
+      "upstream": "https://github.com/TheIllusiveC4/Curios.git",
+      "branch": "26.x",
+      "type": "submodule"
+    },
+    {
+      "id": "paucal",
+      "name": "PAUCAL",
+      "description": "Required by Hex Casting helper library",
+      "upstream": "https://github.com/FallingColors/PAUCAL.git",
+      "branch": "1.21",
+      "type": "submodule"
+    }
+  ],
   "mods": [
     {
       "id": "hexcasting",
