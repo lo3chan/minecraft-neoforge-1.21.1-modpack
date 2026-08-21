@@ -20,6 +20,20 @@
   ],
   "mods": [
     {
+      "id": "amplified-nether",
+      "name": "Amplified Nether",
+      "upstream": "https://github.com/Stardust-Labs-MC/Amplified-Nether.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
+      "id": "nullscape",
+      "name": "Nullscape",
+      "upstream": "https://github.com/Stardust-Labs-MC/Nullscape.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
       "id": "rottencreatures",
       "name": "Rotten Creatures",
       "upstream": "https://github.com/teamfusion/rottencreatures.git",
