@@ -28,6 +28,20 @@
   ],
   "mods": [
     {
+      "id": "psi",
+      "name": "Psi",
+      "upstream": "https://github.com/VazkiiMods/Psi.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "alchemancy",
+      "name": "Alchemancy",
+      "upstream": "https://github.com/Cibernet83/Alchemancy.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
       "id": "betterarcheology",
       "name": "Better Archaeology",
       "upstream": "https://github.com/Pandarix/BetterArcheology.git",
