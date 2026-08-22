@@ -2,8 +2,8 @@
   "modpackName": "The Aether & Beyond",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 106,
-  "clientOnlyModsCount": 20,
+  "totalMods": 107,
+  "clientOnlyModsCount": 21,
   "serverAndSharedModsCount": 86,
   "server": {
     "host": "itso",
@@ -13,6 +13,7 @@
   "clientOnlyMods": [
     "BadOptimizations-2.4.1-1.21.1.jar",
     "BetterF3-11.0.3-NeoForge-1.21.1.jar",
+    "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
     "InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar",
     "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
     "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
