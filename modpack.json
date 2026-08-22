@@ -136,6 +136,41 @@
   ],
   "mods": [
     {
+      "id": "beautiful-enchanted-books",
+      "name": "Beautiful Enchanted Books",
+      "upstream": "https://github.com/LobsterJonn/BeautifulEnchantedBooks.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "enchantment-effects",
+      "name": "Enchantment Effects",
+      "upstream": "https://github.com/soulless-berry/enchantment-effects.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "visual-workbench",
+      "name": "Visual Workbench",
+      "upstream": "https://github.com/Fuzss/visual-workbench.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "ruined-equipment",
+      "name": "Ruined Equipment",
+      "upstream": "https://github.com/Fuzss/ruined-equipment.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "visual-overhaul",
+      "name": "Visual Overhaul",
+      "upstream": "https://github.com/TeamMidnightDust/VisualOverhaul.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "amendments",
       "name": "Amendments",
       "upstream": "https://github.com/MehVahdJukaar/amendments.git",
