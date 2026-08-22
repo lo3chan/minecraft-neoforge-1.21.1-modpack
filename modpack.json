@@ -165,6 +165,41 @@
   ],
   "mods": [
     {
+      "id": "jei",
+      "name": "Just Enough Items (JEI)",
+      "upstream": "https://github.com/mezz/JustEnoughItems.git",
+      "branch": "26.2",
+      "type": "submodule"
+    },
+    {
+      "id": "jer",
+      "name": "Just Enough Resources (JER)",
+      "upstream": "https://github.com/way2muchnoise/JustEnoughResources.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "not-enough-animations",
+      "name": "Not Enough Animations",
+      "upstream": "https://github.com/tr7zw/NotEnoughAnimations.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "eating-animation",
+      "name": "Eating Animation",
+      "upstream": "https://github.com/thethonk/eating-animation.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "wavey-capes",
+      "name": "Wavey Capes",
+      "upstream": "https://github.com/tr7zw/WaveyCapes.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "entity-model-features",
       "name": "Entity Model Features (EMF)",
       "upstream": "https://github.com/TridentMC/EntityModelFeatures.git",
