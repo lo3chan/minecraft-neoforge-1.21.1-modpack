@@ -173,6 +173,13 @@
   ],
   "mods": [
     {
+      "id": "betterf3",
+      "name": "BetterF3",
+      "upstream": "https://github.com/cominixo/BetterF3.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "legendary-tooltips",
       "name": "Legendary Tooltips",
       "upstream": "https://github.com/AHilyard/LegendaryTooltips.git",
