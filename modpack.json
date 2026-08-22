@@ -4,7 +4,7 @@
   "minecraft": {
     "version": "1.21.1",
     "modloader": "neoforge",
-    "neoforgeVersion": "21.1.72",
+    "neoforgeVersion": "21.1.248",
     "javaVersion": 21
   },
   "build": {
@@ -24,21 +24,30 @@
       "name": "Fresh Animations",
       "source": "https://modrinth.com/resourcepack/fresh-animations",
       "path": "resourcepacks/FreshAnimations.zip",
-      "requiredMods": ["entity-model-features", "entity-texture-features"]
+      "requiredMods": [
+        "entity-model-features",
+        "entity-texture-features"
+      ]
     },
     {
       "id": "fresh-animations-extensions",
       "name": "Fresh Animations Extensions",
       "source": "https://modrinth.com/resourcepack/fresh-animations-extensions",
       "path": "resourcepacks/FreshAnimationsExtensions.zip",
-      "requiredMods": ["entity-model-features", "entity-texture-features"]
+      "requiredMods": [
+        "entity-model-features",
+        "entity-texture-features"
+      ]
     },
     {
       "id": "fresh-skeleton-physics",
       "name": "Fresh Skeleton Physics",
       "source": "https://modrinth.com/resourcepack/fresh-skeleton-physics",
       "path": "resourcepacks/FreshSkeletonPhysics.zip",
-      "requiredMods": ["entity-model-features", "entity-texture-features"]
+      "requiredMods": [
+        "entity-model-features",
+        "entity-texture-features"
+      ]
     }
   ],
   "datapacks": [
@@ -192,6 +201,54 @@
       "description": "Required by Hex Casting helper library",
       "upstream": "https://github.com/FallingColors/PAUCAL.git",
       "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "kotlin-for-forge",
+      "name": "Kotlin For Forge",
+      "description": "Kotlin language provider for NeoForge mods",
+      "upstream": "https://github.com/thedarkcolour/KotlinForForge.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "prism",
+      "name": "Prism",
+      "description": "Required by Legendary Tooltips rendering helper library",
+      "upstream": "https://github.com/AHilyard/Prism.git",
+      "branch": "1.21-multi",
+      "type": "submodule"
+    },
+    {
+      "id": "libipn",
+      "name": "libIPN",
+      "description": "Core library for Inventory Profiles Next",
+      "upstream": "https://github.com/Inventory-Profiles-Next/libipn.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "midnightlib",
+      "name": "MidnightLib",
+      "description": "Configuration and common utilities library for MidnightDust mods",
+      "upstream": "https://github.com/TeamMidnightDust/MidnightLib.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "cristellib",
+      "name": "Cristel Lib",
+      "description": "Structure and worldgen library for Towns and Towers",
+      "upstream": "https://github.com/Cristelknight/Cristel-Lib.git",
+      "branch": "26.1",
+      "type": "submodule"
+    },
+    {
+      "id": "lithostitched",
+      "name": "Lithostitched",
+      "description": "Density function and worldgen modifier API for Deeper Oceans",
+      "upstream": "https://github.com/TelepathicGrunt/Lithostitched.git",
+      "branch": "1.21.1-NeoForge",
       "type": "submodule"
     }
   ],
@@ -1061,6 +1118,27 @@
       "name": "Mods Optimizer (NeoForge)",
       "upstream": "https://github.com/SettingDust/mods-optimizer.git",
       "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "sparse-structures",
+      "name": "Sparse Structures",
+      "upstream": "https://github.com/Fuzss/sparse-structures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "continents",
+      "name": "Continents (Continental Worldgen)",
+      "upstream": "https://github.com/Stardust-Labs-MC/Continents.git",
+      "branch": "1.20",
+      "type": "submodule"
+    },
+    {
+      "id": "deeper-oceans",
+      "name": "Deeper Oceans",
+      "upstream": "https://github.com/TelepathicGrunt/Deeper-Oceans.git",
+      "branch": "1.21.1-NeoForge",
       "type": "submodule"
     }
   ]
