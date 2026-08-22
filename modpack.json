@@ -61,6 +61,12 @@
       "path": "datapacks/hopo-better-ruined-portals"
     },
     {
+      "id": "hopo-better-mineshafts",
+      "name": "Hopo Better Mineshafts",
+      "source": "https://modrinth.com/datapack/hopo-better-mineshafts",
+      "path": "datapacks/hopo-better-mineshafts"
+    },
+    {
       "id": "hopelessly-lost",
       "name": "Hopelessly Lost",
       "source": "https://curseforge.com/minecraft/customization/hopelessly-lost",
