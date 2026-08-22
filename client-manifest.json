@@ -2,8 +2,8 @@
   "modpackName": "The Aether & Beyond",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 106,
-  "clientOnlyModsCount": 21,
+  "totalMods": 105,
+  "clientOnlyModsCount": 20,
   "serverAndSharedModsCount": 85,
   "server": {
     "host": "itso",
@@ -16,7 +16,6 @@
     "InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar",
     "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
     "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
-    "TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar",
     "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
     "YungsMenuTweaks-1.21.1-NeoForge-2.1.2.jar",
     "aether_emissivity-1.21.1-1.0.2-neoforge.jar",
