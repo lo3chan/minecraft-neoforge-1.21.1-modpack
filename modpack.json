@@ -75,6 +75,30 @@
   ],
   "libraries": [
     {
+      "id": "nitrogen",
+      "name": "Nitrogen",
+      "description": "Required by The Aether and official Aether add-ons",
+      "upstream": "https://github.com/The-Aether-Team/Nitrogen.git",
+      "branch": "26.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "cumulus",
+      "name": "Cumulus",
+      "description": "Aether menu & UI library framework",
+      "upstream": "https://github.com/The-Aether-Team/Cumulus.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "aeroblender",
+      "name": "Aeroblender",
+      "description": "Required for Aether and addon biome generation",
+      "upstream": "https://github.com/The-Aether-Team/Aeroblender.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
       "id": "iceberg",
       "name": "Iceberg",
       "description": "Required by Legendary Tooltips & AHilyard mods",
@@ -172,6 +196,83 @@
     }
   ],
   "mods": [
+    {
+      "id": "the-aether",
+      "name": "The Aether",
+      "upstream": "https://github.com/The-Aether-Team/The-Aether.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-genesis",
+      "name": "The Aether: Genesis",
+      "upstream": "https://github.com/The-Aether-Team/The-Aether-Genesis.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-lost-content",
+      "name": "The Aether: Lost Content",
+      "upstream": "https://github.com/The-Aether-Team/Aether-Lost-Content.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "deep-aether",
+      "name": "Deep Aether",
+      "upstream": "https://github.com/RazorDevs/Deep-Aether.git",
+      "branch": "1.21.1-1.1",
+      "type": "submodule"
+    },
+    {
+      "id": "ancient-aether",
+      "name": "Ancient Aether",
+      "upstream": "https://github.com/Builderdog841/Ancient-Aether.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-redux",
+      "name": "The Aether: Redux",
+      "upstream": "https://github.com/Zepalesque/Aether-Redux.git",
+      "branch": "1.21.1-neoforge",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-beyond-parity",
+      "name": "Aether: Beyond Parity",
+      "upstream": "https://github.com/The-Aether-Team/Beyond-Parity.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-overworld-ores",
+      "name": "Aether: Overworld Ores",
+      "upstream": "https://github.com/The-Aether-Team/Overworld-Ores.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-emissivity",
+      "name": "Aether: Emissivity",
+      "upstream": "https://github.com/The-Aether-Team/Official-Packs.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "aether-enhanced-extinguishing",
+      "name": "Aether: Enhanced Extinguishing",
+      "upstream": "https://github.com/The-Aether-Team/Enhanced-Extinguishing.git",
+      "branch": "1.21.1-develop",
+      "type": "submodule"
+    },
+    {
+      "id": "comforts",
+      "name": "Comforts (Sleeping Bags & Hammocks)",
+      "upstream": "https://github.com/TheIllusiveC4/Comforts.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
     {
       "id": "betterf3",
       "name": "BetterF3",
