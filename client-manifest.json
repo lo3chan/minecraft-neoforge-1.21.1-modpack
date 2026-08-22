@@ -2,9 +2,9 @@
   "modpackName": "The Aether & Beyond",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 100,
+  "totalMods": 102,
   "clientOnlyModsCount": 20,
-  "serverAndSharedModsCount": 80,
+  "serverAndSharedModsCount": 82,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -13,6 +13,7 @@
   "clientOnlyMods": [
     "BadOptimizations-2.4.1-1.21.1.jar",
     "BetterF3-11.0.3-NeoForge-1.21.1.jar",
+    "InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar",
     "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
     "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
     "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
@@ -29,8 +30,7 @@
     "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
     "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
     "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
-    "waveycapes-neoforge-1.10.2-mc1.21.1.jar",
-    "InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar"
+    "waveycapes-neoforge-1.10.2-mc1.21.1.jar"
   ],
   "requiredServerMods": [
     "AdditionalStructures-1.21-(v.6.3.2-NEO).jar",
@@ -47,6 +47,7 @@
     "Patchouli-1.21.1-93-NEOFORGE.jar",
     "Philips-Ruins1.21.1-2.0-NeoForge.jar",
     "Placebo-1.21.1-9.9.2.jar",
+    "Prism-1.21.1-neoforge-1.0.11.jar",
     "Psi-1.21.1-108.jar",
     "PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
     "Structory_26.2_v1.3.7.jar",
@@ -86,6 +87,7 @@
     "ferritecore-7.0.3-neoforge.jar",
     "guardvillagers-2.4.10-1.21.1.jar",
     "jei-1.21.1-neoforge-19.44.0.403.jar",
+    "kotlinforforge-5.12.0-all.jar",
     "limlib-13.0.0+1.21.1.jar",
     "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
     "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
