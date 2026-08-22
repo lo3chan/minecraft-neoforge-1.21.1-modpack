@@ -24,6 +24,18 @@
       "name": "Explorify",
       "source": "https://modrinth.com/datapack/explorify",
       "path": "datapacks/explorify"
+    },
+    {
+      "id": "hopo-better-underwater-ruins",
+      "name": "Hopo Better Underwater Ruins",
+      "source": "https://modrinth.com/datapack/hopo-better-underwater-ruins",
+      "path": "datapacks/hopo-better-underwater-ruins"
+    },
+    {
+      "id": "hopo-better-ruined-portals",
+      "name": "Hopo Better Ruined Portals",
+      "source": "https://modrinth.com/datapack/hopo-better-ruined-portals",
+      "path": "datapacks/hopo-better-ruined-portals"
     }
   ],
   "libraries": [
