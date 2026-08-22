@@ -18,6 +18,29 @@
       "format": "iris"
     }
   ],
+  "resourcepacks": [
+    {
+      "id": "fresh-animations",
+      "name": "Fresh Animations",
+      "source": "https://modrinth.com/resourcepack/fresh-animations",
+      "path": "resourcepacks/FreshAnimations.zip",
+      "requiredMods": ["entity-model-features", "entity-texture-features"]
+    },
+    {
+      "id": "fresh-animations-extensions",
+      "name": "Fresh Animations Extensions",
+      "source": "https://modrinth.com/resourcepack/fresh-animations-extensions",
+      "path": "resourcepacks/FreshAnimationsExtensions.zip",
+      "requiredMods": ["entity-model-features", "entity-texture-features"]
+    },
+    {
+      "id": "fresh-skeleton-physics",
+      "name": "Fresh Skeleton Physics",
+      "source": "https://modrinth.com/resourcepack/fresh-skeleton-physics",
+      "path": "resourcepacks/FreshSkeletonPhysics.zip",
+      "requiredMods": ["entity-model-features", "entity-texture-features"]
+    }
+  ],
   "datapacks": [
     {
       "id": "explorify",
@@ -135,6 +158,47 @@
     }
   ],
   "mods": [
+    {
+      "id": "entity-model-features",
+      "name": "Entity Model Features (EMF)",
+      "upstream": "https://github.com/TridentMC/EntityModelFeatures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "entity-texture-features",
+      "name": "Entity Texture Features (ETF)",
+      "upstream": "https://github.com/TridentMC/EntityTextureFeatures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "mobs-attempt-parkour",
+      "name": "Mobs Attempt Parkour",
+      "upstream": "https://github.com/Fuzss/mobs-attempt-parkour.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "ragdoll-reactions",
+      "name": "Ragdoll Reactions",
+      "upstream": "https://github.com/dev-mc/ragdoll-reactions.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "physics-mod",
+      "name": "Physics Mod",
+      "upstream": "https://github.com/Haubna/PhysicsMod.git",
+      "branch": "main",
+      "config": {
+        "mobRagdolls": false,
+        "playerRagdolls": false,
+        "blockPhysics": true,
+        "particlePhysics": true
+      },
+      "type": "submodule"
+    },
     {
       "id": "beautiful-enchanted-books",
       "name": "Beautiful Enchanted Books",
