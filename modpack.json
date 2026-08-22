@@ -165,6 +165,20 @@
   ],
   "mods": [
     {
+      "id": "auditory",
+      "name": "Auditory",
+      "upstream": "https://github.com/sydneybeanmc/auditory.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "inventory-profiles-next",
+      "name": "Inventory Profiles Next (IPN)",
+      "upstream": "https://github.com/Inventory-Profiles-Next/Inventory-Profiles-Next.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
       "id": "jei",
       "name": "Just Enough Items (JEI)",
       "upstream": "https://github.com/mezz/JustEnoughItems.git",
