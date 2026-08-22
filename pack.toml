@@ -1,0 +1,13 @@
+name = "The Aether & Beyond"
+author = "lo3chan"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "863c1a5d5a7d5dd1a439773252589fc12c4339ae5bb2a45aa63f8aeacfd61119"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.248"
