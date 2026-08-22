@@ -75,6 +75,14 @@
   ],
   "libraries": [
     {
+      "id": "iceberg",
+      "name": "Iceberg",
+      "description": "Required by Legendary Tooltips & AHilyard mods",
+      "upstream": "https://github.com/AHilyard/Iceberg.git",
+      "branch": "1.21-multi",
+      "type": "submodule"
+    },
+    {
       "id": "moonlight",
       "name": "Moonlight Lib",
       "description": "Required by Amendments & MehVahdJukaar mods",
@@ -164,6 +172,55 @@
     }
   ],
   "mods": [
+    {
+      "id": "legendary-tooltips",
+      "name": "Legendary Tooltips",
+      "upstream": "https://github.com/AHilyard/LegendaryTooltips.git",
+      "branch": "1.21-multi",
+      "type": "submodule"
+    },
+    {
+      "id": "effective",
+      "name": "Effective",
+      "upstream": "https://github.com/Ladysnake/Effective.git",
+      "branch": "1.21.1",
+      "type": "submodule"
+    },
+    {
+      "id": "farmers-delight",
+      "name": "Farmer's Delight",
+      "upstream": "https://github.com/vectorwing/FarmersDelight.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "nethers-delight",
+      "name": "Nether's Delight",
+      "upstream": "https://github.com/umpaz/nethersdelight.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "farmers-respite",
+      "name": "Farmer's Respite",
+      "upstream": "https://github.com/umpaz/farmersrespite.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "ends-delight",
+      "name": "End's Delight",
+      "upstream": "https://github.com/Luke100000/EndsDelight.git",
+      "branch": "master",
+      "type": "submodule"
+    },
+    {
+      "id": "delightful",
+      "name": "Delightful",
+      "upstream": "https://github.com/brotherlu/Delightful.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
     {
       "id": "auditory",
       "name": "Auditory",
