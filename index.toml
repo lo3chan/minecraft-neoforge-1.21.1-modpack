@@ -1,0 +1,429 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/AdditionalStructures-1.21-(v.6.3.2-NEO).jar.pw.toml"
+hash = "b1f65b2b576d26b178084b11f23525973b3b355e4a32d2da9e30d02db6ea85ea"
+
+[[files]]
+file = "mods/Amplified_Nether_26.2_v1.2.16.jar.pw.toml"
+hash = "60701f2b1f700bc027617945a2a57ad35c418b430d159adb81e99d6f2bad62c0"
+
+[[files]]
+file = "mods/BadOptimizations-2.4.1-1.21.1.jar.pw.toml"
+hash = "287143fd01c0d26b4ba8693ed75e9cb4b0eb23c6359883afb33d2cb112ddb859"
+
+[[files]]
+file = "mods/BetterF3-11.0.3-NeoForge-1.21.1.jar.pw.toml"
+hash = "3732d4471168abe9d79b16e1b4c2e1db7b172a1a87efbcbd4e11a6c4b837d7ad"
+
+[[files]]
+file = "mods/Clumps-neoforge-1.21.1-19.0.0.1.jar.pw.toml"
+hash = "7da809aad412cc4f6848d7bf69d51e914f10e3fa5aad843466c4ad13fa9b961a"
+
+[[files]]
+file = "mods/Continents_26.2_v1.1.14.jar.pw.toml"
+hash = "7d63a4cd16304f24ddb2d4af322f5117f9aee3649343ef5e93126bf7e7fb3e77"
+
+[[files]]
+file = "mods/EternalNether-v21.1.3-1.21.1-NeoForge.jar.pw.toml"
+hash = "249c7607c19fdda92f85aa67a09f87a823e140235bff487038e33c224409447d"
+
+[[files]]
+file = "mods/FarmersDelight-1.21.1-1.3.3.jar.pw.toml"
+hash = "952d552731ca1306c183f837568ce38695972a400acec6bda9e9857b5ed0a09a"
+
+[[files]]
+file = "mods/FastSuite-1.21.1-6.0.7.jar.pw.toml"
+hash = "1449523112c9ed8273fe320367deba364ff8c3e82934521ab12f3c9487ad2b09"
+
+[[files]]
+file = "mods/Iceberg-1.21.1-neoforge-1.3.2.jar.pw.toml"
+hash = "b1e45d0f56d5f4e01fa5f11e2525f91944a580669a1eef1b173fae5c33f4fde8"
+
+[[files]]
+file = "mods/ImmediatelyFast-NeoForge-1.6.12+1.21.1.jar.pw.toml"
+hash = "ea22443e58b1f8f43343412fbd545178b3509f92ce97ff84fc70f7f17f47d948"
+
+[[files]]
+file = "mods/InventoryProfilesNext-neoforge-1.21.1-2.2.5.jar.pw.toml"
+hash = "b97311048e3ba3f388f4ba5c3335a97d7d7f95b809ff6559d94a4f0188e4b456"
+
+[[files]]
+file = "mods/JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar.pw.toml"
+hash = "2e187b5017c8ca016333d205d9f6b7bf8adccc48f3d25e95faeb5e9cb7104242"
+
+[[files]]
+file = "mods/LegendaryTooltips-1.21.1-neoforge-1.5.5.jar.pw.toml"
+hash = "76713c558d771ba075fc94a9a529d1c9b3d94be35b27d8cfbc4cff0dc85cf0df"
+
+[[files]]
+file = "mods/MoogsStructureLib-neoforge-1.21.1-3.1.1.jar.pw.toml"
+hash = "067dc2e77948a51d63d7c3fb91f7265dc58f7f3261dc1bcdc069f2c7a3399b58"
+
+[[files]]
+file = "mods/MoogsVoyagerStructures-1.21-5.0.14.jar.pw.toml"
+hash = "742b4bee1c548e5a5b022c1058ace657b3cad964579078d255abf032766d7725"
+
+[[files]]
+file = "mods/Nullscape_1.21.x_v1.2.14.jar.pw.toml"
+hash = "57c816110be2532937949466c5f4b9097bd0ff7bdc2c962bdb5dd82b94411297"
+
+[[files]]
+file = "mods/Patchouli-1.21.1-93-NEOFORGE.jar.pw.toml"
+hash = "191b419d7aa3e6ba72f5fc42415c46559a02a1318a161779872169d3fcbbeac6"
+
+[[files]]
+file = "mods/Philips-Ruins1.21.1-2.0-NeoForge.jar.pw.toml"
+hash = "d5ff1551a832cc3f121b86e01993938edea1acbaa3c815a877ee34450bafddce"
+
+[[files]]
+file = "mods/Placebo-1.21.1-9.9.2.jar.pw.toml"
+hash = "1edcbeb5c05da95f12ca6e8ce1c981b17acb9bed74bae9c0859316fa3d944d55"
+
+[[files]]
+file = "mods/Prism-1.21.1-neoforge-1.0.11.jar.pw.toml"
+hash = "9b201f3bb6cc15b0681d41de6e7b79756e842fcc3d595df6049a179668b18e7a"
+
+[[files]]
+file = "mods/Psi-1.21.1-108.jar.pw.toml"
+hash = "65d4a7de627de8525be9010b5f87f7f26722534177de1d3304cb70d9b4cc0106"
+
+[[files]]
+file = "mods/PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar.pw.toml"
+hash = "de2a3f8dabddec436a3b07721f212c4fc1d1c17beefbcad56b2cb64876e097ac"
+
+[[files]]
+file = "mods/Structory_26.2_v1.3.7.jar.pw.toml"
+hash = "aa01729d2ad48d04155318f0af6f72fd73b51d433cb5e5910158a8993fb3fdb3"
+
+[[files]]
+file = "mods/TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar.pw.toml"
+hash = "2f6685f96947d676de1489f5ac3e1e5f9600c51e4872f28f72b12a162b54cc54"
+
+[[files]]
+file = "mods/VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar.pw.toml"
+hash = "b8a057b06b7e23cc59f71bf73676df949fc9212939dc90726db5d433f2390068"
+
+[[files]]
+file = "mods/YungsApi-1.21.1-NeoForge-5.1.8.jar.pw.toml"
+hash = "e3b49366e9c2dcc8e694daa3f48516b4dafc34e56e5683641ff258399fe1aea8"
+
+[[files]]
+file = "mods/YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar.pw.toml"
+hash = "8c5667ea19e682dfcb2efc81324464efc0a1f873f07e780c960915e343165dba"
+
+[[files]]
+file = "mods/YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar.pw.toml"
+hash = "57a9f862be39a545d7a557c8f70a295e29cdbf64de1c4ebbca3b45a7f1ac59f5"
+
+[[files]]
+file = "mods/YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar.pw.toml"
+hash = "d9cf6d2263ff5428a16fafeaf121a6a86c4620eb2bd250d9c96e1c3b58113694"
+
+[[files]]
+file = "mods/YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar.pw.toml"
+hash = "0c2e2278bfd3b6e4c112999c3e7fef31c4e518db9951281daa92cc93fec2acba"
+
+[[files]]
+file = "mods/YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar.pw.toml"
+hash = "9d7b1f189e756b67693e86b827dbdcbfcf2696bf49e6e08e8e4412dde7b3f4ba"
+
+[[files]]
+file = "mods/YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar.pw.toml"
+hash = "bf96a11a688237ecfe83a383a6efa144c14f06a3b973c7239feccd235f275a71"
+
+[[files]]
+file = "mods/YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar.pw.toml"
+hash = "cf3843f3825720094795ffb3ab56d0103bde58e9e2d20fd80f8062c8243f0b9f"
+
+[[files]]
+file = "mods/YungsBetterStrongholds-1.21.1-NeoForge-5.1.3.jar.pw.toml"
+hash = "c3fb0fd84f55dd9539c87c95d4d6a2d5b40a6162a9eb121f7019d68144a9ac6a"
+
+[[files]]
+file = "mods/YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar.pw.toml"
+hash = "af730158c9c8770eb4488a6510c3b0b3e37cca081d3931dc2bf01bd2e8b7b16e"
+
+[[files]]
+file = "mods/YungsBridges-1.21.1-NeoForge-5.1.1.jar.pw.toml"
+hash = "a72ace4bb8a0404d8cd3641ebd8a46bebfb33d400d89c678cf4f8360ecf35db2"
+
+[[files]]
+file = "mods/YungsExtras-1.21.1-NeoForge-5.1.1.jar.pw.toml"
+hash = "e6d7ad5ceb0196ba5887538aaf6608ececc86026a0c0abe75e0c4e1d3dfbe234"
+
+[[files]]
+file = "mods/YungsMenuTweaks-1.21.1-NeoForge-2.1.2.jar.pw.toml"
+hash = "d3de82fbdf39a23e8acb155babb71afd4a056534364e66b119f68260c9eb165f"
+
+[[files]]
+file = "mods/aeroblender-1.21.1-1.0.0-neoforge.jar.pw.toml"
+hash = "3bde462135895bc01939f8442c056f4b4484d29ac3e24274d6cf412f29ba8e63"
+
+[[files]]
+file = "mods/aether-1.21.1-1.5.10-neoforge.jar.pw.toml"
+hash = "a624a6ad08cb9f8ded5a7e2448f5e1ff9adec9bd073b5f85d7ccf52bc3b0b99d"
+
+[[files]]
+file = "mods/aether_emissivity-1.21.1-1.0.2-neoforge.jar.pw.toml"
+hash = "f252b21a53e0b51a98781280948bf46c72ce61aed6d9540b6039eb97208cea6a"
+
+[[files]]
+file = "mods/aether_overworld_ores-1.21.1-1.0.2-neoforge.jar.pw.toml"
+hash = "85e9fe24904917c8bc7220dff462fad5c36b5cd8adcc3ad5a4dd6347630f0cbb"
+
+[[files]]
+file = "mods/alchemancy-2.1.3-NeoForge-1.21.1.jar.pw.toml"
+hash = "18aba0ec5987d89f44249bab51ff688413c39a7054e540e8ed000f9c555876ec"
+
+[[files]]
+file = "mods/alternate_current-mc1.21-1.9.0.jar.pw.toml"
+hash = "68e708c3030367aa8fc2a266278c3eb12ae5cb1de0d7152d5bf585112623e53f"
+
+[[files]]
+file = "mods/amendments-neoforge-1.21-2.1.7.jar.pw.toml"
+hash = "aed3aa9d3756e6bc38ddcd1aaba4d426c988c20a7317161f499778b45f955ef3"
+
+[[files]]
+file = "mods/architectury-13.0.11-neoforge.jar.pw.toml"
+hash = "0b7723dd9ccda0e824ab9c861cf45807708d3fa49948a7ba6626230befb9c836"
+
+[[files]]
+file = "mods/betterarcheology-neoforge-1.21.1-1.3.8.jar.pw.toml"
+hash = "e925c9e52b64b69e706c3500249af58c4c1ea4fa8c7e8c0cdeb774907c65e45b"
+
+[[files]]
+file = "mods/bettercombat-neoforge-2.4.0+1.21.1.jar.pw.toml"
+hash = "6c2f230c5203f578f35079de8d38eb569e4efc1fe087c755ef43c0deb59deb56"
+
+[[files]]
+file = "mods/blossom-blade-1.3.jar.pw.toml"
+hash = "483df6e8a2729a0bf9aac1340e5beb67a3a8507284ea6fd9a56868aefb15189b"
+
+[[files]]
+file = "mods/c2me-neoforge-mc1.21.1-0.4.0-alpha.0.120.jar.pw.toml"
+hash = "ed2ae77cd765ed62f06190d308a1da60d5977ceef136c827bdf8c9fc46853efd"
+
+[[files]]
+file = "mods/campsite_structures-1.21.1-NEOFORGE-1.0.4.jar.pw.toml"
+hash = "64d1f6ae2470b6b3751aab11ff5dbb6a8c90ebf799f1fe04f0a5bd4cea86d840"
+
+[[files]]
+file = "mods/cloth-config-15.0.140-neoforge.jar.pw.toml"
+hash = "61726427e9fcab5e53bd42dbaba88d0cdb3a44eda7406a36db2d8a8b0ae296d3"
+
+[[files]]
+file = "mods/comforts-neoforge-9.0.5+1.21.1.jar.pw.toml"
+hash = "2027498112657bda538bbf881c38ef49056838d97eb0caed3f784ebf32d15432"
+
+[[files]]
+file = "mods/cristellib-neoforge-1.21.1-3.1.7.jar.pw.toml"
+hash = "645d8429e5ffd6ed4478570fbf91971a19f7100403257341bb30f6de9bd61856"
+
+[[files]]
+file = "mods/cumulus_menus-1.21.1-2.0.8-neoforge.jar.pw.toml"
+hash = "179da5ef15312892f3f12bf4fc765d999b4d3ec1a9d0255bbed2f02917802a83"
+
+[[files]]
+file = "mods/curios-neoforge-9.5.1+1.21.1.jar.pw.toml"
+hash = "659dc867a0da77763e61f0027596813ba629eb7f3a9974660941d42494b539b4"
+
+[[files]]
+file = "mods/deep_aether-1.21.1-1.1.5.1.jar.pw.toml"
+hash = "9cb3911b0412c672f43914f307a747508bf648a922840b026ff8f92a7294ff9e"
+
+[[files]]
+file = "mods/deeper-oceans-2.0.1-neoforge-21.1.jar.pw.toml"
+hash = "ace4e1216f569ed73b29e48cc26f650f2676935ed486dd022327760b360e2e40"
+
+[[files]]
+file = "mods/dungeons-and-taverns-v4.4.4.jar.pw.toml"
+hash = "47545c3fd977a4baab6091eb34f31bf8bb5814615b9d2f46ed54ba6cc3c2d312"
+
+[[files]]
+file = "mods/ends_delight-2.6.1+neoforge.1.21.1.jar.pw.toml"
+hash = "b9c3658623dbf7548046403525246cc736012911534b9fc74d9a8cdfcf4dff29"
+
+[[files]]
+file = "mods/entity_model_features-3.2.4-1.21-neoforge.jar.pw.toml"
+hash = "a5dcc789ce64b17c3c9cd66375f91389171213b90e09ba8f3eef831bef31f88b"
+
+[[files]]
+file = "mods/entity_texture_features_1.21-neoforge-7.1.jar.pw.toml"
+hash = "56222f2b122551262f62eb5c06e8d744a8263c4762f33a49a7992c65a2e1bfca"
+
+[[files]]
+file = "mods/entityculling-neoforge-1.10.5-mc1.21.1.jar.pw.toml"
+hash = "7d39400f75a926dc04178052ff867e2b8259483a92d603e046ec2ba3356e34ba"
+
+[[files]]
+file = "mods/ferritecore-7.0.3-neoforge.jar.pw.toml"
+hash = "a6245da2fefbf4979da74ad0addaa56d46966edad4dac349ad58aeb3a6e70753"
+
+[[files]]
+file = "mods/guardvillagers-2.4.10-1.21.1.jar.pw.toml"
+hash = "5a0a85d9b1c3407425ec35b59bd37ce5943bf320443ad3e1af5aa2ead731003a"
+
+[[files]]
+file = "mods/iris-neoforge-1.8.14-beta.1+mc1.21.1.jar.pw.toml"
+hash = "54fc20250b8820aee26cadafe6def8b1566c48a7db42fedddcbb1e63eea2bae9"
+
+[[files]]
+file = "mods/jei-1.21.1-neoforge-19.44.0.403.jar.pw.toml"
+hash = "bee3f0d6d7e9f9c47d1ec581ceb1a3fced830f1d01c48cb570c484c1c342f01b"
+
+[[files]]
+file = "mods/kotlinforforge-5.12.0-all.jar.pw.toml"
+hash = "63f1491d68eea21020d7f4535437aaa93318b9f18b08ba1fa6e2f18846c2c7d5"
+
+[[files]]
+file = "mods/libIPN-neoforge-1.21.1-6.6.3.jar.pw.toml"
+hash = "cacb88e2dee92876d3c3506772b78a9fed4aa29690eb91c4c4a471e7b691a6c9"
+
+[[files]]
+file = "mods/limlib-13.0.0+1.21.1.jar.pw.toml"
+hash = "d2386a337d9b21e5eeed2276119f4c324f2454715834d1b328ed8c7c20292797"
+
+[[files]]
+file = "mods/lithostitched-1.8.0+beta4-neoforge-21.1.jar.pw.toml"
+hash = "8419fd00ce43fde5dd4d2080877a1348739834c6fde8ca6c5d2ed57e3c6a6d8b"
+
+[[files]]
+file = "mods/mcw-bridges-3.1.2-mc1.21.1neoforge.jar.pw.toml"
+hash = "c2c3c6a220203fd3dd1a7132493d33e320fc84bb738f72de29482e17644fd66b"
+
+[[files]]
+file = "mods/mcw-doors-1.1.5-mc1.21.1neoforge.jar.pw.toml"
+hash = "24efb1d0f678b35766ce4488252b0055d000c73cc6228ee4d2bcc9a132c40540"
+
+[[files]]
+file = "mods/mcw-furniture-3.4.1-mc1.21.1neoforge.jar.pw.toml"
+hash = "1cd5868727679ec06b4e01b1b4d1c47ec8157f0c7d5b0e6bbdb4c07dc5d4ddfc"
+
+[[files]]
+file = "mods/mcw-lights-1.1.5-mc1.21.1neoforge.jar.pw.toml"
+hash = "15375055f59072b4e54baca6fc213340e499e5e12c7864578afbd536bded8af9"
+
+[[files]]
+file = "mods/mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar.pw.toml"
+hash = "f082e85c7e3268e6c837f863df73dae1a19e75f340d34d197795e6c237bcbf0f"
+
+[[files]]
+file = "mods/mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar.pw.toml"
+hash = "abf9845e7b297234e8834a33d64e6e6a34fdebbadd1a9488ee6f9b66a785bed5"
+
+[[files]]
+file = "mods/mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar.pw.toml"
+hash = "56f3365fbbbfa89ce9ba41e0e0c93444290a78215490b463e039c33c3a58268d"
+
+[[files]]
+file = "mods/mcw-paintings-1.1.0-mc1.21.1neoforge.jar.pw.toml"
+hash = "4c946da6d1d15889a96454078a5c13c6b58095863414b178c8c0452173c3954c"
+
+[[files]]
+file = "mods/mcw-roofs-2.3.2-mc1.21.1neoforge.jar.pw.toml"
+hash = "afcc5ff3316e111697e1bd20c3694d555bc2cb3dae77e85d2cf1a182a2f94046"
+
+[[files]]
+file = "mods/mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar.pw.toml"
+hash = "794b577bbf2bb85562c7827eb7c0b38e0d4af7d939bee42ce94a4db4ea15247e"
+
+[[files]]
+file = "mods/midnightlib-neoforge-1.9.3+1.21.1.jar.pw.toml"
+hash = "3ac6e54727e89fbd81af3fa15d251cfebb759f5339dc5bdb7e021b8aefe077e4"
+
+[[files]]
+file = "mods/modernfix-neoforge-5.27.20+mc1.21.1.jar.pw.toml"
+hash = "486324a0a75e9093f8af9611e132f11d6893eaa88de93a5b7d98437000300449"
+
+[[files]]
+file = "mods/mods_optimizer-neoforge-1.21.1-4.3.0.jar.pw.toml"
+hash = "18137142a0fcf4a91130f6215ded32201f84fa96e2baf93a811828ded2081d01"
+
+[[files]]
+file = "mods/moonlight-1.21.1-3.4.1-neoforge.jar.pw.toml"
+hash = "58d7838f3c4a54fd90e285e0634a657ffb1a0c393ab3889b9ce52fa0c29e392a"
+
+[[files]]
+file = "mods/noisium-neoforge-2.3.0+mc1.21-1.21.1.jar.pw.toml"
+hash = "fe9197e4374d08487d0d623ebc03dfd1a62b8b9f8a722b40568c9980037e17d5"
+
+[[files]]
+file = "mods/notenoughanimations-neoforge-1.12.4-mc1.21.1.jar.pw.toml"
+hash = "2a5b35b809e2b0be708aace977596acf2ff7a138ebf016088158de2cf7e9a9f5"
+
+[[files]]
+file = "mods/nyfsspiders-neoforge-1.21.1-3.0.1.jar.pw.toml"
+hash = "1cdf93ad193cf317d4dca815b6b461d35c952b32ea97146c667a1e8f2fa40852"
+
+[[files]]
+file = "mods/owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar.pw.toml"
+hash = "21e65f9654ff9bcc06e548c892e0a5d1ed01d13ec758df545bb73a9284902f05"
+
+[[files]]
+file = "mods/paucal-0.7.0+neoforge-1.21.1.jar.pw.toml"
+hash = "e91a5c8a87bd2865e8168595362a3c67f874863e649a1f015d12715d030fa4a0"
+
+[[files]]
+file = "mods/physics-mod-3.0.31-mc-1.21.1-neoforge.jar.pw.toml"
+hash = "c39094caae256183aa99f8903470c436bd215ec030a0f5ded4836ad23671a746"
+
+[[files]]
+file = "mods/player-animation-lib-forge-2.0.4+1.21.1.jar.pw.toml"
+hash = "98f152501749d81d340bb2050f5d2edc93f7eb813d95bb9dc6ed400377d9c98b"
+
+[[files]]
+file = "mods/reds-more-structures-1.1.0.jar.pw.toml"
+hash = "ed015abc69c8446b64fa68a24f2b369f7726ee2d40d4b999afa18ddadf831684"
+
+[[files]]
+file = "mods/reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar.pw.toml"
+hash = "8920675cfd448842d82ac689f782233a95a23557c9753d374995e526485cd034"
+
+[[files]]
+file = "mods/resourcefulconfig-neoforge-1.21-3.0.11.jar.pw.toml"
+hash = "5dc3ac2d12504f3cb25247bc5e228cc46980a6f2c0f0a05fa8b888103e2d3ea1"
+
+[[files]]
+file = "mods/resourcefullib-neoforge-1.21-3.0.12.jar.pw.toml"
+hash = "e8889f7b5d3a81ec6b07333b68b196e3937ec5fcf486c5175c64d2cc5ec8b67c"
+
+[[files]]
+file = "mods/sodium-extra-neoforge-0.9.3+mc1.21.1.jar.pw.toml"
+hash = "92207d750806754cbf2afdfd26b3a926adb634dad0416e19203c4b7f4402519b"
+
+[[files]]
+file = "mods/sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar.pw.toml"
+hash = "37840b6a8dcbe29ddd75f19e686a82b487a376de14554d12c743c64331474477"
+
+[[files]]
+file = "mods/sound-physics-remastered-neoforge-1.21.1-1.5.1.jar.pw.toml"
+hash = "17412098235cb1a31680b4dad1796b8660cf4241c040fcf7d2dcd3a1a1096e86"
+
+[[files]]
+file = "mods/spark-1.10.124-neoforge.jar.pw.toml"
+hash = "150536348e1eded1144d5d6708aa61c3fd1cc1631f6aa01c01e1b1e971f0136a"
+
+[[files]]
+file = "mods/sparsestructures-neoforge-1.21.1-3.0.jar.pw.toml"
+hash = "d1fb26247e0da9cfc695de34ad37740a6fc340257bfc1e9dafd50139016a4282"
+
+[[files]]
+file = "mods/t_and_t-fabric-neoforge-1.13.11.jar.pw.toml"
+hash = "0b49ceaa2ad599381757898746e172b4d77f508eeaf7c0c741ea2e2c5f1953fd"
+
+[[files]]
+file = "mods/visualoverhaul-neoforge-5.2.1.jar.pw.toml"
+hash = "c6817b2720f3cc7bf80c396b00dbd6ee7520f6ecea5c92216babe12da9a37fb5"
+
+[[files]]
+file = "mods/waveycapes-neoforge-1.10.2-mc1.21.1.jar.pw.toml"
+hash = "52241ae3ee4ef5c569309cfddc9be958fd0be7ee2d9fb6ee57ee35ddf8fdbcba"
+
+[[files]]
+file = "mods/yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar.pw.toml"
+hash = "e5bf3d3f70e1ad774fdace30044b082cec6e2c5d2f6a40095066a1f66a7f33ec"
+
+[[files]]
+file = "shaderpacks/Eclipse.zip.pw.toml"
+hash = "c25fbef7bfe0b291a462b9800098b71ce061af56fc9293223c20937fda0cf1dd"
