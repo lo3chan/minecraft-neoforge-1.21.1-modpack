@@ -36,9 +36,23 @@
       "name": "Hopo Better Ruined Portals",
       "source": "https://modrinth.com/datapack/hopo-better-ruined-portals",
       "path": "datapacks/hopo-better-ruined-portals"
+    },
+    {
+      "id": "hopelessly-lost",
+      "name": "Hopelessly Lost",
+      "source": "https://curseforge.com/minecraft/customization/hopelessly-lost",
+      "path": "datapacks/hopelessly-lost"
     }
   ],
   "libraries": [
+    {
+      "id": "moonlight",
+      "name": "Moonlight Lib",
+      "description": "Required by Amendments & MehVahdJukaar mods",
+      "upstream": "https://github.com/MehVahdJukaar/Moonlight.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
     {
       "id": "puzzles-lib",
       "name": "Puzzles Lib",
@@ -121,6 +135,41 @@
     }
   ],
   "mods": [
+    {
+      "id": "amendments",
+      "name": "Amendments",
+      "upstream": "https://github.com/MehVahdJukaar/amendments.git",
+      "branch": "1.21",
+      "type": "submodule"
+    },
+    {
+      "id": "reds-more-structures",
+      "name": "Red's More Structures",
+      "upstream": "https://github.com/redstone3/RedsMoreStructures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "philips-ruins",
+      "name": "Philip's Ruins",
+      "upstream": "https://github.com/Philip28/philips-ruins.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "additional-structures",
+      "name": "Additional Structures",
+      "upstream": "https://github.com/RexxStone/AdditionalStructures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
+    {
+      "id": "campsite-structures",
+      "name": "Campsite Structures",
+      "upstream": "https://github.com/superblaubeere27/CampsiteStructures.git",
+      "branch": "main",
+      "type": "submodule"
+    },
     {
       "id": "guard-villagers",
       "name": "Guard Villagers",
