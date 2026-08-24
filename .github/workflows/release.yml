@@ -1,0 +1,68 @@
+name: Compile & Release The Council Client Modpack
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Package & Release The Council Modpack
+    runs-on: [self-hosted, linux]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Generate Build Timestamp & Version
+        id: vars
+        run: |
+          echo "TIMESTAMP=$(date +'%Y%m%d_%H%M')" >> $GITHUB_OUTPUT
+          echo "VERSION=v1.0.0-$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Build & Package The Council Client ZIP
+        id: package
+        run: |
+          mkdir -p build/dist
+          ZIP_NAME="The_Council_ClientPack_${{ steps.vars.outputs.TIMESTAMP }}.zip"
+          
+          # Assemble ZIP package
+          zip -r "build/dist/$ZIP_NAME" client-manifest.json config/ shaderpacks/ -x "*.git*"
+          
+          echo "ZIP_PATH=build/dist/$ZIP_NAME" >> $GITHUB_OUTPUT
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.VERSION }}
+          name: "The Council Release ${{ steps.vars.outputs.TIMESTAMP }}"
+          body: |
+            ## The Council — Minecraft NeoForge 1.21.1 Client Modpack Release
+            
+            - **Target NeoForge**: `21.1.248`
+            - **Minecraft Version**: `1.21.1`
+            - **Release Build**: `${{ steps.vars.outputs.TIMESTAMP }}`
+            - **Runner Host**: `jelly` (Self-Hosted Runner)
+            
+            ### Installation Instructions:
+            1. Download `${{ steps.package.outputs.ZIP_NAME }}` from Assets below.
+            2. Import into **GDLauncher Carbon**, **Prism Launcher**, or **MultiMC** (*Add Instance ? Import from ZIP*).
+            3. Launch and join dedicated server on `192.168.1.113:33377`!
+          files: ${{ steps.package.outputs.ZIP_PATH }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

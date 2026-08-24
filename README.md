@@ -2,7 +2,7 @@
 
 Master multi-mod source repository, composite build orchestrator, and porting workspace for **Minecraft NeoForge 1.21.1** (Java 21).
 
-🔗 **Repository**: `lo3chan/minecraft-neoforge-1.21.1-modpack`
+🔗 **Repository**: `lo3chan/the-council-neoforge-1.21.1-modpack`
 
 ---
 

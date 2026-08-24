@@ -1,6 +1,6 @@
-# The Aether & Beyond — NeoForge 1.21.1 Modpack Development & Architecture Guide
+# The Council — NeoForge 1.21.1 Modpack Development & Architecture Guide
 
-Welcome to **The Aether & Beyond** development suite. This repository is structured as a unified monorepo for developing, compiling, patching, and maintaining the NeoForge 1.21.1 modpack.
+Welcome to **The Council** development suite. This repository is structured as a unified monorepo for developing, compiling, patching, and maintaining the NeoForge 1.21.1 modpack.
 
 ---
 
@@ -19,7 +19,7 @@ Welcome to **The Aether & Beyond** development suite. This repository is structu
 To avoid any ambiguity when navigating codebases, this repository distinguishes between active deployed mod subprojects and pristine upstream Git repositories:
 
 `	ext
-minecraft-neoforge-1.21.1-modpack/
+the-council-neoforge-1.21.1-modpack/
 ├── mods/                       # [ACTIVE WORKSPACE] Deployed mod projects with full uncompiled Java & resources
 │   ├── farmersdelight/         # Deployed mod project tree (src/main/java, src/main/resources, build.gradle)
 │   ├── origins-0.3/            # Native Origins NeoForge codebase
