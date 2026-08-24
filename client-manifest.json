@@ -3,151 +3,551 @@
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
   "totalMods": 134,
-  "clientOnlyModsCount": 23,
-  "serverAndSharedModsCount": 113,
+  "clientOnlyModsCount": 12,
+  "serverAndSharedModsCount": 122,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
     "tailscaleAddress": "100.117.17.23:33377"
   },
   "clientOnlyMods": [
-    "BadOptimizations-2.4.1-1.21.1.jar",
-    "BetterF3-11.0.3-NeoForge-1.21.1.jar",
-    "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
-    "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
-    "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
-    "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
-    "YungsMenuTweaks-1.21.1-NeoForge-2.1.2.jar",
-    "aether_emissivity-1.21.1-1.0.2-neoforge.jar",
-    "entity_model_features-3.2.4-1.21-neoforge.jar",
-    "entity_texture_features_1.21-neoforge-7.1.jar",
-    "entityculling-neoforge-1.10.5-mc1.21.1.jar",
-    "grassiergrass-neoforge-1.4.5+mc1.21.1.jar",
-    "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
-    "jupiter-2.3.7-1.21.1-neoforge.jar",
-    "mods_optimizer-neoforge-1.21.1-4.3.0.jar",
-    "notenoughanimations-neoforge-1.12.4-mc1.21.1.jar",
-    "origins-0.3.jar",
-    "physics-mod-pro-v172s-neoforge-mc-1.21.1.jar",
-    "reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar",
-    "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
-    "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
-    "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
-    "waveycapes-neoforge-1.10.2-mc1.21.1.jar",
-    "Enhanced-Celestials-2-Shaders-NeoForge-1.21.1-2.0.0.1.jar"
+    {
+      "filename": "BetterRecipeBookExtended-neoforge-1.21.1-2.2.jar",
+      "size": 835632
+    },
+    {
+      "filename": "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
+      "size": 30207268
+    },
+    {
+      "filename": "entityculling-neoforge-1.10.5-mc1.21.1.jar",
+      "size": 1585287
+    },
+    {
+      "filename": "ferritecore-7.0.3-neoforge.jar",
+      "size": 121559
+    },
+    {
+      "filename": "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
+      "size": 2540723
+    },
+    {
+      "filename": "modernfix-neoforge-5.27.20+mc1.21.1.jar",
+      "size": 599474
+    },
+    {
+      "filename": "notenoughanimations-neoforge-1.12.4-mc1.21.1.jar",
+      "size": 1939625
+    },
+    {
+      "filename": "physics-mod-pro-v172s-neoforge-mc-1.21.1.jar",
+      "size": 139913444
+    },
+    {
+      "filename": "reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar",
+      "size": 260876
+    },
+    {
+      "filename": "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
+      "size": 465013
+    },
+    {
+      "filename": "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
+      "size": 1292887
+    },
+    {
+      "filename": "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
+      "size": 202454
+    }
   ],
   "requiredServerMods": [
-    "AdditionalStructures-1.21-(v.6.3.2-NEO).jar",
-    "AkashicTome-1.8-30.jar",
-    "Amplified_Nether_26.2_v1.2.16.jar",
-    "Clumps-neoforge-1.21.1-19.0.0.1.jar",
-    "Continents_26.2_v1.1.14.jar",
-    "EternalNether-v21.1.3-1.21.1-NeoForge.jar",
-    "FarmersDelight-1.21.1-1.3.3.jar",
-    "FastSuite-1.21.1-6.0.7.jar",
-    "Iceberg-1.21.1-neoforge-1.3.2.jar",
-    "ImmediatelyFast-NeoForge-1.6.12+1.21.1.jar",
-    "Jade-1.21.1-NeoForge-15.10.6.jar",
-    "MoogsStructureLib-neoforge-1.21.1-3.1.1.jar",
-    "MoogsVoyagerStructures-1.21-5.0.14.jar",
-    "MouseTweaks-neoforge-mc1.21-2.26.1.jar",
-    "Nullscape_1.21.x_v1.2.14.jar",
-    "Patchouli-1.21.1-93-NEOFORGE.jar",
-    "Philips-Ruins1.21.1-2.0-NeoForge.jar",
-    "Placebo-1.21.1-9.9.2.jar",
-    "Prism-1.21.1-neoforge-1.0.11.jar",
-    "Psi-1.21.1-108.jar",
-    "PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
-    "Structory_26.2_v1.3.7.jar",
-    "TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar",
-    "YungsApi-1.21.1-NeoForge-5.1.8.jar",
-    "YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
-    "YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
-    "YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar",
-    "YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
-    "YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
-    "YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
-    "YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
-    "YungsBetterStrongholds-1.21.1-NeoForge-5.1.3.jar",
-    "YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
-    "YungsBridges-1.21.1-NeoForge-5.1.1.jar",
-    "YungsExtras-1.21.1-NeoForge-5.1.1.jar",
-    "aeroblender-1.21.1-1.0.0-neoforge.jar",
-    "aether-1.21.1-1.5.10-neoforge.jar",
-    "alchemancy-2.1.3-NeoForge-1.21.1.jar",
-    "alternate_current-mc1.21-1.9.0.jar",
-    "amendments-neoforge-1.21-2.1.7.jar",
-    "architectury-13.0.11-neoforge.jar",
-    "automodpack-mc1.21.1-neoforge-4.0.6.jar",
-    "balm-neoforge-1.21.1-21.0.65.jar",
-    "betterarcheology-neoforge-1.21.1-1.3.8.jar",
-    "bettercombat-neoforge-2.4.0+1.21.1.jar",
-    "blossom-blade-1.3.jar",
-    "bobo_lib-1.1-1.21.1-neoforge.jar",
-    "c2me-neoforge-mc1.21.1-0.4.0-alpha.0.120.jar",
-    "caelus-neoforge-7.0.1+1.21.1.jar",
-    "cloth-config-15.0.140-neoforge.jar",
-    "comforts-neoforge-9.0.5+1.21.1.jar",
-    "configured-neoforge-1.21.1-2.6.3.jar",
-    "cosmetica-neoforge-2.0.1-1.21.1.jar",
-    "cristellib-neoforge-1.21.1-3.1.7.jar",
-    "cumulus_menus-1.21.1-2.0.8-neoforge.jar",
-    "curios-neoforge-9.5.1+1.21.1.jar",
-    "deep_aether-1.21.1-1.1.5.1.jar",
-    "deeper-oceans-2.0.1-neoforge-21.1.jar",
-    "dungeons-and-taverns-v4.4.4.jar",
-    "ends_delight-2.6.1+neoforge.1.21.1.jar",
-    "ferritecore-7.0.3-neoforge.jar",
-    "geckolib-neoforge-1.21.1-4.9.2.jar",
-    "guardvillagers-2.4.10-1.21.1.jar",
-    "hexalia-neoforge-1.3.6.jar",
-    "hexcast-neoforged-1.21.1-0.11.1-16+neoforge.1.21.1.jar",
-    "hexerei-0.5.0.3.jar",
-    "immersive_gateways-neoforge-0.0.6.jar",
-    "inventoryessentials-neoforge-1.21.1-21.1.18.jar",
-    "jei-1.21.1-neoforge-19.44.0.403.jar",
-    "kotlinforforge-5.12.0-all.jar",
-    "limlib-13.0.0+1.21.1.jar",
-    "lithostitched-1.8.0+beta4-neoforge-21.1.jar",
-    "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
-    "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
-    "mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
-    "mcw-lights-1.1.5-mc1.21.1neoforge.jar",
-    "mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
-    "mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
-    "mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
-    "mcw-paintings-1.1.0-mc1.21.1neoforge.jar",
-    "mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
-    "mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
-    "modernfix-neoforge-5.27.20+mc1.21.1.jar",
-    "moonlight-1.21.1-3.4.1-neoforge.jar",
-    "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
-    "nyfsspiders-neoforge-1.21.1-3.0.1.jar",
-    "open_in_inventory-neoforge-2.0.2+1.21.1.jar",
-    "origins-1.11.6.2.jar",
-    "overpacked-2.0.1-1.21.1-neoforge.jar",
-    "owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar",
-    "paucal-0.7.0+neoforge-1.21.1.jar",
-    "player-animation-lib-forge-2.0.4+1.21.1.jar",
-    "reds-more-structures-1.1.0.jar",
-    "resourcefulconfig-neoforge-1.21-3.0.11.jar",
-    "resourcefullib-neoforge-1.21-3.0.12.jar",
-    "spark-1.10.124-neoforge.jar",
-    "sparsestructures-neoforge-1.21.1-3.0.jar",
-    "t_and_t-fabric-neoforge-1.13.11.jar",
-    "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
-    "rhino-2101.2.8-build.91.jar",
-    "kubejs-neoforge-2101.7.2-build.374.jar",
-    "recipebookplus-neoforge-1.21.1-1.0.4.jar",
-    "Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
-    "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
-    "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
-    "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar",
-    "THEUNDEADREVAMPED_1.8f_1.21.1_neoforge.jar",
-    "born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar",
-    "citadel-1.21.1-2.7.6.jar",
-    "alexsmobs-2.1.6-neoforge+1.21.1.jar",
-    "codxlib-1.5.0-neoforge+1.21.1.jar",
-    "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar"
+    {
+      "filename": "AdditionalStructures-1.21-(v.6.3.2-NEO).jar",
+      "size": 1542892
+    },
+    {
+      "filename": "AkashicTome-1.8-30.jar",
+      "size": 50256
+    },
+    {
+      "filename": "Amplified_Nether_26.2_v1.2.16.jar",
+      "size": 106436
+    },
+    {
+      "filename": "BadOptimizations-2.4.1-1.21.1.jar",
+      "size": 281630
+    },
+    {
+      "filename": "BetterF3-11.0.3-NeoForge-1.21.1.jar",
+      "size": 481646
+    },
+    {
+      "filename": "Clumps-neoforge-1.21.1-19.0.0.1.jar",
+      "size": 18382
+    },
+    {
+      "filename": "Continents_26.2_v1.1.14.jar",
+      "size": 58951
+    },
+    {
+      "filename": "Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
+      "size": 309763
+    },
+    {
+      "filename": "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
+      "size": 119142
+    },
+    {
+      "filename": "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
+      "size": 281568
+    },
+    {
+      "filename": "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar",
+      "size": 1422880
+    },
+    {
+      "filename": "Enhanced-Celestials-2-Shaders-NeoForge-1.21.1-2.0.0.1.jar",
+      "size": 21922
+    },
+    {
+      "filename": "EternalNether-v21.1.3-1.21.1-NeoForge.jar",
+      "size": 7395290
+    },
+    {
+      "filename": "FarmersDelight-1.21.1-1.3.3.jar",
+      "size": 3160883
+    },
+    {
+      "filename": "FastSuite-1.21.1-6.0.7.jar",
+      "size": 28192
+    },
+    {
+      "filename": "Iceberg-1.21.1-neoforge-1.3.2.jar",
+      "size": 213853
+    },
+    {
+      "filename": "ImmediatelyFast-NeoForge-1.6.12+1.21.1.jar",
+      "size": 362397
+    },
+    {
+      "filename": "Jade-1.21.1-NeoForge-15.10.6.jar",
+      "size": 726853
+    },
+    {
+      "filename": "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
+      "size": 292088
+    },
+    {
+      "filename": "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
+      "size": 81808
+    },
+    {
+      "filename": "MoogsStructureLib-neoforge-1.21.1-3.1.1.jar",
+      "size": 409524
+    },
+    {
+      "filename": "MoogsVoyagerStructures-1.21-5.0.14.jar",
+      "size": 1795448
+    },
+    {
+      "filename": "MouseTweaks-neoforge-mc1.21-2.26.1.jar",
+      "size": 73938
+    },
+    {
+      "filename": "Nullscape_1.21.x_v1.2.14.jar",
+      "size": 351749
+    },
+    {
+      "filename": "Patchouli-1.21.1-93-NEOFORGE.jar",
+      "size": 646777
+    },
+    {
+      "filename": "Philips-Ruins1.21.1-2.0-NeoForge.jar",
+      "size": 1365582
+    },
+    {
+      "filename": "Placebo-1.21.1-9.9.2.jar",
+      "size": 324058
+    },
+    {
+      "filename": "Prism-1.21.1-neoforge-1.0.11.jar",
+      "size": 62031
+    },
+    {
+      "filename": "Psi-1.21.1-108.jar",
+      "size": 2360596
+    },
+    {
+      "filename": "PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
+      "size": 1425176
+    },
+    {
+      "filename": "Structory_26.2_v1.3.7.jar",
+      "size": 1257461
+    },
+    {
+      "filename": "THEUNDEADREVAMPED_1.8f_1.21.1_neoforge.jar",
+      "size": 7473761
+    },
+    {
+      "filename": "TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar",
+      "size": 63788709
+    },
+    {
+      "filename": "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
+      "size": 81945
+    },
+    {
+      "filename": "YungsApi-1.21.1-NeoForge-5.1.8.jar",
+      "size": 389834
+    },
+    {
+      "filename": "YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
+      "size": 905839
+    },
+    {
+      "filename": "YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
+      "size": 782160
+    },
+    {
+      "filename": "YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar",
+      "size": 398130
+    },
+    {
+      "filename": "YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
+      "size": 795839
+    },
+    {
+      "filename": "YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
+      "size": 493967
+    },
+    {
+      "filename": "YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
+      "size": 609639
+    },
+    {
+      "filename": "YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
+      "size": 1025571
+    },
+    {
+      "filename": "YungsBetterStrongholds-1.21.1-NeoForge-5.1.3.jar",
+      "size": 461244
+    },
+    {
+      "filename": "YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
+      "size": 174789
+    },
+    {
+      "filename": "YungsBridges-1.21.1-NeoForge-5.1.1.jar",
+      "size": 136820
+    },
+    {
+      "filename": "YungsExtras-1.21.1-NeoForge-5.1.1.jar",
+      "size": 198183
+    },
+    {
+      "filename": "YungsMenuTweaks-1.21.1-NeoForge-2.1.2.jar",
+      "size": 157761
+    },
+    {
+      "filename": "aeroblender-1.21.1-1.0.0-neoforge.jar",
+      "size": 25451
+    },
+    {
+      "filename": "aether-1.21.1-1.5.10-neoforge.jar",
+      "size": 40223909
+    },
+    {
+      "filename": "aether_emissivity-1.21.1-1.0.2-neoforge.jar",
+      "size": 176218
+    },
+    {
+      "filename": "alchemancy-2.1.3-NeoForge-1.21.1.jar",
+      "size": 2377559
+    },
+    {
+      "filename": "alexsmobs-2.1.6-neoforge+1.21.1.jar",
+      "size": 27442263
+    },
+    {
+      "filename": "alternate_current-mc1.21-1.9.0.jar",
+      "size": 50425
+    },
+    {
+      "filename": "amendments-neoforge-1.21-2.1.7.jar",
+      "size": 1154863
+    },
+    {
+      "filename": "architectury-13.0.11-neoforge.jar",
+      "size": 584734
+    },
+    {
+      "filename": "automodpack-mc1.21.1-neoforge-4.0.6.jar",
+      "size": 15397914
+    },
+    {
+      "filename": "balm-neoforge-1.21.1-21.0.65.jar",
+      "size": 783793
+    },
+    {
+      "filename": "betterarcheology-neoforge-1.21.1-1.3.8.jar",
+      "size": 3106762
+    },
+    {
+      "filename": "bettercombat-neoforge-2.4.0+1.21.1.jar",
+      "size": 1045389
+    },
+    {
+      "filename": "blossom-blade-1.3.jar",
+      "size": 337327
+    },
+    {
+      "filename": "bobo_lib-1.1-1.21.1-neoforge.jar",
+      "size": 236260
+    },
+    {
+      "filename": "born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar",
+      "size": 11842184
+    },
+    {
+      "filename": "c2me-neoforge-mc1.21.1-0.4.0-alpha.0.120.jar",
+      "size": 3708380
+    },
+    {
+      "filename": "caelus-neoforge-7.0.1+1.21.1.jar",
+      "size": 50235
+    },
+    {
+      "filename": "citadel-1.21.1-2.7.6.jar",
+      "size": 3028943
+    },
+    {
+      "filename": "cloth-config-15.0.140-neoforge.jar",
+      "size": 1163890
+    },
+    {
+      "filename": "codxlib-1.5.0-neoforge+1.21.1.jar",
+      "size": 191682
+    },
+    {
+      "filename": "comforts-neoforge-9.0.5+1.21.1.jar",
+      "size": 422658
+    },
+    {
+      "filename": "configured-neoforge-1.21.1-2.6.3.jar",
+      "size": 428793
+    },
+    {
+      "filename": "cosmetica-neoforge-2.0.1-1.21.1.jar",
+      "size": 5820398
+    },
+    {
+      "filename": "cristellib-neoforge-1.21.1-3.1.7.jar",
+      "size": 583525
+    },
+    {
+      "filename": "cumulus_menus-1.21.1-2.0.8-neoforge.jar",
+      "size": 466695
+    },
+    {
+      "filename": "curios-neoforge-9.5.1+1.21.1.jar",
+      "size": 410690
+    },
+    {
+      "filename": "deep_aether-1.21.1-1.1.5.1.jar",
+      "size": 46236011
+    },
+    {
+      "filename": "deeper-oceans-2.0.1-neoforge-21.1.jar",
+      "size": 123273
+    },
+    {
+      "filename": "dungeons-and-taverns-v4.4.4.jar",
+      "size": 24859622
+    },
+    {
+      "filename": "ends_delight-2.6.1+neoforge.1.21.1.jar",
+      "size": 258124
+    },
+    {
+      "filename": "entity_model_features-3.2.4-1.21-neoforge.jar",
+      "size": 567827
+    },
+    {
+      "filename": "entity_texture_features_1.21-neoforge-7.1.jar",
+      "size": 752334
+    },
+    {
+      "filename": "geckolib-neoforge-1.21.1-4.9.2.jar",
+      "size": 630584
+    },
+    {
+      "filename": "grassiergrass-neoforge-1.4.5+mc1.21.1.jar",
+      "size": 2350729
+    },
+    {
+      "filename": "guardvillagers-2.4.10-1.21.1.jar",
+      "size": 283467
+    },
+    {
+      "filename": "hexalia-neoforge-1.3.6.jar",
+      "size": 1725717
+    },
+    {
+      "filename": "hexcast-neoforged-1.21.1-0.11.1-16+neoforge.1.21.1.jar",
+      "size": 3466209
+    },
+    {
+      "filename": "hexerei-0.5.0.3.jar",
+      "size": 10428010
+    },
+    {
+      "filename": "immersive_gateways-neoforge-0.0.6.jar",
+      "size": 502608
+    },
+    {
+      "filename": "inventoryessentials-neoforge-1.21.1-21.1.18.jar",
+      "size": 200268
+    },
+    {
+      "filename": "jei-1.21.1-neoforge-19.44.0.403.jar",
+      "size": 1698112
+    },
+    {
+      "filename": "jupiter-2.3.7-1.21.1-neoforge.jar",
+      "size": 278988
+    },
+    {
+      "filename": "kotlinforforge-5.12.0-all.jar",
+      "size": 7279264
+    },
+    {
+      "filename": "kubejs-neoforge-2101.7.2-build.374.jar",
+      "size": 2292654
+    },
+    {
+      "filename": "limlib-13.0.0+1.21.1.jar",
+      "size": 326575
+    },
+    {
+      "filename": "lithostitched-1.8.0+beta4-neoforge-21.1.jar",
+      "size": 954028
+    },
+    {
+      "filename": "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
+      "size": 661387
+    },
+    {
+      "filename": "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
+      "size": 1190404
+    },
+    {
+      "filename": "mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
+      "size": 2080436
+    },
+    {
+      "filename": "mcw-lights-1.1.5-mc1.21.1neoforge.jar",
+      "size": 525744
+    },
+    {
+      "filename": "mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
+      "size": 673871
+    },
+    {
+      "filename": "mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
+      "size": 777742
+    },
+    {
+      "filename": "mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
+      "size": 1261268
+    },
+    {
+      "filename": "mcw-paintings-1.1.0-mc1.21.1neoforge.jar",
+      "size": 179058
+    },
+    {
+      "filename": "mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
+      "size": 1784829
+    },
+    {
+      "filename": "mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
+      "size": 572870
+    },
+    {
+      "filename": "mods_optimizer-neoforge-1.21.1-4.3.0.jar",
+      "size": 204161
+    },
+    {
+      "filename": "moonlight-1.21.1-3.4.1-neoforge.jar",
+      "size": 2167608
+    },
+    {
+      "filename": "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
+      "size": 60296
+    },
+    {
+      "filename": "nyfsspiders-neoforge-1.21.1-3.0.1.jar",
+      "size": 186620
+    },
+    {
+      "filename": "open_in_inventory-neoforge-2.0.2+1.21.1.jar",
+      "size": 76930
+    },
+    {
+      "filename": "origins-0.3.jar",
+      "size": 2135933
+    },
+    {
+      "filename": "overpacked-2.0.1-1.21.1-neoforge.jar",
+      "size": 225647
+    },
+    {
+      "filename": "owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar",
+      "size": 1221583
+    },
+    {
+      "filename": "paucal-0.7.0+neoforge-1.21.1.jar",
+      "size": 257735
+    },
+    {
+      "filename": "player-animation-lib-forge-2.0.4+1.21.1.jar",
+      "size": 203149
+    },
+    {
+      "filename": "reds-more-structures-1.1.0.jar",
+      "size": 1363659
+    },
+    {
+      "filename": "resourcefulconfig-neoforge-1.21-3.0.11.jar",
+      "size": 341009
+    },
+    {
+      "filename": "resourcefullib-neoforge-1.21-3.0.12.jar",
+      "size": 484332
+    },
+    {
+      "filename": "rhino-2101.2.8-build.91.jar",
+      "size": 980936
+    },
+    {
+      "filename": "spark-1.10.124-neoforge.jar",
+      "size": 3642581
+    },
+    {
+      "filename": "sparsestructures-neoforge-1.21.1-3.0.jar",
+      "size": 117743
+    },
+    {
+      "filename": "t_and_t-fabric-neoforge-1.13.11.jar",
+      "size": 3552503
+    },
+    {
+      "filename": "waveycapes-neoforge-1.10.2-mc1.21.1.jar",
+      "size": 1848323
+    },
+    {
+      "filename": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
+      "size": 1118651
+    }
   ]
 }
