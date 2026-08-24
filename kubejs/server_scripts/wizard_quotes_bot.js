@@ -25,15 +25,17 @@ const WIZARD_QUOTES = [
     { author: "Goldfinch the Indomitable", text: "I don't trust Druids. Can't go ten feet without one shifting and spooking the shit out of you. They do that shit on purpose." }
 ];
 
+const BROADCAST_INTERVAL_TICKS = 18000; // 15 minutes (20 ticks/sec * 60 * 15)
 let lastQuoteIndex = -1;
+let quoteTickCounter = 0;
 
-ServerEvents.loaded(event => {
-    let server = event.server;
+ServerEvents.tick(event => {
+    quoteTickCounter++;
+    if (quoteTickCounter >= BROADCAST_INTERVAL_TICKS) {
+        quoteTickCounter = 0;
 
-    // Run every 18000 ticks (~15 minutes)
-    server.scheduleRepeatingInTicks(18000, callback => {
-        // Only broadcast if there are online players
-        if (!server.players || server.players.isEmpty()) return;
+        let server = event.server;
+        if (!server || !server.players || server.players.isEmpty()) return;
 
         let idx = Math.floor(Math.random() * WIZARD_QUOTES.length);
         if (idx === lastQuoteIndex && WIZARD_QUOTES.length > 1) {
@@ -44,5 +46,5 @@ ServerEvents.loaded(event => {
         let quote = WIZARD_QUOTES[idx];
         let formatted = Component.literal('§6§l[The Council] §d§o"' + quote.text + '" §7— §e§l' + quote.author);
         server.tell(formatted);
-    });
+    }
 });
