@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 124,
+  "totalMods": 129,
   "mods": [
     {
       "id": "minecraft",
@@ -55,9 +55,44 @@
       "type": "mod"
     },
     {
+      "id": "minecraft",
+      "name": "CorgiLib\" #mandatory",
+      "file": "Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
+      "version": "5.0.0.9\" #mandatory",
+      "type": "mod"
+    },
+    {
+      "id": "data_anchor-neoforge-1.21.1-2.0.0.16",
+      "name": "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
+      "file": "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
       "id": "distanthorizons-3.2.0-b-1.21.1-fabric-neoforge",
       "name": "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
       "file": "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "enhanced-celestials-2-core-neoforge-1.21.1-2.0.3.0",
+      "name": "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
+      "file": "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "enhanced-celestials-2-default-lunar-events-neoforge-1.21.1-2.0.1.1",
+      "name": "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar",
+      "file": "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "enhanced-celestials-2-shaders-neoforge-1.21.1-2.0.0.1",
+      "name": "Enhanced-Celestials-2-Shaders-NeoForge-1.21.1-2.0.0.1.jar",
+      "file": "Enhanced-Celestials-2-Shaders-NeoForge-1.21.1-2.0.0.1.jar",
       "version": "1.21.1",
       "type": "mod"
     },

@@ -2,9 +2,9 @@
   "modpackName": "The Council",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 124,
+  "totalMods": 129,
   "clientOnlyModsCount": 23,
-  "serverAndSharedModsCount": 103,
+  "serverAndSharedModsCount": 107,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -33,7 +33,8 @@
     "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
     "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
     "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
-    "waveycapes-neoforge-1.10.2-mc1.21.1.jar"
+    "waveycapes-neoforge-1.10.2-mc1.21.1.jar",
+    "Enhanced-Celestials-2-Shaders-NeoForge-1.21.1-2.0.0.1.jar"
   ],
   "requiredServerMods": [
     "AdditionalStructures-1.21-(v.6.3.2-NEO).jar",
@@ -137,6 +138,10 @@
     "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
     "rhino-2101.2.8-build.91.jar",
     "kubejs-neoforge-2101.7.2-build.374.jar",
-    "recipebookplus-neoforge-1.21.1-1.0.4.jar"
+    "recipebookplus-neoforge-1.21.1-1.0.4.jar",
+    "Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
+    "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
+    "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
+    "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar"
   ]
 }
