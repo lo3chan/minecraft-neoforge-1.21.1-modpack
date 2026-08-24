@@ -2,16 +2,34 @@
 // Maximum allowed armor value for casting: 12.0 (Chainmail tier / Endgame Mage cap)
 // Zero armor toughness allowed for spellcasters
 
+function getPlayerArmorStats(player) {
+    let armor = 0.0
+    let toughness = 0.0
+
+    try {
+        armor = player.getAttributeValue('minecraft:generic.armor')
+        toughness = player.getAttributeValue('minecraft:generic.armor_toughness')
+    } catch (e) {
+        try {
+            armor = player.armorValue
+        } catch (err) {
+            armor = 0.0
+        }
+    }
+    return { armor: armor, toughness: toughness }
+}
+
 function checkMagicArmorThreshold(event) {
     let player = event.player
     if (!player || player.isCreative()) return
 
-    let totalArmor = player.getAttributeValue('minecraft:armor')
-    let totalToughness = player.getAttributeValue('minecraft:armor_toughness')
+    let stats = getPlayerArmorStats(player)
+    let totalArmor = stats.armor
+    let totalToughness = stats.toughness
 
     if (totalArmor > 12.0 || totalToughness > 0) {
         let item = event.item
-        let id = item.id
+        let id = '' + item.id
 
         // Psi: CADs, Bullets, Drives
         if (id.startsWith('psi:cad') || id.startsWith('psi:spell_bullet') || id.startsWith('psi:spell_drive')) {
