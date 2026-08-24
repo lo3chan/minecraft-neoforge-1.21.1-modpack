@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "undead_revamp2:goldentomb_feature",
+  "step": "surface_structures"
+}
