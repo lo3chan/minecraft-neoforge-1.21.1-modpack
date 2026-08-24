@@ -2,9 +2,9 @@
   "modpackName": "The Council",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 134,
+  "totalMods": 133,
   "clientOnlyModsCount": 12,
-  "serverAndSharedModsCount": 122,
+  "serverAndSharedModsCount": 121,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -192,10 +192,6 @@
     {
       "filename": "TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar",
       "size": 63788709
-    },
-    {
-      "filename": "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
-      "size": 81945
     },
     {
       "filename": "YungsApi-1.21.1-NeoForge-5.1.8.jar",
