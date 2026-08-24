@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 130,
+  "totalMods": 131,
   "mods": [
     {
       "id": "minecraft",
@@ -430,6 +430,13 @@
       "name": "bobo_lib-1.1-1.21.1-neoforge.jar",
       "file": "bobo_lib-1.1-1.21.1-neoforge.jar",
       "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "jei",
+      "name": "Born in Chaos ",
+      "file": "born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar",
+      "version": "1.7.6",
       "type": "mod"
     },
     {
