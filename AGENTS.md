@@ -14,27 +14,42 @@ Welcome to **The Aether & Beyond** development suite. This repository is structu
 
 ---
 
-## 2. Modpack Architecture & Directory Structure
+## 2. Monorepo Directory Layout: mods/ vs sources/
+
+To avoid any ambiguity when navigating codebases, this repository distinguishes between active deployed mod subprojects and pristine upstream Git repositories:
 
 `	ext
 minecraft-neoforge-1.21.1-modpack/
-├── client-manifest.json        # Authoritative manifest of all 120 verified mods & classifications
-├── modpack.json                # Upstream repository metadata, versions, and build definitions
-├── settings.gradle             # Composite build discovery for all mod sources in /mods
-├── build.gradle                # Root multi-project build definitions
-├── config/                     # Synchronized mod configuration files
+├── mods/                       # [ACTIVE WORKSPACE] Deployed mod projects with full uncompiled Java & resources
+│   ├── farmersdelight/         # Deployed mod project tree (src/main/java, src/main/resources, build.gradle)
+│   ├── origins-0.3/            # Native Origins NeoForge codebase
+│   ├── modernfix-.../          # ModernFix NeoForge codebase
+│   └── ... (120+ mods)
+│
+├── sources/                    # [UPSTREAM REFERENCE] Untouched official upstream Git repositories
+│   ├── farmersdelight/         # Pristine upstream Git clone with full history, author docs, and original commits
+│   ├── balm/                   # Pristine upstream Git clone
+│   └── ...
+│
+├── config/                     # Synchronized mod configuration files (1,194 active configs)
 │   ├── DistantHorizons.toml
 │   ├── jade/
-│   ├── physicsmod/
 │   └── yacl.json5
-├── resourcepacks/              # Custom resource packs
-├── shaderpacks/                # Shader configurations (e.g. Eclipse Shader)
-└── mods/                       # Mod source projects and binary distribution jars
+│
+├── client-manifest.json        # Authoritative inventory of all 120 verified deployed mods
+├── modpack.json                # Master manifest with upstream URLs, branches, and versions
+├── settings.gradle             # Composite build discovery for all mod subprojects in /mods
+├── build.gradle                # Root multi-project build definitions
+└── shaderpacks/                # Synchronized shaderpacks (Eclipse Shader, etc.)
 `
+
+### Key Differences:
+- **mods/<mod-id>/ (Active Edit & Build Target)**: This is where you make code modifications, add features, or adjust assets. Every folder in mods/ is included in Gradle composite builds (settings.gradle) and compiles directly into the active modpack distribution.
+- **sources/<mod-id>/ (Upstream Reference & Documentation)**: These are the pristine upstream clones. Use sources/ as reference documentation for upstream architecture, API patterns, JavaDocs, and Git commit diffs.
 
 ---
 
-## 3. Custom Patches, Fixes & Interventions Applied
+## 3. Custom Patches & Interventions (MUST PRESERVE)
 
 When modifying or updating any mod in this pack, you **MUST** preserve these critical architectural interventions:
 
@@ -59,7 +74,7 @@ et.minecraft.client.resources.model.BakedModel in its main mod class. Must never
 
 ## 4. Jules Engineering Directives & Modifying Mod Sources
 
-1. **Zero-Error Build Floor**: Every modified mod subproject must compile with 0 errors via ./gradlew build targeting NeoForge 21.1.248 and Java 21.
+1. **Zero-Error Build Floor**: Every modified mod subproject in /mods/ must compile with 0 errors via ./gradlew build targeting NeoForge 21.1.248 and Java 21.
 2. **No Destructive Simplification**: Never comment out, stub, or delete core game systems (worldgen features, structures, recipes, networking packets) to silence compiler warnings.
 3. **Client vs Server Distribution Boundary**:
    - Client-only mods (Sodium, Iris, Entity Model Features, BetterF3, Grassier Grass) must only interact with client-side classes.
@@ -74,6 +89,6 @@ et.minecraft.client.resources.model.BakedModel in its main mod class. Must never
 # Build all discovered mod projects in the monorepo
 ./gradlew buildAllMods
 
-# Compile individual mod subprojects
+# Compile individual mod subprojects in /mods
 ./gradlew :mods:<mod-id>:build
 `
