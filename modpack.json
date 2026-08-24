@@ -1,1090 +1,870 @@
 {
-  "name": "The Council",
+  "name": "The Aether & Beyond",
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 120,
-  "modsWithOfficialSources": 41,
+  "totalMods": 123,
   "mods": [
     {
       "id": "minecraft",
       "name": "Additional Structures",
       "file": "AdditionalStructures-1.21-(v.6.3.2-NEO).jar",
       "version": "6.3.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Akashic Tome",
       "file": "AkashicTome-1.8-30.jar",
       "version": "${file.jarVersion}",
-      "upstream": "https://github.com/Vazkii/AkashicTome.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Amplified Nether",
       "file": "Amplified_Nether_26.2_v1.2.16.jar",
       "version": "1.2.16",
-      "upstream": "https://github.com/Stardust-Labs-MC/Amplified-Nether.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "BadOptimizations",
       "file": "BadOptimizations-2.4.1-1.21.1.jar",
       "version": "2.4.1",
-      "upstream": "https://github.com/imthosea/BadOptimizations.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "betterf3-11.0.3-neoforge-1.21.1",
       "name": "BetterF3-11.0.3-NeoForge-1.21.1.jar",
       "file": "BetterF3-11.0.3-NeoForge-1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/TreyRuffy/BetterF3.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "clumps-neoforge-1.21.1-19.0.0.1",
       "name": "Clumps-neoforge-1.21.1-19.0.0.1.jar",
       "file": "Clumps-neoforge-1.21.1-19.0.0.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Continents",
       "file": "Continents_26.2_v1.1.14.jar",
       "version": "1.1.14",
-      "upstream": "https://github.com/Stardust-Labs-MC/Continents.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "distanthorizons-3.2.0-b-1.21.1-fabric-neoforge",
       "name": "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
       "file": "DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "eternalnether-v21.1.3-1.21.1-neoforge",
       "name": "EternalNether-v21.1.3-1.21.1-NeoForge.jar",
       "file": "EternalNether-v21.1.3-1.21.1-NeoForge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "farmersdelight-1.21.1-1.3.3",
       "name": "FarmersDelight-1.21.1-1.3.3.jar",
       "file": "FarmersDelight-1.21.1-1.3.3.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "placebo",
       "name": "Fast Suite",
       "file": "FastSuite-1.21.1-6.0.7.jar",
       "version": "6.0.7",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "itemborders",
       "name": "Iceberg",
       "file": "Iceberg-1.21.1-neoforge-1.3.2.jar",
       "version": "1.3.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "immediatelyfast-neoforge-1.6.12+1.21.1",
       "name": "ImmediatelyFast-NeoForge-1.6.12+1.21.1.jar",
       "file": "ImmediatelyFast-NeoForge-1.6.12+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "jade-1.21.1-neoforge-15.10.6",
       "name": "Jade-1.21.1-NeoForge-15.10.6.jar",
       "file": "Jade-1.21.1-NeoForge-15.10.6.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "jei",
       "name": "Just Enough Resources\" #mandatory",
       "file": "JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar",
       "version": "1.6.0.17\" #mandatory",
-      "upstream": "https://github.com/mezz/JustEnoughItems.git",
-      "branch": "1.21",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "equipmentcompare",
       "name": "Legendary Tooltips",
       "file": "LegendaryTooltips-1.21.1-neoforge-1.5.5.jar",
       "version": "1.5.5",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Moog's Structure Lib",
       "file": "MoogsStructureLib-neoforge-1.21.1-3.1.1.jar",
       "version": "3.1.1",
-      "upstream": "https://github.com/FinnSetchell/MoogsStructureLib.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "moogsvoyagerstructures-1.21-5.0.14",
       "name": "MoogsVoyagerStructures-1.21-5.0.14.jar",
       "file": "MoogsVoyagerStructures-1.21-5.0.14.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mousetweaks",
       "name": "Mouse Tweaks",
       "file": "MouseTweaks-neoforge-mc1.21-2.26.1.jar",
       "version": "2.26.1",
-      "upstream": "https://github.com/YaLTeR/MouseTweaks.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Nullscape",
       "file": "Nullscape_1.21.x_v1.2.14.jar",
       "version": "1.2.14",
-      "upstream": "https://github.com/Stardust-Labs-MC/Nullscape.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Patchouli",
       "file": "Patchouli-1.21.1-93-NEOFORGE.jar",
       "version": "${file.jarVersion}",
-      "upstream": "https://github.com/VazkiiMods/Patchouli.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Philip's Ruins\" #mandatory",
       "file": "Philips-Ruins1.21.1-2.0-NeoForge.jar",
       "version": "2.0\" #mandatory",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "Placebo",
       "file": "Placebo-1.21.1-9.9.2.jar",
       "version": "9.9.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Prism",
       "file": "Prism-1.21.1-neoforge-1.0.11.jar",
       "version": "1.0.11",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "psi-1.21.1-108",
       "name": "Psi-1.21.1-108.jar",
       "file": "Psi-1.21.1-108.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "puzzleslib-v21.1.52-1.21.1-neoforge",
       "name": "PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
       "file": "PuzzlesLib-v21.1.52-1.21.1-NeoForge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Structory",
       "file": "Structory_26.2_v1.3.7.jar",
       "version": "1.3.17",
-      "upstream": "https://github.com/Stardust-Labs-MC/Structory.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Tan's Huge Trees",
       "file": "TansHugeTrees-1.8.0-NeoForge-1.21.1-BETA.jar",
       "version": "1.8.0",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "visualworkbench-v21.1.1-1.21.1-neoforge",
       "name": "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
       "file": "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "YUNG's API",
       "file": "YungsApi-1.21.1-NeoForge-5.1.8.jar",
       "version": "1.21.1-NeoForge-5.1.8",
-      "upstream": "https://github.com/yungnickyoung/YUNGs-Api.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Desert Temples",
       "file": "YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar",
       "version": "1.21.1-NeoForge-4.1.5",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Dungeons",
       "file": "YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar",
       "version": "1.21.1-NeoForge-5.1.4",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better End Island",
       "file": "YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar",
       "version": "1.21.1-NeoForge-3.1.2",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Jungle Temples",
       "file": "YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar",
       "version": "1.21.1-NeoForge-3.1.2",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Mineshafts",
       "file": "YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar",
       "version": "1.21.1-NeoForge-5.1.1",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Nether Fortresses",
       "file": "YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar",
       "version": "1.21.1-NeoForge-3.1.5",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Ocean Monuments",
       "file": "YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar",
       "version": "1.21.1-NeoForge-4.1.2",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Strongholds",
       "file": "YungsBetterStrongholds-1.21.1-NeoForge-5.1.3.jar",
       "version": "1.21.1-NeoForge-5.1.3",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Better Witch Huts",
       "file": "YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar",
       "version": "1.21.1-NeoForge-4.1.1",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Bridges",
       "file": "YungsBridges-1.21.1-NeoForge-5.1.1.jar",
       "version": "1.21.1-NeoForge-5.1.1",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Extras",
       "file": "YungsExtras-1.21.1-NeoForge-5.1.1.jar",
       "version": "1.21.1-NeoForge-5.1.1",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yungsapi",
       "name": "YUNG's Menu Tweaks",
       "file": "YungsMenuTweaks-1.21.1-NeoForge-2.1.2.jar",
       "version": "1.21.1-NeoForge-2.1.2",
-      "upstream": "https://github.com/YUNG-GHOST/YUNGs-API.git",
-      "branch": "1.21.1-NeoForge",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "aeroblender-1.21.1-1.0.0-neoforge",
       "name": "aeroblender-1.21.1-1.0.0-neoforge.jar",
       "file": "aeroblender-1.21.1-1.0.0-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "aether-1.21.1-1.5.10-neoforge",
       "name": "aether-1.21.1-1.5.10-neoforge.jar",
       "file": "aether-1.21.1-1.5.10-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "aether_emissivity-1.21.1-1.0.2-neoforge",
       "name": "aether_emissivity-1.21.1-1.0.2-neoforge.jar",
       "file": "aether_emissivity-1.21.1-1.0.2-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "alchemancy-2.1.3-neoforge-1.21.1",
       "name": "alchemancy-2.1.3-NeoForge-1.21.1.jar",
       "file": "alchemancy-2.1.3-NeoForge-1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Alternate Current\" #mandatory",
       "file": "alternate_current-mc1.21-1.9.0.jar",
       "version": "1.9.0\" #mandatory",
-      "upstream": "https://github.com/SpaceWalkerRS/alternate-current.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "amendments-neoforge-1.21-2.1.7",
       "name": "amendments-neoforge-1.21-2.1.7.jar",
       "file": "amendments-neoforge-1.21-2.1.7.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "architectury-13.0.11-neoforge",
       "name": "architectury-13.0.11-neoforge.jar",
       "file": "architectury-13.0.11-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "automodpack-mc1.21.1-neoforge-4.0.6",
       "name": "automodpack-mc1.21.1-neoforge-4.0.6.jar",
       "file": "automodpack-mc1.21.1-neoforge-4.0.6.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Balm",
       "file": "balm-neoforge-1.21.1-21.0.65.jar",
       "version": "21.0.65",
-      "upstream": "https://github.com/TwelveIterations/Balm.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "betterarcheology-neoforge-1.21.1-1.3.8",
       "name": "betterarcheology-neoforge-1.21.1-1.3.8.jar",
       "file": "betterarcheology-neoforge-1.21.1-1.3.8.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "cloth_config",
       "name": "bettercombat-neoforge-2.4.0+1.21.1.jar",
       "file": "bettercombat-neoforge-2.4.0+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/shedaniel/cloth-config.git",
-      "branch": "1.21",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "blossom-blade-1.3",
       "name": "blossom-blade-1.3.jar",
       "file": "blossom-blade-1.3.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "bobo_lib-1.1-1.21.1-neoforge",
       "name": "bobo_lib-1.1-1.21.1-neoforge.jar",
       "file": "bobo_lib-1.1-1.21.1-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "c2me",
       "name": "Concurrent Chunk Management Engine",
       "file": "c2me-neoforge-mc1.21.1-0.4.0-alpha.0.120.jar",
       "version": "0.4.0-alpha.0.120+1.21.1",
-      "upstream": "https://github.com/RelativityMC/C2ME-fabric.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "caelus-neoforge-7.0.1+1.21.1",
       "name": "caelus-neoforge-7.0.1+1.21.1.jar",
       "file": "caelus-neoforge-7.0.1+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/illusivesoulworks/caelus.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "cloth-config-15.0.140-neoforge",
       "name": "cloth-config-15.0.140-neoforge.jar",
       "file": "cloth-config-15.0.140-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "comforts-neoforge-9.0.5+1.21.1",
       "name": "comforts-neoforge-9.0.5+1.21.1.jar",
       "file": "comforts-neoforge-9.0.5+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/illusivesoulworks/comforts.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "configured-neoforge-1.21.1-2.6.3",
       "name": "configured-neoforge-1.21.1-2.6.3.jar",
       "file": "configured-neoforge-1.21.1-2.6.3.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "cosmetica-neoforge-2.0.1-1.21.1",
       "name": "cosmetica-neoforge-2.0.1-1.21.1.jar",
       "file": "cosmetica-neoforge-2.0.1-1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "expanded_ecosphere",
       "name": "Cristel Lib",
       "file": "cristellib-neoforge-1.21.1-3.1.7.jar",
       "version": "3.1.7\" #mandatory",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "cumulus_menus-1.21.1-2.0.8-neoforge",
       "name": "cumulus_menus-1.21.1-2.0.8-neoforge.jar",
       "file": "cumulus_menus-1.21.1-2.0.8-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Curios API",
       "file": "curios-neoforge-9.5.1+1.21.1.jar",
       "version": "9.5.1+1.21.1",
-      "upstream": "https://github.com/TheIllusiveC4/Curios.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "aeroblender",
       "name": "deep_aether-1.21.1-1.1.5.1.jar",
       "file": "deep_aether-1.21.1-1.1.5.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "deeper-oceans-2.0.1-neoforge-21.1",
       "name": "deeper-oceans-2.0.1-neoforge-21.1.jar",
       "file": "deeper-oceans-2.0.1-neoforge-21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "dungeons-and-taverns-v4.4.4",
       "name": "dungeons-and-taverns-v4.4.4.jar",
       "file": "dungeons-and-taverns-v4.4.4.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "farmersdelight",
       "name": "End's Delight",
       "file": "ends_delight-2.6.1+neoforge.1.21.1.jar",
       "version": "2.6.1+neoforge.1.21.1",
-      "upstream": "https://github.com/vectorwing/FarmersDelight.git",
-      "branch": "1.21",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "entity_model_features-3.2.4-1.21-neoforge",
       "name": "entity_model_features-3.2.4-1.21-neoforge.jar",
       "file": "entity_model_features-3.2.4-1.21-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "entity_texture_features_1.21-neoforge-7.1",
       "name": "entity_texture_features_1.21-neoforge-7.1.jar",
       "file": "entity_texture_features_1.21-neoforge-7.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "EntityCulling",
       "file": "entityculling-neoforge-1.10.5-mc1.21.1.jar",
       "version": "1.10.5",
-      "upstream": "https://github.com/tr7zw/EntityCulling.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "ferritecore-7.0.3-neoforge",
       "name": "ferritecore-7.0.3-neoforge.jar",
       "file": "ferritecore-7.0.3-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "geckoanimfix",
       "name": "GeckoLib 4",
       "file": "geckolib-neoforge-1.21.1-4.9.2.jar",
       "version": "4.9.2",
-      "upstream": "https://github.com/bernie-g/geckolib.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "Grassier Grass",
       "file": "grassiergrass-neoforge-1.4.5+mc1.21.1.jar",
       "version": "1.4.5",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Guard Villagers\" #mandatory",
       "file": "guardvillagers-2.4.10-1.21.1.jar",
       "version": "2.4.10\" #mandatory",
-      "upstream": "https://github.com/seymourimadeit/guardvillagers.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "hexalia-neoforge-1.3.6",
       "name": "hexalia-neoforge-1.3.6.jar",
       "file": "hexalia-neoforge-1.3.6.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "hexcast-neoforged-1.21.1-0.11.1-16+neoforge.1.21.1",
       "name": "hexcast-neoforged-1.21.1-0.11.1-16+neoforge.1.21.1.jar",
       "file": "hexcast-neoforged-1.21.1-0.11.1-16+neoforge.1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Hexerei\" #mandatory",
       "file": "hexerei-0.5.0.3.jar",
       "version": "0.5\" #mandatory",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "immersive_gateways-neoforge-0.0.6",
       "name": "immersive_gateways-neoforge-0.0.6.jar",
       "file": "immersive_gateways-neoforge-0.0.6.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "balm",
       "name": "Inventory Essentials",
       "file": "inventoryessentials-neoforge-1.21.1-21.1.18.jar",
       "version": "21.1.18",
-      "upstream": "https://github.com/TwelveIterations/InventoryEssentials.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "iris-neoforge-1.8.14-beta.1+mc1.21.1",
       "name": "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
       "file": "iris-neoforge-1.8.14-beta.1+mc1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft\" #mandatory",
       "name": "Just Enough Items\" #mandatory",
       "file": "jei-1.21.1-neoforge-19.44.0.403.jar",
       "version": "19.44.0.403\" #mandatory",
-      "upstream": "https://github.com/mezz/JustEnoughItems.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "jupiter-2.3.7-1.21.1-neoforge",
       "name": "jupiter-2.3.7-1.21.1-neoforge.jar",
       "file": "jupiter-2.3.7-1.21.1-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "kotlinforforge-5.12.0-all",
       "name": "kotlinforforge-5.12.0-all.jar",
       "file": "kotlinforforge-5.12.0-all.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
+    },
+    {
+      "id": "kubejs-neoforge-2101.7.2-build.374",
+      "name": "kubejs-neoforge-2101.7.2-build.374.jar",
+      "file": "kubejs-neoforge-2101.7.2-build.374.jar",
+      "version": "1.21.1",
+      "type": "mod"
     },
     {
       "id": "limlib-13.0.0+1.21.1",
       "name": "limlib-13.0.0+1.21.1.jar",
       "file": "limlib-13.0.0+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "lithostitched-1.8.0+beta4-neoforge-21.1",
       "name": "lithostitched-1.8.0+beta4-neoforge-21.1.jar",
       "file": "lithostitched-1.8.0+beta4-neoforge-21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwbridges",
       "name": "Macaw's Bridges",
       "file": "mcw-bridges-3.1.2-mc1.21.1neoforge.jar",
       "version": "3.1.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwdoors",
       "name": "Macaw's Doors",
       "file": "mcw-doors-1.1.5-mc1.21.1neoforge.jar",
       "version": "1.1.5",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwfurnitures",
       "name": "Macaw's Furniture",
       "file": "mcw-furniture-3.4.1-mc1.21.1neoforge.jar",
       "version": "3.4.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwlights",
       "name": "Macaw's Lights and Lamps",
       "file": "mcw-lights-1.1.5-mc1.21.1neoforge.jar",
       "version": "1.1.5",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwfences",
       "name": "Macaw's Fences and Walls",
       "file": "mcw-mcwfences-1.2.1-mc1.21.1neoforge.jar",
       "version": "1.2.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwpaths",
       "name": "Macaw's Paths and Pavings",
       "file": "mcw-mcwpaths-1.1.1-mc1.21.1neoforge.jar",
       "version": "1.1.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwwindows",
       "name": "Macaw's Windows",
       "file": "mcw-mcwwindows-2.4.2-mc1.21.1neoforge.jar",
       "version": "2.4.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwpaintings",
       "name": "Macaw's Paintings",
       "file": "mcw-paintings-1.1.0-mc1.21.1neoforge.jar",
       "version": "1.1.0",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwroofs",
       "name": "Macaw's Roofs",
       "file": "mcw-roofs-2.3.2-mc1.21.1neoforge.jar",
       "version": "2.3.2",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "mcwtrpdoors",
       "name": "Macaw's Trapdoors",
       "file": "mcw-trapdoors-1.1.5-mc1.21.1neoforge.jar",
       "version": "1.1.5",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "modernfix-neoforge-5.27.20+mc1.21.1",
       "name": "modernfix-neoforge-5.27.20+mc1.21.1.jar",
       "file": "modernfix-neoforge-5.27.20+mc1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/embeddedt/ModernFix.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "mods_optimizer-neoforge-1.21.1-4.3.0",
       "name": "mods_optimizer-neoforge-1.21.1-4.3.0.jar",
       "file": "mods_optimizer-neoforge-1.21.1-4.3.0.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "moonlight-1.21.1-3.4.1-neoforge",
       "name": "moonlight-1.21.1-3.4.1-neoforge.jar",
       "file": "moonlight-1.21.1-3.4.1-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "noisium-neoforge-2.3.0+mc1.21-1.21.1",
       "name": "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
       "file": "noisium-neoforge-2.3.0+mc1.21-1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "NotEnoughAnimations",
       "file": "notenoughanimations-neoforge-1.12.4-mc1.21.1.jar",
       "version": "1.12.4",
-      "upstream": "https://github.com/tr7zw/NotEnoughAnimations.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "nyfsspiders-neoforge-1.21.1-3.0.1",
       "name": "nyfsspiders-neoforge-1.21.1-3.0.1.jar",
       "file": "nyfsspiders-neoforge-1.21.1-3.0.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
+    },
+    {
+      "id": "open_in_inventory-neoforge-2.0.2+1.21.1",
+      "name": "open_in_inventory-neoforge-2.0.2+1.21.1.jar",
+      "file": "open_in_inventory-neoforge-2.0.2+1.21.1.jar",
+      "version": "1.21.1",
+      "type": "mod"
     },
     {
       "id": "origins-0.3",
       "name": "origins-0.3.jar",
       "file": "origins-0.3.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "overpacked-2.0.1-1.21.1-neoforge",
       "name": "overpacked-2.0.1-1.21.1-neoforge.jar",
       "file": "overpacked-2.0.1-1.21.1-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "owo-lib-neoforge-0.12.15.5-beta.1+1.21",
       "name": "owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar",
       "file": "owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "paucal-0.7.0+neoforge-1.21.1",
       "name": "paucal-0.7.0+neoforge-1.21.1.jar",
       "file": "paucal-0.7.0+neoforge-1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "minecraft",
       "name": "Physics Mod\" #mandatory",
       "file": "physics-mod-pro-v172s-neoforge-mc-1.21.1.jar",
       "version": "3.0.31\" #mandatory",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "player-animation-lib-forge-2.0.4+1.21.1",
       "name": "player-animation-lib-forge-2.0.4+1.21.1.jar",
       "file": "player-animation-lib-forge-2.0.4+1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "reds-more-structures-1.1.0",
       "name": "reds-more-structures-1.1.0.jar",
       "file": "reds-more-structures-1.1.0.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "reeses-sodium-options-neoforge-2.2.3+mc1.21.1",
       "name": "reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar",
       "file": "reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "resourcefulconfig-neoforge-1.21-3.0.11",
       "name": "resourcefulconfig-neoforge-1.21-3.0.11.jar",
       "file": "resourcefulconfig-neoforge-1.21-3.0.11.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "resourcefullib-neoforge-1.21-3.0.12",
       "name": "resourcefullib-neoforge-1.21-3.0.12.jar",
       "file": "resourcefullib-neoforge-1.21-3.0.12.jar",
       "version": "1.21.1",
-      "upstream": "https://github.com/Team-Resourceful/ResourcefulLib.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
+    },
+    {
+      "id": "rhino-2101.2.8-build.91",
+      "name": "rhino-2101.2.8-build.91.jar",
+      "file": "rhino-2101.2.8-build.91.jar",
+      "version": "1.21.1",
+      "type": "mod"
     },
     {
       "id": "sodium-extra-neoforge-0.9.3+mc1.21.1",
       "name": "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
       "file": "sodium-extra-neoforge-0.9.3+mc1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "sodium-neoforge-0.8.13-beta.2+mc1.21.1",
       "name": "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
       "file": "sodium-neoforge-0.8.13-beta.2+mc1.21.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "sound-physics-remastered-neoforge-1.21.1-1.5.1",
       "name": "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
       "file": "sound-physics-remastered-neoforge-1.21.1-1.5.1.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "spark",
       "name": "spark",
       "file": "spark-1.10.124-neoforge.jar",
       "version": "1.10.124",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "sparsestructures-neoforge-1.21.1-3.0",
       "name": "sparsestructures-neoforge-1.21.1-3.0.jar",
       "file": "sparsestructures-neoforge-1.21.1-3.0.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "cristellib",
       "name": "Towns and Towers",
       "file": "t_and_t-fabric-neoforge-1.13.11.jar",
       "version": "1.13.11",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     },
     {
       "id": "neoforge",
       "name": "WaveyCapes",
       "file": "waveycapes-neoforge-1.10.2-mc1.21.1.jar",
       "version": "1.10.2",
-      "upstream": "https://github.com/tr7zw/WaveyCapes.git",
-      "branch": "1.21.1",
-      "type": "submodule"
+      "type": "mod"
     },
     {
       "id": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge",
       "name": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
       "file": "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
       "version": "1.21.1",
-      "upstream": "",
-      "branch": "1.21.1",
-      "type": "binary_mod"
+      "type": "mod"
     }
   ]
 }
