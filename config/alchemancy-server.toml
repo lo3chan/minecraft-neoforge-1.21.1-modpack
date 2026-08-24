@@ -1,0 +1,5 @@
+[gameplay]
+	#Gives a chance for mob equipment and chest loot to have Infused Properties
+	infusedLoot = false
+	#Gives random Infusions to every item type. Overrides Infused Loot and requires server restart
+	randomizedInfusions = false

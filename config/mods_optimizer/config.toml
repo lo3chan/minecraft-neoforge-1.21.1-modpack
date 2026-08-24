@@ -1,0 +1,11 @@
+# Mods Optimizer Configuration
+[general]
+check_updates = false
+scan_data_packs = false
+disable_warning_toast = true
+
+[overrides]
+"kotlinforforge" = "BOTH"
+"blossom-blade" = "BOTH"
+"dungeons-and-taverns" = "BOTH"
+"reds-more-structures" = "BOTH"

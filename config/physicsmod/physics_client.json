@@ -1,0 +1,9 @@
+{
+  "blockPhysics": true,
+  "particlePhysics": true,
+  "capePhysics": true,
+  "bannerPhysics": true,
+  "leashPhysics": true,
+  "ragdollMob": false,
+  "ragdollPlayer": false
+}

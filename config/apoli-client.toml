@@ -1,0 +1,15 @@
+[resourcesAndCooldowns]
+	#Horizontal offset for the power HUD resource bars
+	# Default: 0
+	# Range: -1000 ~ 1000
+	hudOffsetX = 0
+	#Vertical offset for the power HUD resource bars
+	# Default: 0
+	# Range: -1000 ~ 1000
+	hudOffsetY = 0
+
+[tooltips]
+	#Show usability hints on item tooltips
+	showUsabilityHints = true
+	#Use compact format for usability hints
+	compactUsabilityHints = false

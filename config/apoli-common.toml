@@ -1,0 +1,7 @@
+[executeCommand]
+	#Permission level required to use /execute in origins powers
+	# Default: 2
+	# Range: 0 ~ 4
+	permissionLevel = 2
+	#Whether execute command output is shown
+	showOutput = false

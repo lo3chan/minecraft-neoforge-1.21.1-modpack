@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "reverb": true,
+  "occlusion": true,
+  "directionalSound": true,
+  "environmentEvaluation": true
+}

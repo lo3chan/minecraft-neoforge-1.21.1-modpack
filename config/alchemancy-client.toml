@@ -1,0 +1,5 @@
+#Determines how entries are displayed in the Infusion Codex
+#SPOILER: Shows all undiscovered infusions, but does not enable their entries
+#NERD: Unlocks all infusion entries and property sources
+#Allowed Values: DEFAULT, SPOILER, NERD
+codex_display_mode = "DEFAULT"

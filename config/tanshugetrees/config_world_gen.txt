@@ -1,0 +1,1298 @@
+Important Notes
+
+- To apply this config and repair missing values, run this command [ /TANSHUGETREES restart ] or restart the world.
+- Very important! You must lock the settings you have edited to prevent them from resetting. Do it by change [] at font of ID to [LOCK]. This is for keeping config values you haven't changed to always up to date.
+
+Config Description
+
+- enable : Enable world generation for that tree by set to [ true ] or disable by [ false ].
+- spawn_type : Set how that tree spawn in the world. Set to [ normal ] for spawn by biome like normal. Set to [ waterside ] for only spawn if detects water biomes nearby, but their group can't be spawned in water biomes. Set to [ landside ] for only spawn if detects water biomes nearby, but their group can be spawned in water biomes. Set to [ shoreline ] for only spawn if detects water biomes nearby, but their group can be spawned in both their biomes and water biomes.
+- biome : Change biome of that tree can place on. Supported both IDs and tags. These config supported multiple conditions, use [ / ] for [ OR ], use [ , ] for [ AND ]. For example, a tree that spawn in 2 type of biomes. One is biomes tagged as forest, but not birch forest. Other one is taiga forest. It will be [ #minecraft:is_forest, !minecraft:birch_forest / minecraft:taiga ].
+- ground_block : Change ground block of that tree can place on. Supported both IDs and tags. These config supported multiple conditions, use [ / ] for [ OR ], use [ , ] for [ AND ]. For example, a tree that spawn on 2 type of blocks. One is any of blocks tagged as dirt but not grass. Other one is sand block. It will be [ #minecraft:dirt, !minecraft:grass / minecraft:sand ]. Important note, it may not works with trees that one side farther than 32 blocks.
+- rarity : Change how common of that tree. Lower means rarer. Only supported number between 0 and 100 (can be non-integer number).
+- min_distance : Change distance of trees in the same species. This is distance in block with Y position ignored. Can be any number, but higher number may slow down region pre-location time.
+- group_size : Spawn addition trees of the same species of it around the area. To use this, set min and max count of trees per group that upper than 1. For example, min 1 and max 5, will be [ 1 <> 5 ]. Be careful to use this, as it can affect scan time. This config also change the way other config options work. Rarity will be how common of the group. Min distance is between trees, not between groups. Waterside config will only detect once at spawn location of that group.
+- dead_tree_chance : Set how common of that tree to spawn as a dead tree. Note that the trees can still be dead trees when spawn in unviable ecology, such as land trees in water.
+- dead_tree_level : Randomly select style of dead trees to make it looks more variety. This config will be randomly select a number from the list, or use "auto" and "auto_pine" for automatic selection. Only supported numbers 1XX/2XX/3XX with sub numbers 10/20/30/40/50/60/70/80/90 and 11/21/31/41/51. Set to 1XX for normal dead trees, 2XX and 3XX for coarse woody debris style but with and without roots. For sub numbers 10/20/30/40/50 is no leaves, no sprig, no twig, no limb, and no branch. With random decay 10-50%. For 11/21/31/41/51 is the same as previous but no random decay. For 60/70 is only trunk with random length 50-100% and hollowed. For 80/90 is only trunk with random length 0-50% and hollowed.
+- start_height_offset : Randomly spawn that tree with custom height from the ground. To use this, set min and max height. For example, lowest -10 highest +10, will be [ -10 <> 10 ].
+- rotation : Set rotation of that tree. For random direction, use [ random ]. For specific direction, use [ north ], [ west ], [ east ], or [ south ]. Only supported one value per tree.
+- mirrored : Set mirror effect for that tree. For random value, use [ random ]. For specific value with 50% random, use [ random_x ] or [ random_z ]. Use [ off ] to disable mirror effect.
+- path_storage : The part of tree shapes that will be used by that tree
+- path_settings : The path of tree settings that will be applied into that tree
+
+----------------------------------------------------------------------------------------------------
+[] #main > #global > adaptive_voyager
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains / #minecraft:is_savanna / #minecraft:is_forest
+ground_block = #minecraft:sand
+rarity = 0.001
+min_distance = 500
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/adaptive_voyager/storage
+path_settings = presets/#main/adaptive_voyager/adaptive_voyager_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > aspirant
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_desert / #forge:is_desert
+ground_block = #minecraft:sand
+rarity = 0.001
+min_distance = 500
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/aspirant/storage
+path_settings = presets/#main/aspirant/aspirant_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_forest / #minecraft:is_jungle / #c:is_taiga / #forge:is_coniferous / #c:is_swamp / #forge:is_swamp
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 3
+group_size = 5 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush/storage
+path_settings = presets/#main/bush/bush_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_big
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_forest / #minecraft:is_jungle / #c:is_taiga / #forge:is_coniferous / #c:is_swamp / #forge:is_swamp
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 10
+group_size = 5 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush_big/storage
+path_settings = presets/#main/bush_big/bush_big_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_big_rare
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains / #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 10
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush_big/storage
+path_settings = presets/#main/bush_big/bush_big_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_big_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_plains / #forge:is_plains / #c:is_taiga / #forge:is_coniferous / #c:is_swamp / #forge:is_swamp / #minecraft:is_savanna / #minecraft:is_forest / #minecraft:is_jungle
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 25
+min_distance = 10
+group_size = 50 <> 100
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush_big/storage
+path_settings = presets/#main/bush_big/bush_big_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_big_waterside_arid
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_desert / #forge:is_desert / #minecraft:is_badlands
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 10
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush_big/storage
+path_settings = presets/#main/bush_big/bush_big_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_rare
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains / #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 3
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush/storage
+path_settings = presets/#main/bush/bush_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_plains / #forge:is_plains / #c:is_taiga / #forge:is_coniferous / #c:is_swamp / #forge:is_swamp / #minecraft:is_savanna / #minecraft:is_forest / #minecraft:is_jungle
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 3
+group_size = 20 <> 50
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush/storage
+path_settings = presets/#main/bush/bush_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > bush_waterside_arid
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_desert / #forge:is_desert / #minecraft:is_badlands
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 3
+group_size = 20 <> 50
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush/storage
+path_settings = presets/#main/bush/bush_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > catalyst
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains, !#c:is_dry, !#c:is_mountain / #forge:is_plains, !#forge:is_dry, !#forge:is_mountain
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 40
+group_size = 1 <> 3
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/catalyst/catalyst_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > catalyst_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 40
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/catalyst/catalyst_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > chimera
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_taiga / #forge:is_coniferous
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 20
+group_size = 3 <> 5
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/chimera/storage
+path_settings = presets/#main/chimera/chimera_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > coconut_tree
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_beach
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 10
+min_distance = 5
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/coconut_tree/storage
+path_settings = presets/#main/coconut_tree/coconut_tree_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > degradation > oak
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_forest / #minecraft:is_jungle / #c:is_swamp / #forge:is_swamp
+ground_block = #minecraft:dirt
+rarity = 0.25
+min_distance = 10
+group_size = 50 <> 100
+dead_tree_chance = 1.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/#variants/degradation/oak_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > degradation > pine
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_taiga / #forge:is_coniferous
+ground_block = #minecraft:dirt
+rarity = 0.25
+min_distance = 10
+group_size = 50 <> 100
+dead_tree_chance = 1.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/wendy/storage
+path_settings = presets/#main/#variants/degradation/pine_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > fallen_angel
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/fallen_angel/storage
+path_settings = presets/#main/fallen_angel/fallen_angel_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > halcyon
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains, !#c:is_dry, !#c:is_mountain / #forge:is_plains, !#forge:is_dry, !#forge:is_mountain
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 40
+group_size = 1 <> 3
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/halcyon/storage
+path_settings = presets/#main/halcyon/halcyon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > halcyon_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 40
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/halcyon/storage
+path_settings = presets/#main/halcyon/halcyon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > nature_stuffs > rock
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 5
+min_distance = 1
+group_size = 1 <> 10
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = -1 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/rock/storage
+path_settings = presets/#main/#nature_stuffs/rock/rock_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > nature_stuffs > rock_big
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 2
+min_distance = 3
+group_size = 1 <> 20
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = -3 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/rock_big/storage
+path_settings = presets/#main/#nature_stuffs/rock_big/rock_big_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > nature_stuffs > rock_large
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 10
+group_size = 1 <> 5
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = -3 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/rock_large/storage
+path_settings = presets/#main/#nature_stuffs/rock_large/rock_large_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > palm_waterside_arid
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_desert / #forge:is_desert / #minecraft:is_badlands
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 5
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/palm/storage
+path_settings = presets/#main/palm/palm_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > shrub
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_forest / #minecraft:is_jungle / #c:is_taiga / #forge:is_coniferous / #c:is_swamp / #forge:is_swamp
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 5
+group_size = 5 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/shrub/storage
+path_settings = presets/#main/shrub/shrub_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > shrub_rare
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #c:is_plains / #forge:is_plains / #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 5
+group_size = 5 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/shrub/storage
+path_settings = presets/#main/shrub/shrub_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > shrub_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_plains / #c:is_taiga / #c:is_swamp / #minecraft:is_savanna / #minecraft:is_forest / #minecraft:is_jungle / #forge:is_coniferous / #forge:is_swamp
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 25
+min_distance = 5
+group_size = 50 <> 100
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/shrub/storage
+path_settings = presets/#main/shrub/shrub_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > shrub_waterside_arid
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = #c:is_desert / #forge:is_desert / #minecraft:is_badlands
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 5
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/shrub/storage
+path_settings = presets/#main/shrub/shrub_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > tortilis
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 25
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/tortilis/storage
+path_settings = presets/#main/tortilis/tortilis_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > walker
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.1
+min_distance = 75
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/walker/storage
+path_settings = presets/#main/walker/walker_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #global > wayfarer
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = #minecraft:is_savanna
+ground_block = #minecraft:dirt
+rarity = 0.01
+min_distance = 150
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = north
+mirrored = random_z
+path_storage = presets/#main/wayfarer/storage
+path_settings = presets/#main/wayfarer/wayfarer_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > agathos
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:old_growth_birch_forest
+ground_block = #minecraft:dirt
+rarity = 50
+min_distance = 20
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/agathos/storage
+path_settings = presets/#main/agathos/agathos_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > aider
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:birch_forest
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 20
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/aider/storage
+path_settings = presets/#main/aider/aider_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > antenna
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:old_growth_pine_taiga
+ground_block = #minecraft:dirt
+rarity = 35
+min_distance = 25
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/antenna/storage
+path_settings = presets/#main/antenna/antenna_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > baobab
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:wooded_badlands
+ground_block = #minecraft:dirt
+rarity = 5
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/baobab/storage
+path_settings = presets/#main/baobab/baobab_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > birch
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:birch_forest
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 10
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/birch/storage
+path_settings = presets/#main/birch/birch_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > catalyst
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:forest / minecraft:jungle / minecraft:dark_forest
+ground_block = #minecraft:dirt
+rarity = 50
+min_distance = 40
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/catalyst/catalyst_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > cherry
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:cherry_grove
+ground_block = #minecraft:dirt
+rarity = 25
+min_distance = 40
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/halcyon/storage
+path_settings = presets/#main/#variants/cherry_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > departer
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:bamboo_jungle
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/departer/storage
+path_settings = presets/#main/departer/departer_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > falcon
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:dark_forest
+ground_block = #minecraft:dirt
+rarity = 25
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/falcon/storage
+path_settings = presets/#main/falcon/falcon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > falcon_waterside
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = waterside
+biome = minecraft:savanna
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 40
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/falcon/storage
+path_settings = presets/#main/falcon/falcon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > fallen_angel
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:wooded_badlands
+ground_block = #minecraft:dirt
+rarity = 5
+min_distance = 50
+group_size = 1 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/fallen_angel/storage
+path_settings = presets/#main/fallen_angel/fallen_angel_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > glamor
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:snowy_taiga
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 20
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/glamor/storage
+path_settings = presets/#main/glamor/glamor_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > god_of_wasteland
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:savanna / #minecraft:is_badlands
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 0.01
+min_distance = 200
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/god_of_wasteland/storage
+path_settings = presets/#main/god_of_wasteland/god_of_wasteland_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > halcyon
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:forest / minecraft:dark_forest / minecraft:jungle
+ground_block = #minecraft:dirt
+rarity = 50
+min_distance = 40
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/halcyon/storage
+path_settings = presets/#main/halcyon/halcyon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > helios
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:snowy_plains
+ground_block = #minecraft:dirt
+rarity = 0.001
+min_distance = 500
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/helios/storage
+path_settings = presets/#main/helios/helios_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > hypothermia
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:ice_spikes
+ground_block = minecraft:snow_block
+rarity = 50
+min_distance = 25
+group_size = 1 <> 1
+dead_tree_chance = 0.25
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = north
+mirrored = random_x
+path_storage = presets/#main/hypothermia/storage
+path_settings = presets/#main/hypothermia/hypothermia_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > karma
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:dark_forest
+ground_block = #minecraft:dirt
+rarity = 5
+min_distance = 500
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/karma/storage
+path_settings = presets/#main/karma/karma_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > mangrove
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:mangrove_swamp
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 20
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = -10 <> 10
+rotation = random
+mirrored = random
+path_storage = presets/#main/mangrove/storage
+path_settings = presets/#main/mangrove/mangrove_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > sky_island_chain
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:sparse_jungle
+ground_block = !minecraft:air
+rarity = 10
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = -50 <> 100
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/sky_island_chain/storage
+path_settings = presets/#main/#nature_stuffs/sky_island_chain/sky_island_chain_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > sky_island_worm
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:deep_lukewarm_ocean
+ground_block = !minecraft:air
+rarity = 5
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = 0 <> 200
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/sky_island_worm/storage
+path_settings = presets/#main/#nature_stuffs/sky_island_worm/sky_island_worm_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > spike_amethyst
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:deep_ocean
+ground_block = minecraft:gravel
+rarity = 10
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/spike_amethyst/storage
+path_settings = presets/#main/#nature_stuffs/spike_amethyst/spike_amethyst_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > spike_ice
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:ice_spikes
+ground_block = minecraft:snow_block
+rarity = 10
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = north
+mirrored = random_x
+path_storage = presets/#main/#nature_stuffs/spike_ice/storage
+path_settings = presets/#main/#nature_stuffs/spike_ice/spike_ice_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > spike_stone
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:deep_ocean
+ground_block = minecraft:gravel
+rarity = 25
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/#nature_stuffs/spike_stone/storage
+path_settings = presets/#main/#nature_stuffs/spike_stone/spike_stone_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > nature_stuffs > spike_terra
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:badlands
+ground_block = #minecraft:sand / #minecraft:terracotta
+rarity = 25
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.0
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = north
+mirrored = off
+path_storage = presets/#main/#nature_stuffs/spike_terra/storage
+path_settings = presets/#main/#nature_stuffs/spike_terra/spike_terra_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > palm
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:jungle / minecraft:sparse_jungle
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 5
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/palm/storage
+path_settings = presets/#main/palm/palm_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > raiden
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:jungle
+ground_block = #minecraft:dirt
+rarity = 25
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/raiden/storage
+path_settings = presets/#main/raiden/raiden_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > redwood
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:old_growth_spruce_taiga
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 20
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/redwood/storage
+path_settings = presets/#main/redwood/redwood_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > snowland
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:snowy_plains
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 100
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/snowland/storage
+path_settings = presets/#main/snowland/snowland_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > tortilis
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:wooded_badlands
+ground_block = #minecraft:dirt
+rarity = 10
+min_distance = 20
+group_size = 1 <> 10
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/tortilis/storage
+path_settings = presets/#main/tortilis/tortilis_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > tree_of_wisdom
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:plains
+ground_block = #minecraft:dirt
+rarity = 0.01
+min_distance = 200
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/tree_of_wisdom/storage
+path_settings = presets/#main/tree_of_wisdom/tree_of_wisdom_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > variants > polaris
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:grove
+ground_block = minecraft:snow_block
+rarity = 100
+min_distance = 10
+group_size = 3 <> 5
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/wendy/storage
+path_settings = presets/#main/#variants/polaris_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > wendy
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:taiga
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 15
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/wendy/storage
+path_settings = presets/#main/wendy/wendy_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > whisper
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:swamp
+ground_block = #minecraft:dirt
+rarity = 25
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/whisper/storage
+path_settings = presets/#main/whisper/whisper_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > willow
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:swamp
+ground_block = #minecraft:dirt
+rarity = 25
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/willow/storage
+path_settings = presets/#main/willow/willow_settings
+----------------------------------------------------------------------------------------------------
+[] #main > #vanilla > yokai
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = minecraft:meadow
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 500
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/yokai/storage
+path_settings = presets/#main/yokai/yokai_settings
+----------------------------------------------------------------------------------------------------
+[] #main > biomesoplenty > bush_dense
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = biomesoplenty:lush_desert
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 100
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/bush/storage
+path_settings = presets/#main/bush/bush_settings
+----------------------------------------------------------------------------------------------------
+[] #main > biomesoplenty > malus_domestica
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = biomesoplenty:pasture
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 30
+group_size = 50 <> 100
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/malus_domestica/storage
+path_settings = presets/#main/malus_domestica/malus_domestica_settings
+----------------------------------------------------------------------------------------------------
+[] #main > biomesoplenty > redwood_great
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = biomesoplenty:redwood_forest
+ground_block = #minecraft:dirt
+rarity = 15
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/redwood_great/storage
+path_settings = presets/#main/#variants/redwood_great_biomesoplenty_settings
+----------------------------------------------------------------------------------------------------
+[] #main > biomesoplenty > shrub
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = biomesoplenty:lush_desert
+ground_block = #minecraft:dirt / #minecraft:sand
+rarity = 10
+min_distance = 0
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/shrub/storage
+path_settings = presets/#main/shrub/shrub_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > baobab
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:baobab_savanna
+ground_block = #minecraft:dirt
+rarity = 5
+min_distance = 50
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/baobab/storage
+path_settings = presets/#main/baobab/baobab_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > catalyst
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:deciduous_forest
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/catalyst/catalyst_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > cloud_harvester
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:joshua_desert
+ground_block = #minecraft:sand
+rarity = 1
+min_distance = 200
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/cloud_harvester/storage
+path_settings = presets/#main/cloud_harvester/cloud_harvester_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > halcyon
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:deciduous_forest
+ground_block = #minecraft:dirt
+rarity = 100
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/halcyon/storage
+path_settings = presets/#main/halcyon/halcyon_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > malus_domestica
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:barley_fields
+ground_block = #minecraft:dirt
+rarity = 0.5
+min_distance = 30
+group_size = 50 <> 100
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/malus_domestica/storage
+path_settings = presets/#main/malus_domestica/malus_domestica_settings
+----------------------------------------------------------------------------------------------------
+[] #main > regions_unexplored > redwood_great
+----------------------------------------------------------------------------------------------------
+enable = true
+spawn_type = normal
+biome = regions_unexplored:redwoods / regions_unexplored:sparse_redwoods
+ground_block = #minecraft:dirt
+rarity = 15
+min_distance = 30
+group_size = 1 <> 1
+dead_tree_chance = 0.1
+dead_tree_level = auto_pine
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+path_storage = presets/#main/redwood_great/storage
+path_settings = presets/#main/#variants/redwood_great_regions_unexplored_settings
+----------------------------------------------------------------------------------------------------

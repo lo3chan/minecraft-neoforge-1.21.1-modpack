@@ -1,0 +1,14 @@
+Important Notes
+
+- To apply this config and repair missing values, run this command [ /TANSHUGETREESrestart ] or restart the world.
+- This config can be automatic repair itself to keep your unchanged values up to date, so don't panic when you see option values change by themselves!
+- This only for convert tree presets into tree shapes, for use in custom packs. Not a place for people to run around.
+- To use this. Set render distance to 32 or depends on tree size. Then write correct file location below and use command [ /TANSHUGETREES command shape_file_converter start <loop> ].
+
+----------------------------------------------------------------------------------------------------
+
+path_preset = none
+| Path of the preset you will convert. The part will be something like [ presets/#main/redwood/redwood ]. This path is same as in temporary folder, found in dev folder inside the config. If the pack is extracted, then it will go get preset in extracted folder first.
+| Default is [ none ]
+
+----------------------------------------------------------------------------------------------------

@@ -1,0 +1,16 @@
+enable = true
+
+spawn_type = waterside
+biome = #c:is_plains / #forge:is_plains
+ground_block = #minecraft:dirt
+rarity = 1
+min_distance = 40
+group_size = 10 <> 20
+dead_tree_chance = 0.1
+dead_tree_level = auto
+start_height_offset = 0 <> 0
+rotation = random
+mirrored = random
+
+path_storage = presets/#main/catalyst/storage
+path_settings = presets/#main/catalyst/catalyst_settings

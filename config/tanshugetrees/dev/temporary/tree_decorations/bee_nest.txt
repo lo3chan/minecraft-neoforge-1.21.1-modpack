@@ -1,0 +1,30 @@
+[
+if
+chance = 0.1
+run
+return
+]
+
+[
+if
+biome = 0/0/0 | #c:is_plains / #forge:is_plains / #c:is_dry / #forge:is_dry
+run
+return
+]
+
+[
+if
+block = 0/0/0 | #minecraft:logs
+block = 0/-1/0 | #tanshugetrees:air_blocks
+block = 0/-2/0 | #tanshugetrees:air_blocks
+else
+run
+return
+]
+
+if
+block = 0/-5/0 | #minecraft:dirt
+if
+block = 0/-10/0 | #minecraft:dirt
+run
+function = 1.0 | 0/-1/0 | functions/#main/bee_nest
