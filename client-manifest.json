@@ -4,7 +4,7 @@
   "modLoader": "NeoForge 21.1.248",
   "totalMods": 134,
   "clientOnlyModsCount": 23,
-  "serverAndSharedModsCount": 112,
+  "serverAndSharedModsCount": 113,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -147,6 +147,7 @@
     "born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar",
     "citadel-1.21.1-2.7.6.jar",
     "alexsmobs-2.1.6-neoforge+1.21.1.jar",
-    "codxlib-1.5.0-neoforge+1.21.1.jar"
+    "codxlib-1.5.0-neoforge+1.21.1.jar",
+    "VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar"
   ]
 }
