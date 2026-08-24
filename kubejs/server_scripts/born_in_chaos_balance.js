@@ -1,37 +1,8 @@
 // KubeJS Server Script - Born in Chaos Balance & Aether Spawn Filter
 ServerEvents.recipes(event => {
-    let opItems = [
-        'born_in_chaos_v1:great_dark_crusher',
-        'born_in_chaos_v1:great_reaper_ax',
-        'born_in_chaos_v1:nightmare_scythe',
-        'born_in_chaos_v1:skull_crusher',
-        'born_in_chaos_v1:soul_saber',
-        'born_in_chaos_v1:dark_ritual_dagger',
-        'born_in_chaos_v1:intoxicating_dagger',
-        'born_in_chaos_v1:sharpened_darketal_sword',
-        'born_in_chaos_v1:death_totem',
-        'born_in_chaos_v1:staffofthe_summoner',
-        'born_in_chaos_v1:stormcallers_horn',
-        'born_in_chaos_v1:houndtrap',
-        'born_in_chaos_v1:spinyshelltrap',
-        'born_in_chaos_v1:nut_hammer',
-        'born_in_chaos_v1:sweet_axe',
-        'born_in_chaos_v1:sweet_sword',
-        'born_in_chaos_v1:frostbitten_blade',
-        'born_in_chaos_v1:shellmace',
-        'born_in_chaos_v1:spider_bite',
-        'born_in_chaos_v1:spiritual_divider',
-        'born_in_chaos_v1:nightmare_mask',
-        'born_in_chaos_v1:nightmare_robe',
-        'born_in_chaos_v1:nightmare_pants',
-        'born_in_chaos_v1:nightmare_boots',
-        'born_in_chaos_v1:spiny_shell_helm',
-        'born_in_chaos_v1:spiny_shell_chestplate',
-        'born_in_chaos_v1:armor_plate_from_dark_metal',
-        'born_in_chaos_v1:darkupgrade'
-    ]
-    for (let id of opItems) {
-        event.remove({ output: id })
+    let opRecipes = ['born_in_chaos_v1:armor_plate_from_dark_metal_k', 'born_in_chaos_v1:armor_plate_from_dark_metal_k_2', 'born_in_chaos_v1:armor_plate_from_dark_metal_k_3', 'born_in_chaos_v1:armor_plate_from_dark_metal_k_4', 'born_in_chaos_v1:armor_plate_from_dark_metal_k_5', 'born_in_chaos_v1:darkupgradek', 'born_in_chaos_v1:dark_atrium_craft', 'born_in_chaos_v1:dark_ritual_dagger_k', 'born_in_chaos_v1:death_totem_k', 'born_in_chaos_v1:frostbitten_blade_craft', 'born_in_chaos_v1:great_dark_crusher_k', 'born_in_chaos_v1:great_reaper_ax_k', 'born_in_chaos_v1:houndtrapk', 'born_in_chaos_v1:intoxicating_dagger_k', 'born_in_chaos_v1:nightmare_boots_k', 'born_in_chaos_v1:nightmare_mask_k', 'born_in_chaos_v1:nightmare_pantsk', 'born_in_chaos_v1:nightmare_robe_k', 'born_in_chaos_v1:nightmare_scythe_k', 'born_in_chaos_v1:nut_hammer_craft', 'born_in_chaos_v1:seedof_chaos_k_1', 'born_in_chaos_v1:shellmace_k', 'born_in_chaos_v1:skull_crusher_k', 'born_in_chaos_v1:soul_saber_k', 'born_in_chaos_v1:spider_bite_craft', 'born_in_chaos_v1:spinyshelltrap_k', 'born_in_chaos_v1:spiny_shell_chestplate_k', 'born_in_chaos_v1:spiny_shell_helm_k', 'born_in_chaos_v1:spiritual_divider_k', 'born_in_chaos_v1:staffofthe_summoner_k', 'born_in_chaos_v1:stormcallers_horn_craft', 'born_in_chaos_v1:sweet_axe_craft', 'born_in_chaos_v1:sweet_sword_craft']
+    for (let rId of opRecipes) {
+        event.remove({ id: rId })
     }
 })
 
