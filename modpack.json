@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 131,
+  "totalMods": 133,
   "mods": [
     {
       "id": "minecraft",
@@ -370,6 +370,13 @@
       "type": "mod"
     },
     {
+      "id": "alexsmobs-2.1.6-neoforge+1.21.1",
+      "name": "alexsmobs-2.1.6-neoforge+1.21.1.jar",
+      "file": "alexsmobs-2.1.6-neoforge+1.21.1.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
       "id": "minecraft",
       "name": "Alternate Current\" #mandatory",
       "file": "alternate_current-mc1.21-1.9.0.jar",
@@ -450,6 +457,13 @@
       "id": "caelus-neoforge-7.0.1+1.21.1",
       "name": "caelus-neoforge-7.0.1+1.21.1.jar",
       "file": "caelus-neoforge-7.0.1+1.21.1.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "citadel-1.21.1-2.7.6",
+      "name": "citadel-1.21.1-2.7.6.jar",
+      "file": "citadel-1.21.1-2.7.6.jar",
       "version": "1.21.1",
       "type": "mod"
     },
