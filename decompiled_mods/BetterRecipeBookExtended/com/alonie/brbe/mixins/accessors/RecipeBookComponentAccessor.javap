@@ -1,0 +1,42 @@
+Compiled from "RecipeBookComponentAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.RecipeBookComponentAccessor {
+  public abstract net.minecraft.client.gui.screens.recipebook.GhostRecipe getGhostRecipe();
+
+  public abstract net.minecraft.client.gui.screens.recipebook.RecipeBookPage getRecipeBookPage();
+
+  public abstract net.minecraft.client.gui.components.EditBox getSearchBox();
+
+  public abstract void setSearchBox(net.minecraft.client.gui.components.EditBox);
+
+  public abstract net.minecraft.world.entity.player.StackedContents getStackedContents();
+
+  public abstract void updateStackedContentsInvoker();
+
+  public abstract int updateScreenPositionInvoker(int, int);
+
+  public abstract void updateCollectionsInvoker(boolean);
+
+  public abstract void initVisualsInvoker();
+
+  public abstract boolean getVisible();
+
+  public abstract int getXOffset();
+
+  public abstract net.minecraft.client.gui.components.StateSwitchingButton getFilterButton();
+
+  public abstract net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton getSelectedTab();
+
+  public static net.minecraft.network.chat.Component getSEARCH_HINT();
+    Code:
+       0: new           #52                 // class java/lang/AssertionError
+       3: dup
+       4: invokespecial #55                 // Method java/lang/AssertionError."<init>":()V
+       7: athrow
+
+  public static net.minecraft.network.chat.Component getALL_RECIPES_TOOLTIP();
+    Code:
+       0: new           #52                 // class java/lang/AssertionError
+       3: dup
+       4: invokespecial #55                 // Method java/lang/AssertionError."<init>":()V
+       7: athrow
+}

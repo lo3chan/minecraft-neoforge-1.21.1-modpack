@@ -1,0 +1,377 @@
+Compiled from "BookLayout.java"
+public final class com.alonie.brbe.layout.BookLayout {
+  public static final int TEXTURE_WIDTH;
+
+  public static final int TEXTURE_HEIGHT;
+
+  public static final int BUTTON_SIZE;
+
+  public static final int GRID_GAP;
+
+  public static final int GRID_PAD;
+
+  public static final int TAB_WIDTH;
+
+  public static final int TAB_SPACING;
+
+  public static final int TAB_TOP_PAD;
+
+  public static final int X_OFFSET_CENTERED;
+
+  public static final int X_OFFSET_STANDARD;
+
+  public static final int FILTER_WIDTH;
+
+  public static final int FILTER_HEIGHT;
+
+  public static final int SETTINGS_SIZE;
+
+  public static final int ARROW_WIDTH;
+
+  public static final int BG_LEFT_CAP;
+
+  public static final int BG_RIGHT_CAP;
+
+  public static final int BG_BODY;
+
+  public static final int BG_TEX_SIZE;
+
+  public static final int PIN_SPRITE_OFFSET;
+
+  public static final int PIN_SPRITE_SIZE;
+
+  public static final int GRID_LEFT_PADDING;
+
+  public static final int GRID_TOP_PADDING;
+
+  public static final int SEARCH_X_OFFSET;
+
+  public static final int SEARCH_Y_OFFSET;
+
+  public static final int SEARCH_WIDTH;
+
+  public static final int FILTER_X_OFFSET;
+
+  public static final int FILTER_Y_OFFSET;
+
+  public static final int SETTINGS_X_OFFSET;
+
+  public static final int SETTINGS_Y_OFFSET;
+
+  public static final int ARROW_Y_OFFSET;
+
+  public static final int ARROW_FORWARD_X;
+
+  public static final int ARROW_BACK_X;
+
+  public static final int TAB_BUTTON_SPACING;
+
+  public static final int TAB_TOP_OFFSET;
+
+  public static final int TAB_BUTTON_WIDTH;
+
+  public com.alonie.brbe.layout.BookLayout();
+    Code:
+       0: aload_0
+       1: invokespecial #80                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public com.alonie.brbe.layout.BookGeometry compute(com.alonie.brbe.layout.BookLayout$Rect, boolean, boolean);
+    Code:
+       0: iload_3
+       1: ifeq          12
+       4: aload_0
+       5: aload_1
+       6: invokevirtual #91                 // Method computeExpandedWidth:(Lcom/alonie/brbe/layout/BookLayout$Rect;)I
+       9: goto          15
+      12: sipush        147
+      15: istore        4
+      17: sipush        166
+      20: istore        5
+      22: iload_2
+      23: ifeq          32
+      26: sipush        162
+      29: goto          34
+      32: bipush        86
+      34: istore        6
+      36: aload_1
+      37: invokevirtual #95                 // Method com/alonie/brbe/layout/BookLayout$Rect.x:()I
+      40: iload         6
+      42: iadd
+      43: istore        7
+      45: aload_1
+      46: invokevirtual #98                 // Method com/alonie/brbe/layout/BookLayout$Rect.y:()I
+      49: aload_1
+      50: invokevirtual #101                // Method com/alonie/brbe/layout/BookLayout$Rect.height:()I
+      53: iload         5
+      55: isub
+      56: iconst_2
+      57: idiv
+      58: iadd
+      59: istore        8
+      61: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+      64: dup
+      65: iload         7
+      67: iload         8
+      69: iload         4
+      71: iload         5
+      73: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+      76: astore        9
+      78: new           #106                // class java/util/EnumMap
+      81: dup
+      82: ldc           #9                  // class com/alonie/brbe/layout/BookLayout$TabPosition
+      84: invokespecial #109                // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+      87: astore        10
+      89: aload         10
+      91: getstatic     #113                // Field com/alonie/brbe/layout/BookLayout$TabPosition.LEFT:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+      94: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+      97: dup
+      98: iload         7
+     100: bipush        30
+     102: isub
+     103: iload         8
+     105: iconst_3
+     106: iadd
+     107: bipush        30
+     109: iload         5
+     111: iconst_3
+     112: isub
+     113: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     116: invokeinterface #119,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     121: pop
+     122: aload         10
+     124: getstatic     #122                // Field com/alonie/brbe/layout/BookLayout$TabPosition.RIGHT:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+     127: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     130: dup
+     131: iload         7
+     133: iload         4
+     135: iadd
+     136: iload         8
+     138: iconst_3
+     139: iadd
+     140: iconst_0
+     141: iload         5
+     143: iconst_3
+     144: isub
+     145: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     148: invokeinterface #119,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     153: pop
+     154: aload         10
+     156: getstatic     #125                // Field com/alonie/brbe/layout/BookLayout$TabPosition.TOP:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+     159: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     162: dup
+     163: iload         7
+     165: iload         8
+     167: bipush        30
+     169: isub
+     170: iload         4
+     172: bipush        30
+     174: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     177: invokeinterface #119,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     182: pop
+     183: aload         10
+     185: getstatic     #128                // Field com/alonie/brbe/layout/BookLayout$TabPosition.BOTTOM:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+     188: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     191: dup
+     192: iload         7
+     194: iload         8
+     196: iload         5
+     198: iadd
+     199: iload         4
+     201: bipush        30
+     203: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     206: invokeinterface #119,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     211: pop
+     212: iload         7
+     214: bipush        11
+     216: iadd
+     217: istore        11
+     219: iload         7
+     221: iload         4
+     223: iadd
+     224: bipush        11
+     226: isub
+     227: istore        12
+     229: iload         8
+     231: bipush        12
+     233: iadd
+     234: istore        13
+     236: bipush        16
+     238: istore        14
+     240: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     243: dup
+     244: iload         11
+     246: iload         13
+     248: iload         12
+     250: iload         11
+     252: isub
+     253: iload         14
+     255: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     258: astore        15
+     260: iload         8
+     262: sipush        137
+     265: iadd
+     266: istore        16
+     268: bipush        18
+     270: istore        17
+     272: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     275: dup
+     276: iload         11
+     278: iload         16
+     280: iload         12
+     282: iload         11
+     284: isub
+     285: iload         17
+     287: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     290: astore        18
+     292: iload         8
+     294: bipush        31
+     296: iadd
+     297: istore        19
+     299: new           #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     302: dup
+     303: iload         11
+     305: iload         19
+     307: iload         12
+     309: iload         11
+     311: isub
+     312: iload         16
+     314: iload         19
+     316: isub
+     317: invokespecial #104                // Method com/alonie/brbe/layout/BookLayout$Zone."<init>":(IIII)V
+     320: astore        20
+     322: iload         7
+     324: bipush        25
+     326: iadd
+     327: istore        21
+     329: iload         7
+     331: bipush        110
+     333: iadd
+     334: iconst_2
+     335: isub
+     336: istore        22
+     338: iload         22
+     340: iload         21
+     342: isub
+     343: istore        23
+     345: bipush        16
+     347: istore        24
+     349: iload         7
+     351: bipush        110
+     353: iadd
+     354: istore        25
+     356: iload         8
+     358: bipush        12
+     360: iadd
+     361: istore        26
+     363: iload         11
+     365: istore        27
+     367: iload         16
+     369: istore        28
+     371: iload         7
+     373: bipush        93
+     375: iadd
+     376: istore        29
+     378: iload         7
+     380: bipush        38
+     382: iadd
+     383: istore        30
+     385: iload         16
+     387: istore        31
+     389: aload         20
+     391: invokevirtual #131                // Method com/alonie/brbe/layout/BookLayout$Zone.right:()I
+     394: istore        32
+     396: iload         16
+     398: istore        33
+     400: aload         20
+     402: getfield      #134                // Field com/alonie/brbe/layout/BookLayout$Zone.width:I
+     405: aload         20
+     407: getfield      #136                // Field com/alonie/brbe/layout/BookLayout$Zone.height:I
+     410: bipush        25
+     412: iconst_2
+     413: invokestatic  #141                // Method com/alonie/brbe/layout/GridSpec.compute:(IIII)Lcom/alonie/brbe/layout/GridSpec;
+     416: astore        34
+     418: aload         20
+     420: getfield      #144                // Field com/alonie/brbe/layout/BookLayout$Zone.left:I
+     423: aload         20
+     425: getfield      #134                // Field com/alonie/brbe/layout/BookLayout$Zone.width:I
+     428: aload         34
+     430: invokevirtual #147                // Method com/alonie/brbe/layout/GridSpec.gridWidth:()I
+     433: isub
+     434: iconst_2
+     435: idiv
+     436: iadd
+     437: istore        35
+     439: aload         20
+     441: getfield      #150                // Field com/alonie/brbe/layout/BookLayout$Zone.top:I
+     444: aload         20
+     446: getfield      #136                // Field com/alonie/brbe/layout/BookLayout$Zone.height:I
+     449: aload         34
+     451: invokevirtual #153                // Method com/alonie/brbe/layout/GridSpec.gridHeight:()I
+     454: isub
+     455: iconst_2
+     456: idiv
+     457: iadd
+     458: istore        36
+     460: new           #155                // class com/alonie/brbe/layout/BookGeometry
+     463: dup
+     464: iload         7
+     466: iload         8
+     468: iload         4
+     470: iload         5
+     472: iload         21
+     474: aload         15
+     476: getfield      #150                // Field com/alonie/brbe/layout/BookLayout$Zone.top:I
+     479: iconst_1
+     480: iadd
+     481: iload         23
+     483: iload         24
+     485: iload         25
+     487: iload         26
+     489: bipush        26
+     491: bipush        16
+     493: iload         27
+     495: iload         28
+     497: bipush        18
+     499: iload         35
+     501: iload         36
+     503: aload         34
+     505: invokevirtual #158                // Method com/alonie/brbe/layout/GridSpec.columns:()I
+     508: aload         34
+     510: invokevirtual #161                // Method com/alonie/brbe/layout/GridSpec.rows:()I
+     513: bipush        25
+     515: iload         30
+     517: iload         29
+     519: iload         31
+     521: aload         10
+     523: getstatic     #113                // Field com/alonie/brbe/layout/BookLayout$TabPosition.LEFT:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+     526: invokeinterface #165,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     531: checkcast     #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     534: getfield      #144                // Field com/alonie/brbe/layout/BookLayout$Zone.left:I
+     537: aload         10
+     539: getstatic     #113                // Field com/alonie/brbe/layout/BookLayout$TabPosition.LEFT:Lcom/alonie/brbe/layout/BookLayout$TabPosition;
+     542: invokeinterface #165,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     547: checkcast     #11                 // class com/alonie/brbe/layout/BookLayout$Zone
+     550: getfield      #150                // Field com/alonie/brbe/layout/BookLayout$Zone.top:I
+     553: bipush        27
+     555: aload         10
+     557: iload         32
+     559: iload         33
+     561: aload         20
+     563: invokespecial #168                // Method com/alonie/brbe/layout/BookGeometry."<init>":(IIIIIIIIIIIIIIIIIIIIIIIIIILjava/util/Map;IILcom/alonie/brbe/layout/BookLayout$Zone;)V
+     566: areturn
+
+  private int computeExpandedWidth(com.alonie.brbe.layout.BookLayout$Rect);
+    Code:
+       0: aload_1
+       1: invokevirtual #209                // Method com/alonie/brbe/layout/BookLayout$Rect.width:()I
+       4: bipush        86
+       6: isub
+       7: bipush        20
+       9: isub
+      10: istore_2
+      11: sipush        147
+      14: iload_2
+      15: invokestatic  #215                // Method java/lang/Math.max:(II)I
+      18: ireturn
+}

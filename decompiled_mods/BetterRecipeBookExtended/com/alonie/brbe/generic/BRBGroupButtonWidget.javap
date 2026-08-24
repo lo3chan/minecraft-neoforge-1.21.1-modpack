@@ -1,0 +1,140 @@
+Compiled from "BRBGroupButtonWidget.java"
+public class com.alonie.brbe.generic.BRBGroupButtonWidget extends net.minecraft.client.gui.components.StateSwitchingButton {
+  protected com.alonie.brbe.api.BRBBookCategories$Category category;
+
+  public com.alonie.brbe.generic.BRBGroupButtonWidget(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: iconst_0
+       3: bipush        35
+       5: bipush        27
+       7: iconst_0
+       8: invokespecial #17                 // Method net/minecraft/client/gui/components/StateSwitchingButton."<init>":(IIIIZ)V
+      11: aload_0
+      12: aload_1
+      13: putfield      #19                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      16: aload_0
+      17: getstatic     #25                 // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_TAB_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+      20: invokevirtual #29                 // Method initTextureValues:(Lnet/minecraft/client/gui/components/WidgetSprites;)V
+      23: return
+
+  public void renderWidget(net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: invokestatic  #43                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: astore        5
+       5: aload_0
+       6: getfield      #46                 // Field sprites:Lnet/minecraft/client/gui/components/WidgetSprites;
+       9: iconst_1
+      10: aload_0
+      11: getfield      #50                 // Field isStateTriggered:Z
+      14: invokevirtual #56                 // Method net/minecraft/client/gui/components/WidgetSprites.get:(ZZ)Lnet/minecraft/resources/ResourceLocation;
+      17: astore        6
+      19: aload_0
+      20: invokevirtual #60                 // Method getX:()I
+      23: istore        7
+      25: aload_0
+      26: getfield      #50                 // Field isStateTriggered:Z
+      29: ifeq          35
+      32: iinc          7, -2
+      35: fconst_1
+      36: fconst_1
+      37: fconst_1
+      38: fconst_1
+      39: invokestatic  #68                 // Method com/mojang/blaze3d/systems/RenderSystem.setShaderColor:(FFFF)V
+      42: aload_1
+      43: aload         6
+      45: iload         7
+      47: aload_0
+      48: invokevirtual #71                 // Method getY:()I
+      51: aload_0
+      52: getfield      #75                 // Field width:I
+      55: aload_0
+      56: getfield      #78                 // Field height:I
+      59: invokevirtual #84                 // Method net/minecraft/client/gui/GuiGraphics.blitSprite:(Lnet/minecraft/resources/ResourceLocation;IIII)V
+      62: invokestatic  #88                 // Method com/mojang/blaze3d/systems/RenderSystem.enableDepthTest:()V
+      65: aload_0
+      66: aload_1
+      67: aload         5
+      69: invokevirtual #92                 // Method net/minecraft/client/Minecraft.getItemRenderer:()Lnet/minecraft/client/renderer/entity/ItemRenderer;
+      72: invokevirtual #96                 // Method renderIcons:(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/renderer/entity/ItemRenderer;)V
+      75: return
+
+  private void renderIcons(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.renderer.entity.ItemRenderer);
+    Code:
+       0: aload_0
+       1: getfield      #19                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+       4: invokevirtual #109                // Method com/alonie/brbe/api/BRBBookCategories$Category.getItemIcons:()Ljava/util/List;
+       7: astore_3
+       8: aload_0
+       9: getfield      #50                 // Field isStateTriggered:Z
+      12: ifeq          20
+      15: bipush        -2
+      17: goto          21
+      20: iconst_0
+      21: istore        4
+      23: aload_3
+      24: invokeinterface #114,  1          // InterfaceMethod java/util/List.size:()I
+      29: iconst_1
+      30: if_icmpne     66
+      33: aload_1
+      34: aload_3
+      35: iconst_0
+      36: invokeinterface #117,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      41: checkcast     #119                // class net/minecraft/world/item/ItemStack
+      44: aload_0
+      45: invokevirtual #60                 // Method getX:()I
+      48: bipush        9
+      50: iadd
+      51: iload         4
+      53: iadd
+      54: aload_0
+      55: invokevirtual #71                 // Method getY:()I
+      58: iconst_5
+      59: iadd
+      60: invokevirtual #123                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+      63: goto          135
+      66: aload_3
+      67: invokeinterface #114,  1          // InterfaceMethod java/util/List.size:()I
+      72: iconst_2
+      73: if_icmpne     135
+      76: aload_1
+      77: aload_3
+      78: iconst_0
+      79: invokeinterface #117,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      84: checkcast     #119                // class net/minecraft/world/item/ItemStack
+      87: aload_0
+      88: invokevirtual #60                 // Method getX:()I
+      91: iconst_3
+      92: iadd
+      93: iload         4
+      95: iadd
+      96: aload_0
+      97: invokevirtual #71                 // Method getY:()I
+     100: iconst_5
+     101: iadd
+     102: invokevirtual #123                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     105: aload_1
+     106: aload_3
+     107: iconst_1
+     108: invokeinterface #117,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     113: checkcast     #119                // class net/minecraft/world/item/ItemStack
+     116: aload_0
+     117: invokevirtual #60                 // Method getX:()I
+     120: bipush        14
+     122: iadd
+     123: iload         4
+     125: iadd
+     126: aload_0
+     127: invokevirtual #71                 // Method getY:()I
+     130: iconst_5
+     131: iadd
+     132: invokevirtual #123                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     135: return
+
+  public com.alonie.brbe.api.BRBBookCategories$Category getCategory();
+    Code:
+       0: aload_0
+       1: getfield      #19                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+       4: areturn
+}

@@ -1,0 +1,91 @@
+Compiled from "RecipePlacement.java"
+public class com.alonie.brbe.util.RecipePlacement implements net.minecraft.recipebook.PlaceRecipe<net.minecraft.world.item.crafting.Ingredient> {
+  protected java.util.List<java.util.List<net.minecraft.world.item.crafting.Ingredient>> placement;
+
+  public com.alonie.brbe.util.RecipePlacement(int);
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #19                 // class java/util/ArrayList
+       8: dup
+       9: invokespecial #20                 // Method java/util/ArrayList."<init>":()V
+      12: putfield      #22                 // Field placement:Ljava/util/List;
+      15: iconst_0
+      16: istore_2
+      17: iload_2
+      18: iload_1
+      19: if_icmpge     45
+      22: aload_0
+      23: getfield      #22                 // Field placement:Ljava/util/List;
+      26: new           #19                 // class java/util/ArrayList
+      29: dup
+      30: invokespecial #20                 // Method java/util/ArrayList."<init>":()V
+      33: invokeinterface #28,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      38: pop
+      39: iinc          2, 1
+      42: goto          17
+      45: return
+
+  public void addItemToSlot(net.minecraft.world.item.crafting.Ingredient, int, int, int, int);
+    Code:
+       0: aload_1
+       1: invokevirtual #45                 // Method net/minecraft/world/item/crafting/Ingredient.isEmpty:()Z
+       4: ifne          40
+       7: iload_2
+       8: aload_0
+       9: getfield      #22                 // Field placement:Ljava/util/List;
+      12: invokeinterface #48,  1           // InterfaceMethod java/util/List.size:()I
+      17: if_icmpge     40
+      20: aload_0
+      21: getfield      #22                 // Field placement:Ljava/util/List;
+      24: iload_2
+      25: invokeinterface #52,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      30: checkcast     #24                 // class java/util/List
+      33: aload_1
+      34: invokeinterface #28,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      39: pop
+      40: return
+
+  public java.util.List<java.util.List<net.minecraft.world.item.crafting.Ingredient>> getPlacement();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field placement:Ljava/util/List;
+       4: areturn
+
+  public static java.util.List<java.util.List<net.minecraft.world.item.crafting.Ingredient>> create(net.minecraft.world.item.crafting.RecipeHolder<?>, int, int);
+    Code:
+       0: new           #2                  // class com/alonie/brbe/util/RecipePlacement
+       3: dup
+       4: iload_1
+       5: iload_2
+       6: imul
+       7: invokespecial #64                 // Method "<init>":(I)V
+      10: astore_3
+      11: aload_3
+      12: iload_1
+      13: iload_2
+      14: iconst_m1
+      15: aload_0
+      16: aload_0
+      17: invokevirtual #70                 // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+      20: invokeinterface #76,  1           // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getIngredients:()Lnet/minecraft/core/NonNullList;
+      25: invokevirtual #82                 // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+      28: iconst_0
+      29: invokevirtual #86                 // Method placeRecipe:(IIILnet/minecraft/world/item/crafting/RecipeHolder;Ljava/util/Iterator;I)V
+      32: aload_3
+      33: invokevirtual #88                 // Method getPlacement:()Ljava/util/List;
+      36: areturn
+
+  public void addItemToSlot(java.lang.Object, int, int, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #41                 // class net/minecraft/world/item/crafting/Ingredient
+       5: iload_2
+       6: iload_3
+       7: iload         4
+       9: iload         5
+      11: invokevirtual #94                 // Method addItemToSlot:(Lnet/minecraft/world/item/crafting/Ingredient;IIII)V
+      14: return
+}

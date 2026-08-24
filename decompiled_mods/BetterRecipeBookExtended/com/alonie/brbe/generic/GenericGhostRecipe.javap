@@ -1,0 +1,392 @@
+Compiled from "GenericGhostRecipe.java"
+public class com.alonie.brbe.generic.GenericGhostRecipe<R extends com.alonie.brbe.generic.GenericRecipe> {
+  protected java.util.function.Consumer<net.minecraft.world.item.ItemStack> onGhostUpdate;
+
+  protected R recipe;
+
+  protected final java.util.List<com.alonie.brbe.generic.GenericGhostRecipe<R>.GenericGhostIngredient> ingredients;
+
+  protected float time;
+
+  protected net.minecraft.core.RegistryAccess registryAccess;
+
+  private java.util.function.BiPredicate<com.alonie.brbe.generic.GenericGhostRecipe$GhostRenderType, com.alonie.brbe.generic.GenericGhostRecipe<R>.GenericGhostIngredient> renderingPredicate;
+
+  private net.minecraft.world.item.ItemStack lastHoveredItem;
+
+  public com.alonie.brbe.generic.GenericGhostRecipe(java.util.function.Consumer<net.minecraft.world.item.ItemStack>, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: invokespecial #47                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: invokestatic  #53                 // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+       8: putfield      #55                 // Field ingredients:Ljava/util/List;
+      11: aload_0
+      12: aload_1
+      13: putfield      #57                 // Field onGhostUpdate:Ljava/util/function/Consumer;
+      16: aload_0
+      17: aload_2
+      18: putfield      #59                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      21: return
+
+  public void setRenderingPredicate(java.util.function.BiPredicate<com.alonie.brbe.generic.GenericGhostRecipe$GhostRenderType, com.alonie.brbe.generic.GenericGhostRecipe<R>.GenericGhostIngredient>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+       5: return
+
+  public <T extends net.minecraft.world.inventory.AbstractContainerMenu> void setDefaultRenderingPredicate(T);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #91,  0             // InvokeDynamic #0:test:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)Ljava/util/function/BiPredicate;
+       7: invokevirtual #93                 // Method setRenderingPredicate:(Ljava/util/function/BiPredicate;)V
+      10: return
+
+  public net.minecraft.world.item.ItemStack getCurrentResult(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+       4: ifnonnull     11
+       7: getstatic     #105                // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: aload_0
+      12: getfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      15: aload_0
+      16: getfield      #59                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      19: aload_1
+      20: invokeinterface #111,  3          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.getResult:(Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      25: astore_2
+      26: aload_2
+      27: invokevirtual #115                // Method net/minecraft/world/item/ItemStack.copy:()Lnet/minecraft/world/item/ItemStack;
+      30: areturn
+
+  public void clear();
+    Code:
+       0: aload_0
+       1: aconst_null
+       2: putfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+       5: aload_0
+       6: getfield      #55                 // Field ingredients:Ljava/util/List;
+       9: invokeinterface #122,  1          // InterfaceMethod java/util/List.clear:()V
+      14: aload_0
+      15: fconst_0
+      16: putfield      #124                // Field time:F
+      19: return
+
+  public void addIngredient(int, net.minecraft.world.item.crafting.Ingredient, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field ingredients:Ljava/util/List;
+       4: new           #10                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+       7: dup
+       8: aload_0
+       9: iload_1
+      10: aload_2
+      11: iload_3
+      12: iload         4
+      14: invokespecial #133                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient."<init>":(Lcom/alonie/brbe/generic/GenericGhostRecipe;ILnet/minecraft/world/item/crafting/Ingredient;II)V
+      17: invokeinterface #137,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      22: pop
+      23: return
+
+  public com.alonie.brbe.generic.GenericGhostRecipe<R>.GenericGhostIngredient get(int);
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field ingredients:Ljava/util/List;
+       4: iload_1
+       5: invokeinterface #145,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      10: checkcast     #10                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+      13: areturn
+
+  public int size();
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field ingredients:Ljava/util/List;
+       4: invokeinterface #149,  1          // InterfaceMethod java/util/List.size:()I
+       9: ireturn
+
+  public R getRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+       4: areturn
+
+  public void setRecipe(R);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+       5: return
+
+  public void render(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.Minecraft, int, int, boolean, float, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: invokestatic  #167                // Method net/minecraft/client/gui/screens/Screen.hasControlDown:()Z
+       3: ifne          46
+       6: aload_0
+       7: dup
+       8: getfield      #124                // Field time:F
+      11: fload         6
+      13: fadd
+      14: putfield      #124                // Field time:F
+      17: aload_0
+      18: getfield      #57                 // Field onGhostUpdate:Ljava/util/function/Consumer;
+      21: ifnull        46
+      24: aload_0
+      25: getfield      #100                // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      28: ifnull        46
+      31: aload_0
+      32: getfield      #57                 // Field onGhostUpdate:Ljava/util/function/Consumer;
+      35: aload_0
+      36: aload         7
+      38: invokevirtual #169                // Method getCurrentResult:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      41: invokeinterface #175,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+      46: iconst_0
+      47: istore        8
+      49: iload         8
+      51: aload_0
+      52: getfield      #55                 // Field ingredients:Ljava/util/List;
+      55: invokeinterface #149,  1          // InterfaceMethod java/util/List.size:()I
+      60: if_icmpge     297
+      63: aload_0
+      64: getfield      #55                 // Field ingredients:Ljava/util/List;
+      67: iload         8
+      69: invokeinterface #145,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      74: checkcast     #10                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+      77: astore        9
+      79: aload_0
+      80: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+      83: ifnull        107
+      86: aload_0
+      87: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+      90: getstatic     #179                // Field com/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType.BACKGROUND:Lcom/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType;
+      93: aload         9
+      95: invokeinterface #183,  3          // InterfaceMethod java/util/function/BiPredicate.test:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     100: ifeq          107
+     103: iconst_1
+     104: goto          108
+     107: iconst_0
+     108: istore        10
+     110: aload_0
+     111: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+     114: ifnull        138
+     117: aload_0
+     118: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+     121: getstatic     #186                // Field com/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType.ITEM:Lcom/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType;
+     124: aload         9
+     126: invokeinterface #183,  3          // InterfaceMethod java/util/function/BiPredicate.test:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     131: ifeq          138
+     134: iconst_1
+     135: goto          139
+     138: iconst_0
+     139: istore        11
+     141: aload         9
+     143: invokevirtual #189                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getX:()I
+     146: iload_3
+     147: iadd
+     148: istore        12
+     150: aload         9
+     152: invokevirtual #192                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getY:()I
+     155: iload         4
+     157: iadd
+     158: istore        13
+     160: iload         10
+     162: ifeq          222
+     165: iload         8
+     167: ifne          202
+     170: iload         5
+     172: ifeq          202
+     175: aload_1
+     176: iload         12
+     178: iconst_4
+     179: isub
+     180: iload         13
+     182: iconst_4
+     183: isub
+     184: iload         12
+     186: bipush        20
+     188: iadd
+     189: iload         13
+     191: bipush        20
+     193: iadd
+     194: ldc           #193                // int 822018048
+     196: invokevirtual #199                // Method net/minecraft/client/gui/GuiGraphics.fill:(IIIII)V
+     199: goto          222
+     202: aload_1
+     203: iload         12
+     205: iload         13
+     207: iload         12
+     209: bipush        16
+     211: iadd
+     212: iload         13
+     214: bipush        16
+     216: iadd
+     217: ldc           #193                // int 822018048
+     219: invokevirtual #199                // Method net/minecraft/client/gui/GuiGraphics.fill:(IIIII)V
+     222: aload         9
+     224: invokevirtual #202                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+     227: astore        14
+     229: iload         11
+     231: ifeq          244
+     234: aload_1
+     235: aload         14
+     237: iload         12
+     239: iload         13
+     241: invokevirtual #206                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     244: iload         10
+     246: ifeq          272
+     249: aload_1
+     250: invokestatic  #212                // Method net/minecraft/client/renderer/RenderType.guiGhostRecipeOverlay:()Lnet/minecraft/client/renderer/RenderType;
+     253: iload         12
+     255: iload         13
+     257: iload         12
+     259: bipush        16
+     261: iadd
+     262: iload         13
+     264: bipush        16
+     266: iadd
+     267: ldc           #213                // int 822083583
+     269: invokevirtual #216                // Method net/minecraft/client/gui/GuiGraphics.fill:(Lnet/minecraft/client/renderer/RenderType;IIIII)V
+     272: iload         8
+     274: ifne          291
+     277: aload_1
+     278: aload_2
+     279: getfield      #222                // Field net/minecraft/client/Minecraft.font:Lnet/minecraft/client/gui/Font;
+     282: aload         14
+     284: iload         12
+     286: iload         13
+     288: invokevirtual #226                // Method net/minecraft/client/gui/GuiGraphics.renderItemDecorations:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V
+     291: iinc          8, 1
+     294: goto          49
+     297: return
+
+  public com.alonie.brbe.generic.GenericGhostRecipe<R>.GenericGhostIngredient getBySlot(int);
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field ingredients:Ljava/util/List;
+       4: invokeinterface #242,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_2
+      10: aload_2
+      11: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          42
+      19: aload_2
+      20: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #10                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+      28: astore_3
+      29: aload_3
+      30: invokevirtual #254                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+      33: iload_1
+      34: if_icmpne     39
+      37: aload_3
+      38: areturn
+      39: goto          10
+      42: aconst_null
+      43: areturn
+
+  public void drawTooltip(net.minecraft.client.gui.GuiGraphics, int, int, int, int);
+    Code:
+       0: aconst_null
+       1: astore        6
+       3: aload_0
+       4: getfield      #55                 // Field ingredients:Ljava/util/List;
+       7: invokeinterface #242,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      12: astore        7
+      14: aload         7
+      16: invokeinterface #247,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          122
+      24: aload         7
+      26: invokeinterface #251,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #10                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+      34: astore        8
+      36: aload         8
+      38: invokevirtual #189                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getX:()I
+      41: iload_2
+      42: iadd
+      43: istore        9
+      45: aload         8
+      47: invokevirtual #192                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getY:()I
+      50: iload_3
+      51: iadd
+      52: istore        10
+      54: iload         4
+      56: iload         9
+      58: if_icmplt     119
+      61: iload         5
+      63: iload         10
+      65: if_icmplt     119
+      68: iload         4
+      70: iload         9
+      72: bipush        16
+      74: iadd
+      75: if_icmpge     119
+      78: iload         5
+      80: iload         10
+      82: bipush        16
+      84: iadd
+      85: if_icmpge     119
+      88: aload_0
+      89: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+      92: ifnull        112
+      95: aload_0
+      96: getfield      #67                 // Field renderingPredicate:Ljava/util/function/BiPredicate;
+      99: getstatic     #264                // Field com/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType.TOOLTIP:Lcom/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType;
+     102: aload         8
+     104: invokeinterface #183,  3          // InterfaceMethod java/util/function/BiPredicate.test:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     109: ifeq          119
+     112: aload         8
+     114: invokevirtual #202                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+     117: astore        6
+     119: goto          14
+     122: aload_0
+     123: aload         6
+     125: putfield      #266                // Field lastHoveredItem:Lnet/minecraft/world/item/ItemStack;
+     128: aload         6
+     130: ifnull        164
+     133: invokestatic  #270                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+     136: getfield      #274                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+     139: ifnull        164
+     142: aload_1
+     143: invokestatic  #270                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+     146: getfield      #222                // Field net/minecraft/client/Minecraft.font:Lnet/minecraft/client/gui/Font;
+     149: invokestatic  #270                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+     152: aload         6
+     154: invokestatic  #278                // Method net/minecraft/client/gui/screens/Screen.getTooltipFromItem:(Lnet/minecraft/client/Minecraft;Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;
+     157: iload         4
+     159: iload         5
+     161: invokevirtual #282                // Method net/minecraft/client/gui/GuiGraphics.renderComponentTooltip:(Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+     164: return
+
+  public net.minecraft.world.item.ItemStack getLastHoveredItem();
+    Code:
+       0: aload_0
+       1: getfield      #266                // Field lastHoveredItem:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  private static boolean lambda$setDefaultRenderingPredicate$0(net.minecraft.world.inventory.AbstractContainerMenu, com.alonie.brbe.generic.GenericGhostRecipe$GhostRenderType, com.alonie.brbe.generic.GenericGhostRecipe$GenericGhostIngredient);
+    Code:
+       0: aload_0
+       1: getfield      #290                // Field net/minecraft/world/inventory/AbstractContainerMenu.slots:Lnet/minecraft/core/NonNullList;
+       4: aload_2
+       5: invokevirtual #254                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+       8: invokevirtual #293                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      11: checkcast     #295                // class net/minecraft/world/inventory/Slot
+      14: invokevirtual #296                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      17: astore_3
+      18: aload_1
+      19: invokevirtual #299                // Method com/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType.ordinal:()I
+      22: tableswitch   { // 0 to 2
+
+                     0: 48
+
+                     1: 48
+
+                     2: 48
+               default: 53
+          }
+      48: aload_3
+      49: invokevirtual #302                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      52: ireturn
+      53: iconst_1
+      54: ireturn
+}

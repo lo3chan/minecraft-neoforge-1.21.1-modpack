@@ -1,0 +1,63 @@
+Compiled from "BRBBookCategories.java"
+public final class com.alonie.brbe.api.BRBBookCategories$Category$Type extends java.lang.Enum<com.alonie.brbe.api.BRBBookCategories$Category$Type> {
+  public static final com.alonie.brbe.api.BRBBookCategories$Category$Type SEARCH;
+
+  public static final com.alonie.brbe.api.BRBBookCategories$Category$Type OTHER;
+
+  private static final com.alonie.brbe.api.BRBBookCategories$Category$Type[] $VALUES;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category$Type[] values();
+    Code:
+       0: getstatic     #21                 // Field $VALUES:[Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+       3: invokevirtual #26                 // Method "[Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;".clone:()Ljava/lang/Object;
+       6: checkcast     #22                 // class "[Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;"
+       9: areturn
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category$Type valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class com/alonie/brbe/api/BRBBookCategories$Category$Type
+       2: aload_0
+       3: invokestatic  #32                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class com/alonie/brbe/api/BRBBookCategories$Category$Type
+       9: areturn
+
+  private com.alonie.brbe.api.BRBBookCategories$Category$Type();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #38                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: return
+
+  private static com.alonie.brbe.api.BRBBookCategories$Category$Type[] $values();
+    Code:
+       0: iconst_2
+       1: anewarray     #2                  // class com/alonie/brbe/api/BRBBookCategories$Category$Type
+       4: dup
+       5: iconst_0
+       6: getstatic     #42                 // Field SEARCH:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #44                 // Field OTHER:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      15: aastore
+      16: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/alonie/brbe/api/BRBBookCategories$Category$Type
+       3: dup
+       4: ldc           #46                 // String SEARCH
+       6: iconst_0
+       7: invokespecial #47                 // Method "<init>":(Ljava/lang/String;I)V
+      10: putstatic     #42                 // Field SEARCH:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      13: new           #2                  // class com/alonie/brbe/api/BRBBookCategories$Category$Type
+      16: dup
+      17: ldc           #48                 // String OTHER
+      19: iconst_1
+      20: invokespecial #47                 // Method "<init>":(Ljava/lang/String;I)V
+      23: putstatic     #44                 // Field OTHER:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      26: invokestatic  #50                 // Method $values:()[Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      29: putstatic     #21                 // Field $VALUES:[Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      32: return
+}

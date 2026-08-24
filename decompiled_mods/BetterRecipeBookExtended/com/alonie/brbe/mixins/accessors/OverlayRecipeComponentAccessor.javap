@@ -1,0 +1,8 @@
+Compiled from "OverlayRecipeComponentAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.OverlayRecipeComponentAccessor {
+  public abstract java.util.List<net.minecraft.client.gui.components.AbstractWidget> getRecipeButtons();
+
+  public abstract float getTime();
+
+  public abstract boolean isFurnaceMenu();
+}

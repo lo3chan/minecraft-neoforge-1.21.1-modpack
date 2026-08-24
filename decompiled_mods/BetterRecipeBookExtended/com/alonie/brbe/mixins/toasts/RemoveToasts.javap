@@ -1,0 +1,20 @@
+Compiled from "RemoveToasts.java"
+public class com.alonie.brbe.mixins.toasts.RemoveToasts {
+  public com.alonie.brbe.mixins.toasts.RemoveToasts();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void draw(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.gui.components.toasts.ToastComponent, long, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraft.client.gui.components.toasts.Toast$Visibility>);
+    Code:
+       0: invokestatic  #40                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #46                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #52                 // Field com/alonie/brbe/config/Config.newRecipes:Lcom/alonie/brbe/config/NewRecipes;
+       9: getfield      #58                 // Field com/alonie/brbe/config/NewRecipes.unlockAll:Z
+      12: ifeq          23
+      15: aload         5
+      17: getstatic     #62                 // Field net/minecraft/client/gui/components/toasts/Toast$Visibility.HIDE:Lnet/minecraft/client/gui/components/toasts/Toast$Visibility;
+      20: invokevirtual #68                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      23: return
+}

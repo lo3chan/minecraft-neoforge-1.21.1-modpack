@@ -1,0 +1,4 @@
+Compiled from "RecipeBookScrollAccess.java"
+public interface com.alonie.recipebookispain_extended.access.RecipeBookScrollAccess {
+  public abstract boolean rbip$scrollPages(double, double, double);
+}

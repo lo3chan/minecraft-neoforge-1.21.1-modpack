@@ -1,0 +1,337 @@
+Compiled from "SearchQuery.java"
+public class com.alonie.brbe.search.SearchQuery {
+  private static final java.util.regex.Pattern OR_SPLIT;
+
+  private static final java.util.regex.Pattern TOKEN_SPLIT;
+
+  private final com.alonie.brbe.search.AlternativeArgument root;
+
+  private final boolean advanced;
+
+  public static final com.alonie.brbe.search.SearchQuery EMPTY;
+
+  public static com.alonie.brbe.search.SearchQuery parse(java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnull        11
+       4: aload_0
+       5: invokevirtual #28                 // Method java/lang/String.isBlank:()Z
+       8: ifeq          30
+      11: new           #2                  // class com/alonie/brbe/search/SearchQuery
+      14: dup
+      15: new           #30                 // class com/alonie/brbe/search/AlternativeArgument
+      18: dup
+      19: invokestatic  #36                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+      22: invokespecial #40                 // Method com/alonie/brbe/search/AlternativeArgument."<init>":(Ljava/util/List;)V
+      25: iconst_0
+      26: invokespecial #43                 // Method "<init>":(Lcom/alonie/brbe/search/AlternativeArgument;Z)V
+      29: areturn
+      30: aload_0
+      31: invokevirtual #47                 // Method java/lang/String.trim:()Ljava/lang/String;
+      34: astore_1
+      35: getstatic     #49                 // Field OR_SPLIT:Ljava/util/regex/Pattern;
+      38: aload_1
+      39: iconst_m1
+      40: invokevirtual #55                 // Method java/util/regex/Pattern.split:(Ljava/lang/CharSequence;I)[Ljava/lang/String;
+      43: astore_2
+      44: new           #57                 // class java/util/ArrayList
+      47: dup
+      48: invokespecial #60                 // Method java/util/ArrayList."<init>":()V
+      51: astore_3
+      52: aload_2
+      53: astore        4
+      55: aload         4
+      57: arraylength
+      58: istore        5
+      60: iconst_0
+      61: istore        6
+      63: iload         6
+      65: iload         5
+      67: if_icmpge     250
+      70: aload         4
+      72: iload         6
+      74: aaload
+      75: astore        7
+      77: aload         7
+      79: invokevirtual #47                 // Method java/lang/String.trim:()Ljava/lang/String;
+      82: astore        7
+      84: aload         7
+      86: invokevirtual #65                 // Method java/lang/String.isEmpty:()Z
+      89: ifeq          95
+      92: goto          244
+      95: new           #57                 // class java/util/ArrayList
+      98: dup
+      99: invokespecial #60                 // Method java/util/ArrayList."<init>":()V
+     102: astore        8
+     104: getstatic     #67                 // Field TOKEN_SPLIT:Ljava/util/regex/Pattern;
+     107: aload         7
+     109: invokevirtual #71                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+     112: astore        9
+     114: aload         9
+     116: invokevirtual #76                 // Method java/util/regex/Matcher.find:()Z
+     119: ifeq          186
+     122: aload         9
+     124: iconst_1
+     125: invokevirtual #80                 // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+     128: ifnull        142
+     131: aload         9
+     133: iconst_1
+     134: invokevirtual #80                 // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+     137: astore        10
+     139: goto          150
+     142: aload         9
+     144: iconst_2
+     145: invokevirtual #80                 // Method java/util/regex/Matcher.group:(I)Ljava/lang/String;
+     148: astore        10
+     150: aload         10
+     152: ifnull        114
+     155: aload         10
+     157: invokevirtual #65                 // Method java/lang/String.isEmpty:()Z
+     160: ifeq          166
+     163: goto          114
+     166: aload         10
+     168: invokestatic  #84                 // Method parseToken:(Ljava/lang/String;)Lcom/alonie/brbe/search/SearchArgument;
+     171: astore        11
+     173: aload         8
+     175: aload         11
+     177: invokeinterface #88,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     182: pop
+     183: goto          114
+     186: aload         8
+     188: invokeinterface #89,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     193: ifne          244
+     196: aload         8
+     198: invokeinterface #93,  1           // InterfaceMethod java/util/List.size:()I
+     203: iconst_1
+     204: if_icmpne     228
+     207: aload_3
+     208: aload         8
+     210: iconst_0
+     211: invokeinterface #97,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     216: checkcast     #99                 // class com/alonie/brbe/search/SearchArgument
+     219: invokeinterface #88,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     224: pop
+     225: goto          244
+     228: aload_3
+     229: new           #101                // class com/alonie/brbe/search/CompoundArgument
+     232: dup
+     233: aload         8
+     235: invokespecial #102                // Method com/alonie/brbe/search/CompoundArgument."<init>":(Ljava/util/List;)V
+     238: invokeinterface #88,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     243: pop
+     244: iinc          6, 1
+     247: goto          63
+     250: aload_3
+     251: invokeinterface #89,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+     256: ifeq          278
+     259: new           #2                  // class com/alonie/brbe/search/SearchQuery
+     262: dup
+     263: new           #30                 // class com/alonie/brbe/search/AlternativeArgument
+     266: dup
+     267: invokestatic  #36                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+     270: invokespecial #40                 // Method com/alonie/brbe/search/AlternativeArgument."<init>":(Ljava/util/List;)V
+     273: iconst_0
+     274: invokespecial #43                 // Method "<init>":(Lcom/alonie/brbe/search/AlternativeArgument;Z)V
+     277: areturn
+     278: aload_3
+     279: invokeinterface #106,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     284: invokedynamic #124,  0            // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+     289: invokeinterface #130,  2          // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+     294: istore        4
+     296: aload_3
+     297: invokeinterface #93,  1           // InterfaceMethod java/util/List.size:()I
+     302: iconst_1
+     303: if_icmpne     319
+     306: new           #30                 // class com/alonie/brbe/search/AlternativeArgument
+     309: dup
+     310: aload_3
+     311: invokespecial #40                 // Method com/alonie/brbe/search/AlternativeArgument."<init>":(Ljava/util/List;)V
+     314: astore        5
+     316: goto          329
+     319: new           #30                 // class com/alonie/brbe/search/AlternativeArgument
+     322: dup
+     323: aload_3
+     324: invokespecial #40                 // Method com/alonie/brbe/search/AlternativeArgument."<init>":(Ljava/util/List;)V
+     327: astore        5
+     329: new           #2                  // class com/alonie/brbe/search/SearchQuery
+     332: dup
+     333: aload         5
+     335: iload         4
+     337: invokespecial #43                 // Method "<init>":(Lcom/alonie/brbe/search/AlternativeArgument;Z)V
+     340: areturn
+
+  private static com.alonie.brbe.search.SearchArgument parseToken(java.lang.String);
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: aload_0
+       3: astore_2
+       4: aload_2
+       5: ldc           #146                // String -
+       7: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      10: ifeq          38
+      13: aload_2
+      14: invokevirtual #153                // Method java/lang/String.length:()I
+      17: iconst_1
+      18: if_icmple     38
+      21: aload_2
+      22: ldc           #155                // String --
+      24: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      27: ifne          38
+      30: iconst_1
+      31: istore_1
+      32: aload_2
+      33: iconst_1
+      34: invokevirtual #158                // Method java/lang/String.substring:(I)Ljava/lang/String;
+      37: astore_2
+      38: aload_2
+      39: ldc           #160                // String @
+      41: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      44: ifeq          71
+      47: aload_2
+      48: invokevirtual #153                // Method java/lang/String.length:()I
+      51: iconst_1
+      52: if_icmple     71
+      55: new           #162                // class com/alonie/brbe/search/ModArgument
+      58: dup
+      59: aload_2
+      60: iconst_1
+      61: invokevirtual #158                // Method java/lang/String.substring:(I)Ljava/lang/String;
+      64: invokespecial #165                // Method com/alonie/brbe/search/ModArgument."<init>":(Ljava/lang/String;)V
+      67: astore_3
+      68: goto          225
+      71: aload_2
+      72: ldc           #167                // String $
+      74: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+      77: ifeq          104
+      80: aload_2
+      81: invokevirtual #153                // Method java/lang/String.length:()I
+      84: iconst_1
+      85: if_icmple     104
+      88: new           #169                // class com/alonie/brbe/search/TagArgument
+      91: dup
+      92: aload_2
+      93: iconst_1
+      94: invokevirtual #158                // Method java/lang/String.substring:(I)Ljava/lang/String;
+      97: invokespecial #170                // Method com/alonie/brbe/search/TagArgument."<init>":(Ljava/lang/String;)V
+     100: astore_3
+     101: goto          225
+     104: aload_2
+     105: ldc           #172                // String #
+     107: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+     110: ifeq          137
+     113: aload_2
+     114: invokevirtual #153                // Method java/lang/String.length:()I
+     117: iconst_1
+     118: if_icmple     137
+     121: new           #174                // class com/alonie/brbe/search/TooltipArgument
+     124: dup
+     125: aload_2
+     126: iconst_1
+     127: invokevirtual #158                // Method java/lang/String.substring:(I)Ljava/lang/String;
+     130: invokespecial #175                // Method com/alonie/brbe/search/TooltipArgument."<init>":(Ljava/lang/String;)V
+     133: astore_3
+     134: goto          225
+     137: aload_2
+     138: ldc           #177                // String r/
+     140: invokevirtual #150                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+     143: ifeq          216
+     146: aload_2
+     147: invokevirtual #153                // Method java/lang/String.length:()I
+     150: iconst_3
+     151: if_icmple     216
+     154: aload_2
+     155: bipush        47
+     157: invokevirtual #181                // Method java/lang/String.lastIndexOf:(I)I
+     160: istore        4
+     162: iload         4
+     164: iconst_2
+     165: if_icmple     204
+     168: aload_2
+     169: iconst_2
+     170: iload         4
+     172: invokevirtual #184                // Method java/lang/String.substring:(II)Ljava/lang/String;
+     175: astore        5
+     177: new           #186                // class com/alonie/brbe/search/RegexArgument
+     180: dup
+     181: aload         5
+     183: invokespecial #187                // Method com/alonie/brbe/search/RegexArgument."<init>":(Ljava/lang/String;)V
+     186: astore_3
+     187: goto          201
+     190: astore        6
+     192: new           #189                // class com/alonie/brbe/search/TextArgument
+     195: dup
+     196: aload_0
+     197: invokespecial #190                // Method com/alonie/brbe/search/TextArgument."<init>":(Ljava/lang/String;)V
+     200: astore_3
+     201: goto          213
+     204: new           #189                // class com/alonie/brbe/search/TextArgument
+     207: dup
+     208: aload_0
+     209: invokespecial #190                // Method com/alonie/brbe/search/TextArgument."<init>":(Ljava/lang/String;)V
+     212: astore_3
+     213: goto          225
+     216: new           #189                // class com/alonie/brbe/search/TextArgument
+     219: dup
+     220: aload_2
+     221: invokespecial #190                // Method com/alonie/brbe/search/TextArgument."<init>":(Ljava/lang/String;)V
+     224: astore_3
+     225: iload_1
+     226: ifeq          238
+     229: new           #192                // class com/alonie/brbe/search/NegatedArgument
+     232: dup
+     233: aload_3
+     234: invokespecial #195                // Method com/alonie/brbe/search/NegatedArgument."<init>":(Lcom/alonie/brbe/search/SearchArgument;)V
+     237: areturn
+     238: aload_3
+     239: areturn
+    Exception table:
+       from    to  target type
+         177   187   190   Class java/lang/Exception
+
+  private com.alonie.brbe.search.SearchQuery(com.alonie.brbe.search.AlternativeArgument, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #203                // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #205                // Field root:Lcom/alonie/brbe/search/AlternativeArgument;
+       9: aload_0
+      10: iload_2
+      11: putfield      #207                // Field advanced:Z
+      14: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_0
+       1: getfield      #205                // Field root:Lcom/alonie/brbe/search/AlternativeArgument;
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #214                // Method com/alonie/brbe/search/AlternativeArgument.matches:(Lnet/minecraft/world/item/ItemStack;Lcom/alonie/brbe/search/SearchCache;)Z
+       9: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: aload_0
+       1: getfield      #207                // Field advanced:Z
+       4: ireturn
+
+  static {};
+    Code:
+       0: ldc           #219                // String \\|
+       2: invokestatic  #223                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+       5: putstatic     #49                 // Field OR_SPLIT:Ljava/util/regex/Pattern;
+       8: ldc           #225                // String \"([^\"]*)\"|([^\\s]+)
+      10: invokestatic  #223                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      13: putstatic     #67                 // Field TOKEN_SPLIT:Ljava/util/regex/Pattern;
+      16: new           #2                  // class com/alonie/brbe/search/SearchQuery
+      19: dup
+      20: new           #30                 // class com/alonie/brbe/search/AlternativeArgument
+      23: dup
+      24: invokestatic  #36                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+      27: invokespecial #40                 // Method com/alonie/brbe/search/AlternativeArgument."<init>":(Ljava/util/List;)V
+      30: iconst_0
+      31: invokespecial #43                 // Method "<init>":(Lcom/alonie/brbe/search/AlternativeArgument;Z)V
+      34: putstatic     #227                // Field EMPTY:Lcom/alonie/brbe/search/SearchQuery;
+      37: return
+}

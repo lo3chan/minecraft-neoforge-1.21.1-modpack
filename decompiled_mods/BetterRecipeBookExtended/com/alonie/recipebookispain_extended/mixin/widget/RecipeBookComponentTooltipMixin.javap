@@ -1,0 +1,70 @@
+Compiled from "RecipeBookComponentTooltipMixin.java"
+public abstract class com.alonie.recipebookispain_extended.mixin.widget.RecipeBookComponentTooltipMixin {
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton> tabButtons;
+
+  protected net.minecraft.client.Minecraft minecraft;
+
+  public com.alonie.recipebookispain_extended.mixin.widget.RecipeBookComponentTooltipMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void rbip$renderCreativeTabTooltip(net.minecraft.client.gui.GuiGraphics, int, int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+       4: ifnull        17
+       7: aload_0
+       8: getfield      #39                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      11: getfield      #45                 // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      14: ifnonnull     18
+      17: return
+      18: aload_0
+      19: getfield      #47                 // Field tabButtons:Ljava/util/List;
+      22: invokeinterface #53,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      27: astore        7
+      29: aload         7
+      31: invokeinterface #59,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      36: ifeq          134
+      39: aload         7
+      41: invokeinterface #63,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      46: checkcast     #65                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+      49: astore        8
+      51: aload         8
+      53: getfield      #69                 // Field net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.visible:Z
+      56: ifeq          29
+      59: aload         8
+      61: iload         4
+      63: i2d
+      64: iload         5
+      66: i2d
+      67: invokevirtual #73                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.isMouseOver:(DD)Z
+      70: ifne          76
+      73: goto          29
+      76: aload         8
+      78: instanceof    #75                 // class com/alonie/recipebookispain_extended/access/CreativeTabButtonAccess
+      81: ifeq          29
+      84: aload         8
+      86: checkcast     #75                 // class com/alonie/recipebookispain_extended/access/CreativeTabButtonAccess
+      89: astore        9
+      91: aload         9
+      93: invokeinterface #79,  1           // InterfaceMethod com/alonie/recipebookispain_extended/access/CreativeTabButtonAccess.rbip$getCreativeTab:()Lnet/minecraft/world/item/CreativeModeTab;
+      98: astore        10
+     100: aload         10
+     102: ifnull        131
+     105: aload_1
+     106: aload_0
+     107: getfield      #39                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+     110: getfield      #83                 // Field net/minecraft/client/Minecraft.font:Lnet/minecraft/client/gui/Font;
+     113: aload         10
+     115: invokevirtual #89                 // Method net/minecraft/world/item/CreativeModeTab.getDisplayName:()Lnet/minecraft/network/chat/Component;
+     118: iload         4
+     120: iload         5
+     122: invokevirtual #94                 // Method net/minecraft/client/gui/GuiGraphics.renderTooltip:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+     125: aload         6
+     127: invokevirtual #99                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+     130: return
+     131: goto          29
+     134: return
+}

@@ -1,0 +1,31 @@
+Compiled from "NegatedArgument.java"
+public class com.alonie.brbe.search.NegatedArgument implements com.alonie.brbe.search.SearchArgument {
+  private final com.alonie.brbe.search.SearchArgument child;
+
+  public com.alonie.brbe.search.NegatedArgument(com.alonie.brbe.search.SearchArgument);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #16                 // Field child:Lcom/alonie/brbe/search/SearchArgument;
+       9: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field child:Lcom/alonie/brbe/search/SearchArgument;
+       4: aload_1
+       5: aload_2
+       6: invokeinterface #24,  3           // InterfaceMethod com/alonie/brbe/search/SearchArgument.matches:(Lnet/minecraft/world/item/ItemStack;Lcom/alonie/brbe/search/SearchCache;)Z
+      11: ifne          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

@@ -1,0 +1,59 @@
+Compiled from "ModRegistry.java"
+public class fuzs.visualworkbench.init.ModRegistry {
+  static final fuzs.puzzleslib.api.init.v3.registry.RegistryManager REGISTRIES;
+
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.block.entity.BlockEntityType<fuzs.visualworkbench.world.level.block.entity.CraftingTableBlockEntity>> CRAFTING_TABLE_BLOCK_ENTITY_TYPE;
+
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.inventory.MenuType<fuzs.visualworkbench.world.inventory.VisualCraftingMenu>> CRAFTING_MENU_TYPE;
+
+  static final fuzs.puzzleslib.api.init.v3.tags.BoundTagFactory TAGS;
+
+  public static final net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> UNALTERED_WORKBENCHES_BLOCK_TAG;
+
+  public fuzs.visualworkbench.init.ModRegistry();
+    Code:
+       0: aload_0
+       1: invokespecial #44                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void touch();
+    Code:
+       0: return
+
+  private static net.minecraft.world.inventory.MenuType$MenuSupplier lambda$static$1();
+    Code:
+       0: invokedynamic #69,  0             // InvokeDynamic #0:create:()Lnet/minecraft/world/inventory/MenuType$MenuSupplier;
+       5: areturn
+
+  private static net.minecraft.world.level.block.entity.BlockEntityType$Builder lambda$static$0();
+    Code:
+       0: invokedynamic #84,  0             // InvokeDynamic #1:create:()Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;
+       5: iconst_0
+       6: anewarray     #86                 // class net/minecraft/world/level/block/Block
+       9: invokestatic  #90                 // Method net/minecraft/world/level/block/entity/BlockEntityType$Builder.of:(Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;[Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/entity/BlockEntityType$Builder;
+      12: areturn
+
+  static {};
+    Code:
+       0: ldc           #93                 // String visualworkbench
+       2: invokestatic  #99                 // InterfaceMethod fuzs/puzzleslib/api/init/v3/registry/RegistryManager.from:(Ljava/lang/String;)Lfuzs/puzzleslib/api/init/v3/registry/RegistryManager;
+       5: putstatic     #101                // Field REGISTRIES:Lfuzs/puzzleslib/api/init/v3/registry/RegistryManager;
+       8: getstatic     #101                // Field REGISTRIES:Lfuzs/puzzleslib/api/init/v3/registry/RegistryManager;
+      11: ldc           #103                // String crafting_table
+      13: invokedynamic #113,  0            // InvokeDynamic #2:get:()Ljava/util/function/Supplier;
+      18: invokeinterface #117,  3          // InterfaceMethod fuzs/puzzleslib/api/init/v3/registry/RegistryManager.registerBlockEntityType:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraft/core/Holder$Reference;
+      23: putstatic     #119                // Field CRAFTING_TABLE_BLOCK_ENTITY_TYPE:Lnet/minecraft/core/Holder$Reference;
+      26: getstatic     #101                // Field REGISTRIES:Lfuzs/puzzleslib/api/init/v3/registry/RegistryManager;
+      29: ldc           #121                // String crafting
+      31: invokedynamic #126,  0            // InvokeDynamic #3:get:()Ljava/util/function/Supplier;
+      36: invokeinterface #129,  3          // InterfaceMethod fuzs/puzzleslib/api/init/v3/registry/RegistryManager.registerMenuType:(Ljava/lang/String;Ljava/util/function/Supplier;)Lnet/minecraft/core/Holder$Reference;
+      41: putstatic     #131                // Field CRAFTING_MENU_TYPE:Lnet/minecraft/core/Holder$Reference;
+      44: ldc           #93                 // String visualworkbench
+      46: invokestatic  #137                // Method fuzs/puzzleslib/api/init/v3/tags/BoundTagFactory.make:(Ljava/lang/String;)Lfuzs/puzzleslib/api/init/v3/tags/BoundTagFactory;
+      49: putstatic     #139                // Field TAGS:Lfuzs/puzzleslib/api/init/v3/tags/BoundTagFactory;
+      52: getstatic     #139                // Field TAGS:Lfuzs/puzzleslib/api/init/v3/tags/BoundTagFactory;
+      55: ldc           #141                // String unaltered_workbenches
+      57: invokevirtual #145                // Method fuzs/puzzleslib/api/init/v3/tags/BoundTagFactory.registerBlockTag:(Ljava/lang/String;)Lnet/minecraft/tags/TagKey;
+      60: putstatic     #147                // Field UNALTERED_WORKBENCHES_BLOCK_TAG:Lnet/minecraft/tags/TagKey;
+      63: return
+}

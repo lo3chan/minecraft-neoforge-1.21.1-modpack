@@ -1,0 +1,9 @@
+Compiled from "SearchArgument.java"
+public interface com.alonie.brbe.search.SearchArgument {
+  public abstract boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+
+  public default boolean isAdvanced();
+    Code:
+       0: iconst_0
+       1: ireturn
+}

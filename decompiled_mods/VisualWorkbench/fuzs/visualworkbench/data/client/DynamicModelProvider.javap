@@ -1,0 +1,38 @@
+Compiled from "DynamicModelProvider.java"
+public class fuzs.visualworkbench.data.client.DynamicModelProvider extends fuzs.puzzleslib.api.client.data.v2.AbstractModelProvider {
+  public fuzs.visualworkbench.data.client.DynamicModelProvider(fuzs.puzzleslib.api.data.v2.core.DataProviderContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #15                 // Method fuzs/puzzleslib/api/client/data/v2/AbstractModelProvider."<init>":(Lfuzs/puzzleslib/api/data/v2/core/DataProviderContext;)V
+       5: return
+
+  public void addBlockModels(net.minecraft.data.models.BlockModelGenerators);
+    Code:
+       0: getstatic     #27                 // Field net/minecraft/world/level/block/Blocks.STONE:Lnet/minecraft/world/level/block/Block;
+       3: invokestatic  #33                 // Method net/minecraft/data/models/model/ModelLocationUtils.getModelLocation:(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/resources/ResourceLocation;
+       6: astore_2
+       7: invokestatic  #39                 // Method fuzs/visualworkbench/handler/BlockConversionHandler.getBlockConversions:()Lcom/google/common/collect/BiMap;
+      10: invokeinterface #45,  1           // InterfaceMethod com/google/common/collect/BiMap.values:()Ljava/util/Set;
+      15: aload_1
+      16: aload_2
+      17: invokedynamic #65,  0             // InvokeDynamic #0:accept:(Lnet/minecraft/data/models/BlockModelGenerators;Lnet/minecraft/resources/ResourceLocation;)Ljava/util/function/Consumer;
+      22: invokeinterface #71,  2           // InterfaceMethod java/util/Set.forEach:(Ljava/util/function/Consumer;)V
+      27: return
+
+  private static void lambda$addBlockModels$0(net.minecraft.data.models.BlockModelGenerators, net.minecraft.resources.ResourceLocation, net.minecraft.world.level.block.Block);
+    Code:
+       0: aload_0
+       1: getfield      #81                 // Field net/minecraft/data/models/BlockModelGenerators.blockStateOutput:Ljava/util/function/Consumer;
+       4: aload_2
+       5: invokestatic  #87                 // Method net/minecraft/data/models/blockstates/Variant.variant:()Lnet/minecraft/data/models/blockstates/Variant;
+       8: getstatic     #93                 // Field net/minecraft/data/models/blockstates/VariantProperties.MODEL:Lnet/minecraft/data/models/blockstates/VariantProperty;
+      11: aload_1
+      12: invokevirtual #97                 // Method net/minecraft/data/models/blockstates/Variant.with:(Lnet/minecraft/data/models/blockstates/VariantProperty;Ljava/lang/Object;)Lnet/minecraft/data/models/blockstates/Variant;
+      15: invokestatic  #103                // Method net/minecraft/data/models/blockstates/MultiVariantGenerator.multiVariant:(Lnet/minecraft/world/level/block/Block;Lnet/minecraft/data/models/blockstates/Variant;)Lnet/minecraft/data/models/blockstates/MultiVariantGenerator;
+      18: invokeinterface #107,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+      23: aload_0
+      24: aload_2
+      25: invokevirtual #110                // Method net/minecraft/data/models/BlockModelGenerators.skipAutoItemBlock:(Lnet/minecraft/world/level/block/Block;)V
+      28: return
+}

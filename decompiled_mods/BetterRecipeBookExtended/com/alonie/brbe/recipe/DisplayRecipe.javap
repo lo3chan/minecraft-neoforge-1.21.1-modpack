@@ -1,0 +1,16 @@
+Compiled from "DisplayRecipe.java"
+public interface com.alonie.brbe.recipe.DisplayRecipe {
+  public abstract net.minecraft.resources.ResourceLocation id();
+
+  public abstract net.minecraft.world.item.ItemStack getResult();
+
+  public abstract java.lang.String getSearchString();
+
+  public default boolean matches(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: invokeinterface #16,  1           // InterfaceMethod id:()Lnet/minecraft/resources/ResourceLocation;
+       6: aload_1
+       7: invokevirtual #22                 // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      10: ireturn
+}

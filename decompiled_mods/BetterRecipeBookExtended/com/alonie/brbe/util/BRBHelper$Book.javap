@@ -1,0 +1,31 @@
+Compiled from "BRBHelper.java"
+public class com.alonie.brbe.util.BRBHelper$Book {
+  public net.minecraft.resources.ResourceLocation resourceLocation;
+
+  public com.mojang.datafixers.util.Pair<java.lang.String, java.lang.String> pair;
+
+  com.alonie.brbe.util.BRBHelper$Book(net.minecraft.resources.ResourceLocation, com.mojang.datafixers.util.Pair<java.lang.String, java.lang.String>);
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #26                 // Field resourceLocation:Lnet/minecraft/resources/ResourceLocation;
+       9: aload_0
+      10: aload_2
+      11: putfield      #28                 // Field pair:Lcom/mojang/datafixers/util/Pair;
+      14: return
+
+  public com.alonie.brbe.api.BRBBookCategories$Category createCategory(net.minecraft.world.item.ItemStack...);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #36                 // Method com/alonie/brbe/api/BRBBookCategories.createCategory:(Lcom/alonie/brbe/util/BRBHelper$Book;[Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+       5: areturn
+
+  public com.alonie.brbe.api.BRBBookCategories$Category createSearch();
+    Code:
+       0: aload_0
+       1: invokestatic  #42                 // Method com/alonie/brbe/api/BRBBookCategories.createSearch:(Lcom/alonie/brbe/util/BRBHelper$Book;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+       4: areturn
+}

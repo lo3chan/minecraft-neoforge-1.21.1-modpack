@@ -1,0 +1,25 @@
+Compiled from "RecipeBookTabButtonMixin.java"
+public abstract class com.alonie.brbe.mixins.RecipeBookTabButtonMixin implements com.alonie.brbe.interfaces.RecipeBookTabButtonIconOffset {
+  private int brbe$iconYOffset;
+
+  public com.alonie.brbe.mixins.RecipeBookTabButtonMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private int brbe$offsetIconY(int);
+    Code:
+       0: iload_1
+       1: aload_0
+       2: getfield      #34                 // Field brbe$iconYOffset:I
+       5: iadd
+       6: ireturn
+
+  public void brbe$setIconYOffset(int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #34                 // Field brbe$iconYOffset:I
+       5: return
+}

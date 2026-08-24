@@ -1,0 +1,193 @@
+Compiled from "PerfTimer.java"
+public final class com.alonie.brbe.util.PerfTimer {
+  private static final org.apache.logging.log4j.Logger LOGGER;
+
+  private static final it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap<java.lang.String> accumNanos;
+
+  private static final it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap<java.lang.String> counts;
+
+  private static final java.lang.ThreadLocal<it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap<java.lang.String>> active;
+
+  private static boolean enabled;
+
+  public static boolean logNextRenderFrame;
+
+  private com.alonie.brbe.util.PerfTimer();
+    Code:
+       0: aload_0
+       1: invokespecial #34                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void begin();
+    Code:
+       0: invokestatic  #43                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #49                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: ifnull        13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: putstatic     #51                 // Field enabled:Z
+      17: getstatic     #51                 // Field enabled:Z
+      20: ifne          24
+      23: return
+      24: getstatic     #53                 // Field active:Ljava/lang/ThreadLocal;
+      27: invokevirtual #59                 // Method java/lang/ThreadLocal.get:()Ljava/lang/Object;
+      30: checkcast     #61                 // class it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap
+      33: invokevirtual #64                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.clear:()V
+      36: return
+
+  public static void start(java.lang.String);
+    Code:
+       0: getstatic     #51                 // Field enabled:Z
+       3: ifne          7
+       6: return
+       7: getstatic     #53                 // Field active:Ljava/lang/ThreadLocal;
+      10: invokevirtual #59                 // Method java/lang/ThreadLocal.get:()Ljava/lang/Object;
+      13: checkcast     #61                 // class it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap
+      16: aload_0
+      17: invokestatic  #73                 // Method java/lang/System.nanoTime:()J
+      20: invokevirtual #77                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.put:(Ljava/lang/Object;J)J
+      23: pop2
+      24: return
+
+  public static void end(java.lang.String);
+    Code:
+       0: getstatic     #51                 // Field enabled:Z
+       3: ifne          7
+       6: return
+       7: invokestatic  #73                 // Method java/lang/System.nanoTime:()J
+      10: getstatic     #53                 // Field active:Ljava/lang/ThreadLocal;
+      13: invokevirtual #59                 // Method java/lang/ThreadLocal.get:()Ljava/lang/Object;
+      16: checkcast     #61                 // class it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap
+      19: aload_0
+      20: invokevirtual #83                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.getLong:(Ljava/lang/Object;)J
+      23: lsub
+      24: lstore_1
+      25: getstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      28: aload_0
+      29: lload_1
+      30: invokevirtual #88                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.addTo:(Ljava/lang/Object;J)J
+      33: pop2
+      34: getstatic     #90                 // Field counts:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      37: aload_0
+      38: lconst_1
+      39: invokevirtual #88                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.addTo:(Ljava/lang/Object;J)J
+      42: pop2
+      43: return
+
+  public static void logAndReset(java.lang.String);
+    Code:
+       0: getstatic     #51                 // Field enabled:Z
+       3: ifeq          15
+       6: getstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+       9: invokevirtual #98                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.isEmpty:()Z
+      12: ifeq          16
+      15: return
+      16: lconst_0
+      17: lstore_1
+      18: getstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      21: invokevirtual #102                // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.object2LongEntrySet:()Lit/unimi/dsi/fastutil/objects/Object2LongMap$FastEntrySet;
+      24: invokeinterface #106,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$FastEntrySet.iterator:()Lit/unimi/dsi/fastutil/objects/ObjectIterator;
+      29: astore_3
+      30: aload_3
+      31: invokeinterface #113,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      36: ifeq          63
+      39: aload_3
+      40: invokeinterface #116,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      45: checkcast     #12                 // class it/unimi/dsi/fastutil/objects/Object2LongMap$Entry
+      48: astore        4
+      50: lload_1
+      51: aload         4
+      53: invokeinterface #119,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$Entry.getLongValue:()J
+      58: ladd
+      59: lstore_1
+      60: goto          30
+      63: getstatic     #121                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+      66: ldc           #123                // String --- BRBE-Perf [{}] total={}ms ---
+      68: aload_0
+      69: lload_1
+      70: ldc2_w        #124                // long 1000000l
+      73: ldiv
+      74: invokestatic  #131                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      77: invokeinterface #137,  4          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+      82: getstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      85: invokevirtual #102                // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.object2LongEntrySet:()Lit/unimi/dsi/fastutil/objects/Object2LongMap$FastEntrySet;
+      88: invokeinterface #141,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$FastEntrySet.stream:()Ljava/util/stream/Stream;
+      93: invokedynamic #160,  0            // InvokeDynamic #0:compare:()Ljava/util/Comparator;
+      98: invokeinterface #166,  2          // InterfaceMethod java/util/stream/Stream.sorted:(Ljava/util/Comparator;)Ljava/util/stream/Stream;
+     103: invokedynamic #178,  0            // InvokeDynamic #1:accept:()Ljava/util/function/Consumer;
+     108: invokeinterface #182,  2          // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+     113: getstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+     116: invokevirtual #64                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.clear:()V
+     119: getstatic     #90                 // Field counts:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+     122: invokevirtual #64                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.clear:()V
+     125: iconst_0
+     126: putstatic     #51                 // Field enabled:Z
+     129: return
+
+  private static void lambda$logAndReset$1(it.unimi.dsi.fastutil.objects.Object2LongMap$Entry);
+    Code:
+       0: aload_0
+       1: invokeinterface #190,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$Entry.getKey:()Ljava/lang/Object;
+       6: checkcast     #192                // class java/lang/String
+       9: astore_1
+      10: aload_0
+      11: invokeinterface #119,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$Entry.getLongValue:()J
+      16: lstore_2
+      17: getstatic     #90                 // Field counts:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      20: aload_1
+      21: invokevirtual #83                 // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap.getLong:(Ljava/lang/Object;)J
+      24: lstore        4
+      26: lload         4
+      28: lconst_0
+      29: lcmp
+      30: ifle          40
+      33: lload_2
+      34: lload         4
+      36: ldiv
+      37: goto          41
+      40: lload_2
+      41: lstore        6
+      43: getstatic     #121                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+      46: ldc           #194                // String   {} : {}ms ({}x, avg {}µs)
+      48: aload_1
+      49: lload_2
+      50: ldc2_w        #124                // long 1000000l
+      53: ldiv
+      54: invokestatic  #131                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      57: lload         4
+      59: invokestatic  #131                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      62: lload         6
+      64: ldc2_w        #195                // long 1000l
+      67: ldiv
+      68: invokestatic  #131                // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+      71: invokeinterface #199,  6          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+      76: return
+
+  private static int lambda$logAndReset$0(it.unimi.dsi.fastutil.objects.Object2LongMap$Entry, it.unimi.dsi.fastutil.objects.Object2LongMap$Entry);
+    Code:
+       0: aload_1
+       1: invokeinterface #119,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$Entry.getLongValue:()J
+       6: aload_0
+       7: invokeinterface #119,  1          // InterfaceMethod it/unimi/dsi/fastutil/objects/Object2LongMap$Entry.getLongValue:()J
+      12: invokestatic  #207                // Method java/lang/Long.compare:(JJ)I
+      15: ireturn
+
+  static {};
+    Code:
+       0: ldc           #210                // String BRBE-Perf
+       2: invokestatic  #216                // Method org/apache/logging/log4j/LogManager.getLogger:(Ljava/lang/String;)Lorg/apache/logging/log4j/Logger;
+       5: putstatic     #121                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       8: new           #61                 // class it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap
+      11: dup
+      12: invokespecial #217                // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap."<init>":()V
+      15: putstatic     #85                 // Field accumNanos:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      18: new           #61                 // class it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap
+      21: dup
+      22: invokespecial #217                // Method it/unimi/dsi/fastutil/objects/Object2LongOpenHashMap."<init>":()V
+      25: putstatic     #90                 // Field counts:Lit/unimi/dsi/fastutil/objects/Object2LongOpenHashMap;
+      28: invokedynamic #224,  0            // InvokeDynamic #2:get:()Ljava/util/function/Supplier;
+      33: invokestatic  #228                // Method java/lang/ThreadLocal.withInitial:(Ljava/util/function/Supplier;)Ljava/lang/ThreadLocal;
+      36: putstatic     #53                 // Field active:Ljava/lang/ThreadLocal;
+      39: return
+}

@@ -1,0 +1,308 @@
+Compiled from "RecipeBookTabButtonCreativeMixin.java"
+public abstract class com.alonie.recipebookispain_extended.mixin.widget.RecipeBookTabButtonCreativeMixin implements com.alonie.recipebookispain_extended.access.CreativeTabButtonAccess,com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacementAccess {
+  private net.minecraft.world.item.CreativeModeTab rbip$creativeTab;
+
+  private com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacement rbip$placement;
+
+  private static final net.minecraft.resources.ResourceLocation TEX_BOTTOM;
+
+  private static final net.minecraft.resources.ResourceLocation TEX_BOTTOM_SEL;
+
+  private static final net.minecraft.resources.ResourceLocation TEX_TOP;
+
+  private static final net.minecraft.resources.ResourceLocation TEX_TOP_SEL;
+
+  private static final int TAB_W;
+
+  private static final int TAB_H;
+
+  private static final int ROT_TAB_W;
+
+  private static final int ROT_TAB_H;
+
+  public com.alonie.recipebookispain_extended.mixin.widget.RecipeBookTabButtonCreativeMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #33                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: getstatic     #38                 // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.NORMAL:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       8: putfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      11: return
+
+  public void rbip$setCreativeTab(net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+       5: return
+
+  public net.minecraft.world.item.CreativeModeTab rbip$getCreativeTab();
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+       4: areturn
+
+  public void rbip$setPlacement(com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacement);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       5: return
+
+  public com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacement rbip$getPlacement();
+    Code:
+       0: aload_0
+       1: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       4: areturn
+
+  private void rbip$cancelCreativeTabBounce(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+       4: ifnull        11
+       7: aload_1
+       8: invokevirtual #70                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      11: return
+
+  private void rbip$renderCreativeIcon(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.renderer.entity.ItemRenderer, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+       4: ifnonnull     8
+       7: return
+       8: aload_3
+       9: invokevirtual #70                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      12: aload_0
+      13: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+      16: invokevirtual #82                 // Method net/minecraft/world/item/CreativeModeTab.getIconItem:()Lnet/minecraft/world/item/ItemStack;
+      19: astore        4
+      21: aload         4
+      23: invokevirtual #88                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      26: ifeq          30
+      29: return
+      30: aload_0
+      31: checkcast     #90                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+      34: astore        5
+      36: aload         5
+      38: invokevirtual #93                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.isStateTriggered:()Z
+      41: ifeq          49
+      44: bipush        -2
+      46: goto          50
+      49: iconst_0
+      50: istore        6
+      52: aload_1
+      53: aload         4
+      55: aload         5
+      57: invokevirtual #97                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getX:()I
+      60: bipush        9
+      62: iadd
+      63: iload         6
+      65: iadd
+      66: aload         5
+      68: invokevirtual #100                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getY:()I
+      71: iconst_5
+      72: iadd
+      73: invokevirtual #106                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+      76: return
+
+  private void rbip$renderRotated(net.minecraft.client.gui.GuiGraphics, int, int, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       4: getstatic     #38                 // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.NORMAL:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       7: if_acmpne     11
+      10: return
+      11: aload_0
+      12: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+      15: ifnonnull     19
+      18: return
+      19: aload         5
+      21: invokevirtual #70                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      24: aload_0
+      25: aload_1
+      26: invokevirtual #122                // Method rbip$drawRotatedBackground:(Lnet/minecraft/client/gui/GuiGraphics;)V
+      29: aload_0
+      30: getfield      #47                 // Field rbip$creativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+      33: invokevirtual #82                 // Method net/minecraft/world/item/CreativeModeTab.getIconItem:()Lnet/minecraft/world/item/ItemStack;
+      36: astore        6
+      38: aload         6
+      40: invokevirtual #88                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      43: ifne          60
+      46: aload_1
+      47: aload         6
+      49: aload_0
+      50: invokevirtual #125                // Method rbip$getRotatedIconX:()I
+      53: aload_0
+      54: invokevirtual #128                // Method rbip$getRotatedIconY:()I
+      57: invokevirtual #106                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+      60: return
+
+  private void rbip$drawRotatedBackground(net.minecraft.client.gui.GuiGraphics);
+    Code:
+       0: aload_0
+       1: checkcast     #90                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+       4: astore_2
+       5: aload_2
+       6: invokevirtual #93                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.isStateTriggered:()Z
+       9: istore_3
+      10: iload_3
+      11: ifeq          19
+      14: bipush        -2
+      16: goto          20
+      19: iconst_0
+      20: istore        4
+      22: aload_1
+      23: invokevirtual #133                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+      26: astore        5
+      28: aload         5
+      30: invokevirtual #138                // Method com/mojang/blaze3d/vertex/PoseStack.pushPose:()V
+      33: aload_0
+      34: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      37: getstatic     #141                // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.BOTTOM:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      40: if_acmpne     80
+      43: aload         5
+      45: aload_2
+      46: invokevirtual #97                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getX:()I
+      49: i2f
+      50: aload_2
+      51: invokevirtual #100                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getY:()I
+      54: bipush        35
+      56: iadd
+      57: i2f
+      58: fconst_0
+      59: invokevirtual #145                // Method com/mojang/blaze3d/vertex/PoseStack.translate:(FFF)V
+      62: aload         5
+      64: getstatic     #151                // Field com/mojang/math/Axis.ZP:Lcom/mojang/math/Axis;
+      67: ldc           #152                // float -90.0f
+      69: invokeinterface #156,  2          // InterfaceMethod com/mojang/math/Axis.rotationDegrees:(F)Lorg/joml/Quaternionf;
+      74: invokevirtual #160                // Method com/mojang/blaze3d/vertex/PoseStack.mulPose:(Lorg/joml/Quaternionf;)V
+      77: goto          114
+      80: aload         5
+      82: aload_2
+      83: invokevirtual #97                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getX:()I
+      86: bipush        27
+      88: iadd
+      89: i2f
+      90: aload_2
+      91: invokevirtual #100                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getY:()I
+      94: i2f
+      95: fconst_0
+      96: invokevirtual #145                // Method com/mojang/blaze3d/vertex/PoseStack.translate:(FFF)V
+      99: aload         5
+     101: getstatic     #151                // Field com/mojang/math/Axis.ZP:Lcom/mojang/math/Axis;
+     104: ldc           #161                // float 90.0f
+     106: invokeinterface #156,  2          // InterfaceMethod com/mojang/math/Axis.rotationDegrees:(F)Lorg/joml/Quaternionf;
+     111: invokevirtual #160                // Method com/mojang/blaze3d/vertex/PoseStack.mulPose:(Lorg/joml/Quaternionf;)V
+     114: aload_0
+     115: invokevirtual #165                // Method rbip$getRotatedTexture:()Lnet/minecraft/resources/ResourceLocation;
+     118: astore        6
+     120: aload_1
+     121: aload         6
+     123: iload         4
+     125: iconst_0
+     126: fconst_0
+     127: fconst_0
+     128: bipush        35
+     130: bipush        27
+     132: bipush        35
+     134: bipush        27
+     136: invokevirtual #169                // Method net/minecraft/client/gui/GuiGraphics.blit:(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V
+     139: aload         5
+     141: invokevirtual #172                // Method com/mojang/blaze3d/vertex/PoseStack.popPose:()V
+     144: return
+
+  private int rbip$getRotatedIconX();
+    Code:
+       0: aload_0
+       1: checkcast     #90                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+       4: astore_1
+       5: aload_0
+       6: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+       9: getstatic     #180                // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.TOP:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      12: if_acmpne     19
+      15: iconst_1
+      16: goto          20
+      19: iconst_0
+      20: istore_2
+      21: aload_1
+      22: invokevirtual #97                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getX:()I
+      25: iconst_5
+      26: iadd
+      27: iload_2
+      28: iadd
+      29: ireturn
+
+  private int rbip$getRotatedIconY();
+    Code:
+       0: aload_0
+       1: checkcast     #90                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+       4: astore_1
+       5: aload_1
+       6: invokevirtual #100                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getY:()I
+       9: bipush        9
+      11: iadd
+      12: istore_2
+      13: aload_0
+      14: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      17: getstatic     #180                // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.TOP:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      20: if_acmpne     27
+      23: iload_2
+      24: iconst_1
+      25: isub
+      26: ireturn
+      27: aload_0
+      28: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      31: getstatic     #141                // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.BOTTOM:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      34: if_acmpne     41
+      37: iload_2
+      38: iconst_1
+      39: iadd
+      40: ireturn
+      41: iload_2
+      42: ireturn
+
+  private net.minecraft.resources.ResourceLocation rbip$getRotatedTexture();
+    Code:
+       0: aload_0
+       1: checkcast     #90                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+       4: astore_1
+       5: aload_1
+       6: invokevirtual #93                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.isStateTriggered:()Z
+       9: istore_2
+      10: aload_0
+      11: getfield      #40                 // Field rbip$placement:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      14: getstatic     #141                // Field com/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement.BOTTOM:Lcom/alonie/recipebookispain_extended/access/RecipeGroupButtonPlacement;
+      17: if_acmpne     34
+      20: iload_2
+      21: ifeq          30
+      24: getstatic     #184                // Field TEX_BOTTOM_SEL:Lnet/minecraft/resources/ResourceLocation;
+      27: goto          33
+      30: getstatic     #186                // Field TEX_BOTTOM:Lnet/minecraft/resources/ResourceLocation;
+      33: areturn
+      34: iload_2
+      35: ifeq          44
+      38: getstatic     #190                // Field TEX_TOP_SEL:Lnet/minecraft/resources/ResourceLocation;
+      41: goto          47
+      44: getstatic     #192                // Field TEX_TOP:Lnet/minecraft/resources/ResourceLocation;
+      47: areturn
+
+  static {};
+    Code:
+       0: ldc           #195                // String recipe-book-is-pain-extended
+       2: ldc           #197                // String textures/rbip/bottom_tab.png
+       4: invokestatic  #201                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       7: putstatic     #186                // Field TEX_BOTTOM:Lnet/minecraft/resources/ResourceLocation;
+      10: ldc           #195                // String recipe-book-is-pain-extended
+      12: ldc           #203                // String textures/rbip/bottom_tab_selected.png
+      14: invokestatic  #201                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      17: putstatic     #184                // Field TEX_BOTTOM_SEL:Lnet/minecraft/resources/ResourceLocation;
+      20: ldc           #195                // String recipe-book-is-pain-extended
+      22: ldc           #205                // String textures/rbip/top_tab.png
+      24: invokestatic  #201                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      27: putstatic     #192                // Field TEX_TOP:Lnet/minecraft/resources/ResourceLocation;
+      30: ldc           #195                // String recipe-book-is-pain-extended
+      32: ldc           #207                // String textures/rbip/top_tab_selected.png
+      34: invokestatic  #201                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      37: putstatic     #190                // Field TEX_TOP_SEL:Lnet/minecraft/resources/ResourceLocation;
+      40: return
+}

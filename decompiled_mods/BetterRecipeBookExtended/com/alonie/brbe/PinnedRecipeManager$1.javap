@@ -1,0 +1,13 @@
+Compiled from "PinnedRecipeManager.java"
+class com.alonie.brbe.PinnedRecipeManager$1 extends com.google.common.reflect.TypeToken<java.util.HashSet<net.minecraft.resources.ResourceLocation>> {
+  final com.alonie.brbe.PinnedRecipeManager this$0;
+
+  com.alonie.brbe.PinnedRecipeManager$1(com.alonie.brbe.PinnedRecipeManager);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #17                 // Field this$0:Lcom/alonie/brbe/PinnedRecipeManager;
+       5: aload_0
+       6: invokespecial #19                 // Method com/google/common/reflect/TypeToken."<init>":()V
+       9: return
+}

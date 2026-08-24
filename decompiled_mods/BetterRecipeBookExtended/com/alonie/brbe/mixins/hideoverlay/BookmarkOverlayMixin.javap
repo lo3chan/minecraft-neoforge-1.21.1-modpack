@@ -1,0 +1,21 @@
+Compiled from "BookmarkOverlayMixin.java"
+public abstract class com.alonie.brbe.mixins.hideoverlay.BookmarkOverlayMixin {
+  public com.alonie.brbe.mixins.hideoverlay.BookmarkOverlayMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$cancelBookmarkOverlay(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #34                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #40                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: ifnull        25
+       9: invokestatic  #34                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+      12: invokevirtual #40                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      15: getfield      #46                 // Field com/alonie/brbe/config/Config.hideReiJeiOverlay:Z
+      18: ifeq          25
+      21: aload_1
+      22: invokevirtual #51                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      25: return
+}

@@ -1,0 +1,6 @@
+Compiled from "PlatformAbstractions.java"
+public interface com.alonie.recipebookispain_extended.PlatformAbstractions {
+  public abstract boolean isModLoaded(java.lang.String);
+
+  public abstract java.nio.file.Path getConfigDir();
+}

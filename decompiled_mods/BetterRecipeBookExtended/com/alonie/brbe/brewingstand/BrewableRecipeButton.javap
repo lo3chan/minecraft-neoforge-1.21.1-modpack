@@ -1,0 +1,160 @@
+Compiled from "BrewableRecipeButton.java"
+public class com.alonie.brbe.brewingstand.BrewableRecipeButton extends com.alonie.brbe.generic.GenericRecipeButton<com.alonie.brbe.brewingstand.BrewingRecipeCollection, com.alonie.brbe.brewingstand.BrewableResult, net.minecraft.world.inventory.BrewingStandMenu> {
+  public com.alonie.brbe.brewingstand.BrewableRecipeButton(net.minecraft.core.RegistryAccess, java.util.function.Supplier<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #27                 // Method com/alonie/brbe/generic/GenericRecipeButton."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+       6: return
+
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       4: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+       7: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+      10: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+      13: aload_0
+      14: getfield      #51                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      17: invokevirtual #55                 // Method com/alonie/brbe/brewingstand/BrewableResult.inputAsItemStack:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      20: astore_2
+      21: aload_1
+      22: getstatic     #61                 // Field net/minecraft/client/gui/narration/NarratedElementType.TITLE:Lnet/minecraft/client/gui/narration/NarratedElementType;
+      25: ldc           #63                 // String narration.recipe
+      27: iconst_1
+      28: anewarray     #65                 // class java/lang/Object
+      31: dup
+      32: iconst_0
+      33: aload_2
+      34: invokevirtual #71                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+      37: aastore
+      38: invokestatic  #77                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+      41: invokeinterface #83,  3           // InterfaceMethod net/minecraft/client/gui/narration/NarrationElementOutput.add:(Lnet/minecraft/client/gui/narration/NarratedElementType;Lnet/minecraft/network/chat/Component;)V
+      46: aload_1
+      47: getstatic     #86                 // Field net/minecraft/client/gui/narration/NarratedElementType.USAGE:Lnet/minecraft/client/gui/narration/NarratedElementType;
+      50: ldc           #88                 // String narration.button.usage.hovered
+      52: invokestatic  #91                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      55: invokeinterface #83,  3           // InterfaceMethod net/minecraft/client/gui/narration/NarrationElementOutput.add:(Lnet/minecraft/client/gui/narration/NarratedElementType;Lnet/minecraft/network/chat/Component;)V
+      60: return
+
+  public java.util.List<net.minecraft.network.chat.Component> getTooltipText();
+    Code:
+       0: invokestatic  #103                // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+       3: astore_1
+       4: aload_0
+       5: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       8: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+      11: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+      14: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+      17: aload_0
+      18: getfield      #105                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      21: aload_0
+      22: getfield      #51                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      25: invokevirtual #109                // Method com/alonie/brbe/brewingstand/BrewableResult.getResult:(Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      28: astore_2
+      29: aload_1
+      30: aload_2
+      31: invokevirtual #71                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+      34: invokeinterface #114,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      39: pop
+      40: aload_2
+      41: getstatic     #120                // Field net/minecraft/core/component/DataComponents.POTION_CONTENTS:Lnet/minecraft/core/component/DataComponentType;
+      44: getstatic     #126                // Field net/minecraft/world/item/alchemy/PotionContents.EMPTY:Lnet/minecraft/world/item/alchemy/PotionContents;
+      47: invokevirtual #130                // Method net/minecraft/world/item/ItemStack.getOrDefault:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+      50: checkcast     #122                // class net/minecraft/world/item/alchemy/PotionContents
+      53: aload_1
+      54: dup
+      55: invokestatic  #136                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      58: pop
+      59: invokedynamic #152,  0            // InvokeDynamic #0:accept:(Ljava/util/List;)Ljava/util/function/Consumer;
+      64: fconst_1
+      65: invokestatic  #158                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      68: getfield      #162                // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      71: invokevirtual #168                // Method net/minecraft/client/multiplayer/ClientLevel.tickRateManager:()Lnet/minecraft/world/TickRateManager;
+      74: invokevirtual #174                // Method net/minecraft/world/TickRateManager.tickrate:()F
+      77: invokevirtual #178                // Method net/minecraft/world/item/alchemy/PotionContents.addPotionTooltip:(Ljava/util/function/Consumer;FF)V
+      80: aload_1
+      81: ldc           #180                // String
+      83: invokestatic  #183                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      86: invokeinterface #114,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      91: pop
+      92: getstatic     #189                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+      95: astore_3
+      96: aload_0
+      97: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     100: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+     103: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+     106: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+     109: aload_0
+     110: getfield      #193                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     113: checkcast     #195                // class net/minecraft/world/inventory/BrewingStandMenu
+     116: getfield      #199                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+     119: invokevirtual #203                // Method com/alonie/brbe/brewingstand/BrewableResult.hasIngredient:(Ljava/util/List;)Z
+     122: ifeq          129
+     125: getstatic     #206                // Field net/minecraft/ChatFormatting.WHITE:Lnet/minecraft/ChatFormatting;
+     128: astore_3
+     129: aload_1
+     130: aload_0
+     131: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     134: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+     137: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+     140: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+     143: getfield      #212                // Field com/alonie/brbe/brewingstand/BrewableResult.recipe:Ljava/lang/Object;
+     146: invokestatic  #218                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getIngredient:(Ljava/lang/Object;)Lnet/minecraft/world/item/crafting/Ingredient;
+     149: invokevirtual #224                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+     152: iconst_0
+     153: aaload
+     154: invokevirtual #71                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+     157: invokeinterface #228,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     162: invokestatic  #183                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     165: aload_3
+     166: invokevirtual #234                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     169: invokeinterface #114,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     174: pop
+     175: aload_1
+     176: ldc           #236                // String ?
+     178: invokestatic  #183                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     181: getstatic     #189                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+     184: invokevirtual #234                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     187: invokeinterface #114,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     192: pop
+     193: aload_0
+     194: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     197: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+     200: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+     203: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+     206: aload_0
+     207: getfield      #51                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     210: invokevirtual #55                 // Method com/alonie/brbe/brewingstand/BrewableResult.inputAsItemStack:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+     213: astore        4
+     215: aload_0
+     216: getfield      #39                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     219: checkcast     #41                 // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+     222: invokevirtual #45                 // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection.getFirst:()Lcom/alonie/brbe/generic/GenericRecipe;
+     225: checkcast     #47                 // class com/alonie/brbe/brewingstand/BrewableResult
+     228: aload_0
+     229: getfield      #51                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     232: aload_0
+     233: getfield      #193                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     236: checkcast     #195                // class net/minecraft/world/inventory/BrewingStandMenu
+     239: getfield      #199                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+     242: invokevirtual #240                // Method com/alonie/brbe/brewingstand/BrewableResult.hasInput:(Lcom/alonie/brbe/api/BRBBookCategories$Category;Ljava/util/List;)Z
+     245: ifne          252
+     248: getstatic     #189                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+     251: astore_3
+     252: aload_1
+     253: aload         4
+     255: invokevirtual #71                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+     258: invokeinterface #228,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     263: invokestatic  #183                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     266: aload_3
+     267: invokevirtual #234                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     270: invokeinterface #114,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     275: pop
+     276: aload_0
+     277: aload_1
+     278: invokevirtual #244                // Method addPinTooltip:(Ljava/util/List;)V
+     281: aload_1
+     282: areturn
+}

@@ -1,0 +1,21 @@
+Compiled from "FabricPlatform.java"
+public class com.alonie.recipebookispain_extended.fabric.FabricPlatform implements com.alonie.recipebookispain_extended.PlatformAbstractions {
+  public com.alonie.recipebookispain_extended.fabric.FabricPlatform();
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public boolean isModLoaded(java.lang.String);
+    Code:
+       0: invokestatic  #22                 // InterfaceMethod net/fabricmc/loader/api/FabricLoader.getInstance:()Lnet/fabricmc/loader/api/FabricLoader;
+       3: aload_1
+       4: invokeinterface #24,  2           // InterfaceMethod net/fabricmc/loader/api/FabricLoader.isModLoaded:(Ljava/lang/String;)Z
+       9: ireturn
+
+  public java.nio.file.Path getConfigDir();
+    Code:
+       0: invokestatic  #22                 // InterfaceMethod net/fabricmc/loader/api/FabricLoader.getInstance:()Lnet/fabricmc/loader/api/FabricLoader;
+       3: invokeinterface #29,  1           // InterfaceMethod net/fabricmc/loader/api/FabricLoader.getConfigDir:()Ljava/nio/file/Path;
+       8: areturn
+}

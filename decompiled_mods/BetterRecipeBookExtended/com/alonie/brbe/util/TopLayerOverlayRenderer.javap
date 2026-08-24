@@ -1,0 +1,55 @@
+Compiled from "TopLayerOverlayRenderer.java"
+public final class com.alonie.brbe.util.TopLayerOverlayRenderer {
+  private com.alonie.brbe.util.TopLayerOverlayRenderer();
+    Code:
+       0: aload_0
+       1: invokespecial #9                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static boolean hasOverlay(net.minecraft.client.gui.screens.Screen);
+    Code:
+       0: aload_0
+       1: instanceof    #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #20,  1           // InterfaceMethod com/alonie/brbe/interfaces/TopLayerOverlayProvider.brbe$hasTopLayerOverlay:()Z
+      18: ireturn
+      19: iconst_0
+      20: ireturn
+
+  public static void render(net.minecraft.client.gui.screens.Screen, net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: aload_0
+       1: instanceof    #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+       4: ifeq          35
+       7: aload_0
+       8: checkcast     #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+      11: astore        5
+      13: aload         5
+      15: invokeinterface #20,  1           // InterfaceMethod com/alonie/brbe/interfaces/TopLayerOverlayProvider.brbe$hasTopLayerOverlay:()Z
+      20: ifeq          35
+      23: aload         5
+      25: aload_1
+      26: iload_2
+      27: iload_3
+      28: fload         4
+      30: invokeinterface #33,  5           // InterfaceMethod com/alonie/brbe/interfaces/TopLayerOverlayProvider.brbe$renderTopLayerOverlay:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      35: return
+
+  public static net.minecraft.client.gui.navigation.ScreenRectangle getOverlayBounds(net.minecraft.client.gui.screens.Screen);
+    Code:
+       0: aload_0
+       1: instanceof    #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+       4: ifeq          19
+       7: aload_0
+       8: checkcast     #16                 // class com/alonie/brbe/interfaces/TopLayerOverlayProvider
+      11: astore_1
+      12: aload_1
+      13: invokeinterface #42,  1           // InterfaceMethod com/alonie/brbe/interfaces/TopLayerOverlayProvider.brbe$getTopLayerOverlayBounds:()Lnet/minecraft/client/gui/navigation/ScreenRectangle;
+      18: areturn
+      19: aconst_null
+      20: areturn
+}

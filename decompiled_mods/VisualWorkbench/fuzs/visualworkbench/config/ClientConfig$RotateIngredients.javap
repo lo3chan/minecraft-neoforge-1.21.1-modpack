@@ -1,0 +1,75 @@
+Compiled from "ClientConfig.java"
+public final class fuzs.visualworkbench.config.ClientConfig$RotateIngredients extends java.lang.Enum<fuzs.visualworkbench.config.ClientConfig$RotateIngredients> {
+  public static final fuzs.visualworkbench.config.ClientConfig$RotateIngredients CLOSEST_PLAYER;
+
+  public static final fuzs.visualworkbench.config.ClientConfig$RotateIngredients CRAFTING_PLAYER;
+
+  public static final fuzs.visualworkbench.config.ClientConfig$RotateIngredients NEVER;
+
+  private static final fuzs.visualworkbench.config.ClientConfig$RotateIngredients[] $VALUES;
+
+  public static fuzs.visualworkbench.config.ClientConfig$RotateIngredients[] values();
+    Code:
+       0: getstatic     #19                 // Field $VALUES:[Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+       3: invokevirtual #24                 // Method "[Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;".clone:()Ljava/lang/Object;
+       6: checkcast     #20                 // class "[Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;"
+       9: areturn
+
+  public static fuzs.visualworkbench.config.ClientConfig$RotateIngredients valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+       2: aload_0
+       3: invokestatic  #30                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+       9: areturn
+
+  private fuzs.visualworkbench.config.ClientConfig$RotateIngredients();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #36                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: return
+
+  private static fuzs.visualworkbench.config.ClientConfig$RotateIngredients[] $values();
+    Code:
+       0: iconst_3
+       1: anewarray     #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+       4: dup
+       5: iconst_0
+       6: getstatic     #40                 // Field CLOSEST_PLAYER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #42                 // Field CRAFTING_PLAYER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #44                 // Field NEVER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      21: aastore
+      22: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+       3: dup
+       4: ldc           #46                 // String CLOSEST_PLAYER
+       6: iconst_0
+       7: invokespecial #47                 // Method "<init>":(Ljava/lang/String;I)V
+      10: putstatic     #40                 // Field CLOSEST_PLAYER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      13: new           #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+      16: dup
+      17: ldc           #48                 // String CRAFTING_PLAYER
+      19: iconst_1
+      20: invokespecial #47                 // Method "<init>":(Ljava/lang/String;I)V
+      23: putstatic     #42                 // Field CRAFTING_PLAYER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      26: new           #2                  // class fuzs/visualworkbench/config/ClientConfig$RotateIngredients
+      29: dup
+      30: ldc           #49                 // String NEVER
+      32: iconst_2
+      33: invokespecial #47                 // Method "<init>":(Ljava/lang/String;I)V
+      36: putstatic     #44                 // Field NEVER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      39: invokestatic  #51                 // Method $values:()[Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      42: putstatic     #19                 // Field $VALUES:[Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      45: return
+}

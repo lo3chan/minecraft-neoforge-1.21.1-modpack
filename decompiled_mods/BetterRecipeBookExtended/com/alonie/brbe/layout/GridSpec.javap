@@ -1,0 +1,171 @@
+Compiled from "GridSpec.java"
+public final class com.alonie.brbe.layout.GridSpec {
+  private final int columns;
+
+  private final int rows;
+
+  private final int buttonSize;
+
+  private final int gap;
+
+  private final int gridWidth;
+
+  private final int gridHeight;
+
+  private static final com.alonie.brbe.layout.GridSpec STANDARD;
+
+  private com.alonie.brbe.layout.GridSpec(int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #21                 // Field columns:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #23                 // Field rows:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #25                 // Field buttonSize:I
+      19: aload_0
+      20: iload         4
+      22: putfield      #27                 // Field gap:I
+      25: iload_3
+      26: iload         4
+      28: iadd
+      29: istore        5
+      31: aload_0
+      32: iload_1
+      33: iload         5
+      35: imul
+      36: iload         4
+      38: isub
+      39: putfield      #29                 // Field gridWidth:I
+      42: aload_0
+      43: iload_2
+      44: iload         5
+      46: imul
+      47: iload         4
+      49: isub
+      50: putfield      #31                 // Field gridHeight:I
+      53: return
+
+  public static com.alonie.brbe.layout.GridSpec compute(int, int, int, int);
+    Code:
+       0: iload_2
+       1: iload_3
+       2: iadd
+       3: istore        4
+       5: iload_0
+       6: iload_3
+       7: iadd
+       8: iload         4
+      10: idiv
+      11: istore        5
+      13: iload         5
+      15: iconst_1
+      16: if_icmpge     22
+      19: iconst_1
+      20: istore        5
+      22: iconst_1
+      23: iload_1
+      24: iload         4
+      26: idiv
+      27: invokestatic  #43                 // Method java/lang/Math.max:(II)I
+      30: istore        6
+      32: new           #2                  // class com/alonie/brbe/layout/GridSpec
+      35: dup
+      36: iload         5
+      38: iload         6
+      40: iload_2
+      41: iload_3
+      42: invokespecial #45                 // Method "<init>":(IIII)V
+      45: areturn
+
+  public static com.alonie.brbe.layout.GridSpec standard();
+    Code:
+       0: getstatic     #49                 // Field STANDARD:Lcom/alonie/brbe/layout/GridSpec;
+       3: areturn
+
+  public int columns();
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field columns:I
+       4: ireturn
+
+  public int rows();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field rows:I
+       4: ireturn
+
+  public int buttonSize();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field buttonSize:I
+       4: ireturn
+
+  public int gap();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field gap:I
+       4: ireturn
+
+  public int gridWidth();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field gridWidth:I
+       4: ireturn
+
+  public int gridHeight();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field gridHeight:I
+       4: ireturn
+
+  public int totalButtons();
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field columns:I
+       4: aload_0
+       5: getfield      #23                 // Field rows:I
+       8: imul
+       9: ireturn
+
+  public int step();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field buttonSize:I
+       4: aload_0
+       5: getfield      #27                 // Field gap:I
+       8: iadd
+       9: ireturn
+
+  public int buttonX(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #56                 // Method step:()I
+       4: iload_1
+       5: imul
+       6: ireturn
+
+  public int buttonY(int);
+    Code:
+       0: aload_0
+       1: invokevirtual #56                 // Method step:()I
+       4: iload_1
+       5: imul
+       6: ireturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/alonie/brbe/layout/GridSpec
+       3: dup
+       4: iconst_5
+       5: iconst_4
+       6: bipush        25
+       8: iconst_2
+       9: invokespecial #45                 // Method "<init>":(IIII)V
+      12: putstatic     #49                 // Field STANDARD:Lcom/alonie/brbe/layout/GridSpec;
+      15: return
+}

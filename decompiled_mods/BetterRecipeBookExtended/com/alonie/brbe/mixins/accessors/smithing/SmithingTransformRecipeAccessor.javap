@@ -1,0 +1,10 @@
+Compiled from "SmithingTransformRecipeAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.smithing.SmithingTransformRecipeAccessor {
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingTemplate();
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingBase();
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingAddition();
+
+  public abstract net.minecraft.world.item.ItemStack getResult();
+}

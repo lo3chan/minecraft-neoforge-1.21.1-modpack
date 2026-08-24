@@ -1,0 +1,260 @@
+Compiled from "RecipeBookComponentMixin.java"
+public abstract class com.alonie.brbe.mixins.instantcraft.RecipeBookComponentMixin {
+  protected net.minecraft.client.Minecraft minecraft;
+
+  private int height;
+
+  private int width;
+
+  private int xOffset;
+
+  private boolean widthTooNarrow;
+
+  private net.minecraft.client.gui.screens.recipebook.RecipeBookPage recipeBookPage;
+
+  protected net.minecraft.client.gui.components.StateSwitchingButton brbe$instantCraftButton;
+
+  private static final net.minecraft.network.chat.Component TOGGLE_INSTANT_CRAFT_ON_TEXT;
+
+  private static final net.minecraft.network.chat.Component TOGGLE_INSTANT_CRAFT_OFF_TEXT;
+
+  public com.alonie.brbe.mixins.instantcraft.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public abstract boolean isVisible();
+
+  private int brbe$getExpandedBookWidth();
+    Code:
+       0: invokestatic  #42                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #48                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #53                 // Field com/alonie/brbe/config/Config.expandedRecipeBook:Z
+       9: ifeq          26
+      12: aload_0
+      13: getfield      #55                 // Field widthTooNarrow:Z
+      16: ifne          26
+      19: aload_0
+      20: invokevirtual #57                 // Method isVisible:()Z
+      23: ifne          30
+      26: sipush        147
+      29: ireturn
+      30: aload_0
+      31: checkcast     #59                 // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      34: aload_0
+      35: getfield      #61                 // Field width:I
+      38: sipush        176
+      41: invokeinterface #65,  3           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.updateScreenPositionInvoker:(II)I
+      46: istore_1
+      47: aload_0
+      48: getfield      #61                 // Field width:I
+      51: sipush        147
+      54: isub
+      55: iconst_2
+      56: idiv
+      57: aload_0
+      58: getfield      #67                 // Field xOffset:I
+      61: isub
+      62: istore_2
+      63: iload_1
+      64: sipush        176
+      67: iadd
+      68: iload_2
+      69: isub
+      70: ireturn
+
+  private boolean brbe$shouldSkip();
+    Code:
+       0: invokestatic  #42                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #48                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #74                 // Field com/alonie/brbe/config/Config.instantCraft:Lcom/alonie/brbe/config/InstantCraft;
+       9: getfield      #79                 // Field com/alonie/brbe/config/InstantCraft.showButton:Z
+      12: ifne          17
+      15: iconst_1
+      16: ireturn
+      17: aload_0
+      18: instanceof    #81                 // class net/minecraft/client/gui/screens/recipebook/AbstractFurnaceRecipeBookComponent
+      21: ireturn
+
+  public void reset(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method brbe$shouldSkip:()Z
+       4: ifeq          8
+       7: return
+       8: aload_0
+       9: getfield      #94                 // Field recipeBookPage:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;
+      12: checkcast     #96                 // class com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor
+      15: astore_2
+      16: aload_2
+      17: invokeinterface #100,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor.getForwardButton:()Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      22: astore_3
+      23: aload_0
+      24: invokevirtual #102                // Method brbe$getExpandedBookWidth:()I
+      27: istore        4
+      29: aload_0
+      30: getfield      #61                 // Field width:I
+      33: iload         4
+      35: isub
+      36: iconst_2
+      37: idiv
+      38: aload_0
+      39: getfield      #67                 // Field xOffset:I
+      42: isub
+      43: istore        5
+      45: iload         5
+      47: iload         4
+      49: iadd
+      50: bipush        11
+      52: isub
+      53: istore        6
+      55: iload         6
+      57: bipush        26
+      59: isub
+      60: istore        7
+      62: aload_3
+      63: ifnull        83
+      66: aload_3
+      67: invokevirtual #107                // Method net/minecraft/client/gui/components/StateSwitchingButton.getY:()I
+      70: aload_3
+      71: invokevirtual #110                // Method net/minecraft/client/gui/components/StateSwitchingButton.getHeight:()I
+      74: iadd
+      75: bipush        18
+      77: isub
+      78: istore        8
+      80: goto          109
+      83: aload_0
+      84: getfield      #114                // Field height:I
+      87: sipush        166
+      90: isub
+      91: iconst_2
+      92: idiv
+      93: istore        9
+      95: iload         9
+      97: sipush        137
+     100: iadd
+     101: bipush        17
+     103: iadd
+     104: bipush        18
+     106: isub
+     107: istore        8
+     109: aload_0
+     110: new           #104                // class net/minecraft/client/gui/components/StateSwitchingButton
+     113: dup
+     114: iload         7
+     116: iload         8
+     118: bipush        26
+     120: bipush        18
+     122: getstatic     #118                // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+     125: invokevirtual #123                // Method com/alonie/brbe/InstantCraftingManager.isEnabled:()Z
+     128: invokespecial #126                // Method net/minecraft/client/gui/components/StateSwitchingButton."<init>":(IIIIZ)V
+     131: putfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+     134: getstatic     #118                // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+     137: aload_0
+     138: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+     141: putfield      #131                // Field com/alonie/brbe/InstantCraftingManager.lastInstantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+     144: aload_0
+     145: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+     148: getstatic     #137                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_INSTANT_CRAFT_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     151: invokevirtual #141                // Method net/minecraft/client/gui/components/StateSwitchingButton.initTextureValues:(Lnet/minecraft/client/gui/components/WidgetSprites;)V
+     154: return
+
+  public void render(net.minecraft.client.gui.GuiGraphics, int, int, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method brbe$shouldSkip:()Z
+       4: ifne          21
+       7: aload_0
+       8: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      11: ifnull        21
+      14: aload_0
+      15: invokevirtual #57                 // Method isVisible:()Z
+      18: ifne          22
+      21: return
+      22: aload_0
+      23: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      26: aload_1
+      27: iload_2
+      28: iload_3
+      29: fload         4
+      31: invokevirtual #163                // Method net/minecraft/client/gui/components/StateSwitchingButton.render:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      34: return
+
+  public void mouseClicked(double, double, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: invokevirtual #57                 // Method isVisible:()Z
+       4: ifeq          61
+       7: aload_0
+       8: invokevirtual #92                 // Method brbe$shouldSkip:()Z
+      11: ifne          61
+      14: aload_0
+      15: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      18: ifnull        61
+      21: aload_0
+      22: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      25: dload_1
+      26: dload_3
+      27: iload         5
+      29: invokevirtual #176                // Method net/minecraft/client/gui/components/StateSwitchingButton.mouseClicked:(DDI)Z
+      32: ifeq          61
+      35: getstatic     #118                // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      38: invokevirtual #179                // Method com/alonie/brbe/InstantCraftingManager.toggleEnabled:()Z
+      41: istore        7
+      43: aload_0
+      44: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      47: iload         7
+      49: invokevirtual #183                // Method net/minecraft/client/gui/components/StateSwitchingButton.setStateTriggered:(Z)V
+      52: aload         6
+      54: iconst_1
+      55: invokestatic  #189                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      58: invokevirtual #195                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      61: return
+
+  public void drawTooltip(net.minecraft.client.gui.GuiGraphics, int, int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #92                 // Method brbe$shouldSkip:()Z
+       4: ifeq          8
+       7: return
+       8: aload_0
+       9: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      12: ifnull        76
+      15: aload_0
+      16: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      19: invokevirtual #207                // Method net/minecraft/client/gui/components/StateSwitchingButton.isHoveredOrFocused:()Z
+      22: ifeq          76
+      25: aload_0
+      26: getfield      #128                // Field brbe$instantCraftButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      29: invokevirtual #210                // Method net/minecraft/client/gui/components/StateSwitchingButton.isStateTriggered:()Z
+      32: ifeq          41
+      35: getstatic     #212                // Field TOGGLE_INSTANT_CRAFT_ON_TEXT:Lnet/minecraft/network/chat/Component;
+      38: goto          44
+      41: getstatic     #214                // Field TOGGLE_INSTANT_CRAFT_OFF_TEXT:Lnet/minecraft/network/chat/Component;
+      44: astore        7
+      46: aload_0
+      47: getfield      #218                // Field minecraft:Lnet/minecraft/client/Minecraft;
+      50: getfield      #224                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      53: ifnull        76
+      56: aload_1
+      57: aload_0
+      58: getfield      #218                // Field minecraft:Lnet/minecraft/client/Minecraft;
+      61: getfield      #228                // Field net/minecraft/client/Minecraft.font:Lnet/minecraft/client/gui/Font;
+      64: aload         7
+      66: invokestatic  #234                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      69: iload         4
+      71: iload         5
+      73: invokevirtual #240                // Method net/minecraft/client/gui/GuiGraphics.renderComponentTooltip:(Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V
+      76: return
+
+  static {};
+    Code:
+       0: ldc           #244                // String brb.gui.instantCraft.on
+       2: invokestatic  #248                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: putstatic     #212                // Field TOGGLE_INSTANT_CRAFT_ON_TEXT:Lnet/minecraft/network/chat/Component;
+       8: ldc           #250                // String brb.gui.instantCraft.off
+      10: invokestatic  #248                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      13: putstatic     #214                // Field TOGGLE_INSTANT_CRAFT_OFF_TEXT:Lnet/minecraft/network/chat/Component;
+      16: return
+}

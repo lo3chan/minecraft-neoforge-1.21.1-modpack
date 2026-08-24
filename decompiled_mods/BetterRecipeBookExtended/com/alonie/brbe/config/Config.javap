@@ -1,0 +1,86 @@
+Compiled from "Config.java"
+public class com.alonie.brbe.config.Config implements me.shedaniel.autoconfig.ConfigData {
+  public boolean showModName;
+
+  public boolean scrollAround;
+
+  public com.alonie.brbe.config.Config$RecipeBookIsPain rbip;
+
+  public com.alonie.brbe.config.InstantCraft instantCraft;
+
+  public boolean keepCentered;
+
+  public boolean expandedRecipeBook;
+
+  public boolean hideReiJeiOverlay;
+
+  public boolean settingsButton;
+
+  public boolean enableBook;
+
+  public boolean showAllRecipesInSurvival;
+
+  public boolean partialCraftingEnabled;
+
+  public boolean partialMarkingEnabled;
+
+  public com.alonie.brbe.config.NewRecipes newRecipes;
+
+  public com.alonie.brbe.config.AlternativeRecipes alternativeRecipes;
+
+  public com.alonie.brbe.config.Config();
+    Code:
+       0: aload_0
+       1: invokespecial #60                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #62                 // Field showModName:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #64                 // Field scrollAround:Z
+      14: aload_0
+      15: new           #12                 // class com/alonie/brbe/config/Config$RecipeBookIsPain
+      18: dup
+      19: invokespecial #65                 // Method com/alonie/brbe/config/Config$RecipeBookIsPain."<init>":()V
+      22: putfield      #67                 // Field rbip:Lcom/alonie/brbe/config/Config$RecipeBookIsPain;
+      25: aload_0
+      26: new           #69                 // class com/alonie/brbe/config/InstantCraft
+      29: dup
+      30: invokespecial #70                 // Method com/alonie/brbe/config/InstantCraft."<init>":()V
+      33: putfield      #72                 // Field instantCraft:Lcom/alonie/brbe/config/InstantCraft;
+      36: aload_0
+      37: iconst_0
+      38: putfield      #74                 // Field keepCentered:Z
+      41: aload_0
+      42: iconst_0
+      43: putfield      #76                 // Field expandedRecipeBook:Z
+      46: aload_0
+      47: iconst_0
+      48: putfield      #78                 // Field hideReiJeiOverlay:Z
+      51: aload_0
+      52: iconst_1
+      53: putfield      #80                 // Field settingsButton:Z
+      56: aload_0
+      57: iconst_1
+      58: putfield      #82                 // Field enableBook:Z
+      61: aload_0
+      62: iconst_1
+      63: putfield      #84                 // Field showAllRecipesInSurvival:Z
+      66: aload_0
+      67: iconst_1
+      68: putfield      #86                 // Field partialCraftingEnabled:Z
+      71: aload_0
+      72: iconst_1
+      73: putfield      #88                 // Field partialMarkingEnabled:Z
+      76: aload_0
+      77: new           #90                 // class com/alonie/brbe/config/NewRecipes
+      80: dup
+      81: invokespecial #91                 // Method com/alonie/brbe/config/NewRecipes."<init>":()V
+      84: putfield      #93                 // Field newRecipes:Lcom/alonie/brbe/config/NewRecipes;
+      87: aload_0
+      88: new           #95                 // class com/alonie/brbe/config/AlternativeRecipes
+      91: dup
+      92: invokespecial #96                 // Method com/alonie/brbe/config/AlternativeRecipes."<init>":()V
+      95: putfield      #98                 // Field alternativeRecipes:Lcom/alonie/brbe/config/AlternativeRecipes;
+      98: return
+}

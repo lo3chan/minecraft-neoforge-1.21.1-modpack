@@ -1,0 +1,148 @@
+Compiled from "ModNameUtil.java"
+public final class com.alonie.brbe.util.ModNameUtil {
+  private com.alonie.brbe.util.ModNameUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static net.minecraft.network.chat.Component getFormattedModName(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: ifnull        11
+       4: aload_0
+       5: invokevirtual #25                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+       8: ifeq          15
+      11: invokestatic  #31                 // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+      14: areturn
+      15: getstatic     #37                 // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+      18: aload_0
+      19: invokevirtual #41                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      22: invokeinterface #47,  2           // InterfaceMethod net/minecraft/core/DefaultedRegistry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      27: invokevirtual #53                 // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+      30: astore_1
+      31: aload_1
+      32: invokestatic  #57                 // Method resolveModName:(Ljava/lang/String;)Ljava/lang/String;
+      35: astore_2
+      36: aload_2
+      37: invokestatic  #61                 // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      40: iconst_2
+      41: anewarray     #63                 // class net/minecraft/ChatFormatting
+      44: dup
+      45: iconst_0
+      46: getstatic     #67                 // Field net/minecraft/ChatFormatting.BLUE:Lnet/minecraft/ChatFormatting;
+      49: aastore
+      50: dup
+      51: iconst_1
+      52: getstatic     #70                 // Field net/minecraft/ChatFormatting.ITALIC:Lnet/minecraft/ChatFormatting;
+      55: aastore
+      56: invokevirtual #76                 // Method net/minecraft/network/chat/MutableComponent.withStyle:([Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      59: areturn
+
+  public static java.lang.String resolveModName(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokedynamic #91,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       6: astore_1
+       7: aload_1
+       8: invokestatic  #97                 // Method net/minecraft/client/resources/language/I18n.exists:(Ljava/lang/String;)Z
+      11: ifeq          23
+      14: aload_1
+      15: iconst_0
+      16: anewarray     #4                  // class java/lang/Object
+      19: invokestatic  #101                // Method net/minecraft/client/resources/language/I18n.get:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      22: areturn
+      23: aload_0
+      24: invokestatic  #106                // Method resolveViaFabricLoader:(Ljava/lang/String;)Ljava/lang/String;
+      27: astore_2
+      28: aload_2
+      29: ifnull        34
+      32: aload_2
+      33: areturn
+      34: aload_0
+      35: areturn
+
+  private static java.lang.String resolveViaFabricLoader(java.lang.String);
+    Code:
+       0: ldc           #111                // String net.fabricmc.loader.api.FabricLoader
+       2: invokestatic  #117                // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: astore_1
+       6: aload_1
+       7: ldc           #119                // String getInstance
+       9: iconst_0
+      10: anewarray     #113                // class java/lang/Class
+      13: invokevirtual #123                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      16: aconst_null
+      17: iconst_0
+      18: anewarray     #4                  // class java/lang/Object
+      21: invokevirtual #129                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore_2
+      25: aload_1
+      26: ldc           #131                // String getModContainer
+      28: iconst_1
+      29: anewarray     #113                // class java/lang/Class
+      32: dup
+      33: iconst_0
+      34: ldc           #103                // class java/lang/String
+      36: aastore
+      37: invokevirtual #123                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      40: aload_2
+      41: iconst_1
+      42: anewarray     #4                  // class java/lang/Object
+      45: dup
+      46: iconst_0
+      47: aload_0
+      48: aastore
+      49: invokevirtual #129                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      52: astore_3
+      53: aload_3
+      54: ifnull        153
+      57: aload_3
+      58: checkcast     #133                // class java/util/Optional
+      61: astore        4
+      63: aload         4
+      65: invokevirtual #136                // Method java/util/Optional.isPresent:()Z
+      68: ifeq          153
+      71: aload         4
+      73: invokevirtual #139                // Method java/util/Optional.get:()Ljava/lang/Object;
+      76: invokevirtual #143                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      79: ldc           #145                // String getMetadata
+      81: iconst_0
+      82: anewarray     #113                // class java/lang/Class
+      85: invokevirtual #123                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      88: aload         4
+      90: invokevirtual #139                // Method java/util/Optional.get:()Ljava/lang/Object;
+      93: iconst_0
+      94: anewarray     #4                  // class java/lang/Object
+      97: invokevirtual #129                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     100: astore        5
+     102: aload         5
+     104: invokevirtual #143                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     107: ldc           #147                // String getName
+     109: iconst_0
+     110: anewarray     #113                // class java/lang/Class
+     113: invokevirtual #123                // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     116: aload         5
+     118: iconst_0
+     119: anewarray     #4                  // class java/lang/Object
+     122: invokevirtual #129                // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     125: astore        6
+     127: aload         6
+     129: instanceof    #103                // class java/lang/String
+     132: ifeq          153
+     135: aload         6
+     137: checkcast     #103                // class java/lang/String
+     140: astore        7
+     142: aload         7
+     144: invokevirtual #148                // Method java/lang/String.isEmpty:()Z
+     147: ifne          153
+     150: aload         7
+     152: areturn
+     153: goto          157
+     156: astore_1
+     157: aconst_null
+     158: areturn
+    Exception table:
+       from    to  target type
+           0   152   156   Class java/lang/Throwable
+}

@@ -1,0 +1,61 @@
+Compiled from "RecipeBookComponentTabIconOffsetMixin.java"
+public abstract class com.alonie.brbe.mixins.RecipeBookComponentTabIconOffsetMixin {
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton> tabButtons;
+
+  public com.alonie.brbe.mixins.RecipeBookComponentTabIconOffsetMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$offsetTopAndBottomTabIcons(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aconst_null
+       1: astore_2
+       2: aconst_null
+       3: astore_3
+       4: aload_0
+       5: getfield      #30                 // Field tabButtons:Ljava/util/List;
+       8: invokeinterface #36,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      13: astore        4
+      15: aload         4
+      17: invokeinterface #44,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      22: ifeq          76
+      25: aload         4
+      27: invokeinterface #48,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #38                 // class net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton
+      35: astore        5
+      37: aload         5
+      39: checkcast     #50                 // class com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset
+      42: astore        6
+      44: aload         6
+      46: iconst_0
+      47: invokeinterface #54,  2           // InterfaceMethod com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset.brbe$setIconYOffset:(I)V
+      52: aload         5
+      54: getfield      #58                 // Field net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.visible:Z
+      57: ifne          63
+      60: goto          15
+      63: aload_2
+      64: ifnonnull     70
+      67: aload         5
+      69: astore_2
+      70: aload         5
+      72: astore_3
+      73: goto          15
+      76: aload_2
+      77: ifnull        90
+      80: aload_2
+      81: checkcast     #50                 // class com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset
+      84: iconst_m1
+      85: invokeinterface #54,  2           // InterfaceMethod com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset.brbe$setIconYOffset:(I)V
+      90: aload_3
+      91: ifnull        109
+      94: aload_3
+      95: aload_2
+      96: if_acmpeq     109
+      99: aload_3
+     100: checkcast     #50                 // class com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset
+     103: iconst_1
+     104: invokeinterface #54,  2           // InterfaceMethod com/alonie/brbe/interfaces/RecipeBookTabButtonIconOffset.brbe$setIconYOffset:(I)V
+     109: return
+}

@@ -1,0 +1,179 @@
+Compiled from "BlockModelHandler.java"
+public class fuzs.visualworkbench.client.handler.BlockModelHandler {
+  private static final java.util.function.Supplier<java.util.Map<net.minecraft.client.resources.model.ModelResourceLocation, net.minecraft.client.resources.model.ModelResourceLocation>> MODEL_LOCATIONS;
+
+  public fuzs.visualworkbench.client.handler.BlockModelHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void onLoadComplete();
+    Code:
+       0: invokestatic  #31                 // Method fuzs/visualworkbench/handler/BlockConversionHandler.getBlockConversions:()Lcom/google/common/collect/BiMap;
+       3: invokeinterface #37,  1           // InterfaceMethod com/google/common/collect/BiMap.entrySet:()Ljava/util/Set;
+       8: invokeinterface #43,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      13: astore_0
+      14: aload_0
+      15: invokeinterface #49,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      20: ifeq          72
+      23: aload_0
+      24: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      29: checkcast     #7                  // class java/util/Map$Entry
+      32: astore_1
+      33: getstatic     #59                 // Field fuzs/puzzleslib/api/client/core/v1/ClientAbstractions.INSTANCE:Lfuzs/puzzleslib/api/client/core/v1/ClientAbstractions;
+      36: aload_1
+      37: invokeinterface #62,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      42: checkcast     #64                 // class net/minecraft/world/level/block/Block
+      45: invokeinterface #68,  2           // InterfaceMethod fuzs/puzzleslib/api/client/core/v1/ClientAbstractions.getRenderType:(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/client/renderer/RenderType;
+      50: astore_2
+      51: getstatic     #59                 // Field fuzs/puzzleslib/api/client/core/v1/ClientAbstractions.INSTANCE:Lfuzs/puzzleslib/api/client/core/v1/ClientAbstractions;
+      54: aload_1
+      55: invokeinterface #71,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      60: checkcast     #64                 // class net/minecraft/world/level/block/Block
+      63: aload_2
+      64: invokeinterface #75,  3           // InterfaceMethod fuzs/puzzleslib/api/client/core/v1/ClientAbstractions.registerRenderType:(Lnet/minecraft/world/level/block/Block;Lnet/minecraft/client/renderer/RenderType;)V
+      69: goto          14
+      72: return
+
+  public static fuzs.puzzleslib.api.event.v1.core.EventResultHolder<net.minecraft.client.resources.model.UnbakedModel> onModifyUnbakedModel(net.minecraft.client.resources.model.ModelResourceLocation, java.util.function.Supplier<net.minecraft.client.resources.model.UnbakedModel>, java.util.function.Function<net.minecraft.client.resources.model.ModelResourceLocation, net.minecraft.client.resources.model.UnbakedModel>, java.util.function.BiConsumer<net.minecraft.resources.ResourceLocation, net.minecraft.client.resources.model.UnbakedModel>);
+    Code:
+       0: getstatic     #89                 // Field MODEL_LOCATIONS:Ljava/util/function/Supplier;
+       3: invokeinterface #94,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       8: checkcast     #9                  // class java/util/Map
+      11: aload_0
+      12: invokeinterface #98,  2           // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      17: ifeq          53
+      20: aload_2
+      21: getstatic     #89                 // Field MODEL_LOCATIONS:Ljava/util/function/Supplier;
+      24: invokeinterface #94,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      29: checkcast     #9                  // class java/util/Map
+      32: aload_0
+      33: invokeinterface #101,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      38: checkcast     #103                // class net/minecraft/client/resources/model/ModelResourceLocation
+      41: invokeinterface #108,  2          // InterfaceMethod java/util/function/Function.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+      46: checkcast     #110                // class net/minecraft/client/resources/model/UnbakedModel
+      49: invokestatic  #116                // Method fuzs/puzzleslib/api/event/v1/core/EventResultHolder.interrupt:(Ljava/lang/Object;)Lfuzs/puzzleslib/api/event/v1/core/EventResultHolder;
+      52: areturn
+      53: invokestatic  #120                // Method fuzs/puzzleslib/api/event/v1/core/EventResultHolder.pass:()Lfuzs/puzzleslib/api/event/v1/core/EventResultHolder;
+      56: areturn
+
+  private static java.util.Map<net.minecraft.client.resources.model.ModelResourceLocation, net.minecraft.client.resources.model.ModelResourceLocation> convertAllBlockStates(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+    Code:
+       0: invokestatic  #137                // Method com/google/common/collect/Maps.newHashMap:()Ljava/util/HashMap;
+       3: astore_2
+       4: aload_0
+       5: invokevirtual #141                // Method net/minecraft/world/level/block/Block.getStateDefinition:()Lnet/minecraft/world/level/block/state/StateDefinition;
+       8: invokevirtual #147                // Method net/minecraft/world/level/block/state/StateDefinition.getPossibleStates:()Lcom/google/common/collect/ImmutableList;
+      11: invokevirtual #152                // Method com/google/common/collect/ImmutableList.iterator:()Lcom/google/common/collect/UnmodifiableIterator;
+      14: astore_3
+      15: aload_3
+      16: invokeinterface #49,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          66
+      24: aload_3
+      25: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      30: checkcast     #158                // class net/minecraft/world/level/block/state/BlockState
+      33: astore        4
+      35: aload_1
+      36: invokevirtual #141                // Method net/minecraft/world/level/block/Block.getStateDefinition:()Lnet/minecraft/world/level/block/state/StateDefinition;
+      39: aload         4
+      41: invokestatic  #162                // Method convertBlockState:(Lnet/minecraft/world/level/block/state/StateDefinition;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+      44: astore        5
+      46: aload_2
+      47: aload         4
+      49: invokestatic  #168                // Method net/minecraft/client/renderer/block/BlockModelShaper.stateToModelLocation:(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/client/resources/model/ModelResourceLocation;
+      52: aload         5
+      54: invokestatic  #168                // Method net/minecraft/client/renderer/block/BlockModelShaper.stateToModelLocation:(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/client/resources/model/ModelResourceLocation;
+      57: invokeinterface #172,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      62: pop
+      63: goto          15
+      66: aload_2
+      67: areturn
+
+  private static net.minecraft.world.level.block.state.BlockState convertBlockState(net.minecraft.world.level.block.state.StateDefinition<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_0
+       1: invokevirtual #185                // Method net/minecraft/world/level/block/state/StateDefinition.any:()Lnet/minecraft/world/level/block/state/StateHolder;
+       4: checkcast     #158                // class net/minecraft/world/level/block/state/BlockState
+       7: astore_2
+       8: aload_1
+       9: invokevirtual #189                // Method net/minecraft/world/level/block/state/BlockState.getValues:()Ljava/util/Map;
+      12: invokeinterface #190,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      17: invokeinterface #43,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      22: astore_3
+      23: aload_3
+      24: invokeinterface #49,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      29: ifeq          82
+      32: aload_3
+      33: invokeinterface #53,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      38: checkcast     #7                  // class java/util/Map$Entry
+      41: astore        4
+      43: aload         4
+      45: invokeinterface #62,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      50: checkcast     #192                // class net/minecraft/world/level/block/state/properties/Property
+      53: aload         4
+      55: invokeinterface #71,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+      60: checkcast     #194                // class java/lang/Comparable
+      63: aload_0
+      64: dup
+      65: invokestatic  #199                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      68: pop
+      69: invokedynamic #216,  0            // InvokeDynamic #0:apply:(Lnet/minecraft/world/level/block/state/StateDefinition;)Ljava/util/function/Function;
+      74: aload_2
+      75: invokestatic  #220                // Method setBlockStateValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;Ljava/util/function/Function;Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+      78: astore_2
+      79: goto          23
+      82: aload_2
+      83: areturn
+
+  private static <T extends java.lang.Comparable<T>, V extends T> net.minecraft.world.level.block.state.BlockState setBlockStateValue(net.minecraft.world.level.block.state.properties.Property<?>, java.lang.Comparable<?>, java.util.function.Function<java.lang.String, net.minecraft.world.level.block.state.properties.Property<?>>, net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: invokevirtual #233                // Method net/minecraft/world/level/block/state/properties/Property.getName:()Ljava/lang/String;
+       5: invokeinterface #108,  2          // InterfaceMethod java/util/function/Function.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #192                // class net/minecraft/world/level/block/state/properties/Property
+      13: astore        4
+      15: aload         4
+      17: ifnull        31
+      20: aload_3
+      21: aload         4
+      23: aload_1
+      24: invokevirtual #237                // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+      27: checkcast     #158                // class net/minecraft/world/level/block/state/BlockState
+      30: areturn
+      31: aload_3
+      32: areturn
+
+  private static java.util.Map lambda$static$1();
+    Code:
+       0: invokestatic  #31                 // Method fuzs/visualworkbench/handler/BlockConversionHandler.getBlockConversions:()Lcom/google/common/collect/BiMap;
+       3: invokeinterface #37,  1           // InterfaceMethod com/google/common/collect/BiMap.entrySet:()Ljava/util/Set;
+       8: invokeinterface #248,  1          // InterfaceMethod java/util/Set.stream:()Ljava/util/stream/Stream;
+      13: invokedynamic #257,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      18: invokeinterface #263,  2          // InterfaceMethod java/util/stream/Stream.flatMap:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      23: invokestatic  #269                // Method net/minecraft/Util.toMap:()Ljava/util/stream/Collector;
+      26: invokeinterface #273,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      31: checkcast     #9                  // class java/util/Map
+      34: areturn
+
+  private static java.util.stream.Stream lambda$static$0(java.util.Map$Entry);
+    Code:
+       0: aload_0
+       1: invokeinterface #71,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       6: checkcast     #64                 // class net/minecraft/world/level/block/Block
+       9: aload_0
+      10: invokeinterface #62,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      15: checkcast     #64                 // class net/minecraft/world/level/block/Block
+      18: invokestatic  #275                // Method convertAllBlockStates:(Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)Ljava/util/Map;
+      21: invokeinterface #190,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      26: invokeinterface #248,  1          // InterfaceMethod java/util/Set.stream:()Ljava/util/stream/Stream;
+      31: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #284,  0            // InvokeDynamic #2:get:()Lcom/google/common/base/Supplier;
+       5: invokestatic  #290                // Method com/google/common/base/Suppliers.memoize:(Lcom/google/common/base/Supplier;)Lcom/google/common/base/Supplier;
+       8: putstatic     #89                 // Field MODEL_LOCATIONS:Ljava/util/function/Supplier;
+      11: return
+}

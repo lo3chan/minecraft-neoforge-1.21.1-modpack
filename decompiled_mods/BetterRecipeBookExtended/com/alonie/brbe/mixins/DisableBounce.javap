@@ -1,0 +1,21 @@
+Compiled from "DisableBounce.java"
+public class com.alonie.brbe.mixins.DisableBounce {
+  public com.alonie.brbe.mixins.DisableBounce();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void willHighlight(net.minecraft.world.item.crafting.RecipeHolder<?>, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: invokestatic  #32                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #38                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #44                 // Field com/alonie/brbe/config/Config.newRecipes:Lcom/alonie/brbe/config/NewRecipes;
+       9: getfield      #50                 // Field com/alonie/brbe/config/NewRecipes.enableBounce:Z
+      12: ifne          23
+      15: aload_2
+      16: iconst_0
+      17: invokestatic  #56                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      20: invokevirtual #62                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      23: return
+}

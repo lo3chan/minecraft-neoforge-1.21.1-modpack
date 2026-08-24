@@ -1,0 +1,65 @@
+Compiled from "AlternativeArgument.java"
+public class com.alonie.brbe.search.AlternativeArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.util.List<com.alonie.brbe.search.SearchArgument> children;
+
+  public com.alonie.brbe.search.AlternativeArgument(java.util.List<com.alonie.brbe.search.SearchArgument>);
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #18                 // Field children:Ljava/util/List;
+       9: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field children:Ljava/util/List;
+       4: invokeinterface #30,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+       9: ifeq          14
+      12: iconst_1
+      13: ireturn
+      14: aload_0
+      15: getfield      #18                 // Field children:Ljava/util/List;
+      18: invokeinterface #34,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      23: astore_3
+      24: aload_3
+      25: invokeinterface #39,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      30: ifeq          61
+      33: aload_3
+      34: invokeinterface #43,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      39: checkcast     #6                  // class com/alonie/brbe/search/SearchArgument
+      42: astore        4
+      44: aload         4
+      46: aload_1
+      47: aload_2
+      48: invokeinterface #45,  3           // InterfaceMethod com/alonie/brbe/search/SearchArgument.matches:(Lnet/minecraft/world/item/ItemStack;Lcom/alonie/brbe/search/SearchCache;)Z
+      53: ifeq          58
+      56: iconst_1
+      57: ireturn
+      58: goto          24
+      61: iconst_0
+      62: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field children:Ljava/util/List;
+       4: invokeinterface #34,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_1
+      10: aload_1
+      11: invokeinterface #39,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          43
+      19: aload_1
+      20: invokeinterface #43,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #6                  // class com/alonie/brbe/search/SearchArgument
+      28: astore_2
+      29: aload_2
+      30: invokeinterface #52,  1           // InterfaceMethod com/alonie/brbe/search/SearchArgument.isAdvanced:()Z
+      35: ifeq          40
+      38: iconst_1
+      39: ireturn
+      40: goto          10
+      43: iconst_0
+      44: ireturn
+}

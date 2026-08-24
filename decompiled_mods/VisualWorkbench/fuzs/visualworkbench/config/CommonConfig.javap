@@ -1,0 +1,18 @@
+Compiled from "CommonConfig.java"
+public class fuzs.visualworkbench.config.CommonConfig implements fuzs.puzzleslib.api.config.v3.ConfigCore {
+  public boolean disableVanillaWorkbench;
+
+  public boolean convertVanillaWorkbenchDuringWorldGen;
+
+  public fuzs.visualworkbench.config.CommonConfig();
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #20                 // Field disableVanillaWorkbench:Z
+       9: aload_0
+      10: iconst_1
+      11: putfield      #22                 // Field convertVanillaWorkbenchDuringWorldGen:Z
+      14: return
+}

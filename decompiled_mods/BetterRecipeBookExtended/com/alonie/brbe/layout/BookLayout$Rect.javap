@@ -1,0 +1,82 @@
+Compiled from "BookLayout.java"
+public final class com.alonie.brbe.layout.BookLayout$Rect extends java.lang.Record {
+  private final int x;
+
+  private final int y;
+
+  private final int width;
+
+  private final int height;
+
+  public com.alonie.brbe.layout.BookLayout$Rect(int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #23                 // Method java/lang/Record."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #25                 // Field x:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #27                 // Field y:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #29                 // Field width:I
+      19: aload_0
+      20: iload         4
+      22: putfield      #31                 // Field height:I
+      25: return
+
+  public static com.alonie.brbe.layout.BookLayout$Rect of(int, int, int, int);
+    Code:
+       0: new           #2                  // class com/alonie/brbe/layout/BookLayout$Rect
+       3: dup
+       4: iload_0
+       5: iload_1
+       6: iload_2
+       7: iload_3
+       8: invokespecial #37                 // Method "<init>":(IIII)V
+      11: areturn
+
+  public final java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokedynamic #55,  0             // InvokeDynamic #0:toString:(Lcom/alonie/brbe/layout/BookLayout$Rect;)Ljava/lang/String;
+       6: areturn
+
+  public final int hashCode();
+    Code:
+       0: aload_0
+       1: invokedynamic #60,  0             // InvokeDynamic #0:hashCode:(Lcom/alonie/brbe/layout/BookLayout$Rect;)I
+       6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #66,  0             // InvokeDynamic #0:equals:(Lcom/alonie/brbe/layout/BookLayout$Rect;Ljava/lang/Object;)Z
+       7: ireturn
+
+  public int x();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field x:I
+       4: ireturn
+
+  public int y();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field y:I
+       4: ireturn
+
+  public int width();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field width:I
+       4: ireturn
+
+  public int height();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field height:I
+       4: ireturn
+}

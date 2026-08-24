@@ -1,0 +1,68 @@
+Compiled from "HideInventoryForExpandedBook.java"
+public class com.alonie.brbe.mixins.HideInventoryForExpandedBook {
+  public com.alonie.brbe.mixins.HideInventoryForExpandedBook();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$cancelBgWhenExpanded(net.minecraft.client.gui.GuiGraphics, float, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #33                 // Method brbe$isExpandedBookOpen:()Z
+       4: ifeq          12
+       7: aload         5
+       9: invokevirtual #38                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      12: return
+
+  private void brbe$cancelLabelsWhenExpanded(net.minecraft.client.gui.GuiGraphics, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: invokevirtual #33                 // Method brbe$isExpandedBookOpen:()Z
+       4: ifeq          12
+       7: aload         4
+       9: invokevirtual #38                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      12: return
+
+  private boolean brbe$isExpandedBookOpen();
+    Code:
+       0: invokestatic  #52                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #58                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #64                 // Field com/alonie/brbe/config/Config.expandedRecipeBook:Z
+       9: ifne          14
+      12: iconst_0
+      13: ireturn
+      14: aload_0
+      15: checkcast     #66                 // class net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
+      18: astore_1
+      19: aload_1
+      20: instanceof    #68                 // class com/alonie/brbe/interfaces/ExpandedBookScreen
+      23: ifeq          38
+      26: aload_1
+      27: checkcast     #68                 // class com/alonie/brbe/interfaces/ExpandedBookScreen
+      30: astore_2
+      31: aload_2
+      32: invokeinterface #69,  1           // InterfaceMethod com/alonie/brbe/interfaces/ExpandedBookScreen.brbe$isExpandedBookOpen:()Z
+      37: ireturn
+      38: aload_1
+      39: instanceof    #71                 // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+      42: ifeq          79
+      45: aload_1
+      46: checkcast     #71                 // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+      49: astore_2
+      50: aload_2
+      51: invokeinterface #75,  1           // InterfaceMethod net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener.getRecipeBookComponent:()Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      56: astore_3
+      57: aload_3
+      58: ifnull        77
+      61: aload_3
+      62: checkcast     #77                 // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      65: invokeinterface #80,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.getVisible:()Z
+      70: ifeq          77
+      73: iconst_1
+      74: goto          78
+      77: iconst_0
+      78: ireturn
+      79: iconst_0
+      80: ireturn
+}

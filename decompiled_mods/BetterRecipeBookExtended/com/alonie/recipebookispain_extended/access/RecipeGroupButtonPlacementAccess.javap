@@ -1,0 +1,6 @@
+Compiled from "RecipeGroupButtonPlacementAccess.java"
+public interface com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacementAccess {
+  public abstract void rbip$setPlacement(com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacement);
+
+  public abstract com.alonie.recipebookispain_extended.access.RecipeGroupButtonPlacement rbip$getPlacement();
+}

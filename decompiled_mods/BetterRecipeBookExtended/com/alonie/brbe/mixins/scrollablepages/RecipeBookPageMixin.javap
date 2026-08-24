@@ -1,0 +1,206 @@
+Compiled from "RecipeBookPageMixin.java"
+public abstract class com.alonie.brbe.mixins.scrollablepages.RecipeBookPageMixin {
+  private int currentPage;
+
+  private int totalPages;
+
+  private net.minecraft.client.gui.components.StateSwitchingButton forwardButton;
+
+  private net.minecraft.client.gui.components.StateSwitchingButton backButton;
+
+  public com.alonie.brbe.mixins.scrollablepages.RecipeBookPageMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  protected abstract void updateButtonsForPage();
+
+  public void mouseClickedBtn(double, double, int, int, int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field forwardButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+       4: dload_1
+       5: dload_3
+       6: iload         5
+       8: invokevirtual #50                 // Method net/minecraft/client/gui/components/StateSwitchingButton.mouseClicked:(DDI)Z
+      11: ifeq          76
+      14: aload         10
+      16: iconst_1
+      17: invokestatic  #56                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      20: invokevirtual #62                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      23: aload         10
+      25: invokevirtual #65                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.cancel:()V
+      28: aload_0
+      29: dup
+      30: getfield      #67                 // Field currentPage:I
+      33: iconst_1
+      34: iadd
+      35: dup_x1
+      36: putfield      #67                 // Field currentPage:I
+      39: aload_0
+      40: getfield      #69                 // Field totalPages:I
+      43: if_icmplt     69
+      46: aload_0
+      47: getstatic     #75                 // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+      50: getfield      #81                 // Field com/alonie/brbe/config/Config.scrollAround:Z
+      53: ifeq          60
+      56: iconst_0
+      57: goto          66
+      60: aload_0
+      61: getfield      #69                 // Field totalPages:I
+      64: iconst_1
+      65: isub
+      66: putfield      #67                 // Field currentPage:I
+      69: aload_0
+      70: invokevirtual #83                 // Method updateButtonsForPage:()V
+      73: goto          145
+      76: aload_0
+      77: getfield      #85                 // Field backButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      80: dload_1
+      81: dload_3
+      82: iload         5
+      84: invokevirtual #50                 // Method net/minecraft/client/gui/components/StateSwitchingButton.mouseClicked:(DDI)Z
+      87: ifeq          145
+      90: aload         10
+      92: iconst_1
+      93: invokestatic  #56                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      96: invokevirtual #62                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      99: aload         10
+     101: invokevirtual #65                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.cancel:()V
+     104: aload_0
+     105: dup
+     106: getfield      #67                 // Field currentPage:I
+     109: iconst_1
+     110: isub
+     111: dup_x1
+     112: putfield      #67                 // Field currentPage:I
+     115: ifge          141
+     118: aload_0
+     119: getstatic     #75                 // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+     122: getfield      #81                 // Field com/alonie/brbe/config/Config.scrollAround:Z
+     125: ifeq          137
+     128: aload_0
+     129: getfield      #69                 // Field totalPages:I
+     132: iconst_1
+     133: isub
+     134: goto          138
+     137: iconst_0
+     138: putfield      #67                 // Field currentPage:I
+     141: aload_0
+     142: invokevirtual #83                 // Method updateButtonsForPage:()V
+     145: return
+
+  public void render(net.minecraft.client.gui.GuiGraphics, int, int, int, int, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #102                // Method com/alonie/brbe/BetterRecipeBook.getQueuedScroll:()I
+       3: ifeq          129
+       6: iload         4
+       8: iload         5
+      10: iload_2
+      11: iload_3
+      12: invokestatic  #106                // Method isMouseOverRecipeBookPage:(IIII)Z
+      15: ifeq          125
+      18: aload_0
+      19: getfield      #69                 // Field totalPages:I
+      22: iconst_1
+      23: if_icmple     125
+      26: aload_0
+      27: dup
+      28: getfield      #67                 // Field currentPage:I
+      31: invokestatic  #102                // Method com/alonie/brbe/BetterRecipeBook.getQueuedScroll:()I
+      34: iadd
+      35: putfield      #67                 // Field currentPage:I
+      38: aload_0
+      39: getfield      #67                 // Field currentPage:I
+      42: aload_0
+      43: getfield      #69                 // Field totalPages:I
+      46: if_icmplt     83
+      49: aload_0
+      50: getstatic     #75                 // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+      53: getfield      #81                 // Field com/alonie/brbe/config/Config.scrollAround:Z
+      56: ifeq          71
+      59: aload_0
+      60: getfield      #67                 // Field currentPage:I
+      63: aload_0
+      64: getfield      #69                 // Field totalPages:I
+      67: irem
+      68: goto          77
+      71: aload_0
+      72: getfield      #69                 // Field totalPages:I
+      75: iconst_1
+      76: isub
+      77: putfield      #67                 // Field currentPage:I
+      80: goto          121
+      83: aload_0
+      84: getfield      #67                 // Field currentPage:I
+      87: ifge          121
+      90: aload_0
+      91: getstatic     #75                 // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+      94: getfield      #81                 // Field com/alonie/brbe/config/Config.scrollAround:Z
+      97: ifeq          117
+     100: aload_0
+     101: getfield      #67                 // Field currentPage:I
+     104: aload_0
+     105: getfield      #69                 // Field totalPages:I
+     108: irem
+     109: aload_0
+     110: getfield      #69                 // Field totalPages:I
+     113: iadd
+     114: goto          118
+     117: iconst_0
+     118: putfield      #67                 // Field currentPage:I
+     121: aload_0
+     122: invokevirtual #83                 // Method updateButtonsForPage:()V
+     125: iconst_0
+     126: invokestatic  #114                // Method com/alonie/brbe/BetterRecipeBook.setQueuedScroll:(I)V
+     129: return
+
+  private static boolean isMouseOverRecipeBookPage(int, int, int, int);
+    Code:
+       0: iload_0
+       1: iload_2
+       2: if_icmplt     32
+       5: iload_0
+       6: iload_2
+       7: sipush        147
+      10: iadd
+      11: if_icmpge     32
+      14: iload_1
+      15: iload_3
+      16: if_icmplt     32
+      19: iload_1
+      20: iload_3
+      21: sipush        166
+      24: iadd
+      25: if_icmpge     32
+      28: iconst_1
+      29: goto          33
+      32: iconst_0
+      33: ireturn
+
+  public void init(net.minecraft.client.Minecraft, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: iconst_0
+       1: invokestatic  #114                // Method com/alonie/brbe/BetterRecipeBook.setQueuedScroll:(I)V
+       4: return
+
+  private void updateArrowButtons(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: getstatic     #75                 // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+       3: getfield      #81                 // Field com/alonie/brbe/config/Config.scrollAround:Z
+       6: ifeq          33
+       9: aload_0
+      10: getfield      #69                 // Field totalPages:I
+      13: iconst_1
+      14: if_icmple     33
+      17: aload_0
+      18: getfield      #45                 // Field forwardButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      21: iconst_1
+      22: putfield      #131                // Field net/minecraft/client/gui/components/StateSwitchingButton.visible:Z
+      25: aload_0
+      26: getfield      #85                 // Field backButton:Lnet/minecraft/client/gui/components/StateSwitchingButton;
+      29: iconst_1
+      30: putfield      #131                // Field net/minecraft/client/gui/components/StateSwitchingButton.visible:Z
+      33: return
+}

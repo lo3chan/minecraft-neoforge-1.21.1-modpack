@@ -1,0 +1,79 @@
+Compiled from "BookLayout.java"
+public final class com.alonie.brbe.layout.BookLayout$Zone {
+  public final int left;
+
+  public final int top;
+
+  public final int width;
+
+  public final int height;
+
+  public com.alonie.brbe.layout.BookLayout$Zone(int, int, int, int);
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #20                 // Field left:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #22                 // Field top:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #24                 // Field width:I
+      19: aload_0
+      20: iload         4
+      22: putfield      #26                 // Field height:I
+      25: return
+
+  public int right();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field left:I
+       4: aload_0
+       5: getfield      #24                 // Field width:I
+       8: iadd
+       9: ireturn
+
+  public int bottom();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field top:I
+       4: aload_0
+       5: getfield      #26                 // Field height:I
+       8: iadd
+       9: ireturn
+
+  public int centerX();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field left:I
+       4: aload_0
+       5: getfield      #24                 // Field width:I
+       8: iconst_2
+       9: idiv
+      10: iadd
+      11: ireturn
+
+  public int centerY();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field top:I
+       4: aload_0
+       5: getfield      #26                 // Field height:I
+       8: iconst_2
+       9: idiv
+      10: iadd
+      11: ireturn
+
+  public static com.alonie.brbe.layout.BookLayout$Zone empty();
+    Code:
+       0: new           #2                  // class com/alonie/brbe/layout/BookLayout$Zone
+       3: dup
+       4: iconst_0
+       5: iconst_0
+       6: iconst_0
+       7: iconst_0
+       8: invokespecial #37                 // Method "<init>":(IIII)V
+      11: areturn
+}

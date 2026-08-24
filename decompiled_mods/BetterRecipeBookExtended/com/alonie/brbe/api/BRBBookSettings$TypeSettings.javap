@@ -1,0 +1,18 @@
+Compiled from "BRBBookSettings.java"
+class com.alonie.brbe.api.BRBBookSettings$TypeSettings {
+  boolean open;
+
+  boolean filtering;
+
+  public com.alonie.brbe.api.BRBBookSettings$TypeSettings(boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #20                 // Field open:Z
+       9: aload_0
+      10: iload_2
+      11: putfield      #22                 // Field filtering:Z
+      14: return
+}

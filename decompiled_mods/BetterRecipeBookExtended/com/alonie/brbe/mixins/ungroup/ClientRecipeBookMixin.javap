@@ -1,0 +1,83 @@
+Compiled from "ClientRecipeBookMixin.java"
+public class com.alonie.brbe.mixins.ungroup.ClientRecipeBookMixin extends net.minecraft.stats.RecipeBook {
+  private java.util.Map<net.minecraft.client.RecipeBookCategories, java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>> collectionsByTab;
+
+  public com.alonie.brbe.mixins.ungroup.ClientRecipeBookMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method net/minecraft/stats/RecipeBook."<init>":()V
+       4: return
+
+  private void split(net.minecraft.client.RecipeBookCategories, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>>);
+    Code:
+       0: invokestatic  #40                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #46                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #52                 // Field com/alonie/brbe/config/Config.alternativeRecipes:Lcom/alonie/brbe/config/AlternativeRecipes;
+       9: getfield      #58                 // Field com/alonie/brbe/config/AlternativeRecipes.noGrouped:Z
+      12: ifeq          183
+      15: aload_0
+      16: getfield      #60                 // Field collectionsByTab:Ljava/util/Map;
+      19: aload_1
+      20: invokestatic  #66                 // Method java/util/Collections.emptyList:()Ljava/util/List;
+      23: invokeinterface #72,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      28: checkcast     #74                 // class java/lang/Iterable
+      31: invokestatic  #80                 // Method com/google/common/collect/Lists.newArrayList:(Ljava/lang/Iterable;)Ljava/util/ArrayList;
+      34: astore_3
+      35: aload_3
+      36: invokestatic  #80                 // Method com/google/common/collect/Lists.newArrayList:(Ljava/lang/Iterable;)Ljava/util/ArrayList;
+      39: astore        4
+      41: aload_3
+      42: invokeinterface #86,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      47: astore        5
+      49: aload         5
+      51: invokeinterface #94,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      56: ifeq          174
+      59: aload         5
+      61: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      66: checkcast     #100                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+      69: astore        6
+      71: aload         6
+      73: invokevirtual #103                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      76: invokeinterface #107,  1          // InterfaceMethod java/util/List.size:()I
+      81: iconst_1
+      82: if_icmple     171
+      85: aload         6
+      87: invokevirtual #103                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      90: astore        7
+      92: aload         4
+      94: aload         6
+      96: invokeinterface #111,  2          // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+     101: pop
+     102: aload         7
+     104: invokeinterface #86,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     109: astore        8
+     111: aload         8
+     113: invokeinterface #94,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+     118: ifeq          171
+     121: aload         8
+     123: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     128: checkcast     #113                // class net/minecraft/world/item/crafting/RecipeHolder
+     131: astore        9
+     133: new           #100                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     136: dup
+     137: aload         6
+     139: invokevirtual #117                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+     142: aload         9
+     144: invokestatic  #121                // Method java/util/Collections.singletonList:(Ljava/lang/Object;)Ljava/util/List;
+     147: invokespecial #124                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)V
+     150: astore        10
+     152: aload         10
+     154: aload_0
+     155: invokevirtual #128                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.updateKnownRecipes:(Lnet/minecraft/stats/RecipeBook;)V
+     158: aload         4
+     160: aload         10
+     162: invokeinterface #131,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     167: pop
+     168: goto          111
+     171: goto          49
+     174: invokestatic  #136                // Method com/alonie/brbe/util/PartialCraftingUtil.clearCaches:()V
+     177: aload_2
+     178: aload         4
+     180: invokevirtual #142                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     183: return
+}

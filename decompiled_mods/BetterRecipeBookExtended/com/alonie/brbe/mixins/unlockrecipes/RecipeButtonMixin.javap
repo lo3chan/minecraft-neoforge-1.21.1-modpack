@@ -1,0 +1,8 @@
+Compiled from "RecipeButtonMixin.java"
+public abstract class com.alonie.brbe.mixins.unlockrecipes.RecipeButtonMixin {
+  public com.alonie.brbe.mixins.unlockrecipes.RecipeButtonMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+}

@@ -1,0 +1,45 @@
+Compiled from "ExpandedRecipeBookPageMixin.java"
+public class com.alonie.brbe.mixins.ExpandedRecipeBookPageMixin {
+  private static final int EXPANDED_BUTTONS;
+
+  public com.alonie.brbe.mixins.ExpandedRecipeBookPageMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$addExtraButtons(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #43                 // Field com/alonie/brbe/config/Config.expandedRecipeBook:Z
+       9: ifne          13
+      12: return
+      13: aload_0
+      14: checkcast     #45                 // class com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor
+      17: invokeinterface #49,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor.getButtons:()Ljava/util/List;
+      22: astore_2
+      23: aload_2
+      24: invokeinterface #55,  1           // InterfaceMethod java/util/List.size:()I
+      29: bipush        48
+      31: if_icmpge     51
+      34: aload_2
+      35: new           #57                 // class net/minecraft/client/gui/screens/recipebook/RecipeButton
+      38: dup
+      39: invokespecial #58                 // Method net/minecraft/client/gui/screens/recipebook/RecipeButton."<init>":()V
+      42: invokeinterface #62,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      47: pop
+      48: goto          23
+      51: return
+
+  private int brbe$expandPagination(int);
+    Code:
+       0: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #43                 // Field com/alonie/brbe/config/Config.expandedRecipeBook:Z
+       9: ifeq          15
+      12: bipush        48
+      14: ireturn
+      15: iload_1
+      16: ireturn
+}

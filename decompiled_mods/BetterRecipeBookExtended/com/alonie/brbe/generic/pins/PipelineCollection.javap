@@ -1,0 +1,8 @@
+Compiled from "PipelineCollection.java"
+public interface com.alonie.brbe.generic.pins.PipelineCollection extends com.alonie.brbe.generic.pins.Pinnable {
+  public abstract java.util.List<?> getRecipes();
+
+  public abstract boolean hasAnyCraftable();
+
+  public abstract boolean hasAnyPartiallyCraftable();
+}

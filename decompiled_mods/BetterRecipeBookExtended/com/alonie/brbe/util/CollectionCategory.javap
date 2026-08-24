@@ -1,0 +1,75 @@
+Compiled from "CollectionCategory.java"
+public final class com.alonie.brbe.util.CollectionCategory extends java.lang.Enum<com.alonie.brbe.util.CollectionCategory> {
+  public static final com.alonie.brbe.util.CollectionCategory TRULY_CRAFTABLE;
+
+  public static final com.alonie.brbe.util.CollectionCategory PARTIAL;
+
+  public static final com.alonie.brbe.util.CollectionCategory UNASSIGNED;
+
+  private static final com.alonie.brbe.util.CollectionCategory[] $VALUES;
+
+  public static com.alonie.brbe.util.CollectionCategory[] values();
+    Code:
+       0: getstatic     #16                 // Field $VALUES:[Lcom/alonie/brbe/util/CollectionCategory;
+       3: invokevirtual #21                 // Method "[Lcom/alonie/brbe/util/CollectionCategory;".clone:()Ljava/lang/Object;
+       6: checkcast     #17                 // class "[Lcom/alonie/brbe/util/CollectionCategory;"
+       9: areturn
+
+  public static com.alonie.brbe.util.CollectionCategory valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class com/alonie/brbe/util/CollectionCategory
+       2: aload_0
+       3: invokestatic  #27                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class com/alonie/brbe/util/CollectionCategory
+       9: areturn
+
+  private com.alonie.brbe.util.CollectionCategory();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #33                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: return
+
+  private static com.alonie.brbe.util.CollectionCategory[] $values();
+    Code:
+       0: iconst_3
+       1: anewarray     #2                  // class com/alonie/brbe/util/CollectionCategory
+       4: dup
+       5: iconst_0
+       6: getstatic     #37                 // Field TRULY_CRAFTABLE:Lcom/alonie/brbe/util/CollectionCategory;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #39                 // Field PARTIAL:Lcom/alonie/brbe/util/CollectionCategory;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #41                 // Field UNASSIGNED:Lcom/alonie/brbe/util/CollectionCategory;
+      21: aastore
+      22: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/alonie/brbe/util/CollectionCategory
+       3: dup
+       4: ldc           #43                 // String TRULY_CRAFTABLE
+       6: iconst_0
+       7: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      10: putstatic     #37                 // Field TRULY_CRAFTABLE:Lcom/alonie/brbe/util/CollectionCategory;
+      13: new           #2                  // class com/alonie/brbe/util/CollectionCategory
+      16: dup
+      17: ldc           #45                 // String PARTIAL
+      19: iconst_1
+      20: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      23: putstatic     #39                 // Field PARTIAL:Lcom/alonie/brbe/util/CollectionCategory;
+      26: new           #2                  // class com/alonie/brbe/util/CollectionCategory
+      29: dup
+      30: ldc           #46                 // String UNASSIGNED
+      32: iconst_2
+      33: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      36: putstatic     #41                 // Field UNASSIGNED:Lcom/alonie/brbe/util/CollectionCategory;
+      39: invokestatic  #48                 // Method $values:()[Lcom/alonie/brbe/util/CollectionCategory;
+      42: putstatic     #16                 // Field $VALUES:[Lcom/alonie/brbe/util/CollectionCategory;
+      45: return
+}

@@ -1,0 +1,75 @@
+Compiled from "FurnaceVariant.java"
+public final class com.alonie.recipebookispain_extended.FurnaceVariant extends java.lang.Enum<com.alonie.recipebookispain_extended.FurnaceVariant> {
+  public static final com.alonie.recipebookispain_extended.FurnaceVariant FURNACE;
+
+  public static final com.alonie.recipebookispain_extended.FurnaceVariant SMOKER;
+
+  public static final com.alonie.recipebookispain_extended.FurnaceVariant BLAST_FURNACE;
+
+  private static final com.alonie.recipebookispain_extended.FurnaceVariant[] $VALUES;
+
+  public static com.alonie.recipebookispain_extended.FurnaceVariant[] values();
+    Code:
+       0: getstatic     #16                 // Field $VALUES:[Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+       3: invokevirtual #21                 // Method "[Lcom/alonie/recipebookispain_extended/FurnaceVariant;".clone:()Ljava/lang/Object;
+       6: checkcast     #17                 // class "[Lcom/alonie/recipebookispain_extended/FurnaceVariant;"
+       9: areturn
+
+  public static com.alonie.recipebookispain_extended.FurnaceVariant valueOf(java.lang.String);
+    Code:
+       0: ldc           #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+       2: aload_0
+       3: invokestatic  #27                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+       9: areturn
+
+  private com.alonie.recipebookispain_extended.FurnaceVariant();
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #33                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: return
+
+  private static com.alonie.recipebookispain_extended.FurnaceVariant[] $values();
+    Code:
+       0: iconst_3
+       1: anewarray     #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+       4: dup
+       5: iconst_0
+       6: getstatic     #37                 // Field FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #39                 // Field SMOKER:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #41                 // Field BLAST_FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      21: aastore
+      22: areturn
+
+  static {};
+    Code:
+       0: new           #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+       3: dup
+       4: ldc           #43                 // String FURNACE
+       6: iconst_0
+       7: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      10: putstatic     #37                 // Field FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      13: new           #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+      16: dup
+      17: ldc           #45                 // String SMOKER
+      19: iconst_1
+      20: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      23: putstatic     #39                 // Field SMOKER:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      26: new           #2                  // class com/alonie/recipebookispain_extended/FurnaceVariant
+      29: dup
+      30: ldc           #46                 // String BLAST_FURNACE
+      32: iconst_2
+      33: invokespecial #44                 // Method "<init>":(Ljava/lang/String;I)V
+      36: putstatic     #41                 // Field BLAST_FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      39: invokestatic  #48                 // Method $values:()[Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      42: putstatic     #16                 // Field $VALUES:[Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      45: return
+}

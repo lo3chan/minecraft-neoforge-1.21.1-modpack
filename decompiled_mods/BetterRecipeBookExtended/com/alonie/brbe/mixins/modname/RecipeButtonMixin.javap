@@ -1,0 +1,35 @@
+Compiled from "RecipeButtonMixin.java"
+public abstract class com.alonie.brbe.mixins.modname.RecipeButtonMixin {
+  public com.alonie.brbe.mixins.modname.RecipeButtonMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$appendModName(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.util.List<net.minecraft.network.chat.Component>>, net.minecraft.world.item.ItemStack, java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: invokestatic  #35                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #41                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #47                 // Field com/alonie/brbe/config/Config.showModName:Z
+       9: ifne          13
+      12: return
+      13: aload_2
+      14: invokestatic  #53                 // Method com/alonie/brbe/util/ModNameUtil.getFormattedModName:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
+      17: astore        4
+      19: aload         4
+      21: ifnull        37
+      24: aload         4
+      26: invokeinterface #59,  1           // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      31: invokevirtual #65                 // Method java/lang/String.isEmpty:()Z
+      34: ifeq          38
+      37: return
+      38: aload_3
+      39: invokestatic  #69                 // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+      42: invokeinterface #75,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      47: pop
+      48: aload_3
+      49: aload         4
+      51: invokeinterface #75,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      56: pop
+      57: return
+}

@@ -1,0 +1,21 @@
+Compiled from "MultiPlayerGameModeMixin.java"
+public class com.alonie.brbe.mixins.instantcraft.MultiPlayerGameModeMixin {
+  private net.minecraft.client.Minecraft minecraft;
+
+  public com.alonie.brbe.mixins.instantcraft.MultiPlayerGameModeMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void handlePlaceRecipe(int, net.minecraft.world.item.crafting.RecipeHolder<?>, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: getstatic     #36                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+       3: aload_2
+       4: aload_0
+       5: getfield      #38                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+       8: getfield      #44                 // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      11: invokevirtual #50                 // Method net/minecraft/client/multiplayer/ClientLevel.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      14: invokevirtual #56                 // Method com/alonie/brbe/InstantCraftingManager.recipeClicked:(Lnet/minecraft/world/item/crafting/RecipeHolder;Lnet/minecraft/core/RegistryAccess;)V
+      17: return
+}

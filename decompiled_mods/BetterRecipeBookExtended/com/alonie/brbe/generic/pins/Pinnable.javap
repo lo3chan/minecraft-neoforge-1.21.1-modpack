@@ -1,0 +1,4 @@
+Compiled from "Pinnable.java"
+public interface com.alonie.brbe.generic.pins.Pinnable {
+  public abstract boolean has(net.minecraft.resources.ResourceLocation);
+}

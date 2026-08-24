@@ -1,0 +1,355 @@
+Compiled from "PinnedRecipeManager.java"
+public class com.alonie.brbe.PinnedRecipeManager {
+  public java.util.HashSet<net.minecraft.resources.ResourceLocation> pinned;
+
+  private com.alonie.brbe.pin.PinStore store;
+
+  public com.alonie.brbe.PinnedRecipeManager();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void setStore(com.alonie.brbe.pin.PinStore);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #27                 // Field store:Lcom/alonie/brbe/pin/PinStore;
+       5: return
+
+  public void read();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field store:Lcom/alonie/brbe/pin/PinStore;
+       4: ifnull        44
+       7: aload_0
+       8: getfield      #27                 // Field store:Lcom/alonie/brbe/pin/PinStore;
+      11: invokeinterface #36,  1           // InterfaceMethod com/alonie/brbe/pin/PinStore.load:()Ljava/util/Set;
+      16: astore_1
+      17: aload_0
+      18: aload_1
+      19: instanceof    #38                 // class java/util/HashSet
+      22: ifeq          32
+      25: aload_1
+      26: checkcast     #38                 // class java/util/HashSet
+      29: goto          40
+      32: new           #38                 // class java/util/HashSet
+      35: dup
+      36: aload_1
+      37: invokespecial #43                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      40: putfield      #45                 // Field pinned:Ljava/util/HashSet;
+      43: return
+      44: new           #47                 // class com/google/gson/Gson
+      47: dup
+      48: invokespecial #48                 // Method com/google/gson/Gson."<init>":()V
+      51: astore_1
+      52: aconst_null
+      53: astore_2
+      54: new           #50                 // class java/io/File
+      57: dup
+      58: invokestatic  #56                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      61: getfield      #60                 // Field net/minecraft/client/Minecraft.gameDirectory:Ljava/io/File;
+      64: ldc           #62                 // String brbe.pins
+      66: invokespecial #65                 // Method java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+      69: astore_3
+      70: aload_3
+      71: invokevirtual #69                 // Method java/io/File.exists:()Z
+      74: ifeq          123
+      77: new           #71                 // class com/google/gson/stream/JsonReader
+      80: dup
+      81: new           #73                 // class java/io/FileReader
+      84: dup
+      85: aload_3
+      86: invokevirtual #77                 // Method java/io/File.getAbsolutePath:()Ljava/lang/String;
+      89: invokespecial #80                 // Method java/io/FileReader."<init>":(Ljava/lang/String;)V
+      92: invokespecial #83                 // Method com/google/gson/stream/JsonReader."<init>":(Ljava/io/Reader;)V
+      95: astore_2
+      96: new           #7                  // class com/alonie/brbe/PinnedRecipeManager$1
+      99: dup
+     100: aload_0
+     101: invokespecial #86                 // Method com/alonie/brbe/PinnedRecipeManager$1."<init>":(Lcom/alonie/brbe/PinnedRecipeManager;)V
+     104: invokevirtual #90                 // Method com/alonie/brbe/PinnedRecipeManager$1.getType:()Ljava/lang/reflect/Type;
+     107: astore        4
+     109: aload_0
+     110: aload_1
+     111: aload_2
+     112: aload         4
+     114: invokevirtual #94                 // Method com/google/gson/Gson.fromJson:(Lcom/google/gson/stream/JsonReader;Ljava/lang/reflect/Type;)Ljava/lang/Object;
+     117: checkcast     #38                 // class java/util/HashSet
+     120: putfield      #45                 // Field pinned:Ljava/util/HashSet;
+     123: aload_0
+     124: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+     127: ifnonnull     141
+     130: aload_0
+     131: new           #38                 // class java/util/HashSet
+     134: dup
+     135: invokespecial #95                 // Method java/util/HashSet."<init>":()V
+     138: putfield      #45                 // Field pinned:Ljava/util/HashSet;
+     141: aload_2
+     142: invokestatic  #101                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+     145: goto          211
+     148: astore_3
+     149: getstatic     #107                // Field com/alonie/brbe/BetterRecipeBook.LOGGER:Lorg/apache/logging/log4j/Logger;
+     152: ldc           #109                // String brbe.pins could not be read.
+     154: invokeinterface #114,  2          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+     159: aload_0
+     160: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+     163: ifnonnull     177
+     166: aload_0
+     167: new           #38                 // class java/util/HashSet
+     170: dup
+     171: invokespecial #95                 // Method java/util/HashSet."<init>":()V
+     174: putfield      #45                 // Field pinned:Ljava/util/HashSet;
+     177: aload_2
+     178: invokestatic  #101                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+     181: goto          211
+     184: astore        5
+     186: aload_0
+     187: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+     190: ifnonnull     204
+     193: aload_0
+     194: new           #38                 // class java/util/HashSet
+     197: dup
+     198: invokespecial #95                 // Method java/util/HashSet."<init>":()V
+     201: putfield      #45                 // Field pinned:Ljava/util/HashSet;
+     204: aload_2
+     205: invokestatic  #101                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Closeable;)V
+     208: aload         5
+     210: athrow
+     211: return
+    Exception table:
+       from    to  target type
+          54   123   148   Class java/lang/Throwable
+          54   123   184   any
+         148   159   184   any
+         184   186   184   any
+
+  private void store();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field store:Lcom/alonie/brbe/pin/PinStore;
+       4: ifnull        28
+       7: aload_0
+       8: getfield      #27                 // Field store:Lcom/alonie/brbe/pin/PinStore;
+      11: new           #38                 // class java/util/HashSet
+      14: dup
+      15: aload_0
+      16: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      19: invokespecial #43                 // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      22: invokeinterface #130,  2          // InterfaceMethod com/alonie/brbe/pin/PinStore.save:(Ljava/util/Set;)V
+      27: return
+      28: new           #47                 // class com/google/gson/Gson
+      31: dup
+      32: invokespecial #48                 // Method com/google/gson/Gson."<init>":()V
+      35: astore_1
+      36: aconst_null
+      37: astore_2
+      38: new           #50                 // class java/io/File
+      41: dup
+      42: invokestatic  #56                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      45: getfield      #60                 // Field net/minecraft/client/Minecraft.gameDirectory:Ljava/io/File;
+      48: ldc           #62                 // String brbe.pins
+      50: invokespecial #65                 // Method java/io/File."<init>":(Ljava/io/File;Ljava/lang/String;)V
+      53: astore_3
+      54: new           #132                // class java/io/OutputStreamWriter
+      57: dup
+      58: new           #134                // class java/io/FileOutputStream
+      61: dup
+      62: aload_3
+      63: invokespecial #137                // Method java/io/FileOutputStream."<init>":(Ljava/io/File;)V
+      66: getstatic     #143                // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+      69: invokespecial #146                // Method java/io/OutputStreamWriter."<init>":(Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+      72: astore_2
+      73: aload_2
+      74: aload_1
+      75: aload_0
+      76: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      79: invokevirtual #150                // Method com/google/gson/Gson.toJson:(Ljava/lang/Object;)Ljava/lang/String;
+      82: invokevirtual #153                // Method java/io/OutputStreamWriter.write:(Ljava/lang/String;)V
+      85: aload_2
+      86: invokestatic  #156                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Writer;)V
+      89: goto          119
+      92: astore_3
+      93: getstatic     #107                // Field com/alonie/brbe/BetterRecipeBook.LOGGER:Lorg/apache/logging/log4j/Logger;
+      96: ldc           #158                // String brbe.pins could not be saved.
+      98: invokeinterface #114,  2          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;)V
+     103: aload_2
+     104: invokestatic  #156                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Writer;)V
+     107: goto          119
+     110: astore        4
+     112: aload_2
+     113: invokestatic  #156                // Method org/apache/commons/io/IOUtils.closeQuietly:(Ljava/io/Writer;)V
+     116: aload         4
+     118: athrow
+     119: return
+    Exception table:
+       from    to  target type
+          38    85    92   Class java/lang/Throwable
+          38    85   110   any
+          92   103   110   any
+         110   112   110   any
+
+  public void addOrRemoveFavourite(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+       4: invokevirtual #167                // Method java/util/HashSet.iterator:()Ljava/util/Iterator;
+       7: astore_2
+       8: aload_2
+       9: invokeinterface #172,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      14: ifeq          92
+      17: aload_2
+      18: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      23: checkcast     #178                // class net/minecraft/resources/ResourceLocation
+      26: astore_3
+      27: aload_1
+      28: invokevirtual #184                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      31: invokeinterface #187,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      36: astore        4
+      38: aload         4
+      40: invokeinterface #172,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      45: ifeq          89
+      48: aload         4
+      50: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      55: checkcast     #189                // class net/minecraft/world/item/crafting/RecipeHolder
+      58: astore        5
+      60: aload         5
+      62: invokevirtual #193                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+      65: aload_3
+      66: invokevirtual #197                // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      69: ifeq          86
+      72: aload_0
+      73: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      76: aload_3
+      77: invokevirtual #200                // Method java/util/HashSet.remove:(Ljava/lang/Object;)Z
+      80: pop
+      81: aload_0
+      82: invokevirtual #202                // Method store:()V
+      85: return
+      86: goto          38
+      89: goto          8
+      92: aload_0
+      93: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      96: aload_1
+      97: invokevirtual #184                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+     100: invokeinterface #206,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     105: invokedynamic #222,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+     110: invokeinterface #228,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     115: invokeinterface #231,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+     120: invokevirtual #235                // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+     123: pop
+     124: aload_0
+     125: invokevirtual #202                // Method store:()V
+     128: return
+
+  public <R extends com.alonie.brbe.generic.GenericRecipe, M extends net.minecraft.world.inventory.AbstractContainerMenu> void addOrRemoveFavourite(com.alonie.brbe.generic.GenericRecipeBookCollection<R, M>);
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+       4: invokevirtual #167                // Method java/util/HashSet.iterator:()Ljava/util/Iterator;
+       7: astore_2
+       8: aload_2
+       9: invokeinterface #172,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      14: ifeq          94
+      17: aload_2
+      18: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      23: checkcast     #178                // class net/minecraft/resources/ResourceLocation
+      26: astore_3
+      27: aload_1
+      28: invokevirtual #246                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getRecipes:()Ljava/util/List;
+      31: invokeinterface #187,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      36: astore        4
+      38: aload         4
+      40: invokeinterface #172,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      45: ifeq          91
+      48: aload         4
+      50: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      55: checkcast     #248                // class com/alonie/brbe/generic/GenericRecipe
+      58: astore        5
+      60: aload         5
+      62: invokeinterface #249,  1          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.id:()Lnet/minecraft/resources/ResourceLocation;
+      67: aload_3
+      68: invokevirtual #197                // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      71: ifeq          88
+      74: aload_0
+      75: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      78: aload_3
+      79: invokevirtual #200                // Method java/util/HashSet.remove:(Ljava/lang/Object;)Z
+      82: pop
+      83: aload_0
+      84: invokevirtual #202                // Method store:()V
+      87: return
+      88: goto          38
+      91: goto          8
+      94: aload_0
+      95: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+      98: aload_1
+      99: invokevirtual #246                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getRecipes:()Ljava/util/List;
+     102: invokeinterface #206,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+     107: invokedynamic #253,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+     112: invokeinterface #228,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+     117: invokeinterface #231,  1          // InterfaceMethod java/util/stream/Stream.toList:()Ljava/util/List;
+     122: invokevirtual #235                // Method java/util/HashSet.addAll:(Ljava/util/Collection;)Z
+     125: pop
+     126: aload_0
+     127: invokevirtual #202                // Method store:()V
+     130: return
+
+  public boolean has(com.alonie.brbe.generic.pins.Pinnable);
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field pinned:Ljava/util/HashSet;
+       4: invokevirtual #167                // Method java/util/HashSet.iterator:()Ljava/util/Iterator;
+       7: astore_2
+       8: aload_2
+       9: invokeinterface #172,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      14: ifeq          42
+      17: aload_2
+      18: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      23: checkcast     #178                // class net/minecraft/resources/ResourceLocation
+      26: astore_3
+      27: aload_1
+      28: aload_3
+      29: invokeinterface #264,  2          // InterfaceMethod com/alonie/brbe/generic/pins/Pinnable.has:(Lnet/minecraft/resources/ResourceLocation;)Z
+      34: ifeq          39
+      37: iconst_1
+      38: ireturn
+      39: goto          8
+      42: iconst_0
+      43: ireturn
+
+  public static void handlePinRecipe(net.minecraft.client.gui.screens.recipebook.RecipeBookComponent, net.minecraft.client.gui.screens.recipebook.RecipeBookPage, net.minecraft.world.item.crafting.RecipeHolder<?>);
+    Code:
+       0: new           #180                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+       3: dup
+       4: invokestatic  #56                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       7: getfield      #274                // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      10: invokevirtual #280                // Method net/minecraft/client/multiplayer/ClientLevel.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      13: aload_2
+      14: invokestatic  #284                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      17: invokespecial #287                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/List;)V
+      20: astore_3
+      21: aload_3
+      22: aload_1
+      23: invokevirtual #293                // Method net/minecraft/client/gui/screens/recipebook/RecipeBookPage.getRecipeBook:()Lnet/minecraft/stats/RecipeBook;
+      26: invokevirtual #297                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.updateKnownRecipes:(Lnet/minecraft/stats/RecipeBook;)V
+      29: getstatic     #300                // Field com/alonie/brbe/BetterRecipeBook.pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+      32: aload_3
+      33: invokevirtual #302                // Method addOrRemoveFavourite:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
+      36: aload_0
+      37: checkcast     #304                // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      40: iconst_0
+      41: invokeinterface #308,  2          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.updateCollectionsInvoker:(Z)V
+      46: invokestatic  #56                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      49: getfield      #312                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      52: astore        5
+      54: aload         5
+      56: instanceof    #314                // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+      59: ifeq          76
+      62: aload         5
+      64: checkcast     #314                // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+      67: astore        4
+      69: aload         4
+      71: invokeinterface #317,  1          // InterfaceMethod net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener.recipesUpdated:()V
+      76: return
+}

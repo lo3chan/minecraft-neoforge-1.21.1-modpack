@@ -1,0 +1,733 @@
+Compiled from "RecipeBookIsPain.java"
+public class com.alonie.recipebookispain_extended.RecipeBookIsPain {
+  public static final org.apache.logging.log4j.Logger LOGGER;
+
+  public static com.alonie.recipebookispain_extended.PlatformAbstractions PLATFORM;
+
+  public static boolean isOwOLoaded;
+
+  public static final java.util.List<net.minecraft.world.item.CreativeModeTab> CRAFTING_LIST;
+
+  public static final java.util.List<net.minecraft.world.item.CreativeModeTab> CRAFTING_SEARCH_LIST;
+
+  private static boolean initialized;
+
+  private static boolean initAttempted;
+
+  public static int recipeGeneration;
+
+  public static net.minecraft.world.item.CreativeModeTab activeCreativeTab;
+
+  public static com.alonie.recipebookispain_extended.FurnaceVariant activeFurnaceType;
+
+  private static int rbip$pendingScroll;
+
+  private static final java.util.Map<net.minecraft.world.item.CreativeModeTab, java.util.Set<net.minecraft.world.item.Item>> TAB_ITEMS;
+
+  private static final java.util.Map<net.minecraft.world.item.Item, net.minecraft.world.item.CreativeModeTab> ITEM_TO_TAB;
+
+  private static final java.util.Map<java.lang.String, net.minecraft.world.item.CreativeModeTab> namespaceCache;
+
+  private static boolean namespaceCacheBuilt;
+
+  public com.alonie.recipebookispain_extended.RecipeBookIsPain();
+    Code:
+       0: aload_0
+       1: invokespecial #61                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static com.alonie.recipebookispain_extended.FurnaceVariant detectFurnaceType(net.minecraft.world.inventory.AbstractFurnaceMenu);
+    Code:
+       0: aload_0
+       1: instanceof    #68                 // class net/minecraft/world/inventory/SmokerMenu
+       4: ifeq          11
+       7: getstatic     #73                 // Field com/alonie/recipebookispain_extended/FurnaceVariant.SMOKER:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      10: areturn
+      11: aload_0
+      12: instanceof    #75                 // class net/minecraft/world/inventory/BlastFurnaceMenu
+      15: ifeq          22
+      18: getstatic     #78                 // Field com/alonie/recipebookispain_extended/FurnaceVariant.BLAST_FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      21: areturn
+      22: getstatic     #81                 // Field com/alonie/recipebookispain_extended/FurnaceVariant.FURNACE:Lcom/alonie/recipebookispain_extended/FurnaceVariant;
+      25: areturn
+
+  public static int rbip$consumeScroll();
+    Code:
+       0: getstatic     #86                 // Field rbip$pendingScroll:I
+       3: istore_0
+       4: iconst_0
+       5: putstatic     #86                 // Field rbip$pendingScroll:I
+       8: iload_0
+       9: ireturn
+
+  public static void rbip$queueScroll(int);
+    Code:
+       0: iload_0
+       1: putstatic     #86                 // Field rbip$pendingScroll:I
+       4: return
+
+  public static java.lang.String diagnostic();
+    Code:
+       0: new           #94                 // class java/lang/StringBuilder
+       3: dup
+       4: invokespecial #95                 // Method java/lang/StringBuilder."<init>":()V
+       7: astore_0
+       8: aload_0
+       9: ldc           #97                 // String \n?????? RBIP Diagnostic ??????\n
+      11: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      14: pop
+      15: aload_0
+      16: ldc           #103                // String   PLATFORM         =
+      18: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      21: getstatic     #105                // Field PLATFORM:Lcom/alonie/recipebookispain_extended/PlatformAbstractions;
+      24: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+      27: ldc           #110                // String \n
+      29: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      32: pop
+      33: aload_0
+      34: ldc           #112                // String   isOwOLoaded      =
+      36: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      39: getstatic     #114                // Field isOwOLoaded:Z
+      42: invokevirtual #117                // Method java/lang/StringBuilder.append:(Z)Ljava/lang/StringBuilder;
+      45: ldc           #110                // String \n
+      47: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      50: pop
+      51: aload_0
+      52: ldc           #119                // String   initialized      =
+      54: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      57: getstatic     #121                // Field initialized:Z
+      60: invokevirtual #117                // Method java/lang/StringBuilder.append:(Z)Ljava/lang/StringBuilder;
+      63: ldc           #110                // String \n
+      65: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      68: pop
+      69: aload_0
+      70: ldc           #123                // String   initAttempted    =
+      72: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      75: getstatic     #125                // Field initAttempted:Z
+      78: invokevirtual #117                // Method java/lang/StringBuilder.append:(Z)Ljava/lang/StringBuilder;
+      81: ldc           #110                // String \n
+      83: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      86: pop
+      87: aload_0
+      88: ldc           #127                // String   config           =
+      90: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      93: invokestatic  #133                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+      96: invokevirtual #139                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      99: invokevirtual #108                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+     102: ldc           #110                // String \n
+     104: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     107: pop
+     108: invokestatic  #133                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     111: invokevirtual #139                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     114: ifnull        156
+     117: invokestatic  #133                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     120: invokevirtual #139                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     123: getfield      #143                // Field com/alonie/brbe/config/Config.rbip:Lcom/alonie/brbe/config/Config$RecipeBookIsPain;
+     126: ifnull        156
+     129: aload_0
+     130: ldc           #145                // String   config.rbip.enableRecipeBookIsPain =
+     132: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     135: invokestatic  #133                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     138: invokevirtual #139                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     141: getfield      #143                // Field com/alonie/brbe/config/Config.rbip:Lcom/alonie/brbe/config/Config$RecipeBookIsPain;
+     144: getfield      #148                // Field com/alonie/brbe/config/Config$RecipeBookIsPain.enableRecipeBookIsPain:Z
+     147: invokevirtual #117                // Method java/lang/StringBuilder.append:(Z)Ljava/lang/StringBuilder;
+     150: ldc           #110                // String \n
+     152: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     155: pop
+     156: aload_0
+     157: ldc           #150                // String   enabled()        =
+     159: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     162: invokestatic  #156                // Method com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig.enabled:()Z
+     165: invokevirtual #117                // Method java/lang/StringBuilder.append:(Z)Ljava/lang/StringBuilder;
+     168: ldc           #110                // String \n
+     170: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     173: pop
+     174: aload_0
+     175: ldc           #158                // String   CRAFTING_LIST    =
+     177: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     180: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     183: invokeinterface #165,  1          // InterfaceMethod java/util/List.size:()I
+     188: invokevirtual #168                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     191: ldc           #170                // String  entries\n
+     193: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     196: pop
+     197: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     200: invokeinterface #174,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     205: astore_1
+     206: aload_1
+     207: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     212: ifeq          280
+     215: aload_1
+     216: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     221: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+     224: astore_2
+     225: aload_0
+     226: ldc           #185                // String     -
+     228: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     231: aload_2
+     232: invokevirtual #189                // Method net/minecraft/world/item/CreativeModeTab.getDisplayName:()Lnet/minecraft/network/chat/Component;
+     235: invokeinterface #194,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     240: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     243: ldc           #196                // String  (
+     245: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     248: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+     251: aload_2
+     252: invokestatic  #204                // InterfaceMethod java/util/Set.of:()Ljava/util/Set;
+     255: invokeinterface #210,  3          // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     260: checkcast     #200                // class java/util/Set
+     263: invokeinterface #211,  1          // InterfaceMethod java/util/Set.size:()I
+     268: invokevirtual #168                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     271: ldc           #213                // String  items)\n
+     273: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     276: pop
+     277: goto          206
+     280: aload_0
+     281: ldc           #215                // String   CreativeModeTabs =
+     283: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     286: invokestatic  #221                // Method net/minecraft/world/item/CreativeModeTabs.allTabs:()Ljava/util/List;
+     289: invokeinterface #165,  1          // InterfaceMethod java/util/List.size:()I
+     294: invokevirtual #168                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     297: ldc           #223                // String  tabs\n
+     299: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     302: pop
+     303: aload_0
+     304: ldc           #225                // String   ITEM_TO_TAB      =
+     306: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     309: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+     312: invokeinterface #228,  1          // InterfaceMethod java/util/Map.size:()I
+     317: invokevirtual #168                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     320: ldc           #170                // String  entries\n
+     322: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     325: pop
+     326: aload_0
+     327: ldc           #230                // String ??????????????????????????????\n
+     329: invokevirtual #101                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     332: pop
+     333: aload_0
+     334: invokevirtual #233                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     337: areturn
+
+  public static synchronized void ensureInitialized();
+    Code:
+       0: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       3: ldc           #243                // String [RBIP] ensureInitialized() — init={}, attempted={}, enabled={}
+       5: getstatic     #121                // Field initialized:Z
+       8: invokestatic  #249                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      11: getstatic     #125                // Field initAttempted:Z
+      14: invokestatic  #249                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      17: invokestatic  #156                // Method com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig.enabled:()Z
+      20: invokestatic  #249                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      23: invokeinterface #255,  5          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+      28: invokestatic  #156                // Method com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig.enabled:()Z
+      31: ifne          100
+      34: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+      37: ldc_w         #257                // String [RBIP] DISABLED — skipping init
+      40: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+      45: getstatic     #121                // Field initialized:Z
+      48: ifeq          95
+      51: iconst_0
+      52: putstatic     #121                // Field initialized:Z
+      55: getstatic     #262                // Field recipeGeneration:I
+      58: iconst_1
+      59: iadd
+      60: putstatic     #262                // Field recipeGeneration:I
+      63: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+      66: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+      71: getstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+      74: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+      79: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+      82: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+      87: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+      90: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+      95: iconst_1
+      96: putstatic     #125                // Field initAttempted:Z
+      99: return
+     100: getstatic     #121                // Field initialized:Z
+     103: ifeq          107
+     106: return
+     107: invokestatic  #274                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+     110: astore_0
+     111: aload_0
+     112: ifnonnull     127
+     115: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     118: ldc_w         #276                // String [RBIP] client is null
+     121: invokeinterface #279,  2          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;)V
+     126: return
+     127: aload_0
+     128: getfield      #283                // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+     131: ifnonnull     146
+     134: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     137: ldc_w         #285                // String [RBIP] no level yet — defer
+     140: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     145: return
+     146: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     149: ldc_w         #287                // String [RBIP] Initializing...
+     152: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     157: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     160: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+     165: getstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+     168: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+     173: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+     176: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+     181: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+     184: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+     189: getstatic     #293                // Field net/minecraft/world/flag/FeatureFlags.DEFAULT_FLAGS:Lnet/minecraft/world/flag/FeatureFlagSet;
+     192: iconst_0
+     193: aload_0
+     194: getfield      #283                // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+     197: invokevirtual #299                // Method net/minecraft/client/multiplayer/ClientLevel.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+     200: invokestatic  #303                // Method net/minecraft/world/item/CreativeModeTabs.tryRebuildTabContents:(Lnet/minecraft/world/flag/FeatureFlagSet;ZLnet/minecraft/core/HolderLookup$Provider;)Z
+     203: pop
+     204: iconst_0
+     205: istore_1
+     206: invokestatic  #221                // Method net/minecraft/world/item/CreativeModeTabs.allTabs:()Ljava/util/List;
+     209: invokeinterface #174,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     214: astore_2
+     215: aload_2
+     216: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     221: ifeq          401
+     224: aload_2
+     225: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     230: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+     233: astore_3
+     234: aload_3
+     235: invokestatic  #307                // Method shouldMirror:(Lnet/minecraft/world/item/CreativeModeTab;)Z
+     238: ifne          244
+     241: goto          215
+     244: new           #309                // class java/util/HashSet
+     247: dup
+     248: invokespecial #310                // Method java/util/HashSet."<init>":()V
+     251: astore        4
+     253: aload_3
+     254: invokevirtual #314                // Method net/minecraft/world/item/CreativeModeTab.getDisplayItems:()Ljava/util/Collection;
+     257: invokeinterface #317,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     262: astore        5
+     264: aload         5
+     266: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     271: ifeq          326
+     274: aload         5
+     276: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     281: checkcast     #319                // class net/minecraft/world/item/ItemStack
+     284: astore        6
+     286: aload         6
+     288: invokevirtual #322                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     291: ifne          323
+     294: aload         6
+     296: invokevirtual #326                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     299: astore        7
+     301: aload         4
+     303: aload         7
+     305: invokeinterface #330,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     310: pop
+     311: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+     314: aload         7
+     316: aload_3
+     317: invokeinterface #333,  3          // InterfaceMethod java/util/Map.putIfAbsent:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     322: pop
+     323: goto          264
+     326: aload         4
+     328: invokeinterface #334,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+     333: ifne          371
+     336: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+     339: aload_3
+     340: aload         4
+     342: invokeinterface #337,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     347: pop
+     348: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     351: aload_3
+     352: invokeinterface #338,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     357: pop
+     358: getstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+     361: aload_3
+     362: invokeinterface #338,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     367: pop
+     368: iinc          1, 1
+     371: goto          398
+     374: astore        4
+     376: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     379: ldc_w         #340                // String [RBIP] Error processing tab: {}
+     382: aload_3
+     383: invokevirtual #189                // Method net/minecraft/world/item/CreativeModeTab.getDisplayName:()Lnet/minecraft/network/chat/Component;
+     386: invokeinterface #194,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     391: aload         4
+     393: invokeinterface #344,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     398: goto          215
+     401: iload_1
+     402: ifne          659
+     405: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     408: ldc_w         #346                // String [RBIP] getDisplayItems() returned empty — falling back to BuiltInRegistries.ITEM scan
+     411: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     416: getstatic     #352                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+     419: invokeinterface #355,  1          // InterfaceMethod net/minecraft/core/DefaultedRegistry.iterator:()Ljava/util/Iterator;
+     424: astore_2
+     425: aload_2
+     426: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     431: ifeq          569
+     434: aload_2
+     435: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     440: checkcast     #357                // class net/minecraft/world/item/Item
+     443: astore_3
+     444: new           #319                // class net/minecraft/world/item/ItemStack
+     447: dup
+     448: aload_3
+     449: invokespecial #360                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     452: astore        4
+     454: aload         4
+     456: invokevirtual #322                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     459: ifeq          465
+     462: goto          425
+     465: invokestatic  #221                // Method net/minecraft/world/item/CreativeModeTabs.allTabs:()Ljava/util/List;
+     468: invokeinterface #174,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     473: astore        5
+     475: aload         5
+     477: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     482: ifeq          566
+     485: aload         5
+     487: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     492: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+     495: astore        6
+     497: aload         6
+     499: invokestatic  #307                // Method shouldMirror:(Lnet/minecraft/world/item/CreativeModeTab;)Z
+     502: ifne          508
+     505: goto          475
+     508: aload         6
+     510: aload         4
+     512: invokevirtual #364                // Method net/minecraft/world/item/CreativeModeTab.contains:(Lnet/minecraft/world/item/ItemStack;)Z
+     515: ifeq          558
+     518: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+     521: aload_3
+     522: aload         6
+     524: invokeinterface #333,  3          // InterfaceMethod java/util/Map.putIfAbsent:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     529: pop
+     530: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+     533: aload         6
+     535: invokedynamic #383,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+     540: invokeinterface #387,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+     545: checkcast     #200                // class java/util/Set
+     548: aload_3
+     549: invokeinterface #330,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     554: pop
+     555: goto          566
+     558: goto          563
+     561: astore        7
+     563: goto          475
+     566: goto          425
+     569: invokestatic  #221                // Method net/minecraft/world/item/CreativeModeTabs.allTabs:()Ljava/util/List;
+     572: invokeinterface #174,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     577: astore_2
+     578: aload_2
+     579: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     584: ifeq          659
+     587: aload_2
+     588: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     593: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+     596: astore_3
+     597: aload_3
+     598: invokestatic  #307                // Method shouldMirror:(Lnet/minecraft/world/item/CreativeModeTab;)Z
+     601: ifne          607
+     604: goto          578
+     607: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+     610: aload_3
+     611: invokeinterface #390,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+     616: checkcast     #200                // class java/util/Set
+     619: astore        4
+     621: aload         4
+     623: ifnull        656
+     626: aload         4
+     628: invokeinterface #334,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+     633: ifne          656
+     636: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     639: aload_3
+     640: invokeinterface #338,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     645: pop
+     646: getstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+     649: aload_3
+     650: invokeinterface #338,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     655: pop
+     656: goto          578
+     659: getstatic     #262                // Field recipeGeneration:I
+     662: iconst_1
+     663: iadd
+     664: putstatic     #262                // Field recipeGeneration:I
+     667: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     670: invokeinterface #391,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     675: ifeq          720
+     678: getstatic     #125                // Field initAttempted:Z
+     681: ifne          702
+     684: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     687: ldc_w         #393                // String [RBIP] 0 tabs mapped (likely recipe-viewer init race) — will retry
+     690: invokeinterface #279,  2          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;)V
+     695: iconst_1
+     696: putstatic     #125                // Field initAttempted:Z
+     699: goto          728
+     702: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     705: ldc_w         #395                // String [RBIP] 0 tabs mapped on retry — giving up
+     708: invokeinterface #279,  2          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;)V
+     713: iconst_1
+     714: putstatic     #121                // Field initialized:Z
+     717: goto          728
+     720: iconst_1
+     721: putstatic     #121                // Field initialized:Z
+     724: iconst_1
+     725: putstatic     #125                // Field initAttempted:Z
+     728: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     731: ldc_w         #397                // String [RBIP] OK — {} tabs, {} items mapped (strategy: {})
+     734: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+     737: invokeinterface #165,  1          // InterfaceMethod java/util/List.size:()I
+     742: invokestatic  #402                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     745: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+     748: invokeinterface #228,  1          // InterfaceMethod java/util/Map.size:()I
+     753: invokestatic  #402                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     756: iload_1
+     757: ifle          766
+     760: ldc_w         #403                // String getDisplayItems
+     763: goto          769
+     766: ldc_w         #407                // String registry scan
+     769: invokeinterface #255,  5          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+     774: goto          790
+     777: astore_1
+     778: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+     781: ldc_w         #409                // String [RBIP] Init failed
+     784: aload_1
+     785: invokeinterface #412,  3          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Throwable;)V
+     790: return
+    Exception table:
+       from    to  target type
+         244   371   374   Class java/lang/Exception
+         508   555   561   Class java/lang/Exception
+         157   774   777   Class java/lang/Exception
+
+  private static boolean shouldMirror(net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: aload_0
+       1: invokevirtual #428                // Method net/minecraft/world/item/CreativeModeTab.getType:()Lnet/minecraft/world/item/CreativeModeTab$Type;
+       4: astore_1
+       5: aload_1
+       6: getstatic     #432                // Field net/minecraft/world/item/CreativeModeTab$Type.INVENTORY:Lnet/minecraft/world/item/CreativeModeTab$Type;
+       9: if_acmpeq     23
+      12: aload_1
+      13: getstatic     #435                // Field net/minecraft/world/item/CreativeModeTab$Type.SEARCH:Lnet/minecraft/world/item/CreativeModeTab$Type;
+      16: if_acmpeq     23
+      19: iconst_1
+      20: goto          24
+      23: iconst_0
+      24: ireturn
+
+  public static void init(com.alonie.brbe.config.ConfigEventBus);
+    Code:
+       0: aload_0
+       1: ldc           #22                 // class com/alonie/brbe/config/ConfigEventBus$ConfigChanged
+       3: invokedynamic #451,  0            // InvokeDynamic #1:accept:()Ljava/util/function/Consumer;
+       8: invokevirtual #455                // Method com/alonie/brbe/config/ConfigEventBus.subscribe:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      11: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+      14: ldc_w         #457                // String [RBIP] Subscribed to ConfigEventBus
+      17: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+      22: return
+
+  public static void onConfigChanged();
+    Code:
+       0: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       3: ldc_w         #461                // String [RBIP] onConfigChanged()
+       6: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+      11: iconst_0
+      12: putstatic     #121                // Field initialized:Z
+      15: iconst_0
+      16: putstatic     #125                // Field initAttempted:Z
+      19: getstatic     #262                // Field recipeGeneration:I
+      22: iconst_1
+      23: iadd
+      24: putstatic     #262                // Field recipeGeneration:I
+      27: getstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+      30: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+      35: getstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+      38: invokeinterface #265,  1          // InterfaceMethod java/util/List.clear:()V
+      43: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+      46: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+      51: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+      54: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+      59: iconst_0
+      60: putstatic     #463                // Field namespaceCacheBuilt:Z
+      63: getstatic     #465                // Field namespaceCache:Ljava/util/Map;
+      66: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+      71: invokestatic  #156                // Method com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig.enabled:()Z
+      74: ifeq          80
+      77: invokestatic  #467                // Method ensureInitialized:()V
+      80: return
+
+  public static java.util.Set<net.minecraft.world.item.Item> getItemsForTab(net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+       3: aload_0
+       4: invokestatic  #204                // InterfaceMethod java/util/Set.of:()Ljava/util/Set;
+       7: invokeinterface #210,  3          // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      12: checkcast     #200                // class java/util/Set
+      15: areturn
+
+  public static net.minecraft.world.item.CreativeModeTab getCreativeTabForItem(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokevirtual #322                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+       4: ifeq          9
+       7: aconst_null
+       8: areturn
+       9: getstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+      12: aload_0
+      13: invokevirtual #326                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      16: invokeinterface #390,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      21: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+      24: areturn
+
+  public static boolean isItemInTab(net.minecraft.world.item.ItemStack, net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: getstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+       3: aload_1
+       4: invokeinterface #390,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       9: checkcast     #200                // class java/util/Set
+      12: astore_2
+      13: aload_2
+      14: ifnull        34
+      17: aload_2
+      18: aload_0
+      19: invokevirtual #326                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      22: invokeinterface #475,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      27: ifeq          34
+      30: iconst_1
+      31: goto          35
+      34: iconst_0
+      35: ireturn
+
+  public static void buildNamespaceCache();
+    Code:
+       0: getstatic     #465                // Field namespaceCache:Ljava/util/Map;
+       3: invokeinterface #268,  1          // InterfaceMethod java/util/Map.clear:()V
+       8: invokestatic  #221                // Method net/minecraft/world/item/CreativeModeTabs.allTabs:()Ljava/util/List;
+      11: invokeinterface #174,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      16: astore_0
+      17: aload_0
+      18: invokeinterface #179,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      23: ifeq          132
+      26: aload_0
+      27: invokeinterface #183,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      32: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+      35: astore_1
+      36: aload_1
+      37: invokevirtual #428                // Method net/minecraft/world/item/CreativeModeTab.getType:()Lnet/minecraft/world/item/CreativeModeTab$Type;
+      40: astore_2
+      41: aload_2
+      42: getstatic     #432                // Field net/minecraft/world/item/CreativeModeTab$Type.INVENTORY:Lnet/minecraft/world/item/CreativeModeTab$Type;
+      45: if_acmpeq     17
+      48: aload_2
+      49: getstatic     #435                // Field net/minecraft/world/item/CreativeModeTab$Type.SEARCH:Lnet/minecraft/world/item/CreativeModeTab$Type;
+      52: if_acmpne     58
+      55: goto          17
+      58: getstatic     #480                // Field net/minecraft/core/registries/BuiltInRegistries.CREATIVE_MODE_TAB:Lnet/minecraft/core/Registry;
+      61: aload_1
+      62: invokeinterface #486,  2          // InterfaceMethod net/minecraft/core/Registry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      67: astore_3
+      68: aload_3
+      69: ifnull        86
+      72: getstatic     #465                // Field namespaceCache:Ljava/util/Map;
+      75: aload_3
+      76: invokevirtual #491                // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+      79: aload_1
+      80: invokeinterface #337,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      85: pop
+      86: aload_1
+      87: invokevirtual #189                // Method net/minecraft/world/item/CreativeModeTab.getDisplayName:()Lnet/minecraft/network/chat/Component;
+      90: invokeinterface #194,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      95: invokevirtual #494                // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+      98: ldc_w         #496                // String [^a-z0-9_]
+     101: ldc_w         #498                // String
+     104: invokevirtual #502                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     107: astore        4
+     109: aload         4
+     111: invokevirtual #503                // Method java/lang/String.isEmpty:()Z
+     114: ifne          129
+     117: getstatic     #465                // Field namespaceCache:Ljava/util/Map;
+     120: aload         4
+     122: aload_1
+     123: invokeinterface #337,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     128: pop
+     129: goto          17
+     132: iconst_1
+     133: putstatic     #463                // Field namespaceCacheBuilt:Z
+     136: return
+
+  public static net.minecraft.world.item.CreativeModeTab lookupByNamespace(java.lang.String);
+    Code:
+       0: getstatic     #463                // Field namespaceCacheBuilt:Z
+       3: ifne          9
+       6: invokestatic  #513                // Method buildNamespaceCache:()V
+       9: getstatic     #465                // Field namespaceCache:Ljava/util/Map;
+      12: aload_0
+      13: invokeinterface #390,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      18: checkcast     #19                 // class net/minecraft/world/item/CreativeModeTab
+      21: areturn
+
+  public static void applyNamespaceOverrides();
+    Code:
+       0: getstatic     #463                // Field namespaceCacheBuilt:Z
+       3: ifne          9
+       6: invokestatic  #513                // Method buildNamespaceCache:()V
+       9: return
+
+  public static void registerNewGroup(net.minecraft.world.item.ItemStack);
+    Code:
+       0: return
+
+  public static boolean isOwOLoaded();
+    Code:
+       0: getstatic     #114                // Field isOwOLoaded:Z
+       3: ireturn
+
+  public static void rbip$renderOwo(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton);
+    Code:
+       0: return
+
+  public static void rbip$renderOwo(net.minecraft.client.gui.GuiGraphics, net.minecraft.client.gui.screens.recipebook.RecipeBookComponent, net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton);
+    Code:
+       0: return
+
+  private static void lambda$init$0(com.alonie.brbe.config.ConfigEventBus$ConfigChanged);
+    Code:
+       0: getstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       3: ldc_w         #528                // String [RBIP] ConfigChanged event received
+       6: invokeinterface #260,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+      11: invokestatic  #530                // Method onConfigChanged:()V
+      14: return
+
+  private static java.util.Set lambda$ensureInitialized$0(net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: new           #309                // class java/util/HashSet
+       3: dup
+       4: invokespecial #310                // Method java/util/HashSet."<init>":()V
+       7: areturn
+
+  static {};
+    Code:
+       0: ldc_w         #535                // String RBIP
+       3: invokestatic  #541                // Method org/apache/logging/log4j/LogManager.getLogger:(Ljava/lang/String;)Lorg/apache/logging/log4j/Logger;
+       6: putstatic     #241                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       9: new           #543                // class java/util/ArrayList
+      12: dup
+      13: invokespecial #544                // Method java/util/ArrayList."<init>":()V
+      16: putstatic     #160                // Field CRAFTING_LIST:Ljava/util/List;
+      19: new           #543                // class java/util/ArrayList
+      22: dup
+      23: invokespecial #544                // Method java/util/ArrayList."<init>":()V
+      26: putstatic     #267                // Field CRAFTING_SEARCH_LIST:Ljava/util/List;
+      29: new           #546                // class java/util/HashMap
+      32: dup
+      33: invokespecial #547                // Method java/util/HashMap."<init>":()V
+      36: putstatic     #198                // Field TAB_ITEMS:Ljava/util/Map;
+      39: new           #546                // class java/util/HashMap
+      42: dup
+      43: invokespecial #547                // Method java/util/HashMap."<init>":()V
+      46: putstatic     #227                // Field ITEM_TO_TAB:Ljava/util/Map;
+      49: new           #546                // class java/util/HashMap
+      52: dup
+      53: invokespecial #547                // Method java/util/HashMap."<init>":()V
+      56: putstatic     #465                // Field namespaceCache:Ljava/util/Map;
+      59: return
+}

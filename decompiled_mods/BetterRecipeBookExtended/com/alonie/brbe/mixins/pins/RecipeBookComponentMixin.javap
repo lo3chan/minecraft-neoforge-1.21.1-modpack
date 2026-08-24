@@ -1,0 +1,8 @@
+Compiled from "RecipeBookComponentMixin.java"
+public abstract class com.alonie.brbe.mixins.pins.RecipeBookComponentMixin implements com.alonie.brbe.interfaces.IPinningComponent<com.alonie.brbe.generic.pins.PinnableRecipeCollection> {
+  public com.alonie.brbe.mixins.pins.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: return
+}

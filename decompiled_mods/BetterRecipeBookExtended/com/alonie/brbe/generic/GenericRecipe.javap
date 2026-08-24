@@ -1,0 +1,16 @@
+Compiled from "GenericRecipe.java"
+public interface com.alonie.brbe.generic.GenericRecipe extends com.alonie.brbe.generic.pins.Pinnable {
+  public abstract net.minecraft.resources.ResourceLocation id();
+
+  public default boolean has(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: invokeinterface #19,  1           // InterfaceMethod id:()Lnet/minecraft/resources/ResourceLocation;
+       6: aload_1
+       7: invokevirtual #25                 // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      10: ireturn
+
+  public abstract net.minecraft.world.item.ItemStack getResult(net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+
+  public abstract java.lang.String getSearchString(com.alonie.brbe.api.BRBBookCategories$Category);
+}

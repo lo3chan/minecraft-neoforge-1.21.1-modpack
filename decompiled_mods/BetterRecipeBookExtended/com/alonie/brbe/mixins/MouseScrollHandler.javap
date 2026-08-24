@@ -1,0 +1,65 @@
+Compiled from "MouseScrollHandler.java"
+public class com.alonie.brbe.mixins.MouseScrollHandler {
+  private net.minecraft.client.Minecraft minecraft;
+
+  static final boolean $assertionsDisabled;
+
+  public com.alonie.brbe.mixins.MouseScrollHandler();
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void onMouseScroll(long, double, double, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #38                 // Method com/alonie/brbe/BetterRecipeBook.getQueuedScroll:()I
+       3: ifne          94
+       6: getstatic     #40                 // Field $assertionsDisabled:Z
+       9: ifne          30
+      12: aload_0
+      13: getfield      #42                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      16: getfield      #48                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      19: ifnonnull     30
+      22: new           #50                 // class java/lang/AssertionError
+      25: dup
+      26: invokespecial #51                 // Method java/lang/AssertionError."<init>":()V
+      29: athrow
+      30: aload_0
+      31: getfield      #42                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      34: getfield      #55                 // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+      37: invokevirtual #61                 // Method net/minecraft/client/Options.discreteMouseScroll:()Lnet/minecraft/client/OptionInstance;
+      40: invokevirtual #67                 // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+      43: checkcast     #69                 // class java/lang/Boolean
+      46: invokevirtual #73                 // Method java/lang/Boolean.booleanValue:()Z
+      49: ifeq          60
+      52: dload         5
+      54: invokestatic  #79                 // Method java/lang/Math.signum:(D)D
+      57: goto          62
+      60: dload         5
+      62: aload_0
+      63: getfield      #42                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      66: getfield      #55                 // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+      69: invokevirtual #82                 // Method net/minecraft/client/Options.mouseWheelSensitivity:()Lnet/minecraft/client/OptionInstance;
+      72: invokevirtual #67                 // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+      75: checkcast     #84                 // class java/lang/Double
+      78: invokevirtual #88                 // Method java/lang/Double.doubleValue:()D
+      81: dmul
+      82: dstore        8
+      84: dload         8
+      86: invokestatic  #79                 // Method java/lang/Math.signum:(D)D
+      89: dneg
+      90: d2i
+      91: invokestatic  #92                 // Method com/alonie/brbe/BetterRecipeBook.setQueuedScroll:(I)V
+      94: return
+
+  static {};
+    Code:
+       0: ldc           #2                  // class com/alonie/brbe/mixins/MouseScrollHandler
+       2: invokevirtual #102                // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #40                 // Field $assertionsDisabled:Z
+      16: return
+}

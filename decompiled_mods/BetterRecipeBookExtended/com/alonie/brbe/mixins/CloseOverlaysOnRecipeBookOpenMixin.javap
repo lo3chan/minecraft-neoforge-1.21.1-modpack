@@ -1,0 +1,53 @@
+Compiled from "CloseOverlaysOnRecipeBookOpenMixin.java"
+public abstract class com.alonie.brbe.mixins.CloseOverlaysOnRecipeBookOpenMixin {
+  private boolean widthTooNarrow;
+
+  protected net.minecraft.client.Minecraft minecraft;
+
+  public com.alonie.brbe.mixins.CloseOverlaysOnRecipeBookOpenMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$repositionOnOpen(boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: iload_1
+       1: ifne          5
+       4: return
+       5: aload_0
+       6: getfield      #31                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+       9: ifnull        22
+      12: aload_0
+      13: getfield      #31                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      16: getfield      #37                 // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      19: ifnonnull     23
+      22: return
+      23: aload_0
+      24: getfield      #31                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      27: getfield      #37                 // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      30: astore        4
+      32: aload         4
+      34: instanceof    #39                 // class net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
+      37: ifeq          49
+      40: aload         4
+      42: checkcast     #39                 // class net/minecraft/client/gui/screens/inventory/AbstractContainerScreen
+      45: astore_3
+      46: goto          50
+      49: return
+      50: aload_3
+      51: checkcast     #45                 // class com/alonie/brbe/mixins/accessors/AbstractContainerScreenAccessor
+      54: astore        4
+      56: aload_0
+      57: checkcast     #47                 // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      60: aload_3
+      61: getfield      #51                 // Field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen.width:I
+      64: aload         4
+      66: invokeinterface #55,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/AbstractContainerScreenAccessor.getImageWidth:()I
+      71: invokeinterface #59,  3           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.updateScreenPositionInvoker:(II)I
+      76: istore        5
+      78: aload         4
+      80: iload         5
+      82: invokeinterface #63,  2           // InterfaceMethod com/alonie/brbe/mixins/accessors/AbstractContainerScreenAccessor.setLeftPos:(I)V
+      87: return
+}

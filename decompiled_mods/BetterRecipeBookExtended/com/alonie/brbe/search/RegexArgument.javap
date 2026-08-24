@@ -1,0 +1,31 @@
+Compiled from "RegexArgument.java"
+public class com.alonie.brbe.search.RegexArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.util.regex.Pattern pattern;
+
+  public com.alonie.brbe.search.RegexArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: iconst_2
+       7: invokestatic  #21                 // Method java/util/regex/Pattern.compile:(Ljava/lang/String;I)Ljava/util/regex/Pattern;
+      10: putfield      #23                 // Field pattern:Ljava/util/regex/Pattern;
+      13: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field pattern:Ljava/util/regex/Pattern;
+       4: aload_1
+       5: invokevirtual #36                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+       8: invokeinterface #42,  1           // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      13: invokevirtual #46                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+      16: invokevirtual #52                 // Method java/util/regex/Matcher.find:()Z
+      19: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

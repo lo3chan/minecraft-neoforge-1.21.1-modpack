@@ -1,0 +1,4 @@
+Compiled from "ClientRecipeBookAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.ClientRecipeBookAccessor {
+  public abstract void brbe$setupCollections(java.lang.Iterable<net.minecraft.world.item.crafting.RecipeHolder<?>>, net.minecraft.core.RegistryAccess);
+}

@@ -1,0 +1,4 @@
+Compiled from "RecipeBookTabButtonIconOffset.java"
+public interface com.alonie.brbe.interfaces.RecipeBookTabButtonIconOffset {
+  public abstract void brbe$setIconYOffset(int);
+}

@@ -1,0 +1,34 @@
+Compiled from "RemoveBookButton.java"
+public class com.alonie.brbe.mixins.RemoveBookButton extends net.minecraft.client.gui.components.Button {
+  protected net.minecraft.client.gui.components.WidgetSprites sprites;
+
+  public com.alonie.brbe.mixins.RemoveBookButton(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: aload         5
+       8: aload         6
+      10: getstatic     #30                 // Field DEFAULT_NARRATION:Lnet/minecraft/client/gui/components/Button$CreateNarration;
+      13: invokespecial #33                 // Method net/minecraft/client/gui/components/Button."<init>":(IIIILnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;Lnet/minecraft/client/gui/components/Button$CreateNarration;)V
+      16: return
+
+  public void renderWidget(net.minecraft.client.gui.GuiGraphics, int, int, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #58                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #64                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #70                 // Field com/alonie/brbe/config/Config.enableBook:Z
+       9: ifne          32
+      12: aload_0
+      13: getfield      #72                 // Field sprites:Lnet/minecraft/client/gui/components/WidgetSprites;
+      16: getstatic     #77                 // Field net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.RECIPE_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+      19: if_acmpne     32
+      22: aload_0
+      23: iconst_0
+      24: putfield      #80                 // Field visible:Z
+      27: aload         5
+      29: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      32: return
+}

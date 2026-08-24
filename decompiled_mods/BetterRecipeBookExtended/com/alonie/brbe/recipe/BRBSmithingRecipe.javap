@@ -1,0 +1,152 @@
+Compiled from "BRBSmithingRecipe.java"
+public interface com.alonie.brbe.recipe.BRBSmithingRecipe extends net.minecraft.world.item.crafting.SmithingRecipe,com.alonie.brbe.generic.GenericRecipe {
+  public abstract net.minecraft.world.item.ItemStack getResult(net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+
+  public abstract net.minecraft.world.item.ItemStack getResult(net.minecraft.resources.ResourceKey<net.minecraft.world.item.armortrim.TrimMaterial>, net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getTemplate();
+
+  public abstract net.minecraft.world.item.ItemStack getBase();
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getAddition();
+
+  public default boolean hasMaterials(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokeinterface #42,  2           // InterfaceMethod hasTemplate:(Ljava/util/List;)Z
+       7: ifeq          35
+      10: aload_0
+      11: aload_1
+      12: aload_2
+      13: invokeinterface #46,  3           // InterfaceMethod hasBase:(Ljava/util/List;Lnet/minecraft/core/RegistryAccess;)Z
+      18: ifeq          35
+      21: aload_0
+      22: aload_1
+      23: invokeinterface #49,  2           // InterfaceMethod hasAddition:(Ljava/util/List;)Z
+      28: ifeq          35
+      31: iconst_1
+      32: goto          36
+      35: iconst_0
+      36: ireturn
+
+  public default boolean hasTemplate(java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_1
+       1: invokeinterface #61,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_2
+       7: aload_2
+       8: invokeinterface #67,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          47
+      16: aload_2
+      17: invokeinterface #71,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #73                 // class net/minecraft/world/inventory/Slot
+      25: astore_3
+      26: aload_0
+      27: invokeinterface #75,  1           // InterfaceMethod getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+      32: aload_3
+      33: invokevirtual #78                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      36: invokevirtual #84                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+      39: ifeq          44
+      42: iconst_1
+      43: ireturn
+      44: goto          7
+      47: iconst_0
+      48: ireturn
+
+  public default boolean hasBase(java.util.List<net.minecraft.world.inventory.Slot>, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_1
+       1: invokeinterface #61,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_3
+       7: aload_3
+       8: invokeinterface #67,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          69
+      16: aload_3
+      17: invokeinterface #71,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #73                 // class net/minecraft/world/inventory/Slot
+      25: astore        4
+      27: aload         4
+      29: invokevirtual #78                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      32: getstatic     #95                 // Field net/minecraft/core/component/DataComponents.TRIM:Lnet/minecraft/core/component/DataComponentType;
+      35: invokevirtual #101                // Method net/minecraft/world/item/ItemStack.has:(Lnet/minecraft/core/component/DataComponentType;)Z
+      38: ifne          66
+      41: aload_0
+      42: invokeinterface #103,  1          // InterfaceMethod getBase:()Lnet/minecraft/world/item/ItemStack;
+      47: invokevirtual #106                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      50: aload         4
+      52: invokevirtual #78                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      55: invokevirtual #106                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      58: invokevirtual #110                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      61: ifeq          66
+      64: iconst_1
+      65: ireturn
+      66: goto          7
+      69: iconst_0
+      70: ireturn
+
+  public default boolean hasAddition(java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_1
+       1: invokeinterface #61,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_2
+       7: aload_2
+       8: invokeinterface #67,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          47
+      16: aload_2
+      17: invokeinterface #71,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #73                 // class net/minecraft/world/inventory/Slot
+      25: astore_3
+      26: aload_0
+      27: invokeinterface #112,  1          // InterfaceMethod getAddition:()Lnet/minecraft/world/item/crafting/Ingredient;
+      32: aload_3
+      33: invokevirtual #78                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      36: invokevirtual #84                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+      39: ifeq          44
+      42: iconst_1
+      43: ireturn
+      44: goto          7
+      47: iconst_0
+      48: ireturn
+
+  public default java.lang.String getTemplateType();
+    Code:
+       0: invokestatic  #120                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+       6: invokevirtual #130                // Method net/minecraft/client/player/LocalPlayer.level:()Lnet/minecraft/world/level/Level;
+       9: invokestatic  #134                // InterfaceMethod net/minecraft/world/item/Item$TooltipContext.of:(Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/item/Item$TooltipContext;
+      12: astore_1
+      13: aload_0
+      14: invokeinterface #75,  1           // InterfaceMethod getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+      19: invokevirtual #138                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      22: iconst_0
+      23: aaload
+      24: aload_1
+      25: invokestatic  #120                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      28: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      31: getstatic     #142                // Field net/minecraft/world/item/TooltipFlag.NORMAL:Lnet/minecraft/world/item/TooltipFlag$Default;
+      34: invokevirtual #146                // Method net/minecraft/world/item/ItemStack.getTooltipLines:(Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;
+      37: iconst_1
+      38: invokeinterface #150,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      43: checkcast     #152                // class net/minecraft/network/chat/Component
+      46: invokeinterface #155,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      51: areturn
+
+  public default net.minecraft.resources.ResourceLocation id();
+    Code:
+       0: getstatic     #165                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       3: aload_0
+       4: invokeinterface #75,  1           // InterfaceMethod getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+       9: invokevirtual #138                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      12: iconst_0
+      13: aaload
+      14: invokevirtual #106                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      17: invokeinterface #171,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      22: areturn
+
+  public default java.lang.String getSearchString(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: invokeinterface #176,  1          // InterfaceMethod getTemplateType:()Ljava/lang/String;
+       6: areturn
+}

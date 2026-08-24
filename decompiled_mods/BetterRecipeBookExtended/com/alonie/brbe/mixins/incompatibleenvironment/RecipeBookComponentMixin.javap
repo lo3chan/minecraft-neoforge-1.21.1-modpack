@@ -1,0 +1,61 @@
+Compiled from "RecipeBookComponentMixin.java"
+public abstract class com.alonie.brbe.mixins.incompatibleenvironment.RecipeBookComponentMixin {
+  private net.minecraft.client.ClientRecipeBook book;
+
+  private net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton selectedTab;
+
+  public com.alonie.brbe.mixins.incompatibleenvironment.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$preventIncompatibleRecipeClick(net.minecraft.world.item.crafting.RecipeHolder<?>, java.util.List, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: invokestatic  #40                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #46                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #52                 // Field com/alonie/brbe/config/Config.showAllRecipesInSurvival:Z
+       9: ifne          13
+      12: return
+      13: invokestatic  #58                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      16: getfield      #62                 // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      19: instanceof    #64                 // class net/minecraft/client/gui/screens/inventory/InventoryScreen
+      22: ifne          26
+      25: return
+      26: aload_1
+      27: invokestatic  #70                 // Method com/alonie/brbe/util/IncompatibleCraftingUtil.checkIncompatible:(Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+      30: ifeq          38
+      33: aload_3
+      34: invokevirtual #75                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      37: return
+      38: aload_0
+      39: getfield      #77                 // Field book:Lnet/minecraft/client/ClientRecipeBook;
+      42: aload_0
+      43: getfield      #79                 // Field selectedTab:Lnet/minecraft/client/gui/screens/recipebook/RecipeBookTabButton;
+      46: invokevirtual #85                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookTabButton.getCategory:()Lnet/minecraft/client/RecipeBookCategories;
+      49: invokevirtual #91                 // Method net/minecraft/client/ClientRecipeBook.getCollection:(Lnet/minecraft/client/RecipeBookCategories;)Ljava/util/List;
+      52: astore        4
+      54: aload         4
+      56: ifnonnull     60
+      59: return
+      60: aload         4
+      62: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      67: astore        5
+      69: aload         5
+      71: invokeinterface #103,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      76: ifeq          111
+      79: aload         5
+      81: invokeinterface #107,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      86: checkcast     #109                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+      89: astore        6
+      91: aload         6
+      93: aload_1
+      94: invokevirtual #115                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+      97: invokestatic  #118                // Method com/alonie/brbe/util/IncompatibleCraftingUtil.checkIncompatible:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+     100: ifeq          108
+     103: aload_3
+     104: invokevirtual #75                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+     107: return
+     108: goto          69
+     111: return
+}

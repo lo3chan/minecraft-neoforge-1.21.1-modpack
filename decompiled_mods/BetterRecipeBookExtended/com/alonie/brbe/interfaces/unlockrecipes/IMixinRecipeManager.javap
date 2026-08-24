@@ -1,0 +1,4 @@
+Compiled from "IMixinRecipeManager.java"
+public interface com.alonie.brbe.interfaces.unlockrecipes.IMixinRecipeManager {
+  public abstract java.util.Set<net.minecraft.resources.ResourceLocation> brbe$getServerUnlockedRecipes();
+}

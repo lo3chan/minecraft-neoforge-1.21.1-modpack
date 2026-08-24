@@ -1,0 +1,106 @@
+Compiled from "SmithingGhostRecipe.java"
+public class com.alonie.brbe.smithingtable.SmithingGhostRecipe extends com.alonie.brbe.generic.GenericGhostRecipe<com.alonie.brbe.recipe.BRBSmithingRecipe> {
+  public com.alonie.brbe.smithingtable.SmithingGhostRecipe(java.util.function.Consumer<net.minecraft.world.item.ItemStack>, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokespecial #37                 // Method com/alonie/brbe/generic/GenericGhostRecipe."<init>":(Ljava/util/function/Consumer;Lnet/minecraft/core/RegistryAccess;)V
+       6: return
+
+  public net.minecraft.world.item.ItemStack getCurrentResult(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+       4: ifnonnull     11
+       7: getstatic     #55                 // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: aload_0
+      12: getfield      #49                 // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      15: instanceof    #57                 // class com/alonie/brbe/recipe/smithing/BRBSmithingTransformRecipe
+      18: ifeq          39
+      21: aload_0
+      22: getfield      #49                 // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      25: checkcast     #59                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      28: aload_0
+      29: getfield      #61                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      32: aload_1
+      33: invokeinterface #65,  3           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getResult:(Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      38: areturn
+      39: aload_0
+      40: getfield      #49                 // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      43: checkcast     #59                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      46: invokeinterface #69,  1           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getBase:()Lnet/minecraft/world/item/ItemStack;
+      51: invokevirtual #72                 // Method net/minecraft/world/item/ItemStack.copy:()Lnet/minecraft/world/item/ItemStack;
+      54: astore_2
+      55: aload_0
+      56: getfield      #61                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      59: getstatic     #78                 // Field net/minecraft/core/registries/Registries.TRIM_MATERIAL:Lnet/minecraft/resources/ResourceKey;
+      62: invokeinterface #84,  2           // InterfaceMethod net/minecraft/core/RegistryAccess.registryOrThrow:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
+      67: invokeinterface #90,  1           // InterfaceMethod net/minecraft/core/Registry.holders:()Ljava/util/stream/Stream;
+      72: astore_3
+      73: aload_0
+      74: getfield      #61                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      77: aload_0
+      78: getfield      #94                 // Field ingredients:Ljava/util/List;
+      81: iconst_0
+      82: invokeinterface #100,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      87: checkcast     #13                 // class com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient
+      90: invokevirtual #103                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+      93: invokestatic  #109                // Method net/minecraft/world/item/armortrim/TrimMaterials.getFromIngredient:(Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+      96: astore        4
+      98: aload         4
+     100: invokevirtual #115                // Method java/util/Optional.isEmpty:()Z
+     103: ifeq          108
+     106: aload_2
+     107: areturn
+     108: aload_3
+     109: aload         4
+     111: invokedynamic #137,  0            // InvokeDynamic #0:test:(Ljava/util/Optional;)Ljava/util/function/Predicate;
+     116: invokeinterface #141,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+     121: invokeinterface #145,  1          // InterfaceMethod java/util/stream/Stream.findFirst:()Ljava/util/Optional;
+     126: invokevirtual #148                // Method java/util/Optional.get:()Ljava/lang/Object;
+     129: checkcast     #21                 // class net/minecraft/core/Holder$Reference
+     132: astore        5
+     134: aload_0
+     135: getfield      #61                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     138: aload_0
+     139: getfield      #49                 // Field recipe:Lcom/alonie/brbe/generic/GenericRecipe;
+     142: checkcast     #59                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+     145: invokeinterface #152,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+     150: invokevirtual #158                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+     153: iconst_0
+     154: aaload
+     155: invokestatic  #163                // Method net/minecraft/world/item/armortrim/TrimPatterns.getFromTemplate:(Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+     158: astore        6
+     160: aload         6
+     162: invokevirtual #166                // Method java/util/Optional.isPresent:()Z
+     165: ifeq          197
+     168: new           #168                // class net/minecraft/world/item/armortrim/ArmorTrim
+     171: dup
+     172: aload         5
+     174: aload         6
+     176: invokevirtual #148                // Method java/util/Optional.get:()Ljava/lang/Object;
+     179: checkcast     #23                 // class net/minecraft/core/Holder
+     182: invokespecial #171                // Method net/minecraft/world/item/armortrim/ArmorTrim."<init>":(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V
+     185: astore        7
+     187: aload_2
+     188: getstatic     #177                // Field net/minecraft/core/component/DataComponents.TRIM:Lnet/minecraft/core/component/DataComponentType;
+     191: aload         7
+     193: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.set:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+     196: pop
+     197: aload_2
+     198: areturn
+
+  private static boolean lambda$getCurrentResult$0(java.util.Optional, net.minecraft.core.Holder$Reference);
+    Code:
+       0: aload_1
+       1: checkcast     #198                // class com/alonie/brbe/mixins/accessors/HolderReferenceAccessor
+       4: invokeinterface #202,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/HolderReferenceAccessor.getKey:()Lnet/minecraft/resources/ResourceKey;
+       9: aload_0
+      10: invokevirtual #148                // Method java/util/Optional.get:()Ljava/lang/Object;
+      13: checkcast     #198                // class com/alonie/brbe/mixins/accessors/HolderReferenceAccessor
+      16: invokeinterface #202,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/HolderReferenceAccessor.getKey:()Lnet/minecraft/resources/ResourceKey;
+      21: invokevirtual #207                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      24: ireturn
+}

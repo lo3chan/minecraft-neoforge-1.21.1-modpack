@@ -1,0 +1,6 @@
+Compiled from "WorkbenchVisualsProvider.java"
+public interface fuzs.visualworkbench.world.level.block.entity.WorkbenchVisualsProvider {
+  public abstract net.minecraft.world.item.ItemStack getCraftingResult();
+
+  public abstract fuzs.visualworkbench.world.level.block.entity.CraftingTableAnimationController getAnimationController();
+}

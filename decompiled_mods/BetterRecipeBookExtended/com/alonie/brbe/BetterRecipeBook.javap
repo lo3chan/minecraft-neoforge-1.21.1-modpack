@@ -1,0 +1,234 @@
+Compiled from "BetterRecipeBook.java"
+public class com.alonie.brbe.BetterRecipeBook {
+  public static final java.lang.String MOD_ID;
+
+  private static int queuedScroll;
+
+  public static com.alonie.brbe.config.Config config;
+
+  public static me.shedaniel.autoconfig.ConfigHolder<com.alonie.brbe.config.Config> configHolder;
+
+  public static com.alonie.brbe.PinnedRecipeManager pinnedRecipeManager;
+
+  public static com.alonie.brbe.InstantCraftingManager instantCraftingManager;
+
+  public static final org.apache.logging.log4j.Logger LOGGER;
+
+  public static final net.minecraft.client.KeyMapping PIN_MAPPING;
+
+  public static final net.minecraft.client.KeyMapping DIAGNOSTIC_MAPPING;
+
+  public static com.alonie.brbe.util.BRBHelper$Book BREWING;
+
+  public static com.alonie.brbe.util.BRBHelper$Book SMITHING;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category BREWING_POTION;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category BREWING_SPLASH_POTION;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category BREWING_LINGERING_POTION;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category SMITHING_SEARCH;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category SMITHING_TRANSFORM;
+
+  public static com.alonie.brbe.api.BRBBookCategories$Category SMITHING_TRIM;
+
+  private static com.alonie.brbe.config.AppContext appContext;
+
+  public com.alonie.brbe.BetterRecipeBook();
+    Code:
+       0: aload_0
+       1: invokespecial #69                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static int getQueuedScroll();
+    Code:
+       0: getstatic     #75                 // Field queuedScroll:I
+       3: ireturn
+
+  public static void setQueuedScroll(int);
+    Code:
+       0: iload_0
+       1: putstatic     #75                 // Field queuedScroll:I
+       4: return
+
+  public static void addQueuedScroll(int);
+    Code:
+       0: getstatic     #75                 // Field queuedScroll:I
+       3: iload_0
+       4: iadd
+       5: putstatic     #75                 // Field queuedScroll:I
+       8: return
+
+  public static com.alonie.brbe.config.AppContext ctx();
+    Code:
+       0: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+       3: areturn
+
+  public static void init();
+    Code:
+       0: ldc           #87                 // class com/alonie/brbe/util/CollectionCategory
+       2: astore_0
+       3: invokestatic  #93                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       6: getfield      #97                 // Field net/minecraft/client/Minecraft.gameDirectory:Ljava/io/File;
+       9: invokevirtual #103                // Method java/io/File.toPath:()Ljava/nio/file/Path;
+      12: invokestatic  #108                // Method com/alonie/brbe/util/BrbeLogger.init:(Ljava/nio/file/Path;)V
+      15: invokestatic  #112                // Method com/alonie/brbe/loaders/PotionLoader.init:()V
+      18: invokestatic  #117                // Method com/alonie/brbe/compat/rei/ReiCompat.register:()V
+      21: invokestatic  #120                // Method com/alonie/brbe/compat/emi/EmiCompat.register:()V
+      24: iconst_0
+      25: putstatic     #75                 // Field queuedScroll:I
+      28: invokestatic  #125                // Method com/alonie/brbe/config/AppContext.create:()Lcom/alonie/brbe/config/AppContext;
+      31: putstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      34: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      37: invokevirtual #128                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      40: putstatic     #130                // Field config:Lcom/alonie/brbe/config/Config;
+      43: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      46: invokevirtual #133                // Method com/alonie/brbe/config/AppContext.configHolder:()Lme/shedaniel/autoconfig/ConfigHolder;
+      49: putstatic     #135                // Field configHolder:Lme/shedaniel/autoconfig/ConfigHolder;
+      52: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      55: invokevirtual #139                // Method com/alonie/brbe/config/AppContext.pins:()Lcom/alonie/brbe/PinnedRecipeManager;
+      58: putstatic     #141                // Field pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+      61: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      64: invokevirtual #145                // Method com/alonie/brbe/config/AppContext.instantCraft:()Lcom/alonie/brbe/InstantCraftingManager;
+      67: putstatic     #147                // Field instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      70: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      73: invokevirtual #151                // Method com/alonie/brbe/config/AppContext.events:()Lcom/alonie/brbe/config/ConfigEventBus;
+      76: ldc           #7                  // class com/alonie/brbe/config/ConfigEventBus$PartialCraftingChanged
+      78: invokedynamic #170,  0            // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+      83: invokevirtual #174                // Method com/alonie/brbe/config/ConfigEventBus.subscribe:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      86: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      89: invokevirtual #151                // Method com/alonie/brbe/config/AppContext.events:()Lcom/alonie/brbe/config/ConfigEventBus;
+      92: ldc           #12                 // class com/alonie/brbe/config/ConfigEventBus$ConfigChanged
+      94: invokedynamic #181,  0            // InvokeDynamic #1:accept:()Ljava/util/function/Consumer;
+      99: invokevirtual #174                // Method com/alonie/brbe/config/ConfigEventBus.subscribe:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+     102: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+     105: invokevirtual #151                // Method com/alonie/brbe/config/AppContext.events:()Lcom/alonie/brbe/config/ConfigEventBus;
+     108: invokestatic  #186                // Method com/alonie/recipebookispain_extended/RecipeBookIsPain.init:(Lcom/alonie/brbe/config/ConfigEventBus;)V
+     111: new           #188                // class com/alonie/brbe/pin/JsonPinStore
+     114: dup
+     115: invokestatic  #93                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+     118: getfield      #97                 // Field net/minecraft/client/Minecraft.gameDirectory:Ljava/io/File;
+     121: invokevirtual #103                // Method java/io/File.toPath:()Ljava/nio/file/Path;
+     124: invokespecial #190                // Method com/alonie/brbe/pin/JsonPinStore."<init>":(Ljava/nio/file/Path;)V
+     127: astore_1
+     128: getstatic     #141                // Field pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+     131: aload_1
+     132: invokevirtual #196                // Method com/alonie/brbe/PinnedRecipeManager.setStore:(Lcom/alonie/brbe/pin/PinStore;)V
+     135: getstatic     #141                // Field pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+     138: invokevirtual #199                // Method com/alonie/brbe/PinnedRecipeManager.read:()V
+     141: invokestatic  #204                // Method com/alonie/brbe/util/BrbeDiagnostic.dump:()V
+     144: return
+
+  private static void lambda$init$1(com.alonie.brbe.config.ConfigEventBus$ConfigChanged);
+    Code:
+       0: aload_0
+       1: invokevirtual #211                // Method com/alonie/brbe/config/ConfigEventBus$ConfigChanged.config:()Lcom/alonie/brbe/config/Config;
+       4: putstatic     #130                // Field config:Lcom/alonie/brbe/config/Config;
+       7: getstatic     #84                 // Field appContext:Lcom/alonie/brbe/config/AppContext;
+      10: invokevirtual #151                // Method com/alonie/brbe/config/AppContext.events:()Lcom/alonie/brbe/config/ConfigEventBus;
+      13: invokevirtual #214                // Method com/alonie/brbe/config/ConfigEventBus.requestConfigRefresh:()V
+      16: invokestatic  #219                // Method com/alonie/brbe/util/RecipeUnlockUtil.syncToConfig:()V
+      19: invokestatic  #204                // Method com/alonie/brbe/util/BrbeDiagnostic.dump:()V
+      22: return
+
+  private static void lambda$init$0(com.alonie.brbe.config.ConfigEventBus$PartialCraftingChanged);
+    Code:
+       0: invokestatic  #225                // Method com/alonie/brbe/util/PartialCraftingUtil.invalidateCaches:()V
+       3: return
+
+  static {};
+    Code:
+       0: ldc           #37                 // String brbe
+       2: invokestatic  #233                // Method org/apache/logging/log4j/LogManager.getLogger:(Ljava/lang/String;)Lorg/apache/logging/log4j/Logger;
+       5: putstatic     #235                // Field LOGGER:Lorg/apache/logging/log4j/Logger;
+       8: new           #237                // class net/minecraft/client/KeyMapping
+      11: dup
+      12: ldc           #239                // String key.brbe.pin
+      14: getstatic     #243                // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      17: bipush        70
+      19: ldc           #245                // String category.brbe
+      21: invokespecial #248                // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      24: putstatic     #250                // Field PIN_MAPPING:Lnet/minecraft/client/KeyMapping;
+      27: new           #237                // class net/minecraft/client/KeyMapping
+      30: dup
+      31: ldc           #252                // String key.brbe.diagnostic
+      33: getstatic     #243                // Field com/mojang/blaze3d/platform/InputConstants$Type.KEYSYM:Lcom/mojang/blaze3d/platform/InputConstants$Type;
+      36: sipush        297
+      39: ldc           #245                // String category.brbe
+      41: invokespecial #248                // Method net/minecraft/client/KeyMapping."<init>":(Ljava/lang/String;Lcom/mojang/blaze3d/platform/InputConstants$Type;ILjava/lang/String;)V
+      44: putstatic     #254                // Field DIAGNOSTIC_MAPPING:Lnet/minecraft/client/KeyMapping;
+      47: ldc           #37                 // String brbe
+      49: ldc_w         #256                // String brewing_stand
+      52: invokestatic  #260                // Method com/alonie/brbe/util/BRBHelper.createBook:(Ljava/lang/String;Ljava/lang/String;)Lcom/alonie/brbe/util/BRBHelper$Book;
+      55: putstatic     #262                // Field BREWING:Lcom/alonie/brbe/util/BRBHelper$Book;
+      58: ldc           #37                 // String brbe
+      60: ldc_w         #264                // String smithing_table
+      63: invokestatic  #260                // Method com/alonie/brbe/util/BRBHelper.createBook:(Ljava/lang/String;Ljava/lang/String;)Lcom/alonie/brbe/util/BRBHelper$Book;
+      66: putstatic     #266                // Field SMITHING:Lcom/alonie/brbe/util/BRBHelper$Book;
+      69: getstatic     #262                // Field BREWING:Lcom/alonie/brbe/util/BRBHelper$Book;
+      72: iconst_1
+      73: anewarray     #268                // class net/minecraft/world/item/ItemStack
+      76: dup
+      77: iconst_0
+      78: new           #268                // class net/minecraft/world/item/ItemStack
+      81: dup
+      82: getstatic     #274                // Field net/minecraft/world/item/Items.POTION:Lnet/minecraft/world/item/Item;
+      85: invokespecial #277                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      88: aastore
+      89: invokevirtual #281                // Method com/alonie/brbe/util/BRBHelper$Book.createCategory:([Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      92: putstatic     #283                // Field BREWING_POTION:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      95: getstatic     #262                // Field BREWING:Lcom/alonie/brbe/util/BRBHelper$Book;
+      98: iconst_1
+      99: anewarray     #268                // class net/minecraft/world/item/ItemStack
+     102: dup
+     103: iconst_0
+     104: new           #268                // class net/minecraft/world/item/ItemStack
+     107: dup
+     108: getstatic     #286                // Field net/minecraft/world/item/Items.SPLASH_POTION:Lnet/minecraft/world/item/Item;
+     111: invokespecial #277                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     114: aastore
+     115: invokevirtual #281                // Method com/alonie/brbe/util/BRBHelper$Book.createCategory:([Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     118: putstatic     #288                // Field BREWING_SPLASH_POTION:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     121: getstatic     #262                // Field BREWING:Lcom/alonie/brbe/util/BRBHelper$Book;
+     124: iconst_1
+     125: anewarray     #268                // class net/minecraft/world/item/ItemStack
+     128: dup
+     129: iconst_0
+     130: new           #268                // class net/minecraft/world/item/ItemStack
+     133: dup
+     134: getstatic     #291                // Field net/minecraft/world/item/Items.LINGERING_POTION:Lnet/minecraft/world/item/Item;
+     137: invokespecial #277                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     140: aastore
+     141: invokevirtual #281                // Method com/alonie/brbe/util/BRBHelper$Book.createCategory:([Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     144: putstatic     #293                // Field BREWING_LINGERING_POTION:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     147: getstatic     #266                // Field SMITHING:Lcom/alonie/brbe/util/BRBHelper$Book;
+     150: invokevirtual #297                // Method com/alonie/brbe/util/BRBHelper$Book.createSearch:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     153: putstatic     #299                // Field SMITHING_SEARCH:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     156: getstatic     #266                // Field SMITHING:Lcom/alonie/brbe/util/BRBHelper$Book;
+     159: iconst_1
+     160: anewarray     #268                // class net/minecraft/world/item/ItemStack
+     163: dup
+     164: iconst_0
+     165: new           #268                // class net/minecraft/world/item/ItemStack
+     168: dup
+     169: getstatic     #302                // Field net/minecraft/world/item/Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE:Lnet/minecraft/world/item/Item;
+     172: invokespecial #277                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     175: aastore
+     176: invokevirtual #281                // Method com/alonie/brbe/util/BRBHelper$Book.createCategory:([Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     179: putstatic     #304                // Field SMITHING_TRANSFORM:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     182: getstatic     #266                // Field SMITHING:Lcom/alonie/brbe/util/BRBHelper$Book;
+     185: iconst_1
+     186: anewarray     #268                // class net/minecraft/world/item/ItemStack
+     189: dup
+     190: iconst_0
+     191: new           #268                // class net/minecraft/world/item/ItemStack
+     194: dup
+     195: getstatic     #307                // Field net/minecraft/world/item/Items.NETHERITE_CHESTPLATE:Lnet/minecraft/world/item/Item;
+     198: invokespecial #277                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+     201: aastore
+     202: invokevirtual #281                // Method com/alonie/brbe/util/BRBHelper$Book.createCategory:([Lnet/minecraft/world/item/ItemStack;)Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     205: putstatic     #309                // Field SMITHING_TRIM:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     208: return
+}

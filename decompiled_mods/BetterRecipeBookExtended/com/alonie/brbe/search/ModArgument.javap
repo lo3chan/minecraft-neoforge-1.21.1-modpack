@@ -1,0 +1,47 @@
+Compiled from "ModArgument.java"
+public class com.alonie.brbe.search.ModArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.lang.String modQuery;
+
+  public com.alonie.brbe.search.ModArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       9: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      12: putfield      #28                 // Field modQuery:Ljava/lang/String;
+      15: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_2
+       1: aload_1
+       2: invokevirtual #40                 // Method com/alonie/brbe/search/SearchCache.getModNamespace:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+       5: astore_3
+       6: aload_3
+       7: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+      10: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      13: aload_0
+      14: getfield      #28                 // Field modQuery:Ljava/lang/String;
+      17: invokevirtual #44                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      20: ifeq          25
+      23: iconst_1
+      24: ireturn
+      25: aload_2
+      26: aload_1
+      27: invokevirtual #47                 // Method com/alonie/brbe/search/SearchCache.getModName:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+      30: astore        4
+      32: aload         4
+      34: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+      37: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      40: aload_0
+      41: getfield      #28                 // Field modQuery:Ljava/lang/String;
+      44: invokevirtual #44                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      47: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

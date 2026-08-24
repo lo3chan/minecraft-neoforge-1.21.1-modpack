@@ -1,0 +1,23 @@
+Compiled from "ClientConfig.java"
+public class fuzs.visualworkbench.config.ClientConfig implements fuzs.puzzleslib.api.config.v3.ConfigCore {
+  public boolean flatRendering;
+
+  public boolean renderResult;
+
+  public fuzs.visualworkbench.config.ClientConfig$RotateIngredients rotateIngredients;
+
+  public fuzs.visualworkbench.config.ClientConfig();
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #26                 // Field flatRendering:Z
+       9: aload_0
+      10: iconst_1
+      11: putfield      #28                 // Field renderResult:Z
+      14: aload_0
+      15: getstatic     #31                 // Field fuzs/visualworkbench/config/ClientConfig$RotateIngredients.CLOSEST_PLAYER:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      18: putfield      #33                 // Field rotateIngredients:Lfuzs/visualworkbench/config/ClientConfig$RotateIngredients;
+      21: return
+}

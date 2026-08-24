@@ -1,0 +1,73 @@
+Compiled from "RecipeAdapter.java"
+final class com.alonie.brbe.recipe.RecipeAdapter$SimpleDisplayRecipe extends java.lang.Record implements com.alonie.brbe.recipe.DisplayRecipe {
+  private final net.minecraft.resources.ResourceLocation id;
+
+  private final net.minecraft.world.item.ItemStack result;
+
+  private final java.lang.String searchString;
+
+  private com.alonie.brbe.recipe.RecipeAdapter$SimpleDisplayRecipe(net.minecraft.resources.ResourceLocation, net.minecraft.world.item.ItemStack, java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #26                 // Method java/lang/Record."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #28                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       9: aload_0
+      10: aload_2
+      11: putfield      #30                 // Field result:Lnet/minecraft/world/item/ItemStack;
+      14: aload_0
+      15: aload_3
+      16: putfield      #32                 // Field searchString:Ljava/lang/String;
+      19: return
+
+  public net.minecraft.resources.ResourceLocation id();
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field id:Lnet/minecraft/resources/ResourceLocation;
+       4: areturn
+
+  public net.minecraft.world.item.ItemStack getResult();
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field result:Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #42                 // Method net/minecraft/world/item/ItemStack.copy:()Lnet/minecraft/world/item/ItemStack;
+       7: areturn
+
+  public java.lang.String getSearchString();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field searchString:Ljava/lang/String;
+       4: areturn
+
+  public final java.lang.String toString();
+    Code:
+       0: aload_0
+       1: invokedynamic #60,  0             // InvokeDynamic #0:toString:(Lcom/alonie/brbe/recipe/RecipeAdapter$SimpleDisplayRecipe;)Ljava/lang/String;
+       6: areturn
+
+  public final int hashCode();
+    Code:
+       0: aload_0
+       1: invokedynamic #65,  0             // InvokeDynamic #0:hashCode:(Lcom/alonie/brbe/recipe/RecipeAdapter$SimpleDisplayRecipe;)I
+       6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokedynamic #71,  0             // InvokeDynamic #0:equals:(Lcom/alonie/brbe/recipe/RecipeAdapter$SimpleDisplayRecipe;Ljava/lang/Object;)Z
+       7: ireturn
+
+  public net.minecraft.world.item.ItemStack result();
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field result:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public java.lang.String searchString();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field searchString:Ljava/lang/String;
+       4: areturn
+}

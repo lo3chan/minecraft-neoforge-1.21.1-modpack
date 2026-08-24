@@ -1,0 +1,8 @@
+Compiled from "JsonPinStore.java"
+class com.alonie.brbe.pin.JsonPinStore$1 extends com.google.gson.reflect.TypeToken<java.util.HashSet<net.minecraft.resources.ResourceLocation>> {
+  com.alonie.brbe.pin.JsonPinStore$1();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method com/google/gson/reflect/TypeToken."<init>":()V
+       4: return
+}

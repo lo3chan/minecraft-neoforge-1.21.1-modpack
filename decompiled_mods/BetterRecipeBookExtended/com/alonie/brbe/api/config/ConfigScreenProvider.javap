@@ -1,0 +1,4 @@
+Compiled from "ConfigScreenProvider.java"
+public interface com.alonie.brbe.api.config.ConfigScreenProvider {
+  public abstract net.minecraft.client.gui.screens.Screen create(net.minecraft.client.gui.screens.Screen);
+}

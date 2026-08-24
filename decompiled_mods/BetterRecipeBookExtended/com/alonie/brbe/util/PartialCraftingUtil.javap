@@ -1,0 +1,585 @@
+Compiled from "PartialCraftingUtil.java"
+public final class com.alonie.brbe.util.PartialCraftingUtil {
+  private static final java.util.WeakHashMap<net.minecraft.client.gui.screens.recipebook.RecipeCollection, java.util.Set<net.minecraft.resources.ResourceLocation>> PARTIAL_RECIPES;
+
+  private static final java.util.WeakHashMap<net.minecraft.client.gui.screens.recipebook.RecipeCollection, java.lang.Integer> CHECKED_COLLECTIONS;
+
+  private static int filteringGeneration;
+
+  private static boolean filteringActive;
+
+  private static volatile boolean forceFullRefresh;
+
+  private com.alonie.brbe.util.PartialCraftingUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void invalidateCaches();
+    Code:
+       0: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+       3: invokevirtual #34                 // Method java/util/WeakHashMap.clear:()V
+       6: iconst_0
+       7: putstatic     #36                 // Field filteringGeneration:I
+      10: iconst_0
+      11: putstatic     #38                 // Field filteringActive:Z
+      14: iconst_1
+      15: putstatic     #40                 // Field forceFullRefresh:Z
+      18: return
+
+  private static boolean enabled();
+    Code:
+       0: invokestatic  #48                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #54                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #59                 // Field com/alonie/brbe/config/Config.partialMarkingEnabled:Z
+       9: ireturn
+
+  public static void beginFilteringUpdate(boolean);
+    Code:
+       0: iload_0
+       1: putstatic     #38                 // Field filteringActive:Z
+       4: iload_0
+       5: ifeq          40
+       8: getstatic     #36                 // Field filteringGeneration:I
+      11: ldc           #63                 // int 2147483647
+      13: if_icmpne     32
+      16: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+      19: invokevirtual #34                 // Method java/util/WeakHashMap.clear:()V
+      22: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+      25: invokevirtual #34                 // Method java/util/WeakHashMap.clear:()V
+      28: iconst_0
+      29: putstatic     #36                 // Field filteringGeneration:I
+      32: getstatic     #36                 // Field filteringGeneration:I
+      35: iconst_1
+      36: iadd
+      37: putstatic     #36                 // Field filteringGeneration:I
+      40: return
+
+  public static void requestForceFullRefresh();
+    Code:
+       0: iconst_1
+       1: putstatic     #40                 // Field forceFullRefresh:Z
+       4: return
+
+  public static boolean consumeForceFullRefresh();
+    Code:
+       0: getstatic     #40                 // Field forceFullRefresh:Z
+       3: istore_0
+       4: iconst_0
+       5: putstatic     #40                 // Field forceFullRefresh:Z
+       8: iload_0
+       9: ireturn
+
+  public static void clearCaches();
+    Code:
+       0: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+       3: invokevirtual #34                 // Method java/util/WeakHashMap.clear:()V
+       6: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+       9: invokevirtual #34                 // Method java/util/WeakHashMap.clear:()V
+      12: iconst_0
+      13: putstatic     #36                 // Field filteringGeneration:I
+      16: return
+
+  public static void markAndInject(net.minecraft.client.gui.screens.recipebook.RecipeCollection, java.util.Set<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #78                 // Method markPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Ljava/util/Set;)Z
+       5: istore_2
+       6: aload_0
+       7: invokestatic  #82                 // Method hasPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+      10: ifne          14
+      13: return
+      14: iconst_0
+      15: istore_3
+      16: aload_0
+      17: checkcast     #84                 // class com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor
+      20: astore        4
+      22: aload_0
+      23: invokevirtual #90                 // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      26: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      31: astore        5
+      33: aload         5
+      35: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      40: ifeq          88
+      43: aload         5
+      45: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      50: checkcast     #107                // class net/minecraft/world/item/crafting/RecipeHolder
+      53: astore        6
+      55: aload_0
+      56: aload         6
+      58: invokevirtual #111                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+      61: invokestatic  #115                // Method isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+      64: ifeq          85
+      67: aload         4
+      69: invokeinterface #119,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor.brbe$getCraftable:()Ljava/util/Set;
+      74: aload         6
+      76: invokeinterface #125,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      81: pop
+      82: iinc          3, 1
+      85: goto          33
+      88: invokestatic  #128                // Method com/alonie/brbe/util/BrbeLogger.isEnabled:()Z
+      91: ifeq          139
+      94: iload_3
+      95: ifle          139
+      98: getstatic     #132                // Field com/alonie/brbe/util/BrbeLogger$Category.STATE:Lcom/alonie/brbe/util/BrbeLogger$Category;
+     101: ldc           #134                // String markAndInject: marked=%s injected=%d/%d recipes
+     103: iconst_3
+     104: anewarray     #4                  // class java/lang/Object
+     107: dup
+     108: iconst_0
+     109: iload_2
+     110: invokestatic  #140                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     113: aastore
+     114: dup
+     115: iconst_1
+     116: iload_3
+     117: invokestatic  #145                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     120: aastore
+     121: dup
+     122: iconst_2
+     123: aload_0
+     124: invokevirtual #90                 // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+     127: invokeinterface #149,  1          // InterfaceMethod java/util/List.size:()I
+     132: invokestatic  #145                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     135: aastore
+     136: invokestatic  #153                // Method com/alonie/brbe/util/BrbeLogger.log:(Lcom/alonie/brbe/util/BrbeLogger$Category;Ljava/lang/String;[Ljava/lang/Object;)V
+     139: return
+
+  public static long slotHash(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: lconst_1
+       1: lstore_1
+       2: aload_0
+       3: invokevirtual #170                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+       6: astore_3
+       7: aload_3
+       8: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          74
+      16: aload_3
+      17: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #172                // class net/minecraft/world/inventory/Slot
+      25: astore        4
+      27: aload         4
+      29: invokevirtual #176                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      32: astore        5
+      34: aload         5
+      36: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      39: ifne          71
+      42: ldc2_w        #182                // long 31l
+      45: lload_1
+      46: lmul
+      47: aload         5
+      49: invokevirtual #186                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      52: invokevirtual #189                // Method java/lang/Object.hashCode:()I
+      55: i2l
+      56: ladd
+      57: lstore_1
+      58: ldc2_w        #182                // long 31l
+      61: lload_1
+      62: lmul
+      63: aload         5
+      65: invokevirtual #192                // Method net/minecraft/world/item/ItemStack.getCount:()I
+      68: i2l
+      69: ladd
+      70: lstore_1
+      71: goto          7
+      74: lload_1
+      75: lreturn
+
+  public static java.util.Set<net.minecraft.world.item.Item> hashInventory(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: new           #205                // class java/util/HashSet
+       3: dup
+       4: invokespecial #206                // Method java/util/HashSet."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: invokevirtual #170                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+      12: astore_2
+      13: aload_2
+      14: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      19: ifeq          61
+      22: aload_2
+      23: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      28: checkcast     #172                // class net/minecraft/world/inventory/Slot
+      31: astore_3
+      32: aload_3
+      33: invokevirtual #176                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      36: astore        4
+      38: aload         4
+      40: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      43: ifne          58
+      46: aload_1
+      47: aload         4
+      49: invokevirtual #186                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      52: invokeinterface #125,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      57: pop
+      58: goto          13
+      61: aload_1
+      62: areturn
+
+  public static boolean markPartialMaterials(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #210                // Method hashInventory:(Lnet/minecraft/core/NonNullList;)Ljava/util/Set;
+       5: invokestatic  #78                 // Method markPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Ljava/util/Set;)Z
+       8: ireturn
+
+  public static boolean markPartialMaterials(net.minecraft.client.gui.screens.recipebook.RecipeCollection, java.util.Set<net.minecraft.world.item.Item>);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: aload_0
+       9: invokestatic  #216                // Method wasCheckedForPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+      12: ifeq          20
+      15: aload_0
+      16: invokestatic  #82                 // Method hasPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+      19: ireturn
+      20: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+      23: aload_0
+      24: getstatic     #36                 // Field filteringGeneration:I
+      27: invokestatic  #145                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      30: invokevirtual #220                // Method java/util/WeakHashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      33: pop
+      34: iconst_0
+      35: istore_2
+      36: new           #205                // class java/util/HashSet
+      39: dup
+      40: invokespecial #206                // Method java/util/HashSet."<init>":()V
+      43: astore_3
+      44: aload_0
+      45: invokevirtual #90                 // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      48: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      53: astore        4
+      55: aload         4
+      57: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      62: ifeq          127
+      65: aload         4
+      67: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      72: checkcast     #107                // class net/minecraft/world/item/crafting/RecipeHolder
+      75: astore        5
+      77: aload_0
+      78: aload         5
+      80: invokevirtual #224                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.isCraftable:(Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+      83: ifeq          89
+      86: goto          55
+      89: aload         5
+      91: invokevirtual #228                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+      94: astore        6
+      96: aload         6
+      98: invokeinterface #234,  1          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getIngredients:()Lnet/minecraft/core/NonNullList;
+     103: aload_1
+     104: invokestatic  #238                // Method hasMatchingIngredientFast:(Ljava/util/List;Ljava/util/Set;)Z
+     107: ifeq          124
+     110: aload_3
+     111: aload         5
+     113: invokevirtual #111                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+     116: invokeinterface #125,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+     121: pop
+     122: iconst_1
+     123: istore_2
+     124: goto          55
+     127: iload_2
+     128: ifeq          143
+     131: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+     134: aload_0
+     135: aload_3
+     136: invokevirtual #220                // Method java/util/WeakHashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     139: pop
+     140: goto          151
+     143: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+     146: aload_0
+     147: invokevirtual #242                // Method java/util/WeakHashMap.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+     150: pop
+     151: iload_2
+     152: ireturn
+
+  public static void markPartialMaterial(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          7
+       6: return
+       7: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+      10: aload_0
+      11: getstatic     #36                 // Field filteringGeneration:I
+      14: invokestatic  #145                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      17: invokevirtual #220                // Method java/util/WeakHashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+      24: aload_0
+      25: new           #205                // class java/util/HashSet
+      28: dup
+      29: aload_1
+      30: invokestatic  #258                // Method java/util/Collections.singleton:(Ljava/lang/Object;)Ljava/util/Set;
+      33: invokespecial #261                // Method java/util/HashSet."<init>":(Ljava/util/Collection;)V
+      36: invokevirtual #220                // Method java/util/WeakHashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      39: pop
+      40: return
+
+  public static boolean wasCheckedForPartialMaterials(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: getstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+      11: aload_0
+      12: invokevirtual #265                // Method java/util/WeakHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      15: checkcast     #142                // class java/lang/Integer
+      18: astore_1
+      19: getstatic     #38                 // Field filteringActive:Z
+      22: ifeq          43
+      25: aload_1
+      26: ifnull        43
+      29: aload_1
+      30: invokevirtual #268                // Method java/lang/Integer.intValue:()I
+      33: getstatic     #36                 // Field filteringGeneration:I
+      36: if_icmpne     43
+      39: iconst_1
+      40: goto          44
+      43: iconst_0
+      44: ireturn
+
+  public static boolean isPartiallyCraftable(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.world.item.crafting.RecipeHolder<?>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #111                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+       5: invokestatic  #115                // Method isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+       8: ireturn
+
+  public static boolean isPartiallyCraftable(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+      11: aload_0
+      12: invokevirtual #265                // Method java/util/WeakHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      15: checkcast     #121                // class java/util/Set
+      18: astore_2
+      19: aload_2
+      20: ifnull        37
+      23: aload_2
+      24: aload_1
+      25: invokeinterface #275,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      30: ifeq          37
+      33: iconst_1
+      34: goto          38
+      37: iconst_0
+      38: ireturn
+
+  public static boolean hasPartialMaterialsRaw(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+       3: aload_0
+       4: invokevirtual #265                // Method java/util/WeakHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #121                // class java/util/Set
+      10: astore_1
+      11: aload_1
+      12: ifnull        28
+      15: aload_1
+      16: invokeinterface #277,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      21: ifne          28
+      24: iconst_1
+      25: goto          29
+      28: iconst_0
+      29: ireturn
+
+  public static boolean isPartiallyCraftableRaw(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+       3: aload_0
+       4: invokevirtual #265                // Method java/util/WeakHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       7: checkcast     #121                // class java/util/Set
+      10: astore_2
+      11: aload_2
+      12: ifnull        29
+      15: aload_2
+      16: aload_1
+      17: invokeinterface #275,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      22: ifeq          29
+      25: iconst_1
+      26: goto          30
+      29: iconst_0
+      30: ireturn
+
+  public static boolean hasPartialMaterials(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: aload_0
+       9: invokestatic  #280                // Method hasPartialMaterialsRaw:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+      12: ireturn
+
+  public static com.alonie.brbe.util.CollectionCategory categorize(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          10
+       6: getstatic     #289                // Field com/alonie/brbe/util/CollectionCategory.UNASSIGNED:Lcom/alonie/brbe/util/CollectionCategory;
+       9: areturn
+      10: iconst_0
+      11: istore_1
+      12: iconst_0
+      13: istore_2
+      14: aload_0
+      15: invokevirtual #90                 // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      18: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      23: astore_3
+      24: aload_3
+      25: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      30: ifeq          75
+      33: aload_3
+      34: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      39: checkcast     #107                // class net/minecraft/world/item/crafting/RecipeHolder
+      42: astore        4
+      44: aload_0
+      45: aload         4
+      47: invokevirtual #111                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+      50: invokestatic  #115                // Method isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+      53: ifeq          61
+      56: iconst_1
+      57: istore_2
+      58: goto          72
+      61: aload_0
+      62: aload         4
+      64: invokevirtual #224                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.isCraftable:(Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+      67: ifeq          72
+      70: iconst_1
+      71: istore_1
+      72: goto          24
+      75: iload_1
+      76: ifeq          83
+      79: getstatic     #292                // Field com/alonie/brbe/util/CollectionCategory.TRULY_CRAFTABLE:Lcom/alonie/brbe/util/CollectionCategory;
+      82: areturn
+      83: iload_2
+      84: ifeq          91
+      87: getstatic     #295                // Field com/alonie/brbe/util/CollectionCategory.PARTIAL:Lcom/alonie/brbe/util/CollectionCategory;
+      90: areturn
+      91: getstatic     #289                // Field com/alonie/brbe/util/CollectionCategory.UNASSIGNED:Lcom/alonie/brbe/util/CollectionCategory;
+      94: areturn
+
+  public static java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>> getPartiallyCraftableRecipes(net.minecraft.client.gui.screens.recipebook.RecipeCollection);
+    Code:
+       0: invokestatic  #213                // Method enabled:()Z
+       3: ifne          10
+       6: invokestatic  #303                // Method java/util/Collections.emptyList:()Ljava/util/List;
+       9: areturn
+      10: getstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+      13: aload_0
+      14: invokevirtual #265                // Method java/util/WeakHashMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      17: checkcast     #121                // class java/util/Set
+      20: astore_1
+      21: aload_1
+      22: ifnull        34
+      25: aload_1
+      26: invokeinterface #277,  1          // InterfaceMethod java/util/Set.isEmpty:()Z
+      31: ifeq          38
+      34: invokestatic  #303                // Method java/util/Collections.emptyList:()Ljava/util/List;
+      37: areturn
+      38: new           #305                // class java/util/ArrayList
+      41: dup
+      42: invokespecial #306                // Method java/util/ArrayList."<init>":()V
+      45: astore_2
+      46: aload_0
+      47: invokevirtual #90                 // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      50: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      55: astore_3
+      56: aload_3
+      57: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      62: ifeq          102
+      65: aload_3
+      66: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      71: checkcast     #107                // class net/minecraft/world/item/crafting/RecipeHolder
+      74: astore        4
+      76: aload_1
+      77: aload         4
+      79: invokevirtual #111                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+      82: invokeinterface #275,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      87: ifeq          99
+      90: aload_2
+      91: aload         4
+      93: invokeinterface #307,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      98: pop
+      99: goto          56
+     102: aload_2
+     103: areturn
+
+  private static boolean hasMatchingIngredient(java.util.List<net.minecraft.world.item.crafting.Ingredient>, net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_1
+       1: invokestatic  #210                // Method hashInventory:(Lnet/minecraft/core/NonNullList;)Ljava/util/Set;
+       4: astore_2
+       5: aload_0
+       6: aload_2
+       7: invokestatic  #238                // Method hasMatchingIngredientFast:(Ljava/util/List;Ljava/util/Set;)Z
+      10: ireturn
+
+  private static boolean hasMatchingIngredientFast(java.util.List<net.minecraft.world.item.crafting.Ingredient>, java.util.Set<net.minecraft.world.item.Item>);
+    Code:
+       0: aload_0
+       1: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       6: astore_2
+       7: aload_2
+       8: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      13: ifeq          97
+      16: aload_2
+      17: invokeinterface #105,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      22: checkcast     #318                // class net/minecraft/world/item/crafting/Ingredient
+      25: astore_3
+      26: aload_3
+      27: invokevirtual #319                // Method net/minecraft/world/item/crafting/Ingredient.isEmpty:()Z
+      30: ifeq          36
+      33: goto          7
+      36: aload_3
+      37: invokevirtual #323                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      40: astore        4
+      42: aload         4
+      44: arraylength
+      45: istore        5
+      47: iconst_0
+      48: istore        6
+      50: iload         6
+      52: iload         5
+      54: if_icmpge     94
+      57: aload         4
+      59: iload         6
+      61: aaload
+      62: astore        7
+      64: aload         7
+      66: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      69: ifne          88
+      72: aload_1
+      73: aload         7
+      75: invokevirtual #186                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      78: invokeinterface #275,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      83: ifeq          88
+      86: iconst_1
+      87: ireturn
+      88: iinc          6, 1
+      91: goto          50
+      94: goto          7
+      97: iconst_0
+      98: ireturn
+
+  static {};
+    Code:
+       0: new           #31                 // class java/util/WeakHashMap
+       3: dup
+       4: invokespecial #329                // Method java/util/WeakHashMap."<init>":()V
+       7: putstatic     #65                 // Field PARTIAL_RECIPES:Ljava/util/WeakHashMap;
+      10: new           #31                 // class java/util/WeakHashMap
+      13: dup
+      14: invokespecial #329                // Method java/util/WeakHashMap."<init>":()V
+      17: putstatic     #29                 // Field CHECKED_COLLECTIONS:Ljava/util/WeakHashMap;
+      20: iconst_0
+      21: putstatic     #40                 // Field forceFullRefresh:Z
+      24: return
+}

@@ -1,0 +1,24 @@
+Compiled from "ClientPacketListenerMixin.java"
+public class com.alonie.brbe.mixins.instantcraft.ClientPacketListenerMixin {
+  public com.alonie.brbe.mixins.instantcraft.ClientPacketListenerMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void onScreenHandlerSlotUpdate(net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_1
+       1: invokevirtual #30                 // Method net/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket.getSlot:()I
+       4: ifeq          8
+       7: return
+       8: aload_1
+       9: invokevirtual #34                 // Method net/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket.getItem:()Lnet/minecraft/world/item/ItemStack;
+      12: ifnonnull     16
+      15: return
+      16: getstatic     #40                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      19: aload_1
+      20: invokevirtual #34                 // Method net/minecraft/network/protocol/game/ClientboundContainerSetSlotPacket.getItem:()Lnet/minecraft/world/item/ItemStack;
+      23: invokevirtual #46                 // Method com/alonie/brbe/InstantCraftingManager.onResultSlotUpdated:(Lnet/minecraft/world/item/ItemStack;)V
+      26: return
+}

@@ -1,0 +1,30 @@
+Compiled from "RecipeButtonMixin.java"
+public class com.alonie.brbe.mixins.instantcraft.RecipeButtonMixin {
+  private net.minecraft.client.gui.screens.recipebook.RecipeCollection collection;
+
+  private static java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>> brbe$lastClicked;
+
+  public com.alonie.brbe.mixins.instantcraft.RecipeButtonMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void init(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.client.gui.screens.recipebook.RecipeBookPage, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: getstatic     #36                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+       3: getfield      #41                 // Field com/alonie/brbe/InstantCraftingManager.lastHoveredCollection:Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+       6: aload_1
+       7: if_acmpne     38
+      10: getstatic     #36                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      13: getfield      #45                 // Field com/alonie/brbe/InstantCraftingManager.lastClickedRecipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+      16: ifnull        38
+      19: getstatic     #36                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      22: aconst_null
+      23: putfield      #41                 // Field com/alonie/brbe/InstantCraftingManager.lastHoveredCollection:Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+      26: getstatic     #36                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      29: getfield      #45                 // Field com/alonie/brbe/InstantCraftingManager.lastClickedRecipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+      32: invokestatic  #51                 // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      35: putstatic     #53                 // Field brbe$lastClicked:Ljava/util/List;
+      38: return
+}

@@ -1,0 +1,30 @@
+Compiled from "ConfigEventBus.java"
+public final class com.alonie.brbe.config.ConfigEventBus$PartialCraftingChanged {
+  private final boolean enabled;
+
+  private final boolean markingEnabled;
+
+  public com.alonie.brbe.config.ConfigEventBus$PartialCraftingChanged(boolean, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #18                 // Field enabled:Z
+       9: aload_0
+      10: iload_2
+      11: putfield      #20                 // Field markingEnabled:Z
+      14: return
+
+  public boolean enabled();
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field enabled:Z
+       4: ireturn
+
+  public boolean markingEnabled();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field markingEnabled:Z
+       4: ireturn
+}

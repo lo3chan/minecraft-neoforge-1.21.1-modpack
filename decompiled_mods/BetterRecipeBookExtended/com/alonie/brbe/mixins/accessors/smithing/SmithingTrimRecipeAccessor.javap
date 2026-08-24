@@ -1,0 +1,8 @@
+Compiled from "SmithingTrimRecipeAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.smithing.SmithingTrimRecipeAccessor {
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingTemplate();
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingBase();
+
+  public abstract net.minecraft.world.item.crafting.Ingredient getUnderlyingAddition();
+}

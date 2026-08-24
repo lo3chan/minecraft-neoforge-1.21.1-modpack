@@ -1,0 +1,93 @@
+Compiled from "BrbeConfig.java"
+public class com.alonie.brbe.config.BrbeConfig implements me.shedaniel.autoconfig.ConfigData {
+  public boolean enablePinning;
+
+  public boolean settingsButton;
+
+  public boolean enableBook;
+
+  public boolean showModName;
+
+  public boolean hideReiJeiOverlay;
+
+  public boolean keepCentered;
+
+  public boolean expandedRecipeBook;
+
+  public boolean showAllRecipesInSurvival;
+
+  public boolean partialCraftingEnabled;
+
+  public boolean partialMarkingEnabled;
+
+  public com.alonie.brbe.config.BrbeConfig$RecipeBookIsPain rbip;
+
+  public com.alonie.brbe.config.BrbeConfig$NewRecipes newRecipes;
+
+  public com.alonie.brbe.config.BrbeConfig$InstantCraft instantCraft;
+
+  public com.alonie.brbe.config.BrbeConfig$AlternativeRecipes alternativeRecipes;
+
+  public com.alonie.brbe.config.BrbeConfig$Scrolling scrolling;
+
+  public com.alonie.brbe.config.BrbeConfig();
+    Code:
+       0: aload_0
+       1: invokespecial #74                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #76                 // Field enablePinning:Z
+       9: aload_0
+      10: iconst_1
+      11: putfield      #78                 // Field settingsButton:Z
+      14: aload_0
+      15: iconst_1
+      16: putfield      #80                 // Field enableBook:Z
+      19: aload_0
+      20: iconst_0
+      21: putfield      #82                 // Field showModName:Z
+      24: aload_0
+      25: iconst_0
+      26: putfield      #84                 // Field hideReiJeiOverlay:Z
+      29: aload_0
+      30: iconst_0
+      31: putfield      #86                 // Field keepCentered:Z
+      34: aload_0
+      35: iconst_0
+      36: putfield      #88                 // Field expandedRecipeBook:Z
+      39: aload_0
+      40: iconst_1
+      41: putfield      #90                 // Field showAllRecipesInSurvival:Z
+      44: aload_0
+      45: iconst_1
+      46: putfield      #92                 // Field partialCraftingEnabled:Z
+      49: aload_0
+      50: iconst_1
+      51: putfield      #94                 // Field partialMarkingEnabled:Z
+      54: aload_0
+      55: new           #20                 // class com/alonie/brbe/config/BrbeConfig$RecipeBookIsPain
+      58: dup
+      59: invokespecial #95                 // Method com/alonie/brbe/config/BrbeConfig$RecipeBookIsPain."<init>":()V
+      62: putfield      #97                 // Field rbip:Lcom/alonie/brbe/config/BrbeConfig$RecipeBookIsPain;
+      65: aload_0
+      66: new           #18                 // class com/alonie/brbe/config/BrbeConfig$NewRecipes
+      69: dup
+      70: invokespecial #98                 // Method com/alonie/brbe/config/BrbeConfig$NewRecipes."<init>":()V
+      73: putfield      #100                // Field newRecipes:Lcom/alonie/brbe/config/BrbeConfig$NewRecipes;
+      76: aload_0
+      77: new           #16                 // class com/alonie/brbe/config/BrbeConfig$InstantCraft
+      80: dup
+      81: invokespecial #101                // Method com/alonie/brbe/config/BrbeConfig$InstantCraft."<init>":()V
+      84: putfield      #103                // Field instantCraft:Lcom/alonie/brbe/config/BrbeConfig$InstantCraft;
+      87: aload_0
+      88: new           #14                 // class com/alonie/brbe/config/BrbeConfig$AlternativeRecipes
+      91: dup
+      92: invokespecial #104                // Method com/alonie/brbe/config/BrbeConfig$AlternativeRecipes."<init>":()V
+      95: putfield      #106                // Field alternativeRecipes:Lcom/alonie/brbe/config/BrbeConfig$AlternativeRecipes;
+      98: aload_0
+      99: new           #12                 // class com/alonie/brbe/config/BrbeConfig$Scrolling
+     102: dup
+     103: invokespecial #107                // Method com/alonie/brbe/config/BrbeConfig$Scrolling."<init>":()V
+     106: putfield      #109                // Field scrolling:Lcom/alonie/brbe/config/BrbeConfig$Scrolling;
+     109: return
+}

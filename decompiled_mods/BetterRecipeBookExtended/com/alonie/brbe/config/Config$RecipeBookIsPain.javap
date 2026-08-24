@@ -1,0 +1,18 @@
+Compiled from "Config.java"
+public class com.alonie.brbe.config.Config$RecipeBookIsPain {
+  public boolean enableRecipeBookIsPain;
+
+  public boolean enableTabPage;
+
+  public com.alonie.brbe.config.Config$RecipeBookIsPain();
+    Code:
+       0: aload_0
+       1: invokespecial #28                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #30                 // Field enableRecipeBookIsPain:Z
+       9: aload_0
+      10: iconst_1
+      11: putfield      #32                 // Field enableTabPage:Z
+      14: return
+}

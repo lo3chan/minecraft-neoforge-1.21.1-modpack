@@ -1,0 +1,346 @@
+Compiled from "SmithingRecipeBookComponent.java"
+public class com.alonie.brbe.smithingtable.SmithingRecipeBookComponent extends com.alonie.brbe.generic.GenericRecipeBookComponent<net.minecraft.world.inventory.SmithingMenu, com.alonie.brbe.smithingtable.SmithingRecipeCollection, com.alonie.brbe.recipe.BRBSmithingRecipe> {
+  private static final net.minecraft.network.chat.MutableComponent ONLY_CRAFTABLES_TOOLTIP;
+
+  public com.alonie.brbe.smithingtable.SmithingRecipeBookComponent();
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method com/alonie/brbe/generic/GenericRecipeBookComponent."<init>":()V
+       4: return
+
+  public void init(int, int, net.minecraft.client.Minecraft, boolean, net.minecraft.world.inventory.SmithingMenu, java.util.function.Consumer<net.minecraft.world.item.ItemStack>, net.minecraft.core.RegistryAccess, net.minecraft.world.item.crafting.RecipeManager);
+    Code:
+       0: aload_0
+       1: aload         8
+       3: putfield      #43                 // Field recipeManager:Lnet/minecraft/world/item/crafting/RecipeManager;
+       6: aload_0
+       7: new           #45                 // class com/alonie/brbe/smithingtable/SmithingGhostRecipe
+      10: dup
+      11: aload         6
+      13: aload         7
+      15: invokespecial #48                 // Method com/alonie/brbe/smithingtable/SmithingGhostRecipe."<init>":(Ljava/util/function/Consumer;Lnet/minecraft/core/RegistryAccess;)V
+      18: putfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      21: aload_0
+      22: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      25: aload_0
+      26: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      29: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+      32: invokevirtual #63                 // Method com/alonie/brbe/generic/GenericGhostRecipe.setDefaultRenderingPredicate:(Lnet/minecraft/world/inventory/AbstractContainerMenu;)V
+      35: aload_0
+      36: new           #65                 // class com/alonie/brbe/smithingtable/SmithingRecipeBookPage
+      39: dup
+      40: aload         7
+      42: aload_0
+      43: invokedynamic #84,  0             // InvokeDynamic #0:get:(Lcom/alonie/brbe/smithingtable/SmithingRecipeBookComponent;)Ljava/util/function/Supplier;
+      48: invokespecial #87                 // Method com/alonie/brbe/smithingtable/SmithingRecipeBookPage."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+      51: putfield      #91                 // Field recipesPage:Lcom/alonie/brbe/generic/GenericRecipePage;
+      54: aload_0
+      55: iload_1
+      56: iload_2
+      57: aload_3
+      58: iload         4
+      60: aload         5
+      62: aload         6
+      64: aload         7
+      66: invokespecial #94                 // Method com/alonie/brbe/generic/GenericRecipeBookComponent.init:(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/world/inventory/AbstractContainerMenu;Ljava/util/function/Consumer;Lnet/minecraft/core/RegistryAccess;)V
+      69: return
+
+  public net.minecraft.network.chat.Component getRecipeFilterName();
+    Code:
+       0: getstatic     #105                // Field ONLY_CRAFTABLES_TOOLTIP:Lnet/minecraft/network/chat/MutableComponent;
+       3: areturn
+
+  public com.alonie.brbe.util.BRBHelper$Book getRecipeBookType();
+    Code:
+       0: getstatic     #113                // Field com/alonie/brbe/BetterRecipeBook.SMITHING:Lcom/alonie/brbe/util/BRBHelper$Book;
+       3: areturn
+
+  public void handlePlaceRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #91                 // Field recipesPage:Lcom/alonie/brbe/generic/GenericRecipePage;
+       4: invokevirtual #120                // Method com/alonie/brbe/generic/GenericRecipePage.getCurrentClickedRecipe:()Lcom/alonie/brbe/generic/GenericRecipe;
+       7: checkcast     #122                // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      10: astore_1
+      11: aload_0
+      12: getfield      #91                 // Field recipesPage:Lcom/alonie/brbe/generic/GenericRecipePage;
+      15: invokevirtual #126                // Method com/alonie/brbe/generic/GenericRecipePage.getLastClickedRecipeCollection:()Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      18: checkcast     #128                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+      21: astore_2
+      22: aload_1
+      23: ifnull        30
+      26: aload_2
+      27: ifnonnull     31
+      30: return
+      31: aload_0
+      32: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      35: invokevirtual #131                // Method com/alonie/brbe/generic/GenericGhostRecipe.clear:()V
+      38: aload_1
+      39: aload_0
+      40: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      43: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+      46: getfield      #135                // Field net/minecraft/world/inventory/SmithingMenu.slots:Lnet/minecraft/core/NonNullList;
+      49: aload_0
+      50: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      53: invokeinterface #141,  3          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasMaterials:(Lnet/minecraft/core/NonNullList;Lnet/minecraft/core/RegistryAccess;)Z
+      58: ifne          77
+      61: aload_0
+      62: aload_1
+      63: aload_0
+      64: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      67: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+      70: getfield      #135                // Field net/minecraft/world/inventory/SmithingMenu.slots:Lnet/minecraft/core/NonNullList;
+      73: invokevirtual #145                // Method setupGhostRecipe:(Lcom/alonie/brbe/recipe/BRBSmithingRecipe;Ljava/util/List;)V
+      76: return
+      77: iconst_0
+      78: istore_3
+      79: iconst_0
+      80: istore        4
+      82: aload_0
+      83: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      86: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+      89: getfield      #135                // Field net/minecraft/world/inventory/SmithingMenu.slots:Lnet/minecraft/core/NonNullList;
+      92: invokevirtual #151                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+      95: astore        5
+      97: aload         5
+      99: invokeinterface #157,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     104: ifeq          232
+     107: aload         5
+     109: invokeinterface #160,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     114: checkcast     #162                // class net/minecraft/world/inventory/Slot
+     117: astore        6
+     119: aload         6
+     121: invokevirtual #166                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     124: astore        7
+     126: aload_1
+     127: invokeinterface #170,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+     132: aload         7
+     134: invokevirtual #176                // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+     137: ifeq          152
+     140: aload_0
+     141: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     144: iload_3
+     145: iconst_0
+     146: invokestatic  #182                // Method com/alonie/brbe/util/ClientInventoryUtil.moveItemToSlot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     149: goto          226
+     152: iload         4
+     154: ifne          203
+     157: aload         7
+     159: getstatic     #190                // Field net/minecraft/core/component/DataComponents.TRIM:Lnet/minecraft/core/component/DataComponentType;
+     162: invokevirtual #194                // Method net/minecraft/world/item/ItemStack.has:(Lnet/minecraft/core/component/DataComponentType;)Z
+     165: ifne          203
+     168: aload_1
+     169: invokeinterface #197,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getBase:()Lnet/minecraft/world/item/ItemStack;
+     174: invokevirtual #200                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     177: aload         7
+     179: invokevirtual #200                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     182: invokevirtual #206                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     185: ifeq          203
+     188: aload_0
+     189: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     192: iload_3
+     193: iconst_1
+     194: invokestatic  #182                // Method com/alonie/brbe/util/ClientInventoryUtil.moveItemToSlot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     197: iconst_1
+     198: istore        4
+     200: goto          226
+     203: aload_1
+     204: invokeinterface #209,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getAddition:()Lnet/minecraft/world/item/crafting/Ingredient;
+     209: aload         7
+     211: invokevirtual #176                // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+     214: ifeq          226
+     217: aload_0
+     218: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     221: iload_3
+     222: iconst_2
+     223: invokestatic  #182                // Method com/alonie/brbe/util/ClientInventoryUtil.moveItemToSlot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     226: iinc          3, 1
+     229: goto          97
+     232: aload_0
+     233: iconst_0
+     234: invokevirtual #213                // Method updateCollections:(Z)V
+     237: return
+
+  public void setupGhostRecipe(com.alonie.brbe.recipe.BRBSmithingRecipe, java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+       4: aload_1
+       5: invokevirtual #229                // Method com/alonie/brbe/generic/GenericGhostRecipe.setRecipe:(Lcom/alonie/brbe/generic/GenericRecipe;)V
+       8: aload_0
+       9: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      12: iconst_2
+      13: aload_1
+      14: invokeinterface #209,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getAddition:()Lnet/minecraft/world/item/crafting/Ingredient;
+      19: bipush        44
+      21: bipush        48
+      23: invokevirtual #233                // Method com/alonie/brbe/generic/GenericGhostRecipe.addIngredient:(ILnet/minecraft/world/item/crafting/Ingredient;II)V
+      26: aload_0
+      27: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      30: iconst_0
+      31: aload_1
+      32: invokeinterface #170,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+      37: bipush        8
+      39: bipush        48
+      41: invokevirtual #233                // Method com/alonie/brbe/generic/GenericGhostRecipe.addIngredient:(ILnet/minecraft/world/item/crafting/Ingredient;II)V
+      44: aload_0
+      45: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      48: iconst_1
+      49: iconst_1
+      50: anewarray     #184                // class net/minecraft/world/item/ItemStack
+      53: dup
+      54: iconst_0
+      55: aload_1
+      56: invokeinterface #197,  1          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.getBase:()Lnet/minecraft/world/item/ItemStack;
+      61: aastore
+      62: invokestatic  #237                // Method net/minecraft/world/item/crafting/Ingredient.of:([Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/crafting/Ingredient;
+      65: bipush        26
+      67: bipush        48
+      69: invokevirtual #233                // Method com/alonie/brbe/generic/GenericGhostRecipe.addIngredient:(ILnet/minecraft/world/item/crafting/Ingredient;II)V
+      72: return
+
+  public boolean isShowingGhostRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+       4: ifnull        21
+       7: aload_0
+       8: getfield      #52                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      11: invokevirtual #244                // Method com/alonie/brbe/generic/GenericGhostRecipe.size:()I
+      14: ifle          21
+      17: iconst_1
+      18: goto          22
+      21: iconst_0
+      22: ireturn
+
+  protected java.util.List<com.alonie.brbe.smithingtable.SmithingRecipeCollection> getCollectionsForCategory();
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field recipeManager:Lnet/minecraft/world/item/crafting/RecipeManager;
+       4: getstatic     #252                // Field net/minecraft/world/item/crafting/RecipeType.SMITHING:Lnet/minecraft/world/item/crafting/RecipeType;
+       7: invokevirtual #258                // Method net/minecraft/world/item/crafting/RecipeManager.getAllRecipesFor:(Lnet/minecraft/world/item/crafting/RecipeType;)Ljava/util/List;
+      10: astore_1
+      11: new           #260                // class java/util/ArrayList
+      14: dup
+      15: invokespecial #261                // Method java/util/ArrayList."<init>":()V
+      18: astore_2
+      19: aload_0
+      20: getfield      #265                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      23: invokevirtual #271                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      26: astore_3
+      27: aload_1
+      28: invokeinterface #274,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      33: astore        4
+      35: aload         4
+      37: invokeinterface #157,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      42: ifeq          271
+      45: aload         4
+      47: invokeinterface #160,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      52: checkcast     #276                // class net/minecraft/world/item/crafting/RecipeHolder
+      55: astore        5
+      57: aload         5
+      59: invokevirtual #280                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+      62: checkcast     #282                // class net/minecraft/world/item/crafting/SmithingRecipe
+      65: astore        6
+      67: aload_3
+      68: getstatic     #286                // Field com/alonie/brbe/BetterRecipeBook.SMITHING_SEARCH:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      71: if_acmpne     169
+      74: aload         6
+      76: instanceof    #288                // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+      79: ifeq          125
+      82: aload_2
+      83: new           #128                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+      86: dup
+      87: aload         6
+      89: checkcast     #288                // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+      92: aload_0
+      93: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      96: invokestatic  #294                // Method com/alonie/brbe/recipe/smithing/BRBSmithingTransformRecipe.from:(Lnet/minecraft/world/item/crafting/SmithingTransformRecipe;Lnet/minecraft/core/RegistryAccess;)Lcom/alonie/brbe/recipe/smithing/BRBSmithingTransformRecipe;
+      99: invokestatic  #297                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     102: aload_0
+     103: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     106: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+     109: aload_0
+     110: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     113: invokespecial #300                // Method com/alonie/brbe/smithingtable/SmithingRecipeCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/SmithingMenu;Lnet/minecraft/core/RegistryAccess;)V
+     116: invokeinterface #303,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     121: pop
+     122: goto          268
+     125: aload         6
+     127: instanceof    #305                // class net/minecraft/world/item/crafting/SmithingTrimRecipe
+     130: ifeq          268
+     133: aload_2
+     134: new           #128                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+     137: dup
+     138: aload         6
+     140: checkcast     #305                // class net/minecraft/world/item/crafting/SmithingTrimRecipe
+     143: invokestatic  #310                // Method com/alonie/brbe/recipe/smithing/BRBSmithingTrimRecipe.from:(Lnet/minecraft/world/item/crafting/SmithingTrimRecipe;)Ljava/util/ArrayList;
+     146: aload_0
+     147: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     150: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+     153: aload_0
+     154: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     157: invokespecial #300                // Method com/alonie/brbe/smithingtable/SmithingRecipeCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/SmithingMenu;Lnet/minecraft/core/RegistryAccess;)V
+     160: invokeinterface #303,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     165: pop
+     166: goto          268
+     169: aload_3
+     170: getstatic     #313                // Field com/alonie/brbe/BetterRecipeBook.SMITHING_TRANSFORM:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     173: if_acmpne     227
+     176: aload         6
+     178: instanceof    #288                // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+     181: ifeq          268
+     184: aload_2
+     185: new           #128                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+     188: dup
+     189: aload         6
+     191: checkcast     #288                // class net/minecraft/world/item/crafting/SmithingTransformRecipe
+     194: aload_0
+     195: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     198: invokestatic  #294                // Method com/alonie/brbe/recipe/smithing/BRBSmithingTransformRecipe.from:(Lnet/minecraft/world/item/crafting/SmithingTransformRecipe;Lnet/minecraft/core/RegistryAccess;)Lcom/alonie/brbe/recipe/smithing/BRBSmithingTransformRecipe;
+     201: invokestatic  #297                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+     204: aload_0
+     205: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     208: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+     211: aload_0
+     212: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     215: invokespecial #300                // Method com/alonie/brbe/smithingtable/SmithingRecipeCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/SmithingMenu;Lnet/minecraft/core/RegistryAccess;)V
+     218: invokeinterface #303,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     223: pop
+     224: goto          268
+     227: aload         6
+     229: instanceof    #305                // class net/minecraft/world/item/crafting/SmithingTrimRecipe
+     232: ifeq          268
+     235: aload_2
+     236: new           #128                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+     239: dup
+     240: aload         6
+     242: checkcast     #305                // class net/minecraft/world/item/crafting/SmithingTrimRecipe
+     245: invokestatic  #310                // Method com/alonie/brbe/recipe/smithing/BRBSmithingTrimRecipe.from:(Lnet/minecraft/world/item/crafting/SmithingTrimRecipe;)Ljava/util/ArrayList;
+     248: aload_0
+     249: getfield      #55                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     252: checkcast     #57                 // class net/minecraft/world/inventory/SmithingMenu
+     255: aload_0
+     256: getfield      #137                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     259: invokespecial #300                // Method com/alonie/brbe/smithingtable/SmithingRecipeCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/SmithingMenu;Lnet/minecraft/core/RegistryAccess;)V
+     262: invokeinterface #303,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     267: pop
+     268: goto          35
+     271: aload_2
+     272: areturn
+
+  private java.lang.Boolean lambda$init$0();
+    Code:
+       0: aload_0
+       1: invokevirtual #324                // Method getRecipeBookType:()Lcom/alonie/brbe/util/BRBHelper$Book;
+       4: invokestatic  #330                // Method com/alonie/brbe/api/BRBBookSettings.isFiltering:(Lcom/alonie/brbe/util/BRBHelper$Book;)Z
+       7: invokestatic  #336                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      10: areturn
+
+  static {};
+    Code:
+       0: ldc_w         #339                // String brb.gui.smithable
+       3: invokestatic  #345                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       6: putstatic     #105                // Field ONLY_CRAFTABLES_TOOLTIP:Lnet/minecraft/network/chat/MutableComponent;
+       9: return
+}

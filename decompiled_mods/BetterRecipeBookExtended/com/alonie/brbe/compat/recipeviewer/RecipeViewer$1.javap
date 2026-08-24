@@ -1,0 +1,31 @@
+Compiled from "RecipeViewer.java"
+class com.alonie.brbe.compat.recipeviewer.RecipeViewer$1 implements com.alonie.brbe.compat.recipeviewer.RecipeViewer {
+  com.alonie.brbe.compat.recipeviewer.RecipeViewer$1();
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public boolean isAvailable();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void showRecipe(net.minecraft.world.item.ItemStack);
+    Code:
+       0: return
+
+  public void showUses(net.minecraft.world.item.ItemStack);
+    Code:
+       0: return
+
+  public boolean matchesShowRecipe(int, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public boolean matchesShowUses(int, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+}

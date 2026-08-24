@@ -1,0 +1,261 @@
+Compiled from "OverlayRecipeButtonMixin.java"
+public abstract class com.alonie.brbe.mixins.alternativerecipes.OverlayRecipeButtonMixin extends net.minecraft.client.gui.components.AbstractWidget {
+  private boolean isCraftable;
+
+  net.minecraft.world.item.crafting.RecipeHolder<?> recipe;
+
+  protected java.util.List<?> ingredientPos;
+
+  net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent this$0;
+
+  public abstract void renderWidget(net.minecraft.client.gui.GuiGraphics, int, int, float);
+
+  public com.alonie.brbe.mixins.alternativerecipes.OverlayRecipeButtonMixin(int, int, int, int, net.minecraft.network.chat.Component);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: aload         5
+       8: invokespecial #41                 // Method net/minecraft/client/gui/components/AbstractWidget."<init>":(IIIILnet/minecraft/network/chat/Component;)V
+      11: return
+
+  public void renderWidget(net.minecraft.client.gui.GuiGraphics, int, int, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #61                 // Field isCraftable:Z
+       4: ifne          24
+       7: aload_0
+       8: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+      11: invokevirtual #69                 // Method net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent.getRecipeCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+      14: aload_0
+      15: getfield      #71                 // Field recipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+      18: invokestatic  #77                 // Method com/alonie/brbe/util/PartialCraftingUtil.isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+      21: ifeq          28
+      24: iconst_1
+      25: goto          29
+      28: iconst_0
+      29: istore        6
+      31: aload_0
+      32: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+      35: checkcast     #79                 // class com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor
+      38: invokeinterface #83,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor.isFurnaceMenu:()Z
+      43: ifeq          63
+      46: getstatic     #89                 // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_PLAIN_OVERLAY_SPRITE:Lnet/minecraft/client/gui/components/WidgetSprites;
+      49: iload         6
+      51: aload_0
+      52: invokevirtual #92                 // Method isHoveredOrFocused:()Z
+      55: invokevirtual #98                 // Method net/minecraft/client/gui/components/WidgetSprites.get:(ZZ)Lnet/minecraft/resources/ResourceLocation;
+      58: astore        7
+      60: goto          77
+      63: getstatic     #101                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_CRAFTING_OVERLAY_SPRITE:Lnet/minecraft/client/gui/components/WidgetSprites;
+      66: iload         6
+      68: aload_0
+      69: invokevirtual #92                 // Method isHoveredOrFocused:()Z
+      72: invokevirtual #98                 // Method net/minecraft/client/gui/components/WidgetSprites.get:(ZZ)Lnet/minecraft/resources/ResourceLocation;
+      75: astore        7
+      77: aload_1
+      78: aload         7
+      80: aload_0
+      81: invokevirtual #107                // Method getX:()I
+      84: aload_0
+      85: invokevirtual #110                // Method getY:()I
+      88: aload_0
+      89: getfield      #112                // Field width:I
+      92: aload_0
+      93: getfield      #114                // Field height:I
+      96: invokevirtual #120                // Method net/minecraft/client/gui/GuiGraphics.blitSprite:(Lnet/minecraft/resources/ResourceLocation;IIII)V
+      99: aload_0
+     100: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+     103: invokevirtual #69                 // Method net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent.getRecipeCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+     106: aload_0
+     107: getfield      #71                 // Field recipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+     110: invokestatic  #77                 // Method com/alonie/brbe/util/PartialCraftingUtil.isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+     113: ifeq          156
+     116: aload_1
+     117: aload_0
+     118: invokevirtual #107                // Method getX:()I
+     121: iconst_1
+     122: iadd
+     123: aload_0
+     124: invokevirtual #110                // Method getY:()I
+     127: iconst_1
+     128: iadd
+     129: aload_0
+     130: invokevirtual #107                // Method getX:()I
+     133: aload_0
+     134: getfield      #112                // Field width:I
+     137: iadd
+     138: iconst_1
+     139: isub
+     140: aload_0
+     141: invokevirtual #110                // Method getY:()I
+     144: aload_0
+     145: getfield      #114                // Field height:I
+     148: iadd
+     149: iconst_1
+     150: isub
+     151: ldc           #121                // int 1627337523
+     153: invokevirtual #125                // Method net/minecraft/client/gui/GuiGraphics.fill:(IIIII)V
+     156: aload_1
+     157: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     160: invokevirtual #133                // Method com/mojang/blaze3d/vertex/PoseStack.pushPose:()V
+     163: invokestatic  #139                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     166: invokevirtual #145                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     169: getfield      #151                // Field com/alonie/brbe/config/Config.alternativeRecipes:Lcom/alonie/brbe/config/AlternativeRecipes;
+     172: getfield      #156                // Field com/alonie/brbe/config/AlternativeRecipes.onHover:Z
+     175: ifeq          230
+     178: aload_0
+     179: invokevirtual #92                 // Method isHoveredOrFocused:()Z
+     182: ifne          230
+     185: aload_0
+     186: getfield      #71                 // Field recipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+     189: invokevirtual #161                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+     192: aload_0
+     193: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+     196: invokevirtual #69                 // Method net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent.getRecipeCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+     199: invokevirtual #167                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+     202: invokeinterface #173,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getResultItem:(Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;
+     207: astore        8
+     209: aload_1
+     210: aload         8
+     212: aload_0
+     213: invokevirtual #107                // Method getX:()I
+     216: iconst_4
+     217: iadd
+     218: aload_0
+     219: invokevirtual #110                // Method getY:()I
+     222: iconst_4
+     223: iadd
+     224: invokevirtual #177                // Method net/minecraft/client/gui/GuiGraphics.renderItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     227: goto          419
+     230: aload_1
+     231: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     234: aload_0
+     235: invokevirtual #107                // Method getX:()I
+     238: iconst_2
+     239: iadd
+     240: i2d
+     241: aload_0
+     242: invokevirtual #110                // Method getY:()I
+     245: iconst_2
+     246: iadd
+     247: i2d
+     248: ldc2_w        #178                // double 150.0d
+     251: invokevirtual #183                // Method com/mojang/blaze3d/vertex/PoseStack.translate:(DDD)V
+     254: aload_0
+     255: getfield      #185                // Field ingredientPos:Ljava/util/List;
+     258: invokeinterface #191,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     263: astore        8
+     265: aload         8
+     267: invokeinterface #196,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     272: ifeq          419
+     275: aload         8
+     277: invokeinterface #200,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     282: astore        9
+     284: aload         9
+     286: checkcast     #202                // class com/alonie/brbe/mixins/accessors/OverlayRecipeButtonPosAccessor
+     289: astore        10
+     291: aload_1
+     292: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     295: invokevirtual #133                // Method com/mojang/blaze3d/vertex/PoseStack.pushPose:()V
+     298: aload_1
+     299: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     302: aload         10
+     304: invokeinterface #205,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeButtonPosAccessor.brbe$getX:()I
+     309: i2d
+     310: aload         10
+     312: invokeinterface #208,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeButtonPosAccessor.brbe$getY:()I
+     317: i2d
+     318: dconst_0
+     319: invokevirtual #183                // Method com/mojang/blaze3d/vertex/PoseStack.translate:(DDD)V
+     322: aload_0
+     323: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+     326: checkcast     #79                 // class com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor
+     329: invokeinterface #83,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor.isFurnaceMenu:()Z
+     334: ifne          349
+     337: aload_1
+     338: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     341: ldc           #209                // float 0.375f
+     343: ldc           #209                // float 0.375f
+     345: fconst_1
+     346: invokevirtual #213                // Method com/mojang/blaze3d/vertex/PoseStack.scale:(FFF)V
+     349: aload_1
+     350: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     353: ldc2_w        #216                // double -8.0d
+     356: ldc2_w        #216                // double -8.0d
+     359: dconst_0
+     360: invokevirtual #183                // Method com/mojang/blaze3d/vertex/PoseStack.translate:(DDD)V
+     363: aload         10
+     365: invokeinterface #221,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeButtonPosAccessor.brbe$getIngredients:()[Lnet/minecraft/world/item/ItemStack;
+     370: astore        11
+     372: aload         11
+     374: arraylength
+     375: ifle          409
+     378: aload_1
+     379: aload         11
+     381: aload_0
+     382: getfield      #63                 // Field this$0:Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+     385: checkcast     #79                 // class com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor
+     388: invokeinterface #225,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor.getTime:()F
+     393: ldc           #226                // float 30.0f
+     395: fdiv
+     396: invokestatic  #232                // Method net/minecraft/util/Mth.floor:(F)I
+     399: aload         11
+     401: arraylength
+     402: irem
+     403: aaload
+     404: iconst_0
+     405: iconst_0
+     406: invokevirtual #177                // Method net/minecraft/client/gui/GuiGraphics.renderItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     409: aload_1
+     410: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     413: invokevirtual #237                // Method com/mojang/blaze3d/vertex/PoseStack.popPose:()V
+     416: goto          265
+     419: aload_1
+     420: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     423: invokevirtual #237                // Method com/mojang/blaze3d/vertex/PoseStack.popPose:()V
+     426: getstatic     #243                // Field com/alonie/brbe/BetterRecipeBook.pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+     429: getfield      #249                // Field com/alonie/brbe/PinnedRecipeManager.pinned:Ljava/util/HashSet;
+     432: aload_0
+     433: getfield      #71                 // Field recipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+     436: invokevirtual #253                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+     439: invokevirtual #259                // Method java/util/HashSet.contains:(Ljava/lang/Object;)Z
+     442: ifeq          509
+     445: aload_1
+     446: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     449: invokevirtual #133                // Method com/mojang/blaze3d/vertex/PoseStack.pushPose:()V
+     452: aload_1
+     453: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     456: aload_1
+     457: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     460: invokevirtual #263                // Method com/mojang/blaze3d/vertex/PoseStack.last:()Lcom/mojang/blaze3d/vertex/PoseStack$Pose;
+     463: invokevirtual #266                // Method com/mojang/blaze3d/vertex/PoseStack$Pose.pose:()Lorg/joml/Matrix4f;
+     466: invokevirtual #270                // Method com/mojang/blaze3d/vertex/PoseStack.mulPose:(Lorg/joml/Matrix4f;)V
+     469: aload_1
+     470: getstatic     #274                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_OVERLAY_PIN_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+     473: aload_0
+     474: invokevirtual #107                // Method getX:()I
+     477: iconst_4
+     478: isub
+     479: aload_0
+     480: invokevirtual #110                // Method getY:()I
+     483: iconst_4
+     484: isub
+     485: aload_0
+     486: getfield      #112                // Field width:I
+     489: bipush        8
+     491: iadd
+     492: aload_0
+     493: getfield      #114                // Field height:I
+     496: bipush        8
+     498: iadd
+     499: invokevirtual #120                // Method net/minecraft/client/gui/GuiGraphics.blitSprite:(Lnet/minecraft/resources/ResourceLocation;IIII)V
+     502: aload_1
+     503: invokevirtual #129                // Method net/minecraft/client/gui/GuiGraphics.pose:()Lcom/mojang/blaze3d/vertex/PoseStack;
+     506: invokevirtual #237                // Method com/mojang/blaze3d/vertex/PoseStack.popPose:()V
+     509: aload         5
+     511: invokevirtual #277                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+     514: return
+}

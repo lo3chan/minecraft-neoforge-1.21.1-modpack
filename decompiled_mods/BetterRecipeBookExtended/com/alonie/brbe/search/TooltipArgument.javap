@@ -1,0 +1,40 @@
+Compiled from "TooltipArgument.java"
+public class com.alonie.brbe.search.TooltipArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.lang.String tooltipQuery;
+
+  public com.alonie.brbe.search.TooltipArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       9: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      12: putfield      #28                 // Field tooltipQuery:Ljava/lang/String;
+      15: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_2
+       1: aload_1
+       2: invokevirtual #40                 // Method com/alonie/brbe/search/SearchCache.getTooltipText:(Lnet/minecraft/world/item/ItemStack;)Ljava/lang/String;
+       5: astore_3
+       6: aload_3
+       7: ifnull        31
+      10: aload_3
+      11: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+      14: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      17: aload_0
+      18: getfield      #28                 // Field tooltipQuery:Ljava/lang/String;
+      21: invokevirtual #44                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      24: ifeq          31
+      27: iconst_1
+      28: goto          32
+      31: iconst_0
+      32: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

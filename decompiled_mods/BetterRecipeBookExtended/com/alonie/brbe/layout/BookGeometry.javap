@@ -1,0 +1,398 @@
+Compiled from "BookGeometry.java"
+public final class com.alonie.brbe.layout.BookGeometry {
+  private final int bookLeft;
+
+  private final int bookTop;
+
+  private final int bookWidth;
+
+  private final int bookHeight;
+
+  private final int searchX;
+
+  private final int searchY;
+
+  private final int searchWidth;
+
+  private final int searchHeight;
+
+  private final int filterX;
+
+  private final int filterY;
+
+  private final int filterWidth;
+
+  private final int filterHeight;
+
+  private final int settingsX;
+
+  private final int settingsY;
+
+  private final int settingsSize;
+
+  private final int gridX;
+
+  private final int gridY;
+
+  private final int gridColumns;
+
+  private final int gridRows;
+
+  private final int buttonSize;
+
+  private final int arrowBackX;
+
+  private final int arrowForwardX;
+
+  private final int arrowY;
+
+  private final int tabX;
+
+  private final int tabY;
+
+  private final int tabSpacing;
+
+  private final java.util.Map<com.alonie.brbe.layout.BookLayout$TabPosition, com.alonie.brbe.layout.BookLayout$Zone> tabZones;
+
+  private final com.alonie.brbe.layout.BookLayout$Zone gridZone;
+
+  private final int instantCraftX;
+
+  private final int instantCraftY;
+
+  public com.alonie.brbe.layout.BookGeometry(int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, java.util.Map<com.alonie.brbe.layout.BookLayout$TabPosition, com.alonie.brbe.layout.BookLayout$Zone>, int, int, com.alonie.brbe.layout.BookLayout$Zone);
+    Code:
+       0: aload_0
+       1: invokespecial #53                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #55                 // Field bookLeft:I
+       9: aload_0
+      10: iload_2
+      11: putfield      #57                 // Field bookTop:I
+      14: aload_0
+      15: iload_3
+      16: putfield      #59                 // Field bookWidth:I
+      19: aload_0
+      20: iload         4
+      22: putfield      #61                 // Field bookHeight:I
+      25: aload_0
+      26: iload         5
+      28: putfield      #63                 // Field searchX:I
+      31: aload_0
+      32: iload         6
+      34: putfield      #65                 // Field searchY:I
+      37: aload_0
+      38: iload         7
+      40: putfield      #67                 // Field searchWidth:I
+      43: aload_0
+      44: iload         8
+      46: putfield      #69                 // Field searchHeight:I
+      49: aload_0
+      50: iload         9
+      52: putfield      #71                 // Field filterX:I
+      55: aload_0
+      56: iload         10
+      58: putfield      #73                 // Field filterY:I
+      61: aload_0
+      62: iload         11
+      64: putfield      #75                 // Field filterWidth:I
+      67: aload_0
+      68: iload         12
+      70: putfield      #77                 // Field filterHeight:I
+      73: aload_0
+      74: iload         13
+      76: putfield      #79                 // Field settingsX:I
+      79: aload_0
+      80: iload         14
+      82: putfield      #81                 // Field settingsY:I
+      85: aload_0
+      86: iload         15
+      88: putfield      #83                 // Field settingsSize:I
+      91: aload_0
+      92: iload         16
+      94: putfield      #85                 // Field gridX:I
+      97: aload_0
+      98: iload         17
+     100: putfield      #87                 // Field gridY:I
+     103: aload_0
+     104: iload         18
+     106: putfield      #89                 // Field gridColumns:I
+     109: aload_0
+     110: iload         19
+     112: putfield      #91                 // Field gridRows:I
+     115: aload_0
+     116: iload         20
+     118: putfield      #93                 // Field buttonSize:I
+     121: aload_0
+     122: iload         21
+     124: putfield      #95                 // Field arrowBackX:I
+     127: aload_0
+     128: iload         22
+     130: putfield      #97                 // Field arrowForwardX:I
+     133: aload_0
+     134: iload         23
+     136: putfield      #99                 // Field arrowY:I
+     139: aload_0
+     140: iload         24
+     142: putfield      #101                // Field tabX:I
+     145: aload_0
+     146: iload         25
+     148: putfield      #103                // Field tabY:I
+     151: aload_0
+     152: iload         26
+     154: putfield      #105                // Field tabSpacing:I
+     157: aload_0
+     158: new           #107                // class java/util/EnumMap
+     161: dup
+     162: aload         27
+     164: invokespecial #110                // Method java/util/EnumMap."<init>":(Ljava/util/Map;)V
+     167: invokestatic  #116                // Method java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+     170: putfield      #118                // Field tabZones:Ljava/util/Map;
+     173: aload_0
+     174: iload         28
+     176: putfield      #120                // Field instantCraftX:I
+     179: aload_0
+     180: iload         29
+     182: putfield      #122                // Field instantCraftY:I
+     185: aload_0
+     186: aload         30
+     188: putfield      #124                // Field gridZone:Lcom/alonie/brbe/layout/BookLayout$Zone;
+     191: return
+
+  public int bookLeft();
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field bookLeft:I
+       4: ireturn
+
+  public int bookTop();
+    Code:
+       0: aload_0
+       1: getfield      #57                 // Field bookTop:I
+       4: ireturn
+
+  public int bookWidth();
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field bookWidth:I
+       4: ireturn
+
+  public int bookHeight();
+    Code:
+       0: aload_0
+       1: getfield      #61                 // Field bookHeight:I
+       4: ireturn
+
+  public int searchX();
+    Code:
+       0: aload_0
+       1: getfield      #63                 // Field searchX:I
+       4: ireturn
+
+  public int searchY();
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field searchY:I
+       4: ireturn
+
+  public int searchWidth();
+    Code:
+       0: aload_0
+       1: getfield      #67                 // Field searchWidth:I
+       4: ireturn
+
+  public int searchHeight();
+    Code:
+       0: aload_0
+       1: getfield      #69                 // Field searchHeight:I
+       4: ireturn
+
+  public int filterX();
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field filterX:I
+       4: ireturn
+
+  public int filterY();
+    Code:
+       0: aload_0
+       1: getfield      #73                 // Field filterY:I
+       4: ireturn
+
+  public int filterWidth();
+    Code:
+       0: aload_0
+       1: getfield      #75                 // Field filterWidth:I
+       4: ireturn
+
+  public int filterHeight();
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field filterHeight:I
+       4: ireturn
+
+  public int settingsX();
+    Code:
+       0: aload_0
+       1: getfield      #79                 // Field settingsX:I
+       4: ireturn
+
+  public int settingsY();
+    Code:
+       0: aload_0
+       1: getfield      #81                 // Field settingsY:I
+       4: ireturn
+
+  public int settingsSize();
+    Code:
+       0: aload_0
+       1: getfield      #83                 // Field settingsSize:I
+       4: ireturn
+
+  public int gridX();
+    Code:
+       0: aload_0
+       1: getfield      #85                 // Field gridX:I
+       4: ireturn
+
+  public int gridY();
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field gridY:I
+       4: ireturn
+
+  public int gridColumns();
+    Code:
+       0: aload_0
+       1: getfield      #89                 // Field gridColumns:I
+       4: ireturn
+
+  public int gridRows();
+    Code:
+       0: aload_0
+       1: getfield      #91                 // Field gridRows:I
+       4: ireturn
+
+  public int buttonSize();
+    Code:
+       0: aload_0
+       1: getfield      #93                 // Field buttonSize:I
+       4: ireturn
+
+  public int buttonsPerPage();
+    Code:
+       0: aload_0
+       1: getfield      #89                 // Field gridColumns:I
+       4: aload_0
+       5: getfield      #91                 // Field gridRows:I
+       8: imul
+       9: ireturn
+
+  public int buttonX(int);
+    Code:
+       0: aload_0
+       1: getfield      #85                 // Field gridX:I
+       4: aload_0
+       5: getfield      #93                 // Field buttonSize:I
+       8: iconst_2
+       9: iadd
+      10: iload_1
+      11: imul
+      12: iadd
+      13: ireturn
+
+  public int buttonY(int);
+    Code:
+       0: aload_0
+       1: getfield      #87                 // Field gridY:I
+       4: aload_0
+       5: getfield      #93                 // Field buttonSize:I
+       8: iconst_2
+       9: iadd
+      10: iload_1
+      11: imul
+      12: iadd
+      13: ireturn
+
+  public int arrowBackX();
+    Code:
+       0: aload_0
+       1: getfield      #95                 // Field arrowBackX:I
+       4: ireturn
+
+  public int arrowForwardX();
+    Code:
+       0: aload_0
+       1: getfield      #97                 // Field arrowForwardX:I
+       4: ireturn
+
+  public int arrowY();
+    Code:
+       0: aload_0
+       1: getfield      #99                 // Field arrowY:I
+       4: ireturn
+
+  public int tabX();
+    Code:
+       0: aload_0
+       1: getfield      #101                // Field tabX:I
+       4: ireturn
+
+  public int tabY();
+    Code:
+       0: aload_0
+       1: getfield      #103                // Field tabY:I
+       4: ireturn
+
+  public int tabSpacing();
+    Code:
+       0: aload_0
+       1: getfield      #105                // Field tabSpacing:I
+       4: ireturn
+
+  public int tabY(int);
+    Code:
+       0: aload_0
+       1: getfield      #103                // Field tabY:I
+       4: aload_0
+       5: getfield      #105                // Field tabSpacing:I
+       8: iload_1
+       9: imul
+      10: iadd
+      11: ireturn
+
+  public java.util.Map<com.alonie.brbe.layout.BookLayout$TabPosition, com.alonie.brbe.layout.BookLayout$Zone> tabZones();
+    Code:
+       0: aload_0
+       1: getfield      #118                // Field tabZones:Ljava/util/Map;
+       4: areturn
+
+  public com.alonie.brbe.layout.BookLayout$Zone tabZone(com.alonie.brbe.layout.BookLayout$TabPosition);
+    Code:
+       0: aload_0
+       1: getfield      #118                // Field tabZones:Ljava/util/Map;
+       4: aload_1
+       5: invokestatic  #143                // Method com/alonie/brbe/layout/BookLayout$Zone.empty:()Lcom/alonie/brbe/layout/BookLayout$Zone;
+       8: invokeinterface #149,  3          // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      13: checkcast     #7                  // class com/alonie/brbe/layout/BookLayout$Zone
+      16: areturn
+
+  public com.alonie.brbe.layout.BookLayout$Zone gridZone();
+    Code:
+       0: aload_0
+       1: getfield      #124                // Field gridZone:Lcom/alonie/brbe/layout/BookLayout$Zone;
+       4: areturn
+
+  public int instantCraftX();
+    Code:
+       0: aload_0
+       1: getfield      #120                // Field instantCraftX:I
+       4: ireturn
+
+  public int instantCraftY();
+    Code:
+       0: aload_0
+       1: getfield      #122                // Field instantCraftY:I
+       4: ireturn
+}

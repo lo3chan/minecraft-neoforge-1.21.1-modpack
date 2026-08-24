@@ -1,0 +1,29 @@
+Compiled from "GenericClientRecipeBook.java"
+public class com.alonie.brbe.generic.GenericClientRecipeBook extends net.minecraft.stats.RecipeBook {
+  private boolean filteringCraftable;
+
+  public com.alonie.brbe.generic.GenericClientRecipeBook();
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method net/minecraft/stats/RecipeBook."<init>":()V
+       4: return
+
+  public boolean isFilteringCraftable();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field filteringCraftable:Z
+       4: ireturn
+
+  public boolean isFiltering(net.minecraft.world.inventory.RecipeBookType);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field filteringCraftable:Z
+       4: ireturn
+
+  public void setFilteringCraftable(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #17                 // Field filteringCraftable:Z
+       5: return
+}

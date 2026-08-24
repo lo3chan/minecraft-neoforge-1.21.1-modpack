@@ -1,0 +1,276 @@
+Compiled from "ClientInventoryUtil.java"
+public class com.alonie.brbe.util.ClientInventoryUtil {
+  static final boolean $assertionsDisabled;
+
+  public com.alonie.brbe.util.ClientInventoryUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void storeItem(int, java.util.function.Predicate<java.lang.Integer>);
+    Code:
+       0: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #33                 // Field net/minecraft/client/Minecraft.gameMode:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+       6: astore_2
+       7: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      10: astore_3
+      11: aload_3
+      12: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      15: getfield      #43                 // Field net/minecraft/client/player/LocalPlayer.containerMenu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      18: astore        4
+      20: aload         4
+      22: ifnonnull     26
+      25: return
+      26: iload_0
+      27: iflt          89
+      30: aload         4
+      32: getfield      #51                 // Field net/minecraft/world/inventory/AbstractContainerMenu.slots:Lnet/minecraft/core/NonNullList;
+      35: iload_0
+      36: invokevirtual #57                 // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      39: checkcast     #59                 // class net/minecraft/world/inventory/Slot
+      42: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      45: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      48: ifeq          52
+      51: return
+      52: aload         4
+      54: invokevirtual #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu.getCarried:()Lnet/minecraft/world/item/ItemStack;
+      57: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      60: ifne          68
+      63: iconst_m1
+      64: aload_1
+      65: invokestatic  #74                 // Method storeItem:(ILjava/util/function/Predicate;)V
+      68: aload_2
+      69: aload         4
+      71: getfield      #78                 // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+      74: iload_0
+      75: iconst_0
+      76: getstatic     #84                 // Field net/minecraft/world/inventory/ClickType.PICKUP:Lnet/minecraft/world/inventory/ClickType;
+      79: aload_3
+      80: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      83: invokevirtual #88                 // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.handleInventoryMouseClick:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+      86: goto          101
+      89: aload         4
+      91: invokevirtual #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu.getCarried:()Lnet/minecraft/world/item/ItemStack;
+      94: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      97: ifeq          101
+     100: return
+     101: new           #90                 // class java/util/ArrayList
+     104: dup
+     105: aload         4
+     107: getfield      #51                 // Field net/minecraft/world/inventory/AbstractContainerMenu.slots:Lnet/minecraft/core/NonNullList;
+     110: invokespecial #93                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+     113: astore        5
+     115: aload         5
+     117: invokedynamic #112,  0            // InvokeDynamic #0:compare:()Ljava/util/Comparator;
+     122: invokeinterface #118,  2          // InterfaceMethod java/util/List.sort:(Ljava/util/Comparator;)V
+     127: aload         4
+     129: invokevirtual #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu.getCarried:()Lnet/minecraft/world/item/ItemStack;
+     132: invokevirtual #122                // Method net/minecraft/world/item/ItemStack.getCount:()I
+     135: istore        6
+     137: aload         5
+     139: invokeinterface #126,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     144: astore        7
+     146: aload         7
+     148: invokeinterface #131,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     153: ifeq          282
+     156: aload         7
+     158: invokeinterface #135,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     163: checkcast     #59                 // class net/minecraft/world/inventory/Slot
+     166: astore        8
+     168: iload         6
+     170: ifgt          176
+     173: goto          282
+     176: aload_1
+     177: aload         8
+     179: getfield      #138                // Field net/minecraft/world/inventory/Slot.index:I
+     182: invokestatic  #144                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     185: invokeinterface #150,  2          // InterfaceMethod java/util/function/Predicate.test:(Ljava/lang/Object;)Z
+     190: ifeq          279
+     193: aload         4
+     195: invokevirtual #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu.getCarried:()Lnet/minecraft/world/item/ItemStack;
+     198: aload         8
+     200: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     203: invokestatic  #154                // Method net/minecraft/world/item/ItemStack.isSameItemSameComponents:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+     206: ifne          220
+     209: aload         8
+     211: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     214: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     217: ifeq          279
+     220: aload         8
+     222: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     225: invokevirtual #122                // Method net/minecraft/world/item/ItemStack.getCount:()I
+     228: istore        9
+     230: iload         9
+     232: aload         8
+     234: invokevirtual #157                // Method net/minecraft/world/inventory/Slot.getMaxStackSize:()I
+     237: if_icmpge     279
+     240: iload         6
+     242: iconst_0
+     243: aload         8
+     245: invokevirtual #157                // Method net/minecraft/world/inventory/Slot.getMaxStackSize:()I
+     248: iload         9
+     250: isub
+     251: invokestatic  #163                // Method java/lang/Math.max:(II)I
+     254: isub
+     255: istore        6
+     257: aload_2
+     258: aload         4
+     260: getfield      #78                 // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+     263: aload         8
+     265: getfield      #138                // Field net/minecraft/world/inventory/Slot.index:I
+     268: iconst_0
+     269: getstatic     #84                 // Field net/minecraft/world/inventory/ClickType.PICKUP:Lnet/minecraft/world/inventory/ClickType;
+     272: aload_3
+     273: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+     276: invokevirtual #88                 // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.handleInventoryMouseClick:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+     279: goto          146
+     282: iload         6
+     284: ifle          293
+     287: iconst_m1
+     288: iconst_1
+     289: iconst_0
+     290: invokestatic  #167                // Method dropItem:(IZZ)V
+     293: return
+
+  public static void moveItemToSlot(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+    Code:
+       0: getstatic     #184                // Field $assertionsDisabled:Z
+       3: ifne          23
+       6: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       9: getfield      #33                 // Field net/minecraft/client/Minecraft.gameMode:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+      12: ifnonnull     23
+      15: new           #186                // class java/lang/AssertionError
+      18: dup
+      19: invokespecial #187                // Method java/lang/AssertionError."<init>":()V
+      22: athrow
+      23: iconst_m1
+      24: invokedynamic #197,  0            // InvokeDynamic #1:test:()Ljava/util/function/Predicate;
+      29: invokestatic  #74                 // Method storeItem:(ILjava/util/function/Predicate;)V
+      32: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      35: getfield      #33                 // Field net/minecraft/client/Minecraft.gameMode:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+      38: aload_0
+      39: getfield      #78                 // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+      42: aload_0
+      43: iload_1
+      44: invokevirtual #201                // Method net/minecraft/world/inventory/AbstractContainerMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+      47: getfield      #138                // Field net/minecraft/world/inventory/Slot.index:I
+      50: iconst_0
+      51: getstatic     #84                 // Field net/minecraft/world/inventory/ClickType.PICKUP:Lnet/minecraft/world/inventory/ClickType;
+      54: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      57: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      60: invokevirtual #88                 // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.handleInventoryMouseClick:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+      63: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      66: getfield      #33                 // Field net/minecraft/client/Minecraft.gameMode:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+      69: aload_0
+      70: getfield      #78                 // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+      73: iload_2
+      74: iconst_0
+      75: getstatic     #84                 // Field net/minecraft/world/inventory/ClickType.PICKUP:Lnet/minecraft/world/inventory/ClickType;
+      78: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      81: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      84: invokevirtual #88                 // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.handleInventoryMouseClick:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+      87: iconst_m1
+      88: invokedynamic #206,  0            // InvokeDynamic #2:test:()Ljava/util/function/Predicate;
+      93: invokestatic  #74                 // Method storeItem:(ILjava/util/function/Predicate;)V
+      96: return
+
+  public static void dropItem(int, boolean, boolean);
+    Code:
+       0: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #33                 // Field net/minecraft/client/Minecraft.gameMode:Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;
+       6: astore_3
+       7: invokestatic  #29                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      10: astore        4
+      12: aload         4
+      14: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      17: getfield      #43                 // Field net/minecraft/client/player/LocalPlayer.containerMenu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      20: astore        5
+      22: aload         5
+      24: ifnonnull     28
+      27: return
+      28: getstatic     #211                // Field net/minecraft/world/inventory/ClickType.THROW:Lnet/minecraft/world/inventory/ClickType;
+      31: astore        6
+      33: iload_0
+      34: ifge          62
+      37: sipush        -999
+      40: istore_0
+      41: getstatic     #84                 // Field net/minecraft/world/inventory/ClickType.PICKUP:Lnet/minecraft/world/inventory/ClickType;
+      44: astore        6
+      46: iload_2
+      47: ifne          88
+      50: aload         5
+      52: invokevirtual #72                 // Method net/minecraft/world/inventory/AbstractContainerMenu.getCarried:()Lnet/minecraft/world/item/ItemStack;
+      55: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      58: ifeq          88
+      61: return
+      62: iload_2
+      63: ifne          88
+      66: aload         5
+      68: getfield      #51                 // Field net/minecraft/world/inventory/AbstractContainerMenu.slots:Lnet/minecraft/core/NonNullList;
+      71: iload_0
+      72: invokevirtual #57                 // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      75: checkcast     #59                 // class net/minecraft/world/inventory/Slot
+      78: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      81: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      84: ifeq          88
+      87: return
+      88: aload_3
+      89: aload         5
+      91: getfield      #78                 // Field net/minecraft/world/inventory/AbstractContainerMenu.containerId:I
+      94: iload_0
+      95: iload_1
+      96: ifeq          103
+      99: iconst_0
+     100: goto          104
+     103: iconst_1
+     104: aload         6
+     106: aload         4
+     108: getfield      #37                 // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+     111: invokevirtual #88                 // Method net/minecraft/client/multiplayer/MultiPlayerGameMode.handleInventoryMouseClick:(IIILnet/minecraft/world/inventory/ClickType;Lnet/minecraft/world/entity/player/Player;)V
+     114: return
+
+  private static boolean lambda$moveItemToSlot$1(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #216                // Method java/lang/Integer.intValue:()I
+       4: iconst_4
+       5: if_icmple     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  private static boolean lambda$moveItemToSlot$0(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #216                // Method java/lang/Integer.intValue:()I
+       4: iconst_4
+       5: if_icmple     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  private static int lambda$storeItem$0(net.minecraft.world.inventory.Slot, net.minecraft.world.inventory.Slot);
+    Code:
+       0: aload_0
+       1: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+       4: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+       7: aload_1
+       8: invokevirtual #63                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      11: invokevirtual #69                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      14: invokestatic  #224                // Method java/lang/Boolean.compare:(ZZ)I
+      17: ireturn
+
+  static {};
+    Code:
+       0: ldc           #2                  // class com/alonie/brbe/util/ClientInventoryUtil
+       2: invokevirtual #230                // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #184                // Field $assertionsDisabled:Z
+      16: return
+}

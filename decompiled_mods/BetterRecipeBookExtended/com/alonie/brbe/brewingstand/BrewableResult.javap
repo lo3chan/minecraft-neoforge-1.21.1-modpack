@@ -1,0 +1,192 @@
+Compiled from "BrewableResult.java"
+public class com.alonie.brbe.brewingstand.BrewableResult implements com.alonie.brbe.generic.GenericRecipe {
+  public java.lang.Object recipe;
+
+  public net.minecraft.resources.ResourceLocation input;
+
+  public com.alonie.brbe.brewingstand.BrewableResult(java.lang.Object);
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #23                 // Field recipe:Ljava/lang/Object;
+       9: aload_0
+      10: getstatic     #29                 // Field net/minecraft/core/registries/BuiltInRegistries.POTION:Lnet/minecraft/core/Registry;
+      13: aload_1
+      14: invokestatic  #35                 // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getFrom:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+      17: invokeinterface #41,  2           // InterfaceMethod net/minecraft/core/Registry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      22: putfield      #43                 // Field input:Lnet/minecraft/resources/ResourceLocation;
+      25: return
+
+  public boolean hasIngredient(java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field recipe:Ljava/lang/Object;
+       4: invokestatic  #53                 // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getIngredient:(Ljava/lang/Object;)Lnet/minecraft/world/item/crafting/Ingredient;
+       7: invokevirtual #59                 // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      10: astore_2
+      11: aload_2
+      12: arraylength
+      13: istore_3
+      14: iconst_0
+      15: istore        4
+      17: iload         4
+      19: iload_3
+      20: if_icmpge     89
+      23: aload_2
+      24: iload         4
+      26: aaload
+      27: astore        5
+      29: aload_1
+      30: invokeinterface #67,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      35: astore        6
+      37: aload         6
+      39: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      44: ifeq          83
+      47: aload         6
+      49: invokeinterface #79,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      54: checkcast     #81                 // class net/minecraft/world/inventory/Slot
+      57: astore        7
+      59: aload         5
+      61: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      64: aload         7
+      66: invokevirtual #88                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      69: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      72: invokevirtual #92                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+      75: ifeq          80
+      78: iconst_1
+      79: ireturn
+      80: goto          37
+      83: iinc          4, 1
+      86: goto          17
+      89: iconst_0
+      90: ireturn
+
+  public net.minecraft.world.item.ItemStack inputAsItemStack(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field recipe:Ljava/lang/Object;
+       4: invokestatic  #35                 // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getFrom:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+       7: astore_2
+       8: aload_1
+       9: invokevirtual #105                // Method com/alonie/brbe/api/BRBBookCategories$Category.getItemIcons:()Ljava/util/List;
+      12: invokeinterface #108,  1          // InterfaceMethod java/util/List.getFirst:()Ljava/lang/Object;
+      17: checkcast     #69                 // class net/minecraft/world/item/ItemStack
+      20: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      23: astore_3
+      24: aload_3
+      25: aload_2
+      26: invokestatic  #112                // Method potionStackFromPotion:(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
+      29: areturn
+
+  public boolean hasInput(com.alonie.brbe.api.BRBBookCategories$Category, java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #122                // Method inputAsItemStack:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+       5: astore_3
+       6: aload_2
+       7: invokeinterface #67,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      12: astore        4
+      14: aload         4
+      16: invokeinterface #75,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      21: ifeq          57
+      24: aload         4
+      26: invokeinterface #79,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      31: checkcast     #81                 // class net/minecraft/world/inventory/Slot
+      34: astore        5
+      36: aload         5
+      38: invokevirtual #88                 // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      41: astore        6
+      43: aload_3
+      44: aload         6
+      46: invokestatic  #126                // Method net/minecraft/world/item/ItemStack.isSameItemSameComponents:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+      49: ifeq          54
+      52: iconst_1
+      53: ireturn
+      54: goto          14
+      57: iconst_0
+      58: ireturn
+
+  public boolean hasMaterials(com.alonie.brbe.api.BRBBookCategories$Category, java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: aload_2
+       2: invokevirtual #130                // Method hasIngredient:(Ljava/util/List;)Z
+       5: istore_3
+       6: aload_0
+       7: aload_1
+       8: aload_2
+       9: invokevirtual #132                // Method hasInput:(Lcom/alonie/brbe/api/BRBBookCategories$Category;Ljava/util/List;)Z
+      12: istore        4
+      14: iload_3
+      15: ifeq          27
+      18: iload         4
+      20: ifeq          27
+      23: iconst_1
+      24: goto          28
+      27: iconst_0
+      28: ireturn
+
+  public net.minecraft.resources.ResourceLocation id();
+    Code:
+       0: getstatic     #29                 // Field net/minecraft/core/registries/BuiltInRegistries.POTION:Lnet/minecraft/core/Registry;
+       3: aload_0
+       4: getfield      #23                 // Field recipe:Ljava/lang/Object;
+       7: invokestatic  #138                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getTo:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+      10: invokeinterface #41,  2           // InterfaceMethod net/minecraft/core/Registry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      15: areturn
+
+  public net.minecraft.network.chat.Component getHoverName(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field recipe:Ljava/lang/Object;
+       4: invokestatic  #138                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getTo:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+       7: astore_2
+       8: aload_1
+       9: invokevirtual #105                // Method com/alonie/brbe/api/BRBBookCategories$Category.getItemIcons:()Ljava/util/List;
+      12: invokeinterface #108,  1          // InterfaceMethod java/util/List.getFirst:()Ljava/lang/Object;
+      17: checkcast     #69                 // class net/minecraft/world/item/ItemStack
+      20: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      23: astore_3
+      24: aload_3
+      25: aload_2
+      26: invokestatic  #112                // Method potionStackFromPotion:(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
+      29: invokevirtual #143                // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+      32: areturn
+
+  public net.minecraft.world.item.ItemStack getResult(net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field recipe:Ljava/lang/Object;
+       4: invokestatic  #138                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getTo:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+       7: astore_3
+       8: aload_2
+       9: invokevirtual #105                // Method com/alonie/brbe/api/BRBBookCategories$Category.getItemIcons:()Ljava/util/List;
+      12: invokeinterface #108,  1          // InterfaceMethod java/util/List.getFirst:()Ljava/lang/Object;
+      17: checkcast     #69                 // class net/minecraft/world/item/ItemStack
+      20: invokevirtual #85                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+      23: astore        4
+      25: aload         4
+      27: aload_3
+      28: invokestatic  #112                // Method potionStackFromPotion:(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/alchemy/Potion;)Lnet/minecraft/world/item/ItemStack;
+      31: areturn
+
+  public java.lang.String getSearchString(com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #152                // Method getHoverName:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/network/chat/Component;
+       5: invokeinterface #158,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+      10: areturn
+
+  public static net.minecraft.world.item.ItemStack potionStackFromPotion(net.minecraft.world.item.Item, net.minecraft.world.item.alchemy.Potion);
+    Code:
+       0: aload_0
+       1: getstatic     #29                 // Field net/minecraft/core/registries/BuiltInRegistries.POTION:Lnet/minecraft/core/Registry;
+       4: aload_1
+       5: invokeinterface #164,  2          // InterfaceMethod net/minecraft/core/Registry.wrapAsHolder:(Ljava/lang/Object;)Lnet/minecraft/core/Holder;
+      10: invokestatic  #170                // Method net/minecraft/world/item/alchemy/PotionContents.createItemStack:(Lnet/minecraft/world/item/Item;Lnet/minecraft/core/Holder;)Lnet/minecraft/world/item/ItemStack;
+      13: areturn
+}

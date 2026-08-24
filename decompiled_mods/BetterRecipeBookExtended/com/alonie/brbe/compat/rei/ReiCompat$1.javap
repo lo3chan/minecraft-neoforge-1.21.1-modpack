@@ -1,0 +1,38 @@
+Compiled from "ReiCompat.java"
+class com.alonie.brbe.compat.rei.ReiCompat$1 implements com.alonie.brbe.compat.rei.ReiCompat$ReiHandler {
+  com.alonie.brbe.compat.rei.ReiCompat$1();
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public boolean openRecipeView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #23                 // String addRecipesFor
+       2: aload_1
+       3: invokestatic  #27                 // Method com/alonie/brbe/compat/rei/ReiCompat.openView:(Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;)Z
+       6: ireturn
+
+  public boolean openUsageView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #31                 // String addUsagesFor
+       2: aload_1
+       3: invokestatic  #27                 // Method com/alonie/brbe/compat/rei/ReiCompat.openView:(Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;)Z
+       6: ireturn
+
+  public boolean matchesShowRecipe(int, int);
+    Code:
+       0: ldc           #37                 // String getRecipeKeybind
+       2: iload_1
+       3: iload_2
+       4: invokestatic  #41                 // Method com/alonie/brbe/compat/rei/ReiCompat.matchesKeyBind:(Ljava/lang/String;II)Z
+       7: ireturn
+
+  public boolean matchesShowUses(int, int);
+    Code:
+       0: ldc           #45                 // String getUsageKeybind
+       2: iload_1
+       3: iload_2
+       4: invokestatic  #41                 // Method com/alonie/brbe/compat/rei/ReiCompat.matchesKeyBind:(Ljava/lang/String;II)Z
+       7: ireturn
+}

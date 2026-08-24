@@ -1,0 +1,35 @@
+Compiled from "RbipMouseScrollMixin.java"
+public abstract class com.alonie.recipebookispain_extended.mixin.RbipMouseScrollMixin {
+  private net.minecraft.client.Minecraft minecraft;
+
+  public com.alonie.recipebookispain_extended.mixin.RbipMouseScrollMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void rbip$captureScroll(long, double, double, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: lload_1
+       1: aload_0
+       2: getfield      #32                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+       5: invokevirtual #38                 // Method net/minecraft/client/Minecraft.getWindow:()Lcom/mojang/blaze3d/platform/Window;
+       8: invokevirtual #43                 // Method com/mojang/blaze3d/platform/Window.getWindow:()J
+      11: lcmp
+      12: ifeq          16
+      15: return
+      16: dload         5
+      18: dconst_0
+      19: dcmpl
+      20: ifne          24
+      23: return
+      24: dload         5
+      26: dconst_0
+      27: dcmpl
+      28: ifle          35
+      31: iconst_1
+      32: goto          36
+      35: iconst_m1
+      36: invokestatic  #49                 // Method com/alonie/recipebookispain_extended/RecipeBookIsPain.rbip$queueScroll:(I)V
+      39: return
+}

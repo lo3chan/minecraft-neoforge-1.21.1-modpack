@@ -1,0 +1,156 @@
+Compiled from "ClientRecipeBookMixin.java"
+public abstract class com.alonie.recipebookispain_extended.mixin.groups.ClientRecipeBookMixin {
+  protected net.minecraft.world.inventory.RecipeBookMenu menu;
+
+  public com.alonie.recipebookispain_extended.mixin.groups.ClientRecipeBookMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #20                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> rbip$getFilteredCollections(net.minecraft.client.ClientRecipeBook, net.minecraft.client.RecipeBookCategories);
+    Code:
+       0: invokestatic  #43                 // Method com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig.enabled:()Z
+       3: ifeq          19
+       6: getstatic     #49                 // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.activeCreativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+       9: ifnull        19
+      12: aload_2
+      13: getstatic     #55                 // Field net/minecraft/client/RecipeBookCategories.UNKNOWN:Lnet/minecraft/client/RecipeBookCategories;
+      16: if_acmpeq     58
+      19: getstatic     #60                 // Field com/alonie/brbe/util/RecipeBookDebugLogger.enabled:Z
+      22: ifeq          52
+      25: aload_2
+      26: getstatic     #55                 // Field net/minecraft/client/RecipeBookCategories.UNKNOWN:Lnet/minecraft/client/RecipeBookCategories;
+      29: if_acmpne     52
+      32: aload_2
+      33: invokevirtual #64                 // Method net/minecraft/client/RecipeBookCategories.name:()Ljava/lang/String;
+      36: iconst_0
+      37: iconst_0
+      38: getstatic     #49                 // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.activeCreativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+      41: ifnull        48
+      44: iconst_1
+      45: goto          49
+      48: iconst_0
+      49: invokestatic  #72                 // Method com/alonie/brbe/util/RecipeBookDebugLogger.onRbipFilterCollections:(Ljava/lang/String;IIZ)V
+      52: aload_1
+      53: aload_2
+      54: invokevirtual #76                 // Method net/minecraft/client/ClientRecipeBook.getCollection:(Lnet/minecraft/client/RecipeBookCategories;)Ljava/util/List;
+      57: areturn
+      58: getstatic     #49                 // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.activeCreativeTab:Lnet/minecraft/world/item/CreativeModeTab;
+      61: astore_3
+      62: aload_0
+      63: getfield      #78                 // Field menu:Lnet/minecraft/world/inventory/RecipeBookMenu;
+      66: astore        6
+      68: aload         6
+      70: instanceof    #80                 // class net/minecraft/world/inventory/AbstractFurnaceMenu
+      73: ifeq          123
+      76: aload         6
+      78: checkcast     #80                 // class net/minecraft/world/inventory/AbstractFurnaceMenu
+      81: astore        5
+      83: aload         5
+      85: instanceof    #82                 // class net/minecraft/world/inventory/SmokerMenu
+      88: ifeq          99
+      91: getstatic     #85                 // Field net/minecraft/client/RecipeBookCategories.SMOKER_SEARCH:Lnet/minecraft/client/RecipeBookCategories;
+      94: astore        4
+      96: goto          128
+      99: aload         5
+     101: instanceof    #91                 // class net/minecraft/world/inventory/BlastFurnaceMenu
+     104: ifeq          115
+     107: getstatic     #94                 // Field net/minecraft/client/RecipeBookCategories.BLAST_FURNACE_SEARCH:Lnet/minecraft/client/RecipeBookCategories;
+     110: astore        4
+     112: goto          128
+     115: getstatic     #97                 // Field net/minecraft/client/RecipeBookCategories.FURNACE_SEARCH:Lnet/minecraft/client/RecipeBookCategories;
+     118: astore        4
+     120: goto          128
+     123: getstatic     #100                // Field net/minecraft/client/RecipeBookCategories.CRAFTING_SEARCH:Lnet/minecraft/client/RecipeBookCategories;
+     126: astore        4
+     128: aload_1
+     129: aload         4
+     131: invokevirtual #76                 // Method net/minecraft/client/ClientRecipeBook.getCollection:(Lnet/minecraft/client/RecipeBookCategories;)Ljava/util/List;
+     134: astore        5
+     136: new           #102                // class java/util/ArrayList
+     139: dup
+     140: invokespecial #103                // Method java/util/ArrayList."<init>":()V
+     143: astore        6
+     145: aload         5
+     147: invokeinterface #109,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     152: astore        7
+     154: aload         7
+     156: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     161: ifeq          198
+     164: aload         7
+     166: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     171: checkcast     #120                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     174: astore        8
+     176: aload         8
+     178: aload_3
+     179: invokestatic  #124                // Method rbip$anyRecipeInTab:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/world/item/CreativeModeTab;)Z
+     182: ifeq          195
+     185: aload         6
+     187: aload         8
+     189: invokeinterface #128,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     194: pop
+     195: goto          154
+     198: aload         4
+     200: invokevirtual #64                 // Method net/minecraft/client/RecipeBookCategories.name:()Ljava/lang/String;
+     203: aload         5
+     205: invokeinterface #132,  1          // InterfaceMethod java/util/List.size:()I
+     210: aload         6
+     212: invokeinterface #132,  1          // InterfaceMethod java/util/List.size:()I
+     217: iconst_1
+     218: invokestatic  #72                 // Method com/alonie/brbe/util/RecipeBookDebugLogger.onRbipFilterCollections:(Ljava/lang/String;IIZ)V
+     221: aload         6
+     223: invokeinterface #135,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     228: ifeq          278
+     231: aload         5
+     233: invokeinterface #135,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+     238: ifne          278
+     241: getstatic     #139                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.LOGGER:Lorg/apache/logging/log4j/Logger;
+     244: ldc           #141                // String [RBIP] No recipes match tab \'{}\' in {}, showing all {}
+     246: aload_3
+     247: invokevirtual #145                // Method net/minecraft/world/item/CreativeModeTab.getDisplayName:()Lnet/minecraft/network/chat/Component;
+     250: invokeinterface #150,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     255: aload         4
+     257: invokevirtual #64                 // Method net/minecraft/client/RecipeBookCategories.name:()Ljava/lang/String;
+     260: aload         5
+     262: invokeinterface #132,  1          // InterfaceMethod java/util/List.size:()I
+     267: invokestatic  #156                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     270: invokeinterface #162,  5          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+     275: aload         5
+     277: areturn
+     278: aload         6
+     280: areturn
+
+  private static boolean rbip$anyRecipeInTab(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.world.item.CreativeModeTab);
+    Code:
+       0: aload_0
+       1: invokevirtual #179                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+       4: invokeinterface #109,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_2
+      10: aload_2
+      11: invokeinterface #114,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          71
+      19: aload_2
+      20: invokeinterface #118,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #181                // class net/minecraft/world/item/crafting/RecipeHolder
+      28: astore_3
+      29: aload_3
+      30: invokevirtual #184                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+      33: invokestatic  #190                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      36: getfield      #194                // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      39: invokevirtual #200                // Method net/minecraft/client/multiplayer/ClientLevel.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      42: invokeinterface #206,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getResultItem:(Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;
+      47: astore        4
+      49: aload         4
+      51: invokevirtual #209                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+      54: ifne          68
+      57: aload         4
+      59: aload_1
+      60: invokestatic  #213                // Method com/alonie/recipebookispain_extended/RecipeBookIsPain.isItemInTab:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/CreativeModeTab;)Z
+      63: ifeq          68
+      66: iconst_1
+      67: ireturn
+      68: goto          10
+      71: iconst_0
+      72: ireturn
+}

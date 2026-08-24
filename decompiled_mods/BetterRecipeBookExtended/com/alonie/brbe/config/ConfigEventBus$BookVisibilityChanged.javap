@@ -1,0 +1,19 @@
+Compiled from "ConfigEventBus.java"
+public final class com.alonie.brbe.config.ConfigEventBus$BookVisibilityChanged {
+  private final boolean enableBook;
+
+  public com.alonie.brbe.config.ConfigEventBus$BookVisibilityChanged(boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iload_1
+       6: putfield      #17                 // Field enableBook:Z
+       9: return
+
+  public boolean enableBook();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field enableBook:Z
+       4: ireturn
+}

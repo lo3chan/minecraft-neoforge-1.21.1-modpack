@@ -1,0 +1,6 @@
+Compiled from "CreativeTabButtonAccess.java"
+public interface com.alonie.recipebookispain_extended.access.CreativeTabButtonAccess {
+  public abstract void rbip$setCreativeTab(net.minecraft.world.item.CreativeModeTab);
+
+  public abstract net.minecraft.world.item.CreativeModeTab rbip$getCreativeTab();
+}

@@ -1,0 +1,149 @@
+Compiled from "VisualCraftingMenu.java"
+public class fuzs.visualworkbench.world.inventory.VisualCraftingMenu extends net.minecraft.world.inventory.CraftingMenu implements net.minecraft.world.inventory.ContainerListener {
+  private final net.minecraft.world.Container blockEntity;
+
+  public fuzs.visualworkbench.world.inventory.VisualCraftingMenu(int, net.minecraft.world.entity.player.Inventory);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: invokespecial #25                 // Method net/minecraft/world/inventory/CraftingMenu."<init>":(ILnet/minecraft/world/entity/player/Inventory;)V
+       6: aload_0
+       7: new           #27                 // class net/minecraft/world/SimpleContainer
+      10: dup
+      11: iconst_0
+      12: anewarray     #29                 // class net/minecraft/world/item/ItemStack
+      15: invokespecial #32                 // Method net/minecraft/world/SimpleContainer."<init>":([Lnet/minecraft/world/item/ItemStack;)V
+      18: putfield      #34                 // Field blockEntity:Lnet/minecraft/world/Container;
+      21: return
+
+  public fuzs.visualworkbench.world.inventory.VisualCraftingMenu(int, net.minecraft.world.entity.player.Inventory, fuzs.visualworkbench.world.level.block.entity.CraftingTableBlockEntity, net.minecraft.world.inventory.ContainerLevelAccess);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: aload_2
+       3: aload         4
+       5: invokespecial #43                 // Method net/minecraft/world/inventory/CraftingMenu."<init>":(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/inventory/ContainerLevelAccess;)V
+       8: aload_0
+       9: getfield      #47                 // Field craftSlots:Lnet/minecraft/world/inventory/CraftingContainer;
+      12: checkcast     #49                 // class net/minecraft/world/inventory/TransientCraftingContainer
+      15: aload_3
+      16: invokevirtual #55                 // Method fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity.getItems:()Lnet/minecraft/core/NonNullList;
+      19: putfield      #59                 // Field net/minecraft/world/inventory/TransientCraftingContainer.items:Lnet/minecraft/core/NonNullList;
+      22: aload_0
+      23: getfield      #63                 // Field resultSlots:Lnet/minecraft/world/inventory/ResultContainer;
+      26: aload_3
+      27: invokevirtual #66                 // Method fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity.getResultItems:()Lnet/minecraft/core/NonNullList;
+      30: putfield      #71                 // Field net/minecraft/world/inventory/ResultContainer.itemStacks:Lnet/minecraft/core/NonNullList;
+      33: aload_0
+      34: aload_3
+      35: putfield      #34                 // Field blockEntity:Lnet/minecraft/world/Container;
+      38: aload_0
+      39: aload_0
+      40: invokevirtual #75                 // Method addSlotListener:(Lnet/minecraft/world/inventory/ContainerListener;)V
+      43: aload_0
+      44: aload_0
+      45: getfield      #47                 // Field craftSlots:Lnet/minecraft/world/inventory/CraftingContainer;
+      48: invokevirtual #79                 // Method slotsChanged:(Lnet/minecraft/world/Container;)V
+      51: return
+
+  public net.minecraft.world.inventory.MenuType<?> getType();
+    Code:
+       0: getstatic     #90                 // Field fuzs/visualworkbench/init/ModRegistry.CRAFTING_MENU_TYPE:Lnet/minecraft/core/Holder$Reference;
+       3: invokevirtual #94                 // Method net/minecraft/core/Holder$Reference.value:()Ljava/lang/Object;
+       6: checkcast     #96                 // class net/minecraft/world/inventory/MenuType
+       9: areturn
+
+  public void slotsChanged(net.minecraft.world.Container);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #98                 // Method net/minecraft/world/inventory/CraftingMenu.slotsChanged:(Lnet/minecraft/world/Container;)V
+       5: aload_1
+       6: aload_0
+       7: getfield      #47                 // Field craftSlots:Lnet/minecraft/world/inventory/CraftingContainer;
+      10: if_acmpeq     21
+      13: aload_1
+      14: aload_0
+      15: getfield      #63                 // Field resultSlots:Lnet/minecraft/world/inventory/ResultContainer;
+      18: if_acmpne     36
+      21: aload_0
+      22: getfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+      25: aload_0
+      26: invokedynamic #119,  0            // InvokeDynamic #0:accept:(Lfuzs/visualworkbench/world/inventory/VisualCraftingMenu;)Ljava/util/function/BiConsumer;
+      31: invokeinterface #125,  2          // InterfaceMethod net/minecraft/world/inventory/ContainerLevelAccess.execute:(Ljava/util/function/BiConsumer;)V
+      36: return
+
+  public void removed(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+       4: astore_2
+       5: aload_0
+       6: getstatic     #131                // Field net/minecraft/world/inventory/ContainerLevelAccess.NULL:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+       9: putfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+      12: aload_0
+      13: aload_1
+      14: invokespecial #133                // Method net/minecraft/world/inventory/CraftingMenu.removed:(Lnet/minecraft/world/entity/player/Player;)V
+      17: aload_0
+      18: aload_2
+      19: putfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+      22: return
+
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+       4: aload_0
+       5: aload_1
+       6: invokedynamic #150,  0            // InvokeDynamic #1:apply:(Lfuzs/visualworkbench/world/inventory/VisualCraftingMenu;Lnet/minecraft/world/entity/player/Player;)Ljava/util/function/BiFunction;
+      11: iconst_1
+      12: invokestatic  #156                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: invokeinterface #160,  3          // InterfaceMethod net/minecraft/world/inventory/ContainerLevelAccess.evaluate:(Ljava/util/function/BiFunction;Ljava/lang/Object;)Ljava/lang/Object;
+      20: checkcast     #152                // class java/lang/Boolean
+      23: invokevirtual #164                // Method java/lang/Boolean.booleanValue:()Z
+      26: ireturn
+
+  public void slotChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field access:Lnet/minecraft/world/inventory/ContainerLevelAccess;
+       4: aload_0
+       5: iload_2
+       6: invokedynamic #177,  0            // InvokeDynamic #2:accept:(Lfuzs/visualworkbench/world/inventory/VisualCraftingMenu;I)Ljava/util/function/BiConsumer;
+      11: invokeinterface #125,  2          // InterfaceMethod net/minecraft/world/inventory/ContainerLevelAccess.execute:(Ljava/util/function/BiConsumer;)V
+      16: return
+
+  public void dataChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+    Code:
+       0: return
+
+  private void lambda$slotChanged$2(int, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: iload_1
+       1: iflt          21
+       4: iload_1
+       5: aload_0
+       6: invokevirtual #188                // Method getSize:()I
+       9: if_icmpge     21
+      12: aload_0
+      13: getfield      #34                 // Field blockEntity:Lnet/minecraft/world/Container;
+      16: invokeinterface #194,  1          // InterfaceMethod net/minecraft/world/Container.setChanged:()V
+      21: return
+
+  private java.lang.Boolean lambda$stillValid$1(net.minecraft.world.entity.player.Player, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field blockEntity:Lnet/minecraft/world/Container;
+       4: aload_1
+       5: invokeinterface #198,  2          // InterfaceMethod net/minecraft/world/Container.stillValid:(Lnet/minecraft/world/entity/player/Player;)Z
+      10: invokestatic  #156                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      13: areturn
+
+  private void lambda$slotsChanged$0(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field blockEntity:Lnet/minecraft/world/Container;
+       4: invokeinterface #194,  1          // InterfaceMethod net/minecraft/world/Container.setChanged:()V
+       9: return
+}

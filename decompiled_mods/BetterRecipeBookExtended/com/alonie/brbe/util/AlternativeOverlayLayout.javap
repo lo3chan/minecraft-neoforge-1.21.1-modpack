@@ -1,0 +1,46 @@
+Compiled from "AlternativeOverlayLayout.java"
+public final class com.alonie.brbe.util.AlternativeOverlayLayout {
+  private static final int DEFAULT_SMALL_COLUMNS;
+
+  private static final int DEFAULT_LARGE_COLUMNS;
+
+  private static final int SMALL_LAYOUT_LIMIT;
+
+  private static final int MAX_ROWS_BEFORE_EXPANDING;
+
+  private com.alonie.brbe.util.AlternativeOverlayLayout();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static int columnsFor(int);
+    Code:
+       0: iload_0
+       1: ifgt          6
+       4: iconst_4
+       5: ireturn
+       6: iload_0
+       7: bipush        16
+       9: if_icmpgt     16
+      12: iconst_4
+      13: goto          17
+      16: iconst_5
+      17: istore_1
+      18: iload_0
+      19: i2f
+      20: iload_1
+      21: i2f
+      22: fdiv
+      23: invokestatic  #28                 // Method net/minecraft/util/Mth.ceil:(F)I
+      26: iconst_5
+      27: if_icmpgt     32
+      30: iload_1
+      31: ireturn
+      32: iload_0
+      33: i2f
+      34: ldc           #29                 // float 5.0f
+      36: fdiv
+      37: invokestatic  #28                 // Method net/minecraft/util/Mth.ceil:(F)I
+      40: ireturn
+}

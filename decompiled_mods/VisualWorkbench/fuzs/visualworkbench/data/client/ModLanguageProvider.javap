@@ -1,0 +1,21 @@
+Compiled from "ModLanguageProvider.java"
+public class fuzs.visualworkbench.data.client.ModLanguageProvider extends fuzs.puzzleslib.api.client.data.v2.AbstractLanguageProvider {
+  public fuzs.visualworkbench.data.client.ModLanguageProvider(fuzs.puzzleslib.api.data.v2.core.DataProviderContext);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #13                 // Method fuzs/puzzleslib/api/client/data/v2/AbstractLanguageProvider."<init>":(Lfuzs/puzzleslib/api/data/v2/core/DataProviderContext;)V
+       5: return
+
+  public void addTranslations(fuzs.puzzleslib.api.client.data.v2.AbstractLanguageProvider$TranslationBuilder);
+    Code:
+       0: aload_1
+       1: getstatic     #25                 // Field fuzs/visualworkbench/handler/BlockConversionHandler.INVALID_BLOCK_COMPONENT:Lnet/minecraft/network/chat/Component;
+       4: ldc           #27                 // String Unable to open. Break and replace to use.
+       6: invokeinterface #31,  3           // InterfaceMethod fuzs/puzzleslib/api/client/data/v2/AbstractLanguageProvider$TranslationBuilder.add:(Lnet/minecraft/network/chat/Component;Ljava/lang/String;)V
+      11: aload_1
+      12: getstatic     #37                 // Field fuzs/visualworkbench/init/ModRegistry.UNALTERED_WORKBENCHES_BLOCK_TAG:Lnet/minecraft/tags/TagKey;
+      15: ldc           #39                 // String Unaltered Workbenches
+      17: invokeinterface #42,  3           // InterfaceMethod fuzs/puzzleslib/api/client/data/v2/AbstractLanguageProvider$TranslationBuilder.add:(Lnet/minecraft/tags/TagKey;Ljava/lang/String;)V
+      22: return
+}

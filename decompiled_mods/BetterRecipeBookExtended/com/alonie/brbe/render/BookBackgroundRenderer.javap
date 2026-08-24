@@ -1,0 +1,139 @@
+Compiled from "BookBackgroundRenderer.java"
+public final class com.alonie.brbe.render.BookBackgroundRenderer {
+  private static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_TEXTURE;
+
+  public com.alonie.brbe.render.BookBackgroundRenderer();
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void render(net.minecraft.client.gui.GuiGraphics, int, int, int, boolean);
+    Code:
+       0: sipush        166
+       3: istore        6
+       5: iload         5
+       7: ifne          34
+      10: aload_1
+      11: getstatic     #22                 // Field RECIPE_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      14: iload_2
+      15: iload_3
+      16: fconst_1
+      17: fconst_1
+      18: iload         4
+      20: iload         6
+      22: sipush        256
+      25: sipush        256
+      28: invokevirtual #28                 // Method net/minecraft/client/gui/GuiGraphics.blit:(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V
+      31: goto          45
+      34: aload_0
+      35: aload_1
+      36: iload_2
+      37: iload_3
+      38: iload         4
+      40: iload         6
+      42: invokevirtual #32                 // Method renderExpanded:(Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+      45: return
+
+  private void renderExpanded(net.minecraft.client.gui.GuiGraphics, int, int, int, int);
+    Code:
+       0: sipush        256
+       3: istore        6
+       5: bipush        32
+       7: istore        7
+       9: bipush        12
+      11: istore        8
+      13: bipush        103
+      15: istore        9
+      17: sipush        147
+      20: istore        10
+      22: aload_1
+      23: getstatic     #22                 // Field RECIPE_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      26: iload_2
+      27: iload_3
+      28: fconst_1
+      29: fconst_1
+      30: iload         7
+      32: iload         5
+      34: iload         6
+      36: iload         6
+      38: invokevirtual #28                 // Method net/minecraft/client/gui/GuiGraphics.blit:(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V
+      41: iload_2
+      42: iload         7
+      44: iadd
+      45: istore        11
+      47: iload         4
+      49: iload         7
+      51: isub
+      52: iload         8
+      54: isub
+      55: istore        12
+      57: iload         7
+      59: iconst_1
+      60: iadd
+      61: istore        13
+      63: iload         13
+      65: iload         9
+      67: iadd
+      68: istore        14
+      70: iconst_0
+      71: istore        15
+      73: iload         15
+      75: iload         12
+      77: if_icmpge     127
+      80: iload         9
+      82: iload         12
+      84: iload         15
+      86: isub
+      87: invokestatic  #42                 // Method java/lang/Math.min:(II)I
+      90: istore        16
+      92: aload_1
+      93: getstatic     #22                 // Field RECIPE_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      96: iload         11
+      98: iload         15
+     100: iadd
+     101: iload_3
+     102: iload         13
+     104: i2f
+     105: fconst_1
+     106: iload         16
+     108: iload         5
+     110: iload         6
+     112: iload         6
+     114: invokevirtual #28                 // Method net/minecraft/client/gui/GuiGraphics.blit:(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V
+     117: iload         15
+     119: iload         16
+     121: iadd
+     122: istore        15
+     124: goto          73
+     127: iload         11
+     129: iload         12
+     131: iadd
+     132: istore        16
+     134: iload         10
+     136: iload         8
+     138: isub
+     139: iconst_1
+     140: iadd
+     141: istore        17
+     143: aload_1
+     144: getstatic     #22                 // Field RECIPE_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+     147: iload         16
+     149: iload_3
+     150: iload         17
+     152: i2f
+     153: fconst_1
+     154: iload         8
+     156: iload         5
+     158: iload         6
+     160: iload         6
+     162: invokevirtual #28                 // Method net/minecraft/client/gui/GuiGraphics.blit:(Lnet/minecraft/resources/ResourceLocation;IIFFIIII)V
+     165: return
+
+  static {};
+    Code:
+       0: ldc           #58                 // String textures/gui/recipe_book.png
+       2: invokestatic  #64                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       5: putstatic     #22                 // Field RECIPE_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+       8: return
+}

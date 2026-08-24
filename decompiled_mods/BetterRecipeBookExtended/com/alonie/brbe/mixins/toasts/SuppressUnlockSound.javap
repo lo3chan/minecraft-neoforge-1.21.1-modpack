@@ -1,0 +1,27 @@
+Compiled from "SuppressUnlockSound.java"
+public class com.alonie.brbe.mixins.toasts.SuppressUnlockSound<T extends net.minecraft.client.gui.components.toasts.Toast> {
+  private T toast;
+
+  public com.alonie.brbe.mixins.toasts.SuppressUnlockSound();
+    Code:
+       0: aload_0
+       1: invokespecial #23                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void playSound(net.minecraft.client.gui.components.toasts.Toast$Visibility, net.minecraft.client.sounds.SoundManager);
+    Code:
+       0: invokestatic  #45                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #51                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #57                 // Field com/alonie/brbe/config/Config.newRecipes:Lcom/alonie/brbe/config/NewRecipes;
+       9: getfield      #63                 // Field com/alonie/brbe/config/NewRecipes.unlockAll:Z
+      12: ifeq          26
+      15: aload_0
+      16: getfield      #65                 // Field toast:Lnet/minecraft/client/gui/components/toasts/Toast;
+      19: instanceof    #67                 // class net/minecraft/client/gui/components/toasts/RecipeToast
+      22: ifeq          26
+      25: return
+      26: aload_1
+      27: aload_2
+      28: invokevirtual #70                 // Method net/minecraft/client/gui/components/toasts/Toast$Visibility.playSound:(Lnet/minecraft/client/sounds/SoundManager;)V
+      31: return
+}

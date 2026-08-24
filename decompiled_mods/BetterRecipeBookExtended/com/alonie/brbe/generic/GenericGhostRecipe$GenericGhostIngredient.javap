@@ -1,0 +1,81 @@
+Compiled from "GenericGhostRecipe.java"
+public class com.alonie.brbe.generic.GenericGhostRecipe$GenericGhostIngredient {
+  private final net.minecraft.world.item.crafting.Ingredient ingredient;
+
+  private final int x;
+
+  private final int y;
+
+  private final int containerSlot;
+
+  final com.alonie.brbe.generic.GenericGhostRecipe this$0;
+
+  public com.alonie.brbe.generic.GenericGhostRecipe$GenericGhostIngredient(com.alonie.brbe.generic.GenericGhostRecipe, int, net.minecraft.world.item.crafting.Ingredient, int, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #22                 // Field this$0:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+       5: aload_0
+       6: invokespecial #25                 // Method java/lang/Object."<init>":()V
+       9: aload_0
+      10: iload_2
+      11: putfield      #27                 // Field containerSlot:I
+      14: aload_0
+      15: aload_3
+      16: putfield      #29                 // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+      19: aload_0
+      20: iload         4
+      22: putfield      #31                 // Field x:I
+      25: aload_0
+      26: iload         5
+      28: putfield      #33                 // Field y:I
+      31: return
+
+  public int getX();
+    Code:
+       0: aload_0
+       1: getfield      #31                 // Field x:I
+       4: ireturn
+
+  public int getY();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field y:I
+       4: ireturn
+
+  public net.minecraft.world.item.ItemStack getItem();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+       4: invokevirtual #47                 // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+       7: astore_1
+       8: aload_1
+       9: arraylength
+      10: ifne          19
+      13: getstatic     #53                 // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+      16: goto          37
+      19: aload_1
+      20: aload_0
+      21: getfield      #22                 // Field this$0:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      24: getfield      #59                 // Field com/alonie/brbe/generic/GenericGhostRecipe.time:F
+      27: ldc           #60                 // float 30.0f
+      29: fdiv
+      30: invokestatic  #66                 // Method net/minecraft/util/Mth.floor:(F)I
+      33: aload_1
+      34: arraylength
+      35: irem
+      36: aaload
+      37: areturn
+
+  public int getContainerSlot();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field containerSlot:I
+       4: ireturn
+
+  public com.alonie.brbe.generic.GenericGhostRecipe<R> getOwner();
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field this$0:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+       4: areturn
+}

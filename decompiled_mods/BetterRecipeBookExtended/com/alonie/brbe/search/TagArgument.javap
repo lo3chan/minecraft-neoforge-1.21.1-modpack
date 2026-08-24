@@ -1,0 +1,47 @@
+Compiled from "TagArgument.java"
+public class com.alonie.brbe.search.TagArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.lang.String tagQuery;
+
+  public com.alonie.brbe.search.TagArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       9: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      12: putfield      #28                 // Field tagQuery:Ljava/lang/String;
+      15: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_2
+       1: aload_1
+       2: invokevirtual #40                 // Method com/alonie/brbe/search/SearchCache.getTags:(Lnet/minecraft/world/item/ItemStack;)Ljava/util/Set;
+       5: invokeinterface #46,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      10: astore_3
+      11: aload_3
+      12: invokeinterface #52,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      17: ifeq          54
+      20: aload_3
+      21: invokeinterface #56,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      26: checkcast     #22                 // class java/lang/String
+      29: astore        4
+      31: aload         4
+      33: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+      36: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      39: aload_0
+      40: getfield      #28                 // Field tagQuery:Ljava/lang/String;
+      43: invokevirtual #60                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      46: ifeq          51
+      49: iconst_1
+      50: ireturn
+      51: goto          11
+      54: iconst_0
+      55: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

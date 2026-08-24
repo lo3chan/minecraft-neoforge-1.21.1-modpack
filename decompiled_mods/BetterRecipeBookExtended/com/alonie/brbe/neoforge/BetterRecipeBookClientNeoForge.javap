@@ -1,0 +1,176 @@
+Compiled from "BetterRecipeBookClientNeoForge.java"
+public class com.alonie.brbe.neoforge.BetterRecipeBookClientNeoForge {
+  private static final java.util.Set<net.minecraft.client.gui.screens.Screen> registeredScreens;
+
+  public com.alonie.brbe.neoforge.BetterRecipeBookClientNeoForge();
+    Code:
+       0: aload_0
+       1: invokespecial #42                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void init(net.neoforged.bus.api.IEventBus);
+    Code:
+       0: aload_0
+       1: ldc           #49                 // class net/neoforged/neoforge/client/event/RegisterKeyMappingsEvent
+       3: invokedynamic #68,  0             // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+       8: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      13: invokestatic  #78                 // Method com/alonie/brbe/brewingstand/neoforge/PlatformPotionUtilImpl.init:()V
+      16: getstatic     #84                 // Field net/neoforged/neoforge/common/NeoForge.EVENT_BUS:Lnet/neoforged/bus/api/IEventBus;
+      19: ldc           #7                  // class net/neoforged/neoforge/event/level/LevelEvent$Load
+      21: invokedynamic #91,  0             // InvokeDynamic #1:accept:()Ljava/util/function/Consumer;
+      26: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      31: getstatic     #84                 // Field net/neoforged/neoforge/common/NeoForge.EVENT_BUS:Lnet/neoforged/bus/api/IEventBus;
+      34: ldc           #12                 // class net/neoforged/neoforge/event/level/LevelEvent$Unload
+      36: invokedynamic #98,  0             // InvokeDynamic #2:accept:()Ljava/util/function/Consumer;
+      41: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      46: new           #100                // class com/alonie/brbe/impl/hud/JeiHudHider
+      49: dup
+      50: invokespecial #101                // Method com/alonie/brbe/impl/hud/JeiHudHider."<init>":()V
+      53: invokestatic  #107                // Method com/alonie/brbe/compat/OverlayHider.register:(Lcom/alonie/brbe/api/hud/HudHider;)V
+      56: new           #109                // class com/alonie/brbe/impl/hud/ReiHudHider
+      59: dup
+      60: invokespecial #110                // Method com/alonie/brbe/impl/hud/ReiHudHider."<init>":()V
+      63: invokestatic  #107                // Method com/alonie/brbe/compat/OverlayHider.register:(Lcom/alonie/brbe/api/hud/HudHider;)V
+      66: new           #112                // class com/alonie/brbe/impl/hud/EmiHudHider
+      69: dup
+      70: invokespecial #113                // Method com/alonie/brbe/impl/hud/EmiHudHider."<init>":()V
+      73: invokestatic  #107                // Method com/alonie/brbe/compat/OverlayHider.register:(Lcom/alonie/brbe/api/hud/HudHider;)V
+      76: new           #115                // class com/alonie/recipebookispain_extended/neoforge/NeoForgePlatform
+      79: dup
+      80: invokespecial #116                // Method com/alonie/recipebookispain_extended/neoforge/NeoForgePlatform."<init>":()V
+      83: putstatic     #122                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.PLATFORM:Lcom/alonie/recipebookispain_extended/PlatformAbstractions;
+      86: getstatic     #122                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.PLATFORM:Lcom/alonie/recipebookispain_extended/PlatformAbstractions;
+      89: ldc           #124                // String owo
+      91: invokeinterface #130,  2          // InterfaceMethod com/alonie/recipebookispain_extended/PlatformAbstractions.isModLoaded:(Ljava/lang/String;)Z
+      96: putstatic     #134                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.isOwOLoaded:Z
+      99: getstatic     #138                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.LOGGER:Lorg/apache/logging/log4j/Logger;
+     102: ldc           #140                // String [RBIP] NeoForge platform initialized
+     104: invokeinterface #146,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     109: invokestatic  #150                // Method com/alonie/brbe/compat/rei/ReiCompat.register:()V
+     112: invokestatic  #153                // Method com/alonie/brbe/compat/emi/EmiCompat.register:()V
+     115: invokestatic  #156                // Method com/alonie/recipebookispain_extended/RecipeBookIsPain.ensureInitialized:()V
+     118: getstatic     #138                // Field com/alonie/recipebookispain_extended/RecipeBookIsPain.LOGGER:Lorg/apache/logging/log4j/Logger;
+     121: invokestatic  #160                // Method com/alonie/recipebookispain_extended/RecipeBookIsPain.diagnostic:()Ljava/lang/String;
+     124: invokeinterface #146,  2          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;)V
+     129: getstatic     #84                 // Field net/neoforged/neoforge/common/NeoForge.EVENT_BUS:Lnet/neoforged/bus/api/IEventBus;
+     132: ldc           #20                 // class net/neoforged/neoforge/client/event/ScreenEvent$Init$Post
+     134: invokedynamic #167,  0            // InvokeDynamic #3:accept:()Ljava/util/function/Consumer;
+     139: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+     144: getstatic     #84                 // Field net/neoforged/neoforge/common/NeoForge.EVENT_BUS:Lnet/neoforged/bus/api/IEventBus;
+     147: ldc           #23                 // class net/neoforged/neoforge/client/event/ClientTickEvent$Post
+     149: invokedynamic #174,  0            // InvokeDynamic #4:accept:()Ljava/util/function/Consumer;
+     154: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+     159: return
+
+  private static void lambda$init$4(net.neoforged.neoforge.client.event.ClientTickEvent$Post);
+    Code:
+       0: invokestatic  #181                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: astore_1
+       4: aload_1
+       5: getfield      #185                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+       8: astore_2
+       9: getstatic     #191                // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+      12: getfield      #196                // Field com/alonie/brbe/config/Config.hideReiJeiOverlay:Z
+      15: ifeq          25
+      18: aload_2
+      19: ifnull        25
+      22: invokestatic  #199                // Method com/alonie/brbe/compat/OverlayHider.ensureJeiOverlayHidden:()V
+      25: aload_2
+      26: ifnull        48
+      29: getstatic     #203                // Field registeredScreens:Ljava/util/Set;
+      32: aload_2
+      33: invokeinterface #209,  2          // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+      38: ifne          48
+      41: aload_2
+      42: invokestatic  #215                // Method com/alonie/brbe/util/TopLayerOverlayRenderer.hasOverlay:(Lnet/minecraft/client/gui/screens/Screen;)Z
+      45: ifne          49
+      48: return
+      49: getstatic     #203                // Field registeredScreens:Ljava/util/Set;
+      52: aload_2
+      53: invokeinterface #218,  2          // InterfaceMethod java/util/Set.add:(Ljava/lang/Object;)Z
+      58: pop
+      59: getstatic     #84                 // Field net/neoforged/neoforge/common/NeoForge.EVENT_BUS:Lnet/neoforged/bus/api/IEventBus;
+      62: ldc           #30                 // class net/neoforged/neoforge/client/event/ScreenEvent$Render$Post
+      64: aload_2
+      65: invokedynamic #228,  0            // InvokeDynamic #5:accept:(Lnet/minecraft/client/gui/screens/Screen;)Ljava/util/function/Consumer;
+      70: invokeinterface #74,  3           // InterfaceMethod net/neoforged/bus/api/IEventBus.addListener:(Ljava/lang/Class;Ljava/util/function/Consumer;)V
+      75: return
+
+  private static void lambda$init$5(net.minecraft.client.gui.screens.Screen, net.neoforged.neoforge.client.event.ScreenEvent$Render$Post);
+    Code:
+       0: aload_1
+       1: invokevirtual #236                // Method net/neoforged/neoforge/client/event/ScreenEvent$Render$Post.getScreen:()Lnet/minecraft/client/gui/screens/Screen;
+       4: aload_0
+       5: if_acmpne     28
+       8: aload_0
+       9: aload_1
+      10: invokevirtual #240                // Method net/neoforged/neoforge/client/event/ScreenEvent$Render$Post.getGuiGraphics:()Lnet/minecraft/client/gui/GuiGraphics;
+      13: aload_1
+      14: invokevirtual #244                // Method net/neoforged/neoforge/client/event/ScreenEvent$Render$Post.getMouseX:()I
+      17: aload_1
+      18: invokevirtual #247                // Method net/neoforged/neoforge/client/event/ScreenEvent$Render$Post.getMouseY:()I
+      21: aload_1
+      22: invokevirtual #251                // Method net/neoforged/neoforge/client/event/ScreenEvent$Render$Post.getPartialTick:()F
+      25: invokestatic  #255                // Method com/alonie/brbe/util/TopLayerOverlayRenderer.render:(Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      28: return
+
+  private static void lambda$init$3(net.neoforged.neoforge.client.event.ScreenEvent$Init$Post);
+    Code:
+       0: aload_0
+       1: invokevirtual #257                // Method net/neoforged/neoforge/client/event/ScreenEvent$Init$Post.getScreen:()Lnet/minecraft/client/gui/screens/Screen;
+       4: astore_1
+       5: aload_1
+       6: ifnull        28
+       9: getstatic     #203                // Field registeredScreens:Ljava/util/Set;
+      12: aload_1
+      13: invokeinterface #260,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+      18: pop
+      19: getstatic     #191                // Field com/alonie/brbe/BetterRecipeBook.config:Lcom/alonie/brbe/config/Config;
+      22: getfield      #196                // Field com/alonie/brbe/config/Config.hideReiJeiOverlay:Z
+      25: invokestatic  #264                // Method com/alonie/brbe/compat/OverlayHider.setOverlaysHidden:(Z)V
+      28: return
+
+  private static void lambda$init$2(net.neoforged.neoforge.event.level.LevelEvent$Unload);
+    Code:
+       0: aload_0
+       1: invokevirtual #269                // Method net/neoforged/neoforge/event/level/LevelEvent$Unload.getLevel:()Lnet/minecraft/world/level/LevelAccessor;
+       4: invokeinterface #275,  1          // InterfaceMethod net/minecraft/world/level/LevelAccessor.isClientSide:()Z
+       9: ifeq          15
+      12: invokestatic  #280                // Method com/alonie/brbe/loaders/PotionLoader.clear:()V
+      15: return
+
+  private static void lambda$init$1(net.neoforged.neoforge.event.level.LevelEvent$Load);
+    Code:
+       0: aload_0
+       1: invokevirtual #282                // Method net/neoforged/neoforge/event/level/LevelEvent$Load.getLevel:()Lnet/minecraft/world/level/LevelAccessor;
+       4: invokeinterface #275,  1          // InterfaceMethod net/minecraft/world/level/LevelAccessor.isClientSide:()Z
+       9: ifeq          33
+      12: aload_0
+      13: invokevirtual #282                // Method net/neoforged/neoforge/event/level/LevelEvent$Load.getLevel:()Lnet/minecraft/world/level/LevelAccessor;
+      16: astore_2
+      17: aload_2
+      18: instanceof    #284                // class net/minecraft/client/multiplayer/ClientLevel
+      21: ifeq          33
+      24: aload_2
+      25: checkcast     #284                // class net/minecraft/client/multiplayer/ClientLevel
+      28: astore_1
+      29: aload_1
+      30: invokestatic  #288                // Method com/alonie/brbe/loaders/PotionLoader.load:(Lnet/minecraft/client/multiplayer/ClientLevel;)V
+      33: return
+
+  private static void lambda$init$0(net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent);
+    Code:
+       0: aload_0
+       1: getstatic     #297                // Field com/alonie/brbe/BetterRecipeBook.PIN_MAPPING:Lnet/minecraft/client/KeyMapping;
+       4: invokevirtual #300                // Method net/neoforged/neoforge/client/event/RegisterKeyMappingsEvent.register:(Lnet/minecraft/client/KeyMapping;)V
+       7: return
+
+  static {};
+    Code:
+       0: new           #304                // class java/util/WeakHashMap
+       3: dup
+       4: invokespecial #305                // Method java/util/WeakHashMap."<init>":()V
+       7: invokestatic  #311                // Method java/util/Collections.newSetFromMap:(Ljava/util/Map;)Ljava/util/Set;
+      10: putstatic     #203                // Field registeredScreens:Ljava/util/Set;
+      13: return
+}

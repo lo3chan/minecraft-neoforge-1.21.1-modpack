@@ -1,0 +1,92 @@
+Compiled from "RecipeBook.java"
+public final class com.alonie.brbe.book.RecipeBook {
+  private final com.alonie.brbe.book.RecipeBookType type;
+
+  private final com.alonie.brbe.layout.BookLayout layout;
+
+  private final com.alonie.brbe.config.AppContext ctx;
+
+  private com.alonie.brbe.layout.BookGeometry geometry;
+
+  private boolean visible;
+
+  com.alonie.brbe.book.RecipeBook(com.alonie.brbe.book.RecipeBookType, com.alonie.brbe.config.AppContext);
+    Code:
+       0: aload_0
+       1: invokespecial #25                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #27                 // Field type:Lcom/alonie/brbe/book/RecipeBookType;
+       9: aload_0
+      10: aload_2
+      11: putfield      #29                 // Field ctx:Lcom/alonie/brbe/config/AppContext;
+      14: aload_0
+      15: aload_2
+      16: invokevirtual #35                 // Method com/alonie/brbe/config/AppContext.bookLayout:()Lcom/alonie/brbe/layout/BookLayout;
+      19: putfield      #37                 // Field layout:Lcom/alonie/brbe/layout/BookLayout;
+      22: aload_0
+      23: iconst_0
+      24: putfield      #39                 // Field visible:Z
+      27: return
+
+  public void layout(com.alonie.brbe.layout.BookLayout$Rect);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #37                 // Field layout:Lcom/alonie/brbe/layout/BookLayout;
+       5: aload_1
+       6: aload_0
+       7: getfield      #29                 // Field ctx:Lcom/alonie/brbe/config/AppContext;
+      10: invokevirtual #47                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      13: getfield      #52                 // Field com/alonie/brbe/config/Config.keepCentered:Z
+      16: aload_0
+      17: getfield      #29                 // Field ctx:Lcom/alonie/brbe/config/AppContext;
+      20: invokevirtual #47                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      23: getfield      #55                 // Field com/alonie/brbe/config/Config.expandedRecipeBook:Z
+      26: invokevirtual #59                 // Method com/alonie/brbe/layout/BookLayout.compute:(Lcom/alonie/brbe/layout/BookLayout$Rect;ZZ)Lcom/alonie/brbe/layout/BookGeometry;
+      29: putfield      #61                 // Field geometry:Lcom/alonie/brbe/layout/BookGeometry;
+      32: return
+
+  public com.alonie.brbe.layout.BookGeometry geometry();
+    Code:
+       0: aload_0
+       1: getfield      #61                 // Field geometry:Lcom/alonie/brbe/layout/BookGeometry;
+       4: areturn
+
+  public boolean isVisible();
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field visible:Z
+       4: ireturn
+
+  public void setVisible(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #39                 // Field visible:Z
+       5: return
+
+  public void toggleVisibility();
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #39                 // Field visible:Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putfield      #39                 // Field visible:Z
+      16: return
+
+  public com.alonie.brbe.book.RecipeBookType type();
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field type:Lcom/alonie/brbe/book/RecipeBookType;
+       4: areturn
+
+  public com.alonie.brbe.config.AppContext ctx();
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field ctx:Lcom/alonie/brbe/config/AppContext;
+       4: areturn
+}

@@ -1,0 +1,19 @@
+Compiled from "ConfigEventBus.java"
+public final class com.alonie.brbe.config.ConfigEventBus$ConfigChanged {
+  private final com.alonie.brbe.config.Config config;
+
+  public com.alonie.brbe.config.ConfigEventBus$ConfigChanged(com.alonie.brbe.config.Config);
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #17                 // Field config:Lcom/alonie/brbe/config/Config;
+       9: return
+
+  public com.alonie.brbe.config.Config config();
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field config:Lcom/alonie/brbe/config/Config;
+       4: areturn
+}

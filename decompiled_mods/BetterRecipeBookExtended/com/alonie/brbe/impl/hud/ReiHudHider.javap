@@ -1,0 +1,165 @@
+Compiled from "ReiHudHider.java"
+public final class com.alonie.brbe.impl.hud.ReiHudHider implements com.alonie.brbe.api.hud.HudHider {
+  private static java.lang.Class<?> reiConfigClass;
+
+  private static boolean classCacheResolved;
+
+  private boolean hidden;
+
+  private boolean saved;
+
+  public com.alonie.brbe.impl.hud.ReiHudHider();
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void saveState();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #23                 // Field saved:Z
+       5: return
+
+  public void ensureHidden();
+    Code:
+       0: invokestatic  #30                 // Method isReiLoaded:()Z
+       3: ifeq          13
+       6: aload_0
+       7: getfield      #32                 // Field hidden:Z
+      10: ifeq          14
+      13: return
+      14: invokestatic  #36                 // Method getReiConfigClass:()Ljava/lang/Class;
+      17: ldc           #38                 // String getInstance
+      19: iconst_0
+      20: anewarray     #40                 // class java/lang/Class
+      23: invokevirtual #44                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      26: aconst_null
+      27: iconst_0
+      28: anewarray     #4                  // class java/lang/Object
+      31: invokevirtual #50                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      34: astore_1
+      35: invokestatic  #36                 // Method getReiConfigClass:()Ljava/lang/Class;
+      38: ldc           #52                 // String setOverlayVisible
+      40: iconst_1
+      41: anewarray     #40                 // class java/lang/Class
+      44: dup
+      45: iconst_0
+      46: getstatic     #57                 // Field java/lang/Boolean.TYPE:Ljava/lang/Class;
+      49: aastore
+      50: invokevirtual #44                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      53: aload_1
+      54: iconst_1
+      55: anewarray     #4                  // class java/lang/Object
+      58: dup
+      59: iconst_0
+      60: iconst_0
+      61: invokestatic  #61                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      64: aastore
+      65: invokevirtual #50                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      68: pop
+      69: aload_0
+      70: iconst_1
+      71: putfield      #32                 // Field hidden:Z
+      74: goto          78
+      77: astore_1
+      78: return
+    Exception table:
+       from    to  target type
+          14    74    77   Class java/lang/ReflectiveOperationException
+
+  public void restoreState();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field saved:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: iconst_0
+      10: putfield      #23                 // Field saved:Z
+      13: invokestatic  #30                 // Method isReiLoaded:()Z
+      16: ifeq          26
+      19: aload_0
+      20: getfield      #32                 // Field hidden:Z
+      23: ifne          27
+      26: return
+      27: invokestatic  #36                 // Method getReiConfigClass:()Ljava/lang/Class;
+      30: ldc           #38                 // String getInstance
+      32: iconst_0
+      33: anewarray     #40                 // class java/lang/Class
+      36: invokevirtual #44                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      39: aconst_null
+      40: iconst_0
+      41: anewarray     #4                  // class java/lang/Object
+      44: invokevirtual #50                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      47: astore_1
+      48: invokestatic  #36                 // Method getReiConfigClass:()Ljava/lang/Class;
+      51: ldc           #52                 // String setOverlayVisible
+      53: iconst_1
+      54: anewarray     #40                 // class java/lang/Class
+      57: dup
+      58: iconst_0
+      59: getstatic     #57                 // Field java/lang/Boolean.TYPE:Ljava/lang/Class;
+      62: aastore
+      63: invokevirtual #44                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      66: aload_1
+      67: iconst_1
+      68: anewarray     #4                  // class java/lang/Object
+      71: dup
+      72: iconst_0
+      73: iconst_1
+      74: invokestatic  #61                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      77: aastore
+      78: invokevirtual #50                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      81: pop
+      82: goto          86
+      85: astore_1
+      86: aload_0
+      87: iconst_0
+      88: putfield      #32                 // Field hidden:Z
+      91: return
+    Exception table:
+       from    to  target type
+          27    82    85   Class java/lang/ReflectiveOperationException
+
+  public void reset();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #32                 // Field hidden:Z
+       5: aload_0
+       6: iconst_0
+       7: putfield      #23                 // Field saved:Z
+      10: return
+
+  public boolean isAvailable();
+    Code:
+       0: invokestatic  #30                 // Method isReiLoaded:()Z
+       3: ireturn
+
+  public static boolean isReiLoaded();
+    Code:
+       0: invokestatic  #36                 // Method getReiConfigClass:()Ljava/lang/Class;
+       3: ifnull        10
+       6: iconst_1
+       7: goto          11
+      10: iconst_0
+      11: ireturn
+
+  static java.lang.Class<?> getReiConfigClass();
+    Code:
+       0: getstatic     #71                 // Field reiConfigClass:Ljava/lang/Class;
+       3: ifnonnull     24
+       6: getstatic     #73                 // Field classCacheResolved:Z
+       9: ifne          24
+      12: ldc           #75                 // String me.shedaniel.rei.api.client.config.ConfigObject
+      14: invokestatic  #79                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      17: putstatic     #71                 // Field reiConfigClass:Ljava/lang/Class;
+      20: goto          24
+      23: astore_0
+      24: getstatic     #71                 // Field reiConfigClass:Ljava/lang/Class;
+      27: areturn
+    Exception table:
+       from    to  target type
+          12    20    23   Class java/lang/ClassNotFoundException
+}

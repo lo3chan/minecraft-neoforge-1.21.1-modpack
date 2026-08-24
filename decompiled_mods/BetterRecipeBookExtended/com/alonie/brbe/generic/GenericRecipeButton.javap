@@ -1,0 +1,362 @@
+Compiled from "GenericRecipeButton.java"
+public class com.alonie.brbe.generic.GenericRecipeButton<C extends com.alonie.brbe.generic.GenericRecipeBookCollection<R, M>, R extends com.alonie.brbe.generic.GenericRecipe, M extends net.minecraft.world.inventory.AbstractContainerMenu> extends net.minecraft.client.gui.components.AbstractWidget {
+  private final java.util.function.Supplier<java.lang.Boolean> filteringSupplier;
+
+  protected C collection;
+
+  protected M menu;
+
+  protected float time;
+
+  protected int currentIndex;
+
+  protected net.minecraft.core.RegistryAccess registryAccess;
+
+  protected com.alonie.brbe.api.BRBBookCategories$Category category;
+
+  public com.alonie.brbe.generic.GenericRecipeButton(net.minecraft.core.RegistryAccess, java.util.function.Supplier<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: iconst_0
+       3: bipush        25
+       5: bipush        25
+       7: getstatic     #62                 // Field net/minecraft/network/chat/CommonComponents.EMPTY:Lnet/minecraft/network/chat/Component;
+      10: invokespecial #65                 // Method net/minecraft/client/gui/components/AbstractWidget."<init>":(IIIILnet/minecraft/network/chat/Component;)V
+      13: aload_0
+      14: aload_1
+      15: putfield      #67                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      18: aload_0
+      19: aload_2
+      20: putfield      #69                 // Field filteringSupplier:Ljava/util/function/Supplier;
+      23: return
+
+  public void showCollection(C, M, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       5: aload_0
+       6: aload_2
+       7: putfield      #80                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      10: aload_0
+      11: aload_3
+      12: putfield      #82                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      15: return
+
+  public void renderWidget(net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       4: ifnonnull     8
+       7: return
+       8: invokestatic  #94                 // Method net/minecraft/client/gui/screens/Screen.hasControlDown:()Z
+      11: ifne          25
+      14: aload_0
+      15: dup
+      16: getfield      #96                 // Field time:F
+      19: fload         4
+      21: fadd
+      22: putfield      #96                 // Field time:F
+      25: aload_0
+      26: invokevirtual #100                // Method getOrderedRecipes:()Ljava/util/List;
+      29: astore        5
+      31: aload         5
+      33: invokeinterface #105,  1          // InterfaceMethod java/util/List.isEmpty:()Z
+      38: ifeq          42
+      41: return
+      42: aload_0
+      43: aload_0
+      44: getfield      #96                 // Field time:F
+      47: ldc           #106                // float 30.0f
+      49: fdiv
+      50: invokestatic  #112                // Method net/minecraft/util/Mth.floor:(F)I
+      53: aload         5
+      55: invokeinterface #116,  1          // InterfaceMethod java/util/List.size:()I
+      60: irem
+      61: putfield      #118                // Field currentIndex:I
+      64: aload_0
+      65: invokevirtual #122                // Method getCurrentDisplayedRecipe:()Lcom/alonie/brbe/generic/GenericRecipe;
+      68: astore        6
+      70: aload         6
+      72: ifnull        106
+      75: aload_0
+      76: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      79: invokevirtual #127                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getPartiallyCraftableRecipes:()Ljava/util/List;
+      82: invokeinterface #131,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      87: aload         6
+      89: invokedynamic #151,  0            // InvokeDynamic #0:test:(Lcom/alonie/brbe/generic/GenericRecipe;)Ljava/util/function/Predicate;
+      94: invokeinterface #157,  2          // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+      99: ifeq          106
+     102: iconst_1
+     103: goto          107
+     106: iconst_0
+     107: istore        7
+     109: aload_0
+     110: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     113: aload_0
+     114: getfield      #80                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     117: getfield      #165                // Field net/minecraft/world/inventory/AbstractContainerMenu.slots:Lnet/minecraft/core/NonNullList;
+     120: invokevirtual #169                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.atleastOneCraftable:(Lnet/minecraft/core/NonNullList;)Z
+     123: ifne          131
+     126: iload         7
+     128: ifeq          135
+     131: iconst_1
+     132: goto          136
+     135: iconst_0
+     136: istore        8
+     138: iload         8
+     140: ifeq          149
+     143: getstatic     #175                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_BUTTON_SLOT_CRAFTABLE_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+     146: goto          152
+     149: getstatic     #178                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_BUTTON_SLOT_UNCRAFTABLE_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+     152: astore        9
+     154: aload_1
+     155: aload         9
+     157: aload_0
+     158: invokevirtual #183                // Method getX:()I
+     161: aload_0
+     162: invokevirtual #186                // Method getY:()I
+     165: aload_0
+     166: getfield      #189                // Field width:I
+     169: aload_0
+     170: getfield      #192                // Field height:I
+     173: invokevirtual #198                // Method net/minecraft/client/gui/GuiGraphics.blitSprite:(Lnet/minecraft/resources/ResourceLocation;IIII)V
+     176: iload         7
+     178: ifeq          221
+     181: aload_1
+     182: aload_0
+     183: invokevirtual #183                // Method getX:()I
+     186: iconst_1
+     187: iadd
+     188: aload_0
+     189: invokevirtual #186                // Method getY:()I
+     192: iconst_1
+     193: iadd
+     194: aload_0
+     195: invokevirtual #183                // Method getX:()I
+     198: aload_0
+     199: getfield      #189                // Field width:I
+     202: iadd
+     203: iconst_1
+     204: isub
+     205: aload_0
+     206: invokevirtual #186                // Method getY:()I
+     209: aload_0
+     210: getfield      #192                // Field height:I
+     213: iadd
+     214: iconst_1
+     215: isub
+     216: ldc           #199                // int 1627337523
+     218: invokevirtual #203                // Method net/minecraft/client/gui/GuiGraphics.fill:(IIIII)V
+     221: aload_0
+     222: invokevirtual #122                // Method getCurrentDisplayedRecipe:()Lcom/alonie/brbe/generic/GenericRecipe;
+     225: aload_0
+     226: getfield      #67                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+     229: aload_0
+     230: getfield      #82                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+     233: invokeinterface #207,  3          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.getResult:(Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+     238: astore        10
+     240: iconst_4
+     241: istore        11
+     243: aload_1
+     244: aload         10
+     246: aload_0
+     247: invokevirtual #183                // Method getX:()I
+     250: iload         11
+     252: iadd
+     253: aload_0
+     254: invokevirtual #186                // Method getY:()I
+     257: iload         11
+     259: iadd
+     260: invokevirtual #211                // Method net/minecraft/client/gui/GuiGraphics.renderFakeItem:(Lnet/minecraft/world/item/ItemStack;II)V
+     263: getstatic     #217                // Field com/alonie/brbe/BetterRecipeBook.pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+     266: aload_0
+     267: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+     270: invokevirtual #223                // Method com/alonie/brbe/PinnedRecipeManager.has:(Lcom/alonie/brbe/generic/pins/Pinnable;)Z
+     273: ifeq          304
+     276: aload_1
+     277: getstatic     #226                // Field com/alonie/brbe/util/BRBTextures.RECIPE_BOOK_PIN_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+     280: aload_0
+     281: invokevirtual #183                // Method getX:()I
+     284: aload_0
+     285: invokevirtual #229                // Method getWidth:()I
+     288: iadd
+     289: iconst_4
+     290: isub
+     291: aload_0
+     292: invokevirtual #186                // Method getY:()I
+     295: iconst_4
+     296: isub
+     297: bipush        32
+     299: bipush        32
+     301: invokevirtual #198                // Method net/minecraft/client/gui/GuiGraphics.blitSprite:(Lnet/minecraft/resources/ResourceLocation;IIII)V
+     304: return
+
+  public R getCurrentDisplayedRecipe();
+    Code:
+       0: aload_0
+       1: invokevirtual #100                // Method getOrderedRecipes:()Ljava/util/List;
+       4: astore_1
+       5: aload_1
+       6: aload_0
+       7: getfield      #118                // Field currentIndex:I
+      10: invokeinterface #250,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      15: checkcast     #159                // class com/alonie/brbe/generic/GenericRecipe
+      18: areturn
+
+  public boolean isOnlyOption();
+    Code:
+       0: aload_0
+       1: invokevirtual #100                // Method getOrderedRecipes:()Ljava/util/List;
+       4: invokeinterface #116,  1          // InterfaceMethod java/util/List.size:()I
+       9: iconst_1
+      10: if_icmpne     17
+      13: iconst_1
+      14: goto          18
+      17: iconst_0
+      18: ireturn
+
+  public java.util.List<R> getOrderedRecipes();
+    Code:
+       0: aload_0
+       1: invokevirtual #256                // Method getCollection:()Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       4: astore_1
+       5: aload_1
+       6: ifnonnull     13
+       9: invokestatic  #259                // InterfaceMethod java/util/List.of:()Ljava/util/List;
+      12: areturn
+      13: aload_1
+      14: iconst_1
+      15: invokevirtual #263                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getDisplayRecipes:(Z)Ljava/util/List;
+      18: astore_2
+      19: aload_0
+      20: getfield      #69                 // Field filteringSupplier:Ljava/util/function/Supplier;
+      23: invokeinterface #268,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      28: checkcast     #270                // class java/lang/Boolean
+      31: invokevirtual #273                // Method java/lang/Boolean.booleanValue:()Z
+      34: ifne          55
+      37: aload_2
+      38: aload_0
+      39: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      42: iconst_0
+      43: invokevirtual #263                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getDisplayRecipes:(Z)Ljava/util/List;
+      46: invokeinterface #277,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      51: pop
+      52: goto          69
+      55: aload_2
+      56: aload_0
+      57: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      60: invokevirtual #127                // Method com/alonie/brbe/generic/GenericRecipeBookCollection.getPartiallyCraftableRecipes:()Ljava/util/List;
+      63: invokeinterface #277,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      68: pop
+      69: aload_2
+      70: areturn
+
+  public C getCollection();
+    Code:
+       0: aload_0
+       1: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+       4: areturn
+
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+    Code:
+       0: return
+
+  public int getWidth();
+    Code:
+       0: bipush        25
+       2: ireturn
+
+  protected boolean isValidClickButton(int);
+    Code:
+       0: iload_1
+       1: ifeq          9
+       4: iload_1
+       5: iconst_1
+       6: if_icmpne     13
+       9: iconst_1
+      10: goto          14
+      13: iconst_0
+      14: ireturn
+
+  public java.util.List<net.minecraft.network.chat.Component> getTooltipText();
+    Code:
+       0: invokestatic  #294                // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+       3: astore_1
+       4: aload_0
+       5: getfield      #67                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+       8: invokestatic  #297                // InterfaceMethod net/minecraft/world/item/Item$TooltipContext.of:(Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/Item$TooltipContext;
+      11: astore_2
+      12: aload_1
+      13: aload_0
+      14: invokevirtual #122                // Method getCurrentDisplayedRecipe:()Lcom/alonie/brbe/generic/GenericRecipe;
+      17: aload_0
+      18: getfield      #67                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      21: aload_0
+      22: getfield      #82                 // Field category:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      25: invokeinterface #207,  3          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.getResult:(Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      30: aload_2
+      31: invokestatic  #303                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      34: getfield      #307                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+      37: getstatic     #311                // Field net/minecraft/world/item/TooltipFlag.NORMAL:Lnet/minecraft/world/item/TooltipFlag$Default;
+      40: invokevirtual #315                // Method net/minecraft/world/item/ItemStack.getTooltipLines:(Lnet/minecraft/world/item/Item$TooltipContext;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/TooltipFlag;)Ljava/util/List;
+      43: invokeinterface #277,  2          // InterfaceMethod java/util/List.addAll:(Ljava/util/Collection;)Z
+      48: pop
+      49: aload_0
+      50: aload_1
+      51: invokevirtual #319                // Method addPinTooltip:(Ljava/util/List;)V
+      54: aload_1
+      55: areturn
+
+  public void addPinTooltip(java.util.List<net.minecraft.network.chat.Component>);
+    Code:
+       0: aload_1
+       1: invokestatic  #329                // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+       4: invokeinterface #332,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       9: pop
+      10: getstatic     #217                // Field com/alonie/brbe/BetterRecipeBook.pinnedRecipeManager:Lcom/alonie/brbe/PinnedRecipeManager;
+      13: aload_0
+      14: getfield      #78                 // Field collection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      17: invokevirtual #223                // Method com/alonie/brbe/PinnedRecipeManager.has:(Lcom/alonie/brbe/generic/pins/Pinnable;)Z
+      20: ifeq          60
+      23: aload_1
+      24: ldc_w         #334                // String brb.gui.pin.remove
+      27: iconst_1
+      28: anewarray     #336                // class java/lang/Object
+      31: dup
+      32: iconst_0
+      33: getstatic     #340                // Field com/alonie/brbe/BetterRecipeBook.PIN_MAPPING:Lnet/minecraft/client/KeyMapping;
+      36: checkcast     #342                // class com/alonie/brbe/mixins/accessors/KeyMappingAccessor
+      39: invokeinterface #346,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/KeyMappingAccessor.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      44: invokevirtual #350                // Method com/mojang/blaze3d/platform/InputConstants$Key.getDisplayName:()Lnet/minecraft/network/chat/Component;
+      47: aastore
+      48: invokestatic  #354                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+      51: invokeinterface #332,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      56: pop
+      57: goto          94
+      60: aload_1
+      61: ldc_w         #356                // String brb.gui.pin.add
+      64: iconst_1
+      65: anewarray     #336                // class java/lang/Object
+      68: dup
+      69: iconst_0
+      70: getstatic     #340                // Field com/alonie/brbe/BetterRecipeBook.PIN_MAPPING:Lnet/minecraft/client/KeyMapping;
+      73: checkcast     #342                // class com/alonie/brbe/mixins/accessors/KeyMappingAccessor
+      76: invokeinterface #346,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/KeyMappingAccessor.getKey:()Lcom/mojang/blaze3d/platform/InputConstants$Key;
+      81: invokevirtual #350                // Method com/mojang/blaze3d/platform/InputConstants$Key.getDisplayName:()Lnet/minecraft/network/chat/Component;
+      84: aastore
+      85: invokestatic  #354                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+      88: invokeinterface #332,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      93: pop
+      94: return
+
+  private static boolean lambda$renderWidget$0(com.alonie.brbe.generic.GenericRecipe, com.alonie.brbe.generic.GenericRecipe);
+    Code:
+       0: aload_1
+       1: invokeinterface #361,  1          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.id:()Lnet/minecraft/resources/ResourceLocation;
+       6: aload_0
+       7: invokeinterface #361,  1          // InterfaceMethod com/alonie/brbe/generic/GenericRecipe.id:()Lnet/minecraft/resources/ResourceLocation;
+      12: invokevirtual #364                // Method net/minecraft/resources/ResourceLocation.equals:(Ljava/lang/Object;)Z
+      15: ireturn
+}

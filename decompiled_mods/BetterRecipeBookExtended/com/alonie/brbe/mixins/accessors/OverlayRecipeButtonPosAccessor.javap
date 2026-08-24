@@ -1,0 +1,8 @@
+Compiled from "OverlayRecipeButtonPosAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.OverlayRecipeButtonPosAccessor {
+  public abstract int brbe$getX();
+
+  public abstract int brbe$getY();
+
+  public abstract net.minecraft.world.item.ItemStack[] brbe$getIngredients();
+}

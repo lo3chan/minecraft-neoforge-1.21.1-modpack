@@ -1,0 +1,340 @@
+Compiled from "RecipeBookComponentMixin.java"
+public abstract class com.alonie.brbe.mixins.incompletecrafting.RecipeBookComponentMixin {
+  protected net.minecraft.world.inventory.RecipeBookMenu<?, ?> menu;
+
+  protected net.minecraft.client.Minecraft minecraft;
+
+  private static long brbe$lastSlotHash;
+
+  public com.alonie.brbe.mixins.incompletecrafting.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #32                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void betterRecipeBook$injectIntoDataSets(java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>, java.util.function.Consumer<? super net.minecraft.client.gui.screens.recipebook.RecipeCollection>);
+    Code:
+       0: invokestatic  #52                 // Method com/alonie/brbe/util/PerfTimer.begin:()V
+       3: aload_0
+       4: getfield      #54                 // Field menu:Lnet/minecraft/world/inventory/RecipeBookMenu;
+       7: getfield      #60                 // Field net/minecraft/world/inventory/RecipeBookMenu.slots:Lnet/minecraft/core/NonNullList;
+      10: invokestatic  #66                 // Method com/alonie/brbe/util/PartialCraftingUtil.slotHash:(Lnet/minecraft/core/NonNullList;)J
+      13: lstore_3
+      14: invokestatic  #70                 // Method com/alonie/brbe/util/PartialCraftingUtil.consumeForceFullRefresh:()Z
+      17: istore        5
+      19: lload_3
+      20: getstatic     #72                 // Field brbe$lastSlotHash:J
+      23: lcmp
+      24: ifne          32
+      27: iload         5
+      29: ifeq          36
+      32: iconst_1
+      33: goto          37
+      36: iconst_0
+      37: istore        6
+      39: iload         5
+      41: ifeq          75
+      44: getstatic     #76                 // Field com/alonie/brbe/util/BrbeLogger$Category.PIPELINE:Lcom/alonie/brbe/util/BrbeLogger$Category;
+      47: ldc           #78                 // String @Redirect forceRefresh consumed — forcing full rebuild, hashChanged=%s
+      49: iconst_1
+      50: anewarray     #4                  // class java/lang/Object
+      53: dup
+      54: iconst_0
+      55: lload_3
+      56: getstatic     #72                 // Field brbe$lastSlotHash:J
+      59: lcmp
+      60: ifeq          67
+      63: iconst_1
+      64: goto          68
+      67: iconst_0
+      68: invokestatic  #92                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      71: aastore
+      72: invokestatic  #96                 // Method com/alonie/brbe/util/BrbeLogger.log:(Lcom/alonie/brbe/util/BrbeLogger$Category;Ljava/lang/String;[Ljava/lang/Object;)V
+      75: iload         6
+      77: ifeq          101
+      80: ldc           #98                 // String vanilla.forEach
+      82: invokestatic  #102                // Method com/alonie/brbe/util/PerfTimer.start:(Ljava/lang/String;)V
+      85: aload_1
+      86: aload_2
+      87: invokeinterface #106,  2          // InterfaceMethod java/util/List.forEach:(Ljava/util/function/Consumer;)V
+      92: ldc           #98                 // String vanilla.forEach
+      94: invokestatic  #109                // Method com/alonie/brbe/util/PerfTimer.end:(Ljava/lang/String;)V
+      97: lload_3
+      98: putstatic     #72                 // Field brbe$lastSlotHash:J
+     101: aload_0
+     102: getfield      #111                // Field minecraft:Lnet/minecraft/client/Minecraft;
+     105: ifnull        125
+     108: aload_0
+     109: getfield      #111                // Field minecraft:Lnet/minecraft/client/Minecraft;
+     112: getfield      #117                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+     115: instanceof    #119                // class net/minecraft/client/gui/screens/inventory/InventoryScreen
+     118: ifeq          125
+     121: iconst_1
+     122: goto          126
+     125: iconst_0
+     126: istore        7
+     128: invokestatic  #125                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     131: invokevirtual #131                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     134: getfield      #137                // Field com/alonie/brbe/config/Config.partialMarkingEnabled:Z
+     137: istore        8
+     139: iload         7
+     141: ifeq          160
+     144: invokestatic  #125                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     147: invokevirtual #131                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     150: getfield      #140                // Field com/alonie/brbe/config/Config.showAllRecipesInSurvival:Z
+     153: ifeq          160
+     156: iconst_1
+     157: goto          161
+     160: iconst_0
+     161: istore        9
+     163: iload         8
+     165: ifne          298
+     168: aload_1
+     169: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     174: astore        10
+     176: aload         10
+     178: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     183: ifeq          284
+     186: aload         10
+     188: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     193: checkcast     #155                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     196: astore        11
+     198: aload         11
+     200: invokestatic  #159                // Method com/alonie/brbe/util/PartialCraftingUtil.hasPartialMaterialsRaw:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+     203: ifne          209
+     206: goto          176
+     209: aload         11
+     211: checkcast     #161                // class com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor
+     214: astore        12
+     216: aload         11
+     218: invokevirtual #165                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+     221: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     226: astore        13
+     228: aload         13
+     230: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     235: ifeq          281
+     238: aload         13
+     240: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     245: checkcast     #167                // class net/minecraft/world/item/crafting/RecipeHolder
+     248: astore        14
+     250: aload         11
+     252: aload         14
+     254: invokevirtual #171                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+     257: invokestatic  #175                // Method com/alonie/brbe/util/PartialCraftingUtil.isPartiallyCraftableRaw:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+     260: ifeq          278
+     263: aload         12
+     265: invokeinterface #179,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor.brbe$getCraftable:()Ljava/util/Set;
+     270: aload         14
+     272: invokeinterface #185,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+     277: pop
+     278: goto          228
+     281: goto          176
+     284: invokestatic  #188                // Method com/alonie/brbe/util/PartialCraftingUtil.invalidateCaches:()V
+     287: iload         9
+     289: ifne          298
+     292: ldc           #190                // String updateCollections (disabled+cleaned)
+     294: invokestatic  #193                // Method com/alonie/brbe/util/PerfTimer.logAndReset:(Ljava/lang/String;)V
+     297: return
+     298: iload         8
+     300: ifne          314
+     303: iload         9
+     305: ifne          314
+     308: ldc           #195                // String updateCollections (no-op)
+     310: invokestatic  #193                // Method com/alonie/brbe/util/PerfTimer.logAndReset:(Ljava/lang/String;)V
+     313: return
+     314: iload         9
+     316: ifeq          367
+     319: ldc           #197                // String incompatible.mark
+     321: invokestatic  #102                // Method com/alonie/brbe/util/PerfTimer.start:(Ljava/lang/String;)V
+     324: aload_1
+     325: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     330: astore        10
+     332: aload         10
+     334: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     339: ifeq          362
+     342: aload         10
+     344: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     349: checkcast     #155                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     352: astore        11
+     354: aload         11
+     356: invokestatic  #203                // Method com/alonie/brbe/util/IncompatibleCraftingUtil.markIncompatibleRecipes:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)V
+     359: goto          332
+     362: ldc           #197                // String incompatible.mark
+     364: invokestatic  #109                // Method com/alonie/brbe/util/PerfTimer.end:(Ljava/lang/String;)V
+     367: iload         8
+     369: ifne          378
+     372: ldc           #205                // String updateCollections (incompatible-only)
+     374: invokestatic  #193                // Method com/alonie/brbe/util/PerfTimer.logAndReset:(Ljava/lang/String;)V
+     377: return
+     378: iload         6
+     380: ifne          389
+     383: ldc           #207                // String updateCollections (cache-hit, fully skipped)
+     385: invokestatic  #193                // Method com/alonie/brbe/util/PerfTimer.logAndReset:(Ljava/lang/String;)V
+     388: return
+     389: iconst_1
+     390: invokestatic  #211                // Method com/alonie/brbe/util/PartialCraftingUtil.beginFilteringUpdate:(Z)V
+     393: aload_0
+     394: getfield      #54                 // Field menu:Lnet/minecraft/world/inventory/RecipeBookMenu;
+     397: getfield      #60                 // Field net/minecraft/world/inventory/RecipeBookMenu.slots:Lnet/minecraft/core/NonNullList;
+     400: invokestatic  #215                // Method com/alonie/brbe/util/PartialCraftingUtil.hashInventory:(Lnet/minecraft/core/NonNullList;)Ljava/util/Set;
+     403: astore        10
+     405: ldc           #217                // String partial.step0-clear
+     407: invokestatic  #102                // Method com/alonie/brbe/util/PerfTimer.start:(Ljava/lang/String;)V
+     410: aload_1
+     411: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     416: astore        11
+     418: aload         11
+     420: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     425: ifeq          526
+     428: aload         11
+     430: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     435: checkcast     #155                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     438: astore        12
+     440: aload         12
+     442: invokestatic  #220                // Method com/alonie/brbe/util/PartialCraftingUtil.hasPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+     445: ifne          451
+     448: goto          418
+     451: aload         12
+     453: checkcast     #161                // class com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor
+     456: astore        13
+     458: aload         12
+     460: invokevirtual #165                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+     463: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     468: astore        14
+     470: aload         14
+     472: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     477: ifeq          523
+     480: aload         14
+     482: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     487: checkcast     #167                // class net/minecraft/world/item/crafting/RecipeHolder
+     490: astore        15
+     492: aload         12
+     494: aload         15
+     496: invokevirtual #171                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+     499: invokestatic  #223                // Method com/alonie/brbe/util/PartialCraftingUtil.isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+     502: ifeq          520
+     505: aload         13
+     507: invokeinterface #179,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor.brbe$getCraftable:()Ljava/util/Set;
+     512: aload         15
+     514: invokeinterface #185,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+     519: pop
+     520: goto          470
+     523: goto          418
+     526: ldc           #217                // String partial.step0-clear
+     528: invokestatic  #109                // Method com/alonie/brbe/util/PerfTimer.end:(Ljava/lang/String;)V
+     531: ldc           #225                // String partial.markAndInject
+     533: invokestatic  #102                // Method com/alonie/brbe/util/PerfTimer.start:(Ljava/lang/String;)V
+     536: iconst_0
+     537: istore        11
+     539: aload_1
+     540: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     545: astore        12
+     547: aload         12
+     549: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     554: ifeq          582
+     557: aload         12
+     559: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     564: checkcast     #155                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     567: astore        13
+     569: iinc          11, 1
+     572: aload         13
+     574: aload         10
+     576: invokestatic  #229                // Method com/alonie/brbe/util/PartialCraftingUtil.markAndInject:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Ljava/util/Set;)V
+     579: goto          547
+     582: ldc           #225                // String partial.markAndInject
+     584: invokestatic  #109                // Method com/alonie/brbe/util/PerfTimer.end:(Ljava/lang/String;)V
+     587: iconst_0
+     588: invokestatic  #211                // Method com/alonie/brbe/util/PartialCraftingUtil.beginFilteringUpdate:(Z)V
+     591: invokestatic  #125                // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+     594: invokevirtual #131                // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+     597: getfield      #140                // Field com/alonie/brbe/config/Config.showAllRecipesInSurvival:Z
+     600: ifne          727
+     603: aload_1
+     604: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     609: astore        12
+     611: aload         12
+     613: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     618: ifeq          727
+     621: aload         12
+     623: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     628: checkcast     #155                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+     631: astore        13
+     633: aload         13
+     635: invokestatic  #220                // Method com/alonie/brbe/util/PartialCraftingUtil.hasPartialMaterials:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;)Z
+     638: ifne          644
+     641: goto          611
+     644: aload         13
+     646: checkcast     #161                // class com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor
+     649: astore        14
+     651: aload         13
+     653: invokevirtual #165                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+     656: invokeinterface #144,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     661: astore        15
+     663: aload         15
+     665: invokeinterface #149,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     670: ifeq          724
+     673: aload         15
+     675: invokeinterface #153,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     680: checkcast     #167                // class net/minecraft/world/item/crafting/RecipeHolder
+     683: astore        16
+     685: aload         13
+     687: aload         16
+     689: invokevirtual #171                // Method net/minecraft/world/item/crafting/RecipeHolder.id:()Lnet/minecraft/resources/ResourceLocation;
+     692: invokestatic  #223                // Method com/alonie/brbe/util/PartialCraftingUtil.isPartiallyCraftable:(Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;Lnet/minecraft/resources/ResourceLocation;)Z
+     695: ifeq          721
+     698: aload         16
+     700: invokestatic  #233                // Method brbe$needsLargerGrid:(Lnet/minecraft/world/item/crafting/RecipeHolder;)Z
+     703: ifeq          721
+     706: aload         14
+     708: invokeinterface #179,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeCollectionAccessor.brbe$getCraftable:()Ljava/util/Set;
+     713: aload         16
+     715: invokeinterface #185,  2          // InterfaceMethod java/util/Set.remove:(Ljava/lang/Object;)Z
+     720: pop
+     721: goto          663
+     724: goto          611
+     727: iload         11
+     729: invokedynamic #245,  0            // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+     734: invokestatic  #193                // Method com/alonie/brbe/util/PerfTimer.logAndReset:(Ljava/lang/String;)V
+     737: return
+
+  private static boolean brbe$needsLargerGrid(net.minecraft.world.item.crafting.RecipeHolder<?>);
+    Code:
+       0: aload_0
+       1: invokevirtual #271                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+       4: astore_1
+       5: aload_1
+       6: instanceof    #273                // class net/minecraft/world/item/crafting/ShapedRecipe
+       9: ifeq          39
+      12: aload_1
+      13: checkcast     #273                // class net/minecraft/world/item/crafting/ShapedRecipe
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #277                // Method net/minecraft/world/item/crafting/ShapedRecipe.getWidth:()I
+      21: iconst_2
+      22: if_icmpgt     33
+      25: aload_2
+      26: invokevirtual #280                // Method net/minecraft/world/item/crafting/ShapedRecipe.getHeight:()I
+      29: iconst_2
+      30: if_icmple     37
+      33: iconst_1
+      34: goto          38
+      37: iconst_0
+      38: ireturn
+      39: aload_1
+      40: instanceof    #284                // class net/minecraft/world/item/crafting/ShapelessRecipe
+      43: ifeq          68
+      46: aload_1
+      47: checkcast     #284                // class net/minecraft/world/item/crafting/ShapelessRecipe
+      50: astore_2
+      51: aload_2
+      52: invokevirtual #288                // Method net/minecraft/world/item/crafting/ShapelessRecipe.getIngredients:()Lnet/minecraft/core/NonNullList;
+      55: invokevirtual #293                // Method net/minecraft/core/NonNullList.size:()I
+      58: iconst_4
+      59: if_icmple     66
+      62: iconst_1
+      63: goto          67
+      66: iconst_0
+      67: ireturn
+      68: iconst_0
+      69: ireturn
+}

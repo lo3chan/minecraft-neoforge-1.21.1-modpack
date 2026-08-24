@@ -1,0 +1,10 @@
+Compiled from "PlatformPotionUtil.java"
+public interface com.alonie.brbe.brewingstand.PlatformPotionUtil$PotionUtilProvider {
+  public abstract net.minecraft.world.item.crafting.Ingredient getIngredient(java.lang.Object);
+
+  public abstract net.minecraft.world.item.alchemy.Potion getTo(java.lang.Object);
+
+  public abstract net.minecraft.world.item.alchemy.Potion getFrom(java.lang.Object);
+
+  public abstract java.util.List<?> getPotionMixes(net.minecraft.client.multiplayer.ClientLevel);
+}

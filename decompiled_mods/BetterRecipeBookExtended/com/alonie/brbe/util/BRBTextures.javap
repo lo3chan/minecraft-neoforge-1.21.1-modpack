@@ -1,0 +1,179 @@
+Compiled from "BRBTextures.java"
+public class com.alonie.brbe.util.BRBTextures {
+  private static final java.lang.String NS;
+
+  public static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_BACKGROUND_TEXTURE;
+
+  public static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_BUTTON_SLOT_CRAFTABLE_SPRITE;
+
+  public static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_BUTTON_SLOT_UNCRAFTABLE_SPRITE;
+
+  public static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_PIN_SPRITE;
+
+  public static final net.minecraft.resources.ResourceLocation RECIPE_BOOK_OVERLAY_PIN_SPRITE;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_FILTER_BUTTON_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_PAGE_FORWARD_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_PAGE_BACKWARD_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_BUTTON_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_TAB_SPRITES;
+
+  public static net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_CRAFTING_OVERLAY_SPRITE;
+
+  public static net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_PLAIN_OVERLAY_SPRITE;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites SETTINGS_BUTTON_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_EXPAND_BUTTON_SPRITES;
+
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BOOK_INSTANT_CRAFT_BUTTON_SPRITES;
+
+  public com.alonie.brbe.util.BRBTextures();
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  static {};
+    Code:
+       0: ldc           #35                 // String textures/gui/recipe_book.png
+       2: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       5: putstatic     #43                 // Field RECIPE_BOOK_BACKGROUND_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+       8: ldc           #45                 // String recipe_book/slot_craftable
+      10: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      13: putstatic     #47                 // Field RECIPE_BOOK_BUTTON_SLOT_CRAFTABLE_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+      16: ldc           #49                 // String recipe_book/slot_uncraftable
+      18: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      21: putstatic     #51                 // Field RECIPE_BOOK_BUTTON_SLOT_UNCRAFTABLE_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+      24: ldc           #9                  // String brbe
+      26: ldc           #53                 // String recipe_book/pin
+      28: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      31: putstatic     #59                 // Field RECIPE_BOOK_PIN_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+      34: ldc           #9                  // String brbe
+      36: ldc           #61                 // String recipe_book/overlay_pin
+      38: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      41: putstatic     #63                 // Field RECIPE_BOOK_OVERLAY_PIN_SPRITE:Lnet/minecraft/resources/ResourceLocation;
+      44: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+      47: dup
+      48: ldc           #67                 // String recipe_book/filter_enabled
+      50: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      53: ldc           #69                 // String recipe_book/filter_disabled
+      55: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      58: ldc           #71                 // String recipe_book/filter_enabled_highlighted
+      60: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      63: ldc           #73                 // String recipe_book/filter_disabled_highlighted
+      65: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      68: invokespecial #76                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+      71: putstatic     #78                 // Field RECIPE_BOOK_FILTER_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+      74: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+      77: dup
+      78: ldc           #80                 // String recipe_book/page_forward
+      80: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      83: ldc           #82                 // String recipe_book/page_forward_highlighted
+      85: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      88: invokespecial #85                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+      91: putstatic     #87                 // Field RECIPE_BOOK_PAGE_FORWARD_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+      94: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+      97: dup
+      98: ldc           #89                 // String recipe_book/page_backward
+     100: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     103: ldc           #91                 // String recipe_book/page_backward_highlighted
+     105: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     108: invokespecial #85                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     111: putstatic     #93                 // Field RECIPE_BOOK_PAGE_BACKWARD_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     114: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     117: dup
+     118: ldc           #95                 // String recipe_book/button
+     120: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     123: ldc           #97                 // String recipe_book/button_highlighted
+     125: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     128: invokespecial #85                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     131: putstatic     #99                 // Field RECIPE_BOOK_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     134: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     137: dup
+     138: ldc           #101                // String recipe_book/tab
+     140: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     143: ldc           #103                // String recipe_book/tab_selected
+     145: invokestatic  #41                 // Method net/minecraft/resources/ResourceLocation.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     148: invokespecial #85                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     151: putstatic     #105                // Field RECIPE_BOOK_TAB_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     154: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     157: dup
+     158: ldc           #9                  // String brbe
+     160: ldc           #107                // String recipe_book/crafting_overlay
+     162: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     165: ldc           #9                  // String brbe
+     167: ldc           #109                // String recipe_book/crafting_overlay_disabled
+     169: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     172: ldc           #9                  // String brbe
+     174: ldc           #111                // String recipe_book/crafting_overlay_highlighted
+     176: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     179: ldc           #9                  // String brbe
+     181: ldc           #113                // String recipe_book/crafting_overlay_disabled_highlighted
+     183: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     186: invokespecial #76                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     189: putstatic     #115                // Field RECIPE_BOOK_CRAFTING_OVERLAY_SPRITE:Lnet/minecraft/client/gui/components/WidgetSprites;
+     192: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     195: dup
+     196: ldc           #9                  // String brbe
+     198: ldc           #117                // String recipe_book/plain_overlay
+     200: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     203: ldc           #9                  // String brbe
+     205: ldc           #119                // String recipe_book/plain_overlay_disabled
+     207: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     210: ldc           #9                  // String brbe
+     212: ldc           #121                // String recipe_book/plain_overlay_highlighted
+     214: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     217: ldc           #9                  // String brbe
+     219: ldc           #123                // String recipe_book/plain_overlay_disabled_highlighted
+     221: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     224: invokespecial #76                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     227: putstatic     #125                // Field RECIPE_BOOK_PLAIN_OVERLAY_SPRITE:Lnet/minecraft/client/gui/components/WidgetSprites;
+     230: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     233: dup
+     234: ldc           #9                  // String brbe
+     236: ldc           #127                // String recipe_book/button_settings
+     238: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     241: ldc           #9                  // String brbe
+     243: ldc           #129                // String recipe_book/button_settings_highlighted
+     245: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     248: invokespecial #85                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     251: putstatic     #131                // Field SETTINGS_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     254: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     257: dup
+     258: ldc           #9                  // String brbe
+     260: ldc           #133                // String recipe_book/button_expand
+     262: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     265: ldc           #9                  // String brbe
+     267: ldc           #135                // String recipe_book/button_expand_disabled
+     269: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     272: ldc           #9                  // String brbe
+     274: ldc           #137                // String recipe_book/button_expand_highlighted
+     276: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     279: ldc           #9                  // String brbe
+     281: ldc           #139                // String recipe_book/button_expand_disabled_highlighted
+     283: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     286: invokespecial #76                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     289: putstatic     #141                // Field RECIPE_BOOK_EXPAND_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     292: new           #65                 // class net/minecraft/client/gui/components/WidgetSprites
+     295: dup
+     296: ldc           #9                  // String brbe
+     298: ldc           #143                // String recipe_book/button_instantcraft
+     300: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     303: ldc           #9                  // String brbe
+     305: ldc           #145                // String recipe_book/button_instantcraft_disabled
+     307: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     310: ldc           #9                  // String brbe
+     312: ldc           #147                // String recipe_book/button_instantcraft_highlighted
+     314: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     317: ldc           #9                  // String brbe
+     319: ldc           #149                // String recipe_book/button_instantcraft_disabled_highlighted
+     321: invokestatic  #57                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     324: invokespecial #76                 // Method net/minecraft/client/gui/components/WidgetSprites."<init>":(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V
+     327: putstatic     #151                // Field RECIPE_BOOK_INSTANT_CRAFT_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+     330: return
+}

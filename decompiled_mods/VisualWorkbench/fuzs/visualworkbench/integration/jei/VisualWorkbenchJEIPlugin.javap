@@ -1,0 +1,29 @@
+Compiled from "VisualWorkbenchJEIPlugin.java"
+public class fuzs.visualworkbench.integration.jei.VisualWorkbenchJEIPlugin implements mezz.jei.api.IModPlugin {
+  public fuzs.visualworkbench.integration.jei.VisualWorkbenchJEIPlugin();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public net.minecraft.resources.ResourceLocation getPluginUid();
+    Code:
+       0: ldc           #23                 // String crafting
+       2: invokestatic  #29                 // Method fuzs/visualworkbench/VisualWorkbench.id:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       5: areturn
+
+  public void registerRecipeTransferHandlers(mezz.jei.api.registration.IRecipeTransferRegistration);
+    Code:
+       0: aload_1
+       1: ldc           #34                 // class fuzs/visualworkbench/world/inventory/VisualCraftingMenu
+       3: getstatic     #40                 // Field fuzs/visualworkbench/init/ModRegistry.CRAFTING_MENU_TYPE:Lnet/minecraft/core/Holder$Reference;
+       6: invokevirtual #44                 // Method net/minecraft/core/Holder$Reference.value:()Ljava/lang/Object;
+       9: checkcast     #46                 // class net/minecraft/world/inventory/MenuType
+      12: getstatic     #52                 // Field mezz/jei/api/constants/RecipeTypes.CRAFTING:Lmezz/jei/api/recipe/RecipeType;
+      15: iconst_1
+      16: bipush        9
+      18: bipush        10
+      20: bipush        36
+      22: invokeinterface #58,  8           // InterfaceMethod mezz/jei/api/registration/IRecipeTransferRegistration.addRecipeTransferHandler:(Ljava/lang/Class;Lnet/minecraft/world/inventory/MenuType;Lmezz/jei/api/recipe/RecipeType;IIII)V
+      27: return
+}

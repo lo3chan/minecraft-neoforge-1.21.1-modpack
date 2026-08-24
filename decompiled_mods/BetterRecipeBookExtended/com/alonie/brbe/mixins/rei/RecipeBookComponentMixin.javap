@@ -1,0 +1,200 @@
+Compiled from "RecipeBookComponentMixin.java"
+public abstract class com.alonie.brbe.mixins.rei.RecipeBookComponentMixin {
+  private net.minecraft.world.item.ItemStack brbe$hoveredGhostStack;
+
+  public com.alonie.brbe.mixins.rei.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #25                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void brbe$guardReiViewingScreen(int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: invokestatic  #48                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: getfield      #52                 // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+       6: astore        5
+       8: aload         5
+      10: ifnonnull     14
+      13: return
+      14: aload         5
+      16: invokevirtual #58                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      19: invokevirtual #64                 // Method java/lang/Class.getName:()Ljava/lang/String;
+      22: astore        6
+      24: aload         6
+      26: ldc           #66                 // String AbstractDisplayViewingScreen
+      28: invokevirtual #72                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      31: ifne          44
+      34: aload         6
+      36: ldc           #74                 // String DisplayViewingScreen
+      38: invokevirtual #72                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      41: ifeq          53
+      44: aload         4
+      46: iconst_0
+      47: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      50: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      53: return
+
+  private void brbe$captureGhostHover(net.minecraft.client.gui.GuiGraphics, int, int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: checkcast     #102                // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+       4: invokeinterface #106,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.getGhostRecipe:()Lnet/minecraft/client/gui/screens/recipebook/GhostRecipe;
+       9: astore        7
+      11: aload         7
+      13: ifnull        24
+      16: aload         7
+      18: invokevirtual #110                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe.size:()I
+      21: ifne          30
+      24: aload_0
+      25: aconst_null
+      26: putfield      #112                // Field brbe$hoveredGhostStack:Lnet/minecraft/world/item/ItemStack;
+      29: return
+      30: iconst_0
+      31: istore        8
+      33: iload         8
+      35: aload         7
+      37: invokevirtual #110                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe.size:()I
+      40: if_icmpge     120
+      43: aload         7
+      45: iload         8
+      47: invokevirtual #116                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe.get:(I)Lnet/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient;
+      50: astore        9
+      52: aload         9
+      54: invokevirtual #119                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient.getX:()I
+      57: iload_2
+      58: iadd
+      59: istore        10
+      61: aload         9
+      63: invokevirtual #122                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient.getY:()I
+      66: iload_3
+      67: iadd
+      68: istore        11
+      70: iload         4
+      72: iload         10
+      74: if_icmplt     114
+      77: iload         4
+      79: iload         10
+      81: bipush        16
+      83: iadd
+      84: if_icmpge     114
+      87: iload         5
+      89: iload         11
+      91: if_icmplt     114
+      94: iload         5
+      96: iload         11
+      98: bipush        16
+     100: iadd
+     101: if_icmpge     114
+     104: aload_0
+     105: aload         9
+     107: invokevirtual #126                // Method net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+     110: putfield      #112                // Field brbe$hoveredGhostStack:Lnet/minecraft/world/item/ItemStack;
+     113: return
+     114: iinc          8, 1
+     117: goto          33
+     120: aload_0
+     121: aconst_null
+     122: putfield      #112                // Field brbe$hoveredGhostStack:Lnet/minecraft/world/item/ItemStack;
+     125: return
+
+  private void brbe$handleItemViewKeys(int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: invokestatic  #143                // Method com/alonie/brbe/compat/ItemViewCompat.isLoaded:()Z
+       3: ifeq          14
+       6: aload         4
+       8: invokevirtual #146                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.getReturnValueZ:()Z
+      11: ifeq          15
+      14: return
+      15: aload_0
+      16: checkcast     #102                // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      19: invokeinterface #150,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.getRecipeBookPage:()Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;
+      24: astore        5
+      26: aload         5
+      28: ifnonnull     32
+      31: return
+      32: aload         5
+      34: checkcast     #154                // class com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor
+      37: invokeinterface #158,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor.getButtons:()Ljava/util/List;
+      42: invokeinterface #164,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      47: astore        6
+      49: aload         6
+      51: invokeinterface #169,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      56: ifeq          184
+      59: aload         6
+      61: invokeinterface #173,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      66: checkcast     #175                // class net/minecraft/client/gui/screens/recipebook/RecipeButton
+      69: astore        7
+      71: aload         7
+      73: invokevirtual #178                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.isHoveredOrFocused:()Z
+      76: ifne          82
+      79: goto          49
+      82: aload         7
+      84: invokevirtual #182                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+      87: ifnull        49
+      90: aload         7
+      92: invokevirtual #186                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getRecipe:()Lnet/minecraft/world/item/crafting/RecipeHolder;
+      95: ifnonnull     101
+      98: goto          49
+     101: aload         7
+     103: invokevirtual #186                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getRecipe:()Lnet/minecraft/world/item/crafting/RecipeHolder;
+     106: invokevirtual #191                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+     109: aload         7
+     111: invokevirtual #182                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+     114: invokevirtual #197                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+     117: invokeinterface #203,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getResultItem:(Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;
+     122: astore        8
+     124: aload         8
+     126: ifnull        137
+     129: aload         8
+     131: invokevirtual #208                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     134: ifeq          138
+     137: return
+     138: iload_1
+     139: iload_2
+     140: invokestatic  #212                // Method com/alonie/brbe/compat/ItemViewCompat.matchesShowRecipe:(II)Z
+     143: ifeq          162
+     146: aload         4
+     148: aload         8
+     150: invokestatic  #216                // Method com/alonie/brbe/compat/ItemViewCompat.openRecipeView:(Lnet/minecraft/world/item/ItemStack;)Z
+     153: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     156: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     159: goto          183
+     162: iload_1
+     163: iload_2
+     164: invokestatic  #219                // Method com/alonie/brbe/compat/ItemViewCompat.matchesShowUses:(II)Z
+     167: ifeq          183
+     170: aload         4
+     172: aload         8
+     174: invokestatic  #222                // Method com/alonie/brbe/compat/ItemViewCompat.openUsageView:(Lnet/minecraft/world/item/ItemStack;)Z
+     177: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     180: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     183: return
+     184: aload_0
+     185: getfield      #112                // Field brbe$hoveredGhostStack:Lnet/minecraft/world/item/ItemStack;
+     188: astore        6
+     190: aload         6
+     192: ifnull        248
+     195: aload         6
+     197: invokevirtual #208                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     200: ifne          248
+     203: iload_1
+     204: iload_2
+     205: invokestatic  #212                // Method com/alonie/brbe/compat/ItemViewCompat.matchesShowRecipe:(II)Z
+     208: ifeq          227
+     211: aload         4
+     213: aload         6
+     215: invokestatic  #216                // Method com/alonie/brbe/compat/ItemViewCompat.openRecipeView:(Lnet/minecraft/world/item/ItemStack;)Z
+     218: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     221: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     224: goto          248
+     227: iload_1
+     228: iload_2
+     229: invokestatic  #219                // Method com/alonie/brbe/compat/ItemViewCompat.matchesShowUses:(II)Z
+     232: ifeq          248
+     235: aload         4
+     237: aload         6
+     239: invokestatic  #222                // Method com/alonie/brbe/compat/ItemViewCompat.openUsageView:(Lnet/minecraft/world/item/ItemStack;)Z
+     242: invokestatic  #80                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     245: invokevirtual #86                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     248: return
+}

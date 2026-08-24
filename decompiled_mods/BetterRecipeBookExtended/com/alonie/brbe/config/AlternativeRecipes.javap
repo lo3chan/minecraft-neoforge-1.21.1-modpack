@@ -1,0 +1,18 @@
+Compiled from "AlternativeRecipes.java"
+public class com.alonie.brbe.config.AlternativeRecipes implements me.shedaniel.autoconfig.ConfigData {
+  public boolean onHover;
+
+  public boolean noGrouped;
+
+  public com.alonie.brbe.config.AlternativeRecipes();
+    Code:
+       0: aload_0
+       1: invokespecial #26                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #28                 // Field onHover:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #30                 // Field noGrouped:Z
+      14: return
+}

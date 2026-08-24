@@ -1,0 +1,66 @@
+Compiled from "RecipeMenuUtil.java"
+public class com.alonie.brbe.util.RecipeMenuUtil {
+  public com.alonie.brbe.util.RecipeMenuUtil();
+    Code:
+       0: aload_0
+       1: invokespecial #9                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static boolean isRecipeSlot(net.minecraft.world.inventory.RecipeBookMenu<?, ?>, int);
+    Code:
+       0: aload_0
+       1: instanceof    #18                 // class net/minecraft/world/inventory/AbstractFurnaceMenu
+       4: ifeq          18
+       7: iconst_0
+       8: iload_1
+       9: if_icmpne     16
+      12: iconst_1
+      13: goto          17
+      16: iconst_0
+      17: ireturn
+      18: aload_0
+      19: iload_1
+      20: invokestatic  #21                 // Method isCraftingGridSlot:(Lnet/minecraft/world/inventory/RecipeBookMenu;I)Z
+      23: ireturn
+
+  public static boolean isCraftingGridSlot(net.minecraft.world.inventory.RecipeBookMenu<?, ?>, int);
+    Code:
+       0: iload_1
+       1: aload_0
+       2: invokevirtual #30                 // Method net/minecraft/world/inventory/RecipeBookMenu.getResultSlotIndex:()I
+       5: if_icmple     20
+       8: iload_1
+       9: aload_0
+      10: invokevirtual #33                 // Method net/minecraft/world/inventory/RecipeBookMenu.getSize:()I
+      13: if_icmpge     20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: ireturn
+
+  public static boolean isResultSlot(net.minecraft.world.inventory.RecipeBookMenu<?, ?>, int);
+    Code:
+       0: aload_0
+       1: invokevirtual #30                 // Method net/minecraft/world/inventory/RecipeBookMenu.getResultSlotIndex:()I
+       4: iload_1
+       5: if_icmpne     12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: ireturn
+
+  public static boolean isCraftingMenuSlot(net.minecraft.world.inventory.RecipeBookMenu<?, ?>, int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: invokestatic  #21                 // Method isCraftingGridSlot:(Lnet/minecraft/world/inventory/RecipeBookMenu;I)Z
+       5: ifne          16
+       8: aload_0
+       9: iload_1
+      10: invokestatic  #37                 // Method isResultSlot:(Lnet/minecraft/world/inventory/RecipeBookMenu;I)Z
+      13: ifeq          20
+      16: iconst_1
+      17: goto          21
+      20: iconst_0
+      21: ireturn
+}

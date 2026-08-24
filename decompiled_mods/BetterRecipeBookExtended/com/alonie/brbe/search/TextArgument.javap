@@ -1,0 +1,38 @@
+Compiled from "TextArgument.java"
+public class com.alonie.brbe.search.TextArgument implements com.alonie.brbe.search.SearchArgument {
+  private final java.lang.String searchText;
+
+  public com.alonie.brbe.search.TextArgument(java.lang.String);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+       9: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      12: putfield      #28                 // Field searchText:Ljava/lang/String;
+      15: return
+
+  public boolean matches(net.minecraft.world.item.ItemStack, com.alonie.brbe.search.SearchCache);
+    Code:
+       0: aload_1
+       1: invokevirtual #40                 // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+       4: invokeinterface #46,  1           // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+       9: getstatic     #20                 // Field java/util/Locale.ROOT:Ljava/util/Locale;
+      12: invokevirtual #26                 // Method java/lang/String.toLowerCase:(Ljava/util/Locale;)Ljava/lang/String;
+      15: aload_0
+      16: getfield      #28                 // Field searchText:Ljava/lang/String;
+      19: invokevirtual #50                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+      22: ireturn
+
+  public boolean isAdvanced();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public java.lang.String getSearchText();
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field searchText:Ljava/lang/String;
+       4: areturn
+}

@@ -1,0 +1,4 @@
+Compiled from "OverlayRecipeButtonAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.OverlayRecipeButtonAccessor {
+  public abstract net.minecraft.world.item.crafting.RecipeHolder<?> getRecipe();
+}

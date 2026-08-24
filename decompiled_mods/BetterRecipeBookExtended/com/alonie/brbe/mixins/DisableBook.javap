@@ -1,0 +1,20 @@
+Compiled from "DisableBook.java"
+public class com.alonie.brbe.mixins.DisableBook {
+  public com.alonie.brbe.mixins.DisableBook();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void isOpen(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: invokestatic  #32                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #38                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #44                 // Field com/alonie/brbe/config/Config.enableBook:Z
+       9: ifne          20
+      12: aload_1
+      13: iconst_0
+      14: invokestatic  #50                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      17: invokevirtual #56                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      20: return
+}

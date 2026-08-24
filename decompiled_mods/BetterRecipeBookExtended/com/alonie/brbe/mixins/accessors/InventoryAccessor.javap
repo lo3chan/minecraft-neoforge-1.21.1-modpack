@@ -1,0 +1,4 @@
+Compiled from "InventoryAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.InventoryAccessor {
+  public abstract java.util.List<net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>> getCompartments();
+}

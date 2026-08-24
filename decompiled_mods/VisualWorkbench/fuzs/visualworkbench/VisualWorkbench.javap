@@ -1,0 +1,95 @@
+Compiled from "VisualWorkbench.java"
+public class fuzs.visualworkbench.VisualWorkbench implements fuzs.puzzleslib.api.core.v1.ModConstructor {
+  public static final java.lang.String MOD_ID;
+
+  public static final java.lang.String MOD_NAME;
+
+  public static final org.slf4j.Logger LOGGER;
+
+  public static final fuzs.puzzleslib.api.config.v3.ConfigHolder CONFIG;
+
+  public static final java.util.function.Predicate<net.minecraft.world.level.block.Block> BLOCK_PREDICATE;
+
+  public fuzs.visualworkbench.VisualWorkbench();
+    Code:
+       0: aload_0
+       1: invokespecial #45                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void onConstructMod();
+    Code:
+       0: invokestatic  #53                 // Method fuzs/visualworkbench/init/ModRegistry.touch:()V
+       3: invokestatic  #56                 // Method registerEventHandlers:()V
+       6: return
+
+  private static void registerEventHandlers();
+    Code:
+       0: getstatic     #62                 // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+       3: invokestatic  #68                 // InterfaceMethod fuzs/puzzleslib/api/event/v1/RegistryEntryAddedCallback.registryEntryAdded:(Lnet/minecraft/resources/ResourceKey;)Lfuzs/puzzleslib/api/event/v1/core/EventInvoker;
+       6: getstatic     #70                 // Field BLOCK_PREDICATE:Ljava/util/function/Predicate;
+       9: invokedynamic #91,  0             // InvokeDynamic #0:apply:()Ljava/util/function/UnaryOperator;
+      14: ldc           #31                 // String visualworkbench
+      16: invokestatic  #97                 // Method fuzs/visualworkbench/handler/BlockConversionHandler.onRegistryEntryAdded:(Ljava/util/function/Predicate;Ljava/util/function/UnaryOperator;Ljava/lang/String;)Lfuzs/puzzleslib/api/event/v1/RegistryEntryAddedCallback;
+      19: invokeinterface #103,  2          // InterfaceMethod fuzs/puzzleslib/api/event/v1/core/EventInvoker.register:(Ljava/lang/Object;)V
+      24: getstatic     #109                // Field fuzs/puzzleslib/api/event/v1/AddBlockEntityTypeBlocksCallback.EVENT:Lfuzs/puzzleslib/api/event/v1/core/EventInvoker;
+      27: getstatic     #113                // Field fuzs/visualworkbench/init/ModRegistry.CRAFTING_TABLE_BLOCK_ENTITY_TYPE:Lnet/minecraft/core/Holder$Reference;
+      30: invokestatic  #117                // Method fuzs/visualworkbench/handler/BlockConversionHandler.onAddBlockEntityTypeBlocks:(Lnet/minecraft/core/Holder$Reference;)Lfuzs/puzzleslib/api/event/v1/AddBlockEntityTypeBlocksCallback;
+      33: invokeinterface #103,  2          // InterfaceMethod fuzs/puzzleslib/api/event/v1/core/EventInvoker.register:(Ljava/lang/Object;)V
+      38: getstatic     #120                // Field fuzs/puzzleslib/api/event/v1/entity/player/PlayerInteractEvents.USE_BLOCK:Lfuzs/puzzleslib/api/event/v1/core/EventInvoker;
+      41: getstatic     #124                // Field fuzs/visualworkbench/init/ModRegistry.UNALTERED_WORKBENCHES_BLOCK_TAG:Lnet/minecraft/tags/TagKey;
+      44: invokedynamic #134,  0            // InvokeDynamic #1:getAsBoolean:()Ljava/util/function/BooleanSupplier;
+      49: invokestatic  #138                // Method fuzs/visualworkbench/handler/BlockConversionHandler.onUseBlock:(Lnet/minecraft/tags/TagKey;Ljava/util/function/BooleanSupplier;)Lfuzs/puzzleslib/api/event/v1/entity/player/PlayerInteractEvents$UseBlock;
+      52: invokeinterface #103,  2          // InterfaceMethod fuzs/puzzleslib/api/event/v1/core/EventInvoker.register:(Ljava/lang/Object;)V
+      57: getstatic     #141                // Field fuzs/puzzleslib/api/event/v1/server/TagsUpdatedCallback.EVENT:Lfuzs/puzzleslib/api/event/v1/core/EventInvoker;
+      60: getstatic     #147                // Field fuzs/puzzleslib/api/event/v1/core/EventPhase.FIRST:Lfuzs/puzzleslib/api/event/v1/core/EventPhase;
+      63: getstatic     #124                // Field fuzs/visualworkbench/init/ModRegistry.UNALTERED_WORKBENCHES_BLOCK_TAG:Lnet/minecraft/tags/TagKey;
+      66: getstatic     #70                 // Field BLOCK_PREDICATE:Ljava/util/function/Predicate;
+      69: invokestatic  #151                // Method fuzs/visualworkbench/handler/BlockConversionHandler.onTagsUpdated:(Lnet/minecraft/tags/TagKey;Ljava/util/function/Predicate;)Lfuzs/puzzleslib/api/event/v1/server/TagsUpdatedCallback;
+      72: invokeinterface #154,  3          // InterfaceMethod fuzs/puzzleslib/api/event/v1/core/EventInvoker.register:(Lfuzs/puzzleslib/api/event/v1/core/EventPhase;Ljava/lang/Object;)V
+      77: return
+
+  public static net.minecraft.resources.ResourceLocation id(java.lang.String);
+    Code:
+       0: ldc           #31                 // String visualworkbench
+       2: aload_0
+       3: invokestatic  #163                // Method fuzs/puzzleslib/api/core/v1/utility/ResourceLocationHelper.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       6: areturn
+
+  private static boolean lambda$registerEventHandlers$1();
+    Code:
+       0: getstatic     #165                // Field CONFIG:Lfuzs/puzzleslib/api/config/v3/ConfigHolder;
+       3: ldc           #167                // class fuzs/visualworkbench/config/CommonConfig
+       5: invokeinterface #171,  2          // InterfaceMethod fuzs/puzzleslib/api/config/v3/ConfigHolder.get:(Ljava/lang/Class;)Lfuzs/puzzleslib/api/config/v3/ConfigCore;
+      10: checkcast     #167                // class fuzs/visualworkbench/config/CommonConfig
+      13: getfield      #175                // Field fuzs/visualworkbench/config/CommonConfig.disableVanillaWorkbench:Z
+      16: ireturn
+
+  private static boolean lambda$static$0(net.minecraft.world.level.block.Block);
+    Code:
+       0: aload_0
+       1: instanceof    #180                // class net/minecraft/world/level/block/CraftingTableBlock
+       4: ifeq          18
+       7: aload_0
+       8: instanceof    #74                 // class fuzs/visualworkbench/world/level/block/CraftingTableWithInventoryBlock
+      11: ifne          18
+      14: iconst_1
+      15: goto          19
+      18: iconst_0
+      19: ireturn
+
+  static {};
+    Code:
+       0: ldc           #34                 // String Visual Workbench
+       2: invokestatic  #188                // Method org/slf4j/LoggerFactory.getLogger:(Ljava/lang/String;)Lorg/slf4j/Logger;
+       5: putstatic     #190                // Field LOGGER:Lorg/slf4j/Logger;
+       8: ldc           #31                 // String visualworkbench
+      10: invokestatic  #194                // InterfaceMethod fuzs/puzzleslib/api/config/v3/ConfigHolder.builder:(Ljava/lang/String;)Lfuzs/puzzleslib/api/config/v3/ConfigHolder$Builder;
+      13: ldc           #196                // class fuzs/visualworkbench/config/ClientConfig
+      15: invokeinterface #200,  2          // InterfaceMethod fuzs/puzzleslib/api/config/v3/ConfigHolder$Builder.client:(Ljava/lang/Class;)Lfuzs/puzzleslib/api/config/v3/ConfigHolder$Builder;
+      20: ldc           #167                // class fuzs/visualworkbench/config/CommonConfig
+      22: invokeinterface #203,  2          // InterfaceMethod fuzs/puzzleslib/api/config/v3/ConfigHolder$Builder.common:(Ljava/lang/Class;)Lfuzs/puzzleslib/api/config/v3/ConfigHolder$Builder;
+      27: putstatic     #165                // Field CONFIG:Lfuzs/puzzleslib/api/config/v3/ConfigHolder;
+      30: invokedynamic #213,  0            // InvokeDynamic #2:test:()Ljava/util/function/Predicate;
+      35: putstatic     #70                 // Field BLOCK_PREDICATE:Ljava/util/function/Predicate;
+      38: return
+}

@@ -1,0 +1,132 @@
+Compiled from "BRBSmithingTrimRecipe.java"
+public class com.alonie.brbe.recipe.smithing.BRBSmithingTrimRecipe extends net.minecraft.world.item.crafting.SmithingTrimRecipe implements com.alonie.brbe.recipe.BRBSmithingRecipe {
+  private final net.minecraft.world.item.ItemStack itemStackBase;
+
+  public com.alonie.brbe.recipe.smithing.BRBSmithingTrimRecipe(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, net.minecraft.world.item.crafting.Ingredient);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload         4
+       5: invokespecial #32                 // Method net/minecraft/world/item/crafting/SmithingTrimRecipe."<init>":(Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;)V
+       8: aload_0
+       9: aload_3
+      10: putfield      #34                 // Field itemStackBase:Lnet/minecraft/world/item/ItemStack;
+      13: return
+
+  public static java.util.ArrayList<com.alonie.brbe.recipe.smithing.BRBSmithingTrimRecipe> from(net.minecraft.world.item.crafting.SmithingTrimRecipe);
+    Code:
+       0: aload_0
+       1: checkcast     #43                 // class com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor
+       4: astore_1
+       5: new           #45                 // class java/util/ArrayList
+       8: dup
+       9: invokespecial #48                 // Method java/util/ArrayList."<init>":()V
+      12: astore_2
+      13: aload_1
+      14: invokeinterface #52,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingBase:()Lnet/minecraft/world/item/crafting/Ingredient;
+      19: invokevirtual #58                 // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      22: astore_3
+      23: aload_3
+      24: arraylength
+      25: istore        4
+      27: iconst_0
+      28: istore        5
+      30: iload         5
+      32: iload         4
+      34: if_icmpge     81
+      37: aload_3
+      38: iload         5
+      40: aaload
+      41: astore        6
+      43: aload_2
+      44: new           #2                  // class com/alonie/brbe/recipe/smithing/BRBSmithingTrimRecipe
+      47: dup
+      48: aload_1
+      49: invokeinterface #63,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+      54: aload_1
+      55: invokeinterface #52,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingBase:()Lnet/minecraft/world/item/crafting/Ingredient;
+      60: aload         6
+      62: aload_1
+      63: invokeinterface #66,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingAddition:()Lnet/minecraft/world/item/crafting/Ingredient;
+      68: invokespecial #68                 // Method "<init>":(Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/crafting/Ingredient;)V
+      71: invokevirtual #72                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+      74: pop
+      75: iinc          5, 1
+      78: goto          30
+      81: aload_2
+      82: areturn
+
+  public net.minecraft.world.item.ItemStack getResult(net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_0
+       1: getstatic     #88                 // Field net/minecraft/world/item/armortrim/TrimMaterials.REDSTONE:Lnet/minecraft/resources/ResourceKey;
+       4: aload_1
+       5: aload_2
+       6: invokevirtual #91                 // Method getResult:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+       9: areturn
+
+  public net.minecraft.world.item.ItemStack getResult(net.minecraft.resources.ResourceKey<net.minecraft.world.item.armortrim.TrimMaterial>, net.minecraft.core.RegistryAccess, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_2
+       1: getstatic     #100                // Field net/minecraft/core/registries/Registries.TRIM_MATERIAL:Lnet/minecraft/resources/ResourceKey;
+       4: invokeinterface #106,  2          // InterfaceMethod net/minecraft/core/RegistryAccess.registryOrThrow:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/core/Registry;
+       9: aload_1
+      10: invokeinterface #112,  2          // InterfaceMethod net/minecraft/core/Registry.getHolder:(Lnet/minecraft/resources/ResourceKey;)Ljava/util/Optional;
+      15: astore        4
+      17: aload_2
+      18: aload_0
+      19: invokevirtual #115                // Method getTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+      22: invokevirtual #58                 // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      25: iconst_0
+      26: aaload
+      27: invokestatic  #121                // Method net/minecraft/world/item/armortrim/TrimPatterns.getFromTemplate:(Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/world/item/ItemStack;)Ljava/util/Optional;
+      30: astore        5
+      32: aload_0
+      33: getfield      #34                 // Field itemStackBase:Lnet/minecraft/world/item/ItemStack;
+      36: invokevirtual #127                // Method net/minecraft/world/item/ItemStack.copy:()Lnet/minecraft/world/item/ItemStack;
+      39: astore        6
+      41: aload         4
+      43: invokevirtual #133                // Method java/util/Optional.isPresent:()Z
+      46: ifeq          93
+      49: aload         5
+      51: invokevirtual #133                // Method java/util/Optional.isPresent:()Z
+      54: ifeq          93
+      57: new           #135                // class net/minecraft/world/item/armortrim/ArmorTrim
+      60: dup
+      61: aload         4
+      63: invokevirtual #139                // Method java/util/Optional.get:()Ljava/lang/Object;
+      66: checkcast     #21                 // class net/minecraft/core/Holder
+      69: aload         5
+      71: invokevirtual #139                // Method java/util/Optional.get:()Ljava/lang/Object;
+      74: checkcast     #21                 // class net/minecraft/core/Holder
+      77: invokespecial #142                // Method net/minecraft/world/item/armortrim/ArmorTrim."<init>":(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V
+      80: astore        7
+      82: aload         6
+      84: getstatic     #148                // Field net/minecraft/core/component/DataComponents.TRIM:Lnet/minecraft/core/component/DataComponentType;
+      87: aload         7
+      89: invokevirtual #152                // Method net/minecraft/world/item/ItemStack.set:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+      92: pop
+      93: aload         6
+      95: areturn
+
+  public net.minecraft.world.item.ItemStack getBase();
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field itemStackBase:Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  public net.minecraft.world.item.crafting.Ingredient getTemplate();
+    Code:
+       0: aload_0
+       1: checkcast     #43                 // class com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor
+       4: invokeinterface #63,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingTemplate:()Lnet/minecraft/world/item/crafting/Ingredient;
+       9: areturn
+
+  public net.minecraft.world.item.crafting.Ingredient getAddition();
+    Code:
+       0: aload_0
+       1: checkcast     #43                 // class com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor
+       4: invokeinterface #66,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/smithing/SmithingTrimRecipeAccessor.getUnderlyingAddition:()Lnet/minecraft/world/item/crafting/Ingredient;
+       9: areturn
+}

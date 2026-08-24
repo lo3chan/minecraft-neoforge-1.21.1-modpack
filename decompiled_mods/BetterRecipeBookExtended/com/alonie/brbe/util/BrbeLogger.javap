@@ -1,0 +1,153 @@
+Compiled from "BrbeLogger.java"
+public final class com.alonie.brbe.util.BrbeLogger {
+  public static final java.lang.String PROPERTY;
+
+  private static final boolean ENABLED;
+
+  private static final java.time.format.DateTimeFormatter TIME_FMT;
+
+  private static volatile java.io.PrintWriter writer;
+
+  private com.alonie.brbe.util.BrbeLogger();
+    Code:
+       0: aload_0
+       1: invokespecial #27                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static boolean isEnabled();
+    Code:
+       0: getstatic     #33                 // Field ENABLED:Z
+       3: ireturn
+
+  public static void init(java.nio.file.Path);
+    Code:
+       0: getstatic     #33                 // Field ENABLED:Z
+       3: ifeq          12
+       6: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+       9: ifnull        13
+      12: return
+      13: aload_0
+      14: ldc           #42                 // String logs
+      16: invokeinterface #48,  2           // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+      21: astore_1
+      22: aload_1
+      23: iconst_0
+      24: anewarray     #50                 // class java/nio/file/attribute/FileAttribute
+      27: invokestatic  #56                 // Method java/nio/file/Files.createDirectories:(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+      30: pop
+      31: new           #58                 // class java/io/PrintWriter
+      34: dup
+      35: aload_1
+      36: ldc           #60                 // String brbe-debug.log
+      38: invokeinterface #48,  2           // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+      43: getstatic     #66                 // Field java/nio/charset/StandardCharsets.UTF_8:Ljava/nio/charset/Charset;
+      46: iconst_0
+      47: anewarray     #68                 // class java/nio/file/OpenOption
+      50: invokestatic  #72                 // Method java/nio/file/Files.newBufferedWriter:(Ljava/nio/file/Path;Ljava/nio/charset/Charset;[Ljava/nio/file/OpenOption;)Ljava/io/BufferedWriter;
+      53: iconst_1
+      54: invokespecial #75                 // Method java/io/PrintWriter."<init>":(Ljava/io/Writer;Z)V
+      57: putstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      60: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      63: ldc           #77                 // String === BRBE Debug Log ===
+      65: invokevirtual #81                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      68: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      71: invokestatic  #87                 // Method java/time/Instant.now:()Ljava/time/Instant;
+      74: invokestatic  #93                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      77: invokedynamic #105,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      82: invokevirtual #81                 // Method java/io/PrintWriter.println:(Ljava/lang/String;)V
+      85: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      88: invokevirtual #107                // Method java/io/PrintWriter.println:()V
+      91: goto          110
+      94: astore_2
+      95: getstatic     #113                // Field java/lang/System.err:Ljava/io/PrintStream;
+      98: aload_2
+      99: invokestatic  #93                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+     102: invokedynamic #116,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     107: invokevirtual #119                // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     110: return
+    Exception table:
+       from    to  target type
+          22    91    94   Class java/io/IOException
+
+  public static void log(com.alonie.brbe.util.BrbeLogger$Category, java.lang.String, java.lang.Object...);
+    Code:
+       0: getstatic     #33                 // Field ENABLED:Z
+       3: ifeq          12
+       6: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+       9: ifnonnull     13
+      12: return
+      13: aload_2
+      14: arraylength
+      15: ifne          22
+      18: aload_1
+      19: goto          27
+      22: aload_1
+      23: aload_2
+      24: invokestatic  #131                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      27: astore_3
+      28: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      31: ldc           #133                // String [%s] [%s] %s%n
+      33: iconst_3
+      34: anewarray     #4                  // class java/lang/Object
+      37: dup
+      38: iconst_0
+      39: getstatic     #135                // Field TIME_FMT:Ljava/time/format/DateTimeFormatter;
+      42: invokestatic  #140                // Method java/time/LocalTime.now:()Ljava/time/LocalTime;
+      45: invokevirtual #145                // Method java/time/format/DateTimeFormatter.format:(Ljava/time/temporal/TemporalAccessor;)Ljava/lang/String;
+      48: aastore
+      49: dup
+      50: iconst_1
+      51: aload_0
+      52: aastore
+      53: dup
+      54: iconst_2
+      55: aload_3
+      56: aastore
+      57: invokevirtual #149                // Method java/io/PrintWriter.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintWriter;
+      60: pop
+      61: return
+
+  public static void log(com.alonie.brbe.util.BrbeLogger$Category, java.lang.String, java.lang.Throwable);
+    Code:
+       0: getstatic     #33                 // Field ENABLED:Z
+       3: ifeq          12
+       6: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+       9: ifnonnull     13
+      12: return
+      13: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      16: ldc           #133                // String [%s] [%s] %s%n
+      18: iconst_3
+      19: anewarray     #4                  // class java/lang/Object
+      22: dup
+      23: iconst_0
+      24: getstatic     #135                // Field TIME_FMT:Ljava/time/format/DateTimeFormatter;
+      27: invokestatic  #140                // Method java/time/LocalTime.now:()Ljava/time/LocalTime;
+      30: invokevirtual #145                // Method java/time/format/DateTimeFormatter.format:(Ljava/time/temporal/TemporalAccessor;)Ljava/lang/String;
+      33: aastore
+      34: dup
+      35: iconst_1
+      36: aload_0
+      37: aastore
+      38: dup
+      39: iconst_2
+      40: aload_1
+      41: aastore
+      42: invokevirtual #149                // Method java/io/PrintWriter.printf:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/PrintWriter;
+      45: pop
+      46: aload_2
+      47: getstatic     #40                 // Field writer:Ljava/io/PrintWriter;
+      50: invokevirtual #160                // Method java/lang/Throwable.printStackTrace:(Ljava/io/PrintWriter;)V
+      53: return
+
+  static {};
+    Code:
+       0: ldc           #164                // String true
+       2: ldc           #17                 // String brbe.debug
+       4: invokestatic  #167                // Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+       7: invokevirtual #171                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+      10: putstatic     #33                 // Field ENABLED:Z
+      13: ldc           #173                // String HH:mm:ss.SSS
+      15: invokestatic  #177                // Method java/time/format/DateTimeFormatter.ofPattern:(Ljava/lang/String;)Ljava/time/format/DateTimeFormatter;
+      18: putstatic     #135                // Field TIME_FMT:Ljava/time/format/DateTimeFormatter;
+      21: return
+}

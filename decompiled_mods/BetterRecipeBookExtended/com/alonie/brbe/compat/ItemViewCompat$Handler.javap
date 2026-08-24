@@ -1,0 +1,16 @@
+Compiled from "ItemViewCompat.java"
+public interface com.alonie.brbe.compat.ItemViewCompat$Handler {
+  public abstract boolean openRecipeView(net.minecraft.world.item.ItemStack);
+
+  public abstract boolean openUsageView(net.minecraft.world.item.ItemStack);
+
+  public default boolean matchesShowRecipe(int, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public default boolean matchesShowUses(int, int);
+    Code:
+       0: iconst_0
+       1: ireturn
+}

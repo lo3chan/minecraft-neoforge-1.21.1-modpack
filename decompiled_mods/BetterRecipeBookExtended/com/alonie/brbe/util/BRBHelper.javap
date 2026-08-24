@@ -1,0 +1,37 @@
+Compiled from "BRBHelper.java"
+public class com.alonie.brbe.util.BRBHelper {
+  public com.alonie.brbe.util.BRBHelper();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static com.alonie.brbe.util.BRBHelper$Book createBook(java.lang.String, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #29                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       5: astore_2
+       6: aload_2
+       7: invokestatic  #35                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      10: invokedynamic #47,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      15: astore_3
+      16: new           #49                 // class com/mojang/datafixers/util/Pair
+      19: dup
+      20: aload_3
+      21: invokedynamic #52,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      26: aload_3
+      27: invokedynamic #55,  0             // InvokeDynamic #2:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      32: invokespecial #58                 // Method com/mojang/datafixers/util/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+      35: astore        4
+      37: new           #7                  // class com/alonie/brbe/util/BRBHelper$Book
+      40: dup
+      41: aload_2
+      42: aload         4
+      44: invokespecial #61                 // Method com/alonie/brbe/util/BRBHelper$Book."<init>":(Lnet/minecraft/resources/ResourceLocation;Lcom/mojang/datafixers/util/Pair;)V
+      47: astore        5
+      49: aload         5
+      51: invokestatic  #67                 // Method com/alonie/brbe/api/BRBBookSettings.registerBook:(Lcom/alonie/brbe/util/BRBHelper$Book;)V
+      54: aload         5
+      56: areturn
+}

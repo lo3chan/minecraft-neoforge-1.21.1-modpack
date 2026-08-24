@@ -1,0 +1,4 @@
+Compiled from "KeyMappingAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.KeyMappingAccessor {
+  public abstract com.mojang.blaze3d.platform.InputConstants$Key getKey();
+}

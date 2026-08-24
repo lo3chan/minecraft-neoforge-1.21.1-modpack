@@ -1,0 +1,31 @@
+Compiled from "JeiCompat.java"
+public final class com.alonie.brbe.compat.jei.JeiCompat {
+  private com.alonie.brbe.compat.jei.JeiCompat();
+    Code:
+       0: aload_0
+       1: invokespecial #17                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void setHandler(com.alonie.brbe.compat.jei.JeiCompat$JeiHandler);
+    Code:
+       0: aload_0
+       1: invokestatic  #25                 // Method com/alonie/brbe/compat/ItemViewCompat.setHandler:(Lcom/alonie/brbe/compat/ItemViewCompat$Handler;)V
+       4: return
+
+  public static boolean isLoaded();
+    Code:
+       0: invokestatic  #30                 // Method com/alonie/brbe/compat/ItemViewCompat.isLoaded:()Z
+       3: ireturn
+
+  public static boolean openRecipeView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #35                 // Method com/alonie/brbe/compat/ItemViewCompat.openRecipeView:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ireturn
+
+  public static boolean openUsageView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #39                 // Method com/alonie/brbe/compat/ItemViewCompat.openUsageView:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ireturn
+}

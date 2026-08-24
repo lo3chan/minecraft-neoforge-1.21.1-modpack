@@ -1,0 +1,4 @@
+Compiled from "HolderReferenceAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.HolderReferenceAccessor<T> {
+  public abstract net.minecraft.resources.ResourceKey<T> getKey();
+}

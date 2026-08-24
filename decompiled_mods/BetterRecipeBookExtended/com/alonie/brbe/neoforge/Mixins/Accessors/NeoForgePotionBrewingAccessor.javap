@@ -1,0 +1,4 @@
+Compiled from "NeoForgePotionBrewingAccessor.java"
+public interface com.alonie.brbe.neoforge.Mixins.Accessors.NeoForgePotionBrewingAccessor {
+  public abstract java.util.List<net.minecraft.world.item.alchemy.PotionBrewing$Mix<net.minecraft.world.item.alchemy.Potion>> getPotionMixes();
+}

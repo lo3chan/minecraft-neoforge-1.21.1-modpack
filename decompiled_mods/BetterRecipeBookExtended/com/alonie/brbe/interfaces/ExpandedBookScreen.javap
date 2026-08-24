@@ -1,0 +1,4 @@
+Compiled from "ExpandedBookScreen.java"
+public interface com.alonie.brbe.interfaces.ExpandedBookScreen {
+  public abstract boolean brbe$isExpandedBookOpen();
+}

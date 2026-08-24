@@ -1,0 +1,10 @@
+Compiled from "TopLayerOverlayProvider.java"
+public interface com.alonie.brbe.interfaces.TopLayerOverlayProvider {
+  public abstract boolean brbe$hasTopLayerOverlay();
+
+  public abstract void brbe$renderTopLayerOverlay(net.minecraft.client.gui.GuiGraphics, int, int, float);
+
+  public abstract boolean brbe$clickTopLayerOverlay(double, double, int);
+
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle brbe$getTopLayerOverlayBounds();
+}

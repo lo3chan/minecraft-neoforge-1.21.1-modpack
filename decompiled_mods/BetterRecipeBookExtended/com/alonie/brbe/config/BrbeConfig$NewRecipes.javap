@@ -1,0 +1,18 @@
+Compiled from "BrbeConfig.java"
+public class com.alonie.brbe.config.BrbeConfig$NewRecipes implements me.shedaniel.autoconfig.ConfigData {
+  public boolean unlockAll;
+
+  public boolean enableBounce;
+
+  public com.alonie.brbe.config.BrbeConfig$NewRecipes();
+    Code:
+       0: aload_0
+       1: invokespecial #26                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #28                 // Field unlockAll:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #30                 // Field enableBounce:Z
+      14: return
+}

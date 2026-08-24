@@ -1,0 +1,83 @@
+Compiled from "CompatMixinPlugin.java"
+public class com.alonie.brbe.compat.CompatMixinPlugin implements org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin {
+  public com.alonie.brbe.compat.CompatMixinPlugin();
+    Code:
+       0: aload_0
+       1: invokespecial #11                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void onLoad(java.lang.String);
+    Code:
+       0: return
+
+  public java.lang.String getRefMapperConfig();
+    Code:
+       0: aconst_null
+       1: areturn
+
+  public boolean shouldApplyMixin(java.lang.String, java.lang.String);
+    Code:
+       0: aload_2
+       1: ldc           #27                 // String com.alonie.brbe.compat.mixins.mousewheelie.MixinMWClient
+       3: invokevirtual #33                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       6: ifeq          78
+       9: ldc           #35                 // String net.fabricmc.loader.api.FabricLoader
+      11: invokestatic  #41                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      14: astore_3
+      15: aload_3
+      16: ldc           #43                 // String getInstance
+      18: iconst_0
+      19: anewarray     #37                 // class java/lang/Class
+      22: invokevirtual #47                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      25: aconst_null
+      26: iconst_0
+      27: anewarray     #4                  // class java/lang/Object
+      30: invokevirtual #53                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      33: astore        4
+      35: aload         4
+      37: invokevirtual #57                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      40: ldc           #59                 // String isModLoaded
+      42: iconst_1
+      43: anewarray     #37                 // class java/lang/Class
+      46: dup
+      47: iconst_0
+      48: ldc           #29                 // class java/lang/String
+      50: aastore
+      51: invokevirtual #47                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      54: aload         4
+      56: iconst_1
+      57: anewarray     #4                  // class java/lang/Object
+      60: dup
+      61: iconst_0
+      62: ldc           #61                 // String mousewheelie
+      64: aastore
+      65: invokevirtual #53                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      68: checkcast     #63                 // class java/lang/Boolean
+      71: invokevirtual #67                 // Method java/lang/Boolean.booleanValue:()Z
+      74: ireturn
+      75: astore_3
+      76: iconst_0
+      77: ireturn
+      78: iconst_0
+      79: ireturn
+    Exception table:
+       from    to  target type
+           9    74    75   Class java/lang/Throwable
+
+  public void acceptTargets(java.util.Set<java.lang.String>, java.util.Set<java.lang.String>);
+    Code:
+       0: return
+
+  public java.util.List<java.lang.String> getMixins();
+    Code:
+       0: aconst_null
+       1: areturn
+
+  public void preApply(java.lang.String, org.objectweb.asm.tree.ClassNode, java.lang.String, org.spongepowered.asm.mixin.extensibility.IMixinInfo);
+    Code:
+       0: return
+
+  public void postApply(java.lang.String, org.objectweb.asm.tree.ClassNode, java.lang.String, org.spongepowered.asm.mixin.extensibility.IMixinInfo);
+    Code:
+       0: return
+}

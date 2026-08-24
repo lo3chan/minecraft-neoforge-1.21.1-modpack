@@ -1,0 +1,6 @@
+Compiled from "ItemAccess.java"
+public interface com.alonie.recipebookispain_extended.access.ItemAccess {
+  public abstract java.util.Optional<net.minecraft.world.item.CreativeModeTab> rbip$getPossibleGroup();
+
+  public abstract void rbip$setPossibleGroup(net.minecraft.world.item.CreativeModeTab);
+}

@@ -1,0 +1,17 @@
+Compiled from "HudHider.java"
+public interface com.alonie.brbe.api.hud.HudHider {
+  public abstract void saveState();
+
+  public abstract void ensureHidden();
+
+  public abstract void restoreState();
+
+  public default void reset();
+    Code:
+       0: return
+
+  public default boolean isAvailable();
+    Code:
+       0: iconst_1
+       1: ireturn
+}

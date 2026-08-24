@@ -1,0 +1,18 @@
+Compiled from "Scrolling.java"
+public class com.alonie.brbe.config.Scrolling implements me.shedaniel.autoconfig.ConfigData {
+  public boolean enableScrolling;
+
+  public boolean scrollAround;
+
+  public com.alonie.brbe.config.Scrolling();
+    Code:
+       0: aload_0
+       1: invokespecial #30                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_1
+       6: putfield      #32                 // Field enableScrolling:Z
+       9: aload_0
+      10: iconst_0
+      11: putfield      #34                 // Field scrollAround:Z
+      14: return
+}

@@ -1,0 +1,6 @@
+Compiled from "PinStore.java"
+public interface com.alonie.brbe.pin.PinStore {
+  public abstract java.util.Set<net.minecraft.resources.ResourceLocation> load();
+
+  public abstract void save(java.util.Set<net.minecraft.resources.ResourceLocation>);
+}

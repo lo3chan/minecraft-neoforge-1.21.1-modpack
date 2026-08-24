@@ -1,0 +1,119 @@
+Compiled from "AbstractContainerScreenMixin.java"
+public abstract class com.alonie.brbe.mixins.pins.AbstractContainerScreenMixin {
+  public com.alonie.brbe.mixins.pins.AbstractContainerScreenMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void onKeyPressed(int, int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: astore        6
+       3: aload         6
+       5: instanceof    #31                 // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+       8: ifeq          21
+      11: aload         6
+      13: checkcast     #31                 // class net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener
+      16: astore        5
+      18: goto          22
+      21: return
+      22: invokestatic  #39                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      25: astore        6
+      27: aload         5
+      29: invokeinterface #43,  1           // InterfaceMethod net/minecraft/client/gui/screens/recipebook/RecipeUpdateListener.getRecipeBookComponent:()Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;
+      34: astore        7
+      36: aload         7
+      38: invokevirtual #49                 // Method net/minecraft/client/gui/screens/recipebook/RecipeBookComponent.isVisible:()Z
+      41: ifne          45
+      44: return
+      45: aload         7
+      47: checkcast     #51                 // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      50: invokeinterface #55,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.getRecipeBookPage:()Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;
+      55: astore        8
+      57: aload         8
+      59: checkcast     #57                 // class com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor
+      62: invokeinterface #61,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor.getOverlay:()Lnet/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent;
+      67: astore        9
+      69: aload         7
+      71: checkcast     #51                 // class com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor
+      74: invokeinterface #65,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookComponentAccessor.getSearchBox:()Lnet/minecraft/client/gui/components/EditBox;
+      79: astore        10
+      81: getstatic     #71                 // Field com/alonie/brbe/BetterRecipeBook.PIN_MAPPING:Lnet/minecraft/client/KeyMapping;
+      84: iload_1
+      85: iload_2
+      86: invokevirtual #77                 // Method net/minecraft/client/KeyMapping.matches:(II)Z
+      89: ifeq          258
+      92: aload         10
+      94: invokevirtual #82                 // Method net/minecraft/client/gui/components/EditBox.canConsumeInput:()Z
+      97: ifne          258
+     100: aload         9
+     102: invokevirtual #85                 // Method net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent.isVisible:()Z
+     105: ifeq          186
+     108: aload         9
+     110: checkcast     #87                 // class com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor
+     113: invokeinterface #91,  1           // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeComponentAccessor.getRecipeButtons:()Ljava/util/List;
+     118: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     123: astore        11
+     125: aload         11
+     127: invokeinterface #104,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     132: ifeq          185
+     135: aload         11
+     137: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     142: checkcast     #110                // class net/minecraft/client/gui/components/AbstractWidget
+     145: astore        12
+     147: aload         12
+     149: invokevirtual #113                // Method net/minecraft/client/gui/components/AbstractWidget.isHoveredOrFocused:()Z
+     152: ifeq          182
+     155: aload         7
+     157: aload         8
+     159: aload         12
+     161: checkcast     #115                // class com/alonie/brbe/mixins/accessors/OverlayRecipeButtonAccessor
+     164: invokeinterface #119,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/OverlayRecipeButtonAccessor.getRecipe:()Lnet/minecraft/world/item/crafting/RecipeHolder;
+     169: invokestatic  #125                // Method com/alonie/brbe/PinnedRecipeManager.handlePinRecipe:(Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;Lnet/minecraft/world/item/crafting/RecipeHolder;)V
+     172: aload         4
+     174: iconst_1
+     175: invokestatic  #131                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     178: invokevirtual #135                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     181: return
+     182: goto          125
+     185: return
+     186: aload         8
+     188: checkcast     #57                 // class com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor
+     191: invokeinterface #138,  1          // InterfaceMethod com/alonie/brbe/mixins/accessors/RecipeBookPageAccessor.getButtons:()Ljava/util/List;
+     196: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     201: astore        11
+     203: aload         11
+     205: invokeinterface #104,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     210: ifeq          258
+     213: aload         11
+     215: invokeinterface #108,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     220: checkcast     #140                // class net/minecraft/client/gui/screens/recipebook/RecipeButton
+     223: astore        12
+     225: aload         12
+     227: invokevirtual #141                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.isHoveredOrFocused:()Z
+     230: ifeq          255
+     233: aload         7
+     235: aload         8
+     237: aload         12
+     239: invokevirtual #142                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getRecipe:()Lnet/minecraft/world/item/crafting/RecipeHolder;
+     242: invokestatic  #125                // Method com/alonie/brbe/PinnedRecipeManager.handlePinRecipe:(Lnet/minecraft/client/gui/screens/recipebook/RecipeBookComponent;Lnet/minecraft/client/gui/screens/recipebook/RecipeBookPage;Lnet/minecraft/world/item/crafting/RecipeHolder;)V
+     245: aload         4
+     247: iconst_1
+     248: invokestatic  #131                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     251: invokevirtual #135                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+     254: return
+     255: goto          203
+     258: aload         6
+     260: getfield      #146                // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+     263: getfield      #151                // Field net/minecraft/client/Options.keyChat:Lnet/minecraft/client/KeyMapping;
+     266: iload_1
+     267: iload_2
+     268: invokevirtual #77                 // Method net/minecraft/client/KeyMapping.matches:(II)Z
+     271: ifeq          284
+     274: aload         6
+     276: getfield      #155                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+     279: aload         7
+     281: invokevirtual #161                // Method net/minecraft/client/gui/screens/Screen.setFocused:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+     284: return
+}

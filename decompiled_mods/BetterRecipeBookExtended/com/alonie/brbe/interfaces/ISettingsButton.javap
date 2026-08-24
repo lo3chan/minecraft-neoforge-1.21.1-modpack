@@ -1,0 +1,102 @@
+Compiled from "ISettingsButton.java"
+public interface com.alonie.brbe.interfaces.ISettingsButton {
+  public static final net.minecraft.network.chat.MutableComponent OPEN_SETTINGS_TOOLTIP;
+
+  public default net.minecraft.client.gui.components.ImageButton createSettingsButton(int, int);
+    Code:
+       0: invokestatic  #27                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #33                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: getfield      #39                 // Field com/alonie/brbe/config/Config.settingsButton:Z
+       9: ifeq          41
+      12: new           #41                 // class net/minecraft/client/gui/components/ImageButton
+      15: dup
+      16: iload_1
+      17: bipush        11
+      19: iadd
+      20: iload_2
+      21: sipush        137
+      24: iadd
+      25: bipush        18
+      27: bipush        18
+      29: getstatic     #47                 // Field com/alonie/brbe/util/BRBTextures.SETTINGS_BUTTON_SPRITES:Lnet/minecraft/client/gui/components/WidgetSprites;
+      32: invokedynamic #64,  0             // InvokeDynamic #0:onPress:()Lnet/minecraft/client/gui/components/Button$OnPress;
+      37: invokespecial #68                 // Method net/minecraft/client/gui/components/ImageButton."<init>":(IIIILnet/minecraft/client/gui/components/WidgetSprites;Lnet/minecraft/client/gui/components/Button$OnPress;)V
+      40: areturn
+      41: aconst_null
+      42: areturn
+
+  public default void renderSettingsButton(net.minecraft.client.gui.components.ImageButton, net.minecraft.client.gui.GuiGraphics, int, int, float);
+    Code:
+       0: aload_1
+       1: ifnull        26
+       4: invokestatic  #27                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       7: invokevirtual #33                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      10: getfield      #39                 // Field com/alonie/brbe/config/Config.settingsButton:Z
+      13: ifeq          26
+      16: aload_1
+      17: aload_2
+      18: iload_3
+      19: iload         4
+      21: fload         5
+      23: invokevirtual #82                 // Method net/minecraft/client/gui/components/ImageButton.render:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      26: return
+
+  public default boolean settingsButtonMouseClicked(net.minecraft.client.gui.components.ImageButton, double, double, int);
+    Code:
+       0: aload_1
+       1: ifnull        16
+       4: invokestatic  #27                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       7: invokevirtual #33                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      10: getfield      #39                 // Field com/alonie/brbe/config/Config.settingsButton:Z
+      13: ifne          18
+      16: iconst_0
+      17: ireturn
+      18: aload_1
+      19: dload_2
+      20: dload         4
+      22: iload         6
+      24: invokevirtual #92                 // Method net/minecraft/client/gui/components/ImageButton.mouseClicked:(DDI)Z
+      27: ireturn
+
+  public default void renderSettingsButtonTooltip(net.minecraft.client.gui.components.ImageButton, net.minecraft.client.gui.GuiGraphics, int, int);
+    Code:
+       0: aload_1
+       1: ifnull        48
+       4: aload_1
+       5: invokevirtual #99                 // Method net/minecraft/client/gui/components/ImageButton.isHoveredOrFocused:()Z
+       8: ifeq          48
+      11: invokestatic  #27                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+      14: invokevirtual #33                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      17: getfield      #39                 // Field com/alonie/brbe/config/Config.settingsButton:Z
+      20: ifeq          48
+      23: invokestatic  #105                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      26: getfield      #109                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      29: ifnull        48
+      32: aload_2
+      33: invokestatic  #105                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+      36: getfield      #113                // Field net/minecraft/client/Minecraft.font:Lnet/minecraft/client/gui/Font;
+      39: getstatic     #115                // Field OPEN_SETTINGS_TOOLTIP:Lnet/minecraft/network/chat/MutableComponent;
+      42: iload_3
+      43: iload         4
+      45: invokevirtual #121                // Method net/minecraft/client/gui/GuiGraphics.renderTooltip:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;II)V
+      48: return
+
+  private static void lambda$createSettingsButton$0(net.minecraft.client.gui.components.Button);
+    Code:
+       0: invokestatic  #105                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       3: ldc           #35                 // class com/alonie/brbe/config/Config
+       5: invokestatic  #105                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+       8: getfield      #109                // Field net/minecraft/client/Minecraft.screen:Lnet/minecraft/client/gui/screens/Screen;
+      11: invokestatic  #127                // Method me/shedaniel/autoconfig/AutoConfig.getConfigScreen:(Ljava/lang/Class;Lnet/minecraft/client/gui/screens/Screen;)Ljava/util/function/Supplier;
+      14: invokeinterface #133,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      19: checkcast     #135                // class net/minecraft/client/gui/screens/Screen
+      22: invokevirtual #139                // Method net/minecraft/client/Minecraft.setScreen:(Lnet/minecraft/client/gui/screens/Screen;)V
+      25: return
+
+  static {};
+    Code:
+       0: ldc           #144                // String brb.gui.settings.open
+       2: invokestatic  #150                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       5: putstatic     #115                // Field OPEN_SETTINGS_TOOLTIP:Lnet/minecraft/network/chat/MutableComponent;
+       8: return
+}

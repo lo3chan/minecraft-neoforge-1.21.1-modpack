@@ -1,0 +1,142 @@
+Compiled from "CraftingTableWithInventoryBlock.java"
+public class fuzs.visualworkbench.world.level.block.CraftingTableWithInventoryBlock extends net.minecraft.world.level.block.BaseEntityBlock implements fuzs.puzzleslib.api.block.v1.entity.TickingEntityBlock<fuzs.visualworkbench.world.level.block.entity.CraftingTableBlockEntity> {
+  public static final com.mojang.serialization.MapCodec<fuzs.visualworkbench.world.level.block.CraftingTableWithInventoryBlock> CODEC;
+
+  private final net.minecraft.world.level.block.Block block;
+
+  public fuzs.visualworkbench.world.level.block.CraftingTableWithInventoryBlock(net.minecraft.world.level.block.Block);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokestatic  #44                 // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.ofFullCopy:(Lnet/minecraft/world/level/block/state/BlockBehaviour;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       5: aload_1
+       6: invokevirtual #48                 // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.dropsLike:(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       9: invokespecial #51                 // Method net/minecraft/world/level/block/BaseEntityBlock."<init>":(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+      12: aload_0
+      13: aload_1
+      14: putfield      #53                 // Field block:Lnet/minecraft/world/level/block/Block;
+      17: return
+
+  public java.lang.String getDescriptionId();
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field block:Lnet/minecraft/world/level/block/Block;
+       4: invokevirtual #61                 // Method net/minecraft/world/level/block/Block.getDescriptionId:()Ljava/lang/String;
+       7: areturn
+
+  protected com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.block.BaseEntityBlock> codec();
+    Code:
+       0: getstatic     #66                 // Field CODEC:Lcom/mojang/serialization/MapCodec;
+       3: areturn
+
+  public net.minecraft.world.level.block.RenderShape getRenderShape(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: getstatic     #75                 // Field net/minecraft/world/level/block/RenderShape.MODEL:Lnet/minecraft/world/level/block/RenderShape;
+       3: areturn
+
+  public net.minecraft.world.level.block.entity.BlockEntityType<? extends fuzs.visualworkbench.world.level.block.entity.CraftingTableBlockEntity> getBlockEntityType();
+    Code:
+       0: getstatic     #85                 // Field fuzs/visualworkbench/init/ModRegistry.CRAFTING_TABLE_BLOCK_ENTITY_TYPE:Lnet/minecraft/core/Holder$Reference;
+       3: invokevirtual #89                 // Method net/minecraft/core/Holder$Reference.value:()Ljava/lang/Object;
+       6: checkcast     #91                 // class net/minecraft/world/level/block/entity/BlockEntityType
+       9: areturn
+
+  protected net.minecraft.world.InteractionResult useWithoutItem(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+    Code:
+       0: aload_2
+       1: getfield      #103                // Field net/minecraft/world/level/Level.isClientSide:Z
+       4: ifeq          11
+       7: getstatic     #109                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+      10: areturn
+      11: aload_2
+      12: aload_3
+      13: invokevirtual #113                // Method net/minecraft/world/level/Level.getBlockEntity:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+      16: astore        7
+      18: aload         7
+      20: instanceof    #115                // class fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity
+      23: ifeq          49
+      26: aload         7
+      28: checkcast     #115                // class fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity
+      31: astore        6
+      33: aload         4
+      35: aload         6
+      37: invokevirtual #121                // Method net/minecraft/world/entity/player/Player.openMenu:(Lnet/minecraft/world/MenuProvider;)Ljava/util/OptionalInt;
+      40: pop
+      41: aload         4
+      43: getstatic     #127                // Field net/minecraft/stats/Stats.INTERACT_WITH_CRAFTING_TABLE:Lnet/minecraft/resources/ResourceLocation;
+      46: invokevirtual #131                // Method net/minecraft/world/entity/player/Player.awardStat:(Lnet/minecraft/resources/ResourceLocation;)V
+      49: getstatic     #136                // Field net/minecraft/world/InteractionResult.CONSUME:Lnet/minecraft/world/InteractionResult;
+      52: areturn
+
+  public void onRemove(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+    Code:
+       0: aload_1
+       1: aload         4
+       3: aload_2
+       4: aload_3
+       5: invokestatic  #152                // Method net/minecraft/world/Containers.dropContentsOnDestroy:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+       8: aload_0
+       9: aload_1
+      10: aload_2
+      11: aload_3
+      12: aload         4
+      14: iload         5
+      16: invokespecial #154                // Method net/minecraft/world/level/block/BaseEntityBlock.onRemove:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Z)V
+      19: return
+
+  public boolean hasAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public int getAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+       0: aload_2
+       1: aload_3
+       2: invokevirtual #113                // Method net/minecraft/world/level/Level.getBlockEntity:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+       5: astore        5
+       7: aload         5
+       9: instanceof    #115                // class fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity
+      12: ifeq          50
+      15: aload         5
+      17: checkcast     #115                // class fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity
+      20: astore        4
+      22: aload         4
+      24: invokevirtual #164                // Method fuzs/visualworkbench/world/level/block/entity/CraftingTableBlockEntity.getItems:()Lnet/minecraft/core/NonNullList;
+      27: invokevirtual #170                // Method net/minecraft/core/NonNullList.stream:()Ljava/util/stream/Stream;
+      30: invokedynamic #192,  0            // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+      35: invokestatic  #198                // InterfaceMethod java/util/function/Predicate.not:(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;
+      38: invokeinterface #204,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      43: invokeinterface #208,  1          // InterfaceMethod java/util/stream/Stream.count:()J
+      48: l2i
+      49: ireturn
+      50: iconst_0
+      51: ireturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$1(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+       0: aload_0
+       1: getstatic     #214                // Field net/minecraft/world/level/block/BlockTypes.CODEC:Lcom/mojang/serialization/MapCodec;
+       4: ldc           #215                // String block
+       6: invokevirtual #221                // Method com/mojang/serialization/MapCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+       9: invokedynamic #233,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      14: invokevirtual #237                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+      17: invokevirtual #241                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P1;
+      20: aload_0
+      21: invokedynamic #247,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+      26: invokevirtual #250                // Method com/mojang/datafixers/Products$P1.apply:(Lcom/mojang/datafixers/kinds/Applicative;Ljava/util/function/Function;)Lcom/mojang/datafixers/kinds/App;
+      29: areturn
+
+  private static net.minecraft.world.level.block.Block lambda$static$0(fuzs.visualworkbench.world.level.block.CraftingTableWithInventoryBlock);
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field block:Lnet/minecraft/world/level/block/Block;
+       4: areturn
+
+  static {};
+    Code:
+       0: invokedynamic #258,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+       5: invokestatic  #262                // Method com/mojang/serialization/codecs/RecordCodecBuilder.mapCodec:(Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
+       8: putstatic     #66                 // Field CODEC:Lcom/mojang/serialization/MapCodec;
+      11: return
+}

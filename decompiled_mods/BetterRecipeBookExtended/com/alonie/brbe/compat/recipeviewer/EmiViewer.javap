@@ -1,0 +1,291 @@
+Compiled from "EmiViewer.java"
+public final class com.alonie.brbe.compat.recipeviewer.EmiViewer implements com.alonie.brbe.compat.recipeviewer.RecipeViewer {
+  private static volatile boolean available;
+
+  public com.alonie.brbe.compat.recipeviewer.EmiViewer();
+    Code:
+       0: aload_0
+       1: invokespecial #13                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void markAvailable(boolean);
+    Code:
+       0: iload_0
+       1: putstatic     #20                 // Field available:Z
+       4: return
+
+  public boolean isAvailable();
+    Code:
+       0: getstatic     #20                 // Field available:Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: ldc           #26                 // String dev.emi.emi.api.EmiApi
+      10: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      13: pop
+      14: iconst_1
+      15: ireturn
+      16: astore_1
+      17: iconst_0
+      18: putstatic     #20                 // Field available:Z
+      21: iconst_0
+      22: ireturn
+    Exception table:
+       from    to  target type
+           8    15    16   Class java/lang/ClassNotFoundException
+
+  public void showRecipe(net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #39                 // String displayRecipes
+       2: aload_1
+       3: invokestatic  #43                 // Method openView:(Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;)V
+       6: return
+
+  public void showUses(net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #47                 // String displayUses
+       2: aload_1
+       3: invokestatic  #43                 // Method openView:(Ljava/lang/String;Lnet/minecraft/world/item/ItemStack;)V
+       6: return
+
+  public boolean matchesShowRecipe(int, int);
+    Code:
+       0: getstatic     #20                 // Field available:Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: ldc           #55                 // String dev.emi.emi.config.EmiConfig
+      10: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      13: astore_3
+      14: aload_3
+      15: ldc           #57                 // String viewRecipes
+      17: invokevirtual #61                 // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      20: aconst_null
+      21: invokevirtual #67                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore        4
+      26: aload         4
+      28: invokevirtual #71                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      31: ldc           #73                 // String matchesKey
+      33: iconst_2
+      34: anewarray     #28                 // class java/lang/Class
+      37: dup
+      38: iconst_0
+      39: getstatic     #79                 // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      42: aastore
+      43: dup
+      44: iconst_1
+      45: getstatic     #79                 // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      48: aastore
+      49: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      52: aload         4
+      54: iconst_2
+      55: anewarray     #4                  // class java/lang/Object
+      58: dup
+      59: iconst_0
+      60: iload_1
+      61: invokestatic  #87                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      64: aastore
+      65: dup
+      66: iconst_1
+      67: iload_2
+      68: invokestatic  #87                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      71: aastore
+      72: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      75: checkcast     #95                 // class java/lang/Boolean
+      78: invokevirtual #98                 // Method java/lang/Boolean.booleanValue:()Z
+      81: ireturn
+      82: astore_3
+      83: iconst_0
+      84: ireturn
+    Exception table:
+       from    to  target type
+           8    81    82   Class java/lang/Exception
+
+  public boolean matchesShowUses(int, int);
+    Code:
+       0: getstatic     #20                 // Field available:Z
+       3: ifne          8
+       6: iconst_0
+       7: ireturn
+       8: ldc           #55                 // String dev.emi.emi.config.EmiConfig
+      10: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      13: astore_3
+      14: aload_3
+      15: ldc           #106                // String viewUses
+      17: invokevirtual #61                 // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      20: aconst_null
+      21: invokevirtual #67                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore        4
+      26: aload         4
+      28: invokevirtual #71                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      31: ldc           #73                 // String matchesKey
+      33: iconst_2
+      34: anewarray     #28                 // class java/lang/Class
+      37: dup
+      38: iconst_0
+      39: getstatic     #79                 // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      42: aastore
+      43: dup
+      44: iconst_1
+      45: getstatic     #79                 // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      48: aastore
+      49: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      52: aload         4
+      54: iconst_2
+      55: anewarray     #4                  // class java/lang/Object
+      58: dup
+      59: iconst_0
+      60: iload_1
+      61: invokestatic  #87                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      64: aastore
+      65: dup
+      66: iconst_1
+      67: iload_2
+      68: invokestatic  #87                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      71: aastore
+      72: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      75: checkcast     #95                 // class java/lang/Boolean
+      78: invokevirtual #98                 // Method java/lang/Boolean.booleanValue:()Z
+      81: ireturn
+      82: astore_3
+      83: iconst_0
+      84: ireturn
+    Exception table:
+       from    to  target type
+           8    81    82   Class java/lang/Exception
+
+  private static void openView(java.lang.String, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokevirtual #112                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+       4: ifeq          8
+       7: return
+       8: ldc           #114                // String dev.emi.emi.api.stack.EmiStack
+      10: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      13: astore_2
+      14: aload_2
+      15: ldc           #116                // String of
+      17: iconst_1
+      18: anewarray     #28                 // class java/lang/Class
+      21: dup
+      22: iconst_0
+      23: ldc           #109                // class net/minecraft/world/item/ItemStack
+      25: aastore
+      26: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      29: aconst_null
+      30: iconst_1
+      31: anewarray     #4                  // class java/lang/Object
+      34: dup
+      35: iconst_0
+      36: aload_1
+      37: aastore
+      38: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      41: astore_3
+      42: ldc           #26                 // String dev.emi.emi.api.EmiApi
+      44: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      47: astore        4
+      49: aload         4
+      51: aload_0
+      52: iconst_1
+      53: anewarray     #28                 // class java/lang/Class
+      56: dup
+      57: iconst_0
+      58: ldc           #118                // String dev.emi.emi.api.stack.EmiIngredient
+      60: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      63: aastore
+      64: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      67: aconst_null
+      68: iconst_1
+      69: anewarray     #4                  // class java/lang/Object
+      72: dup
+      73: iconst_0
+      74: aload_3
+      75: aastore
+      76: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      79: pop
+      80: goto          84
+      83: astore_2
+      84: return
+    Exception table:
+       from    to  target type
+           8    80    83   Class java/lang/Exception
+
+  public static boolean isEmiLoaded();
+    Code:
+       0: ldc           #127                // String net.neoforged.fml.ModList
+       2: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: astore_0
+       6: aload_0
+       7: ldc           #128                // String get
+       9: iconst_0
+      10: anewarray     #28                 // class java/lang/Class
+      13: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      16: aconst_null
+      17: iconst_0
+      18: anewarray     #4                  // class java/lang/Object
+      21: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore_1
+      25: aload_1
+      26: invokevirtual #71                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      29: ldc           #130                // String isLoaded
+      31: iconst_1
+      32: anewarray     #28                 // class java/lang/Class
+      35: dup
+      36: iconst_0
+      37: ldc           #132                // class java/lang/String
+      39: aastore
+      40: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      43: aload_1
+      44: iconst_1
+      45: anewarray     #4                  // class java/lang/Object
+      48: dup
+      49: iconst_0
+      50: ldc           #134                // String emi
+      52: aastore
+      53: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      56: checkcast     #95                 // class java/lang/Boolean
+      59: invokevirtual #98                 // Method java/lang/Boolean.booleanValue:()Z
+      62: ireturn
+      63: astore_0
+      64: ldc           #136                // String net.fabricmc.loader.api.FabricLoader
+      66: invokestatic  #32                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      69: astore_1
+      70: aload_1
+      71: ldc           #138                // String getInstance
+      73: iconst_0
+      74: anewarray     #28                 // class java/lang/Class
+      77: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      80: aconst_null
+      81: iconst_0
+      82: anewarray     #4                  // class java/lang/Object
+      85: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      88: astore_2
+      89: aload_2
+      90: invokevirtual #71                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      93: ldc           #140                // String isModLoaded
+      95: iconst_1
+      96: anewarray     #28                 // class java/lang/Class
+      99: dup
+     100: iconst_0
+     101: ldc           #132                // class java/lang/String
+     103: aastore
+     104: invokevirtual #83                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     107: aload_2
+     108: iconst_1
+     109: anewarray     #4                  // class java/lang/Object
+     112: dup
+     113: iconst_0
+     114: ldc           #134                // String emi
+     116: aastore
+     117: invokevirtual #93                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     120: checkcast     #95                 // class java/lang/Boolean
+     123: invokevirtual #98                 // Method java/lang/Boolean.booleanValue:()Z
+     126: ireturn
+     127: astore_1
+     128: iconst_0
+     129: ireturn
+    Exception table:
+       from    to  target type
+           0    62    63   Class java/lang/Throwable
+          64   126   127   Class java/lang/Throwable
+}

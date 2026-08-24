@@ -1,0 +1,63 @@
+Compiled from "RecipeBookPageMixin.java"
+public class com.alonie.brbe.mixins.instantcraft.RecipeBookPageMixin {
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeButton> buttons;
+
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> recipeCollections;
+
+  public com.alonie.brbe.mixins.instantcraft.RecipeBookPageMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #24                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void updateCollections(java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: getstatic     #46                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+       3: invokevirtual #52                 // Method com/alonie/brbe/InstantCraftingManager.isEnabled:()Z
+       6: ifeq          43
+       9: aload_0
+      10: getfield      #54                 // Field buttons:Ljava/util/List;
+      13: invokeinterface #60,  1           // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+      18: invokedynamic #81,  0             // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+      23: invokeinterface #87,  2           // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+      28: invokeinterface #91,  1           // InterfaceMethod java/util/stream/Stream.findAny:()Ljava/util/Optional;
+      33: aload_0
+      34: aload_1
+      35: invokedynamic #104,  0            // InvokeDynamic #1:accept:(Lcom/alonie/brbe/mixins/instantcraft/RecipeBookPageMixin;Ljava/util/List;)Ljava/util/function/Consumer;
+      40: invokevirtual #110                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+      43: return
+
+  private void lambda$updateCollections$0(java.util.List, net.minecraft.client.gui.screens.recipebook.RecipeButton);
+    Code:
+       0: aload_2
+       1: invokevirtual #119                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+       4: astore_3
+       5: aload_0
+       6: getfield      #121                // Field recipeCollections:Ljava/util/List;
+       9: aload_3
+      10: invokeinterface #125,  2          // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+      15: istore        4
+      17: iload         4
+      19: iconst_m1
+      20: if_icmpeq     70
+      23: iload         4
+      25: aload_1
+      26: invokeinterface #129,  1          // InterfaceMethod java/util/List.size:()I
+      31: if_icmpge     70
+      34: getstatic     #46                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      37: getfield      #133                // Field com/alonie/brbe/InstantCraftingManager.lastClickedRecipe:Lnet/minecraft/world/item/crafting/RecipeHolder;
+      40: ifnull        70
+      43: aload_1
+      44: aload_3
+      45: invokeinterface #136,  2          // InterfaceMethod java/util/List.remove:(Ljava/lang/Object;)Z
+      50: pop
+      51: aload_1
+      52: iload         4
+      54: aload_3
+      55: invokeinterface #140,  3          // InterfaceMethod java/util/List.add:(ILjava/lang/Object;)V
+      60: getstatic     #46                 // Field com/alonie/brbe/BetterRecipeBook.instantCraftingManager:Lcom/alonie/brbe/InstantCraftingManager;
+      63: aload_2
+      64: invokevirtual #119                // Method net/minecraft/client/gui/screens/recipebook/RecipeButton.getCollection:()Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+      67: putfield      #144                // Field com/alonie/brbe/InstantCraftingManager.lastHoveredCollection:Lnet/minecraft/client/gui/screens/recipebook/RecipeCollection;
+      70: return
+}

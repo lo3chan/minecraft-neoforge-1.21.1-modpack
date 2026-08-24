@@ -1,0 +1,303 @@
+Compiled from "ReiCompat.java"
+public class com.alonie.brbe.compat.rei.ReiCompat {
+  private static volatile boolean registered;
+
+  public com.alonie.brbe.compat.rei.ReiCompat();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void register();
+    Code:
+       0: ldc           #26                 // String roughlyenoughitems
+       2: invokestatic  #30                 // Method isModLoaded:(Ljava/lang/String;)Z
+       5: ifne          9
+       8: return
+       9: new           #9                  // class com/alonie/brbe/compat/rei/ReiCompat$1
+      12: dup
+      13: invokespecial #31                 // Method com/alonie/brbe/compat/rei/ReiCompat$1."<init>":()V
+      16: invokestatic  #35                 // Method com/alonie/brbe/compat/ItemViewCompat.setHandler:(Lcom/alonie/brbe/compat/ItemViewCompat$Handler;)V
+      19: iconst_1
+      20: putstatic     #37                 // Field registered:Z
+      23: return
+
+  private static void ensureRegistered();
+    Code:
+       0: getstatic     #37                 // Field registered:Z
+       3: ifeq          7
+       6: return
+       7: iconst_1
+       8: putstatic     #37                 // Field registered:Z
+      11: invokestatic  #40                 // Method register:()V
+      14: return
+
+  private static boolean openView(java.lang.String, net.minecraft.world.item.ItemStack);
+    Code:
+       0: ldc           #48                 // String me.shedaniel.rei.api.client.ClientHelper
+       2: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: astore_2
+       6: aload_2
+       7: ldc           #56                 // String getInstance
+       9: iconst_0
+      10: anewarray     #50                 // class java/lang/Class
+      13: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      16: aconst_null
+      17: iconst_0
+      18: anewarray     #4                  // class java/lang/Object
+      21: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore_3
+      25: ldc           #68                 // String me.shedaniel.rei.api.client.view.ViewSearchBuilder
+      27: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      30: astore        4
+      32: aload         4
+      34: ldc           #70                 // String builder
+      36: iconst_0
+      37: anewarray     #50                 // class java/lang/Class
+      40: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      43: aconst_null
+      44: iconst_0
+      45: anewarray     #4                  // class java/lang/Object
+      48: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      51: astore        5
+      53: ldc           #72                 // String me.shedaniel.rei.api.common.util.EntryStacks
+      55: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      58: astore        6
+      60: aload         6
+      62: ldc           #74                 // String of
+      64: iconst_1
+      65: anewarray     #50                 // class java/lang/Class
+      68: dup
+      69: iconst_0
+      70: ldc           #76                 // class net/minecraft/world/item/ItemStack
+      72: aastore
+      73: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      76: aconst_null
+      77: iconst_1
+      78: anewarray     #4                  // class java/lang/Object
+      81: dup
+      82: iconst_0
+      83: aload_1
+      84: aastore
+      85: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      88: astore        7
+      90: ldc           #78                 // String me.shedaniel.rei.api.common.entry.EntryStack
+      92: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      95: astore        8
+      97: aload         4
+      99: aload_0
+     100: iconst_1
+     101: anewarray     #50                 // class java/lang/Class
+     104: dup
+     105: iconst_0
+     106: aload         8
+     108: aastore
+     109: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     112: aload         5
+     114: iconst_1
+     115: anewarray     #4                  // class java/lang/Object
+     118: dup
+     119: iconst_0
+     120: aload         7
+     122: aastore
+     123: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     126: pop
+     127: aload_2
+     128: ldc           #79                 // String openView
+     130: iconst_1
+     131: anewarray     #50                 // class java/lang/Class
+     134: dup
+     135: iconst_0
+     136: aload         4
+     138: aastore
+     139: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     142: aload_3
+     143: iconst_1
+     144: anewarray     #4                  // class java/lang/Object
+     147: dup
+     148: iconst_0
+     149: aload         5
+     151: aastore
+     152: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     155: checkcast     #81                 // class java/lang/Boolean
+     158: invokevirtual #85                 // Method java/lang/Boolean.booleanValue:()Z
+     161: ireturn
+     162: astore_2
+     163: getstatic     #91                 // Field com/alonie/brbe/BetterRecipeBook.LOGGER:Lorg/apache/logging/log4j/Logger;
+     166: ldc           #93                 // String Failed to open REI view via {} for stack {}
+     168: aload_0
+     169: aload_1
+     170: aload_2
+     171: invokeinterface #99,  5           // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+     176: iconst_0
+     177: ireturn
+    Exception table:
+       from    to  target type
+           0   161   162   Class java/lang/ReflectiveOperationException
+
+  public static void setHandler(com.alonie.brbe.compat.rei.ReiCompat$ReiHandler);
+    Code:
+       0: aload_0
+       1: invokestatic  #35                 // Method com/alonie/brbe/compat/ItemViewCompat.setHandler:(Lcom/alonie/brbe/compat/ItemViewCompat$Handler;)V
+       4: return
+
+  public static boolean isLoaded();
+    Code:
+       0: invokestatic  #118                // Method ensureRegistered:()V
+       3: invokestatic  #120                // Method com/alonie/brbe/compat/ItemViewCompat.isLoaded:()Z
+       6: ireturn
+
+  public static boolean openRecipeView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #124                // Method com/alonie/brbe/compat/ItemViewCompat.openRecipeView:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ireturn
+
+  public static boolean openUsageView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #127                // Method com/alonie/brbe/compat/ItemViewCompat.openUsageView:(Lnet/minecraft/world/item/ItemStack;)Z
+       4: ireturn
+
+  static boolean matchesKeyBind(java.lang.String, int, int);
+    Code:
+       0: ldc           #136                // String me.shedaniel.rei.api.client.config.ConfigObject
+       2: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: astore_3
+       6: aload_3
+       7: ldc           #56                 // String getInstance
+       9: iconst_0
+      10: anewarray     #50                 // class java/lang/Class
+      13: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      16: aconst_null
+      17: iconst_0
+      18: anewarray     #4                  // class java/lang/Object
+      21: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore        4
+      26: aload_3
+      27: aload_0
+      28: iconst_0
+      29: anewarray     #50                 // class java/lang/Class
+      32: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      35: aload         4
+      37: iconst_0
+      38: anewarray     #4                  // class java/lang/Object
+      41: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      44: astore        5
+      46: aload         5
+      48: invokevirtual #140                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      51: ldc           #142                // String matchesKey
+      53: iconst_2
+      54: anewarray     #50                 // class java/lang/Class
+      57: dup
+      58: iconst_0
+      59: getstatic     #147                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      62: aastore
+      63: dup
+      64: iconst_1
+      65: getstatic     #147                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+      68: aastore
+      69: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      72: aload         5
+      74: iconst_2
+      75: anewarray     #4                  // class java/lang/Object
+      78: dup
+      79: iconst_0
+      80: iload_1
+      81: invokestatic  #151                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      84: aastore
+      85: dup
+      86: iconst_1
+      87: iload_2
+      88: invokestatic  #151                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      91: aastore
+      92: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      95: checkcast     #81                 // class java/lang/Boolean
+      98: invokevirtual #85                 // Method java/lang/Boolean.booleanValue:()Z
+     101: ireturn
+     102: astore_3
+     103: iconst_0
+     104: ireturn
+    Exception table:
+       from    to  target type
+           0   101   102   Class java/lang/Exception
+
+  private static boolean isModLoaded(java.lang.String);
+    Code:
+       0: ldc           #161                // String net.neoforged.fml.ModList
+       2: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+       5: astore_1
+       6: aload_1
+       7: ldc           #163                // String get
+       9: iconst_0
+      10: anewarray     #50                 // class java/lang/Class
+      13: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      16: aconst_null
+      17: iconst_0
+      18: anewarray     #4                  // class java/lang/Object
+      21: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      24: astore_2
+      25: aload_2
+      26: invokevirtual #140                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      29: ldc           #164                // String isLoaded
+      31: iconst_1
+      32: anewarray     #50                 // class java/lang/Class
+      35: dup
+      36: iconst_0
+      37: ldc           #166                // class java/lang/String
+      39: aastore
+      40: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      43: aload_2
+      44: iconst_1
+      45: anewarray     #4                  // class java/lang/Object
+      48: dup
+      49: iconst_0
+      50: aload_0
+      51: aastore
+      52: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      55: checkcast     #81                 // class java/lang/Boolean
+      58: invokevirtual #85                 // Method java/lang/Boolean.booleanValue:()Z
+      61: ireturn
+      62: astore_1
+      63: ldc           #168                // String net.fabricmc.loader.api.FabricLoader
+      65: invokestatic  #54                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      68: astore_2
+      69: aload_2
+      70: ldc           #56                 // String getInstance
+      72: iconst_0
+      73: anewarray     #50                 // class java/lang/Class
+      76: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+      79: aconst_null
+      80: iconst_0
+      81: anewarray     #4                  // class java/lang/Object
+      84: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+      87: astore_3
+      88: aload_3
+      89: invokevirtual #140                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+      92: ldc           #169                // String isModLoaded
+      94: iconst_1
+      95: anewarray     #50                 // class java/lang/Class
+      98: dup
+      99: iconst_0
+     100: ldc           #166                // class java/lang/String
+     102: aastore
+     103: invokevirtual #60                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+     106: aload_3
+     107: iconst_1
+     108: anewarray     #4                  // class java/lang/Object
+     111: dup
+     112: iconst_0
+     113: aload_0
+     114: aastore
+     115: invokevirtual #66                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+     118: checkcast     #81                 // class java/lang/Boolean
+     121: invokevirtual #85                 // Method java/lang/Boolean.booleanValue:()Z
+     124: ireturn
+     125: astore_2
+     126: iconst_0
+     127: ireturn
+    Exception table:
+       from    to  target type
+           0    61    62   Class java/lang/Throwable
+          63   124   125   Class java/lang/Throwable
+}

@@ -1,0 +1,12 @@
+Compiled from "RecipeBookPageAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.RecipeBookPageAccessor {
+  public abstract java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeButton> getButtons();
+
+  public abstract net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent getOverlay();
+
+  public abstract java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> getCollections();
+
+  public abstract net.minecraft.client.gui.components.StateSwitchingButton getForwardButton();
+
+  public abstract net.minecraft.client.gui.components.StateSwitchingButton getBackButton();
+}

@@ -1,0 +1,18 @@
+Compiled from "MixinMWClient.java"
+public class com.alonie.brbe.compat.mixins.mousewheelie.MixinMWClient {
+  public com.alonie.brbe.compat.mixins.mousewheelie.MixinMWClient();
+    Code:
+       0: aload_0
+       1: invokespecial #15                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static void onTriggerScroll(double, double, double, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload         6
+       2: iconst_0
+       3: invokestatic  #41                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       6: invokevirtual #47                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+       9: aload         6
+      11: invokevirtual #50                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.cancel:()V
+      14: return
+}

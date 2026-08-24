@@ -1,0 +1,105 @@
+Compiled from "SmithingRecipeBookPage.java"
+public class com.alonie.brbe.smithingtable.SmithingRecipeBookPage extends com.alonie.brbe.generic.GenericRecipePage<net.minecraft.world.inventory.SmithingMenu, com.alonie.brbe.smithingtable.SmithingRecipeCollection, com.alonie.brbe.recipe.BRBSmithingRecipe> {
+  public final com.alonie.brbe.smithingtable.SmithingOverlayRecipeComponent overlay;
+
+  public com.alonie.brbe.smithingtable.SmithingRecipeBookPage(net.minecraft.core.RegistryAccess, java.util.function.Supplier<java.lang.Boolean>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_1
+       3: aload_2
+       4: invokedynamic #38,  0             // InvokeDynamic #0:get:(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)Ljava/util/function/Supplier;
+       9: invokespecial #40                 // Method com/alonie/brbe/generic/GenericRecipePage."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+      12: aload_0
+      13: new           #42                 // class com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent
+      16: dup
+      17: invokespecial #45                 // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent."<init>":()V
+      20: putfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+      23: return
+
+  protected boolean overlayMouseClicked(double, double, int, int, int, int, int);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+       4: dload_1
+       5: dload_3
+       6: iload         5
+       8: invokevirtual #65                 // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.mouseClicked:(DDI)Z
+      11: ifeq          39
+      14: aload_0
+      15: aload_0
+      16: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+      19: invokevirtual #69                 // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.getLastRecipeClicked:()Lcom/alonie/brbe/recipe/BRBSmithingRecipe;
+      22: putfield      #73                 // Field lastClickedRecipe:Lcom/alonie/brbe/generic/GenericRecipe;
+      25: aload_0
+      26: aload_0
+      27: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+      30: invokevirtual #77                 // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.getRecipeCollection:()Lcom/alonie/brbe/smithingtable/SmithingRecipeCollection;
+      33: putfield      #81                 // Field lastClickedRecipeCollection:Lcom/alonie/brbe/generic/GenericRecipeBookCollection;
+      36: goto          47
+      39: aload_0
+      40: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+      43: iconst_0
+      44: invokevirtual #85                 // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.setVisible:(Z)V
+      47: iconst_1
+      48: ireturn
+
+  protected void initOverlay(com.alonie.brbe.smithingtable.SmithingRecipeCollection, int, int, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+       4: aload_1
+       5: aload_0
+       6: getfield      #95                 // Field parentLeft:I
+       9: aload_0
+      10: getfield      #98                 // Field parentTop:I
+      13: aload         4
+      15: invokevirtual #101                // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.init:(Lcom/alonie/brbe/smithingtable/SmithingRecipeCollection;IILnet/minecraft/core/RegistryAccess;)V
+      18: return
+
+  public void render(net.minecraft.client.gui.GuiGraphics, int, int, int, int, float);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: iload         5
+       8: fload         6
+      10: invokespecial #108                // Method com/alonie/brbe/generic/GenericRecipePage.render:(Lnet/minecraft/client/gui/GuiGraphics;IIIIF)V
+      13: aload_0
+      14: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+      17: aload_1
+      18: iload         4
+      20: iload         5
+      22: fload         6
+      24: invokevirtual #111                // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.render:(Lnet/minecraft/client/gui/GuiGraphics;IIF)V
+      27: return
+
+  public boolean overlayIsVisible();
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field overlay:Lcom/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent;
+       4: invokevirtual #118                // Method com/alonie/brbe/smithingtable/SmithingOverlayRecipeComponent.isVisible:()Z
+       7: ireturn
+
+  protected void initOverlay(com.alonie.brbe.generic.GenericRecipeBookCollection, int, int, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #121                // class com/alonie/brbe/smithingtable/SmithingRecipeCollection
+       5: iload_2
+       6: iload_3
+       7: aload         4
+       9: invokevirtual #123                // Method initOverlay:(Lcom/alonie/brbe/smithingtable/SmithingRecipeCollection;IILnet/minecraft/core/RegistryAccess;)V
+      12: return
+
+  private static com.alonie.brbe.generic.GenericRecipeButton lambda$new$0(net.minecraft.core.RegistryAccess, java.util.function.Supplier);
+    Code:
+       0: new           #125                // class com/alonie/brbe/generic/GenericRecipeButton
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: invokespecial #126                // Method com/alonie/brbe/generic/GenericRecipeButton."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+       9: areturn
+}

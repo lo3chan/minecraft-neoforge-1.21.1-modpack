@@ -1,0 +1,29 @@
+Compiled from "ModBlockTagsProvider.java"
+public class fuzs.visualworkbench.data.ModBlockTagsProvider extends fuzs.puzzleslib.api.data.v2.tags.AbstractTagProvider<net.minecraft.world.level.block.Block> {
+  public fuzs.visualworkbench.data.ModBlockTagsProvider(fuzs.puzzleslib.api.data.v2.core.DataProviderContext);
+    Code:
+       0: aload_0
+       1: getstatic     #20                 // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+       4: aload_1
+       5: invokespecial #23                 // Method fuzs/puzzleslib/api/data/v2/tags/AbstractTagProvider."<init>":(Lnet/minecraft/resources/ResourceKey;Lfuzs/puzzleslib/api/data/v2/core/DataProviderContext;)V
+       8: return
+
+  public void addTags(net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: getstatic     #35                 // Field fuzs/visualworkbench/init/ModRegistry.UNALTERED_WORKBENCHES_BLOCK_TAG:Lnet/minecraft/tags/TagKey;
+       4: invokevirtual #39                 // Method add:(Lnet/minecraft/tags/TagKey;)Lfuzs/puzzleslib/api/data/v2/tags/AbstractTagAppender;
+       7: iconst_2
+       8: anewarray     #41                 // class net/minecraft/world/level/block/Block
+      11: dup
+      12: iconst_0
+      13: getstatic     #47                 // Field net/minecraft/world/level/block/Blocks.SMITHING_TABLE:Lnet/minecraft/world/level/block/Block;
+      16: aastore
+      17: dup
+      18: iconst_1
+      19: getstatic     #50                 // Field net/minecraft/world/level/block/Blocks.FLETCHING_TABLE:Lnet/minecraft/world/level/block/Block;
+      22: aastore
+      23: invokevirtual #55                 // Method fuzs/puzzleslib/api/data/v2/tags/AbstractTagAppender.add:([Ljava/lang/Object;)Lfuzs/puzzleslib/api/data/v2/tags/AbstractTagAppender;
+      26: pop
+      27: return
+}

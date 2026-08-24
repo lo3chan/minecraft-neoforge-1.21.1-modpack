@@ -1,0 +1,165 @@
+Compiled from "EmiHudHider.java"
+public final class com.alonie.brbe.impl.hud.EmiHudHider implements com.alonie.brbe.api.hud.HudHider {
+  private static java.lang.Class<?> emiConfigClass;
+
+  private static boolean classCacheResolved;
+
+  private boolean hidden;
+
+  private boolean saved;
+
+  private boolean savedEnabled;
+
+  public com.alonie.brbe.impl.hud.EmiHudHider();
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void saveState();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field saved:Z
+       4: ifeq          8
+       7: return
+       8: aload_0
+       9: iconst_1
+      10: putfield      #26                 // Field saved:Z
+      13: invokestatic  #30                 // Method getEmiConfigClass:()Ljava/lang/Class;
+      16: astore_1
+      17: aload_1
+      18: ifnonnull     22
+      21: return
+      22: aload_0
+      23: aload_1
+      24: ldc           #34                 // String enabled
+      26: invokevirtual #38                 // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      29: aconst_null
+      30: invokevirtual #44                 // Method java/lang/reflect/Field.getBoolean:(Ljava/lang/Object;)Z
+      33: putfield      #46                 // Field savedEnabled:Z
+      36: goto          45
+      39: astore_2
+      40: aload_0
+      41: iconst_1
+      42: putfield      #46                 // Field savedEnabled:Z
+      45: return
+    Exception table:
+       from    to  target type
+          22    36    39   Class java/lang/Exception
+
+  public void ensureHidden();
+    Code:
+       0: invokestatic  #56                 // Method isEmiLoaded:()Z
+       3: ifeq          13
+       6: aload_0
+       7: getfield      #58                 // Field hidden:Z
+      10: ifeq          14
+      13: return
+      14: invokestatic  #30                 // Method getEmiConfigClass:()Ljava/lang/Class;
+      17: astore_1
+      18: aload_1
+      19: ifnonnull     23
+      22: return
+      23: aload_1
+      24: ldc           #34                 // String enabled
+      26: invokevirtual #38                 // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      29: aconst_null
+      30: iconst_0
+      31: invokevirtual #62                 // Method java/lang/reflect/Field.setBoolean:(Ljava/lang/Object;Z)V
+      34: aload_0
+      35: iconst_1
+      36: putfield      #58                 // Field hidden:Z
+      39: goto          43
+      42: astore_2
+      43: return
+    Exception table:
+       from    to  target type
+          23    39    42   Class java/lang/ReflectiveOperationException
+
+  public void restoreState();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field saved:Z
+       4: ifne          8
+       7: return
+       8: aload_0
+       9: iconst_0
+      10: putfield      #26                 // Field saved:Z
+      13: invokestatic  #56                 // Method isEmiLoaded:()Z
+      16: ifeq          26
+      19: aload_0
+      20: getfield      #58                 // Field hidden:Z
+      23: ifne          27
+      26: return
+      27: aload_0
+      28: iconst_0
+      29: putfield      #58                 // Field hidden:Z
+      32: invokestatic  #30                 // Method getEmiConfigClass:()Ljava/lang/Class;
+      35: astore_1
+      36: aload_1
+      37: ifnonnull     41
+      40: return
+      41: aload_0
+      42: getfield      #46                 // Field savedEnabled:Z
+      45: ifeq          59
+      48: aload_1
+      49: ldc           #34                 // String enabled
+      51: invokevirtual #38                 // Method java/lang/Class.getField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+      54: aconst_null
+      55: iconst_1
+      56: invokevirtual #62                 // Method java/lang/reflect/Field.setBoolean:(Ljava/lang/Object;Z)V
+      59: goto          63
+      62: astore_2
+      63: return
+    Exception table:
+       from    to  target type
+          41    59    62   Class java/lang/ReflectiveOperationException
+
+  public void reset();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: putfield      #58                 // Field hidden:Z
+       5: aload_0
+       6: iconst_0
+       7: putfield      #26                 // Field saved:Z
+      10: aload_0
+      11: iconst_0
+      12: putfield      #46                 // Field savedEnabled:Z
+      15: return
+
+  public boolean isAvailable();
+    Code:
+       0: invokestatic  #56                 // Method isEmiLoaded:()Z
+       3: ireturn
+
+  public static boolean isEmiLoaded();
+    Code:
+       0: invokestatic  #30                 // Method getEmiConfigClass:()Ljava/lang/Class;
+       3: ifnull        10
+       6: iconst_1
+       7: goto          11
+      10: iconst_0
+      11: ireturn
+
+  static java.lang.Class<?> getEmiConfigClass();
+    Code:
+       0: getstatic     #70                 // Field emiConfigClass:Ljava/lang/Class;
+       3: ifnonnull     32
+       6: getstatic     #72                 // Field classCacheResolved:Z
+       9: ifne          32
+      12: iconst_1
+      13: putstatic     #72                 // Field classCacheResolved:Z
+      16: ldc           #74                 // String dev.emi.emi.config.EmiConfig
+      18: invokestatic  #78                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+      21: putstatic     #70                 // Field emiConfigClass:Ljava/lang/Class;
+      24: goto          32
+      27: astore_0
+      28: aconst_null
+      29: putstatic     #70                 // Field emiConfigClass:Ljava/lang/Class;
+      32: getstatic     #70                 // Field emiConfigClass:Ljava/lang/Class;
+      35: areturn
+    Exception table:
+       from    to  target type
+          16    24    27   Class java/lang/ClassNotFoundException
+}

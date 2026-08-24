@@ -1,0 +1,138 @@
+Compiled from "SmithingRecipeCollection.java"
+public class com.alonie.brbe.smithingtable.SmithingRecipeCollection extends com.alonie.brbe.generic.GenericRecipeBookCollection<com.alonie.brbe.recipe.BRBSmithingRecipe, net.minecraft.world.inventory.SmithingMenu> {
+  public com.alonie.brbe.smithingtable.SmithingRecipeCollection(java.util.List<? extends com.alonie.brbe.recipe.BRBSmithingRecipe>, net.minecraft.world.inventory.SmithingMenu, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokespecial #15                 // Method com/alonie/brbe/generic/GenericRecipeBookCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/core/RegistryAccess;)V
+       7: return
+
+  public java.util.List<com.alonie.brbe.recipe.BRBSmithingRecipe> getDisplayRecipes(boolean);
+    Code:
+       0: invokestatic  #31                 // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+       3: astore_2
+       4: aload_0
+       5: getfield      #34                 // Field recipes:Ljava/util/List;
+       8: invokeinterface #40,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      13: astore_3
+      14: aload_3
+      15: invokeinterface #48,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      20: ifeq          71
+      23: aload_3
+      24: invokeinterface #52,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      29: checkcast     #54                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      32: astore        4
+      34: aload         4
+      36: aload_0
+      37: getfield      #57                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      40: checkcast     #59                 // class net/minecraft/world/inventory/SmithingMenu
+      43: getfield      #63                 // Field net/minecraft/world/inventory/SmithingMenu.slots:Lnet/minecraft/core/NonNullList;
+      46: aload_0
+      47: getfield      #65                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      50: invokeinterface #69,  3           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasMaterials:(Lnet/minecraft/core/NonNullList;Lnet/minecraft/core/RegistryAccess;)Z
+      55: iload_1
+      56: if_icmpne     68
+      59: aload_2
+      60: aload         4
+      62: invokeinterface #73,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      67: pop
+      68: goto          14
+      71: aload_2
+      72: areturn
+
+  public boolean atleastOneCraftable(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field recipes:Ljava/util/List;
+       4: invokeinterface #40,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       9: astore_2
+      10: aload_2
+      11: invokeinterface #48,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      16: ifeq          48
+      19: aload_2
+      20: invokeinterface #52,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      25: checkcast     #54                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      28: astore_3
+      29: aload_3
+      30: aload_1
+      31: aload_0
+      32: getfield      #65                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      35: invokeinterface #69,  3           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasMaterials:(Lnet/minecraft/core/NonNullList;Lnet/minecraft/core/RegistryAccess;)Z
+      40: ifeq          45
+      43: iconst_1
+      44: ireturn
+      45: goto          10
+      48: iconst_0
+      49: ireturn
+
+  protected boolean atleastOnePartiallyCraftable(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #86                 // Method getPartiallyCraftableRecipes:(Lnet/minecraft/core/NonNullList;)Ljava/util/List;
+       5: invokeinterface #89,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+      10: ifne          17
+      13: iconst_1
+      14: goto          18
+      17: iconst_0
+      18: ireturn
+
+  public java.util.List<com.alonie.brbe.recipe.BRBSmithingRecipe> getPartiallyCraftableRecipes(net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: new           #42                 // class java/util/ArrayList
+       3: dup
+       4: invokespecial #93                 // Method java/util/ArrayList."<init>":()V
+       7: astore_2
+       8: aload_0
+       9: getfield      #34                 // Field recipes:Ljava/util/List;
+      12: invokeinterface #40,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      17: astore_3
+      18: aload_3
+      19: invokeinterface #48,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      24: ifeq          129
+      27: aload_3
+      28: invokeinterface #52,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      33: checkcast     #54                 // class com/alonie/brbe/recipe/BRBSmithingRecipe
+      36: astore        4
+      38: aload         4
+      40: aload_1
+      41: aload_0
+      42: getfield      #65                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      45: invokeinterface #69,  3           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasMaterials:(Lnet/minecraft/core/NonNullList;Lnet/minecraft/core/RegistryAccess;)Z
+      50: ifne          126
+      53: aload         4
+      55: aload_1
+      56: invokeinterface #97,  2           // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasTemplate:(Ljava/util/List;)Z
+      61: istore        5
+      63: aload         4
+      65: aload_1
+      66: aload_0
+      67: getfield      #65                 // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      70: invokeinterface #101,  3          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasBase:(Ljava/util/List;Lnet/minecraft/core/RegistryAccess;)Z
+      75: istore        6
+      77: aload         4
+      79: aload_1
+      80: invokeinterface #104,  2          // InterfaceMethod com/alonie/brbe/recipe/BRBSmithingRecipe.hasAddition:(Ljava/util/List;)Z
+      85: istore        7
+      87: iload         5
+      89: ifne          102
+      92: iload         6
+      94: ifne          102
+      97: iload         7
+      99: ifeq          126
+     102: iload         5
+     104: ifeq          117
+     107: iload         6
+     109: ifeq          117
+     112: iload         7
+     114: ifne          126
+     117: aload_2
+     118: aload         4
+     120: invokeinterface #73,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     125: pop
+     126: goto          18
+     129: aload_2
+     130: areturn
+}

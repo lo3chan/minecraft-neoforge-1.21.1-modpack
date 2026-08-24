@@ -1,0 +1,21 @@
+Compiled from "RecipeManagerMixin.java"
+public class com.alonie.brbe.mixins.unlockrecipes.RecipeManagerMixin implements com.alonie.brbe.interfaces.unlockrecipes.IMixinRecipeManager {
+  private final java.util.Set<net.minecraft.resources.ResourceLocation> brbe$serverUnlockedRecipes;
+
+  public com.alonie.brbe.mixins.unlockrecipes.RecipeManagerMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #18                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #20                 // class java/util/HashSet
+       8: dup
+       9: invokespecial #21                 // Method java/util/HashSet."<init>":()V
+      12: putfield      #23                 // Field brbe$serverUnlockedRecipes:Ljava/util/Set;
+      15: return
+
+  public java.util.Set<net.minecraft.resources.ResourceLocation> brbe$getServerUnlockedRecipes();
+    Code:
+       0: aload_0
+       1: getfield      #23                 // Field brbe$serverUnlockedRecipes:Ljava/util/Set;
+       4: areturn
+}

@@ -1,0 +1,8 @@
+Compiled from "RecipeCollectionAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.RecipeCollectionAccessor {
+  public abstract java.util.Set<net.minecraft.world.item.crafting.RecipeHolder<?>> getFitsDimensions();
+
+  public abstract java.util.Set<net.minecraft.world.item.crafting.RecipeHolder<?>> brbe$getCraftable();
+
+  public abstract void invokeCanCraft(net.minecraft.world.entity.player.StackedContents, int, int, net.minecraft.stats.RecipeBook);
+}

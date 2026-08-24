@@ -1,0 +1,36 @@
+Compiled from "BetterRecipeBookNeoForge.java"
+public final class com.alonie.brbe.neoforge.BetterRecipeBookNeoForge {
+  public com.alonie.brbe.neoforge.BetterRecipeBookNeoForge(net.neoforged.bus.api.IEventBus);
+    Code:
+       0: aload_0
+       1: invokespecial #19                 // Method java/lang/Object."<init>":()V
+       4: invokestatic  #24                 // Method com/alonie/brbe/brewingstand/neoforge/PlatformPotionUtilImpl.init:()V
+       7: invokestatic  #27                 // Method com/alonie/brbe/BetterRecipeBook.init:()V
+      10: getstatic     #33                 // Field net/neoforged/fml/loading/FMLEnvironment.dist:Lnet/neoforged/api/distmarker/Dist;
+      13: getstatic     #38                 // Field net/neoforged/api/distmarker/Dist.CLIENT:Lnet/neoforged/api/distmarker/Dist;
+      16: if_acmpne     51
+      19: aload_1
+      20: invokestatic  #42                 // Method com/alonie/brbe/neoforge/BetterRecipeBookClientNeoForge.init:(Lnet/neoforged/bus/api/IEventBus;)V
+      23: invokestatic  #48                 // Method net/neoforged/fml/ModList.get:()Lnet/neoforged/fml/ModList;
+      26: ldc           #49                 // String brbe
+      28: invokevirtual #53                 // Method net/neoforged/fml/ModList.getModContainerById:(Ljava/lang/String;)Ljava/util/Optional;
+      31: invokevirtual #58                 // Method java/util/Optional.get:()Ljava/lang/Object;
+      34: checkcast     #60                 // class net/neoforged/fml/ModContainer
+      37: astore_2
+      38: invokedynamic #77,  0             // InvokeDynamic #0:createScreen:()Lnet/neoforged/neoforge/client/gui/IConfigScreenFactory;
+      43: astore_3
+      44: aload_2
+      45: ldc           #79                 // class net/neoforged/neoforge/client/gui/IConfigScreenFactory
+      47: aload_3
+      48: invokevirtual #83                 // Method net/neoforged/fml/ModContainer.registerExtensionPoint:(Ljava/lang/Class;Lnet/neoforged/fml/IExtensionPoint;)V
+      51: return
+
+  private static net.minecraft.client.gui.screens.Screen lambda$new$0(net.neoforged.fml.ModContainer, net.minecraft.client.gui.screens.Screen);
+    Code:
+       0: ldc           #96                 // class com/alonie/brbe/config/Config
+       2: aload_1
+       3: invokestatic  #102                // Method me/shedaniel/autoconfig/AutoConfig.getConfigScreen:(Ljava/lang/Class;Lnet/minecraft/client/gui/screens/Screen;)Ljava/util/function/Supplier;
+       6: invokeinterface #105,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      11: checkcast     #107                // class net/minecraft/client/gui/screens/Screen
+      14: areturn
+}

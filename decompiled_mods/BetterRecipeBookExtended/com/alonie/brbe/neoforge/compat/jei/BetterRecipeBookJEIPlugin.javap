@@ -1,0 +1,81 @@
+Compiled from "BetterRecipeBookJEIPlugin.java"
+public final class com.alonie.brbe.neoforge.compat.jei.BetterRecipeBookJEIPlugin implements mezz.jei.api.IModPlugin {
+  private static final net.minecraft.resources.ResourceLocation PLUGIN_UID;
+
+  public com.alonie.brbe.neoforge.compat.jei.BetterRecipeBookJEIPlugin();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public net.minecraft.resources.ResourceLocation getPluginUid();
+    Code:
+       0: getstatic     #27                 // Field PLUGIN_UID:Lnet/minecraft/resources/ResourceLocation;
+       3: areturn
+
+  public void onRuntimeAvailable(mezz.jei.api.runtime.IJeiRuntime);
+    Code:
+       0: aload_1
+       1: invokeinterface #36,  1           // InterfaceMethod mezz/jei/api/runtime/IJeiRuntime.getKeyMappings:()Lmezz/jei/api/runtime/IJeiKeyMappings;
+       6: astore_2
+       7: new           #10                 // class com/alonie/brbe/neoforge/compat/jei/BetterRecipeBookJEIPlugin$1
+      10: dup
+      11: aload_0
+      12: aload_1
+      13: aload_2
+      14: invokespecial #39                 // Method com/alonie/brbe/neoforge/compat/jei/BetterRecipeBookJEIPlugin$1."<init>":(Lcom/alonie/brbe/neoforge/compat/jei/BetterRecipeBookJEIPlugin;Lmezz/jei/api/runtime/IJeiRuntime;Lmezz/jei/api/runtime/IJeiKeyMappings;)V
+      17: invokestatic  #43                 // Method com/alonie/brbe/compat/jei/JeiCompat.setHandler:(Lcom/alonie/brbe/compat/jei/JeiCompat$JeiHandler;)V
+      20: return
+
+  public void onRuntimeUnavailable();
+    Code:
+       0: aconst_null
+       1: invokestatic  #43                 // Method com/alonie/brbe/compat/jei/JeiCompat.setHandler:(Lcom/alonie/brbe/compat/jei/JeiCompat$JeiHandler;)V
+       4: return
+
+  private static boolean open(mezz.jei.api.runtime.IJeiRuntime, mezz.jei.api.recipe.RecipeIngredientRole, net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_2
+       1: invokevirtual #57                 // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+       4: ifeq          9
+       7: iconst_0
+       8: ireturn
+       9: aload_0
+      10: invokeinterface #61,  1           // InterfaceMethod mezz/jei/api/runtime/IJeiRuntime.getIngredientManager:()Lmezz/jei/api/runtime/IIngredientManager;
+      15: getstatic     #67                 // Field mezz/jei/api/constants/VanillaTypes.ITEM_STACK:Lmezz/jei/api/ingredients/IIngredientTypeWithSubtypes;
+      18: aload_2
+      19: iconst_0
+      20: invokeinterface #73,  4           // InterfaceMethod mezz/jei/api/runtime/IIngredientManager.createTypedIngredient:(Lmezz/jei/api/ingredients/IIngredientType;Ljava/lang/Object;Z)Ljava/util/Optional;
+      25: astore_3
+      26: aload_3
+      27: invokevirtual #76                 // Method java/util/Optional.isEmpty:()Z
+      30: ifeq          35
+      33: iconst_0
+      34: ireturn
+      35: aload_0
+      36: invokeinterface #80,  1           // InterfaceMethod mezz/jei/api/runtime/IJeiRuntime.getJeiHelpers:()Lmezz/jei/api/helpers/IJeiHelpers;
+      41: invokeinterface #86,  1           // InterfaceMethod mezz/jei/api/helpers/IJeiHelpers.getFocusFactory:()Lmezz/jei/api/recipe/IFocusFactory;
+      46: astore        4
+      48: aload         4
+      50: aload_1
+      51: aload_3
+      52: invokevirtual #90                 // Method java/util/Optional.get:()Ljava/lang/Object;
+      55: checkcast     #92                 // class mezz/jei/api/ingredients/ITypedIngredient
+      58: invokeinterface #98,  3           // InterfaceMethod mezz/jei/api/recipe/IFocusFactory.createFocus:(Lmezz/jei/api/recipe/RecipeIngredientRole;Lmezz/jei/api/ingredients/ITypedIngredient;)Lmezz/jei/api/recipe/IFocus;
+      63: astore        5
+      65: aload_0
+      66: invokeinterface #102,  1          // InterfaceMethod mezz/jei/api/runtime/IJeiRuntime.getRecipesGui:()Lmezz/jei/api/runtime/IRecipesGui;
+      71: aload         5
+      73: invokestatic  #108                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      76: invokeinterface #114,  2          // InterfaceMethod mezz/jei/api/runtime/IRecipesGui.show:(Ljava/util/List;)V
+      81: iconst_1
+      82: ireturn
+
+  static {};
+    Code:
+       0: ldc           #127                // String brbe
+       2: ldc           #129                // String jei
+       4: invokestatic  #135                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+       7: putstatic     #27                 // Field PLUGIN_UID:Lnet/minecraft/resources/ResourceLocation;
+      10: return
+}

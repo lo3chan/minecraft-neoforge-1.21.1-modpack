@@ -1,0 +1,22 @@
+Compiled from "WorldGenRegionMixin.java"
+abstract class fuzs.visualworkbench.mixin.WorldGenRegionMixin {
+  fuzs.visualworkbench.mixin.WorldGenRegionMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #12                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public net.minecraft.world.level.block.state.BlockState setBlock(net.minecraft.world.level.block.state.BlockState);
+    Code:
+       0: getstatic     #32                 // Field fuzs/visualworkbench/VisualWorkbench.CONFIG:Lfuzs/puzzleslib/api/config/v3/ConfigHolder;
+       3: ldc           #34                 // class fuzs/visualworkbench/config/CommonConfig
+       5: invokeinterface #40,  2           // InterfaceMethod fuzs/puzzleslib/api/config/v3/ConfigHolder.get:(Ljava/lang/Class;)Lfuzs/puzzleslib/api/config/v3/ConfigCore;
+      10: checkcast     #34                 // class fuzs/visualworkbench/config/CommonConfig
+      13: getfield      #44                 // Field fuzs/visualworkbench/config/CommonConfig.convertVanillaWorkbenchDuringWorldGen:Z
+      16: ifeq          24
+      19: aload_1
+      20: invokestatic  #49                 // Method fuzs/visualworkbench/handler/BlockConversionHandler.convertFromVanillaBlock:(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/level/block/state/BlockState;
+      23: areturn
+      24: aload_1
+      25: areturn
+}

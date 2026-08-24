@@ -1,0 +1,83 @@
+Compiled from "RecipeBookIsPainExtendedConfig.java"
+public final class com.alonie.recipebookispain_extended.RecipeBookIsPainExtendedConfig {
+  private static boolean lastEnabled;
+
+  private static int lastBottomNumber;
+
+  private com.alonie.recipebookispain_extended.RecipeBookIsPainExtendedConfig();
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public static boolean enabled();
+    Code:
+       0: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: ifnonnull     11
+       9: iconst_1
+      10: ireturn
+      11: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+      14: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      17: getfield      #41                 // Field com/alonie/brbe/config/Config.rbip:Lcom/alonie/brbe/config/Config$RecipeBookIsPain;
+      20: getfield      #44                 // Field com/alonie/brbe/config/Config$RecipeBookIsPain.enableRecipeBookIsPain:Z
+      23: ireturn
+
+  public static int bottomNumber();
+    Code:
+       0: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+       3: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+       6: ifnonnull     12
+       9: bipush        16
+      11: ireturn
+      12: invokestatic  #31                 // Method com/alonie/brbe/BetterRecipeBook.ctx:()Lcom/alonie/brbe/config/AppContext;
+      15: invokevirtual #37                 // Method com/alonie/brbe/config/AppContext.config:()Lcom/alonie/brbe/config/Config;
+      18: getfield      #41                 // Field com/alonie/brbe/config/Config.rbip:Lcom/alonie/brbe/config/Config$RecipeBookIsPain;
+      21: getfield      #49                 // Field com/alonie/brbe/config/Config$RecipeBookIsPain.enableTabPage:Z
+      24: ifeq          32
+      27: bipush        16
+      29: goto          34
+      32: bipush        6
+      34: ireturn
+
+  public boolean extendedFeatures();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public static com.alonie.recipebookispain_extended.RecipeBookIsPainExtendedConfig get();
+    Code:
+       0: getstatic     #56                 // Field com/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig$Holder.INSTANCE:Lcom/alonie/recipebookispain_extended/RecipeBookIsPainExtendedConfig;
+       3: areturn
+
+  public static boolean reloadIfChanged();
+    Code:
+       0: iconst_0
+       1: istore_0
+       2: invokestatic  #59                 // Method enabled:()Z
+       5: istore_1
+       6: invokestatic  #61                 // Method bottomNumber:()I
+       9: istore_2
+      10: iload_1
+      11: getstatic     #63                 // Field lastEnabled:Z
+      14: if_icmpne     24
+      17: iload_2
+      18: getstatic     #65                 // Field lastBottomNumber:I
+      21: if_icmpeq     34
+      24: iload_1
+      25: putstatic     #63                 // Field lastEnabled:Z
+      28: iload_2
+      29: putstatic     #65                 // Field lastBottomNumber:I
+      32: iconst_1
+      33: istore_0
+      34: iload_0
+      35: ireturn
+
+  static {};
+    Code:
+       0: iconst_1
+       1: putstatic     #63                 // Field lastEnabled:Z
+       4: bipush        16
+       6: putstatic     #65                 // Field lastBottomNumber:I
+       9: return
+}

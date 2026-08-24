@@ -1,0 +1,451 @@
+Compiled from "BrewingRecipeBookComponent.java"
+public class com.alonie.brbe.brewingstand.BrewingRecipeBookComponent extends com.alonie.brbe.generic.GenericRecipeBookComponent<net.minecraft.world.inventory.BrewingStandMenu, com.alonie.brbe.brewingstand.BrewingRecipeCollection, com.alonie.brbe.brewingstand.BrewableResult> implements com.alonie.brbe.interfaces.IPinningComponent<com.alonie.brbe.brewingstand.BrewingRecipeCollection> {
+  private static final net.minecraft.network.chat.Component ONLY_CRAFTABLES_TOOLTIP;
+
+  static final boolean $assertionsDisabled;
+
+  public com.alonie.brbe.brewingstand.BrewingRecipeBookComponent();
+    Code:
+       0: aload_0
+       1: invokespecial #45                 // Method com/alonie/brbe/generic/GenericRecipeBookComponent."<init>":()V
+       4: return
+
+  public void init(int, int, net.minecraft.client.Minecraft, boolean, net.minecraft.world.inventory.BrewingStandMenu, java.util.function.Consumer<net.minecraft.world.item.ItemStack>, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: new           #59                 // class com/alonie/brbe/generic/GenericRecipePage
+       4: dup
+       5: aload         7
+       7: aload_0
+       8: aload         7
+      10: invokedynamic #79,  0             // InvokeDynamic #0:get:(Lcom/alonie/brbe/brewingstand/BrewingRecipeBookComponent;Lnet/minecraft/core/RegistryAccess;)Ljava/util/function/Supplier;
+      15: invokespecial #82                 // Method com/alonie/brbe/generic/GenericRecipePage."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+      18: putfield      #86                 // Field recipesPage:Lcom/alonie/brbe/generic/GenericRecipePage;
+      21: aload_0
+      22: iload_1
+      23: iload_2
+      24: aload_3
+      25: iload         4
+      27: aload         5
+      29: aload         6
+      31: aload         7
+      33: invokespecial #89                 // Method com/alonie/brbe/generic/GenericRecipeBookComponent.init:(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/world/inventory/AbstractContainerMenu;Ljava/util/function/Consumer;Lnet/minecraft/core/RegistryAccess;)V
+      36: aload_0
+      37: getfield      #93                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      40: aload         5
+      42: invokedynamic #106,  0            // InvokeDynamic #1:test:(Lnet/minecraft/world/inventory/BrewingStandMenu;)Ljava/util/function/BiPredicate;
+      47: invokevirtual #110                // Method com/alonie/brbe/generic/GenericGhostRecipe.setRenderingPredicate:(Ljava/util/function/BiPredicate;)V
+      50: return
+
+  public net.minecraft.world.item.ItemStack getInputStack(com.alonie.brbe.brewingstand.BrewableResult);
+    Code:
+       0: aload_1
+       1: getfield      #125                // Field com/alonie/brbe/brewingstand/BrewableResult.recipe:Ljava/lang/Object;
+       4: invokestatic  #131                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getFrom:(Ljava/lang/Object;)Lnet/minecraft/world/item/alchemy/Potion;
+       7: astore_2
+       8: aload_1
+       9: getfield      #125                // Field com/alonie/brbe/brewingstand/BrewableResult.recipe:Ljava/lang/Object;
+      12: invokestatic  #135                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getIngredient:(Ljava/lang/Object;)Lnet/minecraft/world/item/crafting/Ingredient;
+      15: astore_3
+      16: aload_0
+      17: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      20: invokevirtual #145                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      23: getstatic     #151                // Field com/alonie/brbe/BetterRecipeBook.BREWING_SPLASH_POTION:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      26: if_acmpne     44
+      29: new           #153                // class net/minecraft/world/item/ItemStack
+      32: dup
+      33: getstatic     #159                // Field net/minecraft/world/item/Items.SPLASH_POTION:Lnet/minecraft/world/item/Item;
+      36: invokespecial #162                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      39: astore        4
+      41: goto          84
+      44: aload_0
+      45: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      48: invokevirtual #145                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      51: getstatic     #169                // Field com/alonie/brbe/BetterRecipeBook.BREWING_LINGERING_POTION:Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      54: if_acmpne     72
+      57: new           #153                // class net/minecraft/world/item/ItemStack
+      60: dup
+      61: getstatic     #172                // Field net/minecraft/world/item/Items.LINGERING_POTION:Lnet/minecraft/world/item/Item;
+      64: invokespecial #162                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      67: astore        4
+      69: goto          84
+      72: new           #153                // class net/minecraft/world/item/ItemStack
+      75: dup
+      76: getstatic     #175                // Field net/minecraft/world/item/Items.POTION:Lnet/minecraft/world/item/Item;
+      79: invokespecial #162                // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      82: astore        4
+      84: aload         4
+      86: getstatic     #181                // Field net/minecraft/core/component/DataComponents.POTION_CONTENTS:Lnet/minecraft/core/component/DataComponentType;
+      89: new           #183                // class net/minecraft/world/item/alchemy/PotionContents
+      92: dup
+      93: getstatic     #188                // Field net/minecraft/core/registries/BuiltInRegistries.POTION:Lnet/minecraft/core/Registry;
+      96: aload_2
+      97: invokeinterface #194,  2          // InterfaceMethod net/minecraft/core/Registry.wrapAsHolder:(Ljava/lang/Object;)Lnet/minecraft/core/Holder;
+     102: invokespecial #197                // Method net/minecraft/world/item/alchemy/PotionContents."<init>":(Lnet/minecraft/core/Holder;)V
+     105: invokevirtual #201                // Method net/minecraft/world/item/ItemStack.set:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+     108: pop
+     109: aload         4
+     111: areturn
+
+  public void setupGhostRecipe(com.alonie.brbe.brewingstand.BrewableResult, java.util.List<net.minecraft.world.inventory.Slot>);
+    Code:
+       0: aload_0
+       1: getfield      #93                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+       4: invokestatic  #218                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getINGREDIENT_SLOT:()I
+       7: iconst_1
+       8: anewarray     #153                // class net/minecraft/world/item/ItemStack
+      11: dup
+      12: iconst_0
+      13: aload_1
+      14: getfield      #125                // Field com/alonie/brbe/brewingstand/BrewableResult.recipe:Ljava/lang/Object;
+      17: invokestatic  #135                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getIngredient:(Ljava/lang/Object;)Lnet/minecraft/world/item/crafting/Ingredient;
+      20: invokevirtual #222                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+      23: iconst_0
+      24: aaload
+      25: aastore
+      26: invokestatic  #226                // Method net/minecraft/world/item/crafting/Ingredient.of:([Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/crafting/Ingredient;
+      29: aload_2
+      30: invokestatic  #218                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getINGREDIENT_SLOT:()I
+      33: invokeinterface #231,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      38: checkcast     #233                // class net/minecraft/world/inventory/Slot
+      41: getfield      #236                // Field net/minecraft/world/inventory/Slot.x:I
+      44: aload_2
+      45: invokestatic  #218                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getINGREDIENT_SLOT:()I
+      48: invokeinterface #231,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+      53: checkcast     #233                // class net/minecraft/world/inventory/Slot
+      56: getfield      #239                // Field net/minecraft/world/inventory/Slot.y:I
+      59: invokevirtual #243                // Method com/alonie/brbe/generic/GenericGhostRecipe.addIngredient:(ILnet/minecraft/world/item/crafting/Ingredient;II)V
+      62: getstatic     #245                // Field $assertionsDisabled:Z
+      65: ifne          83
+      68: aload_0
+      69: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      72: ifnonnull     83
+      75: new           #247                // class java/lang/AssertionError
+      78: dup
+      79: invokespecial #248                // Method java/lang/AssertionError."<init>":()V
+      82: athrow
+      83: aload_1
+      84: aload_0
+      85: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      88: invokevirtual #145                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      91: invokevirtual #252                // Method com/alonie/brbe/brewingstand/BrewableResult.inputAsItemStack:(Lcom/alonie/brbe/api/BRBBookCategories$Category;)Lnet/minecraft/world/item/ItemStack;
+      94: astore_3
+      95: invokestatic  #255                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getBOTTLE_SLOT_START:()I
+      98: istore        4
+     100: iload         4
+     102: invokestatic  #258                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getBOTTLE_SLOT_END:()I
+     105: if_icmpgt     162
+     108: aload_0
+     109: getfield      #93                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+     112: iload         4
+     114: iconst_1
+     115: anewarray     #153                // class net/minecraft/world/item/ItemStack
+     118: dup
+     119: iconst_0
+     120: aload_3
+     121: aastore
+     122: invokestatic  #226                // Method net/minecraft/world/item/crafting/Ingredient.of:([Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/item/crafting/Ingredient;
+     125: aload_2
+     126: iload         4
+     128: invokeinterface #231,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     133: checkcast     #233                // class net/minecraft/world/inventory/Slot
+     136: getfield      #236                // Field net/minecraft/world/inventory/Slot.x:I
+     139: aload_2
+     140: iload         4
+     142: invokeinterface #231,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+     147: checkcast     #233                // class net/minecraft/world/inventory/Slot
+     150: getfield      #239                // Field net/minecraft/world/inventory/Slot.y:I
+     153: invokevirtual #243                // Method com/alonie/brbe/generic/GenericGhostRecipe.addIngredient:(ILnet/minecraft/world/item/crafting/Ingredient;II)V
+     156: iinc          4, 1
+     159: goto          100
+     162: return
+
+  protected java.util.List<com.alonie.brbe.brewingstand.BrewingRecipeCollection> getCollectionsForCategory();
+    Code:
+       0: new           #266                // class java/util/ArrayList
+       3: dup
+       4: invokespecial #267                // Method java/util/ArrayList."<init>":()V
+       7: astore_1
+       8: aload_0
+       9: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      12: invokevirtual #145                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      15: astore_2
+      16: getstatic     #272                // Field com/alonie/brbe/loaders/PotionLoader.POTIONS:Ljava/util/List;
+      19: invokeinterface #276,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      24: astore_3
+      25: aload_3
+      26: invokeinterface #282,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      31: ifeq          79
+      34: aload_3
+      35: invokeinterface #285,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      40: checkcast     #121                // class com/alonie/brbe/brewingstand/BrewableResult
+      43: astore        4
+      45: aload_1
+      46: new           #287                // class com/alonie/brbe/brewingstand/BrewingRecipeCollection
+      49: dup
+      50: aload         4
+      52: invokestatic  #290                // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+      55: aload_0
+      56: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      59: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+      62: aload_0
+      63: getfield      #297                // Field registryAccess:Lnet/minecraft/core/RegistryAccess;
+      66: aload_2
+      67: invokespecial #300                // Method com/alonie/brbe/brewingstand/BrewingRecipeCollection."<init>":(Ljava/util/List;Lnet/minecraft/world/inventory/BrewingStandMenu;Lnet/minecraft/core/RegistryAccess;Lcom/alonie/brbe/api/BRBBookCategories$Category;)V
+      70: invokeinterface #304,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      75: pop
+      76: goto          25
+      79: aload_1
+      80: areturn
+
+  public net.minecraft.network.chat.Component getRecipeFilterName();
+    Code:
+       0: getstatic     #312                // Field ONLY_CRAFTABLES_TOOLTIP:Lnet/minecraft/network/chat/Component;
+       3: areturn
+
+  public com.alonie.brbe.util.BRBHelper$Book getRecipeBookType();
+    Code:
+       0: getstatic     #318                // Field com/alonie/brbe/BetterRecipeBook.BREWING:Lcom/alonie/brbe/util/BRBHelper$Book;
+       3: areturn
+
+  public void handlePlaceRecipe();
+    Code:
+       0: aload_0
+       1: getfield      #86                 // Field recipesPage:Lcom/alonie/brbe/generic/GenericRecipePage;
+       4: invokevirtual #323                // Method com/alonie/brbe/generic/GenericRecipePage.getCurrentClickedRecipe:()Lcom/alonie/brbe/generic/GenericRecipe;
+       7: checkcast     #121                // class com/alonie/brbe/brewingstand/BrewableResult
+      10: astore_1
+      11: aload_1
+      12: ifnonnull     16
+      15: return
+      16: aload_0
+      17: getfield      #93                 // Field ghostRecipe:Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      20: invokevirtual #326                // Method com/alonie/brbe/generic/GenericGhostRecipe.clear:()V
+      23: aload_1
+      24: aload_0
+      25: getfield      #139                // Field selectedTab:Lcom/alonie/brbe/generic/BRBGroupButtonWidget;
+      28: invokevirtual #145                // Method com/alonie/brbe/generic/BRBGroupButtonWidget.getCategory:()Lcom/alonie/brbe/api/BRBBookCategories$Category;
+      31: aload_0
+      32: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      35: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+      38: getfield      #329                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+      41: invokevirtual #333                // Method com/alonie/brbe/brewingstand/BrewableResult.hasMaterials:(Lcom/alonie/brbe/api/BRBBookCategories$Category;Ljava/util/List;)Z
+      44: ifne          63
+      47: aload_0
+      48: aload_1
+      49: aload_0
+      50: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      53: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+      56: getfield      #329                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+      59: invokevirtual #335                // Method setupGhostRecipe:(Lcom/alonie/brbe/brewingstand/BrewableResult;Ljava/util/List;)V
+      62: return
+      63: aload_0
+      64: aload_1
+      65: invokevirtual #337                // Method getInputStack:(Lcom/alonie/brbe/brewingstand/BrewableResult;)Lnet/minecraft/world/item/ItemStack;
+      68: astore_2
+      69: aload_1
+      70: getfield      #125                // Field com/alonie/brbe/brewingstand/BrewableResult.recipe:Ljava/lang/Object;
+      73: invokestatic  #135                // Method com/alonie/brbe/brewingstand/PlatformPotionUtil.getIngredient:(Ljava/lang/Object;)Lnet/minecraft/world/item/crafting/Ingredient;
+      76: astore_3
+      77: iconst_0
+      78: istore        4
+      80: iconst_0
+      81: istore        5
+      83: aload_0
+      84: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+      87: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+      90: getfield      #329                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+      93: invokevirtual #340                // Method net/minecraft/core/NonNullList.iterator:()Ljava/util/Iterator;
+      96: astore        6
+      98: aload         6
+     100: invokeinterface #282,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     105: ifeq          224
+     108: aload         6
+     110: invokeinterface #285,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     115: checkcast     #233                // class net/minecraft/world/inventory/Slot
+     118: astore        7
+     120: aload         7
+     122: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     125: astore        8
+     127: aload_2
+     128: aload         8
+     130: invokestatic  #348                // Method net/minecraft/world/item/ItemStack.isSameItemSameComponents:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z
+     133: ifeq          172
+     136: iload         5
+     138: iconst_2
+     139: if_icmpgt     218
+     142: aload_0
+     143: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     146: iload         4
+     148: aload_0
+     149: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     152: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+     155: iload         5
+     157: invokevirtual #352                // Method net/minecraft/world/inventory/BrewingStandMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+     160: getfield      #355                // Field net/minecraft/world/inventory/Slot.index:I
+     163: invokestatic  #361                // Method com/alonie/brbe/util/ClientInventoryUtil.moveItemToSlot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     166: iinc          5, 1
+     169: goto          218
+     172: aload_3
+     173: invokevirtual #222                // Method net/minecraft/world/item/crafting/Ingredient.getItems:()[Lnet/minecraft/world/item/ItemStack;
+     176: iconst_0
+     177: aaload
+     178: invokevirtual #364                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     181: aload         7
+     183: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+     186: invokevirtual #364                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     189: invokevirtual #369                // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+     192: ifeq          218
+     195: aload_0
+     196: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     199: iload         4
+     201: aload_0
+     202: getfield      #293                // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+     205: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+     208: iconst_3
+     209: invokevirtual #352                // Method net/minecraft/world/inventory/BrewingStandMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+     212: getfield      #355                // Field net/minecraft/world/inventory/Slot.index:I
+     215: invokestatic  #361                // Method com/alonie/brbe/util/ClientInventoryUtil.moveItemToSlot:(Lnet/minecraft/world/inventory/AbstractContainerMenu;II)V
+     218: iinc          4, 1
+     221: goto          98
+     224: aload_0
+     225: iconst_0
+     226: invokevirtual #373                // Method updateCollections:(Z)V
+     229: return
+
+  public void recipesUpdated();
+    Code:
+       0: aload_0
+       1: iconst_0
+       2: invokevirtual #373                // Method updateCollections:(Z)V
+       5: return
+
+  public void init(int, int, net.minecraft.client.Minecraft, boolean, net.minecraft.world.inventory.AbstractContainerMenu, java.util.function.Consumer, net.minecraft.core.RegistryAccess);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: aload_3
+       4: iload         4
+       6: aload         5
+       8: checkcast     #295                // class net/minecraft/world/inventory/BrewingStandMenu
+      11: aload         6
+      13: aload         7
+      15: invokevirtual #381                // Method init:(IILnet/minecraft/client/Minecraft;ZLnet/minecraft/world/inventory/BrewingStandMenu;Ljava/util/function/Consumer;Lnet/minecraft/core/RegistryAccess;)V
+      18: return
+
+  private static boolean lambda$init$2(net.minecraft.world.inventory.BrewingStandMenu, com.alonie.brbe.generic.GenericGhostRecipe$GhostRenderType, com.alonie.brbe.generic.GenericGhostRecipe$GenericGhostIngredient);
+    Code:
+       0: aload_0
+       1: getfield      #329                // Field net/minecraft/world/inventory/BrewingStandMenu.slots:Lnet/minecraft/core/NonNullList;
+       4: aload_2
+       5: invokevirtual #385                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+       8: invokevirtual #386                // Method net/minecraft/core/NonNullList.get:(I)Ljava/lang/Object;
+      11: checkcast     #233                // class net/minecraft/world/inventory/Slot
+      14: invokevirtual #344                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+      17: astore_3
+      18: getstatic     #390                // Field com/alonie/brbe/brewingstand/BrewingRecipeBookComponent$1.$SwitchMap$com$alonie$brbe$generic$GenericGhostRecipe$GhostRenderType:[I
+      21: aload_1
+      22: invokevirtual #393                // Method com/alonie/brbe/generic/GenericGhostRecipe$GhostRenderType.ordinal:()I
+      25: iaload
+      26: tableswitch   { // 1 to 3
+
+                     1: 52
+
+                     2: 52
+
+                     3: 173
+               default: 178
+          }
+      52: aload_2
+      53: invokevirtual #385                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+      56: invokestatic  #255                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getBOTTLE_SLOT_START:()I
+      59: if_icmpne     76
+      62: aload_2
+      63: invokevirtual #397                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getOwner:()Lcom/alonie/brbe/generic/GenericGhostRecipe;
+      66: iconst_1
+      67: invokevirtual #401                // Method com/alonie/brbe/generic/GenericGhostRecipe.getBySlot:(I)Lcom/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient;
+      70: invokevirtual #402                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+      73: goto          80
+      76: aload_2
+      77: invokevirtual #402                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getItem:()Lnet/minecraft/world/item/ItemStack;
+      80: astore        4
+      82: aload_2
+      83: invokevirtual #385                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+      86: invokestatic  #255                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getBOTTLE_SLOT_START:()I
+      89: if_icmplt     155
+      92: aload_2
+      93: invokevirtual #385                // Method com/alonie/brbe/generic/GenericGhostRecipe$GenericGhostIngredient.getContainerSlot:()I
+      96: invokestatic  #258                // InterfaceMethod com/alonie/brbe/mixins/accessors/BrewingStandMenuAccessor.getBOTTLE_SLOT_END:()I
+      99: if_icmpgt     155
+     102: aload_3
+     103: invokevirtual #364                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     106: instanceof    #404                // class net/minecraft/world/item/PotionItem
+     109: ifne          114
+     112: iconst_1
+     113: ireturn
+     114: aload_3
+     115: getstatic     #181                // Field net/minecraft/core/component/DataComponents.POTION_CONTENTS:Lnet/minecraft/core/component/DataComponentType;
+     118: invokevirtual #407                // Method net/minecraft/world/item/ItemStack.get:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+     121: checkcast     #183                // class net/minecraft/world/item/alchemy/PotionContents
+     124: astore        5
+     126: aload         4
+     128: getstatic     #181                // Field net/minecraft/core/component/DataComponents.POTION_CONTENTS:Lnet/minecraft/core/component/DataComponentType;
+     131: invokevirtual #407                // Method net/minecraft/world/item/ItemStack.get:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+     134: checkcast     #183                // class net/minecraft/world/item/alchemy/PotionContents
+     137: astore        6
+     139: aload         5
+     141: aload         6
+     143: invokestatic  #411                // Method java/util/Objects.equals:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     146: ifne          153
+     149: iconst_1
+     150: goto          154
+     153: iconst_0
+     154: ireturn
+     155: aload_3
+     156: aload         4
+     158: invokevirtual #364                // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+     161: invokevirtual #415                // Method net/minecraft/world/item/ItemStack.is:(Lnet/minecraft/world/item/Item;)Z
+     164: ifne          171
+     167: iconst_1
+     168: goto          172
+     171: iconst_0
+     172: ireturn
+     173: aload_3
+     174: invokevirtual #418                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     177: ireturn
+     178: iconst_1
+     179: ireturn
+
+  private com.alonie.brbe.generic.GenericRecipeButton lambda$init$0(net.minecraft.core.RegistryAccess);
+    Code:
+       0: new           #426                // class com/alonie/brbe/brewingstand/BrewableRecipeButton
+       3: dup
+       4: aload_1
+       5: aload_0
+       6: invokedynamic #435,  0            // InvokeDynamic #2:get:(Lcom/alonie/brbe/brewingstand/BrewingRecipeBookComponent;)Ljava/util/function/Supplier;
+      11: invokespecial #436                // Method com/alonie/brbe/brewingstand/BrewableRecipeButton."<init>":(Lnet/minecraft/core/RegistryAccess;Ljava/util/function/Supplier;)V
+      14: areturn
+
+  private java.lang.Boolean lambda$init$1();
+    Code:
+       0: aload_0
+       1: invokevirtual #438                // Method getRecipeBookType:()Lcom/alonie/brbe/util/BRBHelper$Book;
+       4: invokestatic  #444                // Method com/alonie/brbe/api/BRBBookSettings.isFiltering:(Lcom/alonie/brbe/util/BRBHelper$Book;)Z
+       7: invokestatic  #450                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      10: areturn
+
+  static {};
+    Code:
+       0: ldc           #2                  // class com/alonie/brbe/brewingstand/BrewingRecipeBookComponent
+       2: invokevirtual #456                // Method java/lang/Class.desiredAssertionStatus:()Z
+       5: ifne          12
+       8: iconst_1
+       9: goto          13
+      12: iconst_0
+      13: putstatic     #245                // Field $assertionsDisabled:Z
+      16: ldc_w         #458                // String brb.gui.togglePotions.brewable
+      19: invokestatic  #464                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      22: putstatic     #312                // Field ONLY_CRAFTABLES_TOOLTIP:Lnet/minecraft/network/chat/Component;
+      25: return
+}

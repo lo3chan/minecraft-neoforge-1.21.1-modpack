@@ -1,0 +1,62 @@
+Compiled from "BetterRecipeBookJEIPlugin.java"
+class com.alonie.brbe.neoforge.compat.jei.BetterRecipeBookJEIPlugin$1 implements com.alonie.brbe.compat.jei.JeiCompat$JeiHandler {
+  final mezz.jei.api.runtime.IJeiRuntime val$jeiRuntime;
+
+  final mezz.jei.api.runtime.IJeiKeyMappings val$km;
+
+  com.alonie.brbe.neoforge.compat.jei.BetterRecipeBookJEIPlugin$1();
+    Code:
+       0: aload_0
+       1: aload_2
+       2: putfield      #30                 // Field val$jeiRuntime:Lmezz/jei/api/runtime/IJeiRuntime;
+       5: aload_0
+       6: aload_3
+       7: putfield      #32                 // Field val$km:Lmezz/jei/api/runtime/IJeiKeyMappings;
+      10: aload_0
+      11: invokespecial #34                 // Method java/lang/Object."<init>":()V
+      14: return
+
+  public boolean openRecipeView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field val$jeiRuntime:Lmezz/jei/api/runtime/IJeiRuntime;
+       4: getstatic     #46                 // Field mezz/jei/api/recipe/RecipeIngredientRole.OUTPUT:Lmezz/jei/api/recipe/RecipeIngredientRole;
+       7: aload_1
+       8: invokestatic  #50                 // Method com/alonie/brbe/neoforge/compat/jei/BetterRecipeBookJEIPlugin.open:(Lmezz/jei/api/runtime/IJeiRuntime;Lmezz/jei/api/recipe/RecipeIngredientRole;Lnet/minecraft/world/item/ItemStack;)Z
+      11: ireturn
+
+  public boolean openUsageView(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field val$jeiRuntime:Lmezz/jei/api/runtime/IJeiRuntime;
+       4: getstatic     #55                 // Field mezz/jei/api/recipe/RecipeIngredientRole.INPUT:Lmezz/jei/api/recipe/RecipeIngredientRole;
+       7: aload_1
+       8: invokestatic  #50                 // Method com/alonie/brbe/neoforge/compat/jei/BetterRecipeBookJEIPlugin.open:(Lmezz/jei/api/runtime/IJeiRuntime;Lmezz/jei/api/recipe/RecipeIngredientRole;Lnet/minecraft/world/item/ItemStack;)Z
+      11: ireturn
+
+  public boolean matchesShowRecipe(int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: invokestatic  #63                 // Method com/mojang/blaze3d/platform/InputConstants.getKey:(II)Lcom/mojang/blaze3d/platform/InputConstants$Key;
+       5: astore_3
+       6: aload_0
+       7: getfield      #32                 // Field val$km:Lmezz/jei/api/runtime/IJeiKeyMappings;
+      10: invokeinterface #69,  1           // InterfaceMethod mezz/jei/api/runtime/IJeiKeyMappings.getShowRecipe:()Lmezz/jei/api/runtime/IJeiKeyMapping;
+      15: aload_3
+      16: invokeinterface #75,  2           // InterfaceMethod mezz/jei/api/runtime/IJeiKeyMapping.isActiveAndMatches:(Lcom/mojang/blaze3d/platform/InputConstants$Key;)Z
+      21: ireturn
+
+  public boolean matchesShowUses(int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: invokestatic  #63                 // Method com/mojang/blaze3d/platform/InputConstants.getKey:(II)Lcom/mojang/blaze3d/platform/InputConstants$Key;
+       5: astore_3
+       6: aload_0
+       7: getfield      #32                 // Field val$km:Lmezz/jei/api/runtime/IJeiKeyMappings;
+      10: invokeinterface #82,  1           // InterfaceMethod mezz/jei/api/runtime/IJeiKeyMappings.getShowUses:()Lmezz/jei/api/runtime/IJeiKeyMapping;
+      15: aload_3
+      16: invokeinterface #75,  2           // InterfaceMethod mezz/jei/api/runtime/IJeiKeyMapping.isActiveAndMatches:(Lcom/mojang/blaze3d/platform/InputConstants$Key;)Z
+      21: ireturn
+}

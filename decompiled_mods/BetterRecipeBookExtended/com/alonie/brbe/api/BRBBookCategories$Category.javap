@@ -1,0 +1,31 @@
+Compiled from "BRBBookCategories.java"
+public class com.alonie.brbe.api.BRBBookCategories$Category {
+  private final java.util.List<net.minecraft.world.item.ItemStack> itemIcons;
+
+  private final com.alonie.brbe.api.BRBBookCategories$Category$Type type;
+
+  com.alonie.brbe.api.BRBBookCategories$Category(com.alonie.brbe.api.BRBBookCategories$Category$Type, net.minecraft.world.item.ItemStack...);
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_2
+       6: invokestatic  #28                 // Method com/google/common/collect/ImmutableList.copyOf:([Ljava/lang/Object;)Lcom/google/common/collect/ImmutableList;
+       9: putfield      #30                 // Field itemIcons:Ljava/util/List;
+      12: aload_0
+      13: aload_1
+      14: putfield      #32                 // Field type:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+      17: return
+
+  public java.util.List<net.minecraft.world.item.ItemStack> getItemIcons();
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field itemIcons:Ljava/util/List;
+       4: areturn
+
+  public com.alonie.brbe.api.BRBBookCategories$Category$Type getType();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field type:Lcom/alonie/brbe/api/BRBBookCategories$Category$Type;
+       4: areturn
+}

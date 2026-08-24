@@ -1,0 +1,38 @@
+Compiled from "GhostRecipeRenderer.java"
+public final class com.alonie.brbe.render.GhostRecipeRenderer {
+  public com.alonie.brbe.render.GhostRecipeRenderer();
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void render(com.alonie.brbe.generic.GenericGhostRecipe, net.minecraft.client.gui.GuiGraphics, net.minecraft.client.Minecraft, int, int, boolean, float, com.alonie.brbe.api.BRBBookCategories$Category);
+    Code:
+       0: aload_1
+       1: ifnonnull     5
+       4: return
+       5: aload_1
+       6: aload_2
+       7: aload_3
+       8: iload         4
+      10: iload         5
+      12: iload         6
+      14: fload         7
+      16: aload         8
+      18: invokevirtual #31                 // Method com/alonie/brbe/generic/GenericGhostRecipe.render:(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/Minecraft;IIZFLcom/alonie/brbe/api/BRBBookCategories$Category;)V
+      21: return
+
+  public void renderTooltip(com.alonie.brbe.generic.GenericGhostRecipe, net.minecraft.client.gui.GuiGraphics, int, int, int, int);
+    Code:
+       0: aload_1
+       1: ifnonnull     5
+       4: return
+       5: aload_1
+       6: aload_2
+       7: iload_3
+       8: iload         4
+      10: iload         5
+      12: iload         6
+      14: invokevirtual #46                 // Method com/alonie/brbe/generic/GenericGhostRecipe.drawTooltip:(Lnet/minecraft/client/gui/GuiGraphics;IIII)V
+      17: return
+}

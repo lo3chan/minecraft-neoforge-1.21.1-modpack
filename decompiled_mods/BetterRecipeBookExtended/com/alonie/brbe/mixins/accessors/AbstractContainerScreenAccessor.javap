@@ -1,0 +1,8 @@
+Compiled from "AbstractContainerScreenAccessor.java"
+public interface com.alonie.brbe.mixins.accessors.AbstractContainerScreenAccessor {
+  public abstract int getLeftPos();
+
+  public abstract void setLeftPos(int);
+
+  public abstract int getImageWidth();
+}

@@ -1,0 +1,149 @@
+Compiled from "RecipeBookComponentMixin.java"
+public class com.alonie.brbe.mixins.search.RecipeBookComponentMixin {
+  protected net.minecraft.client.Minecraft minecraft;
+
+  protected net.minecraft.client.gui.components.EditBox searchBox;
+
+  private java.lang.String betterRecipeBook$savedSearchText;
+
+  private com.alonie.brbe.search.SearchQuery betterRecipeBook$parsedQuery;
+
+  public com.alonie.brbe.mixins.search.RecipeBookComponentMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #28                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  private void betterRecipeBook$onUpdateCollections(boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: aconst_null
+       2: putfield      #42                 // Field betterRecipeBook$savedSearchText:Ljava/lang/String;
+       5: aload_0
+       6: aconst_null
+       7: putfield      #44                 // Field betterRecipeBook$parsedQuery:Lcom/alonie/brbe/search/SearchQuery;
+      10: aload_0
+      11: getfield      #46                 // Field searchBox:Lnet/minecraft/client/gui/components/EditBox;
+      14: ifnonnull     18
+      17: return
+      18: aload_0
+      19: getfield      #46                 // Field searchBox:Lnet/minecraft/client/gui/components/EditBox;
+      22: invokevirtual #52                 // Method net/minecraft/client/gui/components/EditBox.getValue:()Ljava/lang/String;
+      25: astore_3
+      26: aload_3
+      27: ifnull        37
+      30: aload_3
+      31: invokevirtual #58                 // Method java/lang/String.isEmpty:()Z
+      34: ifeq          38
+      37: return
+      38: aload_3
+      39: invokestatic  #64                 // Method com/alonie/brbe/search/SearchQuery.parse:(Ljava/lang/String;)Lcom/alonie/brbe/search/SearchQuery;
+      42: astore        4
+      44: aload         4
+      46: invokevirtual #67                 // Method com/alonie/brbe/search/SearchQuery.isAdvanced:()Z
+      49: ifne          53
+      52: return
+      53: aload_0
+      54: aload_3
+      55: putfield      #42                 // Field betterRecipeBook$savedSearchText:Ljava/lang/String;
+      58: aload_0
+      59: aload         4
+      61: putfield      #44                 // Field betterRecipeBook$parsedQuery:Lcom/alonie/brbe/search/SearchQuery;
+      64: aload_0
+      65: getfield      #46                 // Field searchBox:Lnet/minecraft/client/gui/components/EditBox;
+      68: ldc           #69                 // String
+      70: invokevirtual #73                 // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+      73: return
+
+  private java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> betterRecipeBook$applyAdvancedSearch(java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>);
+    Code:
+       0: aload_0
+       1: getfield      #44                 // Field betterRecipeBook$parsedQuery:Lcom/alonie/brbe/search/SearchQuery;
+       4: ifnull        17
+       7: aload_0
+       8: getfield      #89                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      11: getfield      #95                 // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      14: ifnonnull     19
+      17: aload_1
+      18: areturn
+      19: new           #97                 // class com/alonie/brbe/search/SearchCache
+      22: dup
+      23: invokespecial #98                 // Method com/alonie/brbe/search/SearchCache."<init>":()V
+      26: astore_2
+      27: aload_0
+      28: getfield      #89                 // Field minecraft:Lnet/minecraft/client/Minecraft;
+      31: getfield      #95                 // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+      34: invokevirtual #104                // Method net/minecraft/client/multiplayer/ClientLevel.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      37: astore_3
+      38: new           #106                // class java/util/ArrayList
+      41: dup
+      42: invokespecial #107                // Method java/util/ArrayList."<init>":()V
+      45: astore        4
+      47: aload_1
+      48: invokeinterface #113,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      53: astore        5
+      55: aload         5
+      57: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      62: ifeq          169
+      65: aload         5
+      67: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      72: checkcast     #126                // class net/minecraft/client/gui/screens/recipebook/RecipeCollection
+      75: astore        6
+      77: aload         6
+      79: invokevirtual #130                // Method net/minecraft/client/gui/screens/recipebook/RecipeCollection.getRecipes:()Ljava/util/List;
+      82: invokeinterface #113,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      87: astore        7
+      89: aload         7
+      91: invokeinterface #120,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      96: ifeq          166
+      99: aload         7
+     101: invokeinterface #124,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     106: checkcast     #132                // class net/minecraft/world/item/crafting/RecipeHolder
+     109: astore        8
+     111: aload         8
+     113: invokevirtual #135                // Method net/minecraft/world/item/crafting/RecipeHolder.value:()Lnet/minecraft/world/item/crafting/Recipe;
+     116: aload_3
+     117: invokeinterface #141,  2          // InterfaceMethod net/minecraft/world/item/crafting/Recipe.getResultItem:(Lnet/minecraft/core/HolderLookup$Provider;)Lnet/minecraft/world/item/ItemStack;
+     122: astore        9
+     124: aload         9
+     126: ifnull        163
+     129: aload         9
+     131: invokevirtual #144                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+     134: ifne          163
+     137: aload_0
+     138: getfield      #44                 // Field betterRecipeBook$parsedQuery:Lcom/alonie/brbe/search/SearchQuery;
+     141: aload         9
+     143: aload_2
+     144: invokevirtual #148                // Method com/alonie/brbe/search/SearchQuery.matches:(Lnet/minecraft/world/item/ItemStack;Lcom/alonie/brbe/search/SearchCache;)Z
+     147: ifeq          163
+     150: aload         4
+     152: aload         6
+     154: invokeinterface #152,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     159: pop
+     160: goto          166
+     163: goto          89
+     166: goto          55
+     169: aload         4
+     171: areturn
+
+  private void betterRecipeBook$restoreSearchText(boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field betterRecipeBook$savedSearchText:Ljava/lang/String;
+       4: ifnull        35
+       7: aload_0
+       8: getfield      #46                 // Field searchBox:Lnet/minecraft/client/gui/components/EditBox;
+      11: ifnull        35
+      14: aload_0
+      15: getfield      #46                 // Field searchBox:Lnet/minecraft/client/gui/components/EditBox;
+      18: aload_0
+      19: getfield      #42                 // Field betterRecipeBook$savedSearchText:Ljava/lang/String;
+      22: invokevirtual #73                 // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+      25: aload_0
+      26: aconst_null
+      27: putfield      #42                 // Field betterRecipeBook$savedSearchText:Ljava/lang/String;
+      30: aload_0
+      31: aconst_null
+      32: putfield      #44                 // Field betterRecipeBook$parsedQuery:Lcom/alonie/brbe/search/SearchQuery;
+      35: return
+}
