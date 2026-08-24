@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 133,
+  "totalMods": 134,
   "mods": [
     {
       "id": "minecraft",
@@ -471,6 +471,13 @@
       "id": "cloth-config-15.0.140-neoforge",
       "name": "cloth-config-15.0.140-neoforge.jar",
       "file": "cloth-config-15.0.140-neoforge.jar",
+      "version": "1.21.1",
+      "type": "mod"
+    },
+    {
+      "id": "codxlib-1.5.0-neoforge+1.21.1",
+      "name": "codxlib-1.5.0-neoforge+1.21.1.jar",
+      "file": "codxlib-1.5.0-neoforge+1.21.1.jar",
       "version": "1.21.1",
       "type": "mod"
     },
