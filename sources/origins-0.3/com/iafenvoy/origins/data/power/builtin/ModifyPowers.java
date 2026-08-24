@@ -1,0 +1,131 @@
+package com.iafenvoy.origins.data.power.builtin;
+
+import com.iafenvoy.origins.data.power.Power;
+import com.iafenvoy.origins.data.power.PowerRegistries;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyAirSpeedPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyAttributePower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyBlockRenderPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyBreakSpeedPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyCameraSubmersionPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyCraftingPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyDamageDealtPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyDamageTakenPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyDeathSoundPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectAmplifierPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectDurationPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectTypePower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEnchantmentDamageDealtPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEnchantmentDamageTakenPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEnchantmentLevelPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyExhaustionPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyFallingPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyFluidRenderPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyFoodPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyGrindstonePower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyHarvestPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyHealingPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyHurtSoundPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyInsomniaTicksPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyJumpPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyPlayerSpawnPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyProjectileDamagePower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifySlipperinessPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyVelocityPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyXPGainPower;
+import com.mojang.serialization.MapCodec;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public final class ModifyPowers {
+   public static final DeferredRegister<MapCodec<? extends Power>> REGISTRY = DeferredRegister.create(PowerRegistries.POWER_TYPE, "origins");
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyAirSpeedPower>> MODIFY_AIR_SPEED = REGISTRY.register(
+      "modify_air_speed", () -> ModifyAirSpeedPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyAttributePower>> MODIFY_ATTRIBUTE = REGISTRY.register(
+      "modify_attribute", () -> ModifyAttributePower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyBlockRenderPower>> MODIFY_BLOCK_RENDER = REGISTRY.register(
+      "modify_block_render", () -> ModifyBlockRenderPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyBreakSpeedPower>> MODIFY_BREAK_SPEED = REGISTRY.register(
+      "modify_break_speed", () -> ModifyBreakSpeedPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyCameraSubmersionPower>> MODIFY_CAMERA_SUBMERSION = REGISTRY.register(
+      "modify_camera_submersion", () -> ModifyCameraSubmersionPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyCraftingPower>> MODIFY_CRAFTING = REGISTRY.register(
+      "modify_crafting", () -> ModifyCraftingPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyDamageDealtPower>> MODIFY_DAMAGE_DEALT = REGISTRY.register(
+      "modify_damage_dealt", () -> ModifyDamageDealtPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyDamageTakenPower>> MODIFY_DAMAGE_TAKEN = REGISTRY.register(
+      "modify_damage_taken", () -> ModifyDamageTakenPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyDeathSoundPower>> MODIFY_DEATH_SOUND = REGISTRY.register(
+      "modify_death_sound", () -> ModifyDeathSoundPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEffectAmplifierPower>> MODIFY_EFFECT_AMPLIFIER = REGISTRY.register(
+      "modify_effect_amplifier", () -> ModifyEffectAmplifierPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEffectDurationPower>> MODIFY_EFFECT_DURATION = REGISTRY.register(
+      "modify_effect_duration", () -> ModifyEffectDurationPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEffectTypePower>> MODIFY_EFFECT_TYPE = REGISTRY.register(
+      "modify_effect_type", () -> ModifyEffectTypePower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEnchantmentDamageDealtPower>> MODIFY_ENCHANTMENT_DAMAGE_DEALT = REGISTRY.register(
+      "modify_enchantment_damage_dealt", () -> ModifyEnchantmentDamageDealtPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEnchantmentDamageTakenPower>> MODIFY_ENCHANTMENT_DAMAGE_TAKEN = REGISTRY.register(
+      "modify_enchantment_damage_taken", () -> ModifyEnchantmentDamageTakenPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyEnchantmentLevelPower>> MODIFY_ENCHANTMENT_LEVEL = REGISTRY.register(
+      "modify_enchantment_level", () -> ModifyEnchantmentLevelPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyExhaustionPower>> MODIFY_EXHAUSTION = REGISTRY.register(
+      "modify_exhaustion", () -> ModifyExhaustionPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyFallingPower>> MODIFY_FALLING = REGISTRY.register(
+      "modify_falling", () -> ModifyFallingPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyFluidRenderPower>> MODIFY_FLUID_RENDER = REGISTRY.register(
+      "modify_fluid_render", () -> ModifyFluidRenderPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyFoodPower>> MODIFY_FOOD = REGISTRY.register(
+      "modify_food", () -> ModifyFoodPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyGrindstonePower>> MODIFY_GRINDSTONE = REGISTRY.register(
+      "modify_grindstone", () -> ModifyGrindstonePower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyHarvestPower>> MODIFY_HARVEST = REGISTRY.register(
+      "modify_harvest", () -> ModifyHarvestPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyHealingPower>> MODIFY_HEALING = REGISTRY.register(
+      "modify_healing", () -> ModifyHealingPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyHurtSoundPower>> MODIFY_HURT_SOUND = REGISTRY.register(
+      "modify_hurt_sound", () -> ModifyHurtSoundPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyInsomniaTicksPower>> MODIFY_INSOMNIA_TICKS = REGISTRY.register(
+      "modify_insomnia_ticks", () -> ModifyInsomniaTicksPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyJumpPower>> MODIFY_JUMP = REGISTRY.register(
+      "modify_jump", () -> ModifyJumpPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyPlayerSpawnPower>> MODIFY_PLAYER_SPAWN = REGISTRY.register(
+      "modify_player_spawn", () -> ModifyPlayerSpawnPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyProjectileDamagePower>> MODIFY_PROJECTILE_DAMAGE = REGISTRY.register(
+      "modify_projectile_damage", () -> ModifyProjectileDamagePower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifySlipperinessPower>> MODIFY_SLIPPERINESS = REGISTRY.register(
+      "modify_slipperiness", () -> ModifySlipperinessPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyVelocityPower>> MODIFY_VELOCITY = REGISTRY.register(
+      "modify_velocity", () -> ModifyVelocityPower.CODEC
+   );
+   public static final DeferredHolder<MapCodec<? extends Power>, MapCodec<ModifyXPGainPower>> MODIFY_XP_GAIN = REGISTRY.register(
+      "modify_xp_gain", () -> ModifyXPGainPower.CODEC
+   );
+}

@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "LGPL-3.0"
+issueTrackerURL = "https://github.com/IAFEnvoy/Jupiter/issues"
+
+[[mods]]
+modId = "jupiter"
+displayName = "Jupiter"
+version = "2.3.7"
+logoFile = "logo.png"
+authors = "IAFEnvoy"
+description = '''A powerful, auto sync config library.'''
+
+[[dependencies.jupiter]]
+modId = "neoforge"
+type = "required"
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.jupiter]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21],[1.21.1]"
+
+[[mixins]]
+config = "jupiter.mixins.json"

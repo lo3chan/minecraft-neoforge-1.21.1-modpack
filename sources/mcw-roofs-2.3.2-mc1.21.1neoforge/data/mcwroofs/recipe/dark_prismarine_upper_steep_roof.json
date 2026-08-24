@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:dark_prismarine"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:dark_prismarine_upper_steep_roof"
+  },
+  "group" : "roofs"
+}

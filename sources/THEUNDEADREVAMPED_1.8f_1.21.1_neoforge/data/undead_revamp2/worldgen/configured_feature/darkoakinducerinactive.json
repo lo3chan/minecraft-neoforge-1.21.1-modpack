@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:ore",
+  "config": {
+    "size": 1,
+    "discard_chance_on_air_exposure": 0,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "blockstate_match",
+          "block_state": {
+            "Name": "undead_revamp2:darkoakinducer"
+          }
+        },
+        "state": {
+          "Name": "undead_revamp2:darkoakinducerinactive"
+        }
+      },
+      {
+        "target": {
+          "predicate_type": "blockstate_match",
+          "block_state": {
+            "Name": "minecraft:spruce_log",
+            "Properties": {
+              "axis": "y"
+            }
+          }
+        },
+        "state": {
+          "Name": "undead_revamp2:darkoakinducerinactive"
+        }
+      }
+    ]
+  }
+}

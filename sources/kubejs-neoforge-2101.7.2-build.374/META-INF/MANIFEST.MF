@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: kubejs
+Specification-Vendor: latvian.dev
+Specification-Version: 1
+Implementation-Title: KubeJS-1.21.1
+Implementation-Version: 2101.7.2-build.374
+Implementation-Vendor: latvian.dev
+Implementation-Timestamp: 2026-08-23T14:22:19+0000
+

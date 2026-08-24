@@ -1,0 +1,34 @@
+package mezz.jei.gui.recipes;
+
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.common.Internal;
+import mezz.jei.common.gui.JeiTooltip;
+import mezz.jei.common.gui.textures.Textures;
+import mezz.jei.common.util.ImmutableRect2i;
+import mezz.jei.gui.input.IUserInputHandler;
+import net.minecraft.client.gui.GuiGraphics;
+
+public abstract class RecipeGuiTab implements IUserInputHandler {
+   public static final int TAB_HEIGHT = 24;
+   public static final int TAB_WIDTH = 24;
+   protected final ImmutableRect2i area;
+
+   public RecipeGuiTab(int x, int y) {
+      this.area = new ImmutableRect2i(x, y, 24, 24);
+   }
+
+   public boolean isMouseOver(double mouseX, double mouseY) {
+      return this.area.contains(mouseX, mouseY);
+   }
+
+   public abstract boolean isSelected(IRecipeCategory<?> var1);
+
+   public void draw(boolean selected, GuiGraphics guiGraphics, int mouseX, int mouseY) {
+      Textures textures = Internal.getTextures();
+      IDrawable tab = selected ? textures.getTabSelected() : textures.getTabUnselected();
+      tab.draw(guiGraphics, this.area.x(), this.area.y());
+   }
+
+   public abstract JeiTooltip getTooltip();
+}

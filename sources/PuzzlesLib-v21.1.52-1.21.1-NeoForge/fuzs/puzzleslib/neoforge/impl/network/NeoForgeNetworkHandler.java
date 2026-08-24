@@ -1,0 +1,134 @@
+package fuzs.puzzleslib.neoforge.impl.network;
+
+import fuzs.puzzleslib.api.core.v1.Proxy;
+import fuzs.puzzleslib.api.network.v2.MessageV2;
+import fuzs.puzzleslib.api.network.v3.ClientboundMessage;
+import fuzs.puzzleslib.api.network.v3.MessageV3;
+import fuzs.puzzleslib.api.network.v3.ServerboundMessage;
+import fuzs.puzzleslib.impl.network.NetworkHandlerRegistryImpl;
+import fuzs.puzzleslib.impl.network.codec.CustomPacketPayloadAdapter;
+import fuzs.puzzleslib.impl.network.codec.StreamCodecRegistryImpl;
+import fuzs.puzzleslib.neoforge.api.core.v1.NeoForgeModContainerHelper;
+import fuzs.puzzleslib.neoforge.impl.core.NeoForgeProxy;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.codec.StreamDecoder;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.PacketFlow;
+import net.minecraft.network.protocol.common.ClientCommonPacketListener;
+import net.minecraft.network.protocol.common.ServerCommonPacketListener;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import org.jetbrains.annotations.Nullable;
+
+public final class NeoForgeNetworkHandler extends NetworkHandlerRegistryImpl {
+   @Nullable
+   private PayloadRegistrar channel;
+
+   public NeoForgeNetworkHandler(String modId) {
+      super(modId);
+   }
+
+   @Override
+   public <T extends Record & ClientboundMessage<T>> void registerClientbound$Internal(Class<?> clazz) {
+      this.register(
+         clazz,
+         PacketFlow.CLIENTBOUND,
+         (payload, context) -> ((NeoForgeProxy)Proxy.INSTANCE).registerClientReceiver(payload, context, rec$ -> (Record)((MessageV3)rec$).unwrap())
+      );
+   }
+
+   @Override
+   public <T extends Record & ServerboundMessage<T>> void registerServerbound$Internal(Class<?> clazz) {
+      this.register(
+         clazz,
+         PacketFlow.SERVERBOUND,
+         (payload, context) -> ((NeoForgeProxy)Proxy.INSTANCE).registerServerReceiver(payload, context, rec$ -> (Record)((MessageV3)rec$).unwrap())
+      );
+   }
+
+   @Override
+   protected <T extends MessageV2<T>> void registerLegacyClientbound$Internal(Class<?> clazz, StreamDecoder<FriendlyByteBuf, ?> factory) {
+      this.registerLegacy(
+         clazz,
+         factory,
+         PacketFlow.CLIENTBOUND,
+         (payload, context) -> ((NeoForgeProxy)Proxy.INSTANCE).registerClientReceiver(payload, context, MessageV2::toClientboundMessage)
+      );
+   }
+
+   @Override
+   protected <T extends MessageV2<T>> void registerLegacyServerbound$Internal(Class<?> clazz, StreamDecoder<FriendlyByteBuf, ?> factory) {
+      this.registerLegacy(
+         clazz,
+         factory,
+         PacketFlow.SERVERBOUND,
+         (payload, context) -> ((NeoForgeProxy)Proxy.INSTANCE).registerServerReceiver(payload, context, MessageV2::toServerboundMessage)
+      );
+   }
+
+   private <T extends MessageV2<T>> void registerLegacy(
+      Class<T> clazz,
+      StreamDecoder<FriendlyByteBuf, T> decoder,
+      PacketFlow packetFlow,
+      BiFunction<CustomPacketPayloadAdapter<T>, IPayloadContext, CompletableFuture<Void>> receiverRegistrar
+   ) {
+      this.isFrozenOrThrow();
+      this.registerSerializer(clazz, (buf, message) -> message.write(buf), decoder);
+      this.register(clazz, packetFlow, receiverRegistrar);
+   }
+
+   private <T> void register(
+      Class<T> clazz, PacketFlow packetFlow, BiFunction<CustomPacketPayloadAdapter<T>, IPayloadContext, CompletableFuture<Void>> receiverRegistrar
+   ) {
+      this.isFrozenOrThrow();
+      Objects.requireNonNull(this.channel, "channel is null");
+      Type<CustomPacketPayloadAdapter<T>> type = this.registerMessageType(clazz);
+      StreamCodec<? super RegistryFriendlyByteBuf, CustomPacketPayloadAdapter<T>> streamCodec = CustomPacketPayloadAdapter.streamCodec(
+         type, StreamCodecRegistryImpl.fromType(clazz)
+      );
+      this.channel.playBidirectional(type, streamCodec, (payload, context) -> {
+         if (context.flow() == packetFlow) {
+            receiverRegistrar.apply(payload, context).exceptionally(throwable -> {
+               this.disconnectExceptionally(clazz).accept(throwable, context::disconnect);
+               return null;
+            });
+         } else {
+            context.enqueueWork(() -> this.disconnectWrongSide(clazz).accept(context::disconnect));
+         }
+      });
+   }
+
+   @Override
+   public <T> Packet<ClientCommonPacketListener> toClientboundPacket(ClientboundMessage<T> message) {
+      Objects.requireNonNull(message, "message is null");
+      return this.toPacket(CustomPacketPayload::toVanillaClientbound, message);
+   }
+
+   @Override
+   public <T> Packet<ServerCommonPacketListener> toServerboundPacket(ServerboundMessage<T> message) {
+      Objects.requireNonNull(message, "message is null");
+      return this.toPacket(CustomPacketPayload::toVanillaServerbound, message);
+   }
+
+   @Override
+   public void freeze() {
+      this.isWritableOrThrow();
+      this.isFrozen = true;
+      NeoForgeModContainerHelper.getOptionalModEventBus(this.channelName.getNamespace()).ifPresent(eventBus -> eventBus.addListener(evt -> {
+         this.isFrozenOrThrow();
+         this.channel = evt.registrar(this.channelName.toLanguageKey());
+         if (this.optional) {
+            this.channel = this.channel.optional();
+         }
+
+         super.freeze();
+      }));
+   }
+}

@@ -1,0 +1,25 @@
+{
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.rise": "\"ブラッドムーン\"が昇る… 遠くからアンデッドたちのうめき声が聞こえる…",
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.set": "\"ブラッドムーン\"が沈む… アンデッドたちが燃え始める…",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.rise": "\"ブルームーン\"が昇る… なんだかラッキーな気分だ！",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.set": "\"ブルームーン\"が沈む… 幸運を感じなくなった…",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.rise": "\"ハーヴェストムーン\"が昇る… 作物がよく育ちそうだ",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.set": "\"ハーヴェストムーン\"が沈む…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.rise": "\"スーパーブラッドムーン\"が昇る… 唸り声と共にアンデッドたちが夜を埋め尽くす…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.set": "\"スーパーブラッドムーン\"が沈む… アンデッドたちが燃え始める…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.rise": "\"スーパーブルームーン\"が昇る… ものすごくラッキーな気分だ！",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.set": "\"スーパーブルームーン\"が沈む… 幸運を感じなくなった…",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.rise": "\"スーパーハーヴェストムーン\"が昇る… 作物がとてもよく育ちそうだ",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.set": "\"スーパーハーヴェストムーン\"が沈む…",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.rise": "\"スーパームーン\"が昇る… スライムが近くに現れ始める",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.set": "\"スーパームーン\"が沈む…",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blood_moon": "ブラッドムーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blue_moon": "ブルームーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.harvest_moon": "ハーヴェストムーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.moon": "月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blood_moon": "スーパーブラッドムーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blue_moon": "スーパーブルームーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_harvest_moon": "スーパーハーヴェストムーン",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_moon": "スーパームーン"
+}
+

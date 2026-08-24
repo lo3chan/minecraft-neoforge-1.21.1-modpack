@@ -1,0 +1,17 @@
+{
+  "type": "undead_revamp2:structure_feature",
+  "config": {
+    "structure": "undead_revamp2:cloggerplacetrue",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": [
+      "minecraft:structure_block",
+      "minecraft:air"
+    ],
+    "offset": [
+      0,
+      10,
+      0
+    ]
+  }
+}

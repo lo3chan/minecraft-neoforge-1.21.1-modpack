@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:fangofthe_hound_leader"
+    },
+    "title": {
+      "translate": "advancements.big_boy.title"
+    },
+    "description": {
+      "translate": "advancements.big_boy.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "big_boy_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 15
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

@@ -1,0 +1,44 @@
+package com.iafenvoy.origins.data.power.builtin.action;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.power.Power;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class ActionOnLandPower extends Power {
+   public static final MapCodec<ActionOnLandPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings), EntityAction.optionalCodec("entity_action").forGetter(ActionOnLandPower::getEntityAction)
+         )
+         .apply(i, ActionOnLandPower::new)
+   );
+   private final EntityAction entityAction;
+
+   public ActionOnLandPower(Power.BaseSettings settings, EntityAction entityAction) {
+      super(settings);
+      this.entityAction = entityAction;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @SubscribeEvent
+   public static void onFall(LivingFallEvent event) {
+      LivingEntity living = event.getEntity();
+      PowerHelper.get(living).execute(ActionOnLandPower.class, (h, p) -> p.entityAction.execute(living));
+   }
+}

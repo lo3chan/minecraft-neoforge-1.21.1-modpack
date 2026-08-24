@@ -1,0 +1,36 @@
+package io.github.razordevs.deep_aether.advancement;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger.SimpleInstance;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+
+public class PoisonTrigger extends SimpleCriterionTrigger<PoisonTrigger.Instance> {
+   public Codec<PoisonTrigger.Instance> codec() {
+      return PoisonTrigger.Instance.CODEC;
+   }
+
+   public void trigger(ServerPlayer player, ItemStack stack) {
+      this.trigger(player, instance -> instance.test(stack));
+   }
+
+   public record Instance(Optional<ContextAwarePredicate> player, Optional<ItemPredicate> item) implements SimpleInstance {
+      public static final Codec<PoisonTrigger.Instance> CODEC = RecordCodecBuilder.create(
+         instance -> instance.group(
+               EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(PoisonTrigger.Instance::player),
+               ItemPredicate.CODEC.optionalFieldOf("item").forGetter(PoisonTrigger.Instance::item)
+            )
+            .apply(instance, PoisonTrigger.Instance::new)
+      );
+
+      public boolean test(ItemStack stack) {
+         return this.item.isEmpty() || this.item.get().test(stack);
+      }
+   }
+}

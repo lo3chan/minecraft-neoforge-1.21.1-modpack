@@ -1,0 +1,117 @@
+package com.alonie.brbe.util;
+
+import com.alonie.brbe.mixins.accessors.RecipeCollectionAccessor;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.WeakHashMap;
+import net.minecraft.client.gui.screens.recipebook.RecipeCollection;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
+
+public final class IncompatibleCraftingUtil {
+   private static final WeakHashMap<RecipeCollection, Set<ResourceLocation>> INCOMPATIBLE_RECIPES = new WeakHashMap<>();
+   private static final WeakHashMap<RecipeCollection, Integer> CHECKED_COLLECTIONS = new WeakHashMap<>();
+   private static int filteringGeneration;
+   private static boolean filteringActive;
+
+   private IncompatibleCraftingUtil() {
+   }
+
+   public static boolean isActive() {
+      return filteringActive;
+   }
+
+   public static void beginFiltering(boolean active) {
+      filteringActive = active;
+      if (active) {
+         if (filteringGeneration == 2147483647) {
+            INCOMPATIBLE_RECIPES.clear();
+            CHECKED_COLLECTIONS.clear();
+            filteringGeneration = 0;
+         }
+
+         filteringGeneration++;
+      }
+   }
+
+   public static void clearCaches() {
+   }
+
+   public static void markIncompatibleRecipes(RecipeCollection collection) {
+      CHECKED_COLLECTIONS.put(collection, filteringGeneration);
+      Set<ResourceLocation> incompatible = null;
+      RecipeCollectionAccessor accessor = (RecipeCollectionAccessor)collection;
+
+      for (RecipeHolder<?> holder : collection.getRecipes()) {
+         if (holder.value() instanceof ShapedRecipe shaped) {
+            if (shaped.getWidth() > 2 || shaped.getHeight() > 2) {
+               if (incompatible == null) {
+                  incompatible = new HashSet<>();
+               }
+
+               incompatible.add(holder.id());
+               accessor.getFitsDimensions().add(holder);
+            }
+         } else if (holder.value() instanceof ShapelessRecipe shapeless && shapeless.getIngredients().size() > 4) {
+            if (incompatible == null) {
+               incompatible = new HashSet<>();
+            }
+
+            incompatible.add(holder.id());
+            accessor.getFitsDimensions().add(holder);
+         }
+      }
+
+      if (incompatible != null && !incompatible.isEmpty()) {
+         INCOMPATIBLE_RECIPES.put(collection, incompatible);
+      } else {
+         INCOMPATIBLE_RECIPES.remove(collection);
+      }
+   }
+
+   public static void markIncompatibleOnCollection(RecipeCollection collection, ResourceLocation id) {
+      CHECKED_COLLECTIONS.put(collection, filteringGeneration);
+      Set<ResourceLocation> existing = INCOMPATIBLE_RECIPES.get(collection);
+      if (existing != null) {
+         existing.add(id);
+      } else {
+         INCOMPATIBLE_RECIPES.put(collection, new HashSet<>(Collections.singleton(id)));
+      }
+   }
+
+   public static boolean isIncompatible(RecipeCollection collection, ResourceLocation id) {
+      Set<ResourceLocation> set = INCOMPATIBLE_RECIPES.get(collection);
+      return set != null && set.contains(id);
+   }
+
+   public static boolean checkIncompatible(RecipeCollection collection, ResourceLocation id) {
+      for (RecipeHolder<?> holder : collection.getRecipes()) {
+         if (holder.id().equals(id)) {
+            return isLargeRecipe(holder.value());
+         }
+      }
+
+      return false;
+   }
+
+   public static boolean checkIncompatible(RecipeHolder<?> holder) {
+      return holder != null && isLargeRecipe(holder.value());
+   }
+
+   private static boolean isLargeRecipe(Recipe<?> recipe) {
+      if (!(recipe instanceof ShapedRecipe shaped)) {
+         return recipe instanceof ShapelessRecipe shapeless ? shapeless.getIngredients().size() > 4 : false;
+      } else {
+         return shaped.getWidth() > 2 || shaped.getHeight() > 2;
+      }
+   }
+
+   public static boolean hasIncompatibleRecipes(RecipeCollection collection) {
+      Set<ResourceLocation> set = INCOMPATIBLE_RECIPES.get(collection);
+      return set != null && !set.isEmpty();
+   }
+}

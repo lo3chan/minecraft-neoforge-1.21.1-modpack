@@ -1,0 +1,41 @@
+package dev.worldgen.lithostitched.impl.worldgen.densityfunction;
+
+import com.mojang.serialization.MapCodec;
+import dev.worldgen.lithostitched.worldgen.LithostitchedCodecs;
+import net.minecraft.util.KeyDispatchDataCodec;
+import net.minecraft.world.level.levelgen.DensityFunction;
+import net.minecraft.world.level.levelgen.DensityFunction.Visitor;
+
+public class SinDensityFunction extends TransformerDensityFunction {
+   public static final MapCodec<SinDensityFunction> DATA_CODEC = LithostitchedCodecs.DF_BASE
+      .fieldOf("argument")
+      .xmap(SinDensityFunction::new, TransformerDensityFunction::argument);
+   public static KeyDispatchDataCodec<SinDensityFunction> CODEC_HOLDER = KeyDispatchDataCodec.of(DATA_CODEC);
+
+   public SinDensityFunction(DensityFunction argument) {
+      super(argument);
+   }
+
+   @Override
+   public double transform(double value) {
+      return Math.sin(value);
+   }
+
+   @Override
+   public double minValue() {
+      return -1.0;
+   }
+
+   @Override
+   public double maxValue() {
+      return 1.0;
+   }
+
+   public DensityFunction mapAll(Visitor visitor) {
+      return new SinDensityFunction(this.argument().mapAll(visitor));
+   }
+
+   public KeyDispatchDataCodec<? extends DensityFunction> codec() {
+      return CODEC_HOLDER;
+   }
+}

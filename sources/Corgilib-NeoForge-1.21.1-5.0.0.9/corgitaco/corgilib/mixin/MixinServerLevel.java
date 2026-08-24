@@ -1,0 +1,49 @@
+package corgitaco.corgilib.mixin;
+
+import corgitaco.corgilib.world.level.RandomTickScheduler;
+import java.util.List;
+import java.util.function.Supplier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.storage.WritableLevelData;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({ServerLevel.class})
+public abstract class MixinServerLevel extends Level {
+   protected MixinServerLevel(
+      WritableLevelData levelData,
+      ResourceKey<Level> dimension,
+      RegistryAccess registryAccess,
+      Holder<DimensionType> dimensionTypeRegistration,
+      Supplier<ProfilerFiller> profiler,
+      boolean isClientSide,
+      boolean isDebug,
+      long biomeZoomSeed,
+      int maxChainedNeighborUpdates
+   ) {
+      super(levelData, dimension, registryAccess, dimensionTypeRegistration, profiler, isClientSide, isDebug, biomeZoomSeed, maxChainedNeighborUpdates);
+   }
+
+   @Inject(
+      method = {"tickChunk(Lnet/minecraft/world/level/chunk/LevelChunk;I)V"},
+      at = {@At("HEAD")}
+   )
+   private void tickScheduledRandomTicks(LevelChunk chunk, int randomTickSpeed, CallbackInfo ci) {
+      List<BlockPos> original = ((RandomTickScheduler)chunk).getScheduledRandomTicks();
+      if (!original.isEmpty()) {
+         List<BlockPos> tmp = List.copyOf(original);
+         original.clear();
+         tmp.forEach(scheduledPos -> chunk.getBlockState(scheduledPos).randomTick((ServerLevel)this, scheduledPos, this.random));
+      }
+   }
+}

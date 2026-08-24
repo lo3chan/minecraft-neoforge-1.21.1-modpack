@@ -1,0 +1,12 @@
+package amp_libs.org.antlr.v4.runtime.atn;
+
+public final class StarLoopbackState extends ATNState {
+   public final StarLoopEntryState getLoopEntryState() {
+      return (StarLoopEntryState)this.transition(0).target;
+   }
+
+   @Override
+   public int getStateType() {
+      return 9;
+   }
+}

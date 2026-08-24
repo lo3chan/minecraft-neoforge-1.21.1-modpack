@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "shoji",
+  "pattern" : [ "BB", "BB", "AA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo"
+    },
+    "B" : {
+      "item" : "minecraft:paper"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwdoors:bamboo_japanese_door"
+  }
+}

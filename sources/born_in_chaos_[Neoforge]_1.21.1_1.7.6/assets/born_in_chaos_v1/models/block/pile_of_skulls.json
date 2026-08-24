@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "up": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "north": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "east": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "south": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "west": "born_in_chaos_v1:block/ghruda_chieriepov",
+    "particle": "born_in_chaos_v1:block/ghruda_chieriepov"
+  },
+  "render_type": "solid"
+}

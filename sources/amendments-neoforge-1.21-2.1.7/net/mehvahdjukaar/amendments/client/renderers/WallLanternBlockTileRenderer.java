@@ -1,0 +1,114 @@
+package net.mehvahdjukaar.amendments.client.renderers;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import net.mehvahdjukaar.amendments.client.WallLanternModelsManager;
+import net.mehvahdjukaar.amendments.common.LanternRegistry;
+import net.mehvahdjukaar.amendments.common.block.WallLanternBlock;
+import net.mehvahdjukaar.amendments.common.tile.WallLanternBlockTile;
+import net.mehvahdjukaar.amendments.configs.ClientConfigs;
+import net.mehvahdjukaar.amendments.integration.CompatHandler;
+import net.mehvahdjukaar.amendments.integration.ShimmerCompat;
+import net.mehvahdjukaar.moonlight.api.client.util.RenderUtil;
+import net.mehvahdjukaar.moonlight.api.client.util.RotHlpr;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider.Context;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Quaternionf;
+
+public class WallLanternBlockTileRenderer implements BlockEntityRenderer<WallLanternBlockTile> {
+   protected final BlockRenderDispatcher blockRenderer;
+
+   public WallLanternBlockTileRenderer(Context context) {
+      this.blockRenderer = context.getBlockRenderDispatcher();
+   }
+
+   public boolean shouldRender(WallLanternBlockTile blockEntity, Vec3 cameraPos) {
+      return blockEntity.shouldRenderFancy(cameraPos);
+   }
+
+   public void renderLantern(
+      WallLanternBlockTile tile,
+      BlockState lanternState,
+      float partialTicks,
+      PoseStack poseStack,
+      MultiBufferSource bufferIn,
+      int combinedLightIn,
+      int combinedOverlayIn,
+      boolean ceiling
+   ) {
+      poseStack.pushPose();
+      Direction facing = (Direction)tile.getBlockState().getValue(WallLanternBlock.FACING);
+      poseStack.translate(0.5, 0.875, 0.5);
+      poseStack.mulPose(RotHlpr.rot(facing));
+      float angle = tile.amendments$getAnimation().getAngle(partialTicks);
+      poseStack.mulPose(Axis.ZP.rotationDegrees(angle));
+      poseStack.translate(-0.5, -0.75 - tile.getAttachmentOffset(), -0.375);
+      boolean entityShading = ClientConfigs.LANTERN_ENTITY_SHADING.get();
+      LanternRegistry.LanternType type = tile.getOwnBlock().type;
+      Level level = tile.getLevel();
+      BlockPos pos = tile.getBlockPos();
+      if (CompatHandler.SHIMMER) {
+         ShimmerCompat.renderWithBloom(
+            poseStack, (p, b) -> this.renderModel(type, lanternState, facing, entityShading, p, b, combinedLightIn, combinedOverlayIn, level, pos)
+         );
+      } else {
+         this.renderModel(type, lanternState, facing, entityShading, poseStack, bufferIn, combinedLightIn, combinedOverlayIn, level, pos);
+      }
+
+      poseStack.popPose();
+   }
+
+   private void renderModel(
+      LanternRegistry.LanternType type,
+      BlockState lanternState,
+      Direction facing,
+      boolean entityShading,
+      PoseStack poseStack,
+      MultiBufferSource buffer,
+      int light,
+      int overlay,
+      Level level,
+      BlockPos pos
+   ) {
+      if (lanternState.hasProperty(HorizontalDirectionalBlock.FACING)) {
+         lanternState = (BlockState)lanternState.setValue(HorizontalDirectionalBlock.FACING, facing);
+      }
+
+      poseStack.pushPose();
+      poseStack.translate(0.5, 0.5, 0.5);
+      poseStack.mulPose(new Quaternionf(RotHlpr.rot(facing)).conjugate());
+      poseStack.translate(-0.5, -0.5, -0.5);
+      BakedModel model = WallLanternModelsManager.getLanternModel(this.blockRenderer.getBlockModelShaper(), type, lanternState);
+      if (entityShading) {
+         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+         RenderType renderType = ItemBlockRenderTypes.getRenderType(lanternState, true);
+         VertexConsumer vc = buffer.getBuffer(renderType);
+         itemRenderer.renderModelLists(model, ItemStack.EMPTY, light, overlay, poseStack, vc);
+      } else {
+         RenderUtil.renderBlock(model, 0L, poseStack, buffer, lanternState, level, pos, this.blockRenderer);
+      }
+
+      poseStack.popPose();
+   }
+
+   public void render(
+      WallLanternBlockTile tile, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn
+   ) {
+      this.renderLantern(tile, tile.getLanternState(), partialTicks, matrixStackIn, bufferIn, combinedLightIn, combinedOverlayIn, false);
+   }
+}

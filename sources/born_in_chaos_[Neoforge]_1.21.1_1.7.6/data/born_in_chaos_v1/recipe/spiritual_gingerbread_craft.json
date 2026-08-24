@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab",
+    "b "
+  ],
+  "key": {
+    "a": {
+      "item": "born_in_chaos_v1:spiritual_dust"
+    },
+    "b": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "id": "born_in_chaos_v1:spiritual_gingerbread",
+    "count": 2
+  }
+}

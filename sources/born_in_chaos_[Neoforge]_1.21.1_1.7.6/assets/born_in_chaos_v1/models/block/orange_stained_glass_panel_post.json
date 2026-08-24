@@ -1,0 +1,9 @@
+{
+  "parent": "block/template_glass_pane_post",
+  "textures": {
+    "particle": "born_in_chaos_v1:block/vitrag2",
+    "edge": "born_in_chaos_v1:block/vitrag2",
+    "pane": "born_in_chaos_v1:block/vitrag2"
+  },
+  "render_type": "translucent"
+}

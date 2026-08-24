@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/argilitlit",
+    "up": "born_in_chaos_v1:block/argilitlit",
+    "north": "born_in_chaos_v1:block/argilitlit",
+    "east": "born_in_chaos_v1:block/argilitlit",
+    "south": "born_in_chaos_v1:block/argilitlit",
+    "west": "born_in_chaos_v1:block/argilitlit",
+    "particle": "born_in_chaos_v1:block/argilitlit"
+  },
+  "render_type": "solid"
+}

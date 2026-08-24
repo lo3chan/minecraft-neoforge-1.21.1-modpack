@@ -1,0 +1,64 @@
+package vazkii.akashictome.client;
+
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.RenderGuiLayerEvent.Post;
+import vazkii.akashictome.MorphingHandler;
+import vazkii.akashictome.Registries;
+
+public class HUDHandler {
+   @SubscribeEvent
+   public void onDrawScreen(Post event) {
+      Minecraft mc = Minecraft.getInstance();
+      HitResult pos = mc.hitResult;
+      Window res = mc.getWindow();
+      GuiGraphics guiGraphics = event.getGuiGraphics();
+      if (pos instanceof BlockHitResult blockHitResult) {
+         ItemStack tomeStack = mc.player.getMainHandItem();
+         boolean hasTome = !tomeStack.isEmpty() && tomeStack.is((Item)Registries.TOME.get());
+         if (!hasTome) {
+            tomeStack = mc.player.getOffhandItem();
+            hasTome = !tomeStack.isEmpty() && tomeStack.is((Item)Registries.TOME.get());
+         }
+
+         if (!hasTome) {
+            return;
+         }
+
+         tomeStack = tomeStack.copy();
+         BlockState state = mc.level.getBlockState(blockHitResult.getBlockPos());
+         if (!state.isAir()) {
+            ItemStack drawStack = ItemStack.EMPTY;
+            Component line1 = Component.empty();
+            Component line2 = Component.empty();
+            String mod = MorphingHandler.getModFromState(state);
+            ItemStack morphStack = MorphingHandler.getShiftStackForMod(tomeStack, mod);
+            if (!morphStack.isEmpty() && !ItemStack.isSameItemSameComponents(morphStack, tomeStack)) {
+               drawStack = morphStack;
+               line1 = (Component)morphStack.getOrDefault(Registries.OG_DISPLAY_NAME, Component.empty());
+               line2 = Component.translatable("akashictome.click_morph").withStyle(ChatFormatting.GRAY);
+            }
+
+            if (!drawStack.isEmpty() && !line1.getString().isEmpty()) {
+               RenderSystem.enableBlend();
+               RenderSystem.blendFunc(770, 771);
+               int sx = res.getGuiScaledWidth() / 2 - 17;
+               int sy = res.getGuiScaledHeight() / 2 + 2;
+               guiGraphics.renderItem(drawStack, sx, sy);
+               guiGraphics.drawString(mc.font, line1.copy().withStyle(ChatFormatting.GREEN), sx + 20, sy + 4, -1);
+               guiGraphics.drawString(mc.font, line2, sx + 25, sy + 14, -1);
+            }
+         }
+      }
+   }
+}

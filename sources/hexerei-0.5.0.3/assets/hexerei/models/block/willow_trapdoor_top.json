@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:block/template_trapdoor_top",
+  "textures": {
+    "particle": "hexerei:block/willow_trapdoor"
+  },
+  "children": {
+    "cutout": {
+      "parent": "minecraft:block/template_trapdoor_top",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture": "hexerei:block/willow_trapdoor_cutout"
+      }
+    },
+    "translucent": {
+      "parent": "minecraft:block/template_trapdoor_top",
+      "render_type": "minecraft:translucent",
+      "textures": {
+        "texture": "hexerei:block/willow_trapdoor_glass"
+      }
+    }
+  },
+  "loader": "neoforge:composite"
+}

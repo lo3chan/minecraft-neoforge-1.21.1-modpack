@@ -1,0 +1,16 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ " A ", "ABA", " A " ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:paper"
+    },
+    "B" : {
+      "item" : "minecraft:bone_meal"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwtrpdoors:print_whispering"
+  }
+}

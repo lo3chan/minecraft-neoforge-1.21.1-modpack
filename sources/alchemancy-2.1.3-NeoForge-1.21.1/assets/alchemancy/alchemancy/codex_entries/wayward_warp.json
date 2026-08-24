@@ -1,0 +1,15 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:wayward_warp.flavor"
+  },
+  "functions": [
+    "when_used_block",
+    "when_used_entity",
+    "after_use",
+    "activate",
+    "other_effects"
+  ],
+  "innate": [
+    "alchemancy:wayward_medallion"
+  ]
+}

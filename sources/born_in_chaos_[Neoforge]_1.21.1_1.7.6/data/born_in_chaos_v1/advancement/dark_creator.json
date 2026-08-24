@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:missionaryicon"
+    },
+    "title": {
+      "translate": "advancements.dark_creator.title"
+    },
+    "description": {
+      "translate": "advancements.dark_creator.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dark_creator_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

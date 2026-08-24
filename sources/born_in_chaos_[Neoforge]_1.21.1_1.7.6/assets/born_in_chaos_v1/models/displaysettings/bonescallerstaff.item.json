@@ -1,0 +1,130 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "texture_size": [
+    64,
+    64
+  ],
+  "gui_light": "front",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        -0.25,
+        0,
+        1.75
+      ],
+      "scale": [
+        0.69140625,
+        0.69140625,
+        0.69140625
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        -0.25,
+        0,
+        1.75
+      ],
+      "scale": [
+        0.69140625,
+        0.69140625,
+        0.69140625
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -6.67,
+        -73.31,
+        -13.17
+      ],
+      "translation": [
+        0.5,
+        -0.5,
+        0
+      ],
+      "scale": [
+        0.490234375,
+        0.490234375,
+        0.490234375
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -6.67,
+        -73.31,
+        -13.17
+      ],
+      "translation": [
+        0.5,
+        -0.5,
+        0
+      ],
+      "scale": [
+        0.490234375,
+        0.490234375,
+        0.490234375
+      ]
+    },
+    "ground": {
+      "rotation": [
+        27.28,
+        -2.09,
+        -19.09
+      ],
+      "translation": [
+        0,
+        7.25,
+        0
+      ],
+      "scale": [
+        0.205078125,
+        0.205078125,
+        0.205078125
+      ]
+    },
+    "gui": {
+      "rotation": [
+        -36.35,
+        -16.25,
+        -45.68
+      ],
+      "translation": [
+        -1.5,
+        -1.5,
+        0
+      ],
+      "scale": [
+        0.38671875,
+        0.38671875,
+        0.38671875
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        45
+      ],
+      "translation": [
+        1.75,
+        -1.75,
+        -0.25
+      ],
+      "scale": [
+        0.525390625,
+        0.525390625,
+        0.525390625
+      ]
+    }
+  }
+}

@@ -1,0 +1,150 @@
+package net.mehvahdjukaar.moonlight.api.resources.pack;
+
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.math.MthUtils;
+import net.mehvahdjukaar.moonlight.core.Moonlight;
+import net.mehvahdjukaar.moonlight.core.misc.FilteredResManager;
+import net.minecraft.server.packs.PackLocationInfo;
+import net.minecraft.server.packs.PackResources;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import org.jetbrains.annotations.NotNull;
+
+public abstract class GlobalCachedStrategy implements PackGenerationStrategy {
+   private static final Map<PackType, Boolean> NEEDS_REGEN = new HashMap<>();
+   private static final Map<PackType, String> LAST_KNOWN_HASH = new HashMap<>();
+
+   public static void forceInvalidateState(PackType packType) {
+      Moonlight.LOGGER.info("Invalidating resource cache for {} due to config change", packType);
+      Path file = getCacheHashPath(packType);
+
+      try {
+         Files.deleteIfExists(file);
+      } catch (Exception var3) {
+         Moonlight.LOGGER.debug("Failed deleting cache fingerprint for {}: {}", packType, var3.toString());
+      }
+
+      NEEDS_REGEN.put(packType, true);
+      LAST_KNOWN_HASH.remove(packType);
+   }
+
+   public static void refreshState(PackType packType, Collection<PackResources> loadedPacks) {
+      String oldHash = readFingerprint(packType);
+      String newHash = computeCurrentFingerprint(loadedPacks);
+      boolean shouldRegen = !oldHash.equals(newHash);
+      Moonlight.LOGGER.info("Resource cache state for {}: {}", packType, shouldRegen ? "needs regeneration" : "up to date");
+      NEEDS_REGEN.put(packType, shouldRegen);
+      LAST_KNOWN_HASH.put(packType, newHash);
+   }
+
+   public static void writeNewState(PackType packType) {
+      String newHash = LAST_KNOWN_HASH.get(packType);
+      if (newHash != null) {
+         writeFingerprint(packType, newHash);
+         NEEDS_REGEN.put(packType, false);
+      }
+   }
+
+   private static void writeFingerprint(PackType packType, String fp) {
+      Path dir = getCachePath(packType);
+      Path file = getCacheHashPath(packType);
+
+      try {
+         Files.createDirectories(dir);
+         Files.writeString(file, fp, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+      } catch (Exception var5) {
+         Moonlight.LOGGER.debug("Failed writing cache fingerprint for {}: {}", packType, var5.toString());
+      }
+   }
+
+   private static String readFingerprint(PackType packType) {
+      Path file = getCacheHashPath(packType);
+      if (!Files.exists(file)) {
+         return "";
+      } else {
+         try {
+            return Files.readString(file, StandardCharsets.UTF_8).trim();
+         } catch (Exception var3) {
+            Moonlight.LOGGER.debug("Failed reading cache fingerprint for {}: {}", packType, var3.toString());
+            return "";
+         }
+      }
+   }
+
+   private static Path getCacheHashPath(PackType packType) {
+      return getCachePath(packType).resolve("hash.txt");
+   }
+
+   private static Path getCachePath(PackType type) {
+      return PlatHelper.getGamePath().resolve("dynamic-" + (type == PackType.CLIENT_RESOURCES ? "resource" : "data") + "-pack-cache");
+   }
+
+   private static String computeCurrentFingerprint(Collection<PackResources> packs) {
+      return MthUtils.sha256Digest(computeTokens(packs));
+   }
+
+   @NotNull
+   private static List<String> computeTokens(Collection<PackResources> packs) {
+      List<String> tokens = new ArrayList<>();
+      boolean fabric = PlatHelper.getPlatform().isFabric();
+      int i = 0;
+
+      for (PackResources p : packs) {
+         String id = p.packId();
+         if (!FilteredResManager.isDynamicPackResource(p) && !FilteredResManager.isModResourcePack(p)) {
+            String description = "";
+
+            try {
+               PackMetadataSection metadataSection = (PackMetadataSection)p.getMetadataSection(PackMetadataSection.TYPE);
+               if (metadataSection != null) {
+                  description = metadataSection.description().getString();
+               }
+            } catch (Exception var9) {
+            }
+
+            tokens.add("pack[" + i++ + "]=" + id + "@" + description);
+         }
+      }
+
+      List<String> modTokens = new ArrayList<>();
+
+      for (String mod : PlatHelper.getInstalledMods()) {
+         if (!fabric || !mod.startsWith("fabric")) {
+            modTokens.add(mod + "@" + PlatHelper.getModVersion(mod));
+         }
+      }
+
+      Collections.sort(modTokens);
+      tokens.addAll(modTokens);
+      return tokens;
+   }
+
+   @Override
+   public boolean needsRegeneration(PackType packType) {
+      return NEEDS_REGEN.get(packType);
+   }
+
+   protected Path getPath(PackType type) {
+      return getCachePath(type);
+   }
+
+   @Override
+   public IEditablePackResources createPackResources(PackLocationInfo info, PackType type) {
+      return new CachePathPackResources(info, type, this.getPath(type).resolve(info.id().replace(":", "-")));
+   }
+
+   @Override
+   public String toString() {
+      return "CACHED";
+   }
+}

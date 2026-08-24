@@ -1,0 +1,8 @@
+{
+  "parent": "block/wall_inventory",
+  "textures": {
+    "wall": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "particle": "born_in_chaos_v1:block/tiemnyikirpich1"
+  },
+  "render_type": "solid"
+}

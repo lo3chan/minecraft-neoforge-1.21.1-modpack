@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:bostroxsword",
+    "count": 1
+  }
+}

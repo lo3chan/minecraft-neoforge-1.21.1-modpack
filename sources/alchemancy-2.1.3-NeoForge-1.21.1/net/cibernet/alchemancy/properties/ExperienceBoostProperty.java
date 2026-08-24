@@ -1,0 +1,43 @@
+package net.cibernet.alchemancy.properties;
+
+import java.util.List;
+import net.cibernet.alchemancy.item.components.InfusedPropertiesHelper;
+import net.cibernet.alchemancy.registries.AlchemancyProperties;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
+import net.neoforged.neoforge.event.level.BlockDropsEvent;
+
+public class ExperienceBoostProperty extends Property {
+   @Override
+   public void modifyLivingExperienceDrops(Player user, ItemStack weapon, EquipmentSlot slot, LivingEntity entity, LivingExperienceDropEvent event) {
+      if (slot != EquipmentSlot.MAINHAND && slot != EquipmentSlot.BODY) {
+         event.setDroppedExperience((int)Math.floor(event.getDroppedExperience() * 1.1F));
+      } else {
+         event.setDroppedExperience(event.getDroppedExperience() * 2);
+      }
+   }
+
+   @Override
+   public void modifyBlockDrops(Entity breaker, ItemStack tool, EquipmentSlot slot, List<ItemEntity> drops, BlockDropsEvent event) {
+      if (InfusedPropertiesHelper.hasProperty(tool, AlchemancyProperties.AUXILIARY) || slot != EquipmentSlot.MAINHAND && slot != EquipmentSlot.BODY) {
+         event.setDroppedExperience((int)Math.floor(event.getDroppedExperience() * 1.1F));
+      } else {
+         event.setDroppedExperience(event.getDroppedExperience() * 2);
+      }
+   }
+
+   @Override
+   public int modifyEnchantmentValue(int originalValue, int result) {
+      return result + 5;
+   }
+
+   @Override
+   public int getColor(ItemStack stack) {
+      return 8650582;
+   }
+}

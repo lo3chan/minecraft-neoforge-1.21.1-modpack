@@ -1,0 +1,36 @@
+package at.petrak.hexcasting.common.casting.arithmetic.operator.vec;
+
+import at.petrak.hexcasting.api.casting.arithmetic.operator.OperatorBasic;
+import at.petrak.hexcasting.api.casting.arithmetic.predicates.IotaMultiPredicate;
+import at.petrak.hexcasting.api.casting.arithmetic.predicates.IotaPredicate;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.Vec3Iota;
+import at.petrak.hexcasting.common.lib.hex.HexIotaTypes;
+import java.util.Iterator;
+import java.util.List;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+
+public class OperatorPack extends OperatorBasic {
+   public static OperatorPack INSTANCE = new OperatorPack();
+
+   private OperatorPack() {
+      super(3, IotaMultiPredicate.all(IotaPredicate.ofType(HexIotaTypes.DOUBLE)));
+   }
+
+   @NotNull
+   @Override
+   public Iterable<Iota> apply(Iterable<? extends Iota> iotas, @NotNull CastingEnvironment env) {
+      Iterator<? extends Iota> it = iotas.iterator();
+      return List.of(
+         new Vec3Iota(
+            new Vec3(
+               downcast(it.next(), HexIotaTypes.DOUBLE).getDouble(),
+               downcast(it.next(), HexIotaTypes.DOUBLE).getDouble(),
+               downcast(it.next(), HexIotaTypes.DOUBLE).getDouble()
+            )
+         )
+      );
+   }
+}

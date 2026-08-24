@@ -1,0 +1,21 @@
+package net.cibernet.alchemancy.properties;
+
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Pre;
+
+public class NocturnalProperty extends MobEffectEquippedAndHitProperty {
+   public NocturnalProperty() {
+      super(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0, false, false), EquipmentSlotGroup.HEAD, false);
+   }
+
+   @Override
+   public void modifyAttackDamage(Entity user, ItemStack weapon, Pre event) {
+      if (user.level().canSeeSky(user.blockPosition()) && !user.level().isDay()) {
+         event.setNewDamage(event.getNewDamage() * 1.4F);
+      }
+   }
+}

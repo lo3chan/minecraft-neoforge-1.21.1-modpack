@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:restocker.flavor"
+  },
+  "functions": [
+    "while_equipped",
+    "while_worn"
+  ]
+}

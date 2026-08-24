@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "id": "undead_revamp2:wincallerfan"
+    },
+    "title": {
+      "translate": "advancements.legendaryweapon.title"
+    },
+    "description": {
+      "translate": "advancements.legendaryweapon.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "legendaryweapon_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "undead_revamp2:wincallerfan"
+            ],
+            "count": {
+              "min": 1,
+              "max": 64
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

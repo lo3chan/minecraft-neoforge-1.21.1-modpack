@@ -1,0 +1,66 @@
+package net.mehvahdjukaar.moonlight.api.fluids.platform;
+
+import net.mehvahdjukaar.moonlight.api.fluids.SoftFluid;
+import net.mehvahdjukaar.moonlight.api.fluids.SoftFluidStack;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.component.DataComponentPatch;
+import net.neoforged.neoforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
+
+public class SoftFluidStackImpl extends SoftFluidStack {
+   public SoftFluidStackImpl(Holder<SoftFluid> fluid, int count, DataComponentPatch comp) {
+      super(fluid, count, comp);
+   }
+
+   public static SoftFluidStack of(Holder<SoftFluid> fluid, int count, @NotNull DataComponentPatch components) {
+      return new SoftFluidStackImpl(fluid, count, components);
+   }
+
+   public boolean isFluidEqual(FluidStack fluidStack, Provider ra) {
+      return this.isSameFluidSameComponents(fromForgeFluid(fluidStack, ra));
+   }
+
+   @Deprecated(
+      forRemoval = true
+   )
+   public boolean isFluidEqual(FluidStack fluidStack) {
+      return this.isSameFluidSameComponents(fromForgeFluid(fluidStack, Utils.hackyGetRegistryAccess()));
+   }
+
+   public static FluidStack toForgeFluid(SoftFluidStack softFluid) {
+      FluidStack stack = new FluidStack(softFluid.fluid().getVanillaFluid(), bottlesToMB(softFluid.getCount()));
+      if (!stack.isEmpty()) {
+         softFluid.copyComponentsTo(stack);
+      }
+
+      return stack;
+   }
+
+   public FluidStack toForgeFluid() {
+      return toForgeFluid(this);
+   }
+
+   @Deprecated(
+      forRemoval = true
+   )
+   public static SoftFluidStack fromForgeFluid(FluidStack fluidStack) {
+      return fromForgeFluid(fluidStack, Utils.hackyGetRegistryAccess());
+   }
+
+   public static SoftFluidStack fromForgeFluid(FluidStack fluidStack, Provider ra) {
+      int amount = MBtoBottles(fluidStack.getAmount());
+      SoftFluidStack sf = SoftFluidStack.fromFluid(fluidStack.getFluid(), amount, ra);
+      SoftFluidStack.copyComponentsTo(fluidStack, sf, sf.fluid().getPreservedComponents());
+      return sf;
+   }
+
+   public static int bottlesToMB(int bottles) {
+      return bottles * 250;
+   }
+
+   public static int MBtoBottles(int milliBuckets) {
+      return (int)(milliBuckets / 250.0F);
+   }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "undead_revamp2:spawnpillar",
+  "config": {
+    "structure": "undead_revamp2:spawn_pillar1",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": [
+      "minecraft:reinforced_deepslate",
+      "minecraft:air",
+      "minecraft:red_sand"
+    ]
+  }
+}

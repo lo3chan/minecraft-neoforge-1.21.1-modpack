@@ -1,0 +1,317 @@
+package net.cibernet.alchemancy.data.save;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import net.cibernet.alchemancy.AlchemancyConfig;
+import net.cibernet.alchemancy.client.InfusionCodexToast;
+import net.cibernet.alchemancy.item.components.InfusedPropertiesHelper;
+import net.cibernet.alchemancy.properties.Property;
+import net.cibernet.alchemancy.registries.AlchemancyItems;
+import net.cibernet.alchemancy.registries.AlchemancyProperties;
+import net.cibernet.alchemancy.registries.AlchemancyTags;
+import net.cibernet.alchemancy.util.SortOrder;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Unit;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent.LoggingIn;
+import net.neoforged.neoforge.client.event.ClientTickEvent.Post;
+import org.jetbrains.annotations.Nullable;
+
+@EventBusSubscriber({Dist.CLIENT})
+public class InfusionCodexSaveData {
+   public static final String FILE_PATH = "alchemancy/infusion_codex_save_data.json";
+   private static final Gson GSON_INSTANCE = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+   private static int maxRecencyIndex = 0;
+   private static int minRecencyIndex = 0;
+   private static int currentUnlockIndex = 0;
+   private static SortOrder sortOrder = SortOrder.ALPHABETICAL;
+   private static boolean dirty;
+   private static final Map<ResourceLocation, InfusionCodexSaveData.EntryData> UNLOCKED_INFUSIONS = new HashMap<>();
+   private static final List<ResourceLocation> DISCOVERED_ITEMS = new ArrayList<>();
+   private static final Codec<Unit> CODEC = RecordCodecBuilder.create(
+      instance -> instance.group(
+            Codec.unboundedMap(ResourceLocation.CODEC, InfusionCodexSaveData.EntryData.CODEC)
+               .fieldOf("unlocked_infusions")
+               .forGetter(data -> UNLOCKED_INFUSIONS),
+            Codec.list(ResourceLocation.CODEC).fieldOf("discovered_items").forGetter(data -> DISCOVERED_ITEMS),
+            SortOrder.CODEC.optionalFieldOf("sort_order", SortOrder.ALPHABETICAL).forGetter(data -> sortOrder)
+         )
+         .apply(
+            instance,
+            (unlockedInfusions, discoveredItems, order) -> {
+               sortOrder = order;
+               UNLOCKED_INFUSIONS.clear();
+               UNLOCKED_INFUSIONS.putAll(unlockedInfusions);
+               DISCOVERED_ITEMS.clear();
+               DISCOVERED_ITEMS.addAll(discoveredItems);
+               List<Integer> recencyIndexes = UNLOCKED_INFUSIONS.values().stream().map(data -> data.recencyIndex).filter(i -> i > 0).sorted().toList();
+               if (!recencyIndexes.isEmpty()) {
+                  minRecencyIndex = (Integer)recencyIndexes.getFirst();
+                  maxRecencyIndex = (Integer)recencyIndexes.getLast();
+               }
+
+               UNLOCKED_INFUSIONS.values()
+                  .stream()
+                  .map(data -> data.unlockIndex)
+                  .filter(i -> i > 0)
+                  .sorted(Comparator.comparingInt(i -> -i))
+                  .findFirst()
+                  .ifPresent(i -> currentUnlockIndex = Math.max(0, i));
+               return Unit.INSTANCE;
+            }
+         )
+   );
+
+   private static void saveSortOrder() {
+      JsonObject json = new JsonObject();
+      File file = new File("alchemancy/infusion_codex_save_data.json");
+      if (file.exists()) {
+         try (Reader reader = new FileReader(file)) {
+            json = (JsonObject)GSON_INSTANCE.fromJson(reader, JsonObject.class);
+         } catch (IOException var11) {
+            throw new RuntimeException(var11);
+         }
+      } else {
+         new File("alchemancy").mkdirs();
+      }
+
+      JsonElement sortOrderJson = (JsonElement)SortOrder.CODEC.encodeStart(JsonOps.INSTANCE, sortOrder).getOrThrow();
+      json.add("sort_order", sortOrderJson);
+      new File("alchemancy").mkdirs();
+
+      try {
+         try (Writer writer = new FileWriter("alchemancy/infusion_codex_save_data.json")) {
+            GSON_INSTANCE.toJson(json, writer);
+         }
+      } catch (IOException var9) {
+         throw new RuntimeException(var9);
+      }
+   }
+
+   private static void save() {
+      JsonElement json = (JsonElement)CODEC.encodeStart(JsonOps.INSTANCE, Unit.INSTANCE).getOrThrow();
+      new File("alchemancy").mkdirs();
+
+      try {
+         try (Writer writer = new FileWriter("alchemancy/infusion_codex_save_data.json")) {
+            GSON_INSTANCE.toJson(json, writer);
+         }
+      } catch (IOException var6) {
+         throw new RuntimeException(var6);
+      }
+   }
+
+   public static void wipeData() {
+      UNLOCKED_INFUSIONS.clear();
+      DISCOVERED_ITEMS.clear();
+      maxRecencyIndex = 0;
+      minRecencyIndex = 0;
+      currentUnlockIndex = 0;
+   }
+
+   public static void load() {
+      wipeData();
+      File file = new File("alchemancy/infusion_codex_save_data.json");
+      if (file.exists()) {
+         try (Reader reader = new FileReader(file)) {
+            JsonElement json = (JsonElement)GSON_INSTANCE.fromJson(reader, JsonElement.class);
+            CODEC.decode(JsonOps.INSTANCE, json);
+         } catch (IOException var6) {
+            throw new RuntimeException(var6);
+         }
+      }
+   }
+
+   private static ResourceLocation getItemKey(ItemStack stack) {
+      return BuiltInRegistries.ITEM.getKey(stack.getItem());
+   }
+
+   public static SortOrder getSortOrder() {
+      return sortOrder;
+   }
+
+   public static void setSortOrder(SortOrder sortOrder) {
+      InfusionCodexSaveData.sortOrder = sortOrder;
+      saveSortOrder();
+   }
+
+   public static boolean isItemDiscovered(ItemStack stack) {
+      return isItemDiscovered(getItemKey(stack));
+   }
+
+   public static void discoverItem(ItemStack stack) {
+      discoverItem(getItemKey(stack));
+   }
+
+   public static boolean isItemDiscovered(ResourceLocation stack) {
+      return bypassesUnlocks() || DISCOVERED_ITEMS.contains(stack);
+   }
+
+   public static void discoverItem(ResourceLocation stack) {
+      if (!isItemDiscovered(stack)) {
+         DISCOVERED_ITEMS.add(stack);
+         queueSave();
+      }
+   }
+
+   public static boolean isUnlocked(Holder<Property> propertyHolder) {
+      ResourceLocation key = getKey(propertyHolder);
+      return key != null && (bypassesUnlocks() || UNLOCKED_INFUSIONS.containsKey(key) && UNLOCKED_INFUSIONS.get(key).unlocked);
+   }
+
+   public static int getUnlockIndex(Holder<Property> propertyHolder) {
+      ResourceLocation key = getKey(propertyHolder);
+      if (!UNLOCKED_INFUSIONS.containsKey(key)) {
+         return 0;
+      } else {
+         InfusionCodexSaveData.EntryData entry = UNLOCKED_INFUSIONS.get(key);
+         return entry.unlocked ? -entry.unlockIndex : 0;
+      }
+   }
+
+   public static int getRecencyIndex(Holder<Property> propertyHolder) {
+      ResourceLocation key = getKey(propertyHolder);
+      return UNLOCKED_INFUSIONS.containsKey(key) ? -UNLOCKED_INFUSIONS.get(key).recencyIndex : 0;
+   }
+
+   @Nullable
+   private static ResourceLocation getKey(Holder<Property> propertyHolder) {
+      return propertyHolder.unwrapKey().<ResourceLocation>map(ResourceKey::location).orElse(null);
+   }
+
+   public static List<Holder<Property>> getPropertiesToUnlock(ItemStack stack) {
+      List<Holder<Property>> result = new ArrayList<>();
+      List<Holder<Property>> innates = InfusedPropertiesHelper.getInnateProperties(stack);
+      result.addAll(innates);
+      result.addAll(InfusedPropertiesHelper.getInfusedProperties(stack));
+      result.addAll(InfusedPropertiesHelper.getStoredProperties(stack));
+      boolean includeDormants = stack.is(AlchemancyTags.Items.CODEX_DISCOVERY_ON_PICKUP);
+      boolean hasInnate = stack.has(AlchemancyItems.Components.INNATE_PROPERTIES);
+      List<Holder<Property>> dormants = List.of();
+      if (includeDormants || hasInnate) {
+         dormants = AlchemancyProperties.getDormantProperties(stack);
+      }
+
+      if (hasInnate) {
+         includeDormants = includeDormants || dormants.stream().anyMatch(innates::contains);
+      }
+
+      if (includeDormants) {
+         result.addAll(AlchemancyProperties.getDormantProperties(stack));
+      }
+
+      return result;
+   }
+
+   public static void unlock(Holder<Property> propertyHolder) {
+      ResourceLocation key = getKey(propertyHolder);
+      if (key != null && !isUnlocked(propertyHolder)) {
+         UNLOCKED_INFUSIONS.put(key, new InfusionCodexSaveData.EntryData(true));
+         InfusionCodexToast.addOrUpdate(Minecraft.getInstance().getToasts(), propertyHolder);
+         queueSave();
+      }
+   }
+
+   public static void read(Holder<Property> propertyHolder) {
+      ResourceLocation key = getKey(propertyHolder);
+      if (key != null) {
+         if (!UNLOCKED_INFUSIONS.containsKey(key)) {
+            UNLOCKED_INFUSIONS.put(key, new InfusionCodexSaveData.EntryData(false));
+         }
+
+         InfusionCodexSaveData.EntryData entry = UNLOCKED_INFUSIONS.get(key);
+         entry.recencyIndex = ++maxRecencyIndex;
+         entry.read = true;
+         if (entry.recencyIndex <= 0 || entry.recencyIndex < minRecencyIndex) {
+            minRecencyIndex = entry.recencyIndex;
+         }
+
+         queueSave();
+      }
+   }
+
+   public static boolean isRead(Holder<Property> propertyHolder) {
+      return bypassesUnlocks() || UNLOCKED_INFUSIONS.containsKey(getKey(propertyHolder)) && UNLOCKED_INFUSIONS.get(getKey(propertyHolder)).read;
+   }
+
+   public static boolean bypassesUnlocks() {
+      return AlchemancyConfig.Client.codexDisplayMode().equals(InfusionCodexSaveData.DisplayMode.NERD)
+         || Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative();
+   }
+
+   public static void queueSave() {
+      dirty = true;
+   }
+
+   @SubscribeEvent
+   private static void onClientTick(Post event) {
+      if (dirty) {
+         save();
+         dirty = false;
+      }
+   }
+
+   @SubscribeEvent
+   private static void onLoggedIn(LoggingIn event) {
+      load();
+   }
+
+   public static enum DisplayMode {
+      DEFAULT,
+      SPOILER,
+      NERD;
+   }
+
+   public static class EntryData {
+      public static final Codec<InfusionCodexSaveData.EntryData> CODEC = RecordCodecBuilder.create(
+         instance -> instance.group(
+               Codec.INT
+                  .optionalFieldOf("recency_index", 0)
+                  .forGetter(data -> data.recencyIndex == 0 ? 0 : data.recencyIndex - (InfusionCodexSaveData.minRecencyIndex - 1)),
+               Codec.INT.optionalFieldOf("unlock_index", 0).forGetter(data -> data.unlocked ? data.unlockIndex : 0),
+               Codec.BOOL.optionalFieldOf("read", true).forGetter(data -> data.read),
+               Codec.BOOL.optionalFieldOf("unlocked", true).forGetter(data -> data.unlocked)
+            )
+            .apply(instance, InfusionCodexSaveData.EntryData::new)
+      );
+      public int unlockIndex;
+      protected int recencyIndex;
+      protected boolean read = false;
+      protected boolean unlocked;
+
+      public EntryData(int recencyIndex, int unlockIndex, boolean read, boolean unlocked) {
+         this.unlocked = unlocked;
+         this.recencyIndex = recencyIndex;
+         this.read = read;
+         this.unlockIndex = !unlocked ? 0 : (unlockIndex <= 0 ? ++InfusionCodexSaveData.currentUnlockIndex : unlockIndex);
+      }
+
+      public EntryData(boolean unlocked) {
+         this.unlocked = unlocked;
+         this.unlockIndex = ++InfusionCodexSaveData.currentUnlockIndex;
+      }
+   }
+}

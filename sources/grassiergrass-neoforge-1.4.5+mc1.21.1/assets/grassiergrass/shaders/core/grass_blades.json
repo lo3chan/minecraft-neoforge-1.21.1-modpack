@@ -1,0 +1,35 @@
+{
+  "vertex": "grassiergrass:grass_blades",
+  "fragment": "grassiergrass:grass_blades",
+  "samplers": [
+    { "name": "Sampler0" },
+    { "name": "Sampler2" },
+    { "name": "Sampler3" },
+    { "name": "Sampler4" },
+    { "name": "Sampler5" }
+  ],
+  "uniforms": [
+    { "name": "ModelViewMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+    { "name": "ProjMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+    { "name": "SectionOffset", "type": "float", "count": 3, "values": [ 0.0, 0.0, 0.0 ] },
+    { "name": "ColorModulator", "type": "float", "count": 4, "values": [ 1.0, 1.0, 1.0, 1.0 ] },
+    { "name": "FogStart", "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "FogEnd", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "FogColor", "type": "float", "count": 4, "values": [ 0.0, 0.0, 0.0, 0.0 ] },
+    { "name": "FogShape", "type": "int", "count": 1, "values": [ 0 ] },
+    { "name": "NoiseScale", "type": "float", "count": 1, "values": [ 0.8 ] },
+    { "name": "NoiseScrollOffset", "type": "float", "count": 2, "values": [ 0.0, 0.0 ] },
+    { "name": "StyleVanilla", "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "GrassBrightness", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "BladeGradientBottom", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "BladeGradientTop", "type": "float", "count": 1, "values": [ 1.1 ] },
+    { "name": "BladeGradientCurve", "type": "float", "count": 1, "values": [ 1.5 ] },
+    { "name": "WindStrength", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "WindDirection", "type": "float", "count": 2, "values": [ 1.0, 0.0 ] },
+    { "name": "WindFlutterPhase", "type": "float", "count": 1, "values": [ 0.0 ] },
+    { "name": "BladeVisualHeight", "type": "float", "count": 1, "values": [ 0.35 ] },
+    { "name": "BladeWidth", "type": "float", "count": 1, "values": [ 1.2 ] },
+    { "name": "HeightVariation", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "TrailParams", "type": "float", "count": 4, "values": [ 0.0, 0.0, 0.020833334, 0.85 ] }
+  ]
+}

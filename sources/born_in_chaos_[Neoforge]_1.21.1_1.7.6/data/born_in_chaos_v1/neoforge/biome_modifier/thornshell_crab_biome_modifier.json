@@ -1,0 +1,17 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "beach",
+    "frozen_river",
+    "mangrove_swamp",
+    "river",
+    "stony_shore",
+    "swamp"
+  ],
+  "spawners": {
+    "type": "born_in_chaos_v1:thornshell_crab",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

@@ -1,0 +1,212 @@
+package net.mehvahdjukaar.amendments.configs;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Supplier;
+import net.mehvahdjukaar.amendments.common.PendulumAnimation;
+import net.mehvahdjukaar.amendments.integration.CompatHandler;
+import net.mehvahdjukaar.moonlight.api.ModSharedVariables;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
+import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
+import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class ClientConfigs {
+   public static final Supplier<Boolean> TOOLTIP_HINTS;
+   public static final Supplier<Boolean> CUSTOM_CONFIGURED_SCREEN;
+   public static final Supplier<Double> LILY_OFFSET;
+   public static final Supplier<Boolean> BELL_CONNECTION;
+   public static final Supplier<Boolean> COLORED_BREWING_STAND;
+   public static final Supplier<Boolean> SWINGING_SIGNS;
+   public static final Supplier<Boolean> SIGN_ATTACHMENT;
+   public static final Supplier<PendulumAnimation.Config> HANGING_SIGN_CONFIG;
+   public static final Supplier<Double> ITEM_SCALE;
+   public static final Supplier<Boolean> POTION_TEXTURE;
+   public static final Supplier<Boolean> JUKEBOX_MODEL;
+   public static final Supplier<Boolean> JUKEBOX_SPIN;
+   public static final Supplier<Boolean> TEXTURE_PACK_SUPPORT;
+   public static final Supplier<GenMode> DYNAMIC_ASSETS_GEN_MODE;
+   public static final Supplier<Boolean> FAST_LANTERNS;
+   public static final Supplier<Boolean> LANTERN_ENTITY_SHADING;
+   public static final Supplier<Boolean> LANTERN_HOLDING;
+   public static final Supplier<Boolean> LANTERN_HOLDING_UP;
+   public static final Supplier<Double> LANTERN_HOLDING_SIZE;
+   public static final Supplier<PendulumAnimation.Config> WALL_LANTERN_CONFIG;
+   public static final Supplier<Boolean> TORCH_HOLDING;
+   public static final Supplier<Double> TORCH_HOLDING_SIZE;
+   public static final Supplier<Boolean> TORCH_HOLDING_FLAME;
+   public static final Supplier<Boolean> CANDLE_HOLDER_HOLDING;
+   public static final Supplier<Double> CANDLE_HOLDING_SIZE;
+   public static final Supplier<Boolean> HOLDING_ANIMATION_FIXED;
+   public static final Supplier<Boolean> CAMPFIRE_SMOKE;
+   public static final Supplier<Boolean> PIXEL_CONSISTENT_SIGNS;
+   public static final Supplier<List<String>> SIGN_BLACKLIST;
+   public static final Supplier<Boolean> COLORED_ARROWS;
+   public static final Supplier<Boolean> FAST_HOOKS;
+   public static final Supplier<Boolean> FIREBALL_3D;
+   public static final Supplier<Boolean> GHAST_FIREBALL_TRAIL;
+   public static final Supplier<Boolean> DRAGON_BREATH_EMISSIBE;
+   public static final Supplier<Boolean> DRAGON_FIREBALL_TRAIL;
+   public static final Supplier<Boolean> SNOWBALL_3D;
+   public static final Supplier<Boolean> SLIMEBALL_3D;
+   public static final Supplier<Boolean> CHARGES_TUMBLE;
+   public static final Supplier<Boolean> PROJECTILE_TUMBLE;
+   public static final Supplier<Double> BRIGHTEN_SIGN_TEXT_COLOR;
+   private static float signColorMult = 1.2F;
+   private static float hsScale = 1.0F;
+   public static final ModConfigHolder SPEC;
+   private static final Set<Block> KNOWN_WOOD_SIGNS = new HashSet<>();
+
+   public static void init() {
+   }
+
+   private static void onChange() {
+      signColorMult = (float)BRIGHTEN_SIGN_TEXT_COLOR.get().doubleValue();
+      hsScale = (float)ITEM_SCALE.get().doubleValue();
+   }
+
+   public static float getSignColorMult() {
+      return signColorMult;
+   }
+
+   public static float getItemPixelScale() {
+      return hsScale;
+   }
+
+   public static boolean isPixelConsistentSign(BlockState state) {
+      return !PIXEL_CONSISTENT_SIGNS.get() ? false : KNOWN_WOOD_SIGNS.contains(state.getBlock());
+   }
+
+   public static void setup() {
+      for (WoodType w : WoodTypeRegistry.INSTANCE) {
+         Block b = w.getBlockOfThis("sign");
+         Block b1 = w.getBlockOfThis("wall_sign");
+         if (b != null) {
+            KNOWN_WOOD_SIGNS.add(b);
+         }
+
+         if (b1 != null) {
+            KNOWN_WOOD_SIGNS.add(b1);
+         }
+      }
+
+      for (String s : SIGN_BLACKLIST.get()) {
+         Optional<Block> bx = BuiltInRegistries.BLOCK.getOptional(ResourceLocation.parse(s));
+         bx.ifPresent(KNOWN_WOOD_SIGNS::remove);
+      }
+   }
+
+   static {
+      ConfigBuilder builder = ConfigBuilder.create("amendments", ConfigType.CLIENT);
+      builder.push("general");
+      TOOLTIP_HINTS = builder.define("tooltip_hints", true);
+      CUSTOM_CONFIGURED_SCREEN = builder.define("custom_configured_screen", true);
+      TEXTURE_PACK_SUPPORT = builder.comment("Makes dynamically generated assets depend on texture packs too and not just vanilla files")
+         .define("texture_pack_support", false);
+      DYNAMIC_ASSETS_GEN_MODE = builder.define("dynamic_assets_generation_mode", GenMode.CACHED);
+      builder.pop();
+      builder.push("sign");
+      PIXEL_CONSISTENT_SIGNS = builder.comment(
+            "Gives signs a pixel consistent model and texture. Also affects other mods. This also makes them use a Block Model, making them render much much much faster than as block entities"
+         )
+         .define("pixel_consistent", true);
+      BRIGHTEN_SIGN_TEXT_COLOR = builder.comment("A scalar multiplier that will be applied to sign text making it brighter, supposedly more legible")
+         .define("text_color_multiplier", 1.2, 0.0, 5.0);
+      SIGN_BLACKLIST = builder.comment(
+            "A list of sign blocks that will NOT be affected by the pixel consistent sign setting. Use full registry names separated by commas"
+         )
+         .define("sign_blacklist", new ArrayList(), o -> o instanceof String s && !s.isEmpty());
+      builder.pop();
+      builder.push("projectiles");
+      SNOWBALL_3D = builder.comment("Makes snowballs render in 3D").define("snowball_3d", true);
+      SLIMEBALL_3D = CompatHandler.SUPPLEMENTARIES
+         ? builder.comment("Makes slimeballs render in 3D (supplementaries only)").define("slimeball_3d", true)
+         : () -> false;
+      FIREBALL_3D = builder.comment("Makes ghast & blazes fireballs render in 3D").define("fireball_3d", true);
+      GHAST_FIREBALL_TRAIL = builder.comment("Makes ghast & blazes fireballs leave a trail of particles when moving").define("ghast_fireball_trail", true);
+      DRAGON_FIREBALL_TRAIL = builder.comment("Makes dragon fireballs leave a trail of particles when moving").define("dragon_fireball_trail", true);
+      CHARGES_TUMBLE = builder.comment("Makes 3D charges tumble in the air when moving").define("charges_tumble", true);
+      PROJECTILE_TUMBLE = builder.comment("Makes 3D snowballs and slimeballs (supp compat) tumble in the air when moving").define("projectiles_tumble", false);
+      builder.push("dragon_fireball");
+      DRAGON_BREATH_EMISSIBE = builder.comment("Makes dragon's breath particles emissive to better match new visuals").define("dragon_breath_emissive", true);
+      builder.pop();
+      builder.pop();
+      builder.push("lily_pad");
+      LILY_OFFSET = builder.comment(
+            "set to 0 tho have lilypads at the same exact position as vanilla.negative numbers will place them in their own blockspace right below avoiding any clipping.best of both worlds at default as its barely within its space"
+         )
+         .define("y_offset", -0.016625, -1.0, 1.0);
+      builder.pop();
+      builder.push("bell");
+      BELL_CONNECTION = builder.comment("Visually attach chains and ropes to bells").define("chain_attachment", true);
+      builder.pop();
+      builder.push("brewing_stand");
+      COLORED_BREWING_STAND = builder.comment(
+            "Colors the brewing stand potion texture depending on the potions it's brewing.\nIf using a resource pack add tint index from 0 to 3 to the 3 potion layers"
+         )
+         .define("brewing_stand_colors", true);
+      builder.pop();
+      builder.push("arrows");
+      COLORED_ARROWS = builder.comment("Makes tipped arrows show their colors when loaded with a crossbow").define("crossbows_colors", true);
+      builder.pop();
+      builder.push("tripwire_hook");
+      FAST_HOOKS = builder.comment(
+            "Makes hooks render faster using a block model instead of tile renderer. Cost is that animated and enchanted items will appear static"
+         )
+         .define("fast_hooks", false);
+      builder.pop();
+      builder.push("hanging_sign");
+      ITEM_SCALE = builder.comment("Scale of items on hanging signs (unit is in pixel they would occupy). Set to 8 to better match the pixels on the sign")
+         .define("item_pixel_scale", 10.0, 0.0, 32.0);
+      SWINGING_SIGNS = builder.comment("Makes signs swing!").define("swinging_signs", true);
+      SIGN_ATTACHMENT = builder.comment("Signs have visual attachment to walls and fences").define("sign_attachment", true);
+      HANGING_SIGN_CONFIG = builder.defineObject("swing_physics", PendulumAnimation.Config::new, PendulumAnimation.Config.CODEC);
+      builder.pop();
+      builder.push("lantern");
+      FAST_LANTERNS = builder.comment(
+            "Makes wall lantern use a simple block model instead of the animated tile entity renderer. This will make them render much faster but will also remove the animationNote that this option only affect lanterns close by as the one far away render as fast by default"
+         )
+         .define("fast_lanterns", false);
+      LANTERN_ENTITY_SHADING = builder.comment(
+            "Renders the swaying wall lantern through the item renderer so its shading comes from the model's normals instead of the block model's baked per-face shading. This makes the lantern shade correctly no matter which wall it faces, at the cost of losing block ambient occlusion. Only affects the animated (close-up) renderer"
+         )
+         .define("entity_shading", true);
+      WALL_LANTERN_CONFIG = builder.defineObject("swing_physics", PendulumAnimation.Config::new, PendulumAnimation.Config.CODEC);
+      LANTERN_HOLDING_SIZE = builder.comment("Size lanterns when held in hand").define("lantern_item_size", 0.625, 0.0, 2.0);
+      LANTERN_HOLDING = builder.comment("Gives a special animation to lanterns when held in hand").define("lantern_item_holding", true);
+      LANTERN_HOLDING_UP = builder.comment("Makes lantern holding animation have the arm angled more upwards. Looks better if you have dynamic lights on")
+         .define("lantern_item_holding_up", false);
+      builder.pop();
+      builder.push("cauldron");
+      POTION_TEXTURE = builder.comment("Gives a unique texture to potion cauldrons").define("potion_texture", true);
+      builder.pop();
+      builder.push("jukebox");
+      JUKEBOX_MODEL = builder.comment("Use the new jukebox model").gameRestart().define("new_model", true);
+      JUKEBOX_SPIN = builder.comment("Makes jukebox disc spin while playing").define("disc_spin", true);
+      builder.pop();
+      builder.push("misc");
+      TORCH_HOLDING = builder.comment("Gives a special animation to torches when held in hand").define("torch_item_holding", true);
+      TORCH_HOLDING_SIZE = builder.comment("Size lanterns when held in hand").define("torch_item_size", 1.0, 0.0, 2.0);
+      TORCH_HOLDING_FLAME = builder.comment("Renders a flame particle on top of held torches").define("torch_item_flame", false);
+      CANDLE_HOLDER_HOLDING = builder.comment("Gives a special animation to supplementaries candle holders when held in hand")
+         .define("candle_holder_item_holding", true);
+      CANDLE_HOLDING_SIZE = builder.comment("Size lanterns when held in hand").define("handle_holder_item_size", 0.625, 0.0, 2.0);
+      HOLDING_ANIMATION_FIXED = builder.comment("Makes Torch and Lantern holding animation be fixed, not changing with player facing")
+         .define("fixed_holding_animations", false);
+      CAMPFIRE_SMOKE = builder.comment("Prevents campfire smoke from rendering if there is a solid block above it")
+         .define("campfire_smoke_through_blocks", false);
+      builder.pop();
+      builder.onChange(ClientConfigs::onChange);
+      SPEC = builder.build();
+      SPEC.forceLoad();
+      ModSharedVariables.registerDouble("color_multiplier", () -> (double)signColorMult);
+   }
+}

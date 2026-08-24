@@ -1,0 +1,9 @@
+{
+  "enhancedcelestials2core.commands.disabled": "Les événements lunaires célestes améliorés sont désactivés pour ce monde !",
+  "enhancedcelestials2core.commands.lunarevent_missing": "\"%s\" n'est pas un événement lunaire valide !",
+  "enhancedcelestials2core.lunarforecast.days_left": "(%s jours jusqu'à)",
+  "enhancedcelestials2core.lunarforecast.empty": "Aucun événement lunaire à venir.",
+  "enhancedcelestials2core.lunarforecast.header": "Prévisions lunaires actuelles :\n%s",
+  "enhancedcelestials2core.sleep.fail": "Vous ne pouvez pas vous reposer maintenant car l'événement lunaire actuel l'empêche."
+}
+

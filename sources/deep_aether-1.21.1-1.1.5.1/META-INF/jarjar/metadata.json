@@ -1,0 +1,28 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "com.github.glitchfiend",
+        "artifact": "TerraBlender-neoforge"
+      },
+      "version": {
+        "range": "[1.21.1-4.1.0.3,)",
+        "artifactVersion": "1.21.1-4.1.0.3"
+      },
+      "path": "META-INF/jarjar/TerraBlender-neoforge-1.21.1-4.1.0.3.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "com.github.razordevs",
+        "artifact": "aeroblender"
+      },
+      "version": {
+        "range": "[1.21.1-1.0.0-neoforge,)",
+        "artifactVersion": "1.21.1-1.0.0-neoforge"
+      },
+      "path": "META-INF/jarjar/aeroblender-1.21.1-1.0.0-neoforge.jar",
+      "isObfuscated": false
+    }
+  ]
+}

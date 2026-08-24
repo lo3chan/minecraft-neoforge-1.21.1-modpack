@@ -1,0 +1,9 @@
+{
+  "parent": "block/door_bottom_right",
+  "textures": {
+    "particle": "born_in_chaos_v1:block/doors1",
+    "bottom": "born_in_chaos_v1:block/doors1",
+    "top": "born_in_chaos_v1:block/doors2"
+  },
+  "render_type": "cutout"
+}

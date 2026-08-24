@@ -1,0 +1,7 @@
+{
+  "parent": "undead_revamp2:custom/perfume_bottle_honey",
+  "textures": {
+    "2": "undead_revamp2:block/perfume_of_the_great_queen_bees",
+    "particle": "undead_revamp2:item/beespray"
+  }
+}

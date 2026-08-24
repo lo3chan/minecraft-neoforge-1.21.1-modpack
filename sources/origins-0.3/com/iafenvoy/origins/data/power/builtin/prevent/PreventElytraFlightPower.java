@@ -1,0 +1,33 @@
+package com.iafenvoy.origins.data.power.builtin.prevent;
+
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.power.Power;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import org.jetbrains.annotations.NotNull;
+
+public class PreventElytraFlightPower extends Power {
+   public static final MapCodec<PreventElytraFlightPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            EntityAction.optionalCodec("entity_action").forGetter(PreventElytraFlightPower::getEntityAction)
+         )
+         .apply(i, PreventElytraFlightPower::new)
+   );
+   private final EntityAction entityAction;
+
+   protected PreventElytraFlightPower(Power.BaseSettings settings, EntityAction entityAction) {
+      super(settings);
+      this.entityAction = entityAction;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+}

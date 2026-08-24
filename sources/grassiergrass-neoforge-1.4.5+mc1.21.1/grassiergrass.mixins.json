@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.leonardoinc22.shortgrass.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientChunkCacheMixin",
+    "ClientLevelMixin",
+    "LevelRendererMixin",
+    "VertexBufferAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

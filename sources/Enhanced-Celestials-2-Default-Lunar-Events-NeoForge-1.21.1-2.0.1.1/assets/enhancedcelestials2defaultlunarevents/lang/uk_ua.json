@@ -1,0 +1,25 @@
+{
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.rise": "\"Кривавий Місяць\" сходить... Чутно дальні звуки нежиті...",
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.set": "\"Кривавий Місяць\" заходить... Нежить починає горіти...",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.rise": "\"Блакитний Місяць\" сходить... Ви відчуваєте вдачу!",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.set": "\"Блакитний Місяць\" заходить... Ви більше не відчуваєте вдачу...",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.rise": "\"Урожайний Місяць\" сходить... Ваші рослини ростуть краще.",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.set": "\"Урожайний Місяць\" заходить...",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.rise": "\"Кривавий Супермісяць\" сходить... Чутно дальні звуки нежиті...",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.set": "\"Кривавий Супермісяць\" заходить... Нежить починає горіти...",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.rise": "\"Блакитний Супермісяць\" сходить... Ви відчуваєте сильну вдачу!",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.set": "\"Блакитний Супермісяць\" заходить... Ви більше не відчуваєте вдачу...",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.rise": "\"Урожайний Супермісяць\" сходить... Ваші рослини ростуть набагато краще.",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.set": "\"Урожайний Супермісяць\" заходить...",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.rise": "\"Супермісяць\" сходить... Слимаки з'являються неподалік.",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.set": "\"Супермісяць\" заходить...",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blood_moon": "Кривавий Місяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blue_moon": "Блакитний Місяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.harvest_moon": "Урожайний Місяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.moon": "Місяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blood_moon": "Кривавий Супермісяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blue_moon": "Блакитний Супермісяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_harvest_moon": "Урожайний Супермісяць",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_moon": "Супермісяць"
+}
+

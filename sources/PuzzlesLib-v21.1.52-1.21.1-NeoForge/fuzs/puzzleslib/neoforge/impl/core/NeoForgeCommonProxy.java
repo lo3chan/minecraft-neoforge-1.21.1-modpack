@@ -1,0 +1,305 @@
+package fuzs.puzzleslib.neoforge.impl.core;
+
+import fuzs.puzzleslib.api.core.v1.ModConstructor;
+import fuzs.puzzleslib.api.core.v1.context.PayloadTypesContext;
+import fuzs.puzzleslib.api.data.v2.tags.AbstractTagAppender;
+import fuzs.puzzleslib.api.init.v3.GameRulesFactory;
+import fuzs.puzzleslib.api.init.v3.registry.RegistryFactory;
+import fuzs.puzzleslib.api.item.v2.ToolTypeHelper;
+import fuzs.puzzleslib.api.item.v2.crafting.CombinedIngredients;
+import fuzs.puzzleslib.api.network.v3.ClientboundMessage;
+import fuzs.puzzleslib.api.network.v3.ServerboundMessage;
+import fuzs.puzzleslib.impl.attachment.DataAttachmentRegistryImpl;
+import fuzs.puzzleslib.impl.core.ModContext;
+import fuzs.puzzleslib.impl.core.context.ModConstructorImpl;
+import fuzs.puzzleslib.impl.network.codec.CustomPacketPayloadAdapter;
+import fuzs.puzzleslib.neoforge.impl.attachment.NeoForgeDataAttachmentRegistryImpl;
+import fuzs.puzzleslib.neoforge.impl.core.context.PayloadTypesContextNeoForgeImpl;
+import fuzs.puzzleslib.neoforge.impl.data.NeoForgeTagAppenderV2;
+import fuzs.puzzleslib.neoforge.impl.data.NeoForgeTagAppenderV3;
+import fuzs.puzzleslib.neoforge.impl.event.ForwardingLootPoolBuilder;
+import fuzs.puzzleslib.neoforge.impl.event.ForwardingLootTableBuilder;
+import fuzs.puzzleslib.neoforge.impl.event.NeoForgeEventInvokerRegistryImpl;
+import fuzs.puzzleslib.neoforge.impl.init.MenuTypeWithData;
+import fuzs.puzzleslib.neoforge.impl.init.NeoForgeGameRulesFactory;
+import fuzs.puzzleslib.neoforge.impl.init.NeoForgeRegistryFactoryV3;
+import fuzs.puzzleslib.neoforge.impl.init.NeoForgeRegistryFactoryV4;
+import fuzs.puzzleslib.neoforge.impl.item.NeoForgeToolTypeHelper;
+import fuzs.puzzleslib.neoforge.impl.item.crafting.NeoForgeCombinedIngredients;
+import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.network.Connection;
+import net.minecraft.network.PacketListener;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.common.ClientCommonPacketListener;
+import net.minecraft.network.protocol.common.ServerCommonPacketListener;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.repository.PackCompatibility;
+import net.minecraft.server.packs.repository.Pack.Metadata;
+import net.minecraft.tags.TagBuilder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootPool.Builder;
+import net.neoforged.neoforge.common.extensions.ICommonPacketListener;
+import net.neoforged.neoforge.entity.PartEntity;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
+import org.jetbrains.annotations.Nullable;
+
+public class NeoForgeCommonProxy implements NeoForgeProxy {
+   @Override
+   public MinecraftServer getMinecraftServer() {
+      return ServerLifecycleHooks.getCurrentServer();
+   }
+
+   @Override
+   public <T> void openMenu(Player player, MenuProvider menuProvider, T data) {
+      player.openMenu(new MenuProvider() {
+         public void writeClientSideData(AbstractContainerMenu containerMenu, RegistryFriendlyByteBuf buf) {
+            MenuTypeWithData.encodeMenuData(containerMenu, buf, data);
+         }
+
+         public Component getDisplayName() {
+            return menuProvider.getDisplayName();
+         }
+
+         @Nullable
+         public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player playerx) {
+            return menuProvider.createMenu(containerId, inventory, playerx);
+         }
+      });
+   }
+
+   @Override
+   public void openMenu(ServerPlayer serverPlayer, MenuProvider menuProvider, BiConsumer<ServerPlayer, RegistryFriendlyByteBuf> dataWriter) {
+      serverPlayer.openMenu(menuProvider, buf -> dataWriter.accept(serverPlayer, buf));
+   }
+
+   @Override
+   public Metadata createPackInfo(
+      ResourceLocation resourceLocation, Component descriptionComponent, PackCompatibility packCompatibility, FeatureFlagSet featureFlagSet, boolean hidden
+   ) {
+      return new Metadata(descriptionComponent, packCompatibility, featureFlagSet, Collections.emptyList(), hidden);
+   }
+
+   @Override
+   public Style getRarityStyle(Rarity rarity) {
+      return rarity.getStyleModifier().apply(Style.EMPTY);
+   }
+
+   @Override
+   public void onPlayerDestroyItem(Player player, ItemStack originalItemStack, @Nullable InteractionHand interactionHand) {
+      EventHooks.onPlayerDestroyItem(player, originalItemStack, interactionHand);
+   }
+
+   @Override
+   public void forEachPool(net.minecraft.world.level.storage.loot.LootTable.Builder lootTable, Consumer<? super Builder> lootPoolConsumer) {
+      if (!(lootTable instanceof ForwardingLootTableBuilder)) {
+         throw new UnsupportedOperationException("Must be ForwardingLootTableBuilder");
+      } else {
+         for (LootPool lootPool : lootTable.build().pools) {
+            lootPoolConsumer.accept(new ForwardingLootPoolBuilder(lootPool));
+         }
+      }
+   }
+
+   @Override
+   public float getEnchantPowerBonus(BlockState blockState, Level level, BlockPos blockPos) {
+      return blockState.getEnchantPowerBonus(level, blockPos);
+   }
+
+   @Override
+   public boolean canApplyAtEnchantingTable(Holder<Enchantment> enchantment, ItemStack itemStack) {
+      return itemStack.isPrimaryItemFor(enchantment);
+   }
+
+   @Override
+   public void setTagBuilderReplace(TagBuilder builder, boolean isReplace) {
+      builder.replace(isReplace);
+   }
+
+   @Override
+   public boolean onExplosionStart(Level level, Explosion explosion) {
+      return EventHooks.onExplosionStart(level, explosion);
+   }
+
+   @MustBeInvokedByOverriders
+   @Override
+   public void registerAllLoadingHandlers() {
+      NeoForgeEventInvokerRegistryImpl.registerLoadingHandlers();
+   }
+
+   @MustBeInvokedByOverriders
+   @Override
+   public void registerAllEventHandlers() {
+      NeoForgeEventInvokerRegistryImpl.freezeModBusEvents();
+      NeoForgeEventInvokerRegistryImpl.registerEventHandlers();
+   }
+
+   @Override
+   public boolean hasChannel(PacketListener packetListener, Type<?> type) {
+      return packetListener instanceof ICommonPacketListener commonPacketListener
+         && commonPacketListener.getConnection().isConnected()
+         && commonPacketListener.hasChannel(type);
+   }
+
+   @Override
+   public Connection getConnection(PacketListener packetListener) {
+      return ((ICommonPacketListener)packetListener).getConnection();
+   }
+
+   @Override
+   public Packet<ClientCommonPacketListener> toClientboundPacket(CustomPacketPayload payload) {
+      return payload.toVanillaClientbound();
+   }
+
+   @Override
+   public Packet<ServerCommonPacketListener> toServerboundPacket(CustomPacketPayload payload) {
+      return payload.toVanillaServerbound();
+   }
+
+   @Override
+   public void finishConfigurationTask(ServerConfigurationPacketListener packetListener, net.minecraft.server.network.ConfigurationTask.Type type) {
+      packetListener.finishCurrentTask(type);
+   }
+
+   @Override
+   public PayloadTypesContext createPayloadTypesContext(String modId, RegisterPayloadHandlersEvent event) {
+      return new PayloadTypesContextNeoForgeImpl.ServerImpl(modId, event);
+   }
+
+   @Override
+   public <M1, M2> CompletableFuture<Void> registerClientReceiver(
+      CustomPacketPayloadAdapter<M1> payload, IPayloadContext context, Function<M1, ClientboundMessage<M2>> adapter
+   ) {
+      return CompletableFuture.allOf();
+   }
+
+   @Override
+   public <M1, M2> CompletableFuture<Void> registerServerReceiver(
+      CustomPacketPayloadAdapter<M1> payload, IPayloadContext context, Function<M1, ServerboundMessage<M2>> adapter
+   ) {
+      return context.enqueueWork(() -> {
+         ServerPlayer player = (ServerPlayer)context.player();
+         ServerboundMessage<M2> message = adapter.apply(payload.unwrap());
+         message.getHandler().handle(message.unwrap(), player.server, player.connection, player, player.serverLevel());
+      });
+   }
+
+   @Override
+   public ModConstructorImpl<ModConstructor> getModConstructorImpl() {
+      return new NeoForgeModConstructor();
+   }
+
+   @Override
+   public ModContext getModContext(String modId) {
+      return new NeoForgeModContext(modId);
+   }
+
+   @Override
+   public RegistryFactory getRegistryFactoryV3() {
+      return new NeoForgeRegistryFactoryV3();
+   }
+
+   @Override
+   public fuzs.puzzleslib.api.init.v4.registry.RegistryFactory getRegistryFactoryV4() {
+      return new NeoForgeRegistryFactoryV4();
+   }
+
+   @Override
+   public GameRulesFactory getGameRulesFactory() {
+      return new NeoForgeGameRulesFactory();
+   }
+
+   @Override
+   public ToolTypeHelper getToolTypeHelper() {
+      return new NeoForgeToolTypeHelper();
+   }
+
+   @Override
+   public CombinedIngredients getCombinedIngredients() {
+      return new NeoForgeCombinedIngredients();
+   }
+
+   @Override
+   public <T> AbstractTagAppender<T> getTagAppenderV2(TagBuilder tagBuilder, @Nullable Function<T, ResourceKey<T>> keyExtractor) {
+      return new NeoForgeTagAppenderV2<>(tagBuilder, keyExtractor);
+   }
+
+   @Override
+   public <T> fuzs.puzzleslib.api.data.v3.tags.AbstractTagAppender<T> getTagAppenderV3(
+      TagBuilder tagBuilder, @Nullable Function<T, ResourceKey<T>> keyExtractor
+   ) {
+      return new NeoForgeTagAppenderV3<>(tagBuilder, keyExtractor);
+   }
+
+   @Override
+   public DataAttachmentRegistryImpl getDataAttachmentRegistry() {
+      return new NeoForgeDataAttachmentRegistryImpl();
+   }
+
+   @Override
+   public boolean canEquip(ItemStack itemStack, EquipmentSlot equipmentSlot, LivingEntity livingEntity) {
+      return itemStack.canEquip(equipmentSlot, livingEntity);
+   }
+
+   @Nullable
+   @Override
+   public MobSpawnType getMobSpawnReason(Mob mob) {
+      return mob.getSpawnType();
+   }
+
+   @Override
+   public boolean isMobGriefingAllowed(ServerLevel serverLevel, @Nullable Entity entity) {
+      return EventHooks.canEntityGrief(serverLevel, entity);
+   }
+
+   @Override
+   public Entity getPartEntityParent(Entity entity) {
+      return entity instanceof PartEntity<?> partEntity ? partEntity.getParent() : entity;
+   }
+
+   @Override
+   public boolean isFakePlayer(ServerPlayer serverPlayer) {
+      return serverPlayer.isFakePlayer();
+   }
+
+   @Override
+   public boolean isPiglinCurrency(ItemStack itemStack) {
+      return itemStack.isPiglinCurrency();
+   }
+}

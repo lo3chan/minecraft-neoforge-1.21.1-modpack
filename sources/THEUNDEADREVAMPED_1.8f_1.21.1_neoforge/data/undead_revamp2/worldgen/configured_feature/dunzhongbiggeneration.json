@@ -1,0 +1,17 @@
+{
+  "type": "undead_revamp2:dunzhongbiggeneration",
+  "config": {
+    "structure": "undead_revamp2:bigbossroom",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": [
+      "minecraft:reinforced_deepslate",
+      "minecraft:red_sand"
+    ],
+    "offset": [
+      0,
+      -2,
+      0
+    ]
+  }
+}

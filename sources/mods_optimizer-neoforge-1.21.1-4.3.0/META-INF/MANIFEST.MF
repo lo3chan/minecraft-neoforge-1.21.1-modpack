@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+FMLModType: LIBRARY
+Specification-Title: Mods Optimizer
+Specification-Vendor: markusbordihn
+Specification-Version: 1
+Implementation-Title: NeoForge
+Implementation-Version: 4.3.0
+Implementation-Vendor: mods_optimizer
+Implementation-Timestamp: 2025-12-13T23:00:31+0100
+

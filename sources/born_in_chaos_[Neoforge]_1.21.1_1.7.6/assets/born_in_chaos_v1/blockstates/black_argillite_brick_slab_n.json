@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "born_in_chaos_v1:block/black_argillite_brick_slab_n"
+    },
+    "type=top": {
+      "model": "born_in_chaos_v1:block/black_argillite_brick_slab_n_top"
+    },
+    "type=double": {
+      "model": "born_in_chaos_v1:block/black_argillite_brick_slab_n_full"
+    }
+  }
+}

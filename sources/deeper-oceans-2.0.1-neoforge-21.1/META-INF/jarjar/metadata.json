@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "maven.modrinth",
+        "artifact": "apollib"
+      },
+      "version": {
+        "range": "[1.1.5-neoforge-21.1,)",
+        "artifactVersion": "1.1.5-neoforge-21.1"
+      },
+      "path": "META-INF/jarjar/apollib-1.1.5-neoforge-21.1.jar",
+      "isObfuscated": false
+    }
+  ]
+}

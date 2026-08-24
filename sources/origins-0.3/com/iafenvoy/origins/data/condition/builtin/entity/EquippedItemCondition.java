@@ -1,0 +1,37 @@
+package com.iafenvoy.origins.data.condition.builtin.entity;
+
+import com.iafenvoy.origins.data.condition.EntityCondition;
+import com.iafenvoy.origins.data.condition.ItemCondition;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+
+public record EquippedItemCondition(EquipmentSlot equipmentSlot, ItemCondition itemCondition) implements EntityCondition {
+   public static final MapCodec<EquippedItemCondition> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            EquipmentSlot.CODEC.fieldOf("equipment_slot").forGetter(EquippedItemCondition::equipmentSlot),
+            ItemCondition.optionalCodec("item_condition").forGetter(EquippedItemCondition::itemCondition)
+         )
+         .apply(i, EquippedItemCondition::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends EntityCondition> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public boolean test(@NotNull Entity entity) {
+      if (!(entity instanceof LivingEntity living)) {
+         return false;
+      } else {
+         ItemStack stack = living.getItemBySlot(this.equipmentSlot);
+         return !stack.isEmpty() && this.itemCondition.test(entity.level(), stack);
+      }
+   }
+}

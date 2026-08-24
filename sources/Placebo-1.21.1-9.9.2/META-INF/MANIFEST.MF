@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Placebo
+Specification-Vendor: Shadows_of_Fire
+Specification-Version: 9.9.2
+Implementation-Title: Placebo
+Implementation-Version: 9.9.2
+Implementation-Vendor: Shadows_of_Fire
+Implementation-Timestamp: 2026-07-19T05:43:48-0400
+

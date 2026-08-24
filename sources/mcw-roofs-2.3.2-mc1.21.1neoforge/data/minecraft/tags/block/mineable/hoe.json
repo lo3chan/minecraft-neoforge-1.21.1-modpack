@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+	  "mcwroofs:thatch_roof",
+	  "mcwroofs:thatch_attic_roof",
+	  "mcwroofs:thatch_top_roof",
+	  "mcwroofs:thatch_lower_roof",
+	  "mcwroofs:thatch_steep_roof",
+	  "mcwroofs:thatch_upper_lower_roof",
+	  "mcwroofs:thatch_upper_steep_roof"
+  ]
+}

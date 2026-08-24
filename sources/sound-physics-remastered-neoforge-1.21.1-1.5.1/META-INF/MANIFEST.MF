@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Specification-Title: Sound Physics Remastered
+Specification-Vendor: Max Henkel
+Specification-Version: 1
+Implementation-Title: Sound Physics Remastered
+Implementation-Version: 1.21.1-1.5.1
+Implementation-Vendor: Max Henkel
+Implementation-Timestamp: 2025-09-25T16:30:14+0200
+MixinConfigs: sound_physics_remastered.mixins.json
+Class-Path: sound-physics-remastered-fabric-1.21.1-1.5.1-dev.jar configb
+ uilder-2.0.2.jar
+

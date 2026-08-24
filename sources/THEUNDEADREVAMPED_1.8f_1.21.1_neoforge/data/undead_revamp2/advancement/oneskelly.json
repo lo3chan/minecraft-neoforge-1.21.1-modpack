@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "id": "undead_revamp2:blockofbostrox"
+    },
+    "title": {
+      "translate": "advancements.oneskelly.title"
+    },
+    "description": {
+      "translate": "advancements.oneskelly.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "oneskelly_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "undead_revamp2:bostroxingot"
+            ],
+            "count": {
+              "min": 1,
+              "max": 100000
+            }
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 3
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

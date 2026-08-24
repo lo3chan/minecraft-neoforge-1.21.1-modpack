@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:eternal_candy"
+    },
+    "title": {
+      "translate": "advancements.yoursatietywillbe_eternal.title"
+    },
+    "description": {
+      "translate": "advancements.yoursatietywillbe_eternal.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "yoursatietywillbe_eternal_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 25
+  },
+  "parent": "born_in_chaos_v1:transmutalogy"
+}

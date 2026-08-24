@@ -1,0 +1,57 @@
+{
+    "pack": {
+        "id": "amplified_nether",
+        "pack_format": 15,
+        "supported_formats": [
+            15,
+            107
+        ],
+        "min_format": 15,
+        "max_format": [107, 1],
+        "description": [
+            {
+                "text": "Amplified Nether",
+                "color": "#77070c"
+            },
+            {
+                "text": "\nCreated by ",
+                "color": "gray"
+            },
+            {
+                "text": "Stardust Labs",
+                "color": "#683edd"
+            }
+        ]
+    },
+    "overlays": {
+        "entries": [
+            {
+                "formats": {
+                    "min_inclusive": 41,
+                    "max_inclusive": 107
+                },
+                "directory": "1-20-5-overlay",
+                "min_format": 41,
+                "max_format": [107, 1]
+            },
+            {
+                "formats": {
+                    "min_inclusive": 88,
+                    "max_inclusive": 107
+                },
+                "directory": "1-21-9-overlay",
+                "min_format": 88,
+                "max_format": [107, 1]
+            },
+            {
+                "formats": {
+                    "min_inclusive": 101,
+                    "max_inclusive": 107
+                },
+                "directory": "26-1-overlay",
+                "min_format": [101, 1],
+                "max_format": [107, 1]
+            }
+        ]
+    }
+}

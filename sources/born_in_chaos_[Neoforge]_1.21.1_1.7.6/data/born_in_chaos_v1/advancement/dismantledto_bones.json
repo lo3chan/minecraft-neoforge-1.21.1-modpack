@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:orbofthe_summoner"
+    },
+    "title": {
+      "translate": "advancements.dismantledto_bones.title"
+    },
+    "description": {
+      "translate": "advancements.dismantledto_bones.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "dismantledto_bones_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 25
+  },
+  "parent": "born_in_chaos_v1:junior_summoner"
+}

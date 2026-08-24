@@ -1,0 +1,55 @@
+{
+  "color": "#f800f8",
+  "containers": [
+    {
+      "filled": [
+        "immersiveengineering:potion_bucket"
+      ],
+      "empty": "minecraft:bucket",
+      "capacity": "BUCKET"
+    },
+    {
+      "filled": [
+        "minecraft:potion",
+        "minecraft:splash_potion",
+        "minecraft:lingering_potion"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": "BOTTLE"
+    },
+    {
+      "filled": [
+        "minecraft:lingering_potion"
+      ],
+      "empty": "inspirations:lingering_bottle",
+      "capacity": "BOTTLE"
+    },
+    {
+      "filled": [
+        "minecraft:splash_potion"
+      ],
+      "empty": "inspirations:splash_bottle",
+      "capacity": "BOTTLE"
+    }
+  ],
+  "equivalent_fluids": [
+    {"id":"create:potion","required":false},
+    {"id":"cofh_core:potion","required":false},
+    {"id":"immersiveengineering:potion","required":false}
+  ],
+  "flowing_texture": "moonlight:block/soft_fluids/potion_flow",
+  "food": {
+    "item": "minecraft:potion"
+  },
+  "preserved_components_from_item": [
+    "minecraft:item_name",
+    "minecraft:potion_contents",
+    "moonlight:bottle_type",
+    "origins:is_extended_by_cleric"
+  ],
+  "emissivity": 5,
+  "still_texture": "moonlight:block/soft_fluids/potion_still",
+  "translation_key": "item.minecraft.potion",
+  "use_texture_from": "create:potion"
+}
+

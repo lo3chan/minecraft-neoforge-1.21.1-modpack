@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:devilurchin"
+    },
+    {
+      "item": "undead_revamp2:devilurchin"
+    },
+    {
+      "item": "undead_revamp2:devilurchin"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "undead_revamp2:huntereye"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:leather"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:huntersackpink",
+    "count": 1
+  }
+}

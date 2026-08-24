@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/somnolence_block",
+    "up": "undead_revamp2:block/somnolence_block",
+    "north": "undead_revamp2:block/somnolence_block",
+    "east": "undead_revamp2:block/somnolence_block",
+    "south": "undead_revamp2:block/somnolence_block",
+    "west": "undead_revamp2:block/somnolence_block",
+    "particle": "undead_revamp2:block/somnolence_block"
+  },
+  "render_type": "solid"
+}

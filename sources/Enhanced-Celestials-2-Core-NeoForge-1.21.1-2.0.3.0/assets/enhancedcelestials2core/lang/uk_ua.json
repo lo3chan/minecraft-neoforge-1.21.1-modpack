@@ -1,0 +1,17 @@
+{
+  "block.enhancedcelestials2core.meteor": "Метеор",
+  "block.enhancedcelestials2core.space_moss_block": "Блок Космічного Моху",
+  "block.enhancedcelestials2core.space_moss_carpet": "Покрив Космічного Моху",
+  "block.enhancedcelestials2core.space_moss_grass": "Трава Космічного Моху",
+  "enhancedcelestials2core.commands.disabled": "Місячні явища Enhanced Celestials вимкненні для цього світу!",
+  "enhancedcelestials2core.commands.lunarevent_missing": "\"%s\" не є коректним місячним явищем!",
+  "enhancedcelestials2core.lunarforecast.days_left": "(через %sднів)",
+  "enhancedcelestials2core.lunarforecast.empty": "Немає майбутніх місячних подій.",
+  "enhancedcelestials2core.lunarforecast.header": "Поточний місячний прогноз:\n%s",
+  "enhancedcelestials2core.lunarforecast.recompute": "Місячний прогноз оновлено!",
+  "enhancedcelestials2core.sleep.fail": "Ви не можете спати зараз через заборону поточним місячним явищем.",
+  "entity.enhancedcelestials2core.meteor": "Метеор",
+  "entity.enhancedcelestials2core.space_moss_bug": "Комаха Космічного Моху",
+  "item.enhancedcelestials2core.space_moss_bug_spawn_egg": "Яйце виклику Комахи Космічного Моху"
+}
+

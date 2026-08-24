@@ -1,0 +1,25 @@
+package com.github.alexthe666.alexsmobs.client.render;
+
+import com.github.alexthe666.alexsmobs.client.model.ModelTasmanianDevil;
+import com.github.alexthe666.alexsmobs.entity.EntityTasmanianDevil;
+import com.github.alexthe666.alexsmobs.misc.AMCompat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.resources.ResourceLocation;
+
+public class RenderTasmanianDevil extends MobRenderer<EntityTasmanianDevil, ModelTasmanianDevil> {
+   private static final ResourceLocation TEXTURE = AMCompat.rl("alexsmobs:textures/entity/tasmanian_devil.png");
+   private static final ResourceLocation TEXTURE_ANGRY = AMCompat.rl("alexsmobs:textures/entity/tasmanian_devil_angry.png");
+
+   public RenderTasmanianDevil(Context renderManagerIn) {
+      super(renderManagerIn, new ModelTasmanianDevil(), 0.3F);
+   }
+
+   protected void scale(EntityTasmanianDevil entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
+   }
+
+   public ResourceLocation getTextureLocation(EntityTasmanianDevil entity) {
+      return entity.getAnimation() == EntityTasmanianDevil.ANIMATION_HOWL && entity.getAnimationTick() < 34 ? TEXTURE_ANGRY : TEXTURE;
+   }
+}

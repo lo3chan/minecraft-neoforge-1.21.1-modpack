@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:pumpkinhead_icon"
+    },
+    "title": {
+      "translate": "advancements.pumpkin_sir.title"
+    },
+    "description": {
+      "translate": "advancements.pumpkin_sir.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pumpkin_sir_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 30
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

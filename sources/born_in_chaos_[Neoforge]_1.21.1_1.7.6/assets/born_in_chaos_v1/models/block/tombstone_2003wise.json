@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstonewise",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstonelevelthree",
+    "particle": "born_in_chaos_v1:block/tombstonelevelthree",
+    "0": "born_in_chaos_v1:block/tombstonelevelthree",
+    "1": "born_in_chaos_v1:block/2003wisename"
+  },
+  "render_type": "cutout"
+}

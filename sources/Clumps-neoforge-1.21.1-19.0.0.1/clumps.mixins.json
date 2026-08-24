@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.blamejared.clumps.mixin",
+  "compatibilityLevel": "JAVA_18",
+  "mixins": [
+    "ExperienceOrbAccess",
+    "MixinExperienceOrb"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "clumps.refmap.json"
+}

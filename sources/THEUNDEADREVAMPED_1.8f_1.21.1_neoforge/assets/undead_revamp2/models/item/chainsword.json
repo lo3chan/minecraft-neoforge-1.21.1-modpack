@@ -1,0 +1,7 @@
+{
+  "parent": "undead_revamp2:custom/chainsword",
+  "textures": {
+    "0": "undead_revamp2:block/chainmapping",
+    "particle": "undead_revamp2:item/sawsword"
+  }
+}

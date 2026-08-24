@@ -1,0 +1,49 @@
+package dev.latvian.mods.kubejs.recipe.component;
+
+import com.google.gson.JsonPrimitive;
+import com.mojang.serialization.Codec;
+import dev.latvian.mods.kubejs.KubeJS;
+import dev.latvian.mods.kubejs.recipe.RecipeScriptContext;
+import dev.latvian.mods.kubejs.recipe.filter.RecipeMatchContext;
+import dev.latvian.mods.rhino.type.TypeInfo;
+
+public class BooleanComponent implements RecipeComponent<Boolean> {
+   public static final RecipeComponentType<Boolean> BOOLEAN = RecipeComponentType.unit(KubeJS.id("boolean"), new BooleanComponent());
+
+   @Override
+   public RecipeComponentType<?> type() {
+      return BOOLEAN;
+   }
+
+   @Override
+   public Codec<Boolean> codec() {
+      return Codec.BOOL;
+   }
+
+   @Override
+   public TypeInfo typeInfo() {
+      return TypeInfo.BOOLEAN;
+   }
+
+   public Boolean wrap(RecipeScriptContext cx, Object from) {
+      if (from instanceof Boolean n) {
+         return n;
+      } else if (from instanceof JsonPrimitive json) {
+         return json.getAsBoolean();
+      } else if (from instanceof CharSequence) {
+         return Boolean.parseBoolean(from.toString());
+      } else {
+         throw new IllegalStateException("Expected a boolean!");
+      }
+   }
+
+   @Override
+   public boolean hasPriority(RecipeMatchContext cx, Object from) {
+      return from instanceof Boolean || from instanceof JsonPrimitive json && json.isBoolean();
+   }
+
+   @Override
+   public String toString() {
+      return "boolean";
+   }
+}

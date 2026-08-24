@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2/issues"
+[[mods]]
+modId = "enhancedcelestials2defaultlunarevents"
+version = "2.0.1.1"
+displayName = "Enhanced Celestials 2: Default Lunar Events"
+displayURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2"
+authors = "Corgi Taco"
+description = '''
+Default lunar events (blood moon, blue moon, harvest moon, super moon and their variants) for Enhanced Celestials 2.
+'''
+
+[[dependencies.enhancedcelestials2defaultlunarevents]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2defaultlunarevents]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2defaultlunarevents]]
+modId = "enhancedcelestials2core"
+type = "required"
+versionRange = "[2.0.3.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2defaultlunarevents]]
+modId = "corgilib"
+type = "required"
+versionRange = "[5.0.0.9,)"
+ordering = "NONE"
+side = "BOTH"
+

@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "born_in_chaos_v1:block/rivermint",
+    "particle": "born_in_chaos_v1:block/rivermint"
+  },
+  "render_type": "cutout"
+}

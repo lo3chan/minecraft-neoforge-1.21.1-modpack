@@ -1,0 +1,131 @@
+package tallestegg.guardvillagers.mixins;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.mojang.datafixers.util.Pair;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.behavior.BehaviorControl;
+import net.minecraft.world.entity.ai.behavior.DoNothing;
+import net.minecraft.world.entity.ai.behavior.GateBehavior;
+import net.minecraft.world.entity.ai.behavior.InteractWith;
+import net.minecraft.world.entity.ai.behavior.RunOne;
+import net.minecraft.world.entity.ai.behavior.TradeWithVillager;
+import net.minecraft.world.entity.ai.behavior.VillagerGoalPackages;
+import net.minecraft.world.entity.ai.behavior.GateBehavior.OrderPolicy;
+import net.minecraft.world.entity.ai.behavior.GateBehavior.RunningPolicy;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import tallestegg.guardvillagers.GuardEntityType;
+import tallestegg.guardvillagers.common.entities.ai.tasks.HealGuardAndHero;
+import tallestegg.guardvillagers.common.entities.ai.tasks.RepairGolem;
+import tallestegg.guardvillagers.common.entities.ai.tasks.RepairGuardEquipment;
+import tallestegg.guardvillagers.common.entities.ai.tasks.ShareGossipWithGuard;
+import tallestegg.guardvillagers.configuration.GuardConfig;
+
+@Mixin({VillagerGoalPackages.class})
+public abstract class VillagerGoalPackagesMixin {
+   @Inject(
+      method = {"getCorePackage"},
+      cancellable = true,
+      at = {@At("RETURN")}
+   )
+   private static void getCorePackage(
+      VillagerProfession pProfession,
+      float pSpeedModifier,
+      CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> cir
+   ) {
+      List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> villagerList = new ArrayList<>(
+         (Collection<? extends Pair<Integer, ? extends BehaviorControl<? super Villager>>>)cir.getReturnValue()
+      );
+      if ((Boolean)GuardConfig.COMMON.BlacksmithHealing.get()) {
+         villagerList.add(Pair.of(10, new RepairGolem()));
+      }
+
+      if ((Boolean)GuardConfig.COMMON.ClericHealing.get()) {
+         villagerList.add(Pair.of(10, new HealGuardAndHero()));
+      }
+
+      if ((Boolean)GuardConfig.COMMON.armorersRepairGuardArmor.get()) {
+         villagerList.add(Pair.of(10, new RepairGuardEquipment()));
+      }
+
+      cir.setReturnValue(ImmutableList.copyOf(villagerList));
+   }
+
+   @Inject(
+      method = {"getMeetPackage"},
+      cancellable = true,
+      at = {@At("RETURN")}
+   )
+   private static void getMeetPackage(
+      VillagerProfession pProfession,
+      float pSpeedModifier,
+      CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> cir
+   ) {
+      List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> villagerList = new ArrayList<>(
+         (Collection<? extends Pair<Integer, ? extends BehaviorControl<? super Villager>>>)cir.getReturnValue()
+      );
+      villagerList.add(
+         Pair.of(
+            2,
+            new GateBehavior(
+               ImmutableMap.of(),
+               ImmutableSet.of(MemoryModuleType.INTERACTION_TARGET),
+               OrderPolicy.ORDERED,
+               RunningPolicy.RUN_ONE,
+               ImmutableList.of(Pair.of(new ShareGossipWithGuard(), 1), Pair.of(new TradeWithVillager(), 1))
+            )
+         )
+      );
+      cir.setReturnValue(ImmutableList.copyOf(villagerList));
+   }
+
+   @Inject(
+      method = {"getIdlePackage"},
+      cancellable = true,
+      at = {@At("RETURN")}
+   )
+   private static void getIdlePackage(
+      VillagerProfession pProfession,
+      float pSpeedModifier,
+      CallbackInfoReturnable<ImmutableList<Pair<Integer, ? extends BehaviorControl<? super Villager>>>> cir
+   ) {
+      List<Pair<Integer, ? extends BehaviorControl<? super Villager>>> villagerList = new ArrayList<>(
+         (Collection<? extends Pair<Integer, ? extends BehaviorControl<? super Villager>>>)cir.getReturnValue()
+      );
+      villagerList.add(
+         Pair.of(
+            2,
+            new RunOne(
+               ImmutableList.of(
+                  Pair.of(InteractWith.of((EntityType)GuardEntityType.GUARD.get(), 8, MemoryModuleType.INTERACTION_TARGET, pSpeedModifier, 2), 3),
+                  Pair.of(InteractWith.of(EntityType.VILLAGER, 8, MemoryModuleType.INTERACTION_TARGET, pSpeedModifier, 2), 3),
+                  Pair.of(new DoNothing(30, 60), 1)
+               )
+            )
+         )
+      );
+      villagerList.add(
+         Pair.of(
+            2,
+            new GateBehavior(
+               ImmutableMap.of(),
+               ImmutableSet.of(MemoryModuleType.INTERACTION_TARGET),
+               OrderPolicy.ORDERED,
+               RunningPolicy.RUN_ONE,
+               ImmutableList.of(Pair.of(new ShareGossipWithGuard(), 1), Pair.of(new TradeWithVillager(), 1))
+            )
+         )
+      );
+      cir.setReturnValue(ImmutableList.copyOf(villagerList));
+   }
+}

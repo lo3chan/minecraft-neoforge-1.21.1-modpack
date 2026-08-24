@@ -1,0 +1,71 @@
+package com.iafenvoy.origins.data.power.builtin.action;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.action.BlockAction;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.condition.BlockCondition;
+import com.iafenvoy.origins.data.power.Power;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class ActionOnWakeUpPower extends Power {
+   public static final MapCodec<ActionOnWakeUpPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            BlockCondition.optionalCodec("block_condition").forGetter(ActionOnWakeUpPower::getBlockCondition),
+            EntityAction.optionalCodec("entity_action").forGetter(ActionOnWakeUpPower::getEntityAction),
+            BlockAction.optionalCodec("block_action").forGetter(ActionOnWakeUpPower::getBlockAction)
+         )
+         .apply(i, ActionOnWakeUpPower::new)
+   );
+   private final BlockCondition blockCondition;
+   private final EntityAction entityAction;
+   private final BlockAction blockAction;
+
+   public ActionOnWakeUpPower(Power.BaseSettings settings, BlockCondition blockCondition, EntityAction entityAction, BlockAction blockAction) {
+      super(settings);
+      this.blockCondition = blockCondition;
+      this.entityAction = entityAction;
+      this.blockAction = blockAction;
+   }
+
+   public BlockCondition getBlockCondition() {
+      return this.blockCondition;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   public BlockAction getBlockAction() {
+      return this.blockAction;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @SubscribeEvent
+   public static void onWakeup(PlayerWakeUpEvent event) {
+      if (!event.updateLevel() && !event.wakeImmediately()) {
+         Player player = event.getEntity();
+         Optional<BlockPos> pos = player.getSleepingPos();
+         if (!pos.isEmpty()) {
+            PowerHelper.get(player).execute(ActionOnWakeUpPower.class, p -> p.blockCondition.test(player.level(), pos.get()), (h, p) -> {
+               p.entityAction.execute(player);
+               p.blockAction.execute(player.level(), pos.get(), Optional.of(player.getDirection()));
+            });
+         }
+      }
+   }
+}

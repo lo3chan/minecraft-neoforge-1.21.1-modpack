@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:yellow_concrete"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:yellow_concrete_lower_roof"
+  },
+  "group" : "roofs"
+}

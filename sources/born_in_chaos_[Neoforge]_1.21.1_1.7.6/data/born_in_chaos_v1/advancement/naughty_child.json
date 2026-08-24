@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:spiritual_gingerbread"
+    },
+    "title": {
+      "translate": "advancements.naughty_child.title"
+    },
+    "description": {
+      "translate": "advancements.naughty_child.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "naughty_child_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 5
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

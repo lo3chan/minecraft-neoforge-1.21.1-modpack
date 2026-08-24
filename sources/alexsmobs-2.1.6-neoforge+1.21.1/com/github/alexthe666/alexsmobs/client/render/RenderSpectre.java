@@ -1,0 +1,108 @@
+package com.github.alexthe666.alexsmobs.client.render;
+
+import com.github.alexthe666.alexsmobs.client.model.ModelSpectre;
+import com.github.alexthe666.alexsmobs.entity.EntitySpectre;
+import com.github.alexthe666.alexsmobs.misc.AMCompat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+
+public class RenderSpectre extends MobRenderer<EntitySpectre, ModelSpectre> {
+   private static final ResourceLocation TEXTURE_BONE = AMCompat.rl("alexsmobs:textures/entity/spectre_bone.png");
+   private static final ResourceLocation TEXTURE = AMCompat.rl("alexsmobs:textures/entity/spectre.png");
+   private static final ResourceLocation TEXTURE_EYES = AMCompat.rl("alexsmobs:textures/entity/spectre_glow.png");
+   private static final ResourceLocation TEXTURE_LEAD = AMCompat.rl("alexsmobs:textures/entity/spectre_lead.png");
+
+   public RenderSpectre(Context renderManagerIn) {
+      super(renderManagerIn, new ModelSpectre(), 0.5F);
+      this.addLayer(new RenderSpectre.SpectreEyesLayer(this));
+      this.addLayer(new RenderSpectre.SpectreMembraneLayer(this));
+   }
+
+   protected void scale(EntitySpectre entitylivingbaseIn, PoseStack matrixStackIn, float partialTickTime) {
+      matrixStackIn.scale(1.3F, 1.3F, 1.3F);
+   }
+
+   protected int getBlockLightLevel(EntitySpectre entityIn, BlockPos partialTicks) {
+      return 15;
+   }
+
+   public ResourceLocation getTextureLocation(EntitySpectre entity) {
+      return TEXTURE_BONE;
+   }
+
+   public float getAlphaForRender(EntitySpectre entityIn, float partialTicks) {
+      return ((float)Math.sin((entityIn.tickCount + partialTicks) * 0.1F) + 1.5F) * 0.1F + 0.5F;
+   }
+
+   static class SpectreEyesLayer extends RenderLayer<EntitySpectre, ModelSpectre> {
+      public SpectreEyesLayer(RenderSpectre p_i50928_1_) {
+         super(p_i50928_1_);
+      }
+
+      public void render(
+         PoseStack matrixStackIn,
+         MultiBufferSource bufferIn,
+         int packedLightIn,
+         EntitySpectre entitylivingbaseIn,
+         float limbSwing,
+         float limbSwingAmount,
+         float partialTicks,
+         float ageInTicks,
+         float netHeadYaw,
+         float headPitch
+      ) {
+         VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.eyes(RenderSpectre.TEXTURE_EYES));
+         ((ModelSpectre)this.getParentModel()).renderToBuffer(matrixStackIn, ivertexbuilder, 15728640, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+      }
+   }
+
+   class SpectreMembraneLayer extends RenderLayer<EntitySpectre, ModelSpectre> {
+      public SpectreMembraneLayer(RenderSpectre p_i50928_1_) {
+         super(p_i50928_1_);
+      }
+
+      public void render(
+         PoseStack matrixStackIn,
+         MultiBufferSource bufferIn,
+         int packedLightIn,
+         EntitySpectre entitylivingbaseIn,
+         float limbSwing,
+         float limbSwingAmount,
+         float partialTicks,
+         float ageInTicks,
+         float netHeadYaw,
+         float headPitch
+      ) {
+         VertexConsumer lvt_11_1_ = bufferIn.getBuffer(this.getRenderType());
+         ((ModelSpectre)this.getParentModel())
+            .renderToBuffer(
+               matrixStackIn,
+               lvt_11_1_,
+               15728640,
+               LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F),
+               1.0F,
+               1.0F,
+               1.0F,
+               RenderSpectre.this.getAlphaForRender(entitylivingbaseIn, partialTicks)
+            );
+         if (entitylivingbaseIn.isLeashed()) {
+            VertexConsumer lead = bufferIn.getBuffer(AMRenderTypes.entityCutoutNoCull(RenderSpectre.TEXTURE_LEAD));
+            ((ModelSpectre)this.getParentModel())
+               .renderToBuffer(matrixStackIn, lead, 15728640, LivingEntityRenderer.getOverlayCoords(entitylivingbaseIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+         }
+      }
+
+      public RenderType getRenderType() {
+         return AMRenderTypes.getSpectreBones(RenderSpectre.TEXTURE);
+      }
+   }
+}

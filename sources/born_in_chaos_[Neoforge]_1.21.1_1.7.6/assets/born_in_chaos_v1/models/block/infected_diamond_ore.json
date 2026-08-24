@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minecraft:block/diamond_ore",
+    "up": "minecraft:block/diamond_ore",
+    "north": "minecraft:block/diamond_ore",
+    "east": "minecraft:block/diamond_ore",
+    "south": "minecraft:block/diamond_ore",
+    "west": "minecraft:block/diamond_ore",
+    "particle": "minecraft:block/diamond_ore"
+  },
+  "render_type": "solid"
+}

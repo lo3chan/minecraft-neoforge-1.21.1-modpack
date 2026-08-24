@@ -1,0 +1,39 @@
+package dev.latvian.mods.rhino.type;
+
+import java.util.Collection;
+import java.util.List;
+
+public record JSFixedArrayTypeInfo(List<JSOptionalParam> types) implements TypeInfo {
+   @Override
+   public Class<?> asClass() {
+      return TypeInfo.class;
+   }
+
+   @Override
+   public String toString() {
+      return TypeStringContext.DEFAULT.toString(this);
+   }
+
+   @Override
+   public void append(TypeStringContext ctx, StringBuilder sb) {
+      sb.append('[');
+
+      for (int i = 0; i < this.types.size(); i++) {
+         if (i != 0) {
+            sb.append(',');
+            ctx.appendSpace(sb);
+         }
+
+         this.types.get(i).append(ctx, sb);
+      }
+
+      sb.append(']');
+   }
+
+   @Override
+   public void collectContainedComponentClasses(Collection<Class<?>> classes) {
+      for (JSOptionalParam type : this.types) {
+         type.type().collectContainedComponentClasses(classes);
+      }
+   }
+}

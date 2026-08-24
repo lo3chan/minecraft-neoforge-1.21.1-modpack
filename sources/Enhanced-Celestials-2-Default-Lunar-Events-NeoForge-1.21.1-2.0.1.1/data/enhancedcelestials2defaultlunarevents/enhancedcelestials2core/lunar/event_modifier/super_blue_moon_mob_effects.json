@@ -1,0 +1,20 @@
+{
+  "type": "enhancedcelestials2core:mob_effects",
+  "settings": {
+    "effects": [
+      {
+        "filter": {
+          "type": "corgilib:any"
+        },
+        "mob_effect": {
+          "ambient": true,
+          "amplifier": 4,
+          "duration_in_ticks": 1210,
+          "effect": "minecraft:luck",
+          "show_icon": false,
+          "visible": false
+        }
+      }
+    ]
+  }
+}

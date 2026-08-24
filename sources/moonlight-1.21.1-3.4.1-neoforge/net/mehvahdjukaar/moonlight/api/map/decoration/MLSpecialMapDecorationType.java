@@ -1,0 +1,72 @@
+package net.mehvahdjukaar.moonlight.api.map.decoration;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.mehvahdjukaar.moonlight.api.misc.TriFunction;
+import net.mehvahdjukaar.moonlight.core.map.MapDataInternal;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.ApiStatus.Internal;
+
+public final class MLSpecialMapDecorationType<D extends MLMapDecoration, M extends MLMapMarker<D>> extends MLMapDecorationType<D, M> {
+   static final Codec<MLSpecialMapDecorationType<?, ?>> CODEC = RecordCodecBuilder.create(
+      instance -> instance.group(ResourceLocation.CODEC.fieldOf("custom_type").forGetter(MLSpecialMapDecorationType::getCustomFactoryID))
+         .apply(instance, MapDataInternal::createCustomType)
+   );
+   @Internal
+   public ResourceLocation factoryID;
+   @Nullable
+   private final TriFunction<Holder<MLMapDecorationType<?, ?>>, BlockGetter, BlockPos, M> markerFromWorldFactory;
+
+   private MLSpecialMapDecorationType(
+      MapCodec<M> markerCodec,
+      StreamCodec<RegistryFriendlyByteBuf, D> decorationCodec,
+      @Nullable TriFunction<Holder<MLMapDecorationType<?, ?>>, BlockGetter, BlockPos, M> markerFromWorldFactory
+   ) {
+      super(markerCodec, decorationCodec);
+      this.markerFromWorldFactory = markerFromWorldFactory;
+   }
+
+   public static <D extends MLMapDecoration, M extends MLMapMarker<D>> MLSpecialMapDecorationType<D, M> fromWorldCustomMarker(
+      MapCodec<M> markerCodec,
+      StreamCodec<RegistryFriendlyByteBuf, D> decorationCodec,
+      TriFunction<Holder<MLMapDecorationType<?, ?>>, BlockGetter, BlockPos, M> markerFromWorldFactory
+   ) {
+      return new MLSpecialMapDecorationType<>(markerCodec, decorationCodec, markerFromWorldFactory);
+   }
+
+   public static MLSpecialMapDecorationType<MLMapDecoration, SimpleMapMarker> fromWorldSimple(
+      TriFunction<Holder<MLMapDecorationType<?, ?>>, BlockGetter, BlockPos, SimpleMapMarker> markerFromWorldFactory
+   ) {
+      return fromWorldCustomMarker(SimpleMapMarker.DIRECT_CODEC, MLMapDecoration.DIRECT_CODEC, markerFromWorldFactory);
+   }
+
+   public static <D extends MLMapDecoration, M extends MLMapMarker<D>> MLSpecialMapDecorationType<D, M> standaloneCustomMarker(
+      MapCodec<M> markerCodec, StreamCodec<RegistryFriendlyByteBuf, D> decorationCode
+   ) {
+      return new MLSpecialMapDecorationType<>(markerCodec, decorationCode, null);
+   }
+
+   @Override
+   public boolean isFromWorld() {
+      return this.markerFromWorldFactory != null;
+   }
+
+   @Nullable
+   @Override
+   public M createMarkerFromWorld(LevelAccessor reader, BlockPos pos) {
+      return this.markerFromWorldFactory != null ? this.markerFromWorldFactory.apply(this.wrapAsHolder(reader.registryAccess()), reader, pos) : null;
+   }
+
+   @Override
+   public ResourceLocation getCustomFactoryID() {
+      return this.factoryID;
+   }
+}

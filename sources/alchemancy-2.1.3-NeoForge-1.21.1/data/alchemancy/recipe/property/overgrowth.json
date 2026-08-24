@@ -1,0 +1,12 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:photosynthetic",
+    "alchemancy:sculking",
+    "alchemancy:seeded",
+    "alchemancy:infected"
+  ],
+
+  "result": "alchemancy:overgrowth"
+}

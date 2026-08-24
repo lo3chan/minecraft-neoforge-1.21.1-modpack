@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "born_in_chaos_v1:transformative_flower"
+  },
+  "base": {
+    "item": "born_in_chaos_v1:frostbitten_blade"
+  },
+  "addition": {
+    "item": "minecraft:sugar"
+  },
+  "result": {
+    "id": "born_in_chaos_v1:icy_sweetness"
+  }
+}

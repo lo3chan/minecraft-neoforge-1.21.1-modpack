@@ -1,0 +1,41 @@
+package at.petrak.hexcasting.api.casting.arithmetic;
+
+import java.util.Iterator;
+import org.apache.commons.lang3.function.TriFunction;
+import org.jetbrains.annotations.NotNull;
+
+public class TripleIterable<A, B, C, D> implements Iterable<D> {
+   private final Iterable<A> iterableA;
+   private final Iterable<B> iterableB;
+   private final Iterable<C> iterableC;
+   private final TriFunction<A, B, C, D> map;
+
+   public TripleIterable(Iterable<A> iterableA, Iterable<B> iterableB, Iterable<C> iterableC, TriFunction<A, B, C, D> map) {
+      this.iterableA = iterableA;
+      this.iterableB = iterableB;
+      this.iterableC = iterableC;
+      this.map = map;
+   }
+
+   @NotNull
+   @Override
+   public Iterator<D> iterator() {
+      return new TripleIterable.TripleIterator();
+   }
+
+   class TripleIterator implements Iterator<D> {
+      private final Iterator<A> iteratorA = TripleIterable.this.iterableA.iterator();
+      private final Iterator<B> iteratorB = TripleIterable.this.iterableB.iterator();
+      private final Iterator<C> iteratorC = TripleIterable.this.iterableC.iterator();
+
+      @Override
+      public boolean hasNext() {
+         return this.iteratorA.hasNext() && this.iteratorB.hasNext() && this.iteratorC.hasNext();
+      }
+
+      @Override
+      public D next() {
+         return (D)TripleIterable.this.map.apply(this.iteratorA.next(), this.iteratorB.next(), this.iteratorC.next());
+      }
+   }
+}

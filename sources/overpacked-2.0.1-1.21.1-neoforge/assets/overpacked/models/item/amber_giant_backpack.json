@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "overpacked:item/dye_depot/amber_giant_backpack"
+  }
+}

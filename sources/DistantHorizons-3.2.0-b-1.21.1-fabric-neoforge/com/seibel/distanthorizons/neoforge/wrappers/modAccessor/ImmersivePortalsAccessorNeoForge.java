@@ -1,0 +1,6 @@
+package com.seibel.distanthorizons.neoforge.wrappers.modAccessor;
+
+import com.seibel.distanthorizons.common.wrappers.modAccessor.AbstractImmersivePortalsAccessorCommon_neoforge;
+
+public class ImmersivePortalsAccessorNeoForge extends AbstractImmersivePortalsAccessorCommon_neoforge {
+}

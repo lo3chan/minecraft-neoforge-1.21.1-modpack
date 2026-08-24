@@ -1,0 +1,19 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:wave_rider",
+    "alchemancy:light_seeking",
+    "alchemancy:voidborn",
+    "alchemancy:antigrav",
+    "alchemancy:binding"
+  ],
+
+  "infusables": [
+    {
+      "item": "alchemancy:glowing_orb"
+    }
+  ],
+
+  "result": "alchemancy:air_walker"
+}

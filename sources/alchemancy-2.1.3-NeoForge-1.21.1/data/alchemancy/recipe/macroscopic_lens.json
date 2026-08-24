@@ -1,0 +1,12 @@
+{
+  "type": "alchemancy:item_transmutation",
+
+  "catalyst": {
+    "item": "alchemancy:microscopic_lens"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:macroscopic_lens"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": {
+    "type": "neoforge:any"
+  },
+  "spawners": {
+    "type": "undead_revamp2:sucker",
+    "weight": 7,
+    "minCount": 2,
+    "maxCount": 3
+  }
+}

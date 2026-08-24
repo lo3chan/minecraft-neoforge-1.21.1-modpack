@@ -1,0 +1,236 @@
+package vazkii.psi.common.entity;
+
+import java.util.Optional;
+import java.util.UUID;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.network.syncher.SynchedEntityData.Builder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity.RemovalReason;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import vazkii.psi.api.internal.PsiRenderHelper;
+import vazkii.psi.api.spell.ISpellAcceptor;
+import vazkii.psi.api.spell.ISpellImmune;
+import vazkii.psi.api.spell.Spell;
+import vazkii.psi.api.spell.SpellContext;
+import vazkii.psi.common.Psi;
+
+public class EntitySpellCircle extends Entity implements ISpellImmune {
+   public static final int CAST_TIMES = 20;
+   public static final int CAST_DELAY = 5;
+   public static final EntityDataAccessor<ItemStack> COLORIZER_DATA = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.ITEM_STACK);
+   private static final String TAG_COLORIZER = "colorizer";
+   private static final String TAG_BULLET = "bullet";
+   private static final String TAG_CASTER = "caster";
+   private static final String TAG_TIME_ALIVE = "timeAlive";
+   private static final String TAG_TIMES_CAST = "timesCast";
+   private static final String TAG_LOOK_X = "savedLookX";
+   private static final String TAG_LOOK_Y = "savedLookY";
+   private static final String TAG_LOOK_Z = "savedLookZ";
+   private static final String TAG_DIRECTION_X = "directionX";
+   private static final String TAG_DIRECTION_Y = "directionY";
+   private static final String TAG_DIRECTION_Z = "directionZ";
+   private static final String TAG_SCALE = "scale";
+   private static final String TAG_LIFETIME = "lifetime";
+   private static final EntityDataAccessor<ItemStack> BULLET_DATA = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.ITEM_STACK);
+   private static final EntityDataAccessor<Optional<UUID>> CASTER_UUID = SynchedEntityData.defineId(
+      EntitySpellCircle.class, EntityDataSerializers.OPTIONAL_UUID
+   );
+   private static final EntityDataAccessor<Integer> TIME_ALIVE = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.INT);
+   private static final EntityDataAccessor<Integer> TIMES_CAST = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.INT);
+   private static final EntityDataAccessor<Float> LOOK_X = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   private static final EntityDataAccessor<Float> LOOK_Y = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   private static final EntityDataAccessor<Float> LOOK_Z = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   public static final EntityDataAccessor<Float> DIRECTION_X = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   public static final EntityDataAccessor<Float> DIRECTION_Y = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   public static final EntityDataAccessor<Float> DIRECTION_Z = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   public static final EntityDataAccessor<Float> SCALE = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.FLOAT);
+   public static final EntityDataAccessor<Integer> LIFETIME = SynchedEntityData.defineId(EntitySpellCircle.class, EntityDataSerializers.INT);
+
+   public EntitySpellCircle(EntityType<?> type, Level worldIn) {
+      super(type, worldIn);
+   }
+
+   public EntitySpellCircle setInfo(Player player, ItemStack colorizer, ItemStack bullet) {
+      this.entityData.set(COLORIZER_DATA, colorizer);
+      this.entityData.set(BULLET_DATA, bullet.copy());
+      this.entityData.set(CASTER_UUID, Optional.of(player.getUUID()));
+      Vec3 lookVec = player.getViewVector(1.0F);
+      this.entityData.set(LOOK_X, (float)lookVec.x);
+      this.entityData.set(LOOK_Y, (float)lookVec.y);
+      this.entityData.set(LOOK_Z, (float)lookVec.z);
+      return this;
+   }
+
+   protected void defineSynchedData(Builder pBuilder) {
+      pBuilder.define(COLORIZER_DATA, ItemStack.EMPTY);
+      pBuilder.define(BULLET_DATA, ItemStack.EMPTY);
+      pBuilder.define(CASTER_UUID, Optional.empty());
+      pBuilder.define(TIME_ALIVE, 0);
+      pBuilder.define(TIMES_CAST, 0);
+      pBuilder.define(LOOK_X, 0.0F);
+      pBuilder.define(LOOK_Y, 0.0F);
+      pBuilder.define(LOOK_Z, 0.0F);
+      pBuilder.define(DIRECTION_X, 0.0F);
+      pBuilder.define(DIRECTION_Y, 1.0F);
+      pBuilder.define(DIRECTION_Z, 0.0F);
+      pBuilder.define(SCALE, 1.0F);
+      pBuilder.define(LIFETIME, 110);
+   }
+
+   public void addAdditionalSaveData(@NotNull CompoundTag tagCompound) {
+      Tag colorizerCmp = new CompoundTag();
+      ItemStack colorizer = (ItemStack)this.entityData.get(COLORIZER_DATA);
+      if (!colorizer.isEmpty()) {
+         colorizerCmp = colorizer.save(this.registryAccess(), colorizerCmp);
+      }
+
+      tagCompound.put("colorizer", colorizerCmp);
+      Tag bulletCmp = new CompoundTag();
+      ItemStack bullet = (ItemStack)this.entityData.get(BULLET_DATA);
+      if (!bullet.isEmpty()) {
+         bulletCmp = bullet.save(this.registryAccess(), bulletCmp);
+      }
+
+      tagCompound.put("bullet", bulletCmp);
+      ((Optional)this.entityData.get(CASTER_UUID)).ifPresent(u -> tagCompound.putString("caster", u.toString()));
+      tagCompound.putInt("timeAlive", this.getTimeAlive());
+      tagCompound.putInt("timesCast", (Integer)this.entityData.get(TIMES_CAST));
+      tagCompound.putFloat("savedLookX", (Float)this.entityData.get(LOOK_X));
+      tagCompound.putFloat("savedLookY", (Float)this.entityData.get(LOOK_Y));
+      tagCompound.putFloat("savedLookZ", (Float)this.entityData.get(LOOK_Z));
+      tagCompound.putFloat("directionX", (Float)this.entityData.get(DIRECTION_X));
+      tagCompound.putFloat("directionY", (Float)this.entityData.get(DIRECTION_Y));
+      tagCompound.putFloat("directionZ", (Float)this.entityData.get(DIRECTION_Z));
+      tagCompound.putFloat("scale", (Float)this.entityData.get(SCALE));
+      tagCompound.putInt("lifetime", (Integer)this.entityData.get(LIFETIME));
+   }
+
+   public void readAdditionalSaveData(@NotNull CompoundTag tagCompound) {
+      CompoundTag colorizerCmp = tagCompound.getCompound("colorizer");
+      ItemStack colorizer = ItemStack.parseOptional(this.registryAccess(), colorizerCmp);
+      this.entityData.set(COLORIZER_DATA, colorizer);
+      CompoundTag bulletCmp = tagCompound.getCompound("bullet");
+      ItemStack bullet = ItemStack.parseOptional(this.registryAccess(), bulletCmp);
+      this.entityData.set(BULLET_DATA, bullet);
+      if (tagCompound.contains("caster")) {
+         this.entityData.set(CASTER_UUID, Optional.of(UUID.fromString(tagCompound.getString("caster"))));
+      }
+
+      this.setTimeAlive(tagCompound.getInt("timeAlive"));
+      this.entityData.set(TIMES_CAST, tagCompound.getInt("timesCast"));
+      this.entityData.set(LOOK_X, tagCompound.getFloat("savedLookX"));
+      this.entityData.set(LOOK_Y, tagCompound.getFloat("savedLookY"));
+      this.entityData.set(LOOK_Z, tagCompound.getFloat("savedLookZ"));
+      this.entityData.set(DIRECTION_X, tagCompound.getFloat("directionX"));
+      this.entityData.set(DIRECTION_Y, tagCompound.getFloat("directionY"));
+      this.entityData.set(DIRECTION_Z, tagCompound.getFloat("directionZ"));
+      this.entityData.set(SCALE, tagCompound.getFloat("scale"));
+      this.entityData.set(LIFETIME, tagCompound.getInt("lifetime"));
+   }
+
+   public void tick() {
+      super.tick();
+      int timeAlive = this.getTimeAlive();
+      if (timeAlive > (Integer)this.entityData.get(LIFETIME)) {
+         this.remove(RemovalReason.DISCARDED);
+      }
+
+      this.setTimeAlive(timeAlive + 1);
+      int times = (Integer)this.entityData.get(TIMES_CAST);
+      if (timeAlive > 5 && timeAlive % 5 == 0 && times < 20) {
+         SpellContext context = null;
+         Entity thrower = this.getCaster();
+         if (thrower instanceof Player) {
+            ItemStack spellContainer = (ItemStack)this.entityData.get(BULLET_DATA);
+            if (!spellContainer.isEmpty() && ISpellAcceptor.isContainer(spellContainer)) {
+               this.entityData.set(TIMES_CAST, times + 1);
+               Spell spell = ISpellAcceptor.acceptor(spellContainer).getSpell();
+               if (spell != null) {
+                  context = new SpellContext().setPlayer((Player)thrower).setFocalPoint(this).setSpell(spell).setLoopcastIndex(times);
+               }
+            }
+         }
+
+         if (context != null) {
+            context.cspell.safeExecute(context);
+         }
+      }
+
+      if (this.level().isClientSide) {
+         ItemStack colorizer = (ItemStack)this.entityData.get(COLORIZER_DATA);
+         int colorVal = Psi.proxy.getColorForColorizer(colorizer);
+         float r = PsiRenderHelper.r(colorVal) / 255.0F;
+         float g = PsiRenderHelper.g(colorVal) / 255.0F;
+         float b = PsiRenderHelper.b(colorVal) / 255.0F;
+
+         for (int i = 0; i < 5; i++) {
+            double x = this.getX() + (Math.random() - 0.5) * this.getBbWidth();
+            double y = this.getY();
+            double z = this.getZ() + (Math.random() - 0.5) * this.getBbWidth();
+            float grav = -0.15F - (float)Math.random() * 0.03F;
+            Psi.proxy.sparkleFX(x, y, z, r, g, b, grav, 0.25F, 15);
+         }
+      }
+   }
+
+   @NotNull
+   public Vec3 getLookAngle() {
+      float x = (Float)this.entityData.get(LOOK_X);
+      float y = (Float)this.entityData.get(LOOK_Y);
+      float z = (Float)this.entityData.get(LOOK_Z);
+      return new Vec3(x, y, z);
+   }
+
+   public void setLookAngle(Vec3 direction) {
+      this.entityData.set(LOOK_X, (float)direction.x);
+      this.entityData.set(LOOK_Y, (float)direction.y);
+      this.entityData.set(LOOK_Z, (float)direction.z);
+   }
+
+   public void setDirection(Vec3 direction) {
+      this.entityData.set(DIRECTION_X, (float)direction.x);
+      this.entityData.set(DIRECTION_Y, (float)direction.y);
+      this.entityData.set(DIRECTION_Z, (float)direction.z);
+   }
+
+   public void setScale(float scale) {
+      this.entityData.set(SCALE, scale);
+   }
+
+   public int getTimeAlive() {
+      return (Integer)this.entityData.get(TIME_ALIVE);
+   }
+
+   public void setTimeAlive(int i) {
+      this.entityData.set(TIME_ALIVE, i);
+   }
+
+   public void setLifetime(int i) {
+      this.entityData.set(LIFETIME, i);
+   }
+
+   @Nullable
+   public LivingEntity getCaster() {
+      return ((Optional)this.entityData.get(CASTER_UUID)).<LivingEntity>map(this.getCommandSenderWorld()::getPlayerByUUID).orElse(null);
+   }
+
+   @Override
+   public boolean isImmune() {
+      return true;
+   }
+
+   public boolean isIgnoringBlockTriggers() {
+      return true;
+   }
+}

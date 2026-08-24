@@ -1,0 +1,7 @@
+{
+  "parent": "undead_revamp2:custom/perfume_bottle",
+  "textures": {
+    "1": "undead_revamp2:block/perfume_of_minos",
+    "particle": "undead_revamp2:item/image_1681240497271"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "undead_revamp2:blockofbostrox"
+  },
+  "result": {
+    "id": "undead_revamp2:bostroxwall",
+    "count": 6
+  }
+}

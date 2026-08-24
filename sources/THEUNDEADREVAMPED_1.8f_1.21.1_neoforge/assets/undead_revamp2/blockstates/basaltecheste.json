@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "undead_revamp2:custom/basaltecheste_particle"
+    },
+    "facing=east": {
+      "model": "undead_revamp2:custom/basaltecheste_particle",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "undead_revamp2:custom/basaltecheste_particle",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "undead_revamp2:custom/basaltecheste_particle",
+      "y": 270
+    }
+  }
+}

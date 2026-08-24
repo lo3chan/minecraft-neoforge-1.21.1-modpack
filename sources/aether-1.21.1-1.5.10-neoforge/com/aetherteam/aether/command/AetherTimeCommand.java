@@ -1,0 +1,113 @@
+package com.aetherteam.aether.command;
+
+import com.aetherteam.aether.attachment.AetherTimeAttachment;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.TimeArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+
+public class AetherTimeCommand {
+   public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+      dispatcher.register(
+         (LiteralArgumentBuilder)Commands.literal("aether")
+            .then(
+               ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)Commands.literal("time")
+                           .requires(commandSourceStack -> commandSourceStack.hasPermission(2)))
+                        .then(
+                           ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)Commands.literal("set")
+                                          .then(
+                                             Commands.literal("day")
+                                                .executes(
+                                                   context -> setTime(
+                                                      (CommandSourceStack)context.getSource(), 1000 * AetherTimeAttachment.getTicksPerDayMultiplier()
+                                                   )
+                                                )
+                                          ))
+                                       .then(
+                                          Commands.literal("noon")
+                                             .executes(
+                                                context -> setTime(
+                                                   (CommandSourceStack)context.getSource(), 6000 * AetherTimeAttachment.getTicksPerDayMultiplier()
+                                                )
+                                             )
+                                       ))
+                                    .then(
+                                       Commands.literal("night")
+                                          .executes(
+                                             context -> setTime(
+                                                (CommandSourceStack)context.getSource(), 13000 * AetherTimeAttachment.getTicksPerDayMultiplier()
+                                             )
+                                          )
+                                    ))
+                                 .then(
+                                    Commands.literal("midnight")
+                                       .executes(
+                                          context -> setTime((CommandSourceStack)context.getSource(), 18000 * AetherTimeAttachment.getTicksPerDayMultiplier())
+                                       )
+                                 ))
+                              .then(
+                                 Commands.argument("time", TimeArgument.time())
+                                    .executes(context -> setTime((CommandSourceStack)context.getSource(), IntegerArgumentType.getInteger(context, "time")))
+                              )
+                        ))
+                     .then(
+                        Commands.literal("add")
+                           .then(
+                              Commands.argument("time", TimeArgument.time())
+                                 .executes(context -> addTime((CommandSourceStack)context.getSource(), IntegerArgumentType.getInteger(context, "time")))
+                           )
+                     ))
+                  .then(
+                     ((LiteralArgumentBuilder)Commands.literal("query")
+                           .then(
+                              Commands.literal("daytime")
+                                 .executes(
+                                    context -> queryTime(
+                                       (CommandSourceStack)context.getSource(), getDayTime(((CommandSourceStack)context.getSource()).getLevel())
+                                    )
+                                 )
+                           ))
+                        .then(
+                           Commands.literal("day")
+                              .executes(
+                                 context -> queryTime(
+                                    (CommandSourceStack)context.getSource(),
+                                    (int)(
+                                       ((CommandSourceStack)context.getSource()).getLevel().getDayTime() / AetherTimeAttachment.getTicksPerDay() % 2147483647L
+                                    )
+                                 )
+                              )
+                        )
+                  )
+            )
+      );
+   }
+
+   private static int getDayTime(ServerLevel level) {
+      return (int)level.getDayTime();
+   }
+
+   private static int queryTime(CommandSourceStack source, int time) {
+      source.sendSuccess(() -> Component.translatable("commands.time.query", new Object[]{time}), false);
+      return time;
+   }
+
+   private static int setTime(CommandSourceStack source, int time) {
+      ServerLevel level = source.getLevel();
+      level.setDayTime(time);
+      source.sendSuccess(() -> Component.translatable("commands.time.set", new Object[]{time}), true);
+      return getDayTime(source.getLevel());
+   }
+
+   private static int addTime(CommandSourceStack source, int amount) {
+      ServerLevel level = source.getLevel();
+      level.setDayTime(level.getDayTime() + amount);
+      int i = getDayTime(source.getLevel());
+      source.sendSuccess(() -> Component.translatable("commands.time.set", new Object[]{i}), true);
+      return i;
+   }
+}

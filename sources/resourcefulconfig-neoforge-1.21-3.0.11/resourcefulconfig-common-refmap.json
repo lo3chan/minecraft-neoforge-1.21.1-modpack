@@ -1,0 +1,36 @@
+{
+  "mappings": {
+    "com/teamresourceful/resourcefulconfig/mixins/client/MinecraftMixin": {
+      "Lnet/minecraft/client/gui/screens/Screen;removed()V": "Lnet/minecraft/class_437;method_25432()V",
+      "setScreen": "Lnet/minecraft/class_310;method_1507(Lnet/minecraft/class_437;)V"
+    },
+    "com/teamresourceful/resourcefulconfig/mixins/common/DedicatedServerAccessor": {
+      "settings": "field_16799:Lnet/minecraft/class_3807;"
+    },
+    "com/teamresourceful/resourcefulconfig/mixins/common/PlayerListAccessor": {
+      "maxPlayers": "field_14347:I"
+    },
+    "com/teamresourceful/resourcefulconfig/mixins/common/SettingsAccessor": {
+      "cloneProperties": "method_16723()Ljava/util/Properties;",
+      "getStringRaw": "method_16734(Ljava/lang/String;)Ljava/lang/String;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/teamresourceful/resourcefulconfig/mixins/client/MinecraftMixin": {
+        "Lnet/minecraft/client/gui/screens/Screen;removed()V": "Lnet/minecraft/class_437;method_25432()V",
+        "setScreen": "Lnet/minecraft/class_310;method_1507(Lnet/minecraft/class_437;)V"
+      },
+      "com/teamresourceful/resourcefulconfig/mixins/common/DedicatedServerAccessor": {
+        "settings": "field_16799:Lnet/minecraft/class_3807;"
+      },
+      "com/teamresourceful/resourcefulconfig/mixins/common/PlayerListAccessor": {
+        "maxPlayers": "field_14347:I"
+      },
+      "com/teamresourceful/resourcefulconfig/mixins/common/SettingsAccessor": {
+        "cloneProperties": "method_16723()Ljava/util/Properties;",
+        "getStringRaw": "method_16734(Ljava/lang/String;)Ljava/lang/String;"
+      }
+    }
+  }
+}

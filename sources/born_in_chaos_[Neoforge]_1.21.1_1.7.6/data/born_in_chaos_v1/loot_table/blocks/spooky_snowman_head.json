@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "born_in_chaos_v1:blocks/spooky_snowman_head",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "born_in_chaos_v1:spooky_snowman_head"
+        }
+      ]
+    }
+  ]
+}

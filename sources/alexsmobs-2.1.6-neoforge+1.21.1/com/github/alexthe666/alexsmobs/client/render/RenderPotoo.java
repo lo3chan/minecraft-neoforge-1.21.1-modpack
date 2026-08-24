@@ -1,0 +1,70 @@
+package com.github.alexthe666.alexsmobs.client.render;
+
+import com.github.alexthe666.alexsmobs.client.model.ModelPotoo;
+import com.github.alexthe666.alexsmobs.entity.EntityPotoo;
+import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
+import com.github.alexthe666.alexsmobs.misc.AMCompat;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+import net.minecraft.client.CameraType;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.player.Player;
+
+public class RenderPotoo extends MobRenderer<EntityPotoo, ModelPotoo> {
+   private static final ResourceLocation TEXTURE = AMCompat.rl("alexsmobs:textures/entity/potoo.png");
+
+   public RenderPotoo(Context renderManagerIn) {
+      super(renderManagerIn, new ModelPotoo(), 0.35F);
+   }
+
+   public boolean shouldRender(EntityPotoo bird, Frustum p_225626_2_, double p_225626_3_, double p_225626_5_, double p_225626_7_) {
+      return bird.isPassenger()
+            && bird.getVehicle() instanceof Player
+            && Minecraft.getInstance().player == bird.getVehicle()
+            && Minecraft.getInstance().options.getCameraType() == CameraType.FIRST_PERSON
+         ? false
+         : super.shouldRender(bird, p_225626_2_, p_225626_3_, p_225626_5_, p_225626_7_);
+   }
+
+   protected void scale(EntityPotoo eagle, PoseStack matrixStackIn, float partialTickTime) {
+      if (eagle.isPassenger() && eagle.getVehicle() != null && eagle.getVehicle() instanceof Player) {
+         Player mount = (Player)eagle.getVehicle();
+         boolean leftHand = false;
+         if (mount.getItemInHand(InteractionHand.MAIN_HAND).getItem() == AMItemRegistry.FALCONRY_GLOVE.get()) {
+            leftHand = mount.getMainArm() == HumanoidArm.LEFT;
+         } else if (mount.getItemInHand(InteractionHand.OFF_HAND).getItem() == AMItemRegistry.FALCONRY_GLOVE.get()) {
+            leftHand = mount.getMainArm() != HumanoidArm.LEFT;
+         }
+
+         EntityModel<?> playerModel = AMRenderCompat.rendererModel(mount);
+         if ((Minecraft.getInstance().player != mount || Minecraft.getInstance().options.getCameraType() != CameraType.FIRST_PERSON)
+            && playerModel instanceof HumanoidModel) {
+            if (leftHand) {
+               matrixStackIn.translate(-0.3F, -0.7F, 0.5F);
+               ((HumanoidModel)playerModel).leftArm.translateAndRotate(matrixStackIn);
+               matrixStackIn.translate(-0.1F, 0.6F, -0.1F);
+               matrixStackIn.mulPose(Axis.XP.rotationDegrees(55.0F));
+               matrixStackIn.mulPose(Axis.YP.rotationDegrees(70.0F));
+            } else {
+               matrixStackIn.translate(0.3F, -0.7F, 0.5F);
+               ((HumanoidModel)playerModel).rightArm.translateAndRotate(matrixStackIn);
+               matrixStackIn.translate(0.1F, 0.6F, -0.1F);
+               matrixStackIn.mulPose(Axis.XP.rotationDegrees(55.0F));
+               matrixStackIn.mulPose(Axis.YP.rotationDegrees(-70.0F));
+            }
+         }
+      }
+   }
+
+   public ResourceLocation getTextureLocation(EntityPotoo entity) {
+      return TEXTURE;
+   }
+}

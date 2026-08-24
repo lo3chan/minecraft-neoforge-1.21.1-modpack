@@ -1,0 +1,248 @@
+package snownee.jade.overlay;
+
+import java.util.Optional;
+import java.util.function.Predicate;
+import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ClipContext.Block;
+import net.minecraft.world.level.ClipContext.Fluid;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.HitResult.Type;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import org.jetbrains.annotations.Nullable;
+import snownee.jade.api.Accessor;
+import snownee.jade.api.config.IWailaConfig;
+import snownee.jade.api.ui.IElement;
+import snownee.jade.impl.ObjectDataCenter;
+import snownee.jade.impl.WailaClientRegistration;
+import snownee.jade.impl.ui.ItemStackElement;
+import snownee.jade.util.CommonProxy;
+
+public class RayTracing {
+   public static final RayTracing INSTANCE = new RayTracing();
+   public static Predicate<Entity> ENTITY_FILTER = entity -> true;
+   private final Minecraft mc = Minecraft.getInstance();
+   @Nullable
+   private HitResult target;
+
+   private RayTracing() {
+   }
+
+   public static BlockState wrapBlock(BlockGetter level, BlockHitResult hit, CollisionContext context) {
+      if (hit.getType() != Type.BLOCK) {
+         return Blocks.AIR.defaultBlockState();
+      } else {
+         BlockState blockState = level.getBlockState(hit.getBlockPos());
+         FluidState fluidState = blockState.getFluidState();
+         if (!fluidState.isEmpty()) {
+            if (blockState.is(Blocks.BARRIER) && WailaClientRegistration.instance().shouldHide(blockState)) {
+               return fluidState.createLegacyBlock();
+            }
+
+            if (blockState.getShape(level, hit.getBlockPos(), context).isEmpty()) {
+               return fluidState.createLegacyBlock();
+            }
+         }
+
+         return blockState;
+      }
+   }
+
+   @Nullable
+   public static EntityHitResult getEntityHitResult(Level worldIn, Entity projectile, Vec3 startVec, Vec3 endVec, AABB boundingBox, Predicate<Entity> filter) {
+      double d0 = 1.7976931348623157E308;
+      Entity entity = null;
+
+      for (Entity entity1 : worldIn.getEntities(projectile, boundingBox, filter)) {
+         AABB axisalignedbb = entity1.getBoundingBox();
+         if (axisalignedbb.getSize() < 0.3) {
+            axisalignedbb = axisalignedbb.inflate(0.3);
+         }
+
+         if (axisalignedbb.contains(startVec)) {
+            entity = entity1;
+            break;
+         }
+
+         Optional<Vec3> optional = axisalignedbb.clip(startVec, endVec);
+         if (optional.isPresent()) {
+            double d1 = startVec.distanceToSqr(optional.get());
+            if (d1 < d0) {
+               entity = entity1;
+               d0 = d1;
+            }
+         }
+      }
+
+      return entity == null ? null : new EntityHitResult(entity);
+   }
+
+   public static boolean isEmptyElement(IElement element) {
+      return element == null || element == ItemStackElement.EMPTY;
+   }
+
+   public void fire() {
+      Entity viewEntity = this.mc.getCameraEntity();
+      Player viewPlayer = (Player)(viewEntity instanceof Player ? (Player)viewEntity : this.mc.player);
+      if (viewEntity != null && viewPlayer != null) {
+         if (this.mc.hitResult != null && this.mc.hitResult.getType() == Type.ENTITY) {
+            Entity targetEntity = ((EntityHitResult)this.mc.hitResult).getEntity();
+            if (this.canBeTarget(targetEntity, viewEntity)) {
+               this.target = this.mc.hitResult;
+               return;
+            }
+         }
+
+         float extendedReach = IWailaConfig.get().getGeneral().getExtendedReach();
+         double blockReach = viewPlayer.blockInteractionRange() + extendedReach;
+         double entityReach = viewPlayer.entityInteractionRange() + extendedReach;
+         this.target = this.rayTrace(viewEntity, blockReach, entityReach);
+      }
+   }
+
+   @Nullable
+   public HitResult getTarget() {
+      return this.target;
+   }
+
+   public HitResult rayTrace(Entity entity, double blockReach, double entityReach) {
+      Camera camera = this.mc.gameRenderer.getMainCamera();
+      float partialTick = this.mc.getTimer().getGameTimeDeltaPartialTick(true);
+      Vec3 eyePosition = entity.getEyePosition(partialTick);
+      boolean startFromEye = IWailaConfig.get().getGeneral().getPerspectiveMode() == IWailaConfig.PerspectiveMode.EYE;
+      Vec3 traceStart = startFromEye ? eyePosition : camera.getPosition();
+      double distance = startFromEye ? 0.0 : eyePosition.distanceToSqr(traceStart);
+      boolean isInvalidHit = this.mc.hitResult == null;
+      if (distance > 1.0E8) {
+         isInvalidHit = true;
+      } else if (distance > 1.0E-5) {
+         distance = Math.sqrt(distance);
+         blockReach += distance;
+         entityReach += distance;
+      }
+
+      Vec3 traceEnd;
+      Vec3 lookVector;
+      if (isInvalidHit) {
+         lookVector = startFromEye ? entity.getViewVector(partialTick) : new Vec3(camera.getLookVector());
+         traceEnd = traceStart.add(lookVector.scale(entityReach));
+      } else {
+         traceEnd = this.mc.hitResult.getLocation().subtract(traceStart);
+         lookVector = startFromEye ? entity.getViewVector(partialTick) : traceEnd.normalize();
+         if (this.mc.hitResult.getType() == Type.BLOCK && traceEnd.lengthSqr() < entityReach * entityReach) {
+            traceEnd = startFromEye
+               ? traceStart.add(lookVector.scale(traceEnd.length() + 1.0E-5))
+               : this.mc.hitResult.getLocation().add(lookVector.scale(1.0E-5));
+         } else {
+            traceEnd = traceStart.add(lookVector.scale(entityReach));
+         }
+      }
+
+      Level world = entity.level();
+      AABB bound = new AABB(traceStart, traceEnd);
+      Predicate<Entity> predicate = e -> this.canBeTarget(e, entity);
+      EntityHitResult entityResult = getEntityHitResult(world, entity, traceStart, traceEnd, bound, predicate);
+      if (blockReach != entityReach) {
+         traceEnd = traceStart.add(lookVector.scale(blockReach * 1.001));
+      }
+
+      BlockState eyeBlock = world.getBlockState(BlockPos.containing(eyePosition));
+      Fluid fluidView = Fluid.NONE;
+      IWailaConfig.FluidMode fluidMode = IWailaConfig.get().getGeneral().getDisplayFluids();
+      if (eyeBlock.getFluidState().isEmpty()) {
+         fluidView = fluidMode.ctx;
+      }
+
+      CollisionContext collisionContext = CollisionContext.of(entity);
+      ClipContext context = new ClipContext(traceStart, traceEnd, Block.OUTLINE, fluidView, collisionContext);
+      BlockHitResult blockResult = world.clip(context);
+      if (entityResult != null) {
+         if (blockResult.getType() != Type.BLOCK) {
+            return entityResult;
+         }
+
+         double entityDist = entityResult.getLocation().distanceToSqr(traceStart);
+         double blockDist = blockResult.getLocation().distanceToSqr(traceStart);
+         if (entityDist < blockDist) {
+            return entityResult;
+         }
+      }
+
+      if (blockResult.getType() == Type.MISS && this.mc.hitResult instanceof BlockHitResult hit) {
+         blockResult = hit;
+      }
+
+      if (blockResult.getType() == Type.BLOCK) {
+         BlockState state = wrapBlock(world, blockResult, collisionContext);
+         if (WailaClientRegistration.instance().shouldHide(state)) {
+            blockResult = null;
+         }
+      } else {
+         blockResult = null;
+      }
+
+      if (blockResult == null && fluidMode == IWailaConfig.FluidMode.FALLBACK) {
+         context = new ClipContext(traceStart, traceEnd, Block.OUTLINE, Fluid.ANY, collisionContext);
+         blockResult = world.clip(context);
+         BlockState state = wrapBlock(world, blockResult, collisionContext);
+         if (WailaClientRegistration.instance().shouldHide(state)) {
+            blockResult = null;
+         }
+      }
+
+      return blockResult;
+   }
+
+   private boolean canBeTarget(Entity target, Entity viewEntity) {
+      if (target.isRemoved()) {
+         return false;
+      } else if (target.isSpectator()) {
+         return false;
+      } else if (target == viewEntity.getVehicle()) {
+         return false;
+      } else if (target instanceof Projectile projectile && projectile.tickCount <= 10 && !target.level().tickRateManager().isEntityFrozen(target)) {
+         return false;
+      } else if (CommonProxy.isMultipartEntity(target) && !target.isPickable()) {
+         return false;
+      } else {
+         if (viewEntity instanceof Player player) {
+            if (target.isInvisibleTo(player)) {
+               return false;
+            }
+
+            if (this.mc.gameMode.isDestroying() && target.getType() == EntityType.ITEM) {
+               return false;
+            }
+         } else if (target.isInvisible()) {
+            return false;
+         }
+
+         return !WailaClientRegistration.instance().shouldHide(target) && ENTITY_FILTER.test(target);
+      }
+   }
+
+   public IElement getIcon() {
+      Accessor<?> accessor = ObjectDataCenter.get();
+      if (accessor == null) {
+         return null;
+      } else {
+         IElement icon = ObjectDataCenter.getIcon();
+         return isEmptyElement(icon) ? null : icon;
+      }
+   }
+}

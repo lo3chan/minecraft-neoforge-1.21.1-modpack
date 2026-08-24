@@ -1,0 +1,133 @@
+package net.cibernet.alchemancy.mixin;
+
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import net.cibernet.alchemancy.item.components.InfusedPropertiesHelper;
+import net.cibernet.alchemancy.properties.Property;
+import net.cibernet.alchemancy.registries.AlchemancyProperties;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.ItemAbility;
+import net.neoforged.neoforge.common.extensions.IItemStackExtension;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin({IItemStackExtension.class})
+public interface ItemStackExtensionMixin {
+   @Unique
+   default ItemStack self() {
+      return (ItemStack)this;
+   }
+
+   @WrapOperation(
+      method = {"canWalkOnPowderedSnow"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/item/Item;canWalkOnPowderedSnow(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)Z"
+      )}
+   )
+   default boolean canWalkOnPowderedSnow(Item instance, ItemStack stack, LivingEntity living, Operation<Boolean> original) {
+      return InfusedPropertiesHelper.hasProperty(stack, AlchemancyProperties.LIGHTWEIGHT) || (Boolean)original.call(new Object[]{instance, stack, living});
+   }
+
+   @WrapOperation(
+      method = {"makesPiglinsNeutral"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/item/Item;makesPiglinsNeutral(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)Z"
+      )}
+   )
+   default boolean makesPiglinsNeutral(Item instance, ItemStack stack, LivingEntity living, Operation<Boolean> original) {
+      return InfusedPropertiesHelper.hasProperty(stack, AlchemancyProperties.GILDED) || (Boolean)original.call(new Object[]{instance, stack, living});
+   }
+
+   @WrapOperation(
+      method = {"canElytraFly"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/item/Item;canElytraFly(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)Z"
+      )}
+   )
+   default boolean canElytryFly(Item instance, ItemStack stack, LivingEntity living, Operation<Boolean> original) {
+      return InfusedPropertiesHelper.hasProperty(stack, AlchemancyProperties.GLIDER) && (!stack.isDamageableItem() || ElytraItem.isFlyEnabled(stack))
+         || (Boolean)original.call(new Object[]{instance, stack, living});
+   }
+
+   @WrapOperation(
+      method = {"elytraFlightTick"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/item/Item;elytraFlightTick(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;I)Z"
+      )}
+   )
+   default boolean elytraFlightTick(Item instance, ItemStack stack, LivingEntity living, int i, Operation<Boolean> original) {
+      return InfusedPropertiesHelper.hasProperty(stack, AlchemancyProperties.GLIDER) || (Boolean)original.call(new Object[]{instance, stack, living, i});
+   }
+
+   @WrapMethod(
+      method = {"getEnchantmentValue"}
+   )
+   default int getEnchantmentValue(Operation<Integer> original) {
+      int originalValue = (Integer)original.call(new Object[0]);
+      AtomicInteger result = new AtomicInteger(originalValue);
+      InfusedPropertiesHelper.forEachProperty(
+         this.self(), propertyHolder -> result.set(((Property)propertyHolder.value()).modifyEnchantmentValue(originalValue, result.get()))
+      );
+      return result.get();
+   }
+
+   @Inject(
+      method = {"canPerformAction"},
+      at = {@At("RETURN")},
+      cancellable = true
+   )
+   default void canPerformAction(ItemAbility itemAbility, CallbackInfoReturnable<Boolean> cir) {
+      boolean original = (Boolean)cir.getReturnValue();
+      AtomicBoolean result = new AtomicBoolean(original);
+      ItemStack stack = this.self();
+      InfusedPropertiesHelper.forEachProperty(
+         stack, propertyHolder -> result.set(((Property)propertyHolder.value()).modifyAcceptAbility(stack, itemAbility, original, result.get()))
+      );
+      cir.setReturnValue(result.get());
+   }
+
+   @Inject(
+      method = {"onDestroyed"},
+      at = {@At("HEAD")}
+   )
+   default void onDestroyed(ItemEntity itemEntity, DamageSource damageSource, CallbackInfo ci) {
+      ItemStack stack = this.self();
+      InfusedPropertiesHelper.forEachProperty(
+         stack, propertyHolder -> ((Property)propertyHolder.value()).onEntityItemDestroyed(stack, itemEntity, damageSource)
+      );
+   }
+
+   @WrapOperation(
+      method = {"getEquipmentSlot"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/item/Item;getEquipmentSlot(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/EquipmentSlot;"
+      )}
+   )
+   default EquipmentSlot getEquipmentSlot(Item instance, ItemStack stack, Operation<EquipmentSlot> original) {
+      EquipmentSlot originalSlot = (EquipmentSlot)original.call(new Object[]{instance, stack});
+      AtomicReference<EquipmentSlot> slot = new AtomicReference<>(originalSlot);
+      InfusedPropertiesHelper.forEachProperty(
+         stack, propertyHolder -> slot.set(((Property)propertyHolder.value()).modifyWearableSlot(stack, originalSlot, slot.get()))
+      );
+      return slot.get();
+   }
+}

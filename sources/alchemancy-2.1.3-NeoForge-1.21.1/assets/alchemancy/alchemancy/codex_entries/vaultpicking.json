@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:vaultpicking.flavor"
+  },
+  "functions": [
+    "when_used_block"
+  ],
+  "innate": [
+    "alchemancy:vaultpick"
+  ]
+}

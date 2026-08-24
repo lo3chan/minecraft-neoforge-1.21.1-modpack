@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "born_in_chaos_v1:black_argillite"
+  },
+  "result": {
+    "id": "born_in_chaos_v1:black_argillite_slab",
+    "count": 2
+  }
+}

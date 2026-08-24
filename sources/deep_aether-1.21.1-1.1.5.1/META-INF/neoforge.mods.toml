@@ -1,0 +1,49 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "Assets: All Rights Reserved; Code: GPL-3.0"
+issueTrackerURL = "https://github.com/RazorDevs/Deep-Aether/issues"
+
+[[mods]]
+modId = "deep_aether"
+version = "1.21.1-1.1.5.1"
+displayName = "Deep Aether"
+updateJSONURL = "https://github.com/RazorDevs/Deep-Aether/raw/1.21.1-1.1/update.json"
+displayURL = "https://modrinth.com/mod/deep-aether"
+logoFile = "deep_aether.png"
+credits = "Unofficial Add-on to the Aether mod. Textures by 345boneshoss and Aethyus. Code by TunefulTurnip and darksonic300. Contibutions from team members."
+authors = "RazorDevs"
+description = '''Deep Aether is an unofficial addon for the Aether Mod which aims to add extra content to the Aether Dimension in a similar fashion to the 1.16 Nether Expansion update.
+Extra content includes new blocks, items, plants, biomes, trees, mobs, and more!
+Created by RazorDevs!'''
+enumExtensions = "META-INF/enumextensions.json"
+
+[[dependencies.deep_aether]]
+modId="neoforge"
+type = "required"
+versionRange="[20.4.167,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.deep_aether]]
+modId="minecraft"
+type = "required"
+versionRange="[1.21,1.21.1)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.deep_aether]]
+modId="aether"
+type = "required"
+versionRange="[1.2.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.deep_aether]]
+modId="aeroblender"
+type = "required"
+versionRange="[1.0.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[mixins]]
+config="deep_aether.mixins.json"

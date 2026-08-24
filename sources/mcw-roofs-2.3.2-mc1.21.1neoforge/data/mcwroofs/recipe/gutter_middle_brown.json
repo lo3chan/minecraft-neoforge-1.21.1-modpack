@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "gutter_middle",
+  "pattern" : [ "BBB", "BAB", "BBB" ],
+  "key" : {
+    "B" : {
+      "item" : "mcwroofs:gutter_middle"
+    },
+    "A" : {
+      "item" : "minecraft:brown_dye"
+    }
+  },
+  "result" : {
+    "count" : 8,
+    "id" : "mcwroofs:gutter_middle_brown"
+  }
+}

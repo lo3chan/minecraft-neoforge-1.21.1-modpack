@@ -1,0 +1,10 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:putrid.flavor"
+  },
+  "functions": [
+    "on_attack",
+    "while_equipped",
+    "while_rooted"
+  ]
+}

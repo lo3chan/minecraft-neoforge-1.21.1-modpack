@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "fuzs/eternalnether/neoforge/mixin/PlayerNeoForgeMixin": {
+      "disableShield": "Lnet/minecraft/world/entity/player/Player;disableShield()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/eternalnether/neoforge/mixin/PlayerNeoForgeMixin": {
+        "disableShield": "Lnet/minecraft/world/entity/player/Player;disableShield()V"
+      }
+    }
+  }
+}

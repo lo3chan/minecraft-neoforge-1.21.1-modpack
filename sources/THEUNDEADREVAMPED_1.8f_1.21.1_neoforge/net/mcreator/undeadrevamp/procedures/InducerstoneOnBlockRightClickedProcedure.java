@@ -1,0 +1,84 @@
+package net.mcreator.undeadrevamp.procedures;
+
+import java.util.Comparator;
+import net.mcreator.undeadrevamp.UndeadRevamp2Mod;
+import net.mcreator.undeadrevamp.init.UndeadRevamp2ModParticleTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+
+public class InducerstoneOnBlockRightClickedProcedure {
+   public static void execute(LevelAccessor world, Entity entity) {
+      if (entity != null) {
+         double raytrace_distance = 0.0;
+         String found_entity_name = "";
+         boolean entity_found = false;
+         Vec3 _center = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+
+         for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(8.0), e -> true)
+            .stream()
+            .sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center)))
+            .toList()) {
+            if (entityiterator != entity && entityiterator instanceof LivingEntity) {
+               entityiterator.getPersistentData().putDouble("aoe_x", entity.getX() - entityiterator.getX());
+               entityiterator.getPersistentData()
+                  .putDouble("aoe_y", entity.getY() + entity.getBbHeight() - (entityiterator.getY() + entityiterator.getBbHeight()));
+               entityiterator.getPersistentData().putDouble("aoe_z", entity.getZ() - entityiterator.getZ());
+               entityiterator.getPersistentData().putDouble("distance", 0.0);
+               UndeadRevamp2Mod.queueServerWork(
+                  1,
+                  () -> {
+                     for (int index0 = 0; index0 < 20; index0++) {
+                        if (world.isEmptyBlock(
+                           BlockPos.containing(
+                              entity.getX() + entityiterator.getPersistentData().getDouble("aoe_x") * entityiterator.getPersistentData().getDouble("distance"),
+                              entity.getY()
+                                 + entity.getBbHeight()
+                                 + entityiterator.getPersistentData().getDouble("aoe_y") * entityiterator.getPersistentData().getDouble("distance"),
+                              entity.getZ() + entityiterator.getPersistentData().getDouble("aoe_z") * entityiterator.getPersistentData().getDouble("distance")
+                           )
+                        )) {
+                           if (world instanceof ServerLevel _level) {
+                              _level.sendParticles(
+                                 (SimpleParticleType)UndeadRevamp2ModParticleTypes.BRIGHTPINKDUST.get(),
+                                 entity.getX()
+                                    + entityiterator.getPersistentData().getDouble("aoe_x") * entityiterator.getPersistentData().getDouble("distance"),
+                                 entity.getY()
+                                    + entity.getBbHeight()
+                                    + entityiterator.getPersistentData().getDouble("aoe_y") * entityiterator.getPersistentData().getDouble("distance"),
+                                 entity.getZ()
+                                    + entityiterator.getPersistentData().getDouble("aoe_z") * entityiterator.getPersistentData().getDouble("distance"),
+                                 2,
+                                 0.0,
+                                 0.0,
+                                 0.0,
+                                 0.0
+                              );
+                           }
+
+                           entityiterator.getPersistentData().putBoolean("behind_wall", false);
+                           entityiterator.getPersistentData().putDouble("distance", entityiterator.getPersistentData().getDouble("distance") - 0.05);
+                        } else {
+                           entityiterator.getPersistentData().putBoolean("behind_wall", true);
+                        }
+
+                        UndeadRevamp2Mod.queueServerWork(1, () -> {
+                           if (!entityiterator.getPersistentData().getBoolean("behind_wall")) {
+                              entityiterator.hurt(new DamageSource(world.holderOrThrow(DamageTypes.EXPLOSION), entity), 1.0F);
+                           }
+                        });
+                     }
+                  }
+               );
+            }
+         }
+      }
+   }
+}

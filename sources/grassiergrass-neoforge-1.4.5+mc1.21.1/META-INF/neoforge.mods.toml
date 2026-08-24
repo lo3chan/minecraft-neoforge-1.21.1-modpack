@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="grassiergrass"
+version="1.4.5"
+displayName="Grassier Grass"
+logoFile="icon.png"
+authors="Leonardoinc22"
+description='''Grassier Grass turns Minecraft's flat, static grass into a lush field that actually moves!'''
+
+[[mixins]]
+config="grassiergrass.mixins.json"
+
+[[dependencies.grassiergrass]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"

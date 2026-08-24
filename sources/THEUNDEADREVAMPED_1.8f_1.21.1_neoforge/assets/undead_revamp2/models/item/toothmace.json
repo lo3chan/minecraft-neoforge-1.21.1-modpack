@@ -1,0 +1,7 @@
+{
+  "parent": "undead_revamp2:custom/toothmace",
+  "textures": {
+    "0": "undead_revamp2:block/heavy_mace",
+    "particle": "undead_revamp2:item/heavy_mace_item"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "  F", " FF", "FFF" ],
+  "key" : {
+    "F" : {
+      "item" : "mcwbridges:iron_bridge"
+    }
+  },
+  "result" : {
+    "count" : 6,
+    "id" : "mcwbridges:iron_bridge_stair"
+  }
+}

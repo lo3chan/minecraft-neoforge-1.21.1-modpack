@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstonederivas",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstonederivas",
+    "particle": "born_in_chaos_v1:block/tombstonederivas",
+    "0": "born_in_chaos_v1:block/tombstonederivas",
+    "1": "born_in_chaos_v1:block/derivasname"
+  },
+  "render_type": "cutout"
+}

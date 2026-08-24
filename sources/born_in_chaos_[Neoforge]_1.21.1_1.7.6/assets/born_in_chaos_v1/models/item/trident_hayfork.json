@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "born_in_chaos_v1:custom/pitchfork",
+    "textures": {
+      "0": "born_in_chaos_v1:block/pitchfork"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/hayforkit"
+      },
+      "gui_light": "front"
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/hayforkit"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/hayforkit"
+      }
+    }
+  }
+}

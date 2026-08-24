@@ -1,0 +1,123 @@
+package net.diebuddies.physics.settings.ux;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferUploader;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat.Mode;
+import net.diebuddies.math.Math;
+import net.diebuddies.mixins.guiphysics.MixinAbstractSliderButtonAccessor;
+import net.diebuddies.mixins.guiphysics.MixinAbstractWidgetAccessor;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractSliderButton;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.FastColor.ARGB32;
+import org.joml.Matrix4f;
+
+public class SliderRenderer extends Animator {
+   private TextAlignment alignment;
+   private boolean renderTooltips = true;
+   private ChatFormatting chatFormatting;
+
+   public SliderRenderer(TextAlignment alignment, ChatFormatting chatFormatting) {
+      this.chatFormatting = chatFormatting;
+      this.alignment = alignment;
+   }
+
+   public SliderRenderer(TextAlignment alignment) {
+      this(alignment, null);
+   }
+
+   public SliderRenderer() {
+      this(TextAlignment.CENTER);
+   }
+
+   @Override
+   public boolean render(Animatable animatable, GuiGraphics guiGraphics, int mouseX, int mouseY, float renderPercent, float delta) {
+      boolean hovered = animatable.isInside(mouseX, mouseY);
+      if (animatable instanceof MixinAbstractWidgetAccessor accessor) {
+         boolean wasHovered = accessor.getIsHovered();
+         accessor.setIsHovered(hovered);
+         if (!wasHovered && hovered) {
+            Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, Math.random() * 0.2F + 0.9F));
+         }
+      }
+
+      AbstractSliderButton slider = (AbstractSliderButton)animatable;
+      MixinAbstractSliderButtonAccessor sliderAccessor = (MixinAbstractSliderButtonAccessor)animatable;
+      Matrix4f pose = guiGraphics.pose().last().pose();
+      RenderSystem.enableDepthTest();
+      RenderSystem.enableBlend();
+      RenderSystem.defaultBlendFunc();
+      RenderSystem.setShader(GameRenderer::getPositionColorShader);
+      BufferBuilder bufferBuilder = Tesselator.getInstance().begin(Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+      int color = BaseColors.BACKGROUND_COLOR;
+      float x = animatable.getAnimX();
+      float y = animatable.getAnimY();
+      float width = animatable.getAnimWidth();
+      float height = animatable.getAnimHeight();
+      float depth = animatable.getAnimDepth() + 1.0F;
+      drawRect(bufferBuilder, pose, x, y, width, height, depth, color);
+      double value = sliderAccessor.getValue();
+      int barSize = 8;
+      float sliderOffset = (float)value * (width - barSize);
+      drawRect(bufferBuilder, pose, x + sliderOffset, y, barSize, height, depth + 1.0F, ARGB32.color(100, 167, 167, 167));
+      drawLine(bufferBuilder, pose, x + sliderOffset, y + 1.0F, x + sliderOffset + barSize, y + 1.0F, depth + 2.0F, ARGB32.color(255, 40, 40, 40));
+      drawLine(bufferBuilder, pose, x + sliderOffset + 1.0F, y, x + sliderOffset + 1.0F, y + height - 1.0F, depth + 2.0F, ARGB32.color(255, 40, 40, 40));
+      color = BaseColors.BAR_COLOR;
+      if (slider.isHoveredOrFocused()) {
+         color = BaseColors.HIGHLIGHT_COLOR;
+      }
+
+      if (!slider.active) {
+         color = BaseColors.DISABLED_COLOR;
+      }
+
+      drawLine(bufferBuilder, pose, x + sliderOffset, y, x + sliderOffset + barSize, y, depth + 3.0F, color);
+      drawLine(bufferBuilder, pose, x + sliderOffset + barSize, y, x + sliderOffset + barSize, y + height - 1.0F, depth + 3.0F, color);
+      drawLine(bufferBuilder, pose, x + sliderOffset, y + height - 1.0F, x + sliderOffset + barSize, y + height - 1.0F, depth + 3.0F, color);
+      drawLine(bufferBuilder, pose, x + sliderOffset, y, x + sliderOffset, y + height - 1.0F, depth + 3.0F, color);
+      BufferUploader.drawWithShader(bufferBuilder.build());
+      RenderSystem.disableBlend();
+      FormattedCharSequence formattedCharSequence = (this.chatFormatting == null
+            ? slider.getMessage()
+            : slider.getMessage().copy().withStyle(this.chatFormatting))
+         .getVisualOrderText();
+      Font font = Minecraft.getInstance().font;
+      float xText = x + 7.0F;
+      if (this.alignment == TextAlignment.CENTER) {
+         xText = x + width * 0.5F - font.width(formattedCharSequence) * 0.5F;
+      } else if (this.alignment == TextAlignment.RIGHT) {
+         xText = x + width - font.width(formattedCharSequence) - 7.0F;
+      }
+
+      drawText(guiGraphics, font, formattedCharSequence, Math.fastRound(xText), Math.fastRound(y + (height - 8.0F) / 2.0F));
+      if (this.renderTooltips
+         && animatable instanceof MixinAbstractWidgetAccessor invoker
+         && animatable instanceof AbstractWidget widget
+         && widget.isHoveredOrFocused()
+         && widget.getTooltip() != null) {
+         ((MixinAbstractWidgetAccessor)widget)
+            .getTooltipHolder()
+            .refreshTooltipForNextRenderPass(widget.isHovered(), widget.isFocused(), widget.getRectangle());
+      }
+
+      return true;
+   }
+
+   public void setRenderTooltips(boolean renderTooltips) {
+      this.renderTooltips = renderTooltips;
+   }
+
+   public boolean isRenderingTooltips() {
+      return this.renderTooltips;
+   }
+}

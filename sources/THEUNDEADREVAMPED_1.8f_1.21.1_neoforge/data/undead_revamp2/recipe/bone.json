@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:heavytooth"
+    }
+  ],
+  "result": {
+    "id": "minecraft:bone_meal",
+    "count": 8
+  }
+}

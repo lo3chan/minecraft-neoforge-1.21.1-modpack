@@ -1,0 +1,23 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "kitchen_sink",
+  "pattern" : [ "CDC", "ABA", "ABA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:cherry_log"
+    },
+    "B" : {
+      "item" : "minecraft:water_bucket"
+    },
+    "C" : {
+      "item" : "minecraft:cherry_slab"
+    },
+    "D" : {
+      "item" : "minecraft:cauldron"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:cherry_kitchen_sink"
+  }
+}

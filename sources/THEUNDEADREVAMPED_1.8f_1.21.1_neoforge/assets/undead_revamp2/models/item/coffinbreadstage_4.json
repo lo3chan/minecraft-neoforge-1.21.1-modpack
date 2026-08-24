@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "undead_revamp2:item/sarcophagusboarditem"
+  },
+  "render_type": "translucent"
+}

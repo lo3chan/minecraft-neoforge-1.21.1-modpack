@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "counter",
+  "pattern" : [ "A", "B" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:warped_slab"
+    },
+    "B" : {
+      "item" : "minecraft:warped_stem"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:warped_counter"
+  }
+}

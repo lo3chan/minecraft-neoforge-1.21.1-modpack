@@ -1,0 +1,49 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="born_in_chaos_v1"
+version="1.7.6"
+displayName="Born in Chaos "
+displayURL="https://mcreator.net"
+logoFile="logo.png"
+credits="Created using mod maker MCreator - https://mcreator.net/about"
+authors="Mongoose_artist, MCreator"
+description="Adds a lot of hostile mobs, with their own characteristics that can complicate your survival"
+enumExtensions="META-INF/enumextensions.json"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.born_in_chaos_v1]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.65,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.born_in_chaos_v1]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="AFTER"
+    side="BOTH"
+
+
+[[dependencies.born_in_chaos_v1]]
+    modId="geckolib"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.born_in_chaos_v1]]
+    modId="jei"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration

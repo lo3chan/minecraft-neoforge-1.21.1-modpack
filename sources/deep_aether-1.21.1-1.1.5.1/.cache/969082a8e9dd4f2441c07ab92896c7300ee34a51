@@ -1,0 +1,10 @@
+// 1.21.1	2025-10-08T15:08:54.8181297	Deep Aether EntityType Tags
+a80f82b6917ffe5e6effadb3cf08e66b240aad71 data/aether/tags/entity_type/unhookable.json
+ad70f238dadd510abea0af1c4be9a69437fbd0fb data/aether/tags/entity_type/unlaunchable.json
+f0d70b1f105c7d2fe506444e79a191df670945da data/c/tags/entity_type/bosses.json
+e71c32a4e2a58d7b385306d8e9c6cdb3f58d5ff6 data/deep_aether/tags/entity_type/friendly_wind_charge_blacklist.json
+ad70f238dadd510abea0af1c4be9a69437fbd0fb data/deep_aether/tags/entity_type/slider_slam_blacklist.json
+ecd46094aa70d9244d308582ffba2825908dfb35 data/deep_aether/tags/entity_type/sterling_aercloud_blacklist.json
+29a5f8e11da88a95929b775d081c7fd16d916f1d data/deep_aether/tags/entity_type/wind_charge_blacklist.json
+71d0140dda822fb91a933c8150a71b03067eb4b6 data/minecraft/tags/entity_type/arrows.json
+3f1e4d947d45094524b70513c51410670ff7cb41 data/minecraft/tags/entity_type/fall_damage_immune.json

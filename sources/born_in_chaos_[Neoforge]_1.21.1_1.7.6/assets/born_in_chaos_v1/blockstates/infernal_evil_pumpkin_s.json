@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "born_in_chaos_v1:block/infernal_evil_pumpkin_s"
+    },
+    "facing=east": {
+      "model": "born_in_chaos_v1:block/infernal_evil_pumpkin_s",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "born_in_chaos_v1:block/infernal_evil_pumpkin_s",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "born_in_chaos_v1:block/infernal_evil_pumpkin_s",
+      "y": 270
+    }
+  }
+}

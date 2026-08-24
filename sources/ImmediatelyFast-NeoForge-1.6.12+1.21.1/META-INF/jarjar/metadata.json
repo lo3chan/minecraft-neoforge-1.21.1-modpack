@@ -1,0 +1,15 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "net.lenni0451",
+        "artifact": "Reflect"
+      },
+      "version": {
+        "range": "[1.6.2,)",
+        "artifactVersion": "1.6.2"
+      },
+      "path": "META-INF/jars/Reflect-1.6.2.jar"
+    }
+  ]
+}

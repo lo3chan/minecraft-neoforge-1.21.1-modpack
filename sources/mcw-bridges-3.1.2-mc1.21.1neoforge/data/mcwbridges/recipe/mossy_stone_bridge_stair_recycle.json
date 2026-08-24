@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "group" : "recyclable_bridges",
+  "ingredients" : [ {
+    "item" : "mcwbridges:mossy_stone_bridge_stair"
+  } ],
+  "result" : {
+    "count" : 1,
+    "id" : "mcwbridges:mossy_stone_brick_bridge"
+  }
+}

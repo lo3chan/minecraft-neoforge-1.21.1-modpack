@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "born_in_chaos_v1:block/tombstone_rotborne"
+    },
+    "facing=east": {
+      "model": "born_in_chaos_v1:block/tombstone_rotborne",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "born_in_chaos_v1:block/tombstone_rotborne",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "born_in_chaos_v1:block/tombstone_rotborne",
+      "y": 270
+    }
+  }
+}

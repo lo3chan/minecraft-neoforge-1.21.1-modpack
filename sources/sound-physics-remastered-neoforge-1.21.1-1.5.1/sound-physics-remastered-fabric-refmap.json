@@ -1,0 +1,92 @@
+{
+  "mappings": {
+    "com/sonicether/soundphysics/mixin/ChannelAccessor": {
+      "source": "field_18893:I"
+    },
+    "com/sonicether/soundphysics/mixin/ClientLevelMixin": {
+      "tick(Ljava/util/function/BooleanSupplier;)V": "Lnet/minecraft/class_638;method_8441(Ljava/util/function/BooleanSupplier;)V"
+    },
+    "com/sonicether/soundphysics/mixin/ClientPacketListenerMixin": {
+      "handleLogin": "Lnet/minecraft/class_634;method_11120(Lnet/minecraft/class_2678;)V"
+    },
+    "com/sonicether/soundphysics/mixin/DebugRendererMixin": {
+      "render": "Lnet/minecraft/class_863;method_23099(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597$class_4598;DDD)V"
+    },
+    "com/sonicether/soundphysics/mixin/EntityMixin": {
+      "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/class_1937;method_43128(Lnet/minecraft/class_1657;DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FF)V",
+      "playSound(Lnet/minecraft/sounds/SoundEvent;FF)V": "Lnet/minecraft/class_1297;method_5783(Lnet/minecraft/class_3414;FF)V"
+    },
+    "com/sonicether/soundphysics/mixin/LibraryMixin": {
+      "init": "Lnet/minecraft/class_4225;method_19661(Ljava/lang/String;Z)V"
+    },
+    "com/sonicether/soundphysics/mixin/LocalPlayerMixin": {
+      "playSound": "Lnet/minecraft/class_746;method_5783(Lnet/minecraft/class_3414;FF)V"
+    },
+    "com/sonicether/soundphysics/mixin/MinecraftMixin": {
+      "disconnect(Lnet/minecraft/client/gui/screens/Screen;Z)V": "Lnet/minecraft/class_310;method_18096(Lnet/minecraft/class_437;Z)V",
+      "setLevel": "Lnet/minecraft/class_310;method_1481(Lnet/minecraft/class_638;Lnet/minecraft/class_434$class_9678;)V"
+    },
+    "com/sonicether/soundphysics/mixin/SoundEventMixin": {
+      "getRange": "Lnet/minecraft/class_3414;method_43044(F)F"
+    },
+    "com/sonicether/soundphysics/mixin/SoundSystemMixin": {
+      "Lcom/mojang/blaze3d/audio/Listener;reset()V": "Lnet/minecraft/class_4227;method_19673()V",
+      "Lnet/minecraft/client/Options;getSoundSourceVolume(Lnet/minecraft/sounds/SoundSource;)F": "Lnet/minecraft/class_315;method_1630(Lnet/minecraft/class_3419;)F",
+      "Lnet/minecraft/client/sounds/SoundEngine;instanceBySource:Lcom/google/common/collect/Multimap;": "Lnet/minecraft/class_1140;field_18951:Lcom/google/common/collect/Multimap;",
+      "loadLibrary": "Lnet/minecraft/class_1140;method_4846()V",
+      "play": "Lnet/minecraft/class_1140;method_4854(Lnet/minecraft/class_1113;)V",
+      "tickNonPaused": "Lnet/minecraft/class_1140;method_4857()V"
+    },
+    "com/sonicether/soundphysics/mixin/SourceMixin": {
+      "linearAttenuation": "Lnet/minecraft/class_4224;method_19651(F)V",
+      "play": "Lnet/minecraft/class_4224;method_19650()V",
+      "setSelfPosition": "Lnet/minecraft/class_4224;method_19641(Lnet/minecraft/class_243;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/sonicether/soundphysics/mixin/ChannelAccessor": {
+        "source": "field_18893:I"
+      },
+      "com/sonicether/soundphysics/mixin/ClientLevelMixin": {
+        "tick(Ljava/util/function/BooleanSupplier;)V": "Lnet/minecraft/class_638;method_8441(Ljava/util/function/BooleanSupplier;)V"
+      },
+      "com/sonicether/soundphysics/mixin/ClientPacketListenerMixin": {
+        "handleLogin": "Lnet/minecraft/class_634;method_11120(Lnet/minecraft/class_2678;)V"
+      },
+      "com/sonicether/soundphysics/mixin/DebugRendererMixin": {
+        "render": "Lnet/minecraft/class_863;method_23099(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597$class_4598;DDD)V"
+      },
+      "com/sonicether/soundphysics/mixin/EntityMixin": {
+        "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/class_1937;method_43128(Lnet/minecraft/class_1657;DDDLnet/minecraft/class_3414;Lnet/minecraft/class_3419;FF)V",
+        "playSound(Lnet/minecraft/sounds/SoundEvent;FF)V": "Lnet/minecraft/class_1297;method_5783(Lnet/minecraft/class_3414;FF)V"
+      },
+      "com/sonicether/soundphysics/mixin/LibraryMixin": {
+        "init": "Lnet/minecraft/class_4225;method_19661(Ljava/lang/String;Z)V"
+      },
+      "com/sonicether/soundphysics/mixin/LocalPlayerMixin": {
+        "playSound": "Lnet/minecraft/class_746;method_5783(Lnet/minecraft/class_3414;FF)V"
+      },
+      "com/sonicether/soundphysics/mixin/MinecraftMixin": {
+        "disconnect(Lnet/minecraft/client/gui/screens/Screen;Z)V": "Lnet/minecraft/class_310;method_18096(Lnet/minecraft/class_437;Z)V",
+        "setLevel": "Lnet/minecraft/class_310;method_1481(Lnet/minecraft/class_638;Lnet/minecraft/class_434$class_9678;)V"
+      },
+      "com/sonicether/soundphysics/mixin/SoundEventMixin": {
+        "getRange": "Lnet/minecraft/class_3414;method_43044(F)F"
+      },
+      "com/sonicether/soundphysics/mixin/SoundSystemMixin": {
+        "Lcom/mojang/blaze3d/audio/Listener;reset()V": "Lnet/minecraft/class_4227;method_19673()V",
+        "Lnet/minecraft/client/Options;getSoundSourceVolume(Lnet/minecraft/sounds/SoundSource;)F": "Lnet/minecraft/class_315;method_1630(Lnet/minecraft/class_3419;)F",
+        "Lnet/minecraft/client/sounds/SoundEngine;instanceBySource:Lcom/google/common/collect/Multimap;": "Lnet/minecraft/class_1140;field_18951:Lcom/google/common/collect/Multimap;",
+        "loadLibrary": "Lnet/minecraft/class_1140;method_4846()V",
+        "play": "Lnet/minecraft/class_1140;method_4854(Lnet/minecraft/class_1113;)V",
+        "tickNonPaused": "Lnet/minecraft/class_1140;method_4857()V"
+      },
+      "com/sonicether/soundphysics/mixin/SourceMixin": {
+        "linearAttenuation": "Lnet/minecraft/class_4224;method_19651(F)V",
+        "play": "Lnet/minecraft/class_4224;method_19650()V",
+        "setSelfPosition": "Lnet/minecraft/class_4224;method_19641(Lnet/minecraft/class_243;)V"
+      }
+    }
+  }
+}

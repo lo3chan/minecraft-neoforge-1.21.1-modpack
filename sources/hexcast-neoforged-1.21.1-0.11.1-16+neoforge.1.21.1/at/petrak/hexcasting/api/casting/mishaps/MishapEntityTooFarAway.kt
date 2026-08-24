@@ -1,0 +1,36 @@
+package at.petrak.hexcasting.api.casting.mishaps
+
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
+import at.petrak.hexcasting.api.casting.iota.Iota
+import at.petrak.hexcasting.api.casting.mishaps.Mishap.Context
+import at.petrak.hexcasting.api.pigment.FrozenPigment
+import net.minecraft.network.chat.Component
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.item.DyeColor
+
+public class MishapEntityTooFarAway(entity: Entity) : Mishap {
+   public final val entity: Entity
+
+   init {
+      this.entity = entity;
+   }
+
+   public override fun accentColor(ctx: CastingEnvironment, errorCtx: Context): FrozenPigment {
+      return this.dyeColor(DyeColor.PINK);
+   }
+
+   public override fun execute(env: CastingEnvironment, errorCtx: Context, stack: MutableList<Iota>) {
+      env.getMishapEnvironment().yeetHeldItemsTowards(this.entity.position());
+   }
+
+   protected override fun errorMessage(ctx: CastingEnvironment, errorCtx: Context): Component {
+      val var3: Array<Any> = new Object[1];
+      var var10004: Component = this.entity.getDisplayName();
+      if (var10004 == null) {
+         var10004 = this.entity.getName();
+      }
+
+      var3[0] = var10004;
+      return this.error("entity_too_far", var3);
+   }
+}

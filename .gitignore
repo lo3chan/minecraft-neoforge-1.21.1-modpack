@@ -1,5 +1,11 @@
-
+# Binary excludes
 *.dll
+*.so
+*.dylib
 *.zip
-mods/
-sources/
+*.jar
+*.class
+*.png
+*.ogg
+*.wav
+vineflower.jar

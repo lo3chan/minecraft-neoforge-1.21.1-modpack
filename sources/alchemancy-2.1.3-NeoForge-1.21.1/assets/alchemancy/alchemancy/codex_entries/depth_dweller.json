@@ -1,0 +1,10 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:depth_dweller.flavor"
+  },
+  "functions": [
+    "while_worn_leggings",
+    "while_worn_boots",
+    "while_held_mainhand"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstonefubukibanzai",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstonefubukibanzai",
+    "particle": "born_in_chaos_v1:block/tombstonefubukibanzai",
+    "1": "born_in_chaos_v1:block/tombstonefubukibanzai",
+    "2": "born_in_chaos_v1:block/namefubukibanzai"
+  },
+  "render_type": "cutout"
+}

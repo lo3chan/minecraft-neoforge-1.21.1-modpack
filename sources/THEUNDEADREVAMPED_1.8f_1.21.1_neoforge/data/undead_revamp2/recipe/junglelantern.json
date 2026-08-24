@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:devilurchin"
+    },
+    {
+      "item": "undead_revamp2:jungleinducer"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:jungleinducer",
+    "count": 1
+  }
+}

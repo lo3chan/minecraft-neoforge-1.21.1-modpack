@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstonetem",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstonetem187",
+    "particle": "born_in_chaos_v1:block/tombstonetem187",
+    "0": "born_in_chaos_v1:block/tombstonetem187",
+    "1": "born_in_chaos_v1:block/nametem187"
+  },
+  "render_type": "cutout"
+}

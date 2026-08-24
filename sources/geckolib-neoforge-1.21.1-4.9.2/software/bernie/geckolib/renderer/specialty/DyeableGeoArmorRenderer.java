@@ -1,0 +1,79 @@
+package software.bernie.geckolib.renderer.specialty;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import it.unimi.dsi.fastutil.objects.ObjectArraySet;
+import java.util.Collection;
+import java.util.Set;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.util.FastColor.ARGB32;
+import net.minecraft.world.item.Item;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.cache.object.GeoBone;
+import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.util.Color;
+
+public abstract class DyeableGeoArmorRenderer<T extends Item & GeoItem> extends GeoArmorRenderer<T> {
+   protected final Set<GeoBone> dyeableBones = new ObjectArraySet();
+   protected BakedGeoModel lastModel = null;
+
+   public DyeableGeoArmorRenderer(GeoModel<T> model) {
+      super(model);
+   }
+
+   @Override
+   public void preRender(
+      PoseStack poseStack,
+      T animatable,
+      BakedGeoModel model,
+      @Nullable MultiBufferSource bufferSource,
+      @Nullable VertexConsumer buffer,
+      boolean isReRender,
+      float partialTick,
+      int packedLight,
+      int packedOverlay,
+      int colour
+   ) {
+      super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
+      if (!isReRender) {
+         this.checkBoneDyeCache(animatable, model, partialTick, packedLight, packedOverlay, colour);
+      }
+   }
+
+   @Override
+   public void renderCubesOfBone(PoseStack poseStack, GeoBone bone, VertexConsumer buffer, int packedLight, int packedOverlay, int colour) {
+      if (this.dyeableBones.contains(bone)) {
+         Color color = this.getColorForBone(bone);
+         colour = ARGB32.multiply(colour, color.argbInt());
+      }
+
+      super.renderCubesOfBone(poseStack, bone, buffer, packedLight, packedOverlay, colour);
+   }
+
+   protected abstract boolean isBoneDyeable(GeoBone var1);
+
+   @NotNull
+   protected abstract Color getColorForBone(GeoBone var1);
+
+   protected void checkBoneDyeCache(T animatable, BakedGeoModel model, float partialTick, int packedLight, int packedOverlay, int colour) {
+      if (model != this.lastModel) {
+         this.dyeableBones.clear();
+         this.lastModel = model;
+         this.collectDyeableBones(model.topLevelBones());
+      }
+   }
+
+   protected void collectDyeableBones(Collection<GeoBone> bones) {
+      for (GeoBone bone : bones) {
+         if (this.isBoneDyeable(bone)) {
+            this.dyeableBones.add(bone);
+         }
+
+         this.collectDyeableBones(bone.getChildBones());
+      }
+   }
+}

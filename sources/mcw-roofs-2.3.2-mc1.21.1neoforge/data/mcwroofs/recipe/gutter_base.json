@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwroofs:rain_gutter"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:gutter_base"
+  }
+}

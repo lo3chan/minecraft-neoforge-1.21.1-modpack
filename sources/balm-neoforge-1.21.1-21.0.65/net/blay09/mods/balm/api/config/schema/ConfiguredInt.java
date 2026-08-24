@@ -1,0 +1,23 @@
+package net.blay09.mods.balm.api.config.schema;
+
+import net.blay09.mods.balm.api.Balm;
+import net.blay09.mods.balm.api.config.LoadedConfig;
+import net.blay09.mods.balm.api.config.MutableLoadedConfig;
+
+public interface ConfiguredInt extends ConfiguredProperty<Integer> {
+   default int get(LoadedConfig config) {
+      return this.getRaw(config);
+   }
+
+   default int get() {
+      return this.get(Balm.getConfig().getActiveConfig(this.parentSchema()));
+   }
+
+   default void set(MutableLoadedConfig config, int value) {
+      this.setRaw(config, value);
+   }
+
+   default void set(int value) {
+      this.set(Balm.getConfig().getLocalConfig(this.parentSchema()), value);
+   }
+}

@@ -1,0 +1,14 @@
+package com.github.alexthe666.alexsmobs.world;
+
+import java.util.function.Supplier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class AMFeatureRegistry {
+   public static final DeferredRegister<Feature<?>> DEF_REG = DeferredRegister.create(Registries.FEATURE, "alexsmobs");
+   public static final Supplier<Feature<NoneFeatureConfiguration>> LEAFCUTTER_ANTHILL = DEF_REG.register(
+      "leafcutter_anthill", () -> new FeatureLeafcutterAnthill(NoneFeatureConfiguration.CODEC)
+   );
+}

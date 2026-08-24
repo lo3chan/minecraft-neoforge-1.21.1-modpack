@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:infusion_cleanse.flavor"
+  },
+  "functions": [
+    "stacked_over"
+  ],
+  "innate": [
+    "alchemancy:leaden_sponge"
+  ]
+}

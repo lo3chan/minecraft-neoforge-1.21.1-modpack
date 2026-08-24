@@ -1,0 +1,35 @@
+package com.iafenvoy.origins.data.action.builtin.entity;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.power.component.builtin.ResourceComponent;
+import com.iafenvoy.origins.util.codec.WildcardCodec;
+import com.iafenvoy.origins.util.math.Modifier;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
+
+public record ModifyResourceAction(Modifier modifier, ResourceLocation resource) implements EntityAction {
+   public static final MapCodec<ModifyResourceAction> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Modifier.CODEC.fieldOf("modifier").forGetter(ModifyResourceAction::modifier),
+            WildcardCodec.INSTANCE.fieldOf("resource").forGetter(ModifyResourceAction::resource)
+         )
+         .apply(i, ModifyResourceAction::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends EntityAction> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public void execute(@NotNull Entity source) {
+      PowerHelper helper = PowerHelper.get(source);
+      helper.getComponent(this.resource, ResourceComponent.class).ifPresent(x -> x.updateResource(y -> helper.applyModifiers(List.of(this.modifier), y)));
+   }
+}

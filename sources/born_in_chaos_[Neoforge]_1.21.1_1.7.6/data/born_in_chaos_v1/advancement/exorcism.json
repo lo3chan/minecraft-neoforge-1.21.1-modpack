@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:exorcism_icon"
+    },
+    "title": {
+      "translate": "advancements.exorcism.title"
+    },
+    "description": {
+      "translate": "advancements.exorcism.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "exorcism_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 15
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

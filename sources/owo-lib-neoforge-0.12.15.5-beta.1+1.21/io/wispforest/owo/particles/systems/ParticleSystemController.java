@@ -1,0 +1,155 @@
+package io.wispforest.owo.particles.systems;
+
+import io.wispforest.endec.Endec;
+import io.wispforest.endec.StructEndec;
+import io.wispforest.endec.impl.ReflectiveEndecBuilder;
+import io.wispforest.endec.impl.StructEndecBuilder;
+import io.wispforest.owo.network.NetworkException;
+import io.wispforest.owo.network.OwoHandshake;
+import io.wispforest.owo.network.neoforge.NeoOwoNetworking;
+import io.wispforest.owo.serialization.CodecUtils;
+import io.wispforest.owo.serialization.endec.MinecraftEndecs;
+import io.wispforest.owo.util.OwoFreezer;
+import io.wispforest.owo.util.ReflectionUtils;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.fml.loading.FMLLoader;
+import org.jetbrains.annotations.ApiStatus.Internal;
+
+public class ParticleSystemController {
+   @Internal
+   public static final Map<ResourceLocation, ParticleSystemController> REGISTERED_CONTROLLERS = new HashMap<>();
+   @Internal
+   public final Int2ObjectMap<ParticleSystem<?>> systemsByIndex = new Int2ObjectOpenHashMap();
+   public final ResourceLocation channelId;
+   private final Type<ParticleSystemController.ParticleSystemPayload> payloadId;
+   private int maxIndex = 0;
+   private final String ownerClassName;
+   private final ReflectiveEndecBuilder builder;
+
+   public ParticleSystemController(ResourceLocation channelId) {
+      OwoFreezer.checkRegister("Particle system controllers");
+      this.builder = MinecraftEndecs.addDefaults(new ReflectiveEndecBuilder());
+      if (REGISTERED_CONTROLLERS.containsKey(channelId)) {
+         throw new IllegalStateException(
+            "Controller with id '" + channelId + "' was already registered from class '" + REGISTERED_CONTROLLERS.get(channelId).ownerClassName + "'"
+         );
+      } else {
+         this.channelId = channelId;
+         this.payloadId = new Type(channelId);
+         this.ownerClassName = ReflectionUtils.getCallingClassName(2);
+         Endec<ParticleSystemController.ParticleSystemInstance<?>> instanceEndec = Endec.dispatched(index -> {
+            ParticleSystem<Object> system = (ParticleSystem<Object>)this.systemsByIndex.get(index);
+            return system.endec.xmap(x -> new ParticleSystemController.ParticleSystemInstance<>(system, x), x -> x.data);
+         }, instance -> instance.system.index, Endec.VAR_INT);
+         StructEndec<ParticleSystemController.ParticleSystemPayload> endec = StructEndecBuilder.of(
+            MinecraftEndecs.VEC3D.fieldOf("pos", ParticleSystemController.ParticleSystemPayload::pos),
+            instanceEndec.fieldOf("instance", ParticleSystemController.ParticleSystemPayload::instance),
+            (pos, instance) -> new ParticleSystemController.ParticleSystemPayload(this.payloadId, pos, instance)
+         );
+         NeoOwoNetworking.registerClientCodec(this.payloadId, CodecUtils.toPacketCodec(endec));
+         OwoHandshake.enable();
+         OwoHandshake.requireHandshake();
+         if (FMLLoader.getDist() == Dist.CLIENT) {
+            NeoOwoNetworking.registerClientPayload(this.payloadId, (payload, player) -> new ParticleSystemController.Client().handler(payload, player.level()));
+         } else {
+            NeoOwoNetworking.registerClientPayload(this.payloadId, NeoOwoNetworking.PayloadHandler.empty());
+         }
+
+         REGISTERED_CONTROLLERS.put(channelId, this);
+      }
+   }
+
+   public ReflectiveEndecBuilder endecBuilder() {
+      return this.builder;
+   }
+
+   public <T> ParticleSystem<T> register(Class<T> dataClass, Endec<T> endec, ParticleSystemExecutor<T> executor) {
+      int index = this.maxIndex++;
+      ParticleSystem<T> system = new ParticleSystem<>(this, dataClass, index, endec, executor);
+      this.systemsByIndex.put(index, system);
+      return system;
+   }
+
+   public <T> ParticleSystem<T> register(Class<T> dataClass, ParticleSystemExecutor<T> executor) {
+      return this.register(dataClass, this.builder.get(dataClass), executor);
+   }
+
+   public <T> ParticleSystem<T> registerDeferred(Class<T> dataClass, Endec<T> endec) {
+      int index = this.maxIndex++;
+      ParticleSystem<T> system = new ParticleSystem<>(this, dataClass, index, endec, null);
+      this.systemsByIndex.put(index, system);
+      return system;
+   }
+
+   public <T> ParticleSystem<T> registerDeferred(Class<T> dataClass) {
+      return this.registerDeferred(dataClass, this.builder.get(dataClass));
+   }
+
+   <T> void sendPacket(ParticleSystem<T> particleSystem, ServerLevel world, Vec3 pos, T data) {
+      ParticleSystemController.ParticleSystemPayload payload = new ParticleSystemController.ParticleSystemPayload(
+         this.payloadId, pos, new ParticleSystemController.ParticleSystemInstance<>(particleSystem, data)
+      );
+
+      for (ServerPlayer player : Collections.unmodifiableCollection(world.getChunkSource().chunkMap.getPlayers(new ChunkPos(BlockPos.containing(pos)), false))) {
+         player.connection.send(payload);
+      }
+   }
+
+   private void verify() {
+      if (FMLLoader.getDist() == Dist.CLIENT) {
+         ObjectIterator var1 = this.systemsByIndex.values().iterator();
+
+         while (var1.hasNext()) {
+            ParticleSystem<?> system = (ParticleSystem<?>)var1.next();
+            if (system.handler == null) {
+               throw new NetworkException("Some particle systems of " + this.channelId + " don't have handlers registered");
+            }
+         }
+      }
+   }
+
+   static {
+      OwoFreezer.registerFreezeCallback(() -> {
+         for (ParticleSystemController controller : REGISTERED_CONTROLLERS.values()) {
+            controller.verify();
+         }
+      });
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   private static class Client {
+      private void handler(ParticleSystemController.ParticleSystemPayload payload, Level world) {
+         payload.instance.execute(world, payload.pos);
+      }
+   }
+
+   private record ParticleSystemInstance<T>(ParticleSystem<T> system, T data) {
+      public void execute(Level world, Vec3 pos) {
+         this.system.handler.executeParticleSystem(world, pos, this.data);
+      }
+   }
+
+   private record ParticleSystemPayload(
+      Type<ParticleSystemController.ParticleSystemPayload> id, Vec3 pos, ParticleSystemController.ParticleSystemInstance<?> instance
+   ) implements CustomPacketPayload {
+      public Type<? extends CustomPacketPayload> type() {
+         return this.id;
+      }
+   }
+}

@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:insulated.flavor"
+  },
+  "functions": [
+    "receive_damage_worn_or_using",
+    "when_dropped"
+  ]
+}

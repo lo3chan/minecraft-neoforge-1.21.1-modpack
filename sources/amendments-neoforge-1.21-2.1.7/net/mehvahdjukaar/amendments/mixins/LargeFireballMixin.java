@@ -1,0 +1,68 @@
+package net.mehvahdjukaar.amendments.mixins;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.mehvahdjukaar.amendments.common.ProjectileStats;
+import net.mehvahdjukaar.amendments.common.entity.FireballExplosion;
+import net.mehvahdjukaar.amendments.configs.CommonConfigs;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.LargeFireball;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.Level.ExplosionInteraction;
+import net.minecraft.world.phys.HitResult;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({LargeFireball.class})
+public abstract class LargeFireballMixin extends Entity {
+   public LargeFireballMixin(EntityType<?> entityType, Level level) {
+      super(entityType, level);
+   }
+
+   @WrapOperation(
+      method = {"onHit"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/level/Level;explode(Lnet/minecraft/world/entity/Entity;DDDFZLnet/minecraft/world/level/Level$ExplosionInteraction;)Lnet/minecraft/world/level/Explosion;"
+      )}
+   )
+   public Explosion amendments$fireballExplosion(
+      Level instance,
+      Entity source,
+      double x,
+      double y,
+      double z,
+      float radius,
+      boolean fire,
+      ExplosionInteraction explosionInteraction,
+      Operation<Explosion> original
+   ) {
+      if (CommonConfigs.FIREBALL_EXPLOSION.get()) {
+         FireballExplosion.ExtraSettings settings = new FireballExplosion.ExtraSettings();
+         settings.onFireSeconds = ProjectileStats.GHAST_FIREBALL.indirectHitFireSeconds();
+         settings.soundVolume = ProjectileStats.GHAST_FIREBALL.soundVolume();
+         return FireballExplosion.explodeServer(instance, source, null, null, x, y, z, radius, fire, explosionInteraction, settings);
+      } else {
+         return (Explosion)original.call(new Object[]{instance, source, x, y, z, radius, fire, explosionInteraction});
+      }
+   }
+
+   @Inject(
+      method = {"onHit"},
+      at = {@At("HEAD")},
+      cancellable = true
+   )
+   public void amendments$cancelExplosion(HitResult result, CallbackInfo ci) {
+      if (this.getRemainingFireTicks() <= 0) {
+         if (!this.level().isClientSide) {
+            this.discard();
+         }
+
+         ci.cancel();
+      }
+   }
+}

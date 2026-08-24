@@ -1,0 +1,12 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:dispensing.flavor"
+  },
+  "functions": [
+    "when_shot",
+    "when_used",
+    "activate",
+    "activate_by_block",
+    "while_worn_boots"
+  ]
+}

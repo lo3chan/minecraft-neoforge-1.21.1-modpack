@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:spruce_cowboy_in_the_moonlighticon"
+    },
+    "title": {
+      "translate": "advancements.spruce_cowboyinthe_moonlight.title"
+    },
+    "description": {
+      "translate": "advancements.spruce_cowboyinthe_moonlight.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "spruce_cowboyinthe_moonlight_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 300
+  },
+  "parent": "born_in_chaos_v1:explosive_temper"
+}

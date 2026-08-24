@@ -1,0 +1,25 @@
+{
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.rise": "Восходит кровавая луна… Вдали слышится гул нежити…",
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.set": "Заходит кровавая луна… Нежить сгорает…",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.rise": "Восходит голубая луна… Кому-то сегодня повезёт!",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.set": "Заходит голубая луна… Удача покинула вас…",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.rise": "Восходит урожайная луна… Ваши посевы дают больше урожая.",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.set": "Заходит урожайная луна…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.rise": "Восходит кровавое суперлуние… Вдали слышится громкий гул нежити…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.set": "Заходит кровавое суперлуние… Нежить сгорает…",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.rise": "Восходит голубое суперлуние… Кому-то сегодня сильно повезёт!",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.set": "Заходит голубое суперлуние… Большая удача покинула вас…",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.rise": "Восходит урожайное суперлуние… Ваши посевы дают ещё больше урожая.",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.set": "Заходит урожайное суперлуние…",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.rise": "Суперлуние восходит… Поблизости начинают появляться слизни.",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.set": "Суперлуние заходит…",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blood_moon": "Кровавая луна",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blue_moon": "Голубая луна",
+  "lunar.event.enhancedcelestials2defaultlunarevents.harvest_moon": "Урожайная луна",
+  "lunar.event.enhancedcelestials2defaultlunarevents.moon": "Луна",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blood_moon": "Кровавое суперлуние",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blue_moon": "Голубое суперлуние",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_harvest_moon": "Урожайное суперлуние",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_moon": "Суперлуние"
+}
+

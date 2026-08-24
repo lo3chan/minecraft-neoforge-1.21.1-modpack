@@ -1,0 +1,145 @@
+package dev.latvian.mods.kubejs.plugin.builtin.wrapper;
+
+import dev.latvian.mods.kubejs.typings.Info;
+import dev.latvian.mods.kubejs.util.CountingMap;
+import dev.latvian.mods.kubejs.util.Lazy;
+import dev.latvian.mods.kubejs.util.RegExpKJS;
+import dev.latvian.mods.kubejs.util.UtilsJS;
+import dev.latvian.mods.kubejs.util.WrappedJS;
+import dev.latvian.mods.rhino.util.HideFromJS;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.IntFunction;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+import net.minecraft.Util;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.stats.Stat;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.CreativeModeTab;
+import org.jetbrains.annotations.Nullable;
+
+@Info("A collection of utilities")
+public interface UtilsWrapper {
+   @Info("Get a Random, for generating random numbers. Note this will always return the same Random instance")
+   static RandomSource getRandom() {
+      return UtilsJS.RANDOM;
+   }
+
+   @Info("Get a new random with the specified seed")
+   static RandomSource newRandom(long seed) {
+      return RandomSource.create(seed);
+   }
+
+   @Info("Get an immutable empty list")
+   static <T> List<T> emptyList() {
+      return List.of();
+   }
+
+   @Info("Get an immutable empty map")
+   static <K, V> Map<K, V> emptyMap() {
+      return Map.of();
+   }
+
+   @Info("Returns a new mutable list")
+   static List<?> newList() {
+      return new ArrayList();
+   }
+
+   @Info("Returns a new mutable map")
+   static Map<?, ?> newMap() {
+      return new LinkedHashMap();
+   }
+
+   @Info("Returns a new counting map")
+   static CountingMap newCountingMap() {
+      return new CountingMap();
+   }
+
+   @Info("Returns a regex pattern of the input")
+   static Pattern regex(Object s) {
+      Pattern pattern = RegExpKJS.wrap(s);
+      return pattern == null ? Pattern.compile(s.toString()) : pattern;
+   }
+
+   @Info("Returns a regex pattern of the input with the specified flags")
+   static Pattern regex(String pattern, int flags) {
+      return Pattern.compile(pattern, flags);
+   }
+
+   @Info("Returns a Stat of the passed in ResourceLocation.\nNote that this requires the same ResourceLocation to get the same stat, so should not be used unless you want to make your own stat, and are storing an actual ResourceLocation somewhere to access it.\n")
+   static Stat<ResourceLocation> getStat(ResourceLocation id) {
+      return Stats.CUSTOM.get(id);
+   }
+
+   @Info("Gets a SoundEvent from the id")
+   @Nullable
+   static SoundEvent getSound(ResourceLocation id) {
+      return (SoundEvent)BuiltInRegistries.SOUND_EVENT.get(id);
+   }
+
+   @Info("Gets a random object from the list using the passed in random")
+   static Object randomOf(Random random, Collection<Object> objects) {
+      return randomOf(objects, random::nextInt);
+   }
+
+   @Info("Gets a random object from the list using the passed in random source")
+   static Object randomOf(RandomSource random, Collection<Object> objects) {
+      return randomOf(objects, random::nextInt);
+   }
+
+   @HideFromJS
+   static Object randomOf(Collection<Object> objects, IntFunction<Integer> nextInt) {
+      if (objects != null && !objects.isEmpty()) {
+         int index = nextInt.apply(objects.size());
+         return objects instanceof List<Object> list ? list.get(index) : new ArrayList<>(objects).get(index);
+      } else {
+         return null;
+      }
+   }
+
+   @Info("Gets the current system time, in milliseconds")
+   static long getSystemTime() {
+      return System.currentTimeMillis();
+   }
+
+   @Info("Checks if the passed in object is an instance of WrappedJS")
+   static boolean isWrapped(@Nullable Object o) {
+      return o instanceof WrappedJS;
+   }
+
+   @Info("Returns a lazy value with the supplier function as its value factory")
+   static <T> Lazy<T> lazy(Supplier<T> supplier) {
+      return Lazy.of(supplier);
+   }
+
+   @Info("Returns a lazy value with the supplier function as its value factory, that will expire after the specified time")
+   static <T> Lazy<T> expiringLazy(Supplier<T> supplier, Duration expires) {
+      return Lazy.of(supplier, expires);
+   }
+
+   @Info("Returns the creative tab associated with the id")
+   @Nullable
+   static CreativeModeTab findCreativeTab(ResourceLocation id) {
+      return UtilsJS.findCreativeTab(id);
+   }
+
+   @Info("Runs the provided runnable function in KubeJS' background thread and returns its CompletableFuture")
+   static CompletableFuture<Void> runAsync(Runnable task) {
+      return CompletableFuture.runAsync(task, Util.backgroundExecutor());
+   }
+
+   @Info("Runs the provided supplier function in KubeJS' background thread and returns its CompletableFuture")
+   static CompletableFuture<Object> supplyAsync(Supplier<Object> task) {
+      return CompletableFuture.supplyAsync(task, Util.backgroundExecutor());
+   }
+}

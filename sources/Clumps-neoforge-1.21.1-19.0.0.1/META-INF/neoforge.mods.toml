@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/jaredlll08/Clumps/issues"
+license = "MIT"
+[[mods]]
+modId = "clumps"
+updateJSONURL = "https://updates.blamejared.com/get?n=clumps&gv=1.21.1&ml=neoforge"
+version = "19.0.0.1"
+displayName = "Clumps"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/clumps"
+authors = "Jared"
+logoFile = "icon.png"
+description = '''Clumps xp orbs together.'''
+itemIcon = "minecraft:experience_bottle"
+[[mixins]]
+config = "clumps.mixins.json"
+[[dependencies.clumps]]
+modId = "neoforge"
+type = "required"
+versionRange = "[4,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.clumps]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"

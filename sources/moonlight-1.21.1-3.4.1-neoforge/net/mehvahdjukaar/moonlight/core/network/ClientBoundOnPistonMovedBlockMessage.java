@@ -1,0 +1,59 @@
+package net.mehvahdjukaar.moonlight.core.network;
+
+import net.mehvahdjukaar.moonlight.api.block.IPistonMotionReact;
+import net.mehvahdjukaar.moonlight.api.platform.network.Message;
+import net.mehvahdjukaar.moonlight.core.Moonlight;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.TypeAndCodec;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class ClientBoundOnPistonMovedBlockMessage implements Message {
+   public static final TypeAndCodec<RegistryFriendlyByteBuf, ClientBoundOnPistonMovedBlockMessage> TYPE = Message.makeType(
+      Moonlight.res("s2c_on_piston_moved_block"), ClientBoundOnPistonMovedBlockMessage::new
+   );
+   public final BlockPos pos;
+   private final Direction dir;
+   private final BlockState movedState;
+   private final boolean extending;
+
+   public ClientBoundOnPistonMovedBlockMessage(RegistryFriendlyByteBuf buffer) {
+      this.pos = buffer.readBlockPos();
+      this.dir = Direction.from3DDataValue(buffer.readVarInt());
+      this.movedState = (BlockState)buffer.readById(Block.BLOCK_STATE_REGISTRY::byIdOrThrow);
+      this.extending = buffer.readBoolean();
+   }
+
+   public ClientBoundOnPistonMovedBlockMessage(BlockPos pos, BlockState movedState, Direction direction, boolean extending) {
+      this.pos = pos;
+      this.movedState = movedState;
+      this.dir = direction;
+      this.extending = extending;
+   }
+
+   @Override
+   public void write(RegistryFriendlyByteBuf buffer) {
+      buffer.writeBlockPos(this.pos);
+      buffer.writeVarInt(this.dir.get3DDataValue());
+      buffer.writeById(Block.BLOCK_STATE_REGISTRY::getIdOrThrow, this.movedState);
+      buffer.writeBoolean(this.extending);
+   }
+
+   @Override
+   public void handle(Message.Context context) {
+      Level level = context.getPlayer().level();
+      level.setBlock(this.pos, this.movedState, 0);
+      if (this.movedState.getBlock() instanceof IPistonMotionReact p) {
+         p.onMoved(level, this.pos, this.movedState, this.dir, this.extending);
+      }
+   }
+
+   public Type<? extends CustomPacketPayload> type() {
+      return TYPE.type();
+   }
+}

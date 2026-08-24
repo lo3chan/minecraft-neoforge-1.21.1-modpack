@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:lime_terracotta"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:lime_terracotta_upper_steep_roof"
+  },
+  "group" : "roofs"
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:lord_pumpkinhead_icon"
+    },
+    "title": {
+      "translate": "advancements.pumpkin_lord.title"
+    },
+    "description": {
+      "translate": "advancements.pumpkin_lord.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pumpkin_lord_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 90
+  },
+  "parent": "born_in_chaos_v1:transmutalogy"
+}

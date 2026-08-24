@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "mystic_trapdoors",
+  "pattern" : [ "AAA", "ABA", "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo"
+    },
+    "B" : {
+      "item" : "mcwtrpdoors:print_mystic"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwtrpdoors:bamboo_mystic_trapdoor"
+  }
+}

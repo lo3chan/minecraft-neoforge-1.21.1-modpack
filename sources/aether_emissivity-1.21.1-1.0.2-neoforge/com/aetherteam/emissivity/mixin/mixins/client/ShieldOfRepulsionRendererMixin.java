@@ -1,0 +1,134 @@
+package com.aetherteam.emissivity.mixin.mixins.client;
+
+import com.aetherteam.aether.client.renderer.accessory.ShieldOfRepulsionRenderer;
+import com.aetherteam.aether.item.accessories.miscellaneous.ShieldOfRepulsionItem;
+import com.aetherteam.emissivity.EmissivityConfig;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import io.wispforest.accessories.api.slot.SlotReference;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({ShieldOfRepulsionRenderer.class})
+public class ShieldOfRepulsionRendererMixin<T extends LivingEntity, M extends EntityModel<T>> {
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_BASE = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_accessory.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_INACTIVE_BASE = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_inactive_accessory.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_SLIM_BASE = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_slim_accessory.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_SLIM_INACTIVE_BASE = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_slim_inactive_accessory.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_OVERLAY = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_accessory_overlay.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_INACTIVE_OVERLAY = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_inactive_accessory_overlay.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_SLIM_OVERLAY = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_slim_accessory_overlay.png"
+   );
+   @Unique
+   private static final ResourceLocation SHIELD_OF_REPULSION_SLIM_INACTIVE_OVERLAY = ResourceLocation.fromNamespaceAndPath(
+      "aether_emissivity", "textures/models/accessory/shield_of_repulsion/shield_of_repulsion_slim_inactive_accessory_overlay.png"
+   );
+
+   @Inject(
+      method = {"render(Lnet/minecraft/world/item/ItemStack;Lio/wispforest/accessories/api/slot/SlotReference;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/model/EntityModel;Lnet/minecraft/client/renderer/MultiBufferSource;IFFFFFF)V"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/client/model/HumanoidModel;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V"
+      )},
+      cancellable = true
+   )
+   private void render(
+      ItemStack stack,
+      SlotReference reference,
+      PoseStack poseStack,
+      EntityModel<?> entityModel,
+      MultiBufferSource buffer,
+      int packedLight,
+      float limbSwing,
+      float limbSwingAmount,
+      float partialTicks,
+      float ageInTicks,
+      float netHeadYaw,
+      float headPitch,
+      CallbackInfo ci,
+      @Local ShieldOfRepulsionItem shield,
+      @Local ResourceLocation texture,
+      @Local HumanoidModel<T> model
+   ) {
+      if ((Boolean)EmissivityConfig.CLIENT.emissive_shield_of_repulsion.get()) {
+         ResourceLocation baseTexture = null;
+         ResourceLocation overlayTexture = null;
+         if (texture.equals(shield.getShieldOfRepulsionTexture())) {
+            baseTexture = SHIELD_OF_REPULSION_BASE;
+            overlayTexture = SHIELD_OF_REPULSION_OVERLAY;
+         } else if (texture.equals(shield.getShieldOfRepulsionInactiveTexture())) {
+            baseTexture = SHIELD_OF_REPULSION_INACTIVE_BASE;
+            overlayTexture = SHIELD_OF_REPULSION_INACTIVE_OVERLAY;
+         } else if (texture.equals(shield.getShieldOfRepulsionSlimTexture())) {
+            baseTexture = SHIELD_OF_REPULSION_SLIM_BASE;
+            overlayTexture = SHIELD_OF_REPULSION_SLIM_OVERLAY;
+         } else if (texture.equals(shield.getShieldOfRepulsionSlimInactiveTexture())) {
+            baseTexture = SHIELD_OF_REPULSION_SLIM_INACTIVE_BASE;
+            overlayTexture = SHIELD_OF_REPULSION_SLIM_INACTIVE_OVERLAY;
+         }
+
+         if (baseTexture != null) {
+            VertexConsumer baseConsumer = ItemRenderer.getArmorFoilBuffer(buffer, ShieldOfRepulsionRenderer.shieldOfRepulsionRenderType(baseTexture), false);
+            model.renderToBuffer(poseStack, baseConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+            VertexConsumer overlayConsumer = ItemRenderer.getArmorFoilBuffer(
+               buffer, ShieldOfRepulsionRenderer.shieldOfRepulsionRenderType(overlayTexture), false
+            );
+            model.renderToBuffer(poseStack, overlayConsumer, LightTexture.pack(15, 15), OverlayTexture.NO_OVERLAY);
+            ci.cancel();
+         }
+      }
+   }
+
+   @WrapOperation(
+      method = {"renderShieldOnHand(Lnet/minecraft/client/model/geom/ModelPart;Lcom/mojang/blaze3d/vertex/PoseStack;ILcom/mojang/blaze3d/vertex/VertexConsumer;)V"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/client/model/geom/ModelPart;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;II)V"
+      )}
+   )
+   private void renderFirstPerson(
+      ModelPart instance, PoseStack poseStack, VertexConsumer consumer, int packedLight, int packedOverlay, Operation<Void> original
+   ) {
+      if ((Boolean)EmissivityConfig.CLIENT.emissive_shield_of_repulsion.get()) {
+         original.call(new Object[]{instance, poseStack, consumer, LightTexture.pack(15, 15), packedOverlay});
+      } else {
+         original.call(new Object[]{instance, poseStack, consumer, packedLight, packedOverlay});
+      }
+   }
+}

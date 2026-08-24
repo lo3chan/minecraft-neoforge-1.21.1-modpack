@@ -1,0 +1,15 @@
+package amp_libs.org.bouncycastle.internal.asn1.misc;
+
+import amp_libs.org.bouncycastle.asn1.ASN1IA5String;
+import amp_libs.org.bouncycastle.asn1.DERIA5String;
+
+public class NetscapeRevocationURL extends DERIA5String {
+   public NetscapeRevocationURL(ASN1IA5String var1) {
+      super(var1.getString());
+   }
+
+   @Override
+   public String toString() {
+      return "NetscapeRevocationURL: " + this.getString();
+   }
+}

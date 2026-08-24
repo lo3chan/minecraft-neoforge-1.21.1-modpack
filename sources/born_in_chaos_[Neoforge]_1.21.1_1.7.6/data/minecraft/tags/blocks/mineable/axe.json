@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "born_in_chaos_v1:tombstone_plug",
+    "born_in_chaos_v1:creepy_nutcracker",
+    "born_in_chaos_v1:rotten_infernal_pumpkin",
+    "born_in_chaos_v1:scorched_planks_door",
+    "born_in_chaos_v1:scorched_planks_trapdoor",
+    "born_in_chaos_v1:scorched_planks_pressure_plates",
+    "born_in_chaos_v1:scorched_planks_button",
+    "born_in_chaos_v1:scorched_planks_fence_gate",
+    "born_in_chaos_v1:scorched_planks_fence",
+    "born_in_chaos_v1:scorched_planks_slab",
+    "born_in_chaos_v1:scorched_planks_stairs",
+    "born_in_chaos_v1:fragile_scorched_boards",
+    "born_in_chaos_v1:scorched_planks",
+    "born_in_chaos_v1:stripped_scorched_wood",
+    "born_in_chaos_v1:stripped_scorched_log",
+    "born_in_chaos_v1:smoldering_scorched_wood",
+    "born_in_chaos_v1:smoldering_scorched_log",
+    "born_in_chaos_v1:scorched_wood",
+    "born_in_chaos_v1:scorched_log"
+  ]
+}

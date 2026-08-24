@@ -1,0 +1,52 @@
+package traben.entity_model_features.models.animation.math.methods.emf;
+
+import java.util.List;
+import org.objectweb.asm.MethodVisitor;
+import traben.entity_model_features.models.animation.AnimSetupContext;
+import traben.entity_model_features.models.animation.math.EMFMathException;
+import traben.entity_model_features.models.animation.math.asm.ASMHelper;
+import traben.entity_model_features.models.animation.math.asm.ASMVariableHandler;
+import traben.entity_model_features.models.animation.math.expression_tree.MathComponent;
+import traben.entity_model_features.models.animation.math.expression_tree.MathMethod;
+import traben.entity_model_features.models.animation.math.expression_tree.MathValue;
+import traben.entity_model_features.models.animation.math.methods.optifine.RandomMethod;
+
+public class RandomBMethod extends MathMethod {
+   protected final boolean hasSeed;
+
+   public RandomBMethod(List<String> args, boolean isNegative, AnimSetupContext context) throws EMFMathException {
+      super(isNegative, context, args);
+      this.hasSeed = args.size() == 1 && !args.get(0).isBlank();
+      if (this.hasSeed) {
+         MathComponent arg = this.parsedArgs.get(0);
+         this.setSupplierAndOptimize(() -> MathValue.fromBoolean(nextValue(arg.getResult())), arg);
+      } else {
+         this.setSupplierAndOptimize(() -> MathValue.fromBoolean(nextValueBasic()));
+      }
+   }
+
+   public static boolean nextValue(float seed) {
+      return RandomMethod.nextValue(seed) >= 0.5F;
+   }
+
+   public static boolean nextValueBasic() {
+      return RandomMethod.nextValueBasic() >= 0.5F;
+   }
+
+   @Override
+   public void asmVisitInner(MethodVisitor mv, ASMVariableHandler vars) throws EMFMathException {
+      if (this.hasSeed) {
+         vars.scopeFloat();
+         this.parsedArgs.get(0).asmVisit(mv, vars);
+         vars.scopePop();
+         ASMHelper.visitStaticFunctionASM(mv, "nextValue", RandomBMethod.class);
+      } else {
+         ASMHelper.visitStaticFunctionASM(mv, "nextValueBasic", RandomBMethod.class);
+      }
+   }
+
+   @Override
+   protected boolean hasCorrectArgCount(int argCount) {
+      return argCount == 1 || argCount == 0;
+   }
+}

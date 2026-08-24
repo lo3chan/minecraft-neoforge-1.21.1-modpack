@@ -1,0 +1,95 @@
+package com.iafenvoy.origins.network;
+
+import com.iafenvoy.origins.Origins;
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.data.layer.Layer;
+import com.iafenvoy.origins.data.layer.LayerRegistries;
+import com.iafenvoy.origins.data.origin.Origin;
+import com.iafenvoy.origins.network.payload.ConfirmOriginS2CPayload;
+import com.iafenvoy.origins.network.payload.DismountPlayerS2CPayload;
+import com.iafenvoy.origins.network.payload.MountPlayerS2CPayload;
+import com.iafenvoy.origins.network.payload.NotifyKeymapsS2CPayload;
+import com.iafenvoy.origins.network.payload.OpenChooseOriginScreenS2CPayload;
+import com.iafenvoy.origins.network.payload.ReapplyShadersS2CPayload;
+import com.iafenvoy.origins.network.payload.ReloadLevelRendererS2CPayload;
+import com.iafenvoy.origins.registry.OriginsKeyMappings;
+import com.iafenvoy.origins.render.LevelRenderHelper;
+import com.iafenvoy.origins.screen.ChooseOriginScreen;
+import com.iafenvoy.origins.screen.WaitForNextLayerScreen;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+
+public final class ClientNetworkHandler {
+   static void onOriginConfirm(ConfirmOriginS2CPayload packet, IPayloadContext context) {
+      Player player = context.player();
+      OriginDataHolder holder = OriginDataHolder.get(context.player());
+      holder.setOrigin(packet.layer(), packet.origin());
+      player.sendSystemMessage(
+         Component.translatable(
+            "commands.origin.set.success.single", new Object[]{player.getDisplayName(), Layer.getName(packet.layer()), Origin.getName(packet.origin())}
+         )
+      );
+      if (Minecraft.getInstance().screen instanceof WaitForNextLayerScreen nextLayerScreen) {
+         nextLayerScreen.openSelection();
+      }
+   }
+
+   static void openOriginScreen(OpenChooseOriginScreenS2CPayload packet, IPayloadContext context) {
+      OriginDataHolder holder = OriginDataHolder.get(context.player());
+      List<Holder<Layer>> layers = LayerRegistries.streamAvailableLayers(context.player().registryAccess())
+         .filter(x -> !holder.hasOriginInLayer((Holder<Layer>)x))
+         .sorted(Comparator.comparing(Holder::value))
+         .toList();
+      ClientNetworkHandler.ClientCall.openOriginScreen(layers, packet.showBackground());
+   }
+
+   public static void onReapplyShaders(ReapplyShadersS2CPayload payload, IPayloadContext context) {
+      ClientNetworkHandler.ClientCall.onReapplyShaders();
+   }
+
+   public static void onReloadLevelRenderer(ReloadLevelRendererS2CPayload payload, IPayloadContext context) {
+      LevelRenderHelper.reload();
+   }
+
+   public static void onNotifyKeymaps(NotifyKeymapsS2CPayload payload, IPayloadContext context) {
+      OriginsKeyMappings.INSTANCE
+         .registerKeyMappingsFromPowers(OriginDataHolder.optional(context.player()).map(OriginDataHolder::getAllPowers).orElse(Set.of()));
+   }
+
+   public static void onMountPlayer(MountPlayerS2CPayload payload, IPayloadContext context) {
+      Entity source = context.player().level().getEntity(payload.source());
+      Entity target = context.player().level().getEntity(payload.target());
+      if (source != null && target != null) {
+         source.startRiding(target);
+      } else {
+         Origins.LOGGER.warn("Received MountPlayerS2CPayload with invalid entity IDs: source={}, target={}", payload.source(), payload.target());
+      }
+   }
+
+   public static void onDismountPlayer(DismountPlayerS2CPayload payload, IPayloadContext context) {
+      Entity dismounter = context.player().level().getEntity(payload.dismountingEntity());
+      if (dismounter == null) {
+         Origins.LOGGER.warn("Received DismountPlayerS2CPayload with invalid entity ID: dismountingEntity={}", payload.dismountingEntity());
+      } else {
+         dismounter.stopRiding();
+      }
+   }
+
+   private static final class ClientCall {
+      public static void openOriginScreen(List<Holder<Layer>> layers, boolean showBackground) {
+         Minecraft.getInstance().setScreen(new ChooseOriginScreen(layers, 0, showBackground));
+      }
+
+      public static void onReapplyShaders() {
+         Minecraft minecraft = Minecraft.getInstance();
+         minecraft.gameRenderer.checkEntityPostEffect(minecraft.options.getCameraType().isFirstPerson() ? minecraft.getCameraEntity() : null);
+      }
+   }
+}

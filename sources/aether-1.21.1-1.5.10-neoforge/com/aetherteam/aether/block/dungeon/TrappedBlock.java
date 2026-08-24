@@ -1,0 +1,59 @@
+package com.aetherteam.aether.block.dungeon;
+
+import com.aetherteam.aether.client.AetherSoundEvents;
+import com.aetherteam.aether.event.AetherEventDispatch;
+import java.util.function.Supplier;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ClipContext.Fluid;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.HitResult.Type;
+
+public class TrappedBlock extends Block {
+   private final Supplier<EntityType<?>> spawnableEntityTypeSupplier;
+   private final Supplier<? extends BlockState> defaultStateSupplier;
+
+   public TrappedBlock(Supplier<EntityType<?>> spawnableEntityTypeSupplier, Supplier<? extends BlockState> defaultStateSupplier, Properties properties) {
+      super(properties);
+      this.spawnableEntityTypeSupplier = spawnableEntityTypeSupplier;
+      this.defaultStateSupplier = defaultStateSupplier;
+   }
+
+   public BlockState getFacadeBlock() {
+      return this.defaultStateSupplier.get();
+   }
+
+   public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+      if (entity instanceof Player player && AetherEventDispatch.onTriggerTrap(player, level, pos, state)) {
+         level.setBlockAndUpdate(pos, this.defaultStateSupplier.get());
+         if (level instanceof ServerLevel serverLevel) {
+            float yRot = player.getYRot() * 0.017453292F;
+            Vec3 targetVec = new Vec3(pos.getX() + 0.5 - Mth.sin(yRot) * 3.0F, pos.getY() + 1, pos.getZ() + 0.5 + Mth.cos(yRot) * 3.0F);
+            ClipContext context = new ClipContext(player.position(), targetVec, net.minecraft.world.level.ClipContext.Block.COLLIDER, Fluid.NONE, player);
+            BlockHitResult hitResult = serverLevel.clip(context);
+            BlockPos spawnPos = hitResult.getBlockPos();
+            if (hitResult.getType() == Type.BLOCK) {
+               spawnPos = spawnPos.relative(hitResult.getDirection());
+            }
+
+            this.spawnableEntityTypeSupplier.get().spawn(serverLevel, spawnPos, MobSpawnType.TRIGGERED);
+            serverLevel.playSound(
+               null, pos, (SoundEvent)AetherSoundEvents.BLOCK_DUNGEON_TRAP_TRIGGER.get(), SoundSource.BLOCKS, 0.5F, level.getRandom().nextFloat() * 0.1F + 0.9F
+            );
+         }
+      }
+   }
+}

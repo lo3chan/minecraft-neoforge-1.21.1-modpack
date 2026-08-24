@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:interactable",
+    "alchemancy:echoed",
+    "alchemancy:death_ward"
+  ],
+
+  "result": "alchemancy:deathrattle"
+}

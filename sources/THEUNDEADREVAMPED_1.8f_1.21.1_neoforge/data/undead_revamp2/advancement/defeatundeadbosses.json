@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:fishing_rod"
+    },
+    "title": {
+      "translate": "advancements.defeatundeadbosses.title"
+    },
+    "description": {
+      "translate": "advancements.defeatundeadbosses.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "defeatundeadbosses_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

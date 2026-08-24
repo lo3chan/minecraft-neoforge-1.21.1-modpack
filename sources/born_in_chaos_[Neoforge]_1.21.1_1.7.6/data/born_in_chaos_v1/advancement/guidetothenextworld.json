@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:spirit_guideicon"
+    },
+    "title": {
+      "translate": "advancements.guidetothenextworld.title"
+    },
+    "description": {
+      "translate": "advancements.guidetothenextworld.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "guidetothenextworld_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 9
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+	  "mcwroofs:bamboo_mosaic_roof",
+	  "mcwroofs:bamboo_mosaic_attic_roof",
+	  "mcwroofs:bamboo_mosaic_top_roof",
+	  "mcwroofs:bamboo_mosaic_lower_roof",
+	  "mcwroofs:bamboo_mosaic_steep_roof",
+	  "mcwroofs:bamboo_mosaic_upper_lower_roof",
+	  "mcwroofs:bamboo_mosaic_upper_steep_roof"
+    ]
+  },
+  "criteria": {
+    "has_planks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bamboo_planks"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks"
+    ]
+  ]
+}

@@ -1,0 +1,199 @@
+package io.wispforest.owo.mixin;
+
+import io.netty.buffer.Unpooled;
+import io.wispforest.endec.Endec;
+import io.wispforest.endec.SerializationContext;
+import io.wispforest.endec.SerializationAttribute.Instance;
+import io.wispforest.endec.impl.ReflectiveEndecBuilder;
+import io.wispforest.owo.client.screens.OwoScreenHandler;
+import io.wispforest.owo.client.screens.ScreenInternals;
+import io.wispforest.owo.client.screens.ScreenhandlerMessageData;
+import io.wispforest.owo.client.screens.SyncedProperty;
+import io.wispforest.owo.network.NetworkException;
+import io.wispforest.owo.serialization.RegistriesAttribute;
+import io.wispforest.owo.serialization.endec.MinecraftEndecs;
+import io.wispforest.owo.util.pond.OwoScreenHandlerExtension;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({AbstractContainerMenu.class})
+public abstract class ScreenHandlerMixin implements OwoScreenHandler, OwoScreenHandlerExtension {
+   @Shadow
+   private boolean suppressRemoteUpdates;
+   private final List<SyncedProperty<?>> owo$properties = new ArrayList<>();
+   private final Map<Class<?>, ScreenhandlerMessageData<?>> owo$messages = new LinkedHashMap<>();
+   private final List<ScreenhandlerMessageData<?>> owo$clientboundMessages = new ArrayList<>();
+   private final List<ScreenhandlerMessageData<?>> owo$serverboundMessages = new ArrayList<>();
+   private Player owo$player = null;
+   @Unique
+   private ReflectiveEndecBuilder builder;
+
+   @Inject(
+      method = {"<init>(Lnet/minecraft/world/inventory/MenuType;I)V"},
+      at = {@At("TAIL")}
+   )
+   private void createReflectiveBuilder(MenuType type, int syncId, CallbackInfo ci) {
+      this.builder = MinecraftEndecs.addDefaults(new ReflectiveEndecBuilder());
+   }
+
+   @Override
+   public ReflectiveEndecBuilder endecBuilder() {
+      return this.builder;
+   }
+
+   @Override
+   public void owo$attachToPlayer(Player player) {
+      this.owo$player = player;
+   }
+
+   @Override
+   public Player player() {
+      return this.owo$player;
+   }
+
+   @Override
+   public <R extends Record> void addServerboundMessage(Class<R> messageClass, Endec<R> endec, Consumer<R> handler) {
+      int id = this.owo$serverboundMessages.size();
+      ScreenhandlerMessageData<R> messageData = new ScreenhandlerMessageData<>(id, false, endec, handler);
+      this.owo$serverboundMessages.add(messageData);
+      if (this.owo$messages.put(messageClass, messageData) != null) {
+         throw new NetworkException(messageClass + " is already registered as a message!");
+      }
+   }
+
+   @Override
+   public <R extends Record> void addClientboundMessage(Class<R> messageClass, Endec<R> endec, Consumer<R> handler) {
+      int id = this.owo$clientboundMessages.size();
+      ScreenhandlerMessageData<R> messageData = new ScreenhandlerMessageData<>(id, true, endec, handler);
+      this.owo$clientboundMessages.add(messageData);
+      if (this.owo$messages.put(messageClass, messageData) != null) {
+         throw new NetworkException(messageClass + " is already registered as a message!");
+      }
+   }
+
+   @Override
+   public <R extends Record> void sendMessage(@NotNull R message) {
+      if (this.owo$player == null) {
+         throw new NetworkException("Tried to send a message before player was attached");
+      } else {
+         ScreenhandlerMessageData messageData = this.owo$messages.get(message.getClass());
+         if (messageData == null) {
+            throw new NetworkException("Tried to send message of unknown type " + message.getClass());
+         } else {
+            SerializationContext ctx = SerializationContext.attributes(new Instance[]{RegistriesAttribute.of(this.owo$player.registryAccess())});
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+            buf.write(ctx, messageData.endec(), message);
+            ScreenInternals.LocalPacket packet = new ScreenInternals.LocalPacket(messageData.id(), buf);
+            if (messageData.clientbound()) {
+               if (!(this.owo$player instanceof ServerPlayer serverPlayer)) {
+                  throw new NetworkException("Tried to send clientbound message on the server");
+               }
+
+               serverPlayer.connection.send(packet);
+            } else {
+               if (!this.owo$player.level().isClientSide) {
+                  throw new NetworkException("Tried to send serverbound message on the client");
+               }
+
+               this.owo$sendToServer(packet);
+            }
+         }
+      }
+   }
+
+   @Unique
+   @OnlyIn(Dist.CLIENT)
+   private void owo$sendToServer(CustomPacketPayload payload) {
+      Minecraft.getInstance().getConnection().send(payload);
+   }
+
+   @Override
+   public void owo$handlePacket(ScreenInternals.LocalPacket packet, boolean clientbound) {
+      ScreenhandlerMessageData messageData = (clientbound ? this.owo$clientboundMessages : this.owo$serverboundMessages).get(packet.packetId());
+      SerializationContext ctx = SerializationContext.attributes(new Instance[]{RegistriesAttribute.of(this.owo$player.registryAccess())});
+      messageData.handler().accept(packet.payload().read(ctx, messageData.endec()));
+   }
+
+   @Override
+   public <T> SyncedProperty<T> createProperty(Class<T> clazz, Endec<T> endec, T initial) {
+      SyncedProperty<T> prop = new SyncedProperty<>(this.owo$properties.size(), endec, initial, (AbstractContainerMenu)this);
+      this.owo$properties.add(prop);
+      return prop;
+   }
+
+   @Override
+   public void owo$readPropertySync(ScreenInternals.SyncPropertiesPacket packet) {
+      int count = packet.payload().readVarInt();
+
+      for (int i = 0; i < count; i++) {
+         int idx = packet.payload().readVarInt();
+         this.owo$properties.get(idx).read(packet.payload());
+      }
+   }
+
+   @Inject(
+      method = {"sendAllDataToRemote()V"},
+      at = {@At("RETURN")}
+   )
+   private void syncOnSyncState(CallbackInfo ci) {
+      this.syncProperties();
+   }
+
+   @Inject(
+      method = {"broadcastChanges()V"},
+      at = {@At("RETURN")}
+   )
+   private void syncOnSendContentUpdates(CallbackInfo ci) {
+      if (!this.suppressRemoteUpdates) {
+         this.syncProperties();
+      }
+   }
+
+   @Unique
+   private void syncProperties() {
+      if (this.owo$player != null) {
+         if (this.owo$player instanceof ServerPlayer player) {
+            int var6 = 0;
+
+            for (SyncedProperty<?> property : this.owo$properties) {
+               if (property.needsSync()) {
+                  var6++;
+               }
+            }
+
+            if (var6 != 0) {
+               FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+               buf.writeVarInt(var6);
+
+               for (SyncedProperty<?> prop : this.owo$properties) {
+                  if (prop.needsSync()) {
+                     buf.writeVarInt(prop.index());
+                     prop.write(buf);
+                  }
+               }
+
+               player.connection.send(new ScreenInternals.SyncPropertiesPacket(buf));
+            }
+         }
+      }
+   }
+}

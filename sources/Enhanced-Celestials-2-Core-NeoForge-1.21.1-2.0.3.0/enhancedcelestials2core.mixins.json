@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.corgitaco.enhancedcelestials2core.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.corgitaco.enhancedcelestials2core.mixin.EnhancedCelestialsMixinPlugin",
+  "mixins": [
+    "AnvilMenuMixin",
+    "BeaconBlockEntityMixin",
+    "BlockMixin",
+    "EnchantmentMenuMixin",
+    "EntityMixin",
+    "LivingEntityMixin",
+    "LocalMobCapCalculatorMixin",
+    "MobMixin",
+    "NaturalSpawner$SpawnStateMixin",
+    "NaturalSpawnerMixin",
+    "PlayerMixin",
+    "SlimeMixin",
+    "TimeCommandMixin",
+    "VillageSiegeMixin"
+  ],
+  "client": [
+    "client.ClientPlayerMixin",
+    "client.ClientWorldMixin",
+    "client.LightMapTextureMixin",
+    "client.WorldRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

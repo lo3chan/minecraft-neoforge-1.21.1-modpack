@@ -1,0 +1,35 @@
+package com.iafenvoy.origins.data.action.builtin.bientity;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.action.BiEntityAction;
+import com.iafenvoy.origins.data.power.component.builtin.EntitySetComponent;
+import com.iafenvoy.origins.util.codec.WildcardCodec;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
+
+public record AddToSetAction(ResourceLocation set, int timeLimit) implements BiEntityAction {
+   public static final MapCodec<AddToSetAction> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            WildcardCodec.INSTANCE.fieldOf("set").forGetter(AddToSetAction::set),
+            Codec.INT.optionalFieldOf("time_limit", -1).forGetter(AddToSetAction::timeLimit)
+         )
+         .apply(i, AddToSetAction::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends BiEntityAction> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public void execute(@NotNull Entity source, @NotNull Entity target) {
+      PowerHelper.get(source)
+         .<EntitySetComponent.SetHolder, EntitySetComponent>getComponentHolder(this.set, EntitySetComponent.class)
+         .ifPresent(x -> x.addEntity(target, this.timeLimit));
+   }
+}

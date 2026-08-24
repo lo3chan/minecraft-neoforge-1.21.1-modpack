@@ -1,0 +1,43 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.shyspirit",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "head",
+					"pivot": [0, 11.79414, -0.0881],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-4.5, 4.06389, -3.55866], "size": [9, 15, 7], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"parent": "head",
+					"pivot": [5.2, 9.48166, -0.46578],
+					"rotation": [22, 0, 0],
+					"cubes": [
+						{"origin": [4.7, 3.26389, -2.35866], "size": [4, 8, 4], "pivot": [6.7, 7.26389, -0.35866], "rotation": [2.98403, 0.62346, -2.93456], "uv": [16, 22]}
+					]
+				},
+				{
+					"name": "right_arm",
+					"parent": "head",
+					"pivot": [-4.8, 9.08318, -0.50064],
+					"rotation": [19, 0, 0],
+					"cubes": [
+						{"origin": [-8.7, 3.26389, -2.35866], "size": [4, 8, 4], "pivot": [-6.7, 7.26389, -0.35866], "rotation": [2.98403, -0.62346, 2.93456], "uv": [16, 22], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

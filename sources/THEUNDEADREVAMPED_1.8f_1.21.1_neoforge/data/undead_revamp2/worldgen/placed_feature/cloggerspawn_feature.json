@@ -1,0 +1,19 @@
+{
+  "feature": "undead_revamp2:cloggerspawn_feature",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 700
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

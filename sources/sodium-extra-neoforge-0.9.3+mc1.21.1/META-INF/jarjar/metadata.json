@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "me.flashyreese.mods",
+        "artifact": "greenlight-api"
+      },
+      "version": {
+        "range": "[0.1.0+mc1.21.10,)",
+        "artifactVersion": "0.1.0+mc1.21.10"
+      },
+      "path": "META-INF/jarjar/greenlight-api-0.1.0+mc1.21.10.jar",
+      "isObfuscated": false
+    }
+  ]
+}

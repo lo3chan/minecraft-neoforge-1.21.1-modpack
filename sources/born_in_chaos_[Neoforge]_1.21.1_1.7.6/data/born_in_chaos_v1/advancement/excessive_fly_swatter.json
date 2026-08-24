@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:excessflyswattericon"
+    },
+    "title": {
+      "translate": "advancements.excessive_fly_swatter.title"
+    },
+    "description": {
+      "translate": "advancements.excessive_fly_swatter.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "excessive_fly_swatter_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 20
+  },
+  "parent": "born_in_chaos_v1:my_size"
+}

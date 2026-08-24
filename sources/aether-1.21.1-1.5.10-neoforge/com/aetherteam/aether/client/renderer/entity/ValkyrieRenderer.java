@@ -1,0 +1,23 @@
+package com.aetherteam.aether.client.renderer.entity;
+
+import com.aetherteam.aether.client.renderer.AetherModelLayers;
+import com.aetherteam.aether.client.renderer.entity.layers.ValkyrieWingsLayer;
+import com.aetherteam.aether.client.renderer.entity.model.ValkyrieModel;
+import com.aetherteam.aether.client.renderer.entity.model.ValkyrieWingsModel;
+import com.aetherteam.aether.entity.monster.dungeon.Valkyrie;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.resources.ResourceLocation;
+
+public class ValkyrieRenderer extends MobRenderer<Valkyrie, ValkyrieModel<Valkyrie>> {
+   private static final ResourceLocation VALKYRIE_TEXTURE = ResourceLocation.fromNamespaceAndPath("aether", "textures/entity/mobs/valkyrie/valkyrie.png");
+
+   public ValkyrieRenderer(Context context) {
+      super(context, new ValkyrieModel(context.bakeLayer(AetherModelLayers.VALKYRIE)), 0.3F);
+      this.addLayer(new ValkyrieWingsLayer(this, VALKYRIE_TEXTURE, new ValkyrieWingsModel(context.bakeLayer(AetherModelLayers.VALKYRIE_WINGS))));
+   }
+
+   public ResourceLocation getTextureLocation(Valkyrie valkyrie) {
+      return VALKYRIE_TEXTURE;
+   }
+}

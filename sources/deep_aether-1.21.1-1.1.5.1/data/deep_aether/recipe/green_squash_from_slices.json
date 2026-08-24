@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "V": {
+      "item": "deep_aether:green_squash_slice"
+    }
+  },
+  "pattern": [
+    "VV",
+    "VV"
+  ],
+  "result": {
+    "count": 1,
+    "id": "deep_aether:green_squash"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#alchemancy:materials/dreamsteel",
+    "alchemancy:property_visor",
+    "alchemancy:tinted_glasses",
+    "alchemancy:telekinetic_glove"
+  ]
+}

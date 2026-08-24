@@ -1,0 +1,30 @@
+{
+  "blood_moon": {
+    "sounds": [
+      {
+        "name": "enhancedcelestials2defaultlunarevents:blood_moon",
+        "volume": 3.0,
+        "pitch": 3.0
+      }
+    ]
+  },
+  "blue_moon": {
+    "sounds": [
+      {
+        "name": "enhancedcelestials2defaultlunarevents:blue_moon",
+        "volume": 3.0,
+        "pitch": 3.0
+      }
+    ]
+  },
+  "harvest_moon": {
+    "sounds": [
+      {
+        "name": "enhancedcelestials2defaultlunarevents:harvest_moon",
+        "volume": 3.0,
+        "pitch": 3.0
+      }
+    ]
+  }
+}
+

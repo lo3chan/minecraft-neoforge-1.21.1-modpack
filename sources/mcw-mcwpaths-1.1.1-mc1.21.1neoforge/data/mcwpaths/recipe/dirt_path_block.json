@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:dirt"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwpaths:dirt_path_block"
+  },
+  "group" : "blocks"
+}

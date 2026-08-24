@@ -1,0 +1,91 @@
+{
+  "parent": "aether:gold_dungeon",
+  "criteria": {
+    "slider": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "aether:slider"
+            }
+          }
+        ]
+      },
+      "trigger": "deep_aether:flawless_boss_trigger"
+    },
+    "eots": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "deep_aether:eots_controller"
+            }
+          }
+        ]
+      },
+      "trigger": "deep_aether:flawless_boss_trigger"
+    },
+    "valkyrie_queen": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "aether:valkyrie_queen"
+            }
+          }
+        ]
+      },
+      "trigger": "deep_aether:flawless_boss_trigger"
+    },
+    "sun_spirit": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "aether:sun_spirit"
+            }
+          }
+        ]
+      },
+      "trigger": "deep_aether:flawless_boss_trigger"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.deep_aether.aether_champion.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "aether:aether_portal_frame"
+    },
+    "title": {
+      "translate": "advancements.deep_aether.aether_champion.title"
+    }
+  },
+  "requirements": [
+    [
+      "slider"
+    ],
+    [
+      "eots"
+    ],
+    [
+      "valkyrie_queen"
+    ],
+    [
+      "sun_spirit"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": true
+}

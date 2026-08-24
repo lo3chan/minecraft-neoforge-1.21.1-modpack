@@ -1,0 +1,72 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[5,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/a1exrom/hex_cast_NEOFORGED/issues"
+
+[[mods]]
+modId = "hexcasting"
+version = "0.11.1-16+neoforge.1.21.1"
+displayName = "HexCast NEOFORGED"
+displayURL = "https://github.com/a1exrom/hex_cast_NEOFORGED"
+logoFile = "logo.png"
+credits = "Falkory for textures; Wiresegal for lots of polish; Alwinfy for visual effects, proofreading, and code help; Kra3tor for sound effects; naj77 for the nice logo; and all of my wonderful patrons for supporting me!"
+authors = "petrak@ (aka gamma-delta), A1ex_Rom (NeoForge port)"
+description = "Cast powerful Hexes on the fly by drawing patterns with a staff. NeoForge port by A1ex_Rom."
+
+[[mixins]]
+config = "hexplat.mixins.json"
+
+[[mixins]]
+config = "hexcasting_forge.mixins.json"
+
+[[accessTransformers]]
+file = "META-INF/accesstransformer.cfg"
+
+[[dependencies.hexcasting]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "paucal"
+type = "required"
+versionRange = "[0.7.0,0.8.0)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "patchouli"
+type = "required"
+versionRange = "[1.21.1-90,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "caelus"
+type = "required"
+versionRange = "[7.0.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "curios"
+type = "optional"
+versionRange = "[9.2.2,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.hexcasting]]
+modId = "jei"
+type = "optional"
+versionRange = "[19.21.2,)"
+ordering = "AFTER"
+side = "CLIENT"

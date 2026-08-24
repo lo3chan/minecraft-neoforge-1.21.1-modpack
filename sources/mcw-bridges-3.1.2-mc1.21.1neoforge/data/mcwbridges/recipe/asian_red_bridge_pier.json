@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ " R ", "WFW" ],
+  "key" : {
+    "F" : {
+      "tag" : "minecraft:wooden_fences"
+    },
+    "W" : {
+      "tag" : "minecraft:logs"
+    },
+    "R" : {
+      "item" : "minecraft:red_dye"
+    }
+  },
+  "result" : {
+    "count" : 3,
+    "id" : "mcwbridges:asian_red_bridge_pier"
+  }
+}

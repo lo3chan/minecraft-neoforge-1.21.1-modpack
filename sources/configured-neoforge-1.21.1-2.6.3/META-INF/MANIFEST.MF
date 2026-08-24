@@ -1,0 +1,594 @@
+Manifest-Version: 1.0
+Specification-Title: Configured
+Specification-Vendor: MrCrayfish
+Specification-Version: 1.21.1-2.6.3
+Implementation-Title: neoforge
+Implementation-Version: 1.21.1-2.6.3
+Implementation-Vendor: MrCrayfish
+Built-On-Minecraft: 1.21.1
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$ConfigItem.cl
+ ass
+SHA-384-Digest: Z1oawrmF+P3bFMnKfnlx5qAam9ZGRI8A79rFxyOq9V8/J2Y2cp0XuMFH
+ DodCnssL
+
+Name: assets/configured/textures/gui/logo.png
+SHA-384-Digest: n1AiHCz5Hef4HzkcSaEy5IPUZE5anR5VAuDQwTEvAd1asd0hCBL84jTP
+ C+UR11dn
+
+Name: com/mrcrayfish/configured/api/Environment.class
+SHA-384-Digest: vIvfsMgcEZutHNwu6zOmWCJa6CcBurxZI4TT5jNDzCBBUqd6N45FtDO8
+ XoyQSbhy
+
+Name: com/mrcrayfish/configured/impl/jei/JeiCategoryListEntry.class
+SHA-384-Digest: 1drKcMuIgmb7prlvuSMhhOfo+1m1PxCi9XKlH/2b8EPcVR6yREBw3WvP
+ +lSyTELj
+
+Name: com/mrcrayfish/configured/client/screen/ActiveConfirmationScreen.c
+ lass
+SHA-384-Digest: H9U1LWu21aJpR2lgXH4A04tePN1wc007mLFPkcgmIdR8W/+qZTjwYIoF
+ 40eYLgee
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkFolderEntry.clas
+ s
+SHA-384-Digest: Aj9gmgMbd2SXHyj4M6g1ne4pqqFVWtZf2g79W92CnV/7AUm/2sBh+4G8
+ xgk0STXV
+
+Name: com/mrcrayfish/configured/impl/framework/message/MessageFramework$
+ Response.class
+SHA-384-Digest: h6K7DATPyHjLz3A0SYk+IfRUH4Fnn0VBF9Q/N3nDG9tEBB7f6Ng6Ck8p
+ fVLoQdPb
+
+Name: com/mrcrayfish/configured/api/ConfigType.class
+SHA-384-Digest: xvJZlteRzf+5BH0mKPfmMU6w6/5GBDtusDjuPtoCL5CKH+8ogvOSk4aP
+ tNNEMotZ
+
+Name: com/mrcrayfish/configured/api/IAllowedEnums.class
+SHA-384-Digest: iF4XfOLQ+Klp6+M01V5xp9Zbuxy5S40cyA+dAbSdxM9GAcG+AyTRavw5
+ uDX+8Ntp
+
+Name: com/mrcrayfish/configured/impl/jei/JeiConfigProvider.class
+SHA-384-Digest: d5h26ziDBNfOlIDGmRPT8HGDg5TIB4yrgSH5mJj6GmpUp/rL2an+VYr0
+ TFxnf/2W
+
+Name: com/mrcrayfish/configured/client/screen/ConfirmationScreen.class
+SHA-384-Digest: zDwmz5UPnw9pPfo0a14MTd1NCTIlPM5kMoS62Q7pq+KmECUtEeT8rEsE
+ dIdmza22
+
+Name: com/mrcrayfish/configured/client/screen/ConfirmationScreen$Icon.cl
+ ass
+SHA-384-Digest: CoJDPh38y+vSG97oXkPuSVH90Tf80JQcUbbypNJAMIwQlQjs8aKWkngB
+ 4Xjl6s0q
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeConfig.class
+SHA-384-Digest: rOnZliqIGRJ8XGrthJVupe4itvvhKksJQwqcEVCFb/l5MNWuxLCsDHqd
+ m8faZ74x
+
+Name: com/mrcrayfish/configured/Configured.class
+SHA-384-Digest: emkKgBDT85Fz0azFjtjiG3LsYT3cMYlpM+SNjWf4rz56QC3ym0bGGyE4
+ i6ZIyPRB
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkModConfig.class
+SHA-384-Digest: dcX/3HFMeEUmecaxTTSxGAVBahWb/7Yhow1iznXuO3nvt/CbOoO+aG19
+ co2d4sVZ
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkConfigProvider.c
+ lass
+SHA-384-Digest: llNFBx2p+5Aezp03hwqs3DAAxIhEj10Obb4hzpgdboWZi2Co5oNXUUS9
+ Tlpp+2a+
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkModConfig$Proper
+ tyMap.class
+SHA-384-Digest: oxGkGd7lAB0Vfj0pNjKfcoyRz9+UpnaE6kuhEA0q0csBuUVYRHIWo6kI
+ CU9AYpUi
+
+Name: assets/configured/banner.png
+SHA-384-Digest: 6QjogzmQJ4eEhXFI4ad+vPtzSWLCL1xyGv+iaS5D89lZYXwVRxKxgC4o
+ MC5NfIKc
+
+Name: com/mrcrayfish/configured/api/ActionResult.class
+SHA-384-Digest: eg21kJ8HJZTdkydHn+s046qaF+dqqp3Yua4Eplc59G3s17SsPahXBjqh
+ iG7o/xV1
+
+Name: com/mrcrayfish/configured/util/ConfigHelper.class
+SHA-384-Digest: vsrLv6DWvlEqSusfYvblOXoe5WT5bQLKEyb6Te+Px4QmNiVBugyYNWLn
+ 2xDr3PPB
+
+Name: assets/configured/background.png
+SHA-384-Digest: +3IqowYcRaNeo0IlHdMiTgv0K1YSZWAeXbK+yeI89WodTsrhDTwDT6J2
+ 47cVwKcM
+
+Name: com/mrcrayfish/configured/api/ModContext.class
+SHA-384-Digest: 2vxMnyvFPKDj+LowdZDb6/Odi8pQE1oJ7oP/Ym51RSwR6UynFiZ9SA4j
+ oaaf/dsn
+
+Name: com/mrcrayfish/configured/client/screen/RequestScreen.class
+SHA-384-Digest: 9yBVXS1ha3jq8TElDO4V17wxPRbL4NrWpHDJfp1x3WOI6wAN6WSGXfUN
+ bcdFNObs
+
+Name: com/mrcrayfish/configured/network/ConfiguredCodecs.class
+SHA-384-Digest: Kbm8frgXsXDpYIKaDYHaZXy5NGmVyz4Cq7xPmJKK3RMiskl9bd3D+j/D
+ IDKMoWfP
+
+Name: assets/configured/lang/it_it.json
+SHA-384-Digest: GtlXqePPp1jAoMn+lyxji4cR6O+MRMI4Zz+gM7QefY1dstUo72Ru6bVp
+ LvXDoW4k
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeEnumValue.class
+SHA-384-Digest: lF6w5/337bN5g5R1ASRpiOlkktMbKYaco1Het+Px+ra7M4ZdSS4tLO4f
+ U5Ezn8Ir
+
+Name: com/mrcrayfish/configured/client/screen/EditListScreen$StringEntry
+ $1.class
+SHA-384-Digest: BvqB/M3Exu+Qg7zXXXC/C7zSZ+BO0Jt9bGxBB3RSOjNCgfezad+93kZ5
+ 5EvKhD2r
+
+Name: com/mrcrayfish/configured/network/ClientPlayHandler.class
+SHA-384-Digest: IUX7oj14zaGh2fxryM+KkSc8avJvU9elptpz4fBhbNseu+0V78iniJ95
+ k/9GOiM6
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeConfig$ForgeValueE
+ ntry.class
+SHA-384-Digest: Ky3Ze+sH2r7zkOo6VOJltkSfIH3kVTXefqrt/9nF+Oh1LDvFvMYsE/7J
+ fItd2yzi
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$StringItem.cl
+ ass
+SHA-384-Digest: O8ov7mGpuawXi7nEX+ZtcHOSAtxwBvaGEDoWyWmKELv5DBIzyXBcuC+S
+ iZdCwrNb
+
+Name: com/mrcrayfish/configured/client/NeoForgeClientEvents.class
+SHA-384-Digest: XqRRVJhVFzjlXJSrEtbjJd/rsR4MHUxMGsESlJrqBnLFIGr+YE9dde0d
+ Y8ZUHR2+
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$MultiTextIt
+ em.class
+SHA-384-Digest: le4lNxScBwj3pYUu6Ik2MTdO/EtVOG53GKJJbN2pc+Nui8yx3lTcK65D
+ 2JxMakVO
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeValue.class
+SHA-384-Digest: FtKvi1Wt4dRHY954x68RRNeLjGbjRmKvKPNmclf0rbD9twcy6jZvY6UR
+ XIAsO+8O
+
+Name: com/mrcrayfish/configured/client/screen/widget/CheckBoxButton.clas
+ s
+SHA-384-Digest: XPLCbUTgqmzxQRtxDVSCNzrjSP7YyuY7/GW/7gQ5cinrcSO32cyhPqOT
+ JuEKm4x2
+
+Name: com/mrcrayfish/configured/impl/framework/message/MessageFramework$
+ Sync.class
+SHA-384-Digest: wPIhVTyc8cLUw2zuWuz1RbvJtoM7j081syo8PXrwcujNF2wFFZNHTWsa
+ OJXAo0N1
+
+Name: com/mrcrayfish/configured/network/ServerPlayHelper.class
+SHA-384-Digest: HsAujzFd81PUbTp8hKTR0HUk8BxraHtqQqT4ryzryUZM8K3CLcPYRiFh
+ YG4niPrk
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$IntegerItem.c
+ lass
+SHA-384-Digest: Ajxv30NcEvypNLR8AxI3DiMFfYsjlQESlOk+qc2StowbccVTU2pyllPN
+ kqxlDYc2
+
+Name: com/mrcrayfish/configured/api/IModConfig.class
+SHA-384-Digest: f654KxLV/cYCj6tWCcYRdZiujGvOn6/mLnOa24FtOmw/+zPEZKD5ypNe
+ tNGI8+3A
+
+Name: com/mrcrayfish/configured/client/EditingTracker.class
+SHA-384-Digest: tCu4wH/qUSwsQXHCNDL42elahRlaniBoSqkzKLD4AFg8LDuQa1hZerUv
+ MSRgDPQ0
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkListValue.class
+SHA-384-Digest: MS72NJ+Da6BUMdSg5z1TWgsjAsA6veY9JaDReaovzPB4ZKBykvfJnpIp
+ 9rJLBtb3
+
+Name: com/mrcrayfish/configured/impl/framework/message/MessageFramework.
+ class
+SHA-384-Digest: EvNEMC3UjChpQWmAwZRviuSKusv+8e7QhcX/nKUwgQmrc4o960sRR8HX
+ 0l4/+sJy
+
+Name: com/mrcrayfish/configured/api/IModConfigProvider.class
+SHA-384-Digest: NHSUrV/Z0xJ0bWt5ne7JZnaH6lE3z47zYGF0k+7ZziKmhIxgn6LpjqWz
+ 2VFPzWIL
+
+Name: META-INF/neoforge.mods.toml
+SHA-384-Digest: nbclU7iachcV6HKhXIYxUGFgwdb0pnh8yw21qc1w/wFaKPbG9LiCQVvZ
+ 7aN2EqkK
+
+Name: com/mrcrayfish/configured/client/screen/ChangeEnumScreen$Entry.cla
+ ss
+SHA-384-Digest: WDvZq/gfu+eZdL55MhvEnt9e8SyVTmaidFMwBfK3QUYG2sQvImD77uom
+ fn9QSBjP
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$NumberItem.cl
+ ass
+SHA-384-Digest: bT/sXCqcDTKtB9nPWVOIiQ6lYJc2+Qa0nNmIkOTx+L9noJabQDczBQlL
+ tQb3mNOu
+
+Name: com/mrcrayfish/configured/platform/NeoForgeConfigHelper.class
+SHA-384-Digest: 7/1mbLEQAsePHlO8zUCZ0m4v2X2+34NyzrkwgJu3ecBZ37E+r3gtVXSx
+ C2IQynK3
+
+Name: com/mrcrayfish/configured/client/screen/ModConfigSelectionScreen$F
+ ileItem.class
+SHA-384-Digest: KE0F10n3H6cn6ZtIAgOslBtsFMToU1aZsX4AXa43x/BxemhejPMdqXIW
+ ApJmlqS8
+
+Name: com/mrcrayfish/configured/platform/Services.class
+SHA-384-Digest: JWa13v6uycHn7hx4meXE73CrDhQUIiT/sbf129kriHEVa7pwGo26IHC7
+ PFzAD+Kn
+
+Name: com/mrcrayfish/configured/impl/jei/JeiConfig.class
+SHA-384-Digest: NiGrwTSQu/pq87mg+FKfSAky6QGsK3NH2EtmAL+PsJLdoAvbU1nfxsSN
+ d3SUXqSg
+
+Name: com/mrcrayfish/configured/impl/jei/JeiValue.class
+SHA-384-Digest: cSSAVvWdHn6E4ZklFmELKuJXzmBxsE7OthmCGQfd04hmgVuSf6WRkLzW
+ mtY0FK4l
+
+Name: com/mrcrayfish/configured/client/screen/WorldSelectionScreen.class
+SHA-384-Digest: lEOPNitNpO1gL2gRmpLtFUgozn7gD1waoik5ec/ob/HplCK01aBR7d9+
+ leIIcabG
+
+Name: com/mrcrayfish/configured/impl/framework/message/MessageFramework$
+ Request.class
+SHA-384-Digest: VRt04XRRWor62nI/hlyM8jvJeZfXFNSyYkUs2qfymoFrcwSg9/HYQ9NK
+ ojqqY8zz
+
+Name: com/mrcrayfish/configured/client/ClientConfigured.class
+SHA-384-Digest: vuxkpSGyloKdcjeFSy2mNwCSyP6ahGibXsNo2RfyZgzgtfUsL/VLxNHe
+ TcAxhvJN
+
+Name: com/mrcrayfish/configured/client/screen/list/ListType.class
+SHA-384-Digest: 0vio+/MnDczNnWNhDvTuH1JNgjFAjpDZyFnX7no+Q5uTl9F8Q8jWOGuN
+ a2Fl/v9t
+
+Name: com/mrcrayfish/configured/client/util/ScreenUtil.class
+SHA-384-Digest: JnA3fdlbCbRy1pkZ8Y7WcVsdUM6x6OgYkbXusWFdNMmAKGMzfkFahTDm
+ N+odrFN6
+
+Name: com/mrcrayfish/configured/platform/services/IPlatformHelper.class
+SHA-384-Digest: W/lUVdjMsKV16DXxglmJcYT95aAc5o45YzXGacgHq+0pqIe5zms5Sfzf
+ uZfgTIGc
+
+Name: assets/configured/icon.png
+SHA-384-Digest: SKjL5pIDTjBILHqa9vVeG4Xt5aFUc8bskJ5cVhazIzXtLxAZyCU128ze
+ R++U5Jn7
+
+Name: pack.mcmeta
+SHA-384-Digest: mzrDlLWp8yfqMQVG58JoKehNlXZs8NSazqWR1s0ubWlZF4/iZuM5wK34
+ agRCIOlj
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$EnumItem.clas
+ s
+SHA-384-Digest: Mv97iQm4g4Lx9B7VA7dVLV7lUYv9R6rwYV2T84puMS4CCK5YcrR78fFm
+ D6AA7rA/
+
+Name: com/mrcrayfish/configured/client/screen/EditStringScreen.class
+SHA-384-Digest: xScdZqbDBWeiU8skVblg2FqDQFjzwymOn/XX4jZBO4Gfset4FRAVwPrU
+ Wan2Ya0h
+
+Name: com/mrcrayfish/configured/network/payload/SyncNeoForgeConfigPayloa
+ d.class
+SHA-384-Digest: o4iFOzYAN1u6av5LAttcXfOiJ73rCo1pX3jx/rdBzXBZ4XhUZkGI4u56
+ 7rtI3kuU
+
+Name: com/mrcrayfish/configured/client/screen/EditListScreen$ObjectList.
+ class
+SHA-384-Digest: EPBUJLKFPZDlv3RXLn3KIeVGrMgkKqPCinEKzOClivzCZZblE1G6Tqde
+ ubjEMm+f
+
+Name: assets/configured/lang/en_us.json
+SHA-384-Digest: uTIzRuLn2MrzbsFd9NsfrBPgub/+h+CPkYtbNLj8YkTJyoRlBLFaTutx
+ Fog4IIQl
+
+Name: assets/configured/lang/es_es.json
+SHA-384-Digest: mZLLgC0KeVr3s6zEHeTKzZAKSJdwhb/NN0EGBJEWsSFdEfad6f5LsOC3
+ YPH00LeT
+
+Name: com/mrcrayfish/configured/api/ValueEntry.class
+SHA-384-Digest: WpLMTOZI6U4D3y90uv+iVtr8f4/cSKodKFxYDgG6uyGVyqcYHfJ7ZDle
+ QWbGC8Hw
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$LongItem.clas
+ s
+SHA-384-Digest: 5AOH3sC85qdWtg66u4/38EkOq52GiDuk26NEMZllaC41WD4BQEEJVYj7
+ aNAWhWAr
+
+Name: com/mrcrayfish/configured/Bootstrap.class
+SHA-384-Digest: p+Qw1U5zUDU13OPHOZYi7mD53PIHJiCzezOMHlSfo9fvWJjkpnII4HiK
+ dwefhqKW
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$DoubleItem.cl
+ ass
+SHA-384-Digest: 7wXrGngaeSo4QB/Bt3IEYMs3U1+GxAfBSr24hec320mOSKMuKYlVnBZG
+ YwYXsxtn
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$BooleanItem.c
+ lass
+SHA-384-Digest: YzCSwYBSHfuEkZWeADXnO1pxTu3/JJztHm/kvL66DP8UCqwMKGUgcn4u
+ A4UK1Pjz
+
+Name: com/mrcrayfish/configured/network/handler/NeoForgeServerPlayHandle
+ r.class
+SHA-384-Digest: 4omceGbB0MHgE44DvIdXCtXdw/5oNgNEwddOSrRt4SFdFebKObj1H82K
+ 6QbBoMgD
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeFolderEntry.class
+SHA-384-Digest: u+JAQNSen00GmrPEY+O8klHa9qt6Y3MIt6DkVtWAxiGETkHBRx8DqngS
+ cfjGCe8h
+
+Name: assets/configured/lang/de_de.json
+SHA-384-Digest: ahk3rCsOsXp7E23lz4qAyyOLjb5W4g7O0r8Yo3JlyTV7+sLa5eNT8Pv2
+ A4lHvGCY
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkModConfig$1.clas
+ s
+SHA-384-Digest: g2qVSqX6n1zfowufzd9epTg9O2srHtkqz047KDnTk0MH8MsjGYlDDwi/
+ RaxNitcb
+
+Name: com/mrcrayfish/configured/client/screen/list/ListTypes.class
+SHA-384-Digest: yOftuBrrWMTfKVSCPhF97dbU8RLLw0S5w2UrPCzxIp/0lGR6d4lnfpn3
+ anNbbpEQ
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkEnumValue.class
+SHA-384-Digest: 09ACl9aJhIRMr0qirdGGc5jmWkkg8l1Je0WeBla/KBVCQ2dFEpkjUtso
+ U+DVm7yW
+
+Name: com/mrcrayfish/configured/client/screen/IEditing.class
+SHA-384-Digest: 80F581FbsmqWnfQY89Eb40lzCKrZj8SLiYnEexcl5kwwDIQp6AGnQ4K/
+ Y+8vlB7A
+
+Name: com/mrcrayfish/configured/client/screen/ILabelProvider.class
+SHA-384-Digest: AzphvFBkb9TPbiTSHerD/IfvwE1gJmhRbQ1xPlRNpTGVXyPWZBYQHFww
+ yG3RplyN
+
+Name: com/mrcrayfish/configured/client/ClientHandler.class
+SHA-384-Digest: AbLJzzYbYm6eeCNCtyk7lBjMeCKMiRIeS9anumoCVhKQ8rP26zG+TpfW
+ JuCljAPb
+
+Name: com/mrcrayfish/configured/client/screen/WorldSelectionScreen$World
+ Item.class
+SHA-384-Digest: tR272zU7J0DKsmBTjFkSglr8FnChUpRFVeMEvr0rAQDHi2woZdvz3eNZ
+ NwiodRAO
+
+Name: assets/configured/lang/ru_ru.json
+SHA-384-Digest: y/5CDTd7cIzpupcHexv2bXZUhyz0FWOqRmmxvsagtAOAy1lnnxikLr4C
+ FObTpvqu
+
+Name: com/mrcrayfish/configured/api/util/ConfigScreenHelper.class
+SHA-384-Digest: AmQc7oi0HtLARa36BdRlYx/UvC1WqFnTmFsqIEikx/OaJymJuld9bg7V
+ XqTCN15q
+
+Name: com/mrcrayfish/configured/impl/jei/JeiListValue$JeiListType.class
+SHA-384-Digest: 6jFGpn1ww2ipzBusnZs5pMHS0PhlrZbHpVooWdcLvw0fwHgnKotoyJHX
+ DuLE+BKe
+
+Name: com/mrcrayfish/configured/client/screen/EditListScreen$StringEntry
+ .class
+SHA-384-Digest: KYAfUCIzElSi1cBYwzZOEeJAaw0cRalsiLM9o5UR5ksjzsOZsrCQyQOw
+ N75dlsXc
+
+Name: com/mrcrayfish/configured/client/screen/widget/IconButton.class
+SHA-384-Digest: wQLFKALf1zdYYk4K/73yY+UePWbeXEzBojFqkXH91bPEm2wehhweK0De
+ 1X9/lkIM
+
+Name: com/mrcrayfish/configured/impl/framework/handler/FrameworkClientHa
+ ndler.class
+SHA-384-Digest: J2lZcOfxxec7k8L0F/39Z0d/OZmYee5Amd5DxJDhqQosYfYcnN0PJGyr
+ lx5nqYss
+
+Name: com/mrcrayfish/configured/client/screen/widget/ConfiguredButton.cl
+ ass
+SHA-384-Digest: zhUksrnJsLlwydq8Q2sznFRJyKzlo8wjhp5+mKp0TTiXg0Fhxy5/KTvj
+ fWfQYCex
+
+Name: com/mrcrayfish/configured/platform/NeoForgePlatformHelper.class
+SHA-384-Digest: sb8mV9nue95hFXaqJ9Bn/8hLfY1G3s077KAVbwPrFIJ0tZtsCTVjC4SG
+ 9Fh5cxrU
+
+Name: com/mrcrayfish/configured/network/NeoForgeNetwork.class
+SHA-384-Digest: htiIJ/OklF85gT+gtmB4eAVFdnarpFeanP3tUop7Y25DFxshb84Bw2DG
+ od2/o88t
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen.class
+SHA-384-Digest: v0xdfTZkbKyrJlmk7A6B1H2ynyj3syzvA3OHb7m/B93v6BrfbPcEteRt
+ /Tk8iSJ0
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$TitleItem.c
+ lass
+SHA-384-Digest: 2eSbR3weo8z8f5eGOb5qnuuZjSstoSRS4qXxMKX2mL/kDCD8eVEG19SM
+ 0nGy0D1Q
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeConfig$1.class
+SHA-384-Digest: HYcwkClildWR9T5fThsGUxSYELCrALlVWKt5x/7Jm+fjf6poOJFb+ecl
+ Zc9mApzN
+
+Name: com/mrcrayfish/configured/client/screen/EditListScreen.class
+SHA-384-Digest: V2DSaJWkCd63An4U/hbYL9OHFZ8/bONwDCKfT3ZheoIXPxCPgCLG25tI
+ h8Dto9eF
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$EntryList.c
+ lass
+SHA-384-Digest: A/hUq+kbUOO8kBJ6lo7c9oSzY91FPEBXb/d4beGIIlpRTc5fWWp6FX22
+ zY4r2GwU
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeConfigProvider.cla
+ ss
+SHA-384-Digest: eksomu+HR0U+JNaQ5bJzOpzG9V1nzhJfIUfCbDjg5BcbMzirhfm213JP
+ ElTpYUXs
+
+Name: com/mrcrayfish/configured/api/IConfigEntry.class
+SHA-384-Digest: QDPEClX8Jj3LUxKGejT/FeNXca6KHzLDNg4eGxQ7kcDgHda0TMN4nU4P
+ wLtnAFZm
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$Item.class
+SHA-384-Digest: /+Q/CPALNWwiRSEFPeKCAsxqb3FaMeR3bvssnXH6+0VvU/YU+qSgje70
+ 6RZ13VgG
+
+Name: com/mrcrayfish/configured/client/screen/widget/CheckBoxButton$OnPr
+ ess.class
+SHA-384-Digest: VkkhKaSFxAn1m9XCXc4EmQT3Yb8rDWpDe/i3I451SgDo5MzDNRxmyi+x
+ yY4Ea0jU
+
+Name: com/mrcrayfish/configured/api/ExecutionContext.class
+SHA-384-Digest: 0mkoJgqa+4qWBCkxuW2mAVzEfHRbTZztTXNYYUbOd74sbub+p2M1MlZt
+ qaNmEE2e
+
+Name: com/mrcrayfish/configured/client/screen/IColouredTooltip.class
+SHA-384-Digest: mBC6TXPxbpC+eOPj8iSnV3PqmWCh+D7IlB/DssKGudxJJUmey1YZRmol
+ 2y2RW8SY
+
+Name: com/mrcrayfish/configured/client/screen/ModConfigSelectionScreen.c
+ lass
+SHA-384-Digest: 5z72pJ4gW5QCw8bKRO557CDHQPLTY51fj8Hk22xaYVc7W9vQ4afkWZZy
+ 1D7+j5YB
+
+Name: com/mrcrayfish/configured/Config.class
+SHA-384-Digest: CLMuJQUgFXPxmGGBUEOCuYuZgFHg34hCPgQFaMoWGE1EKm15zP2FmJ3o
+ GM+GfgjP
+
+Name: com/mrcrayfish/configured/client/screen/ChangeEnumScreen$EnumList.
+ class
+SHA-384-Digest: Sacv7h9lLacytyrhj4JyygF6uU5rhmvGNacfXDIDLf/jBxkAoONKeSuR
+ 9fqgkVCA
+
+Name: META-INF/services/com.mrcrayfish.configured.platform.services.ICon
+ figHelper
+SHA-384-Digest: Y729fvEjVt99mrXaCmvJha/US7hQS8wbbuakaaK1kagonWBlcqD0dfJE
+ 9u9u/Hqs
+
+Name: assets/configured/textures/gui/icons.png
+SHA-384-Digest: gePszpDenPofJgnI2haCQMExUhhKvvZDDlwICf7Obb7jSuqO8ubvxCW+
+ O9y9NiO0
+
+Name: com/mrcrayfish/configured/Constants.class
+SHA-384-Digest: L3j+vX3tRq8QolyP7HyOsvK08IBaxHkAwnh0BEHi69lRT3fVniJgMoS1
+ cVhu5B7r
+
+Name: com/mrcrayfish/configured/client/screen/list/IListConfigValue.clas
+ s
+SHA-384-Digest: gbaWi2S6QkOeK+ZCGE/+CM8ZCSgJudwEn9gepccMO0dmHHQxhX0nOfho
+ 8ifyEpXF
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkValue.class
+SHA-384-Digest: CaON/ZF8ZocMJRwLoPInhy7u7vWdgB1l33qWV9BO1ud4oKHYTTdpWYGA
+ pOu3L/BU
+
+Name: com/mrcrayfish/configured/impl/jei/JeiListValue.class
+SHA-384-Digest: 6vsHzKnTUaIHS6ffGweG1GZNMCfxkh0TVwOTnRe0RKDqUrRj/WnSjHJx
+ SxE3TUmm
+
+Name: com/mrcrayfish/configured/client/screen/list/EnumListType.class
+SHA-384-Digest: s8rKzXN8T+Z7GV8GBTau/PediFsKma0TvYKp8SS31XzVEaut7MnMX9Pp
+ awQ/K3tD
+
+Name: com/mrcrayfish/configured/util/NeoForgeConfigHelper.class
+SHA-384-Digest: bQwRDAJkkVz+CB2Oqn7RamL0BGd1CVMZOrKHDj2AL3O+Ex3QBxdVb2Uw
+ +5wZ5ZUQ
+
+Name: com/mrcrayfish/configured/impl/framework/handler/FrameworkServerHa
+ ndler.class
+SHA-384-Digest: 8zG9KeQoI7DowNwi2TJqEZa+91HbfOQpAvjPkx0SMB7Nwv0F84rkZxhG
+ Lwe2EPUT
+
+Name: com/mrcrayfish/configured/network/ConfiguredCodecs$1.class
+SHA-384-Digest: rx3cFFzYSUDYEiVYtCvaVJpfFbjhryvSyeKLyPRlIzrPuCIrUApyUlgq
+ DzK2JVXt
+
+Name: com/mrcrayfish/configured/impl/jei/ConfiguredJeiPlugin.class
+SHA-384-Digest: R6kLIoDaVMS2qARmisHDwPGwCX7cqkm4dmbBBUX3GXSCQB2A/1/RBydE
+ 0K1R1vCw
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$ListItem.clas
+ s
+SHA-384-Digest: qev+AXGes8cq55zpYDSx61HyRSPjgRI89IkJECGT33DD1vmFkELAyM7/
+ W6Ffd5uU
+
+Name: com/mrcrayfish/configured/client/screen/EditListScreen$StringHolde
+ r.class
+SHA-384-Digest: 1fmEecq6722XptHGRnKn3McVMR1U0dbEao6589FilROSlkZ6h8+piFUh
+ 0whBUkV9
+
+Name: META-INF/services/com.mrcrayfish.configured.platform.services.IPla
+ tformHelper
+SHA-384-Digest: aPsDNsY4sg6vvRkO/QxSyKzeaP7duopilQ+vdg8ddz98rS+SSp/BV6ox
+ 5oNDD+Wq
+
+Name: com/mrcrayfish/configured/client/ClientConfigHelper.class
+SHA-384-Digest: u7yxW8qxtooXbTySKQavRQkP84p2gi6c1wMa/GdH2MJzZxgNr0j9UFqc
+ TJMZmumZ
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$IIgnoreSear
+ ch.class
+SHA-384-Digest: 0yxsewsPoRcs3HkPGNomaz+zm0z3XnInr8dtotDLCD22qsDnv4ULogo1
+ Tj0MzKBL
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen.class
+SHA-384-Digest: kYATNC7WwalHBsLbfh22oWrKFtyaU+x7SSCcwPGE8N95CukogHl0vBev
+ 8HUKmVtO
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$FocusedEdit
+ Box.class
+SHA-384-Digest: y8Bt5Ql6iK+cOPa+SPTwpR0mc6SxXB5CjjLaRn3SxrIyEeIt4OzB3jiT
+ Pdk213kv
+
+Name: com/mrcrayfish/configured/impl/framework/FrameworkConfigHelper.cla
+ ss
+SHA-384-Digest: 28TwhysIzl4OJDeNZFLr0Fm3OJQAx//r9D44z6YVU09FQdvTcfmA9rSf
+ L75j8XfA
+
+Name: com/mrcrayfish/configured/impl/neoforge/NeoForgeListValue.class
+SHA-384-Digest: 2y5GJSOp2jEslNjm+GlvFf2z/SN3ylin2T6KUPtam0q4UmiEST8arS2T
+ hIRycgJQ
+
+Name: com/mrcrayfish/configured/impl/jei/JeiCategoryEntry.class
+SHA-384-Digest: bnghCDnd8TckeX2Z3UfHPDYIL2GQ1NVB/1RETIm41iZuZn9wW0Ig8wa4
+ KPohQSps
+
+Name: com/mrcrayfish/configured/client/screen/ListMenuScreen$Item$1.clas
+ s
+SHA-384-Digest: P0ZJ8HnAZSsePwuJ+3RMrt5tfbbEGLi31+RzFLbOnwcLLks/B5eK+7F4
+ GniVpooH
+
+Name: com/mrcrayfish/configured/api/IConfigValue.class
+SHA-384-Digest: ZrZF032TaNeRMkL1veBezqQPSemq8KBfdX8g4Y7BuRqr3jhmW9mSq7M8
+ boPrS4IM
+
+Name: com/mrcrayfish/configured/client/screen/ConfigScreen$FolderItem.cl
+ ass
+SHA-384-Digest: O4FQam/Pglb14FTrKYwVuBaYyxA8IaJ7h9ipMfslxICsoxd5quvwVc3V
+ rqF24WPn
+
+Name: com/mrcrayfish/configured/platform/services/IConfigHelper.class
+SHA-384-Digest: lCWmEqoHiCFbi5yNfkPtMGDivUvTayHx5yUBsU/xbbitV4A5XkmW/BBS
+ MLdC6w7o
+
+Name: com/mrcrayfish/configured/client/ClientSessionData.class
+SHA-384-Digest: Lwq8rdyUyIQPx8p03rCxviXRZ3AmDoDkA7WFzBQzv9IEhX+gcB886b3e
+ SG6x+6TT
+
+Name: com/mrcrayfish/configured/client/screen/list/IListType.class
+SHA-384-Digest: H+W9FdNbz1IIvN0cn3oLzz+2vXmrcyUPSWx2lXP6nLJHAvSTQ2tWOE0D
+ WJYIHlGz
+
+Name: com/mrcrayfish/configured/client/screen/ChangeEnumScreen.class
+SHA-384-Digest: mpxejbbiEzUT4lHt5So3140Oovh6RugBHTwRMq5WyEyztdTNCz7RPQwo
+ rFBbP/IM
+
+Name: com/mrcrayfish/configured/client/screen/TooltipScreen.class
+SHA-384-Digest: KbLY0anSNG8Jd/gDVFue0reFuXFwsL8SCTdTX7EGyYO8S8oe/8UX5cTp
+ sA3Vo5Ta
+
+Name: com/mrcrayfish/configured/client/screen/TooltipScreen$ListMenuTool
+ tipComponent.class
+SHA-384-Digest: awjVqFsF90chFWXAOBrHokKXn7DmYX11QUdMDftiXBez1rw/a+ufv7pc
+ P6PLhDHm
+
+Name: com/mrcrayfish/configured/Events.class
+SHA-384-Digest: 75/aQvbJjuKvjQC6YF8byp1ar3zs5LsDJlQWp+OthGL1Ju/isFYChoY6
+ GpbNG4ER
+
+Name: com/mrcrayfish/configured/network/message/MessageSessionData.class
+SHA-384-Digest: SczsCcywR1w6FN4vsbx4IpiTbE+mQDZtFfkXISvDX7hvVQDdBD3vHDk1
+ n9sSVPi+
+

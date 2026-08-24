@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "curved_gate",
+  "pattern" : [ "B A", "BAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo_planks"
+    },
+    "B" : {
+      "item" : "minecraft:bamboo_block"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwfences:bamboo_curved_gate"
+  }
+}

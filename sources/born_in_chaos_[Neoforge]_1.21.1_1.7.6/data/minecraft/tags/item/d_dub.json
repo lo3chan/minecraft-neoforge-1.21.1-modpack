@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "born_in_chaos_v1:scorched_log",
+    "born_in_chaos_v1:scorched_wood",
+    "born_in_chaos_v1:smoldering_scorched_log",
+    "born_in_chaos_v1:smoldering_scorched_wood",
+    "born_in_chaos_v1:stripped_scorched_log",
+    "born_in_chaos_v1:stripped_scorched_wood",
+    "minecraft:dark_oak_log",
+    "minecraft:stripped_dark_oak_log",
+    "minecraft:dark_oak_wood",
+    "minecraft:stripped_dark_oak_wood"
+  ]
+}

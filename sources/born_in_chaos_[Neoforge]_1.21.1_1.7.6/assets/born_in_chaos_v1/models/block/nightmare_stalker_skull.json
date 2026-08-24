@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/nightmarestalkerskull",
+  "textures": {
+    "all": "born_in_chaos_v1:block/nightmarestalkerskull",
+    "particle": "born_in_chaos_v1:block/nightmarestalkerskull",
+    "0": "born_in_chaos_v1:block/nightmarestalkerskull"
+  },
+  "render_type": "cutout"
+}

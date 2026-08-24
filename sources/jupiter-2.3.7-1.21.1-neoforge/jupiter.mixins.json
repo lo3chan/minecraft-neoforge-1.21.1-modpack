@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.iafenvoy.jupiter.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AutoConfigAccessor"
+  ],
+  "client": [
+    "AutoConfigMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

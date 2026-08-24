@@ -1,0 +1,69 @@
+package vazkii.psi.common.spell.trick.block;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.SectionPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import vazkii.psi.api.internal.Vector3;
+import vazkii.psi.api.spell.EnumSpellStat;
+import vazkii.psi.api.spell.Spell;
+import vazkii.psi.api.spell.SpellCompilationException;
+import vazkii.psi.api.spell.SpellContext;
+import vazkii.psi.api.spell.SpellHelpers;
+import vazkii.psi.api.spell.SpellMetadata;
+import vazkii.psi.api.spell.SpellParam;
+import vazkii.psi.api.spell.SpellRuntimeException;
+import vazkii.psi.api.spell.StatLabel;
+import vazkii.psi.api.spell.param.ParamVector;
+import vazkii.psi.api.spell.piece.PieceTrick;
+
+public class PieceTrickTill extends PieceTrick {
+   SpellParam<Vector3> position;
+
+   public PieceTrickTill(Spell spell) {
+      super(spell);
+      this.setStatLabel(EnumSpellStat.POTENCY, new StatLabel(10.0));
+      this.setStatLabel(EnumSpellStat.COST, new StatLabel(10.0));
+   }
+
+   public static InteractionResult tillBlock(Player player, Level world, BlockPos pos) {
+      if (world.getChunk(SectionPos.blockToSectionCoord(pos.getX()), SectionPos.blockToSectionCoord(pos.getZ()), ChunkStatus.FULL, false) != null
+         && world.mayInteract(player, pos)) {
+         BlockHitResult hit = new BlockHitResult(Vec3.ZERO, Direction.UP, pos, false);
+         ItemStack save = player.getItemInHand(InteractionHand.MAIN_HAND);
+         player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_HOE));
+         UseOnContext fakeContext = new UseOnContext(player, InteractionHand.MAIN_HAND, hit);
+         player.setItemInHand(InteractionHand.MAIN_HAND, save);
+         return Items.IRON_HOE.useOn(fakeContext);
+      } else {
+         return InteractionResult.PASS;
+      }
+   }
+
+   @Override
+   public void initParams() {
+      this.addParam(this.position = new ParamVector("psi.spellparam.position", 2774482, false, false));
+   }
+
+   @Override
+   public void addToMetadata(SpellMetadata meta) throws SpellCompilationException {
+      super.addToMetadata(meta);
+      meta.addStat(EnumSpellStat.COST, 10);
+      meta.addStat(EnumSpellStat.POTENCY, 10);
+   }
+
+   @Override
+   public Object execute(SpellContext context) throws SpellRuntimeException {
+      BlockPos pos = SpellHelpers.getBlockPos(this, context, this.position, true, false);
+      return tillBlock(context.caster, context.focalPoint.level(), pos);
+   }
+}

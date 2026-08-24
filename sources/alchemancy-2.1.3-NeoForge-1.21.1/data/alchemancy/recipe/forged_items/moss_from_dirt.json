@@ -1,0 +1,16 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:overgrowth"
+  ],
+
+  "catalyst": {
+    "item": "minecraft:coarse_dirt"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "minecraft:moss_block"
+  }
+}

@@ -1,0 +1,205 @@
+package com.finndog.moogs_structures.world.structures;
+
+import com.finndog.moogs_structures.modinit.MoogsStructuresStructures;
+import com.finndog.moogs_structures.utils.GeneralUtils;
+import com.finndog.moogs_structures.world.structures.codecs.YRangeAllowance;
+import com.finndog.moogs_structures.world.structures.terrainadaptation.EnhancedTerrainAdaptation;
+import com.finndog.moogs_structures.world.structures.terrainadaptation.EnhancedTerrainAdaptationStructure;
+import com.google.common.collect.Maps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.Structure.GenerationContext;
+import net.minecraft.world.level.levelgen.structure.Structure.StructureSettings;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+
+public class GenericNetherJigsawStructure extends GenericJigsawStructure implements EnhancedTerrainAdaptationStructure {
+   public static final MapCodec<GenericNetherJigsawStructure> CODEC = RecordCodecBuilder.mapCodec(
+      instance -> instance.group(
+            settingsCodec(instance),
+            StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
+            Codec.intRange(0, 128).fieldOf("size").forGetter(structure -> structure.size),
+            YRangeAllowance.CODEC.optionalFieldOf("y_allowance").forGetter(structure -> structure.yAllowance),
+            HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
+            Codec.BOOL.fieldOf("cannot_spawn_in_liquid").orElse(false).forGetter(structure -> structure.cannotSpawnInLiquid),
+            Codec.intRange(1, 100).optionalFieldOf("valid_biome_radius_check").forGetter(structure -> structure.biomeRadius),
+            ResourceLocation.CODEC
+               .listOf()
+               .fieldOf("pools_that_ignore_boundaries")
+               .orElse(new ArrayList())
+               .xmap(HashSet::new, ArrayList::new)
+               .forGetter(structure -> structure.poolsThatIgnoreBoundaries),
+            Codec.intRange(1, 128).optionalFieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter),
+            Codec.intRange(0, 100).optionalFieldOf("ledge_offset_y").forGetter(structure -> structure.ledgeOffsetY),
+            StringRepresentable.fromEnum(GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION::values)
+               .fieldOf("land_search_direction")
+               .forGetter(structure -> structure.searchDirection),
+            Codec.BOOL.fieldOf("use_bounding_box_hack").orElse(false).forGetter(structure -> structure.useBoundingBoxHack),
+            LiquidSettings.CODEC.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(structure -> structure.liquidSettings),
+            EnhancedTerrainAdaptation.CODEC
+               .optionalFieldOf("enhanced_terrain_adaptation", EnhancedTerrainAdaptation.NONE)
+               .forGetter(structure -> structure.enhancedTerrainAdaptation)
+         )
+         .apply(instance, GenericNetherJigsawStructure::new)
+   );
+   public final Optional<Integer> ledgeOffsetY;
+   public final GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION searchDirection;
+   public final EnhancedTerrainAdaptation enhancedTerrainAdaptation;
+
+   public GenericNetherJigsawStructure(
+      StructureSettings config,
+      Holder<StructureTemplatePool> startPool,
+      int size,
+      Optional<YRangeAllowance> yAllowance,
+      HeightProvider startHeight,
+      boolean cannotSpawnInLiquid,
+      Optional<Integer> biomeRadius,
+      HashSet<ResourceLocation> poolsThatIgnoreBoundaries,
+      Optional<Integer> maxDistanceFromCenter,
+      Optional<Integer> ledgeOffsetY,
+      GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION searchDirection,
+      boolean useBoundingBoxHack,
+      LiquidSettings liquidSettings,
+      EnhancedTerrainAdaptation enhancedTerrainAdaptation
+   ) {
+      super(
+         config,
+         startPool,
+         size,
+         yAllowance,
+         startHeight,
+         Optional.empty(),
+         cannotSpawnInLiquid,
+         Optional.empty(),
+         Optional.empty(),
+         biomeRadius,
+         poolsThatIgnoreBoundaries,
+         maxDistanceFromCenter,
+         Optional.empty(),
+         useBoundingBoxHack,
+         liquidSettings
+      );
+      this.ledgeOffsetY = ledgeOffsetY;
+      this.searchDirection = searchDirection;
+      this.enhancedTerrainAdaptation = enhancedTerrainAdaptation;
+   }
+
+   @Override
+   public EnhancedTerrainAdaptation getEnhancedTerrainAdaptation() {
+      return this.enhancedTerrainAdaptation;
+   }
+
+   @Override
+   protected void postLayoutAdjustments(
+      StructurePiecesBuilder structurePiecesBuilder,
+      GenerationContext context,
+      int offsetY,
+      BlockPos blockpos,
+      int topClipOff,
+      int bottomClipOff,
+      List<PoolElementStructurePiece> pieces
+   ) {
+      GeneralUtils.centerAllPieces(blockpos, pieces);
+      int targetBaseY;
+      if (this.searchDirection == GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION.FIXED_HEIGHT) {
+         targetBaseY = offsetY + this.ledgeOffsetY.orElse(0);
+      } else {
+         WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
+         random.setLargeFeatureSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);
+         BlockPos placementPos;
+         if (this.searchDirection == GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION.HIGHEST_LAND) {
+            placementPos = GeneralUtils.getHighestLand(
+               context.chunkGenerator(), context.randomState(), structurePiecesBuilder.getBoundingBox(), context.heightAccessor(), !this.cannotSpawnInLiquid
+            );
+         } else {
+            placementPos = GeneralUtils.getLowestLand(
+               context.chunkGenerator(), context.randomState(), structurePiecesBuilder.getBoundingBox(), context.heightAccessor(), !this.cannotSpawnInLiquid
+            );
+         }
+
+         if (placementPos.getY() < GeneralUtils.getMaxTerrainLimit(context.chunkGenerator())
+            && placementPos.getY() > context.chunkGenerator().getSeaLevel() + 1) {
+            targetBaseY = placementPos.getY() + this.ledgeOffsetY.orElse(0);
+         } else {
+            targetBaseY = context.chunkGenerator().getSeaLevel() + this.ledgeOffsetY.orElse(0);
+         }
+
+         targetBaseY += offsetY;
+      }
+
+      BoundingBox fullBox = structurePiecesBuilder.getBoundingBox();
+      int currentBaseY = pieces.get(0).getBoundingBox().minY();
+      int structureHeight = fullBox.maxY() - fullBox.minY();
+      int baseToBoxMin = fullBox.minY() - currentBaseY;
+      if (topClipOff != 2147483647) {
+         int maxAllowedBaseY = topClipOff - structureHeight - baseToBoxMin;
+         if (targetBaseY > maxAllowedBaseY) {
+            targetBaseY = maxAllowedBaseY;
+         }
+      }
+
+      if (bottomClipOff != -2147483648) {
+         int minAllowedBaseY = bottomClipOff - baseToBoxMin;
+         if (targetBaseY < minAllowedBaseY) {
+            targetBaseY = minAllowedBaseY;
+         }
+      }
+
+      int yDiff = targetBaseY - currentBaseY;
+      pieces.forEach(piece -> piece.move(0, yDiff, 0));
+   }
+
+   @Override
+   public StructureType<?> type() {
+      return MoogsStructuresStructures.GENERIC_NETHER_JIGSAW_STRUCTURE.get();
+   }
+
+   public static enum LAND_SEARCH_DIRECTION implements StringRepresentable {
+      HIGHEST_LAND("HIGHEST_LAND"),
+      LOWEST_LAND("LOWEST_LAND"),
+      FIXED_HEIGHT("FIXED_HEIGHT");
+
+      private final String name;
+      private static final Map<String, GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION> BY_NAME = (Map<String, GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION>)Util.make(
+         Maps.newHashMap(), hashMap -> {
+            GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION[] var1 = values();
+
+            for (GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION type : var1) {
+               hashMap.put(type.name, type);
+            }
+         }
+      );
+
+      private LAND_SEARCH_DIRECTION(String name) {
+         this.name = name;
+      }
+
+      public static GenericNetherJigsawStructure.LAND_SEARCH_DIRECTION byName(String name) {
+         return BY_NAME.get(name.toUpperCase(Locale.ROOT));
+      }
+
+      public String getSerializedName() {
+         return this.name;
+      }
+   }
+}

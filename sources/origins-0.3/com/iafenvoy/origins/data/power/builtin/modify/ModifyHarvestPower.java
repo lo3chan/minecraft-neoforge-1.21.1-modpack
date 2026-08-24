@@ -1,0 +1,59 @@
+package com.iafenvoy.origins.data.power.builtin.modify;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.condition.BlockCondition;
+import com.iafenvoy.origins.data.power.Power;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent.HarvestCheck;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class ModifyHarvestPower extends Power {
+   public static final MapCodec<ModifyHarvestPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            BlockCondition.optionalCodec("block_condition").forGetter(ModifyHarvestPower::getBlockCondition),
+            Codec.BOOL.fieldOf("allow").forGetter(ModifyHarvestPower::isAllow)
+         )
+         .apply(i, ModifyHarvestPower::new)
+   );
+   private final BlockCondition blockCondition;
+   private final boolean allow;
+
+   public ModifyHarvestPower(Power.BaseSettings settings, BlockCondition blockCondition, boolean allow) {
+      super(settings);
+      this.blockCondition = blockCondition;
+      this.allow = allow;
+   }
+
+   public BlockCondition getBlockCondition() {
+      return this.blockCondition;
+   }
+
+   public boolean isAllow() {
+      return this.allow;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @SubscribeEvent
+   public static void checkCanHarvest(HarvestCheck event) {
+      if (event.getLevel() instanceof Level level) {
+         PowerHelper.get(event.getEntity())
+            .streamActive(ModifyHarvestPower.class)
+            .filter(x -> x.blockCondition.test(level, event.getPos()))
+            .map(ModifyHarvestPower::isAllow)
+            .reduce((x, y) -> x || y)
+            .ifPresent(event::setCanHarvest);
+      }
+   }
+}

@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.nyfaria.nyfsspiders.mixin",
+  "refmap": "nyfsspiders.refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SpiderMixin"
+  ],
+  "client": [
+    "MixinLivingRenderer"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+

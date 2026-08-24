@@ -1,0 +1,376 @@
+package io.wispforest.owo.ui.base;
+
+import io.wispforest.owo.ui.core.AnimatableProperty;
+import io.wispforest.owo.ui.core.Component;
+import io.wispforest.owo.ui.core.CursorStyle;
+import io.wispforest.owo.ui.core.Insets;
+import io.wispforest.owo.ui.core.ParentComponent;
+import io.wispforest.owo.ui.core.Positioning;
+import io.wispforest.owo.ui.core.Size;
+import io.wispforest.owo.ui.core.Sizing;
+import io.wispforest.owo.ui.event.CharTyped;
+import io.wispforest.owo.ui.event.FocusGained;
+import io.wispforest.owo.ui.event.FocusLost;
+import io.wispforest.owo.ui.event.KeyPress;
+import io.wispforest.owo.ui.event.MouseDown;
+import io.wispforest.owo.ui.event.MouseDrag;
+import io.wispforest.owo.ui.event.MouseEnter;
+import io.wispforest.owo.ui.event.MouseLeave;
+import io.wispforest.owo.ui.event.MouseScroll;
+import io.wispforest.owo.ui.event.MouseUp;
+import io.wispforest.owo.ui.util.FocusHandler;
+import io.wispforest.owo.util.EventSource;
+import io.wispforest.owo.util.EventStream;
+import io.wispforest.owo.util.Observable;
+import java.util.List;
+import java.util.function.Consumer;
+import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import org.jetbrains.annotations.Nullable;
+
+public abstract class BaseComponent implements Component {
+   @Nullable
+   protected ParentComponent parent = null;
+   @Nullable
+   protected String id = null;
+   protected int zIndex = 0;
+   protected boolean mounted = false;
+   protected int batchedEvents = 0;
+   protected final AnimatableProperty<Insets> margins = AnimatableProperty.of(Insets.none());
+   protected final AnimatableProperty<Positioning> positioning = AnimatableProperty.of(Positioning.layout());
+   protected final AnimatableProperty<Sizing> horizontalSizing = AnimatableProperty.of(Sizing.content());
+   protected final AnimatableProperty<Sizing> verticalSizing = AnimatableProperty.of(Sizing.content());
+   protected final EventStream<MouseDown> mouseDownEvents = MouseDown.newStream();
+   protected final EventStream<MouseUp> mouseUpEvents = MouseUp.newStream();
+   protected final EventStream<MouseScroll> mouseScrollEvents = MouseScroll.newStream();
+   protected final EventStream<MouseDrag> mouseDragEvents = MouseDrag.newStream();
+   protected final EventStream<KeyPress> keyPressEvents = KeyPress.newStream();
+   protected final EventStream<CharTyped> charTypedEvents = CharTyped.newStream();
+   protected final EventStream<FocusGained> focusGainedEvents = FocusGained.newStream();
+   protected final EventStream<FocusLost> focusLostEvents = FocusLost.newStream();
+   protected final EventStream<MouseEnter> mouseEnterEvents = MouseEnter.newStream();
+   protected final EventStream<MouseLeave> mouseLeaveEvents = MouseLeave.newStream();
+   protected boolean hovered = false;
+   protected boolean dirty = false;
+   protected CursorStyle cursorStyle = CursorStyle.NONE;
+   protected List<ClientTooltipComponent> tooltip = List.of();
+   protected int x;
+   protected int y;
+   protected int width;
+   protected int height;
+   protected Size space = Size.zero();
+
+   protected BaseComponent() {
+      Observable.observeAll(this::notifyParentIfMounted, this.margins, this.positioning, this.horizontalSizing, this.verticalSizing);
+   }
+
+   protected int determineHorizontalContentSize(Sizing sizing) {
+      throw new UnsupportedOperationException(this.getClass().getSimpleName() + " does not support Sizing.content() on the horizontal axis");
+   }
+
+   protected int determineVerticalContentSize(Sizing sizing) {
+      throw new UnsupportedOperationException(this.getClass().getSimpleName() + " does not support Sizing.content() on the vertical axis");
+   }
+
+   @Override
+   public void inflate(Size space) {
+      this.space = space;
+      this.applySizing();
+      this.dirty = false;
+   }
+
+   protected void applySizing() {
+      Sizing horizontalSizing = this.horizontalSizing.get();
+      Sizing verticalSizing = this.verticalSizing.get();
+      Insets margins = this.margins.get();
+      this.width = horizontalSizing.inflate(this.space.width() - margins.horizontal(), this::determineHorizontalContentSize);
+      this.height = verticalSizing.inflate(this.space.height() - margins.vertical(), this::determineVerticalContentSize);
+   }
+
+   protected void notifyParentIfMounted() {
+      if (this.hasParent()) {
+         if (this.batchedEvents > 0) {
+            this.batchedEvents++;
+         } else {
+            this.dirty = true;
+            this.parent.onChildMutated(this);
+         }
+      }
+   }
+
+   @Override
+   public <C extends Component> C configure(Consumer<C> closure) {
+      try {
+         this.runAndDeferEvents(() -> closure.accept((C)this));
+         return (C)this;
+      } catch (ClassCastException var3) {
+         throw new IllegalArgumentException("Invalid target class passed when configuring component of type " + this.getClass().getSimpleName(), var3);
+      }
+   }
+
+   protected void runAndDeferEvents(Runnable action) {
+      try {
+         this.batchedEvents = 1;
+         action.run();
+      } finally {
+         if (this.batchedEvents > 1) {
+            this.batchedEvents = 0;
+            this.notifyParentIfMounted();
+         } else {
+            this.batchedEvents = 0;
+         }
+      }
+   }
+
+   @Override
+   public void update(float delta, int mouseX, int mouseY) {
+      Component.super.update(delta, mouseX, mouseY);
+      boolean nowHovered = this.isInBoundingBox(mouseX, mouseY);
+      if (this.hovered != nowHovered) {
+         this.updateHoveredState(mouseX, mouseY, nowHovered);
+      }
+   }
+
+   protected void updateHoveredState(int mouseX, int mouseY, boolean nowHovered) {
+      this.hovered = nowHovered;
+      if (nowHovered) {
+         if (this.root() == null || this.root().childAt(mouseX, mouseY) != this) {
+            this.hovered = false;
+            return;
+         }
+
+         this.mouseEnterEvents.sink().onMouseEnter();
+      } else {
+         this.mouseLeaveEvents.sink().onMouseLeave();
+      }
+   }
+
+   @Override
+   public boolean onMouseDown(double mouseX, double mouseY, int button) {
+      return this.mouseDownEvents.sink().onMouseDown(mouseX, mouseY, button);
+   }
+
+   @Override
+   public EventSource<MouseDown> mouseDown() {
+      return this.mouseDownEvents.source();
+   }
+
+   @Override
+   public boolean onMouseUp(double mouseX, double mouseY, int button) {
+      return this.mouseUpEvents.sink().onMouseUp(mouseX, mouseY, button);
+   }
+
+   @Override
+   public EventSource<MouseUp> mouseUp() {
+      return this.mouseUpEvents.source();
+   }
+
+   @Override
+   public boolean onMouseScroll(double mouseX, double mouseY, double amount) {
+      return this.mouseScrollEvents.sink().onMouseScroll(mouseX, mouseY, amount);
+   }
+
+   @Override
+   public EventSource<MouseScroll> mouseScroll() {
+      return this.mouseScrollEvents.source();
+   }
+
+   @Override
+   public boolean onMouseDrag(double mouseX, double mouseY, double deltaX, double deltaY, int button) {
+      return this.mouseDragEvents.sink().onMouseDrag(mouseX, mouseY, deltaX, deltaY, button);
+   }
+
+   @Override
+   public EventSource<MouseDrag> mouseDrag() {
+      return this.mouseDragEvents.source();
+   }
+
+   @Override
+   public boolean onKeyPress(int keyCode, int scanCode, int modifiers) {
+      return this.keyPressEvents.sink().onKeyPress(keyCode, scanCode, modifiers);
+   }
+
+   @Override
+   public EventSource<KeyPress> keyPress() {
+      return this.keyPressEvents.source();
+   }
+
+   @Override
+   public boolean onCharTyped(char chr, int modifiers) {
+      return this.charTypedEvents.sink().onCharTyped(chr, modifiers);
+   }
+
+   @Override
+   public EventSource<CharTyped> charTyped() {
+      return this.charTypedEvents.source();
+   }
+
+   @Override
+   public void onFocusGained(Component.FocusSource source) {
+      this.focusGainedEvents.sink().onFocusGained(source);
+   }
+
+   @Override
+   public EventSource<FocusGained> focusGained() {
+      return this.focusGainedEvents.source();
+   }
+
+   @Override
+   public void onFocusLost() {
+      this.focusLostEvents.sink().onFocusLost();
+   }
+
+   @Override
+   public EventSource<FocusLost> focusLost() {
+      return this.focusLostEvents.source();
+   }
+
+   @Override
+   public EventSource<MouseEnter> mouseEnter() {
+      return this.mouseEnterEvents.source();
+   }
+
+   @Override
+   public EventSource<MouseLeave> mouseLeave() {
+      return this.mouseLeaveEvents.source();
+   }
+
+   @Override
+   public CursorStyle cursorStyle() {
+      return this.cursorStyle;
+   }
+
+   public BaseComponent cursorStyle(CursorStyle style) {
+      this.cursorStyle = style;
+      return this;
+   }
+
+   @Override
+   public Component tooltip(List<ClientTooltipComponent> tooltip) {
+      this.tooltip = tooltip;
+      return this;
+   }
+
+   @Override
+   public List<ClientTooltipComponent> tooltip() {
+      return this.tooltip;
+   }
+
+   @Override
+   public void mount(ParentComponent parent, int x, int y) {
+      this.parent = parent;
+      this.mounted = true;
+      this.moveTo(x, y);
+   }
+
+   @Override
+   public void dismount(Component.DismountReason reason) {
+      this.parent = null;
+      this.mounted = false;
+   }
+
+   @Override
+   public ParentComponent parent() {
+      return this.parent;
+   }
+
+   @Nullable
+   @Override
+   public FocusHandler focusHandler() {
+      return this.hasParent() ? this.parent.focusHandler() : null;
+   }
+
+   public BaseComponent positioning(Positioning positioning) {
+      this.positioning.set(positioning);
+      return this;
+   }
+
+   @Override
+   public AnimatableProperty<Positioning> positioning() {
+      return this.positioning;
+   }
+
+   public BaseComponent margins(Insets margins) {
+      this.margins.set(margins);
+      return this;
+   }
+
+   @Override
+   public AnimatableProperty<Insets> margins() {
+      return this.margins;
+   }
+
+   @Override
+   public Component horizontalSizing(Sizing horizontalSizing) {
+      this.horizontalSizing.set(horizontalSizing);
+      return this;
+   }
+
+   @Override
+   public AnimatableProperty<Sizing> horizontalSizing() {
+      return this.horizontalSizing;
+   }
+
+   @Override
+   public Component verticalSizing(Sizing verticalSizing) {
+      this.verticalSizing.set(verticalSizing);
+      return this;
+   }
+
+   @Override
+   public AnimatableProperty<Sizing> verticalSizing() {
+      return this.verticalSizing;
+   }
+
+   @Override
+   public Component id(@Nullable String id) {
+      this.id = id;
+      return this;
+   }
+
+   @Nullable
+   @Override
+   public String id() {
+      return this.id;
+   }
+
+   @Override
+   public Component zIndex(int zIndex) {
+      this.zIndex = zIndex;
+      return this;
+   }
+
+   @Override
+   public int zIndex() {
+      return this.zIndex;
+   }
+
+   @Override
+   public int x() {
+      return this.x;
+   }
+
+   @Override
+   public void updateX(int x) {
+      this.x = x;
+   }
+
+   @Override
+   public int y() {
+      return this.y;
+   }
+
+   @Override
+   public void updateY(int y) {
+      this.y = y;
+   }
+
+   @Override
+   public int width() {
+      return this.width;
+   }
+
+   @Override
+   public int height() {
+      return this.height;
+   }
+}

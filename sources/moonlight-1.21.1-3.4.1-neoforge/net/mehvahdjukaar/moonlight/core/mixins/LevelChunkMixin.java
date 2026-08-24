@@ -1,0 +1,28 @@
+package net.mehvahdjukaar.moonlight.core.mixins;
+
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin({LevelChunk.class})
+public abstract class LevelChunkMixin {
+   @WrapWithCondition(
+      method = {"promotePendingBlockEntity"},
+      require = 0,
+      at = {@At(
+         value = "INVOKE",
+         target = "org/slf4j/Logger.warn(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V",
+         ordinal = 1
+      )}
+   )
+   private boolean moonlight$stopDumbWarning(Logger instance, String s, Object b, Object p) {
+      return b instanceof BlockState state && p instanceof BlockPos pos && state.getBlock() instanceof EntityBlock block
+         ? block.newBlockEntity(pos, state) != null
+         : true;
+   }
+}

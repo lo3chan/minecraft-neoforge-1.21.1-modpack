@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "beach",
+    "river",
+    "stony_shore"
+  ],
+  "features": "born_in_chaos_v1:river_mint",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,99 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.skeeper",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "waist",
+					"pivot": [0, 12, 0]
+				},
+				{
+					"name": "Body",
+					"parent": "waist",
+					"pivot": [0, 14, 0],
+					"cubes": [
+						{"origin": [-4, 7, -2], "size": [8, 17, 4], "uv": [16, 16]},
+						{"origin": [-8, 21, -2], "size": [16, 3, 4], "inflate": 0.5, "uv": [0, 57]}
+					]
+				},
+				{
+					"name": "bag",
+					"parent": "Body",
+					"pivot": [0, 16, 2],
+					"cubes": [
+						{"origin": [-5.6, 13, 2.6], "size": [10, 10, 10], "uv": [0, 37]}
+					]
+				},
+				{
+					"name": "RightArm",
+					"parent": "Body",
+					"pivot": [-5, 22, 0],
+					"cubes": [
+						{"origin": [-7, 12, -1.5], "size": [3, 12, 3], "uv": [40, 17]}
+					]
+				},
+				{
+					"name": "LeftArm",
+					"parent": "Body",
+					"pivot": [5, 22, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [4, 12, -1.5], "size": [3, 12, 3], "uv": [40, 17]}
+					]
+				},
+				{
+					"name": "rec",
+					"parent": "Body",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "head",
+					"parent": "rec",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "helmet",
+					"parent": "head",
+					"pivot": [0, 24, 0],
+					"cubes": [
+						{"origin": [-4, 24.1, -4], "size": [8, 8, 8], "inflate": 0.75, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "bone",
+					"parent": "helmet",
+					"pivot": [0, 31.1, 4],
+					"rotation": [-22.5, 0, 0],
+					"cubes": [
+						{"origin": [-4, 28.02336, 4.6147], "size": [8, 4, 4], "inflate": 0.75, "uv": [32, 0]}
+					]
+				},
+				{
+					"name": "LeftLeg",
+					"parent": "waist",
+					"pivot": [2, 12, 0],
+					"mirror": true,
+					"cubes": [
+						{"origin": [0.5, 0, -1.5], "size": [3, 12, 3], "uv": [0, 17]}
+					]
+				},
+				{
+					"name": "RightLeg",
+					"parent": "waist",
+					"pivot": [-2, 12, 0],
+					"cubes": [
+						{"origin": [-3.5, 0, -1.5], "size": [3, 12, 3], "uv": [0, 17]}
+					]
+				}
+			]
+		}
+	]
+}

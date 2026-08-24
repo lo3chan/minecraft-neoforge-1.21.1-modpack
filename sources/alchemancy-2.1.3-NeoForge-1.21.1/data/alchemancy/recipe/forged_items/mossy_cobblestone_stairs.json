@@ -1,0 +1,16 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:overgrowth"
+  ],
+
+  "catalyst": {
+    "item": "minecraft:cobblestone_stairs"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "minecraft:mossy_cobblestone_stairs"
+  }
+}

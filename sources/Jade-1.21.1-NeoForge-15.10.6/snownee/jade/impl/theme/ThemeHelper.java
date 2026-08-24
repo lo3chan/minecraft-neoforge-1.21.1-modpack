@@ -1,0 +1,214 @@
+package snownee.jade.impl.theme;
+
+import com.google.common.collect.Maps;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import net.minecraft.CrashReport;
+import net.minecraft.ReportedException;
+import net.minecraft.advancements.critereon.MinMaxBounds.Ints;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.util.profiling.ProfilerFiller;
+import org.apache.commons.lang3.mutable.MutableObject;
+import org.jetbrains.annotations.NotNull;
+import snownee.jade.Jade;
+import snownee.jade.JadeClient;
+import snownee.jade.api.JadeIds;
+import snownee.jade.api.config.IWailaConfig;
+import snownee.jade.api.theme.IThemeHelper;
+import snownee.jade.api.theme.Theme;
+import snownee.jade.impl.config.WailaConfig;
+import snownee.jade.overlay.DisplayHelper;
+import snownee.jade.util.JadeCodecs;
+import snownee.jade.util.JsonConfig;
+
+public class ThemeHelper extends SimpleJsonResourceReloadListener implements IThemeHelper {
+   public static final ThemeHelper INSTANCE = new ThemeHelper();
+   public static final ResourceLocation ID = JadeIds.JADE("themes");
+   public static final MutableObject<Theme> theme = new MutableObject();
+   private static final Int2ObjectMap<Style> styleCache = new Int2ObjectOpenHashMap(6);
+   private final Map<ResourceLocation, Theme> themes = Maps.newTreeMap(Comparator.comparing(ResourceLocation::toString));
+   private final Ints allowedVersions = Ints.between(100, 199);
+   private final Style[] modNameStyleCache = new Style[3];
+   private Theme fallback;
+
+   public ThemeHelper() {
+      super(JsonConfig.GSON, "jade_themes");
+   }
+
+   public static Style colorStyle(int color) {
+      return (Style)styleCache.computeIfAbsent(color, Style.EMPTY::withColor);
+   }
+
+   @Override
+   public Theme theme() {
+      return (Theme)theme.getValue();
+   }
+
+   @Override
+   public Collection<Theme> getThemes() {
+      return this.themes.values();
+   }
+
+   @NotNull
+   @Override
+   public Theme getTheme(ResourceLocation id) {
+      return Objects.requireNonNull(this.themes.getOrDefault(id, this.fallback));
+   }
+
+   @Override
+   public MutableComponent info(Object componentOrString) {
+      return this.color(componentOrString, this.theme().text.colors().info());
+   }
+
+   @Override
+   public MutableComponent success(Object componentOrString) {
+      return this.color(componentOrString, this.theme().text.colors().success());
+   }
+
+   @Override
+   public MutableComponent warning(Object componentOrString) {
+      return this.color(componentOrString, this.theme().text.colors().warning());
+   }
+
+   @Override
+   public MutableComponent danger(Object componentOrString) {
+      return this.color(componentOrString, this.theme().text.colors().danger());
+   }
+
+   @Override
+   public MutableComponent failure(Object componentOrString) {
+      return this.color(componentOrString, this.theme().text.colors().failure());
+   }
+
+   @Override
+   public MutableComponent title(Object componentOrString) {
+      Component component;
+      if (componentOrString instanceof MutableComponent) {
+         component = (MutableComponent)componentOrString;
+      } else {
+         component = Component.literal(Objects.toString(componentOrString));
+      }
+
+      return this.color(DisplayHelper.INSTANCE.stripColor(component), this.theme().text.colors().title());
+   }
+
+   @Override
+   public MutableComponent modName(Object componentOrString) {
+      if (!(componentOrString instanceof MutableComponent component)) {
+         component = Component.literal(Objects.toString(componentOrString));
+      }
+
+      Style itemStyle = IWailaConfig.get().getFormatting().getItemModNameStyle();
+      Style themeStyle = this.theme().text.modNameStyle();
+      if (this.modNameStyleCache[0] != itemStyle || this.modNameStyleCache[1] != themeStyle) {
+         Style style = itemStyle;
+         if (themeStyle != null) {
+            style = themeStyle.applyTo(itemStyle);
+         }
+
+         this.modNameStyleCache[0] = itemStyle;
+         this.modNameStyleCache[1] = themeStyle;
+         this.modNameStyleCache[2] = style;
+      }
+
+      return component.withStyle(this.modNameStyleCache[2]);
+   }
+
+   @Override
+   public MutableComponent seconds(int ticks, float tickRate) {
+      ticks = Mth.floor(ticks / tickRate);
+      if (ticks >= 60) {
+         int minutes = ticks / 60;
+         ticks %= 60;
+         return ticks == 0 ? this.info(JadeClient.format("jade.minutes", minutes)) : this.info(JadeClient.format("jade.minutes_seconds", minutes, ticks));
+      } else {
+         return this.info(JadeClient.format("jade.seconds", ticks));
+      }
+   }
+
+   protected MutableComponent color(Object componentOrString, int color) {
+      if (componentOrString instanceof Number number) {
+         componentOrString = DisplayHelper.dfCommas.format(number.doubleValue());
+      }
+
+      if (componentOrString instanceof MutableComponent component) {
+         return component.getStyle().isEmpty() ? component.setStyle(colorStyle(color)) : component.setStyle(component.getStyle().withColor(color));
+      } else {
+         return Component.literal(Objects.toString(componentOrString)).setStyle(colorStyle(color));
+      }
+   }
+
+   protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
+      Set<ResourceLocation> existingKeys = Set.copyOf(this.themes.keySet());
+      MutableObject<Theme> enable = new MutableObject();
+      WailaConfig.ConfigOverlay config = Jade.CONFIG.get().getOverlay();
+      WailaConfig.ConfigHistory history = Jade.CONFIG.get().getHistory();
+      this.themes.clear();
+      map.forEach((idx, json) -> {
+         JsonObject o = json.getAsJsonObject();
+         int version = GsonHelper.getAsInt(o, "version", 0);
+         if (!this.allowedVersions.matches(version)) {
+            Jade.LOGGER.warn("Theme {} has unsupported version {}. Skipping.", idx, version);
+         } else {
+            try {
+               JadeCodecs.THEME.parse(JsonOps.INSTANCE, o).resultOrPartial(Jade.LOGGER::error).ifPresent(theme -> {
+                  theme.id = idx;
+                  this.themes.put(idx, theme);
+                  if (enable.getValue() == null && GsonHelper.getAsBoolean(o, "autoEnable", false) && !existingKeys.contains(idx)) {
+                     enable.setValue(theme);
+                  }
+               });
+            } catch (Exception var8x) {
+               Jade.LOGGER.error("Failed to load theme {}", idx, var8x);
+            }
+         }
+      });
+      this.fallback = this.themes.get(Theme.DEFAULT_THEME_ID);
+      if (this.fallback == null) {
+         CrashReport crashreport = CrashReport.forThrowable(new NullPointerException(), "Missing default theme");
+         throw new ReportedException(crashreport);
+      } else {
+         int hash = 0;
+
+         for (ResourceLocation id : this.themes.keySet()) {
+            hash = 31 * hash + id.hashCode();
+         }
+
+         if (hash != history.themesHash) {
+            if (hash != 0 && enable.getValue() != null) {
+               Theme theme = (Theme)enable.getValue();
+               config.activeTheme = theme.id;
+               Jade.LOGGER.info("Auto enabled theme {}", theme.id);
+               if (theme.changeRoundCorner != null) {
+                  config.setSquare(theme.changeRoundCorner);
+               }
+
+               if (theme.changeOpacity != 0.0F) {
+                  config.setAlpha(theme.changeOpacity);
+               }
+            }
+
+            history.themesHash = hash;
+            Jade.CONFIG.save();
+         }
+
+         config.applyTheme(config.activeTheme);
+         ThemeHelper.theme.setValue(config.getTheme());
+      }
+   }
+}

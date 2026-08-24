@@ -1,0 +1,17 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "infusables": [
+    {
+      "item": "alchemancy:alchemical_extract"
+    }
+  ],
+
+  "properties": [
+    "alchemancy:burning",
+    "alchemancy:wildfire",
+    "alchemancy:hellbent"
+  ],
+
+  "result": "alchemancy:infernal"
+}

@@ -1,0 +1,22 @@
+package net.mcreator.borninchaosv.item;
+
+import net.mcreator.borninchaosv.procedures.SpawnStructuresDarkTowerPriShchielchkiePravoiKnopkoiMyshiNaBlokieProcedure;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.context.UseOnContext;
+
+public class SpawnStructuresDarkTowerItem extends Item {
+   public SpawnStructuresDarkTowerItem() {
+      super(new Properties().stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+   }
+
+   public InteractionResult useOn(UseOnContext context) {
+      super.useOn(context);
+      SpawnStructuresDarkTowerPriShchielchkiePravoiKnopkoiMyshiNaBlokieProcedure.execute(
+         context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getPlayer()
+      );
+      return InteractionResult.SUCCESS;
+   }
+}

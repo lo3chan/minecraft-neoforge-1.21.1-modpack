@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "balustrade_bridges",
+  "pattern" : [ "FFF", "WWW" ],
+  "key" : {
+    "F" : {
+      "item" : "minecraft:granite_wall"
+    },
+    "W" : {
+      "item" : "minecraft:granite_slab"
+    }
+  },
+  "result" : {
+    "count" : 5,
+    "id" : "mcwbridges:balustrade_granite_bridge"
+  }
+}

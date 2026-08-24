@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "undead_revamp2:cloogerribs"
+    },
+    "b": {
+      "item": "undead_revamp2:cloggerupgrade"
+    },
+    "c": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:cloggerupgrade",
+    "count": 2
+  }
+}

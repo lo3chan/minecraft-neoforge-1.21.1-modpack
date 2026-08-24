@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "up": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "north": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "east": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "south": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "west": "born_in_chaos_v1:block/tiemnyikirpich1",
+    "particle": "born_in_chaos_v1:block/tiemnyikirpich1"
+  },
+  "render_type": "solid"
+}

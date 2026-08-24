@@ -1,0 +1,11 @@
+package fabric.me.thosea.badoptimizations.fabric.modmenu;
+
+import com.terraformersmc.modmenu.api.ConfigScreenFactory;
+import com.terraformersmc.modmenu.api.ModMenuApi;
+import fabric.me.thosea.badoptimizations.config.BOConfigScreen;
+
+public class BadOptimizationsModMenu implements ModMenuApi {
+   public ConfigScreenFactory<?> getModConfigScreenFactory() {
+      return BOConfigScreen::new;
+   }
+}

@@ -1,0 +1,141 @@
+package com.seibel.distanthorizons.core.util.objects.pooling.PhantomArrayList;
+
+import com.seibel.distanthorizons.core.util.ListUtil;
+import com.seibel.distanthorizons.coreapi.util.StringUtil;
+import it.unimi.dsi.fastutil.bytes.ByteArrayList;
+import it.unimi.dsi.fastutil.chars.CharArrayList;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.shorts.ShortArrayList;
+import java.lang.ref.SoftReference;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public class PhantomArrayListCheckout implements AutoCloseable {
+   @NotNull
+   private final PhantomArrayListPool owningPool;
+   @NotNull
+   public final SoftReference<PhantomArrayListCheckout> ownerSoftReference;
+   @Nullable
+   public String allocationStackTrace = null;
+   private final ArrayList<ByteArrayList> byteArrayLists = new ArrayList<>();
+   private final ArrayList<ShortArrayList> shortArrayLists = new ArrayList<>();
+   private final ArrayList<LongArrayList> longArrayLists = new ArrayList<>();
+   private final ArrayList<CharArrayList> charArrayLists = new ArrayList<>();
+   private final ArrayList<ByteBufferCheckoutWrapper> byteBufferWrapperList = new ArrayList<>();
+
+   public PhantomArrayListCheckout(@NotNull PhantomArrayListPool owningPool) {
+      this.owningPool = owningPool;
+      this.ownerSoftReference = new SoftReference<>(this);
+   }
+
+   public void onCheckout() {
+      if (this.owningPool.logGarbageCollectedStacks) {
+         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+         StackTraceElement[] trimmedElements = Arrays.copyOfRange(stackTraceElements, 4, stackTraceElements.length);
+         this.allocationStackTrace = StringUtil.join("\n", trimmedElements).intern();
+      }
+   }
+
+   public void addByteArrayList(ByteArrayList list) {
+      this.owningPool.bytePoolStatTracker.totalArrayCountRef.getAndIncrement();
+      this.byteArrayLists.add(list);
+   }
+
+   public void addShortArrayList(ShortArrayList list) {
+      this.owningPool.shortPoolStatTracker.totalArrayCountRef.getAndIncrement();
+      this.shortArrayLists.add(list);
+   }
+
+   public void addLongArrayList(LongArrayList list) {
+      this.owningPool.longPoolStatTracker.totalArrayCountRef.getAndIncrement();
+      this.longArrayLists.add(list);
+   }
+
+   public void addCharArrayList(CharArrayList list) {
+      this.owningPool.charPoolStatTracker.totalArrayCountRef.getAndIncrement();
+      this.charArrayLists.add(list);
+   }
+
+   public void addByteBufferWrapper(ByteBufferCheckoutWrapper wrapper) {
+      this.owningPool.byteBufferPoolStatTracker.totalArrayCountRef.getAndIncrement();
+      this.byteBufferWrapperList.add(wrapper);
+   }
+
+   public int getByteArrayCount() {
+      return this.byteArrayLists.size();
+   }
+
+   public int getShortArrayCount() {
+      return this.shortArrayLists.size();
+   }
+
+   public int getLongArrayCount() {
+      return this.longArrayLists.size();
+   }
+
+   public int getCharArrayCount() {
+      return this.charArrayLists.size();
+   }
+
+   public int getByteBufferWrapperCount() {
+      return this.byteBufferWrapperList.size();
+   }
+
+   public ByteArrayList getByteArray(int index, int size) {
+      ByteArrayList list = this.byteArrayLists.get(index);
+      ListUtil.clearAndSetSize(list, size);
+      return list;
+   }
+
+   public ShortArrayList getShortArray(int index, int size) {
+      ShortArrayList list = this.shortArrayLists.get(index);
+      ListUtil.clearAndSetSize(list, size);
+      return list;
+   }
+
+   public LongArrayList getLongArray(int index, int size) {
+      LongArrayList list = this.longArrayLists.get(index);
+      ListUtil.clearAndSetSize(list, size);
+      return list;
+   }
+
+   public CharArrayList getCharArray(int index, int size) {
+      CharArrayList list = this.charArrayLists.get(index);
+      ListUtil.clearAndSetSize(list, size);
+      return list;
+   }
+
+   public ByteBuffer getByteBuffer(int index, int size) {
+      ByteBufferCheckoutWrapper wrapper = this.byteBufferWrapperList.get(index);
+      wrapper.clearAndSetSize(size);
+      return wrapper.bufferSlice;
+   }
+
+   public ArrayList<ByteArrayList> getAllByteArrays() {
+      return this.byteArrayLists;
+   }
+
+   public ArrayList<ShortArrayList> getAllShortArrays() {
+      return this.shortArrayLists;
+   }
+
+   public ArrayList<LongArrayList> getAllLongArrays() {
+      return this.longArrayLists;
+   }
+
+   public ArrayList<CharArrayList> getAllCharArrays() {
+      return this.charArrayLists;
+   }
+
+   public ArrayList<ByteBufferCheckoutWrapper> getAllByteBufferWrappers() {
+      return this.byteBufferWrapperList;
+   }
+
+   @Override
+   public void close() {
+      this.owningPool.returnCheckout(this);
+   }
+}

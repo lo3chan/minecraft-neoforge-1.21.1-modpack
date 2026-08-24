@@ -1,0 +1,36 @@
+package tallestegg.guardvillagers.networking;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import tallestegg.guardvillagers.client.GuardSounds;
+import tallestegg.guardvillagers.common.entities.Guard;
+
+public record GuardFollowPacket(int entityId) implements CustomPacketPayload {
+   public static final Type<GuardFollowPacket> TYPE = new Type(ResourceLocation.fromNamespaceAndPath("guardvillagers", "following"));
+   public static final StreamCodec<FriendlyByteBuf, GuardFollowPacket> STREAM_CODEC = StreamCodec.composite(
+      ByteBufCodecs.INT, GuardFollowPacket::entityId, GuardFollowPacket::new
+   );
+
+   public static void handle(GuardFollowPacket packet, IPayloadContext ctx) {
+      ctx.enqueueWork(() -> {
+         ServerPlayer player = (ServerPlayer)ctx.player();
+         if (player != null && player.level() instanceof ServerLevel && player.level().getEntity(packet.entityId()) instanceof Guard guard) {
+            guard.setFollowing(!guard.isFollowing());
+            guard.setOwnerId(player.getUUID());
+            guard.playSound((SoundEvent)GuardSounds.GUARD_YES.value(), 1.0F, 1.0F);
+         }
+      });
+   }
+
+   public Type<? extends CustomPacketPayload> type() {
+      return TYPE;
+   }
+}

@@ -1,0 +1,62 @@
+package com.yungnickyoung.minecraft.betterfortresses.world.processor;
+
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.yungnickyoung.minecraft.betterfortresses.module.StructureProcessorTypeModule;
+import javax.annotation.ParametersAreNonnullByDefault;
+import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.WorldGenRegion;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
+import net.minecraft.world.level.material.Fluids;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+public class LiquidBlockProcessor extends StructureProcessor {
+   public static final MapCodec<LiquidBlockProcessor> CODEC = RecordCodecBuilder.mapCodec(
+      instance -> instance.group(
+            BlockState.CODEC.fieldOf("target_block").forGetter(config -> config.targetBlock),
+            BlockState.CODEC.fieldOf("target_block_output").forGetter(config -> config.targetBlockOutput)
+         )
+         .apply(instance, instance.stable(LiquidBlockProcessor::new))
+   );
+   public final BlockState targetBlock;
+   public final BlockState targetBlockOutput;
+
+   private LiquidBlockProcessor(BlockState targetBlock, BlockState targetBlockOutput) {
+      this.targetBlock = targetBlock;
+      this.targetBlockOutput = targetBlockOutput;
+   }
+
+   public StructureBlockInfo processBlock(
+      LevelReader levelReader,
+      BlockPos jigsawPiecePos,
+      BlockPos jigsawPieceBottomCenterPos,
+      StructureBlockInfo blockInfoLocal,
+      StructureBlockInfo blockInfoGlobal,
+      StructurePlaceSettings structurePlacementData
+   ) {
+      if (blockInfoGlobal.state().is(this.targetBlock.getBlock())) {
+         if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(new ChunkPos(blockInfoGlobal.pos()))) {
+            return blockInfoGlobal;
+         }
+
+         blockInfoGlobal = new StructureBlockInfo(blockInfoGlobal.pos(), this.targetBlockOutput, blockInfoGlobal.nbt());
+         if (levelReader instanceof WorldGenRegion worldGenRegion) {
+            worldGenRegion.scheduleTick(blockInfoGlobal.pos(), Fluids.LAVA, 0);
+         }
+      }
+
+      return blockInfoGlobal;
+   }
+
+   protected StructureProcessorType<?> getType() {
+      return StructureProcessorTypeModule.LIQUID_BLOCK_PROCESSOR;
+   }
+}

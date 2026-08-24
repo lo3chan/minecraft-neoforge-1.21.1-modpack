@@ -1,0 +1,19 @@
+{
+  "type": "enhancedcelestials2core:text_components",
+  "settings": {
+    "components": {
+      "end_notification": {
+        "type": "CHAT",
+        "component": {
+          "key": "enhancedcelestials2defaultlunarevents.notification.super_moon.set"
+        }
+      },
+      "start_notification": {
+        "type": "CHAT",
+        "component": {
+          "key": "enhancedcelestials2defaultlunarevents.notification.super_moon.rise"
+        }
+      }
+    }
+  }
+}

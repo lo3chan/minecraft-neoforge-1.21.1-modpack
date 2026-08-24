@@ -1,0 +1,56 @@
+package net.cibernet.alchemancy.properties;
+
+import net.cibernet.alchemancy.item.components.PropertyModifierComponent;
+import net.cibernet.alchemancy.registries.AlchemancyProperties;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+
+public class LevitatingProperty extends Property {
+   @Override
+   public void onEntityItemTick(ItemStack stack, ItemEntity entity) {
+      if (!entity.isNoGravity()) {
+         entity.setDeltaMovement(entity.getDeltaMovement().add(0.0, 0.06, 0.0));
+      }
+   }
+
+   @Override
+   public void onProjectileTick(ItemStack stack, Projectile projectile) {
+      if (!projectile.isNoGravity()) {
+         projectile.setDeltaMovement(projectile.getDeltaMovement().add(0.0, 0.06, 0.0));
+      }
+   }
+
+   @Override
+   public void onEquippedTick(LivingEntity user, EquipmentSlot slot, ItemStack stack) {
+      if (!(user instanceof Player player && player.getAbilities().flying)) {
+         user.setDeltaMovement(
+            new Vec3(
+               user.getDeltaMovement().x,
+               user.getDeltaMovement().y
+                  + PropertyModifierComponent.getOrElse(stack, this.asHolder(), AlchemancyProperties.Modifiers.EFFECT_VALUE, 0.05F).floatValue(),
+               user.getDeltaMovement().z
+            )
+         );
+         user.hasImpulse = true;
+      }
+   }
+
+   @Override
+   public void onFall(LivingEntity entity, ItemStack stack, EquipmentSlot slot, LivingFallEvent event) {
+      event.setDamageMultiplier(Mth.floor(event.getDamageMultiplier() * 0.75F));
+   }
+
+   @Override
+   public int getColor(ItemStack stack) {
+      return ((MobEffect)MobEffects.LEVITATION.value()).getColor();
+   }
+}

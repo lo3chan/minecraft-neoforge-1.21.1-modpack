@@ -1,0 +1,46 @@
+package com.aetherteam.aether.client.renderer.entity.layers;
+
+import com.aetherteam.aether.client.renderer.entity.model.HaloModel;
+import com.aetherteam.aether.entity.passive.Phyg;
+import com.aetherteam.aether.mixin.mixins.client.accessor.QuadrupedModelAccessor;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.PigModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+
+public class PhygHaloLayer extends RenderLayer<Phyg, PigModel<Phyg>> {
+   private static final ResourceLocation HALO_LOCATION = ResourceLocation.fromNamespaceAndPath("aether", "textures/models/perks/halo.png");
+   private final HaloModel<Phyg> phygHalo;
+
+   public PhygHaloLayer(RenderLayerParent<Phyg, PigModel<Phyg>> entityRenderer, HaloModel<Phyg> haloModel) {
+      super(entityRenderer);
+      this.phygHalo = haloModel;
+   }
+
+   public void render(
+      PoseStack poseStack,
+      MultiBufferSource buffer,
+      int packedLight,
+      Phyg phyg,
+      float limbSwing,
+      float limbSwingAmount,
+      float partialTicks,
+      float ageInTicks,
+      float netHeadYaw,
+      float headPitch
+   ) {
+      if (phyg.hasCustomName() && phyg.getName().getString().equals("KingPhygieBoo")) {
+         QuadrupedModelAccessor quadrupedModelAccessor = (QuadrupedModelAccessor)this.getParentModel();
+         this.phygHalo.halo.yRot = quadrupedModelAccessor.aether$getHead().yRot;
+         this.phygHalo.halo.xRot = quadrupedModelAccessor.aether$getHead().xRot;
+         this.phygHalo.setupAnim(phyg, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+         VertexConsumer consumer = buffer.getBuffer(RenderType.eyes(HALO_LOCATION));
+         this.phygHalo.renderToBuffer(poseStack, consumer, packedLight, OverlayTexture.NO_OVERLAY, 1073741823);
+      }
+   }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/fence_side",
+  "textures": {
+    "texture": "born_in_chaos_v1:blocks/rehet",
+    "particle": "born_in_chaos_v1:blocks/rehet"
+  }
+}

@@ -1,0 +1,30 @@
+#issueTrackerURL = ""
+license = "LGPL-3.0-or-later"
+modLoader = "javafml"
+loaderVersion = "[1,)"
+[[mods]]
+	logoFile = "yacl-128x.png"
+	displayName = "YetAnotherConfigLib"
+	description = "YetAnotherConfigLib (yacl) is just that. A builder-based configuration library for Minecraft.\n"
+	version = "3.8.2+1.21.1-neoforge"
+	modId = "yet_another_config_lib_v3"
+	authors = "isXander"
+
+[[mixins]]
+	config = "yacl.mixins.json"
+
+[["dependencies.yet_another_config_lib_v3"]]
+	versionRange = ""
+	side = "BOTH"
+	ordering = "NONE"
+	mandatory = true
+	modId = "neoforge"
+[["dependencies.yet_another_config_lib_v3"]]
+	versionRange = "[1.21,1.21.1]"
+	side = "BOTH"
+	ordering = "NONE"
+	mandatory = true
+	modId = "minecraft"
+
+[[accessTransformers]]
+	file = "META-INF/accesstransformer.cfg"

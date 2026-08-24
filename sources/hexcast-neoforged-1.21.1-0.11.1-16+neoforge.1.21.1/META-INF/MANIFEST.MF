@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Build-On-Minecraft: 1.21.1
+Implementation-Vendor: petra-kat
+Implementation-Title: Forge
+Timestampe: 1783528123336
+Specification-Version: 0.11.1-16+neoforge.1.21.1
+Implementation-Version: 0.11.1-16+neoforge.1.21.1
+Built-On-Java: 21.0.11+10-LTS Eclipse Adoptium
+Specification-Title: hexcasting
+Implementation-Timestamp: 2026-07-08T19:28:43+0000
+Specification-Vendor: petra-kat
+

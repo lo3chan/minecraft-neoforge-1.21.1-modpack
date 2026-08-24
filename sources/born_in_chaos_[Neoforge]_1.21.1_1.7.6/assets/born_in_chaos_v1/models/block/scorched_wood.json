@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/brievno",
+    "up": "born_in_chaos_v1:block/brievno",
+    "north": "born_in_chaos_v1:block/brievno",
+    "east": "born_in_chaos_v1:block/brievno",
+    "south": "born_in_chaos_v1:block/brievno",
+    "west": "born_in_chaos_v1:block/brievno",
+    "particle": "born_in_chaos_v1:block/brievno"
+  },
+  "render_type": "solid"
+}

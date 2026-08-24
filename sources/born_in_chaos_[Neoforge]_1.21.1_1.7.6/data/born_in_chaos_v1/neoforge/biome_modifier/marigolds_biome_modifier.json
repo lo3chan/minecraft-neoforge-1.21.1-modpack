@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "badlands",
+    "birch_forest",
+    "dark_forest",
+    "flower_forest",
+    "forest",
+    "jungle",
+    "meadow",
+    "plains"
+  ],
+  "features": "born_in_chaos_v1:marigolds",
+  "step": "vegetal_decoration"
+}

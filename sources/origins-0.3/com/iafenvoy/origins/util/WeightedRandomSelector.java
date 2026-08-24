@@ -1,0 +1,45 @@
+package com.iafenvoy.origins.util;
+
+import java.util.List;
+import java.util.Random;
+import org.jetbrains.annotations.Nullable;
+
+public interface WeightedRandomSelector {
+   Random RANDOM = new Random();
+
+   int weight();
+
+   @Nullable
+   static <T extends WeightedRandomSelector> T selectRandomByWeight(List<T> holders) {
+      if (holders != null && !holders.isEmpty()) {
+         int totalWeight = 0;
+
+         for (T holder : holders) {
+            if (holder.weight() > 0) {
+               totalWeight += holder.weight();
+            }
+         }
+
+         if (totalWeight <= 0) {
+            return holders.get(RANDOM.nextInt(holders.size()));
+         } else {
+            int randomValue = RANDOM.nextInt(totalWeight);
+            int currentWeight = 0;
+
+            for (T holderx : holders) {
+               int weight = holderx.weight();
+               if (weight > 0) {
+                  currentWeight += weight;
+                  if (randomValue < currentWeight) {
+                     return holderx;
+                  }
+               }
+            }
+
+            return (T)holders.getLast();
+         }
+      } else {
+         return null;
+      }
+   }
+}

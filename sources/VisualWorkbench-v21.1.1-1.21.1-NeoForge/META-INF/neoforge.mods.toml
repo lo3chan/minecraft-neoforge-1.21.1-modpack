@@ -1,0 +1,49 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "MPL-2.0"
+issueTrackerURL = "https://github.com/Fuzss/visualworkbench/issues"
+
+[[mods]]
+modId = "visualworkbench"
+displayName = "Visual Workbench"
+description = "Items stay inside crafting tables and are also rendered on top. It's really fancy!"
+version = "21.1.1"
+authors = "Fuzs"
+logoFile = "mod_banner.png"
+logoBlur = false
+displayURL = "https://github.com/Fuzss/visualworkbench"
+updateJSONURL = "https://raw.githubusercontent.com/Fuzss/modresources/main/update/visualworkbench.json"
+displayTest = "MATCH_VERSION"
+
+[[mixins]]
+config="visualworkbench.common.mixins.json"
+
+[[mixins]]
+config="visualworkbench.neoforge.mixins.json"
+
+[[dependencies.visualworkbench]]
+modId = "neoforge"
+mandatory = true
+type = "required"
+versionRange = "[21.1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.visualworkbench]]
+modId = "minecraft"
+mandatory = true
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.visualworkbench]]
+modId = "puzzleslib"
+mandatory = true
+type = "required"
+versionRange = "[21.1.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[modproperties.visualworkbench]
+catalogueImageIcon = "mod_logo.png"

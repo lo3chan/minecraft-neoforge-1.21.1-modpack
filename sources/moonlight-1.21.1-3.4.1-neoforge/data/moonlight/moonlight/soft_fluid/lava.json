@@ -1,0 +1,49 @@
+{
+  "containers": [
+    {
+      "filled": [
+        "minecraft:lava_bucket",
+        "blue_skies:ventium_lava_bucket"
+      ],
+      "fill_sound": "minecraft:item.bucket.fill_lava",
+      "empty_sound": "minecraft:item.bucket.empty_lava",
+      "empty": "minecraft:bucket",
+      "capacity": "BUCKET"
+    },
+    {
+      "filled": [
+        "caverns_and_chasms:golden_lava_bucket"
+      ],
+      "fill_sound": "minecraft:item.bucket.fill_lava",
+      "empty_sound": "minecraft:item.bucket.empty_lava",
+      "empty": "caverns_and_chasms:golden_bucket",
+      "capacity": "BUCKET"
+    },
+    {
+      "filled": [
+        "windswept:wooden_lava_bucket"
+      ],
+      "fill_sound": "minecraft:item.bucket.fill_lava",
+      "empty_sound": "minecraft:item.bucket.empty_lava",
+      "empty": "windswept:wooden_bucket",
+      "capacity": "BUCKET"
+    },
+    {
+      "filled": [
+        "alexsmobs:lava_bottle"
+      ],
+      "fill_sound": "minecraft:item.bucket.fill_lava",
+      "empty_sound": "minecraft:item.bucket.empty_lava",
+      "empty": "minecraft:glass_bottle",
+      "capacity": "BOTTLE"
+    }
+  ],
+  "equivalent_fluids": [
+    "minecraft:lava"
+  ],
+  "flowing_texture": "minecraft:block/lava_flow",
+  "luminosity": 15,
+  "still_texture": "minecraft:block/lava_still",
+  "translation_key": "block.minecraft.lava",
+  "tint_method": "no_tint"
+}

@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:death_tracker.flavor"
+  },
+  "functions": [
+    "visual",
+    "other_effects"
+  ]
+}

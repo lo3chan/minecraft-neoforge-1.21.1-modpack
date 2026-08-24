@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "born_in_chaos_v1:custom/shellmace",
+    "textures": {
+      "0": "born_in_chaos_v1:block/shellmace"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/shell_mace"
+      },
+      "gui_light": "front"
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/shell_mace"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/shell_mace"
+      }
+    }
+  }
+}

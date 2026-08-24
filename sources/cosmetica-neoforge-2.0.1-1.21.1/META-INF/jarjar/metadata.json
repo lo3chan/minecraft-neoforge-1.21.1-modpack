@@ -1,0 +1,26 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "cc.cosmetica",
+        "artifact": "cosmetica-core-neoforge"
+      },
+      "version": {
+        "range": "[2.1.6-1.21.1,)",
+        "artifactVersion": "2.1.6-1.21.1"
+      },
+      "path": "META-INF/jars/cosmetica-core-neoforge-2.1.6-1.21.1.jar"
+    },
+    {
+      "identifier": {
+        "group": "cc.cosmetica",
+        "artifact": "kupe-neoforge"
+      },
+      "version": {
+        "range": "[0.26.7-1.21.1,)",
+        "artifactVersion": "0.26.7-1.21.1"
+      },
+      "path": "META-INF/jars/kupe-neoforge-0.26.7-1.21.1.jar"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+package mezz.jei.neoforge.platform;
+
+import com.mojang.blaze3d.platform.NativeImage;
+import com.mojang.datafixers.util.Either;
+import java.util.List;
+import java.util.Optional;
+import mezz.jei.common.platform.IPlatformRenderHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.block.BlockModelShaper;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.client.renderer.texture.SpriteContents;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.metadata.gui.GuiSpriteScaling.NineSlice;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions.FontContext;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.common.Tags;
+import org.jetbrains.annotations.Nullable;
+
+public class RenderHelper implements IPlatformRenderHelper {
+   @Override
+   public Font getFontRenderer(Minecraft minecraft, ItemStack itemStack) {
+      IClientItemExtensions renderProperties = IClientItemExtensions.of(itemStack);
+      Font fontRenderer = renderProperties.getFont(itemStack, FontContext.TOOLTIP);
+      return fontRenderer != null ? fontRenderer : minecraft.font;
+   }
+
+   @Override
+   public boolean shouldRender(MobEffectInstance potionEffect) {
+      IClientMobEffectExtensions effectRenderer = IClientMobEffectExtensions.of(potionEffect);
+      return effectRenderer.isVisibleInInventory(potionEffect);
+   }
+
+   @Override
+   public TextureAtlasSprite getParticleIcon(BakedModel bakedModel) {
+      return bakedModel.getParticleIcon(ModelData.EMPTY);
+   }
+
+   @Override
+   public ItemColors getItemColors() {
+      return Minecraft.getInstance().getItemColors();
+   }
+
+   @Override
+   public Optional<NativeImage> getMainImage(TextureAtlasSprite sprite) {
+      SpriteContents contents = sprite.contents();
+      NativeImage[] frames = contents.byMipLevel;
+      if (frames.length == 0) {
+         return Optional.empty();
+      } else {
+         NativeImage frame = frames[0];
+         return Optional.ofNullable(frame);
+      }
+   }
+
+   @Override
+   public void renderTooltip(GuiGraphics guiGraphics, List<Either<FormattedText, TooltipComponent>> elements, int x, int y, Font font, ItemStack stack) {
+      guiGraphics.renderComponentTooltipFromElements(font, elements, x, y, stack);
+   }
+
+   @Override
+   public Component getName(TagKey<?> tagKey) {
+      String tagTranslationKey = Tags.getTagTranslationKey(tagKey);
+      return Component.translatableWithFallback(tagTranslationKey, "#" + tagKey.location());
+   }
+
+   @Override
+   public BakedModel createLimitedQuadItemModel(BakedModel bakedModel) {
+      return NeoForgeLimitedQuadItemModel.wrap(bakedModel);
+   }
+
+   @Nullable
+   @Override
+   public TextureAtlasSprite getTextureAtlasSprite(BlockState blockState) {
+      Minecraft minecraft = Minecraft.getInstance();
+      BlockRenderDispatcher blockRendererDispatcher = minecraft.getBlockRenderer();
+      BlockModelShaper blockModelShapes = blockRendererDispatcher.getBlockModelShaper();
+      BakedModel blockModel = blockModelShapes.getBlockModel(blockState);
+      TextureAtlasSprite textureAtlasSprite = this.getParticleIcon(blockModel);
+      return textureAtlasSprite.atlasLocation().equals(MissingTextureAtlasSprite.getLocation()) ? null : textureAtlasSprite;
+   }
+
+   @Override
+   public void blitSprite(
+      GuiGraphics guiGraphics,
+      TextureAtlasSprite sprite,
+      int textureWidth,
+      int textureHeight,
+      int uPosition,
+      int vPosition,
+      int x,
+      int y,
+      int uWidth,
+      int vHeight
+   ) {
+      guiGraphics.blitSprite(sprite, textureWidth, textureHeight, uPosition, vPosition, x, y, 0, uWidth, vHeight);
+   }
+
+   @Override
+   public void blitNineSlicedSprite(GuiGraphics guiGraphics, TextureAtlasSprite sprite, NineSlice scaling, int xOffset, int yOffset, int width, int height) {
+      guiGraphics.blitNineSlicedSprite(sprite, scaling, xOffset, yOffset, 0, width, height);
+   }
+}

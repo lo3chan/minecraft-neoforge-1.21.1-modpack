@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "born_in_chaos_v1:infected_deepslate_diamond_ore",
+    "born_in_chaos_v1:dark_metal_deposit",
+    "born_in_chaos_v1:black_argillite_wall_n",
+    "born_in_chaos_v1:black_argillite_slab_n",
+    "born_in_chaos_v1:black_argillite_stairs_n",
+    "born_in_chaos_v1:black_argillite_column_slab_n",
+    "born_in_chaos_v1:black_argillite_column_n",
+    "born_in_chaos_v1:carved_black_argillite_n",
+    "born_in_chaos_v1:stained_black_argillite_brick_n",
+    "born_in_chaos_v1:mossy_black_argillite_brick_n",
+    "born_in_chaos_v1:black_argillite_brick_wall_n",
+    "born_in_chaos_v1:c_black_argillite_brick_n",
+    "born_in_chaos_v1:black_argillite_brick_slab_n",
+    "born_in_chaos_v1:black_argillite_brick_stairs_n",
+    "born_in_chaos_v1:fired_black_argillite_n",
+    "born_in_chaos_v1:black_argillite_brick_n",
+    "born_in_chaos_v1:black_argillite_n",
+    "born_in_chaos_v1:infected_diamond_ore"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "born_in_chaos_v1:block/hound_trap"
+    },
+    "facing=east": {
+      "model": "born_in_chaos_v1:block/hound_trap",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "born_in_chaos_v1:block/hound_trap",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "born_in_chaos_v1:block/hound_trap",
+      "y": 270
+    }
+  }
+}

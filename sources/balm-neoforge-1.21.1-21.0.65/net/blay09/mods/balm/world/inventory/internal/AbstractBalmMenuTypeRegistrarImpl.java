@@ -1,0 +1,43 @@
+package net.blay09.mods.balm.world.inventory.internal;
+
+import net.blay09.mods.balm.api.menu.BalmMenuFactory;
+import net.blay09.mods.balm.core.BalmRegistrar;
+import net.blay09.mods.balm.world.inventory.BalmMenuTypeRegistrar;
+import net.blay09.mods.balm.world.inventory.BalmMenuTypeRegistration;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+
+public abstract class AbstractBalmMenuTypeRegistrarImpl implements BalmMenuTypeRegistrar {
+   private final BalmRegistrar registrar;
+   private final String namespace;
+
+   protected AbstractBalmMenuTypeRegistrarImpl(BalmRegistrar registrar, String namespace) {
+      this.registrar = registrar;
+      this.namespace = namespace;
+   }
+
+   @Override
+   public <TMenu extends AbstractContainerMenu, TPayload> BalmMenuTypeRegistration<TMenu> register(String name, BalmMenuFactory<TMenu, TPayload> factory) {
+      ResourceLocation identifier = ResourceLocation.fromNamespaceAndPath(this.namespace, name);
+      ResourceKey<MenuType<?>> resourceKey = ResourceKey.create(Registries.MENU, identifier);
+      Holder<MenuType<?>> holder = this.registrar.register(resourceKey, id -> this.createMenuType(factory));
+      return new AbstractBalmMenuTypeRegistrarImpl.BalmMenuTypeRegistrationImpl<>(holder);
+   }
+
+   private static class BalmMenuTypeRegistrationImpl<T extends AbstractContainerMenu> implements BalmMenuTypeRegistration<T> {
+      private final Holder<MenuType<T>> holder;
+
+      private BalmMenuTypeRegistrationImpl(Holder<?> holder) {
+         this.holder = (Holder<MenuType<T>>)holder;
+      }
+
+      @Override
+      public Holder<MenuType<T>> asHolder() {
+         return this.holder;
+      }
+   }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "undead_revamp2:custom/windcaller",
+  "textures": {
+    "0": "undead_revamp2:block/windwhipper_1",
+    "1": "undead_revamp2:block/windwhipper_2",
+    "particle": "undead_revamp2:item/windwhipper_1_item"
+  }
+}

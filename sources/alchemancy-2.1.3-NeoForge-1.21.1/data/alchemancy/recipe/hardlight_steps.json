@@ -1,0 +1,24 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:light_seeking",
+    "alchemancy:voidborn",
+    "alchemancy:antigrav",
+    "alchemancy:binding"
+  ],
+
+  "infusables": [
+    {
+      "item": "alchemancy:glowing_orb"
+    }
+  ],
+  "catalyst": {
+    "item": "alchemancy:tidewalker_treads"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:hardlight_steps"
+  }
+}

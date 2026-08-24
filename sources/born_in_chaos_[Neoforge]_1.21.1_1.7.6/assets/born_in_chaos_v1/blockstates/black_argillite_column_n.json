@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "born_in_chaos_v1:block/black_argillite_column_n",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "born_in_chaos_v1:block/black_argillite_column_n"
+    },
+    "axis=z": {
+      "model": "born_in_chaos_v1:block/black_argillite_column_n",
+      "x": 90
+    }
+  }
+}

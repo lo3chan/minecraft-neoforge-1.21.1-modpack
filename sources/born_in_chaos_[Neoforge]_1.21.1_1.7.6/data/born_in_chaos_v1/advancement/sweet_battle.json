@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:sweet_sword"
+    },
+    "title": {
+      "translate": "advancements.sweet_battle.title"
+    },
+    "description": {
+      "translate": "advancements.sweet_battle.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sweet_battle_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 15
+  },
+  "parent": "born_in_chaos_v1:pumpkin_sir"
+}

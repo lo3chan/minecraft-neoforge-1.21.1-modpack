@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = ""
+license = "MPL 2.0"
+
+[[mods]]
+modId = "dataanchor"
+version = "2.0.0.16"
+displayName = "Data Anchor"
+authors = "Corgi Taco"
+description = '''
+Simple mod with helpful data attaching and networking utilities including attaching data to entities, chunks, players, and worlds with low boilerplate code. Its own system built from the ground up for multiloader support.
+'''
+#logoFile = ""
+
+[[dependencies.dataanchor]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.dataanchor]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "dataanchor.mixins.json"
+[[mixins]]
+config = "dataanchor-common.mixins.json"

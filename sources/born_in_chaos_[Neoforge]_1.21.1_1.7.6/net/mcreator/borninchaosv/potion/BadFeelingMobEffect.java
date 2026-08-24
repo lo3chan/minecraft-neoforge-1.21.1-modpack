@@ -1,0 +1,55 @@
+package net.mcreator.borninchaosv.potion;
+
+import java.util.Set;
+import net.mcreator.borninchaosv.init.BornInChaosV1ModMobEffects;
+import net.mcreator.borninchaosv.procedures.BadFeelingactivationProcedure;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber.Bus;
+import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.common.EffectCure;
+
+@EventBusSubscriber(
+   bus = Bus.MOD
+)
+public class BadFeelingMobEffect extends MobEffect {
+   public BadFeelingMobEffect() {
+      super(MobEffectCategory.HARMFUL, -8382954);
+   }
+
+   public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
+   }
+
+   public void onEffectStarted(LivingEntity entity, int amplifier) {
+      BadFeelingactivationProcedure.execute(entity.level(), entity.getX(), entity.getY(), entity.getZ(), entity);
+   }
+
+   @SubscribeEvent
+   public static void registerMobEffectExtensions(RegisterClientExtensionsEvent event) {
+      event.registerMobEffect(
+         new IClientMobEffectExtensions() {
+            public boolean isVisibleInInventory(MobEffectInstance effect) {
+               return false;
+            }
+
+            public boolean renderInventoryText(
+               MobEffectInstance instance, EffectRenderingInventoryScreen<?> screen, GuiGraphics guiGraphics, int x, int y, int blitOffset
+            ) {
+               return false;
+            }
+
+            public boolean isVisibleInGui(MobEffectInstance effect) {
+               return false;
+            }
+         },
+         new MobEffect[]{(MobEffect)BornInChaosV1ModMobEffects.BAD_FEELING.get()}
+      );
+   }
+}

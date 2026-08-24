@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "born_in_chaos_v1:custom/soulsaber",
+    "textures": {
+      "0": "born_in_chaos_v1:block/soulsaber"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/soul_saber"
+      },
+      "gui_light": "front"
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/soul_saber"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/soul_saber"
+      }
+    }
+  }
+}

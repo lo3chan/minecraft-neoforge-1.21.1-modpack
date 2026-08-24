@@ -1,0 +1,22 @@
+{
+  "type": "enhancedcelestials2core:text_components",
+  "settings": {
+    "components": {
+      "end_notification": {
+        "type": "CHAT",
+        "component": {
+          "key": "enhancedcelestials2defaultlunarevents.notification.blue_moon.set"
+        }
+      },
+      "start_notification": {
+        "type": "CHAT",
+        "component": {
+          "key": "enhancedcelestials2defaultlunarevents.notification.blue_moon.rise",
+          "style": {
+            "color": "aqua"
+          }
+        }
+      }
+    }
+  }
+}

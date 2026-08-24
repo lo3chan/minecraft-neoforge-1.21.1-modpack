@@ -1,0 +1,50 @@
+package dev.isxander.yacl3.gui.image.impl;
+
+import dev.isxander.yacl3.debug.DebugProperties;
+import dev.isxander.yacl3.gui.image.ImageRenderer;
+import dev.isxander.yacl3.gui.image.ImageRendererFactory;
+import dev.isxander.yacl3.gui.utils.GuiUtils;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.resources.ResourceLocation;
+
+public class ResourceTextureImage implements ImageRenderer {
+   private final ResourceLocation location;
+   private final int width;
+   private final int height;
+   private final int textureWidth;
+   private final int textureHeight;
+   private final float u;
+   private final float v;
+
+   public ResourceTextureImage(ResourceLocation location, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+      this.location = location;
+      this.width = width;
+      this.height = height;
+      this.textureWidth = textureWidth;
+      this.textureHeight = textureHeight;
+      this.u = u;
+      this.v = v;
+   }
+
+   @Override
+   public int render(GuiGraphics graphics, int x, int y, int renderWidth, float tickDelta) {
+      float ratio = (float)renderWidth / this.width;
+      int targetHeight = (int)(this.height * ratio);
+      GuiUtils.pushPose(graphics);
+      GuiUtils.translate2D(graphics, x, y);
+      GuiUtils.scale2D(graphics, ratio, ratio);
+      GuiUtils.blitGuiTex(
+         graphics, this.location, 0, 0, this.u, this.v, this.width, this.height, this.textureWidth, this.textureHeight, DebugProperties.IMAGE_FILTERING
+      );
+      GuiUtils.popPose(graphics);
+      return targetHeight;
+   }
+
+   @Override
+   public void close() {
+   }
+
+   public static ImageRendererFactory createFactory(ResourceLocation location, float u, float v, int width, int height, int textureWidth, int textureHeight) {
+      return () -> () -> new ResourceTextureImage(location, u, v, width, height, textureWidth, textureHeight);
+   }
+}

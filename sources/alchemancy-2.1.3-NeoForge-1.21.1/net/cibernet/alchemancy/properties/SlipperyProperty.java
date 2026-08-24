@@ -1,0 +1,74 @@
+package net.cibernet.alchemancy.properties;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.EntityInteractSpecific;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickItem;
+import org.jetbrains.annotations.Nullable;
+
+public class SlipperyProperty extends Property {
+   @Override
+   public void onAttack(@Nullable Entity user, ItemStack weapon, DamageSource damageSource, LivingEntity target) {
+      if (user instanceof Player player) {
+         player.drop(weapon.copy(), true);
+         weapon.setCount(0);
+      } else if (user instanceof LivingEntity entity) {
+         HollowProperty.nonPlayerDrop(user, weapon.copy(), false, true);
+         weapon.setCount(0);
+      }
+   }
+
+   @Override
+   public void onRightClickItem(RightClickItem event) {
+      event.getEntity().drop(event.getItemStack(), true);
+      event.getEntity().setItemInHand(event.getHand(), ItemStack.EMPTY);
+      event.setCancellationResult(InteractionResult.FAIL);
+      event.setCanceled(true);
+   }
+
+   @Override
+   public void onRightClickEntity(EntityInteractSpecific event) {
+      event.getEntity().drop(event.getItemStack(), true);
+      event.getEntity().setItemInHand(event.getHand(), ItemStack.EMPTY);
+   }
+
+   @Override
+   public void onFall(LivingEntity entity, ItemStack stack, EquipmentSlot slot, LivingFallEvent event) {
+      if (slot == EquipmentSlot.FEET) {
+         BlockState state = entity.getBlockStateOn();
+         if (state.getBlock() instanceof StairBlock) {
+            Vec3i dir = ((Direction)state.getValue(StairBlock.FACING)).getOpposite().getNormal();
+            Vec3 delta = entity.getDeltaMovement();
+            entity.setDeltaMovement(delta.add(new Vec3(dir.getX(), dir.getY(), dir.getZ()).scale(0.699999988079071)));
+         }
+      }
+   }
+
+   @Override
+   public float modifyStepOnFriction(Entity user, ItemStack stack, float originalResult, float result) {
+      return Math.min(result + 0.38F, Math.max(result, 0.999998F));
+   }
+
+   @Override
+   public int getColor(ItemStack stack) {
+      return 12974578;
+   }
+
+   @Override
+   public Component getDisplayText(ItemStack stack) {
+      return super.getDisplayText(stack).copy().withStyle(ChatFormatting.ITALIC);
+   }
+}

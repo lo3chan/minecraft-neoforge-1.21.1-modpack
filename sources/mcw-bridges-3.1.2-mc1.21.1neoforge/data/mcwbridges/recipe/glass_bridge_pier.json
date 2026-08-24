@@ -1,0 +1,16 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "WFW" ],
+  "key" : {
+    "W" : {
+      "item" : "minecraft:glass"
+    },
+    "F" : {
+      "item" : "minecraft:glass_pane"
+    }
+  },
+  "result" : {
+    "count" : 3,
+    "id" : "mcwbridges:glass_bridge_pier"
+  }
+}

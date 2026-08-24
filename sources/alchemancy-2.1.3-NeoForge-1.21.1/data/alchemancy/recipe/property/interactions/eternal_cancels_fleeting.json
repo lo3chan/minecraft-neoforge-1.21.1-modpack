@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:fleeting",
+    "alchemancy:eternal"
+  ],
+
+  "result": [
+    "alchemancy:eternal"
+  ]
+}

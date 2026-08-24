@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "table",
+  "pattern" : [ "A", "B" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwfurnitures:jungle_coffee_table"
+    },
+    "B" : {
+      "item" : "minecraft:jungle_fence"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:jungle_table"
+  }
+}

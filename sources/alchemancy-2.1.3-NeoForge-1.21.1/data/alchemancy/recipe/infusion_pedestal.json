@@ -1,0 +1,12 @@
+{
+  "type": "alchemancy:item_transmutation",
+
+  "catalyst": {
+    "item": "alchemancy:alchemancy_forge"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:infusion_pedestal"
+  }
+}

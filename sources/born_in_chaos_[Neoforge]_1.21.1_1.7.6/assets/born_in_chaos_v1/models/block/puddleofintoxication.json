@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/puddleofintoxication",
+  "textures": {
+    "all": "born_in_chaos_v1:block/puddleofintoxication",
+    "particle": "born_in_chaos_v1:block/puddleofintoxication",
+    "0": "born_in_chaos_v1:block/puddleofintoxication"
+  },
+  "render_type": "translucent"
+}

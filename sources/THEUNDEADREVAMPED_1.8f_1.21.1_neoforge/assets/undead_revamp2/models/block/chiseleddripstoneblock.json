@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/skeletile",
+    "up": "undead_revamp2:block/skeletile",
+    "north": "undead_revamp2:block/skeletile",
+    "east": "undead_revamp2:block/skeletile",
+    "south": "undead_revamp2:block/skeletile",
+    "west": "undead_revamp2:block/skeletile",
+    "particle": "undead_revamp2:block/skeletile"
+  },
+  "render_type": "solid"
+}

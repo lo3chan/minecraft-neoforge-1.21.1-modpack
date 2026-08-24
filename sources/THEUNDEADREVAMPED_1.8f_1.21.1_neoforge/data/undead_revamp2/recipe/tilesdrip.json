@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bcb",
+    "cbc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:basalt"
+    },
+    "b": {
+      "item": "minecraft:dripstone_block"
+    },
+    "c": {
+      "item": "minecraft:smooth_basalt"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:chiseleddripstoneblock",
+    "count": 6
+  }
+}

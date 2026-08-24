@@ -1,0 +1,64 @@
+package io.github.razordevs.deep_aether.mixin.entity;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import io.github.razordevs.deep_aether.networking.attachment.DAAttachments;
+import io.github.razordevs.deep_aether.networking.attachment.DAPlayerAttachment;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
+import net.minecraft.util.FastColor.ARGB32;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.neoforge.attachment.AttachmentType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin({LivingEntityRenderer.class})
+public abstract class LivingEntityRendererMixin<T extends LivingEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements RenderLayerParent<T, M> {
+   protected LivingEntityRendererMixin(Context pContext) {
+      super(pContext);
+   }
+
+   @WrapOperation(
+      method = {"render(Lnet/minecraft/world/entity/LivingEntity;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/client/model/EntityModel;renderToBuffer(Lcom/mojang/blaze3d/vertex/PoseStack;Lcom/mojang/blaze3d/vertex/VertexConsumer;III)V"
+      )}
+   )
+   private void renderToBuffer(
+      EntityModel<T> instance,
+      PoseStack poseStack,
+      VertexConsumer vertexConsumer,
+      int pPackedLight,
+      int pPackedOverlay,
+      int color,
+      Operation<Void> original,
+      @Local(argsOnly = true) T pEntity,
+      @Local(argsOnly = true) MultiBufferSource pBuffer
+   ) {
+      if (!pEntity.isInvisible() && pEntity.hasData(DAAttachments.PLAYER)) {
+         DAPlayerAttachment attachment = (DAPlayerAttachment)pEntity.getData((AttachmentType)DAAttachments.PLAYER.get());
+         if (attachment.hasSkyjadeSet() && attachment.isSkyjadeAbilityActivated()) {
+            instance.renderToBuffer(
+               poseStack,
+               pBuffer.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(pEntity))),
+               pPackedLight,
+               pPackedOverlay,
+               ARGB32.color(60, color)
+            );
+         } else {
+            original.call(new Object[]{instance, poseStack, vertexConsumer, pPackedLight, pPackedOverlay, color});
+         }
+      } else {
+         original.call(new Object[]{instance, poseStack, vertexConsumer, pPackedLight, pPackedOverlay, color});
+      }
+   }
+}

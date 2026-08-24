@@ -1,0 +1,28 @@
+{
+  "feature": "undead_revamp2:empthpillar_1",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 25
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": -40
+        },
+        "max_inclusive": {
+          "absolute": 20
+        }
+      }
+    }
+  ]
+}

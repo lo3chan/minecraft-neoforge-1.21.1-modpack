@@ -1,0 +1,115 @@
+package net.mehvahdjukaar.moonlight.core.mixins;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.mojang.datafixers.DataFixer;
+import java.util.concurrent.Executor;
+import java.util.function.Supplier;
+import net.mehvahdjukaar.moonlight.api.misc.fake_level.FakeServerLevel;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.progress.ChunkProgressListener;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.entity.ChunkStatusUpdateListener;
+import net.minecraft.world.level.entity.EntityPersistentStorage;
+import net.minecraft.world.level.entity.LevelCallback;
+import net.minecraft.world.level.entity.PersistentEntitySectionManager;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
+import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.level.storage.WritableLevelData;
+import net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin({ServerLevel.class})
+public abstract class ServerLevelMixin extends Level {
+   protected ServerLevelMixin(
+      WritableLevelData levelData,
+      ResourceKey<Level> dimension,
+      RegistryAccess registryAccess,
+      Holder<DimensionType> dimensionTypeRegistration,
+      Supplier<ProfilerFiller> profiler,
+      boolean isClientSide,
+      boolean isDebug,
+      long biomeZoomSeed,
+      int maxChainedNeighborUpdates
+   ) {
+      super(levelData, dimension, registryAccess, dimensionTypeRegistration, profiler, isClientSide, isDebug, biomeZoomSeed, maxChainedNeighborUpdates);
+   }
+
+   @WrapOperation(
+      method = {"<init>"},
+      at = {@At(
+         value = "NEW",
+         target = "(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructureTemplateManager;Ljava/util/concurrent/Executor;Lnet/minecraft/world/level/chunk/ChunkGenerator;IIZLnet/minecraft/server/level/progress/ChunkProgressListener;Lnet/minecraft/world/level/entity/ChunkStatusUpdateListener;Ljava/util/function/Supplier;)Lnet/minecraft/server/level/ServerChunkCache;"
+      )}
+   )
+   private ServerChunkCache ml$assignFakeChunkCache(
+      ServerLevel level,
+      LevelStorageAccess levelStorageAccess,
+      DataFixer fixerUpper,
+      StructureTemplateManager structureManager,
+      Executor dispatcher,
+      ChunkGenerator generator,
+      int viewDistance,
+      int simulationDistance,
+      boolean sync,
+      ChunkProgressListener progressListener,
+      ChunkStatusUpdateListener chunkStatusListener,
+      Supplier<DimensionDataStorage> dataStorage,
+      Operation<ServerChunkCache> operation
+   ) {
+      return this instanceof FakeServerLevel
+         ? FakeServerLevel.createDummyChunkCache(
+            level,
+            levelStorageAccess,
+            fixerUpper,
+            structureManager,
+            dispatcher,
+            generator,
+            viewDistance,
+            simulationDistance,
+            sync,
+            progressListener,
+            chunkStatusListener,
+            dataStorage
+         )
+         : (ServerChunkCache)operation.call(
+            new Object[]{
+               level,
+               levelStorageAccess,
+               fixerUpper,
+               structureManager,
+               dispatcher,
+               generator,
+               viewDistance,
+               simulationDistance,
+               sync,
+               progressListener,
+               chunkStatusListener,
+               dataStorage
+            }
+         );
+   }
+
+   @WrapOperation(
+      method = {"<init>"},
+      at = {@At(
+         value = "NEW",
+         target = "(Ljava/lang/Class;Lnet/minecraft/world/level/entity/LevelCallback;Lnet/minecraft/world/level/entity/EntityPersistentStorage;)Lnet/minecraft/world/level/entity/PersistentEntitySectionManager;"
+      )}
+   )
+   private PersistentEntitySectionManager<?> ml$assignFakePersistentEntitySectionManager(
+      Class entityClass, LevelCallback callbacks, EntityPersistentStorage permanentStorage, Operation<PersistentEntitySectionManager> original
+   ) {
+      return this instanceof FakeServerLevel
+         ? FakeServerLevel.createDummyEntityManager(entityClass, callbacks, permanentStorage)
+         : (PersistentEntitySectionManager)original.call(new Object[]{entityClass, callbacks, permanentStorage});
+   }
+}

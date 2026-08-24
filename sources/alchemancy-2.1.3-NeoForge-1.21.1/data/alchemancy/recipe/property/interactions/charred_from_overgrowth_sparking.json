@@ -1,0 +1,10 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:overgrowth",
+    "alchemancy:sparking"
+  ],
+
+  "result": "alchemancy:charred"
+}

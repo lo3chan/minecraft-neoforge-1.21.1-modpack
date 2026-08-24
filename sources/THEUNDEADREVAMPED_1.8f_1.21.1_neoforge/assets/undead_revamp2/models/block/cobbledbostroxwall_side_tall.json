@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_wall_side_tall",
+  "textures": {
+    "wall": "undead_revamp2:block/cobblestone_strox",
+    "particle": "undead_revamp2:block/cobblestone_strox"
+  },
+  "render_type": "solid"
+}

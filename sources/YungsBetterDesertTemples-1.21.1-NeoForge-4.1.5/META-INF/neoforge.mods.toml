@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Better-Desert-Temples/issues"
+
+[[mods]]
+    modId="betterdeserttemples"
+    version="1.21.1-NeoForge-4.1.5"
+    displayName="YUNG's Better Desert Temples"
+    credits="Thanks so much to all my patrons!"
+	authors="YUNGNICKYOUNG, Tera"
+    description="A complete redesign of Minecraft's desert temples!"
+	logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-better-desert-temples-neoforge"
+
+[modproperties.betterdeserttemples]
+    catalogueImageIcon="catalogue_icon.png"
+    catalogueBackground="catalogue_background.png"
+
+[[dependencies.betterdeserttemples]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+
+[[dependencies.betterdeserttemples]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.0,)"
+
+[[dependencies.betterdeserttemples]]
+    modId="yungsapi"
+    versionRange="[1.21.1-NeoForge-5.1.4,)"
+    type="required"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config = "betterdeserttemples.mixins.json"

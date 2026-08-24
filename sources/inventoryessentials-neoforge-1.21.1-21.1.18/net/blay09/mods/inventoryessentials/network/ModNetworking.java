@@ -1,0 +1,34 @@
+package net.blay09.mods.inventoryessentials.network;
+
+import net.blay09.mods.balm.api.network.BalmNetworking;
+
+public class ModNetworking {
+   public static void initialize(BalmNetworking networking) {
+      networking.defineNetworkVersion("inventoryessentials", "2");
+      networking.allowClientAndServerOnly("inventoryessentials");
+      networking.registerClientboundPacket(HelloMessage.TYPE, HelloMessage.class, HelloMessage::encode, HelloMessage::decode, HelloMessage::handle);
+      networking.registerServerboundPacket(
+         SingleTransferMessage.TYPE, SingleTransferMessage.class, SingleTransferMessage::encode, SingleTransferMessage::decode, SingleTransferMessage::handle
+      );
+      networking.registerServerboundPacket(
+         BulkTransferAllMessage.TYPE,
+         BulkTransferAllMessage.class,
+         BulkTransferAllMessage::encode,
+         BulkTransferAllMessage::decode,
+         BulkTransferAllMessage::handle
+      );
+      networking.registerServerboundPacket(
+         BulkTransferSingleMessage.TYPE,
+         BulkTransferSingleMessage.class,
+         BulkTransferSingleMessage::encode,
+         BulkTransferSingleMessage::decode,
+         BulkTransferSingleMessage::handle
+      );
+      networking.registerServerboundPacket(
+         DumpToContainerMessage.TYPE, DumpToContainerMessage.class, DumpToContainerMessage.STREAM_CODEC, DumpToContainerMessage::handle
+      );
+      networking.registerServerboundPacket(
+         RestockInventoryMessage.TYPE, RestockInventoryMessage.class, RestockInventoryMessage.STREAM_CODEC, RestockInventoryMessage::handle
+      );
+   }
+}

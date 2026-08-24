@@ -1,0 +1,44 @@
+package com.iafenvoy.origins.data.action.builtin.entity;
+
+import com.iafenvoy.origins.data.action.BiEntityAction;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import org.jetbrains.annotations.NotNull;
+
+public record SpawnEntityAction(EntityType<?> entityType, Optional<CompoundTag> tag, EntityAction entityAction, BiEntityAction biEntityAction)
+   implements EntityAction {
+   public static final MapCodec<SpawnEntityAction> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            BuiltInRegistries.ENTITY_TYPE.byNameCodec().fieldOf("entity_type").forGetter(SpawnEntityAction::entityType),
+            CompoundTag.CODEC.optionalFieldOf("tag").forGetter(SpawnEntityAction::tag),
+            EntityAction.optionalCodec("entity_action").forGetter(SpawnEntityAction::entityAction),
+            BiEntityAction.optionalCodec("bientity_action").forGetter(SpawnEntityAction::biEntityAction)
+         )
+         .apply(i, SpawnEntityAction::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends EntityAction> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public void execute(@NotNull Entity source) {
+      if (source.level() instanceof ServerLevel serverLevel) {
+         this.entityType.spawn(serverLevel, c -> {
+            this.tag.ifPresent(c::load);
+            this.entityAction.execute(c);
+            this.biEntityAction.execute(source, c);
+         }, source.blockPosition(), MobSpawnType.MOB_SUMMONED, false, false);
+      }
+   }
+}

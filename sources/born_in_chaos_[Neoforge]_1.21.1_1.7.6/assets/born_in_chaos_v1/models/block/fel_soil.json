@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/felsoil",
+    "up": "born_in_chaos_v1:block/felsoil",
+    "north": "born_in_chaos_v1:block/felsoil",
+    "east": "born_in_chaos_v1:block/felsoil",
+    "south": "born_in_chaos_v1:block/felsoil",
+    "west": "born_in_chaos_v1:block/felsoil",
+    "particle": "born_in_chaos_v1:block/felsoil"
+  },
+  "render_type": "solid"
+}

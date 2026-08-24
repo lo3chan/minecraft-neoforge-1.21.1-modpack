@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/cobblestone_strox",
+    "up": "undead_revamp2:block/cobblestone_strox",
+    "north": "undead_revamp2:block/cobblestone_strox",
+    "east": "undead_revamp2:block/cobblestone_strox",
+    "south": "undead_revamp2:block/cobblestone_strox",
+    "west": "undead_revamp2:block/cobblestone_strox",
+    "particle": "undead_revamp2:block/cobblestone_strox"
+  },
+  "render_type": "solid"
+}

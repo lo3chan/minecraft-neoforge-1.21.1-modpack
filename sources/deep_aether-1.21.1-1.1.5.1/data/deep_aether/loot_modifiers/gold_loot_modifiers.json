@@ -1,0 +1,55 @@
+{
+  "type": "deep_aether:aether_dungeon_loot",
+  "chanceToSpawn": 0.25,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "aether:chests/dungeon/gold/gold_dungeon_reward"
+    }
+  ],
+  "items": [
+    {
+      "data": {
+        "count": 2,
+        "id": "deep_aether:skyjade"
+      },
+      "weight": 50
+    },
+    {
+      "data": {
+        "count": 5,
+        "id": "deep_aether:skyjade"
+      },
+      "weight": 20
+    },
+    {
+      "data": {
+        "count": 1,
+        "id": "deep_aether:stratus_ingot"
+      },
+      "weight": 10
+    },
+    {
+      "data": {
+        "count": 2,
+        "id": "deep_aether:sterling_aercloud"
+      },
+      "weight": 7
+    },
+    {
+      "data": {
+        "count": 1,
+        "id": "deep_aether:sterling_aercloud"
+      },
+      "weight": 20
+    },
+    {
+      "data": {
+        "count": 1,
+        "id": "deep_aether:music_disc_himininn"
+      },
+      "weight": 40
+    }
+  ],
+  "totalWeight": 100
+}

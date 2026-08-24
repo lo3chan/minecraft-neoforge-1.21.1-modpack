@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Moog's Structure Lib
+Specification-Vendor: FinnDog
+Specification-Version: 3.1.1
+Implementation-Title: neoforge
+Implementation-Version: 3.1.1
+Implementation-Vendor: FinnDog
+Built-On-Minecraft: 1.21.1
+

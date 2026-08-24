@@ -1,0 +1,25 @@
+{
+  "feature": "undead_revamp2:dunzhongsmallgeneratge",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 1500
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "above_bottom": 0
+        },
+        "max_inclusive": {
+          "absolute": -30
+        }
+      }
+    }
+  ]
+}

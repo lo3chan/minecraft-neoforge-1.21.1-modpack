@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:iron_bars"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfences:cathedral_metal_fence"
+  },
+  "group" : "metal_fences"
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "undead_revamp2:devilurchin"
+    },
+    "title": {
+      "translate": "advancements.privatepile.title"
+    },
+    "description": {
+      "translate": "advancements.privatepile.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "privatepile_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 2
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

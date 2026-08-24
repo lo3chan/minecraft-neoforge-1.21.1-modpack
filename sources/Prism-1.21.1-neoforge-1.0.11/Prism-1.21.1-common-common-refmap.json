@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "com/anthonyhilyard/prism/mixin/MinecraftMixin": {
+      "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15405(Ljava/lang/String;)V",
+      "runTick": "Lnet/minecraft/class_310;method_1523(Z)V"
+    },
+    "com/anthonyhilyard/prism/mixin/TextColorMixin": {
+      "<init>(I)V": "Lnet/minecraft/class_5251;<init>(I)V",
+      "<init>(ILjava/lang/String;)V": "Lnet/minecraft/class_5251;<init>(ILjava/lang/String;)V",
+      "parseColor": "Lnet/minecraft/class_5251;method_27719(Ljava/lang/String;)Lcom/mojang/serialization/DataResult;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/anthonyhilyard/prism/mixin/MinecraftMixin": {
+        "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15405(Ljava/lang/String;)V",
+        "runTick": "Lnet/minecraft/class_310;method_1523(Z)V"
+      },
+      "com/anthonyhilyard/prism/mixin/TextColorMixin": {
+        "<init>(I)V": "Lnet/minecraft/class_5251;<init>(I)V",
+        "<init>(ILjava/lang/String;)V": "Lnet/minecraft/class_5251;<init>(ILjava/lang/String;)V",
+        "parseColor": "Lnet/minecraft/class_5251;method_27719(Ljava/lang/String;)Lcom/mojang/serialization/DataResult;"
+      }
+    }
+  }
+}

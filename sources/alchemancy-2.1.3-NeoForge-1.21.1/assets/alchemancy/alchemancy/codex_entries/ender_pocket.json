@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:ender_pocket.flavor"
+  },
+  "functions": [
+    "when_used",
+    "while_rooted"
+  ]
+}

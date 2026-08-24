@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:wayfinding",
+    "alchemancy:echoed",
+    "alchemancy:death_ward"
+  ],
+
+  "result": "alchemancy:death_tracker"
+}

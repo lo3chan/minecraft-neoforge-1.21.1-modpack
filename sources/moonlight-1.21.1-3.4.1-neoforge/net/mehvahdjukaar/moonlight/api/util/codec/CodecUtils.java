@@ -1,0 +1,214 @@
+package net.mehvahdjukaar.moonlight.api.util.codec;
+
+import com.mojang.datafixers.util.Either;
+import com.mojang.datafixers.util.Function3;
+import com.mojang.datafixers.util.Function4;
+import com.mojang.datafixers.util.Function5;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.BaseMapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.netty.buffer.ByteBuf;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.codec.platform.CodecUtilsImpl;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryCodecs;
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.RegistryFixedCodec;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Vector2f;
+
+public class CodecUtils {
+   public static final Codec<Boolean> MOD_LOADED_CODEC = Codec.STRING.xmap(PlatHelper::isModLoaded, b -> "");
+   public static final Codec<AABB> AABB_CODEC = RecordCodecBuilder.create(
+      i -> i.group(Vec3.CODEC.fieldOf("from").forGetter(AABB::getMinPosition), Vec3.CODEC.fieldOf("to").forGetter(AABB::getMaxPosition)).apply(i, AABB::new)
+   );
+   public static final StreamCodec<ByteBuf, Vec3> VEC3_STREAM_CODEC = StreamCodec.composite(
+      ByteBufCodecs.DOUBLE, Vec3::x, ByteBufCodecs.DOUBLE, Vec3::y, ByteBufCodecs.DOUBLE, Vec3::z, Vec3::new
+   );
+   public static final Codec<Vector2f> VEC2F = Codec.FLOAT
+      .listOf()
+      .comapFlatMap(
+         list -> Util.fixedSize(list, 2).map(listx -> new Vector2f((Float)listx.getFirst(), (Float)listx.get(1))),
+         vector3f -> List.of(vector3f.x(), vector3f.y())
+      );
+   public static final Codec<ItemStack> ITEM_OR_STACK = Codec.withAlternative(
+      ItemStack.SINGLE_ITEM_CODEC, BuiltInRegistries.ITEM.byNameCodec(), Item::getDefaultInstance
+   );
+   public static final Codec<List<ItemStack>> ITEMSTACK_OR_ITEMSTACK_LIST = singleOrList(ITEM_OR_STACK);
+   public static final Codec<Supplier<List<ItemStack>>> ITEMSTACK_HOLDER_SET = RegistryCodecs.homogeneousList(Registries.ITEM)
+      .xmap(
+         l -> () -> l.stream().map(Holder::value).map(ItemStack::new).toList(),
+         s -> HolderSet.direct(((List)s.get()).stream().map(ItemStack::getItemHolder).toList())
+      );
+   public static final Codec<Supplier<List<ItemStack>>> ITEMSTACK_OR_LIST_OR_HOLDER_SET = Codec.withAlternative(
+      ITEMSTACK_OR_ITEMSTACK_LIST.xmap(l -> () -> l, Supplier::get), ITEMSTACK_HOLDER_SET
+   );
+
+   public static <A> MapCodec<A> safeOptFieldOf(Codec<A> c, String name, Supplier<A> defaultValue) {
+      return Codec.optionalField(name, c, false)
+         .xmap(o -> o.orElse(defaultValue.get()), a -> Objects.equals(a, defaultValue.get()) ? Optional.empty() : Optional.of(a));
+   }
+
+   public static <T> Codec<T> optionalRegistryCodec(Registry<T> reg, T defaultValue) {
+      return ResourceLocation.CODEC.xmap(rl -> {
+         T value = (T)reg.get(rl);
+         return value == null ? defaultValue : value;
+      }, reg::getKey);
+   }
+
+   public static <T> Codec<T> remapNamespaceCodec(Registry<T> reg, String oldNamespace, String newNamespace) {
+      return ResourceLocation.CODEC.flatXmap(rl -> {
+         T value = (T)reg.get(rl);
+         if (value == null && rl.getNamespace().equals(oldNamespace)) {
+            rl = ResourceLocation.fromNamespaceAndPath(newNamespace, rl.getPath());
+            value = (T)reg.get(rl);
+         }
+
+         if (value == null) {
+            ResourceLocation finalRl = rl;
+            return DataResult.error(() -> "Unknown registry key in " + reg.key() + ": " + finalRl);
+         } else {
+            return DataResult.success(value);
+         }
+      }, t -> DataResult.success(reg.getKey(t)));
+   }
+
+   public static <T> Codec<List<T>> optionalRegistryListCodec(Registry<T> reg) {
+      return ResourceLocation.CODEC.listOf().xmap(l -> l.stream().filter(reg::containsKey).map(reg::get).toList(), a -> a.stream().map(reg::getKey).toList());
+   }
+
+   public static <A> Codec<List<A>> lenientListOrSingleCodec(Codec<A> elementCodec) {
+      return Codec.either(lenientListCodec(elementCodec), elementCodec).xmap(either -> (List)either.map(Function.identity(), List::of), Either::left);
+   }
+
+   public static <A> LenientListCodec<A> lenientListCodec(Codec<A> elementCodec) {
+      return new LenientListCodec<>(elementCodec);
+   }
+
+   public static <E> Codec<HolderSet<E>> lenientHomogeneousList(ResourceKey<? extends Registry<E>> registryKey) {
+      return LenientHolderSetCodec.create(registryKey, RegistryFixedCodec.create(registryKey), false);
+   }
+
+   public static <T extends Enum<T>> StreamCodec<FriendlyByteBuf, T> enumStreamCodec(Class<T> enumClass) {
+      return new EnumStreamCodec<>(enumClass);
+   }
+
+   public static <A, B> LenientUnboundedMapCodec<A, B> lenientUnboundedMap(Codec<A> keyCodec, Codec<B> elementCodec) {
+      return new LenientUnboundedMapCodec<>(keyCodec, elementCodec);
+   }
+
+   public static <A> MapCodec<A> lenientWithLog(Codec<A> elementCodec, String name, A defaultValue) {
+      return LenientCodecWithLog.of(elementCodec, name, defaultValue);
+   }
+
+   public static <A> MapCodec<Optional<A>> lenientWithLog(Codec<A> elementCodec, String name) {
+      return LenientCodecWithLog.of(elementCodec, name);
+   }
+
+   public static <B> MapCodec<Optional<B>> optionalAlias(Codec<B> codec, String primaryName, String alias) {
+      return AlternativeMapCodec.optionalAlias(codec, primaryName, alias);
+   }
+
+   public static <B> MapCodec<B> alias(Codec<B> codec, String primaryName, String alias) {
+      return AlternativeMapCodec.alias(codec, primaryName, alias);
+   }
+
+   public static <A, B> Codec<Either<A, B>> eitherLeft(Codec<A> leftCodec) {
+      return new EitherLeftCodec(leftCodec);
+   }
+
+   public static <A, B extends A, C extends A> Codec<A> bestAlternative(Codec<B> first, Codec<C> second, BiPredicate<B, C> chooseFirst) {
+      return new BestAlternativeCodec<>(first, second, chooseFirst);
+   }
+
+   @SafeVarargs
+   public static <A> Codec<A> alternatives(Codec<? extends A>... codecs) {
+      return new AlternativeCodec<>(codecs);
+   }
+
+   public static <A> Codec<List<A>> singleOrList(Codec<A> elementCodec) {
+      return Codec.withAlternative(elementCodec.listOf(), elementCodec, List::of);
+   }
+
+   public static <A, B> Codec<A> union(Codec<A> codec, Codec<B> otherType, BiFunction<A, B, A> applyFunc) {
+      return new UnionCodec<>(codec, otherType, applyFunc);
+   }
+
+   public static <A, B> Codec<A> postProcess(Codec<A> codec, MapCodec<B> c1, BiFunction<A, B, A> applyFunc) {
+      return PostProcessCodecs.of(codec, c1, applyFunc);
+   }
+
+   public static <A, B, C> Codec<A> postProcess(Codec<A> codec, MapCodec<B> c1, MapCodec<C> c2, Function3<A, B, C, A> f) {
+      return PostProcessCodecs.of(codec, c1, c2, f);
+   }
+
+   public static <A, B, C, D> Codec<A> postProcess(Codec<A> codec, MapCodec<B> c1, MapCodec<C> c2, MapCodec<D> c3, Function4<A, B, C, D, A> f) {
+      return PostProcessCodecs.of(codec, c1, c2, c3, f);
+   }
+
+   public static <A, B, C, D, E> Codec<A> postProcess(
+      Codec<A> codec, MapCodec<B> c1, MapCodec<C> c2, MapCodec<D> c3, MapCodec<E> c4, Function5<A, B, C, D, E, A> f
+   ) {
+      return PostProcessCodecs.of(codec, c1, c2, c3, c4, f);
+   }
+
+   public static <A> Codec<Predicate<A>> predicate(Codec<A> elementCodec) {
+      Codec<List<A>> singleOrList = singleOrList(elementCodec);
+      return singleOrList.xmap(list -> a -> {
+         for (A e : list) {
+            if (e.equals(a)) {
+               return true;
+            }
+         }
+
+         return false;
+      }, predicate -> List.of());
+   }
+
+   static <A, B> StreamCodec<A, B> lazyInitializedStreamCodec(Supplier<StreamCodec<A, B>> delegate) {
+      return StreamCodec.recursive(self -> delegate.get());
+   }
+
+   public static <T> void assertHasRegistry(Provider lookupProvider, ResourceKey<? extends Registry<T>> registryKey) {
+      if (lookupProvider.lookup(registryKey).isEmpty()) {
+         throw new CodecUtils.BrokenCallerException(
+            "Tried to serialize a %s entry with a registry access that has no such registry (was given %s).\nSome mod higher up in this stack trace called us with an empty or partial HolderLookup.Provider,\nsuch as RegistryAccess.EMPTY, instead of the one from the level. That is a bug in THAT mod,\nnot in Moonlight nor in the mod that owns the object being saved."
+               .formatted(registryKey.location(), lookupProvider)
+         );
+      }
+   }
+
+   public static <K, V, C extends BaseMapCodec<K, V> & Codec<Map<K, V>>> C optionalMapCodec(Codec<K> var0, Codec<V> var1) {
+      return CodecUtilsImpl.optionalMapCodec(var0, var1);
+   }
+
+   public static class BrokenCallerException extends RuntimeException {
+      public BrokenCallerException(String message) {
+         super(message);
+      }
+   }
+}

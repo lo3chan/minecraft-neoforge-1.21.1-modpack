@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "born_in_chaos_v1:transformative_flower"
+  },
+  "base": {
+    "item": "born_in_chaos_v1:sweet_sword"
+  },
+  "addition": {
+    "item": "minecraft:carrot"
+  },
+  "result": {
+    "id": "born_in_chaos_v1:carrot_sword"
+  }
+}

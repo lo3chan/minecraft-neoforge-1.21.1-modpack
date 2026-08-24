@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/houndtrapserried",
+  "textures": {
+    "all": "born_in_chaos_v1:block/houndtrap",
+    "particle": "born_in_chaos_v1:block/houndtrap",
+    "0": "born_in_chaos_v1:block/houndtrap"
+  },
+  "render_type": "cutout"
+}

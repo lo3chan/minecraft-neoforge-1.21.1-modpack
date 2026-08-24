@@ -1,0 +1,287 @@
+package net.mehvahdjukaar.moonlight.core.client.config;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.DoubleConsumer;
+import java.util.function.Function;
+import net.mehvahdjukaar.moonlight.api.client.gui.ConfigControl;
+import net.mehvahdjukaar.moonlight.api.client.gui.ConfigEditSession;
+import net.mehvahdjukaar.moonlight.api.client.gui.MoonlightIcons;
+import net.mehvahdjukaar.moonlight.api.client.gui.misc.ConfigGuiColors;
+import net.mehvahdjukaar.moonlight.api.client.gui.misc.RegexHighlighter;
+import net.mehvahdjukaar.moonlight.api.client.gui.screen.ColorPickerScreen;
+import net.mehvahdjukaar.moonlight.api.client.gui.screen.JsonEditScreen;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.BooleanToggleWidget;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.ColorFieldWidget;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.DropdownWidget;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.IconButton;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.NumberFieldWidget;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.PanningEditBox;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.RangeControlWidget;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.RangedSlider;
+import net.mehvahdjukaar.moonlight.api.client.gui.widget.Vec3ControlWidget;
+import net.mehvahdjukaar.moonlight.api.platform.configs.options.ConfigOption;
+import net.mehvahdjukaar.moonlight.api.util.math.Range;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.CycleButton;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.core.Vec3i;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
+
+public final class ConfigControllers {
+   private static final Map<Class<?>, ConfigControl.Provider<?>> PROVIDERS = new HashMap<>();
+
+   public static <O extends ConfigOption<?>> void register(Class<O> type, ConfigControl.Provider<O> provider) {
+      PROVIDERS.put(type, provider);
+   }
+
+   public static ConfigControl<?> create(ConfigOption<?> option, ConfigEditSession session, Runnable onChange) {
+      ConfigControl.Provider provider = PROVIDERS.get(option.getClass());
+      return provider == null ? disabled() : provider.create(option, session, onChange);
+   }
+
+   static ConfigControl<Boolean> featureToggle(ConfigOption.BooleanValue o, ConfigEditSession s, Runnable onChange) {
+      final ResourceLocation icon = o.icon();
+      BooleanToggleWidget.ExtraIcon iconRenderer = icon == null ? null : new BooleanToggleWidget.ExtraIcon() {
+         private final ConfigScreenIcons.Anim anim = new ConfigScreenIcons.Anim();
+
+         @Override
+         public boolean available() {
+            return ConfigScreenIcons.has(icon);
+         }
+
+         @Override
+         public void render(GuiGraphics graphics, int x, int y, int size, boolean hovered, boolean lit) {
+            this.anim.update(hovered && lit);
+            ConfigScreenIcons.renderAnimated(graphics, icon, x, y, this.anim.phase(), lit);
+         }
+      };
+      BooleanToggleWidget w = new BooleanToggleWidget(96, 20, MoonlightIcons.YES, MoonlightIcons.NO, Boolean.TRUE.equals(s.current(o)), val -> {
+         s.put(o, val);
+         onChange.run();
+      }, iconRenderer);
+      return new ConfigControl<>(w, w::set);
+   }
+
+   private static <E extends Enum<E>> ConfigControl<E> enumControl(ConfigOption.EnumValue<E> o, ConfigEditSession s, Runnable onChange) {
+      CycleButton<E> w = CycleButton.builder(x -> Component.literal(x.name()))
+         .withValues(o.options)
+         .withInitialValue(s.current(o))
+         .displayOnlyValue()
+         .create(0, 0, 96, 20, Component.empty(), (btn, val) -> {
+            s.put(o, val);
+            onChange.run();
+         });
+      return new ConfigControl<>(w, w::setValue);
+   }
+
+   private static ConfigControl<Number> slider(double min, double max, double current, boolean integer, Consumer<Double> store, Runnable onChange) {
+      return slider(min, max, current, integer, false, store, onChange);
+   }
+
+   private static ConfigControl<Number> slider(
+      double min, double max, double current, boolean integer, boolean percent, Consumer<Double> store, Runnable onChange
+   ) {
+      RangedSlider slider = new RangedSlider(96, 20, min, max, current, integer, percent, v -> {
+         store.accept(v);
+         onChange.run();
+      });
+      return new ConfigControl<>(slider, n -> slider.setActualValue(n.doubleValue()));
+   }
+
+   private static ConfigControl<Number> numberField(Number initial, double min, double max, boolean integer, DoubleConsumer store) {
+      NumberFieldWidget w = new NumberFieldWidget(96, 20, initial.doubleValue(), min, max, integer, store);
+      return new ConfigControl<>(w, n -> w.setValue(n.doubleValue()));
+   }
+
+   private static ConfigControl<Object> textField(String initial, Function<Object, String> display, ConfigControllers.TextCommit commit) {
+      EditBox box = new PanningEditBox(Minecraft.getInstance().font, 0, 0, 96, 20, Component.empty());
+      box.setMaxLength(32767);
+      box.setValue(initial);
+      box.setResponder(str -> {
+         try {
+            commit.accept(str);
+            box.setTextColor(ConfigGuiColors.TEXT);
+         } catch (Exception var4) {
+            box.setTextColor(ConfigGuiColors.ERROR);
+         }
+      });
+      return new ConfigControl<>(box, v -> box.setValue(display.apply(v)));
+   }
+
+   private static Component listLabel(List<String> list) {
+      return Component.translatable("gui.moonlight.config.list_entries", new Object[]{list.size()});
+   }
+
+   private static ConfigControl<Object> disabled() {
+      Button button = Button.builder(Component.translatable("gui.moonlight.config.edit_manually"), b -> {}).bounds(0, 0, 96, 20).build();
+      button.active = false;
+      return new ConfigControl<>(button, v -> {});
+   }
+
+   static {
+      register(ConfigOption.BooleanValue.class, (o, s, onChange) -> {
+         CycleButton<Boolean> w = CycleButton.onOffBuilder(s.current(o)).displayOnlyValue().create(0, 0, 96, 20, Component.empty(), (btn, val) -> {
+            s.put(o, val);
+            onChange.run();
+         });
+         return new ConfigControl(w, w::setValue);
+      });
+      Class<ConfigOption.EnumValue<?>> enumClass = ConfigOption.EnumValue.class;
+      register(enumClass, (o, s, onChange) -> enumControl(o, s, onChange));
+      register(ConfigOption.StringValue.class, (o, s, onChange) -> textField(s.current(o), String::valueOf, str -> {
+         if (!o.isValid(str)) {
+            throw new IllegalArgumentException();
+         } else {
+            s.put(o, str);
+            onChange.run();
+         }
+      }));
+      register(ConfigOption.RegexValue.class, (o, s, onChange) -> {
+         ConfigControl<Object> control = textField(s.current(o), String::valueOf, str -> {
+            if (!o.isValid(str)) {
+               throw new IllegalArgumentException();
+            } else {
+               s.put(o, str);
+               onChange.run();
+            }
+         });
+         EditBox box = (EditBox)control.widget();
+         box.setFormatter(RegexHighlighter.INSTANCE.formatter(box));
+         return control;
+      });
+      register(ConfigOption.ColorValue.class, (o, s, onChange) -> {
+         ColorFieldWidget w = new ColorFieldWidget(96, 20, s.current(o), o.hasAlpha, c -> {
+            s.put(o, c);
+            onChange.run();
+         }, currentColor -> Minecraft.getInstance().setScreen(new ColorPickerScreen(currentColor, o.hasAlpha, Minecraft.getInstance().screen, picked -> {
+            s.put(o, picked);
+            onChange.run();
+         })));
+         return new ConfigControl<>(w, w::setColor);
+      });
+      register(ConfigOption.IntValue.class, (o, s, onChange) -> numberField(s.current(o), o.min, o.max, true, v -> {
+         s.put(o, (int)Math.round(v));
+         onChange.run();
+      }));
+      register(
+         ConfigOption.IntSliderValue.class,
+         (o, s, onChange) -> slider(o.min, o.max, s.current(o).intValue(), true, v -> s.put(o, (int)Math.round(v)), onChange)
+      );
+      register(ConfigOption.DoubleValue.class, (o, s, onChange) -> numberField(s.current(o), o.min, o.max, false, v -> {
+         s.put(o, v);
+         onChange.run();
+      }));
+      register(ConfigOption.DoubleSliderValue.class, (o, s, onChange) -> slider(o.min, o.max, s.current(o), false, v -> s.put(o, v), onChange));
+      register(ConfigOption.PercentValue.class, (o, s, onChange) -> slider(0.0, 1.0, s.current(o), false, true, v -> s.put(o, v), onChange));
+      register(ConfigOption.FloatValue.class, (o, s, onChange) -> numberField(s.current(o), o.min, o.max, false, v -> {
+         s.put(o, (float)v);
+         onChange.run();
+      }));
+      register(
+         ConfigOption.FloatSliderValue.class,
+         (o, s, onChange) -> slider(o.min, o.max, s.current(o).floatValue(), false, v -> s.put(o, v.floatValue()), onChange)
+      );
+      register(ConfigOption.RangeValue.class, (o, s, onChange) -> {
+         Range current = s.current(o);
+         RangeControlWidget w = new RangeControlWidget(96, 20, current, o.min, o.max, r -> {
+            s.put(o, r);
+            onChange.run();
+         });
+         return new ConfigControl<>(w, w::setRange);
+      });
+      register(ConfigOption.Vec3Value.class, (o, s, onChange) -> {
+         Vec3 c = s.current(o);
+         Vec3ControlWidget w = new Vec3ControlWidget(96, 20, c.x, c.y, c.z, o.min, o.max, false, (x, y, z) -> {
+            s.put(o, new Vec3(x, y, z));
+            onChange.run();
+         });
+         return new ConfigControl<>(w, vv -> w.setValues(vv.x, vv.y, vv.z));
+      });
+      register(ConfigOption.Vec3iValue.class, (o, s, onChange) -> {
+         Vec3i c = s.current(o);
+         Vec3ControlWidget w = new Vec3ControlWidget(96, 20, c.getX(), c.getY(), c.getZ(), o.min, o.max, true, (x, y, z) -> {
+            s.put(o, new Vec3i((int)Math.round(x), (int)Math.round(y), (int)Math.round(z)));
+            onChange.run();
+         });
+         return new ConfigControl<>(w, vv -> w.setValues(vv.getX(), vv.getY(), vv.getZ()));
+      });
+      register(ConfigOption.DropdownValue.class, (o, s, onChange) -> {
+         DropdownWidget w = new DropdownWidget(96, 20, o.options.get(), o.icon, s.current(o), val -> {
+            s.put(o, val);
+            onChange.run();
+         });
+         return new ConfigControl<>(w, w::setValue);
+      });
+      register(
+         ConfigOption.ListValue.class,
+         (o, s, onChange) -> {
+            IconButton button = new IconButton(
+               0,
+               0,
+               96,
+               20,
+               listLabel(s.current(o)),
+               MoonlightIcons.EDIT,
+               12,
+               12,
+               b -> Minecraft.getInstance().setScreen(new ListEditScreen(o, s.current(o), Minecraft.getInstance().screen, edited -> {
+                  s.put(o, edited);
+                  onChange.run();
+               }))
+            );
+            return new ConfigControl<>(button, list -> button.setMessage(listLabel(list)));
+         }
+      );
+      register(
+         ConfigOption.JsonValue.class,
+         (o, s, onChange) -> {
+            Button button = new IconButton(
+               0,
+               0,
+               96,
+               20,
+               Component.translatable("gui.moonlight.config.edit"),
+               MoonlightIcons.EDIT,
+               12,
+               12,
+               b -> Minecraft.getInstance().setScreen(new JsonEditScreen(o.title(), o.description(), s.current(o), Minecraft.getInstance().screen, edited -> {
+                  s.put(o, edited);
+                  onChange.run();
+               }))
+            );
+            return new ConfigControl<>(button, v -> {});
+         }
+      );
+      Class<ConfigOption.SchemaValue<?>> schemaClass = ConfigOption.SchemaValue.class;
+      register(
+         schemaClass,
+         (o, s, onChange) -> {
+            Button button = new IconButton(
+               0,
+               0,
+               96,
+               20,
+               Component.translatable("gui.moonlight.config.edit"),
+               MoonlightIcons.EDIT,
+               12,
+               12,
+               b -> Minecraft.getInstance().setScreen(SchemaEditScreen.create(o, s, onChange))
+            );
+            return new ConfigControl<>(button, v -> {});
+         }
+      );
+      register(ConfigOption.UnsupportedValue.class, (o, s, onChange) -> disabled());
+   }
+
+   @FunctionalInterface
+   interface TextCommit {
+      void accept(String var1) throws Exception;
+   }
+}

@@ -1,0 +1,69 @@
+package fuzs.puzzleslib.neoforge.impl.client.core.context;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import fuzs.puzzleslib.api.client.core.v1.context.BuiltinModelItemRendererContext;
+import fuzs.puzzleslib.api.client.init.v1.BuiltinItemRenderer;
+import fuzs.puzzleslib.api.client.init.v1.ReloadingBuiltInItemRenderer;
+import fuzs.puzzleslib.api.core.v1.resources.ForwardingReloadListenerHelper;
+import fuzs.puzzleslib.api.core.v1.utility.ResourceLocationHelper;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.BiConsumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.data.loading.DatagenModLoader;
+import org.jetbrains.annotations.Nullable;
+
+public record BuiltinModelItemRendererContextNeoForgeImpl(
+   BiConsumer<IClientItemExtensions, Item> consumer, String modId, List<ResourceManagerReloadListener> dynamicRenderers
+) implements BuiltinModelItemRendererContext {
+   @Override
+   public void registerItemRenderer(Item item, BuiltinItemRenderer itemRenderer) {
+      if (!DatagenModLoader.isRunningDataGen()) {
+         Objects.requireNonNull(itemRenderer, "renderer is null");
+         Objects.requireNonNull(item, "item is null");
+         this.consumer.accept(new BuiltinModelItemRendererContextNeoForgeImpl.ClientItemExtensionsImpl(itemRenderer), item);
+      }
+   }
+
+   @Override
+   public void registerItemRenderer(Item item, ReloadingBuiltInItemRenderer itemRenderer) {
+      this.registerItemRenderer(item, (BuiltinItemRenderer)itemRenderer);
+      String itemName = BuiltInRegistries.ITEM.getKey(item).getPath();
+      ResourceLocation resourceLocation = ResourceLocationHelper.fromNamespaceAndPath(this.modId, itemName + "_built_in_model_renderer");
+      this.dynamicRenderers.add(ForwardingReloadListenerHelper.fromResourceManagerReloadListener(resourceLocation, itemRenderer));
+   }
+
+   private static class ClientItemExtensionsImpl implements IClientItemExtensions {
+      private final BuiltinItemRenderer itemRenderer;
+      @Nullable
+      private BlockEntityWithoutLevelRenderer blockEntityRenderer;
+
+      public ClientItemExtensionsImpl(BuiltinItemRenderer itemRenderer) {
+         this.itemRenderer = itemRenderer;
+      }
+
+      public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+         if (this.blockEntityRenderer == null) {
+            Minecraft minecraft = Minecraft.getInstance();
+            return this.blockEntityRenderer = new BlockEntityWithoutLevelRenderer(minecraft.getBlockEntityRenderDispatcher(), minecraft.getEntityModels()) {
+               public void renderByItem(
+                  ItemStack itemStack, ItemDisplayContext displayContext, PoseStack matrices, MultiBufferSource buffer, int packedLight, int packedOverlay
+               ) {
+                  ClientItemExtensionsImpl.this.itemRenderer.renderByItem(itemStack, displayContext, matrices, buffer, packedLight, packedOverlay);
+               }
+            };
+         } else {
+            return this.blockEntityRenderer;
+         }
+      }
+   }
+}

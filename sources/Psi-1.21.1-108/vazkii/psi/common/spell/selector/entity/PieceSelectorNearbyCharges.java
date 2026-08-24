@@ -1,0 +1,31 @@
+package vazkii.psi.common.spell.selector.entity;
+
+import java.util.Objects;
+import java.util.function.Predicate;
+import net.minecraft.world.entity.Entity;
+import vazkii.psi.api.spell.Spell;
+import vazkii.psi.api.spell.SpellContext;
+import vazkii.psi.api.spell.SpellRuntimeException;
+import vazkii.psi.api.spell.wrapper.EntityListWrapper;
+import vazkii.psi.common.entity.EntitySpellCharge;
+
+public class PieceSelectorNearbyCharges extends PieceSelectorNearby {
+   public PieceSelectorNearbyCharges(Spell spell) {
+      super(spell);
+   }
+
+   @Override
+   public Predicate<Entity> getTargetPredicate(SpellContext context) {
+      return e -> e instanceof EntitySpellCharge && Objects.requireNonNull(((EntitySpellCharge)e).getOwner()).getName().equals(context.caster.getName());
+   }
+
+   @Override
+   public Object execute(SpellContext context) throws SpellRuntimeException {
+      return (double)((EntityListWrapper)super.execute(context)).size();
+   }
+
+   @Override
+   public Class<?> getEvaluationType() {
+      return Double.class;
+   }
+}

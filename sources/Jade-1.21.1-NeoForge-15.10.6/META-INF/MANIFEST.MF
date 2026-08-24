@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Implementation-Title: Jade
+Implementation-Version: 15.10.6+neoforge
+Implementation-Timestamp: 2026-08-07T07:11:37+0800
+MixinConfigs: jade.mixins.json
+

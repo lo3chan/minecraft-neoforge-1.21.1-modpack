@@ -1,0 +1,58 @@
+package dev.worldgen.lithostitched.impl.worldgen.densityfunction;
+
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.worldgen.lithostitched.api.worldgen.densityfunction.SimpleContext;
+import dev.worldgen.lithostitched.worldgen.LithostitchedCodecs;
+import net.minecraft.util.KeyDispatchDataCodec;
+import net.minecraft.world.level.levelgen.DensityFunction;
+import net.minecraft.world.level.levelgen.DensityFunction.ContextProvider;
+import net.minecraft.world.level.levelgen.DensityFunction.FunctionContext;
+import net.minecraft.world.level.levelgen.DensityFunction.Visitor;
+import org.jetbrains.annotations.NotNull;
+
+public record ShiftDensityFunction(DensityFunction input, DensityFunction shiftX, DensityFunction shiftY, DensityFunction shiftZ) implements DensityFunction {
+   public static final MapCodec<ShiftDensityFunction> DATA_CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            LithostitchedCodecs.DF_BASE.fieldOf("input").forGetter(ShiftDensityFunction::input),
+            LithostitchedCodecs.DF_BASE.fieldOf("shift_x").forGetter(ShiftDensityFunction::shiftX),
+            LithostitchedCodecs.DF_BASE.fieldOf("shift_y").forGetter(ShiftDensityFunction::shiftY),
+            LithostitchedCodecs.DF_BASE.fieldOf("shift_z").forGetter(ShiftDensityFunction::shiftZ)
+         )
+         .apply(i, ShiftDensityFunction::new)
+   );
+   public static final KeyDispatchDataCodec<ShiftDensityFunction> CODEC = KeyDispatchDataCodec.of(DATA_CODEC);
+
+   public double compute(FunctionContext context) {
+      return this.input
+         .compute(
+            SimpleContext.of(
+               context.blockX() + this.shiftX.compute(context),
+               context.blockY() + this.shiftY.compute(context),
+               context.blockZ() + this.shiftZ.compute(context)
+            )
+         );
+   }
+
+   public void fillArray(double[] densities, ContextProvider applier) {
+      applier.fillAllDirectly(densities, this);
+   }
+
+   @NotNull
+   public DensityFunction mapAll(Visitor visitor) {
+      return new ShiftDensityFunction(this.input.mapAll(visitor), this.shiftX.mapAll(visitor), this.shiftY.mapAll(visitor), this.shiftZ.mapAll(visitor));
+   }
+
+   public double minValue() {
+      return this.input.minValue();
+   }
+
+   public double maxValue() {
+      return this.input.maxValue();
+   }
+
+   @NotNull
+   public KeyDispatchDataCodec<? extends DensityFunction> codec() {
+      return CODEC;
+   }
+}

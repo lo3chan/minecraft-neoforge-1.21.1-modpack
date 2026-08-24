@@ -1,0 +1,155 @@
+package com.finndog.moogs_structures.world.structures.pieces;
+
+import com.finndog.moogs_structures.MoogsStructuresCommon;
+import com.finndog.moogs_structures.modinit.MoogsStructuresStructurePieces;
+import com.finndog.moogs_structures.utils.DebugFlags;
+import com.finndog.moogs_structures.utils.VersionResolver;
+import com.finndog.moogs_structures.world.structures.terrainadaptation.EnhancedTerrainAdaptation;
+import com.finndog.moogs_structures.world.structures.terrainadaptation.PoolElementAdaptationOverride;
+import com.mojang.datafixers.util.Either;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElementType;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public class VersionAwareSinglePoolElement extends SinglePoolElement implements PoolElementAdaptationOverride {
+   private static final Codec<List<VersionResolver.VersionEntry>> VERSION_ENTRIES_CODEC = Codec.unboundedMap(Codec.STRING, ResourceLocation.CODEC)
+      .flatXmap(VersionResolver::parseVersionMap, VersionResolver::encodeVersionEntries);
+   public static final MapCodec<VersionAwareSinglePoolElement> CODEC = RecordCodecBuilder.mapCodec(
+      instance -> instance.group(
+            ResourceLocation.CODEC.optionalFieldOf("location").forGetter(VersionAwareSinglePoolElement::singleLocation),
+            VERSION_ENTRIES_CODEC.optionalFieldOf("locations").forGetter(VersionAwareSinglePoolElement::versionEntriesOptional),
+            processorsCodec(),
+            projectionCodec(),
+            overrideLiquidSettingsCodec(),
+            EnhancedTerrainAdaptation.CODEC
+               .optionalFieldOf("enhanced_terrain_adaptation")
+               .forGetter(VersionAwareSinglePoolElement::moogs_structures_getAdaptationOverride)
+         )
+         .apply(
+            instance,
+            (singleLocation, versionEntries, processors, projection, overrideLiquidSettings, adaptationOverride) -> new VersionAwareSinglePoolElement(
+               (ResourceLocation)singleLocation.orElse(null),
+               versionEntries.map(List::copyOf).orElse(List.of()),
+               processors,
+               projection,
+               (LiquidSettings)overrideLiquidSettings.orElse(null),
+               adaptationOverride
+            )
+         )
+   );
+   @Nullable
+   private final ResourceLocation singleLocation;
+   private final List<VersionResolver.VersionEntry> versionEntries;
+   private final ResourceLocation defaultLocation;
+   private final String versionEntriesDescription;
+   private final Optional<EnhancedTerrainAdaptation> adaptationOverride;
+
+   private VersionAwareSinglePoolElement(
+      @Nullable ResourceLocation singleLocation,
+      List<VersionResolver.VersionEntry> versionEntries,
+      Holder<StructureProcessorList> processors,
+      Projection projection,
+      @Nullable LiquidSettings overrideLiquidSettings,
+      Optional<EnhancedTerrainAdaptation> adaptationOverride
+   ) {
+      super(Either.left(resolveTargetLocation(singleLocation, versionEntries)), processors, projection, Optional.ofNullable(overrideLiquidSettings));
+      this.singleLocation = singleLocation;
+      this.versionEntries = List.copyOf(versionEntries);
+      ResourceLocation fallback = computeDefaultLocation(singleLocation, this.versionEntries);
+      if (fallback == null) {
+         throw new IllegalArgumentException("Version-aware single pool element requires at least one template location");
+      } else {
+         this.defaultLocation = fallback;
+         this.versionEntriesDescription = describeVersionEntries(this.versionEntries);
+         this.adaptationOverride = adaptationOverride;
+         this.logFallbackIfNeeded();
+      }
+   }
+
+   @Nullable
+   private static ResourceLocation computeDefaultLocation(@Nullable ResourceLocation singleLocation, List<VersionResolver.VersionEntry> entries) {
+      return singleLocation != null ? singleLocation : entries.stream().findFirst().map(VersionResolver.VersionEntry::location).orElse(null);
+   }
+
+   private static ResourceLocation resolveTargetLocation(@Nullable ResourceLocation singleLocation, List<VersionResolver.VersionEntry> entries) {
+      ResourceLocation fallback = computeDefaultLocation(singleLocation, entries);
+      if (fallback == null) {
+         throw new IllegalArgumentException("Version-aware single pool element requires at least one template location");
+      } else {
+         VersionResolver.VersionNumber current = VersionResolver.getCurrentVersion();
+         ResourceLocation target = VersionResolver.resolve(entries, current).map(VersionResolver.VersionEntry::location).orElse(fallback);
+         if (DebugFlags.isEnabled()) {
+            MoogsStructuresCommon.LOGGER
+               .info(
+                  "Moog's Structure Lib: Version-aware pool element selected template {} (fallback: {}, mappings: [{}])",
+                  target,
+                  fallback,
+                  entries.stream().map(entry -> entry.rawRange() + "->" + entry.location()).collect(Collectors.joining(", "))
+               );
+         }
+
+         return target;
+      }
+   }
+
+   private static String describeVersionEntries(List<VersionResolver.VersionEntry> entries) {
+      return entries.isEmpty() ? "" : entries.stream().map(entry -> entry.rawRange() + "->" + entry.location()).collect(Collectors.joining(", "));
+   }
+
+   private void logFallbackIfNeeded() {
+      if (!this.versionEntries.isEmpty()) {
+         VersionResolver.VersionNumber current = VersionResolver.getCurrentVersion();
+         if (!VersionResolver.resolve(this.versionEntries, current).isPresent()) {
+            ResourceLocation fallback = this.template.left().orElse(this.defaultLocation);
+            if (DebugFlags.isEnabled()) {
+               MoogsStructuresCommon.LOGGER
+                  .info(
+                     "Moog's Structure Lib: No version mapping matched runtime version {}. Falling back to template {}. Defined mappings: [{}]",
+                     VersionResolver.getCurrentVersionString(),
+                     fallback,
+                     this.versionEntriesDescription
+                  );
+            }
+         }
+      }
+   }
+
+   private Optional<List<VersionResolver.VersionEntry>> versionEntriesOptional() {
+      return this.versionEntries.isEmpty() ? Optional.empty() : Optional.of(this.versionEntries);
+   }
+
+   private Optional<ResourceLocation> singleLocation() {
+      return Optional.ofNullable(this.singleLocation);
+   }
+
+   @Override
+   public Optional<EnhancedTerrainAdaptation> moogs_structures_getAdaptationOverride() {
+      return this.adaptationOverride;
+   }
+
+   @NotNull
+   public StructurePoolElementType<?> getType() {
+      return MoogsStructuresStructurePieces.VERSIONED_SINGLE.get();
+   }
+
+   @NotNull
+   @Override
+   public String toString() {
+      ResourceLocation resolved = this.template.left().orElse(this.defaultLocation);
+      return this.versionEntriesDescription.isEmpty()
+         ? "VersionAwareSingle[" + resolved + "]"
+         : "VersionAwareSingle[" + resolved + " | " + this.versionEntriesDescription + "]";
+   }
+}

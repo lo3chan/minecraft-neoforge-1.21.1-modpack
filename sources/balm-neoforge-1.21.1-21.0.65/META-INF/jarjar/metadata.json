@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "net.blay09.mods",
+        "artifact": "kuma-api-neoforge"
+      },
+      "version": {
+        "range": "[21.0,21.2)",
+        "artifactVersion": "21.0.8+1.21"
+      },
+      "path": "META-INF/jarjar/kuma-api-neoforge-21.0.8+1.21.jar",
+      "isObfuscated": false
+    }
+  ]
+}

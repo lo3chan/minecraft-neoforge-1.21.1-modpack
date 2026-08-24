@@ -1,0 +1,31 @@
+package com.iafenvoy.origins.data.condition.builtin.entity;
+
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.data.condition.EntityCondition;
+import com.iafenvoy.origins.data.layer.Layer;
+import com.iafenvoy.origins.data.origin.Origin;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
+
+public record OriginCondition(Holder<Origin> origin, Optional<Holder<Layer>> layer) implements EntityCondition {
+   public static final MapCodec<OriginCondition> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(Origin.CODEC.fieldOf("origin").forGetter(OriginCondition::origin), Layer.CODEC.optionalFieldOf("layer").forGetter(OriginCondition::layer))
+         .apply(i, OriginCondition::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends EntityCondition> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public boolean test(@NotNull Entity entity) {
+      return OriginDataHolder.optionalStream(entity)
+         .anyMatch(h -> this.layer.<Boolean>map(x -> h.hasOrigin((Holder<Layer>)x, this.origin)).orElseGet(() -> h.hasOrigin(this.origin)));
+   }
+}

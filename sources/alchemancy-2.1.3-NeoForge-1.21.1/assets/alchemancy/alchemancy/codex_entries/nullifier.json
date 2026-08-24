@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:nullifier.flavor"
+  },
+  "functions": [
+    "while_equipped",
+    "stacked_on"
+  ]
+}

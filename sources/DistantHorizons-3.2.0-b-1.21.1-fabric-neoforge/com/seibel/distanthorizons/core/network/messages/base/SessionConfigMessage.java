@@ -1,0 +1,33 @@
+package com.seibel.distanthorizons.core.network.messages.base;
+
+import com.google.common.base.MoreObjects.ToStringHelper;
+import com.seibel.distanthorizons.core.multiplayer.config.SessionConfig;
+import com.seibel.distanthorizons.core.network.INetworkObject;
+import com.seibel.distanthorizons.core.network.messages.AbstractNetworkMessage;
+import io.netty.buffer.ByteBuf;
+
+public class SessionConfigMessage extends AbstractNetworkMessage {
+   public SessionConfig config;
+
+   public SessionConfigMessage() {
+   }
+
+   public SessionConfigMessage(SessionConfig config) {
+      this.config = config;
+   }
+
+   @Override
+   public void encode(ByteBuf out) {
+      this.config.encode(out);
+   }
+
+   @Override
+   public void decode(ByteBuf in) {
+      this.config = INetworkObject.decodeToInstance(new SessionConfig(), in);
+   }
+
+   @Override
+   public ToStringHelper toStringHelper() {
+      return super.toStringHelper().add("config", this.config);
+   }
+}

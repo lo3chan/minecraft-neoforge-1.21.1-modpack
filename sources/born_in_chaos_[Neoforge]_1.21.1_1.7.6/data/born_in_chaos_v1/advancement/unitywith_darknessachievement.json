@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:nightmare_mantleofthe_night_helmet"
+    },
+    "title": {
+      "translate": "advancements.unitywith_darknessachievement.title"
+    },
+    "description": {
+      "translate": "advancements.unitywith_darknessachievement.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "unitywith_darknessachievement_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 27
+  },
+  "parent": "born_in_chaos_v1:fighting_nightmares"
+}

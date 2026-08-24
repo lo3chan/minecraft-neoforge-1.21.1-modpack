@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "undead_revamp2:deepslateinducerinactive",
+    "undead_revamp2:inducerstoneinactive",
+    "undead_revamp2:deepslateinducer",
+    "undead_revamp2:inducerstone",
+    "undead_revamp2:basaltecheste",
+    "undead_revamp2:altaractive",
+    "undead_revamp2:altarnom",
+    "undead_revamp2:blockofbostrox",
+    "undead_revamp2:bostrokestone",
+    "undead_revamp2:bostroxore"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "born_in_chaos_v1:block/tombstone_dark_titan_066"
+    },
+    "facing=east": {
+      "model": "born_in_chaos_v1:block/tombstone_dark_titan_066",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "born_in_chaos_v1:block/tombstone_dark_titan_066",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "born_in_chaos_v1:block/tombstone_dark_titan_066",
+      "y": 270
+    }
+  }
+}

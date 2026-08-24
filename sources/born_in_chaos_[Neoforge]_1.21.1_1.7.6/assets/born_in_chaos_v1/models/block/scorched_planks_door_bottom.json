@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_bottom",
+  "textures": {
+    "bottom": "born_in_chaos_v1:blocks/dver1",
+    "top": "born_in_chaos_v1:blocks/dver2"
+  }
+}

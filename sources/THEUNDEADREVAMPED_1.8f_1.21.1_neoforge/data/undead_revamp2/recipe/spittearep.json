@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:potion"
+    },
+    {
+      "item": "undead_revamp2:aciddicsackbowl"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:spittea",
+    "count": 1
+  }
+}

@@ -1,0 +1,51 @@
+package dev.latvian.mods.kubejs.recipe.component;
+
+import com.mojang.serialization.Codec;
+import dev.latvian.mods.kubejs.KubeJS;
+import dev.latvian.mods.kubejs.fluid.FluidWrapper;
+import dev.latvian.mods.kubejs.recipe.filter.RecipeMatchContext;
+import dev.latvian.mods.kubejs.recipe.match.FluidMatch;
+import dev.latvian.mods.kubejs.recipe.match.ReplacementMatchInfo;
+import dev.latvian.mods.rhino.type.TypeInfo;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+
+public record FluidStackComponent(RecipeComponentType<?> type, Codec<FluidStack> codec, boolean allowEmpty) implements RecipeComponent<FluidStack> {
+   public static final RecipeComponentType<FluidStack> FLUID_STACK = RecipeComponentType.unit(
+      KubeJS.id("fluid_stack"), type -> new FluidStackComponent(type, FluidStack.CODEC, false)
+   );
+   public static final RecipeComponentType<FluidStack> OPTIONAL_FLUID_STACK = RecipeComponentType.unit(
+      KubeJS.id("optional_fluid_stack"), type -> new FluidStackComponent(type, FluidStack.OPTIONAL_CODEC, true)
+   );
+
+   @Override
+   public TypeInfo typeInfo() {
+      return FluidWrapper.TYPE_INFO;
+   }
+
+   @Override
+   public boolean hasPriority(RecipeMatchContext cx, Object from) {
+      return from instanceof SizedFluidIngredient || from instanceof FluidIngredient || from instanceof FluidStack || from instanceof Fluid;
+   }
+
+   public boolean matches(RecipeMatchContext cx, FluidStack value, ReplacementMatchInfo match) {
+      return match.match() instanceof FluidMatch m && m.matches(cx, value, match.exact());
+   }
+
+   public boolean isEmpty(FluidStack value) {
+      return value.isEmpty();
+   }
+
+   public void buildUniqueId(UniqueIdBuilder builder, FluidStack value) {
+      if (!value.isEmpty()) {
+         builder.append(value.getFluid().kjs$getIdLocation());
+      }
+   }
+
+   @Override
+   public String toString() {
+      return this.type.toString();
+   }
+}

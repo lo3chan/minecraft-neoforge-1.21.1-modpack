@@ -1,0 +1,128 @@
+package snownee.jade.util;
+
+import com.google.common.collect.Lists;
+import com.google.common.math.LongMath;
+import com.mojang.serialization.DynamicOps;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
+import snownee.jade.addon.universal.ItemIterator;
+import snownee.jade.api.Accessor;
+import snownee.jade.api.fluid.JadeFluidObject;
+import snownee.jade.api.view.FluidView;
+import snownee.jade.api.view.ViewGroup;
+
+public class JadeForgeUtils {
+   private JadeForgeUtils() {
+   }
+
+   public static ItemIterator<? extends IItemHandler> fromItemHandler(IItemHandler storage, int fromIndex) {
+      return fromItemHandler(storage, fromIndex, CommonProxy::findItemHandler);
+   }
+
+   public static ItemIterator<? extends IItemHandler> fromItemHandler(IItemHandler storage, int fromIndex, Function<Accessor<?>, IItemHandler> containerFinder) {
+      return new ItemIterator.SlottedItemIterator<IItemHandler>(containerFinder, fromIndex) {
+         protected int getSlotCount(IItemHandler container) {
+            return container.getSlots();
+         }
+
+         protected ItemStack getItemInSlot(IItemHandler container, int slot) {
+            return container.getStackInSlot(slot);
+         }
+      };
+   }
+
+   public static JadeFluidObject fromFluidStack(FluidStack fluidStack) {
+      return JadeFluidObject.of(fluidStack.getFluid(), fluidStack.getAmount(), fluidStack.getComponentsPatch());
+   }
+
+   @Deprecated
+   public static List<ViewGroup<CompoundTag>> fromFluidHandler(IFluidHandler fluidHandler) {
+      return fromFluidHandler(fluidHandler, NbtOps.INSTANCE);
+   }
+
+   public static List<ViewGroup<CompoundTag>> fromFluidHandler(IFluidHandler fluidHandler, DynamicOps<Tag> ops) {
+      JadeForgeUtils.FluidCollectingResult result = fromFluidHandlerStream(fluidHandler);
+      if (result.tanks == 0) {
+         return List.of();
+      } else {
+         List<Tuple<JadeFluidObject, Long>> list = Lists.newArrayList();
+         int maxTanks = result.emptyTanks == 0 ? 5 : 4;
+         if (result.tanks - result.emptyTanks <= maxTanks) {
+            list.addAll(result.stream.toList());
+         } else {
+            result.stream.takeWhile(tag -> list.size() <= maxTanks).forEach(tuple1 -> {
+               for (Tuple<JadeFluidObject, Long> tuple2 : list) {
+                  if (JadeFluidObject.isSameFluidSameComponents((JadeFluidObject)tuple1.getA(), (JadeFluidObject)tuple2.getA())) {
+                     return;
+                  }
+               }
+
+               list.add((Tuple<JadeFluidObject, Long>)tuple1);
+            });
+         }
+
+         int remaining = result.tanks - result.emptyTanks - list.size();
+         if (result.emptyTanks > 0) {
+            list.add(new Tuple(JadeFluidObject.empty(), result.emptyCapacity));
+         }
+
+         ViewGroup<CompoundTag> group = new ViewGroup<>(
+            list.stream().map(tuple -> FluidView.writeDefault((JadeFluidObject)tuple.getA(), (Long)tuple.getB(), ops)).toList()
+         );
+         if (remaining > 0) {
+            group.getExtraData().putInt("+", remaining);
+         }
+
+         return List.of(group);
+      }
+   }
+
+   public static JadeForgeUtils.FluidCollectingResult fromFluidHandlerStream(IFluidHandler fluidHandler) {
+      JadeForgeUtils.FluidCollectingResult result = new JadeForgeUtils.FluidCollectingResult();
+
+      for (int i = 0; i < fluidHandler.getTanks(); i++) {
+         int capacity = fluidHandler.getTankCapacity(i);
+         if (capacity > 0) {
+            result.tanks++;
+            if (fluidHandler.getFluidInTank(i).isEmpty()) {
+               result.emptyTanks++;
+               result.emptyCapacity = LongMath.saturatedAdd(result.emptyCapacity, capacity);
+            }
+         }
+      }
+
+      if (result.tanks == 0) {
+         result.stream = Stream.empty();
+      } else {
+         result.stream = IntStream.range(0, fluidHandler.getTanks()).mapToObj(ix -> {
+            int capacityx = fluidHandler.getTankCapacity(ix);
+            if (capacityx <= 0) {
+               return null;
+            } else {
+               FluidStack fluidStack = fluidHandler.getFluidInTank(ix);
+               return fluidStack.isEmpty() ? null : new Tuple(fromFluidStack(fluidStack), (long)capacityx);
+            }
+         }).filter(Objects::nonNull);
+      }
+
+      return result;
+   }
+
+   public static class FluidCollectingResult {
+      public Stream<Tuple<JadeFluidObject, Long>> stream;
+      public long emptyCapacity;
+      public int tanks;
+      public int emptyTanks;
+   }
+}

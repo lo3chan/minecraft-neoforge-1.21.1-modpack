@@ -1,0 +1,75 @@
+package net.mehvahdjukaar.moonlight.api.client.gui.misc;
+
+import java.util.Arrays;
+
+public final class JsonHighlighter implements SyntaxHighlighter {
+   public static final JsonHighlighter INSTANCE = new JsonHighlighter();
+   private static final int KEY = ConfigGuiColors.SYNTAX_KEY;
+   private static final int STRING = ConfigGuiColors.SYNTAX_STRING;
+   private static final int NUMBER = ConfigGuiColors.SYNTAX_NUMBER;
+   private static final int KEYWORD = ConfigGuiColors.SYNTAX_KEYWORD;
+   private static final int PUNCTUATION = ConfigGuiColors.SYNTAX_PUNCTUATION;
+   private static final int DEFAULT = ConfigGuiColors.SYNTAX_DEFAULT;
+
+   @Override
+   public int[] colors(String line) {
+      int n = line.length();
+      int[] colors = new int[n];
+      int i = 0;
+
+      while (i < n) {
+         char c = line.charAt(i);
+         if (c == '"') {
+            int start = i++;
+
+            while (i < n) {
+               char d = line.charAt(i++);
+               if (d == '\\' && i < n) {
+                  i++;
+               } else if (d == '"') {
+                  break;
+               }
+            }
+
+            int j = i;
+
+            while (j < n && line.charAt(j) == ' ') {
+               j++;
+            }
+
+            boolean isKey = j < n && line.charAt(j) == ':';
+            Arrays.fill(colors, start, i, isKey ? KEY : STRING);
+         } else if (c == '-' || c >= '0' && c <= '9') {
+            int start = i++;
+
+            while (i < n && isNumberChar(line.charAt(i))) {
+               i++;
+            }
+
+            Arrays.fill(colors, start, i, NUMBER);
+         } else if (!Character.isLetter(c)) {
+            if (c != '{' && c != '}' && c != '[' && c != ']' && c != ':' && c != ',') {
+               colors[i++] = DEFAULT;
+            } else {
+               colors[i++] = PUNCTUATION;
+            }
+         } else {
+            int start = i++;
+
+            while (i < n && Character.isLetter(line.charAt(i))) {
+               i++;
+            }
+
+            String word = line.substring(start, i);
+            boolean keyword = word.equals("true") || word.equals("false") || word.equals("null");
+            Arrays.fill(colors, start, i, keyword ? KEYWORD : DEFAULT);
+         }
+      }
+
+      return colors;
+   }
+
+   private static boolean isNumberChar(char c) {
+      return c >= '0' && c <= '9' || c == '.' || c == 'e' || c == 'E' || c == '+' || c == '-';
+   }
+}

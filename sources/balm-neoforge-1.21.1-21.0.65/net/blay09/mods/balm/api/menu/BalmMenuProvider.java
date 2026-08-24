@@ -1,0 +1,12 @@
+package net.blay09.mods.balm.api.menu;
+
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.MenuProvider;
+
+public interface BalmMenuProvider<TPayload> extends MenuProvider {
+   TPayload getScreenOpeningData(ServerPlayer var1);
+
+   StreamCodec<RegistryFriendlyByteBuf, TPayload> getScreenStreamCodec();
+}

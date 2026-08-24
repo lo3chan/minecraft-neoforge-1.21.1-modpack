@@ -1,0 +1,16 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "infusables": [
+    {
+      "item": "minecraft:ender_eye"
+    }
+  ],
+
+  "properties": [
+    "alchemancy:ender",
+    "alchemancy:hollow"
+  ],
+
+  "result": "alchemancy:ender_pocket"
+}

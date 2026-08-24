@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:overgrowth.flavor"
+  },
+  "functions": [
+    "other_effects",
+    "while_in_inventory",
+    "while_worn",
+    "stacked_on"
+  ]
+}

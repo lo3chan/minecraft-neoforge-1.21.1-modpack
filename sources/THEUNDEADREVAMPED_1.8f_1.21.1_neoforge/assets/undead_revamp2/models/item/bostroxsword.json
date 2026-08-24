@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "undead_revamp2:item/brostox_sword"
+  }
+}

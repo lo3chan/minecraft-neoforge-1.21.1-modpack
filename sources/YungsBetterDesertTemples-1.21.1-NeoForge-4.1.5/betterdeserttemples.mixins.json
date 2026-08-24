@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.yungnickyoung.minecraft.betterdeserttemples.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "betterdeserttemples.refmap.json",
+  "mixins": [
+    "DisableVanillaPyramidsMixin",
+    "LocateVanillaPyramidCommandMixin",
+    "ServerLevelMixin",
+    "ServerPlayerTickMixin",
+    "accessor.BoundingBoxAccessor",
+    "accessor.ChunkGeneratorStructureStateAccessor",
+    "accessor.StructureProcessorAccessor",
+    "pharaoh.EntityMixin",
+    "pharaoh.HuskMixin",
+    "pharaoh.LivingEntityMixin",
+    "pharaoh.ZombieMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

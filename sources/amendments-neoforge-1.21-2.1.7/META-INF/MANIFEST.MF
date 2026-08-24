@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Amendments
+Specification-Vendor: MehVahdJukaar, Plantkillable
+Specification-Version: 1.21-2.1.7
+Implementation-Title: Amendments
+Implementation-Version: 1.21-2.1.7
+Implementation-Vendor: MehVahdJukaar, Plantkillable
+Implementation-Timestamp: 2026-07-12T01:24:54.774121671
+

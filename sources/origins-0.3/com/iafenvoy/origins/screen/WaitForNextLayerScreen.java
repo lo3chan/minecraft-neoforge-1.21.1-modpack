@@ -1,0 +1,72 @@
+package com.iafenvoy.origins.screen;
+
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.data.layer.Layer;
+import java.util.List;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
+
+@OnlyIn(Dist.CLIENT)
+public class WaitForNextLayerScreen extends Screen {
+   private final List<Holder<Layer>> layerList;
+   private final int currentLayerIndex;
+   private final boolean showDirtBackground;
+   private final int maxSelection;
+
+   public WaitForNextLayerScreen(List<Holder<Layer>> layers, int currentLayerIndex, boolean showDirtBackground) {
+      super(Component.empty());
+      this.layerList = layers;
+      this.currentLayerIndex = currentLayerIndex;
+      this.showDirtBackground = showDirtBackground;
+      Player player = Minecraft.getInstance().player;
+
+      assert player != null;
+
+      Holder<Layer> currentLayer = layers.get(currentLayerIndex);
+      this.maxSelection = ((Layer)currentLayer.value()).getOriginOptionCount(player);
+   }
+
+   public void openSelection() {
+      Minecraft client = Minecraft.getInstance();
+      if (client.player != null) {
+         OriginDataHolder holder = OriginDataHolder.get(client.player);
+
+         for (int index = this.currentLayerIndex + 1; index < this.layerList.size(); index++) {
+            Holder<Layer> layer = this.layerList.get(index);
+            if (!holder.hasOriginInLayer(layer) && ((Layer)layer.value()).collectOrigins(client.player).findAny().isPresent()) {
+               client.setScreen(new ChooseOriginScreen(this.layerList, index, this.showDirtBackground));
+               return;
+            }
+         }
+      }
+
+      client.setScreen(null);
+   }
+
+   public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+      if (this.maxSelection == 0) {
+         this.openSelection();
+      } else {
+         this.renderBackground(graphics, mouseX, mouseY, delta);
+      }
+   }
+
+   public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+      if (this.showDirtBackground) {
+         super.renderMenuBackground(graphics);
+      } else {
+         super.renderBackground(graphics, mouseX, mouseY, delta);
+      }
+   }
+
+   public boolean shouldCloseOnEsc() {
+      return false;
+   }
+}

@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "LGPL-3.0"
+issueTrackerURL = "https://github.com/Codx-org/Alexs-Mobs-Updated-Ported/issues"
+accessTransformers = [  ]
+
+[dependencies]
+
+[[dependencies.alexsmobs]]
+modId = "codxlib"
+side = "BOTH"
+versionRange = "[1.4.0,)"
+mandatory = true
+type = "required"
+
+[[dependencies.alexsmobs]]
+modId = "minecraft"
+side = "BOTH"
+versionRange = "[1.21.1]"
+mandatory = true
+type = "required"
+
+[[dependencies.alexsmobs]]
+modId = "neoforge"
+side = "BOTH"
+versionRange = "[1,)"
+mandatory = true
+type = "required"
+
+[[mods]]
+modId = "alexsmobs"
+displayName = "Alex's Mobs Continued"
+version = "2.1.6"
+displayURL = "https://modrinth.com/mod/alexs-mobs-continued"
+modUrl = "https://modrinth.com/mod/alexs-mobs-continued"
+logoFile = "assets/icon.png"
+authors = "Alexthe668, Carro1001, Paint_Ninja, Lynk, Codx.io"
+logoBlur = false
+credits = "Alexthe668, Carro1001, Paint_Ninja, Lynk, Codx.io Contributors: "
+description = "New, original, engaging, and aesthetic mobs for Minecraft."
+
+[[mixins]]
+config = "alexsmobs.mixins.json"

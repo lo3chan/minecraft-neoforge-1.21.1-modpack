@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/shellspikes",
+  "textures": {
+    "all": "born_in_chaos_v1:block/shellspikes",
+    "particle": "born_in_chaos_v1:block/shellspikes",
+    "0": "born_in_chaos_v1:block/shellspikes"
+  },
+  "render_type": "cutout"
+}

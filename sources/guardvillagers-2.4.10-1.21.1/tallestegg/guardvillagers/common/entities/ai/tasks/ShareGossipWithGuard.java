@@ -1,0 +1,89 @@
+package tallestegg.guardvillagers.common.entities.ai.tasks;
+
+import com.google.common.collect.ImmutableMap;
+import java.util.Set;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.behavior.Behavior;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import tallestegg.guardvillagers.GuardEntityType;
+import tallestegg.guardvillagers.common.entities.Guard;
+
+public class ShareGossipWithGuard extends Behavior<Villager> {
+   public ShareGossipWithGuard() {
+      super(
+         ImmutableMap.of(
+            MemoryModuleType.INTERACTION_TARGET, MemoryStatus.VALUE_PRESENT, MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES, MemoryStatus.VALUE_PRESENT
+         )
+      );
+   }
+
+   protected boolean checkExtraStartConditions(ServerLevel pLevel, Villager pOwner) {
+      return BehaviorUtils.targetIsValid(pOwner.getBrain(), MemoryModuleType.INTERACTION_TARGET, (EntityType)GuardEntityType.GUARD.get());
+   }
+
+   protected boolean canStillUse(ServerLevel pLevel, Villager pEntity, long pGameTime) {
+      return this.checkExtraStartConditions(pLevel, pEntity);
+   }
+
+   protected void start(ServerLevel pLevel, Villager pEntity, long pGameTime) {
+      Guard guard = (Guard)pEntity.getBrain().getMemory(MemoryModuleType.INTERACTION_TARGET).get();
+      BehaviorUtils.lockGazeAndWalkToEachOther(pEntity, guard, 0.5F, 2);
+   }
+
+   protected void tick(ServerLevel pLevel, Villager pOwner, long pGameTime) {
+      Guard guard = (Guard)pOwner.getBrain().getMemory(MemoryModuleType.INTERACTION_TARGET).get();
+      if (pOwner.distanceToSqr(guard) < 5.0) {
+         BehaviorUtils.lockGazeAndWalkToEachOther(pOwner, guard, 0.5F, 2);
+         guard.gossip(pOwner, pGameTime);
+      }
+
+      if (pOwner.hasExcessFood() && guard.getOffhandItem().isEmpty()) {
+         throwHalfStack(pOwner, Villager.FOOD_POINTS.keySet(), guard);
+      }
+   }
+
+   protected void stop(ServerLevel pLevel, Villager pEntity, long pGameTime) {
+      pEntity.getBrain().eraseMemory(MemoryModuleType.INTERACTION_TARGET);
+   }
+
+   private static void throwHalfStack(Villager pVillager, Set<Item> pStack, LivingEntity pEntity) {
+      SimpleContainer simplecontainer = pVillager.getInventory();
+      ItemStack itemstack = ItemStack.EMPTY;
+
+      for (int i = 0; i < simplecontainer.getContainerSize(); i++) {
+         ItemStack itemstack1 = simplecontainer.getItem(i);
+         if (!itemstack1.isEmpty()) {
+            Item item = itemstack1.getItem();
+            if (pStack.contains(item)) {
+               int j;
+               if (itemstack1.getCount() > itemstack1.getMaxStackSize() / 2) {
+                  j = itemstack1.getCount() / 2;
+               } else {
+                  if (itemstack1.getCount() <= 24) {
+                     continue;
+                  }
+
+                  j = itemstack1.getCount() - 24;
+               }
+
+               itemstack1.shrink(j);
+               itemstack = new ItemStack(item, j);
+               break;
+            }
+         }
+      }
+
+      if (!itemstack.isEmpty()) {
+         pEntity.setItemSlot(EquipmentSlot.OFFHAND, itemstack);
+      }
+   }
+}

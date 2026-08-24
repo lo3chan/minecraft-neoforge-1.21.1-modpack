@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/boxtrox_block",
+    "up": "undead_revamp2:block/boxtrox_block",
+    "north": "undead_revamp2:block/boxtrox_block",
+    "east": "undead_revamp2:block/boxtrox_block",
+    "south": "undead_revamp2:block/boxtrox_block",
+    "west": "undead_revamp2:block/boxtrox_block",
+    "particle": "undead_revamp2:block/boxtrox_block"
+  },
+  "render_type": "solid"
+}

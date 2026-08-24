@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "born_in_chaos_v1:block/creepy_nutcracker"
+    },
+    "facing=east": {
+      "model": "born_in_chaos_v1:block/creepy_nutcracker",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "born_in_chaos_v1:block/creepy_nutcracker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "born_in_chaos_v1:block/creepy_nutcracker",
+      "y": 270
+    }
+  }
+}

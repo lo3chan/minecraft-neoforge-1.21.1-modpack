@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "lush_caves",
+  "features": "undead_revamp2:bostrokestone",
+  "step": "underground_ores"
+}

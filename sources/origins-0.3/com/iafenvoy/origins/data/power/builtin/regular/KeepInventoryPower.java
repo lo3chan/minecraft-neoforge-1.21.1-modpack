@@ -1,0 +1,120 @@
+package com.iafenvoy.origins.data.power.builtin.regular;
+
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.condition.ItemCondition;
+import com.iafenvoy.origins.data.power.Power;
+import com.iafenvoy.origins.data.power.component.ComponentCollector;
+import com.iafenvoy.origins.data.power.component.builtin.InventoryComponent;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent.Clone;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class KeepInventoryPower extends Power {
+   public static final MapCodec<KeepInventoryPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            ItemCondition.optionalCodec("item_condition").forGetter(KeepInventoryPower::getItemCondition),
+            Codec.INT.listOf().optionalFieldOf("slots", List.of()).forGetter(KeepInventoryPower::getSlots)
+         )
+         .apply(i, KeepInventoryPower::new)
+   );
+   private final ItemCondition itemCondition;
+   private final List<Integer> slots;
+
+   public KeepInventoryPower(Power.BaseSettings settings, ItemCondition itemCondition, List<Integer> slots) {
+      super(settings);
+      this.itemCondition = itemCondition;
+      this.slots = slots;
+   }
+
+   public ItemCondition getItemCondition() {
+      return this.itemCondition;
+   }
+
+   public List<Integer> getSlots() {
+      return this.slots;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public void createComponents(ComponentCollector collector) {
+      super.createComponents(collector);
+      collector.add(new InventoryComponent(41));
+   }
+
+   public boolean isApplicableTo(int slot, Level level, ItemStack stack) {
+      return this.slots != null && !this.slots.contains(slot) ? false : this.itemCondition.test(level, stack);
+   }
+
+   public void captureItems(OriginDataHolder holder, Player player) {
+      Optional<Container> optional = holder.getComponentFor(this, InventoryComponent.class).map(InventoryComponent::getContainer);
+      if (optional.isPresent()) {
+         Container container = optional.get();
+         Inventory inventory = player.getInventory();
+
+         for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (this.isApplicableTo(i, player.level(), stack) && !EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP)) {
+               container.setItem(i, stack);
+               inventory.setItem(i, ItemStack.EMPTY);
+            } else {
+               container.setItem(i, ItemStack.EMPTY);
+            }
+         }
+      }
+   }
+
+   public void restoreItems(OriginDataHolder holder, Player player) {
+      Optional<Container> optional = holder.getComponentFor(this, InventoryComponent.class).map(InventoryComponent::getContainer);
+      if (optional.isPresent()) {
+         Container container = optional.get();
+         Inventory inventory = player.getInventory();
+
+         for (int i = 0; i < inventory.getContainerSize() && i < container.getContainerSize(); i++) {
+            if (!container.getItem(i).isEmpty()) {
+               inventory.setItem(i, container.getItem(i));
+               container.setItem(i, ItemStack.EMPTY);
+            }
+         }
+      }
+   }
+
+   @SubscribeEvent
+   public static void playerClone(Clone event) {
+      if (!event.getEntity().level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
+         PowerHelper.get(event.getEntity()).execute(KeepInventoryPower.class, (h, p) -> p.restoreItems(h, event.getEntity()));
+      }
+   }
+
+   @SubscribeEvent(
+      priority = EventPriority.LOWEST
+   )
+   public static void onPlayerDeath(LivingDeathEvent event) {
+      if (event.getEntity() instanceof Player player && !player.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
+         PowerHelper.get(player).execute(KeepInventoryPower.class, (h, p) -> p.captureItems(h, player));
+      }
+   }
+}

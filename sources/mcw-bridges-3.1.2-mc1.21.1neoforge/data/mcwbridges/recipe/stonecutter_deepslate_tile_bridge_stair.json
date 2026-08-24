@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:deepslate_tiles"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwbridges:deepslate_tile_bridge_stair"
+  },
+  "group" : "stonecutting"
+}

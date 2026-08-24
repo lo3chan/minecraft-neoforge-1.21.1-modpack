@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+issueTrackerURL="https://github.com/tr7zw/WaveyCapes/issues"
+
+license="tr7zw Protective License"
+[[mods]]
+modId="waveycapes"
+version="1.10.2"
+displayName="WaveyCapes"
+displayURL="https://modrinth.com/mod/wavey-capes"
+logoFile="icon.png"
+authors="tr7zw"
+description='''
+The cape shouldn't be a static slab!
+'''
+displayTest="IGNORE_ALL_VERSION"
+[[mixins]]
+config="waveycapes.mixins.json"
+[[dependencies.waveycapes]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.waveycapes]]
+    modId="neoforge"
+    type="required"
+    versionRange="[20.2,)"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,21 @@
+modLoader="lowcodefml"
+loaderVersion="[1,)"
+license="Stardust Labs License"
+issueTrackerURL="https://github.com/Stardust-Labs-MC/Amplified-Nether/issues"
+
+[[mods]]
+    modId="amplified_nether"
+    version="1.2.16"
+    displayName="Amplified Nether"
+    displayURL="https://www.stardustlabs.net/"
+    logoFile="pack.png"
+    authors="Stardust Labs"
+    credits="Starmute: Owner. catter1: Maintainer."
+    description="The nether explorer's simple dream: doubled height and amplified terrain. What more is needed?"
+
+[[dependencies.amplified_nether]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20,)"
+    ordering="NONE"
+    side="BOTH"

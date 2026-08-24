@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "undead_revamp2:block/cobblestone_strox",
+    "bottom": "undead_revamp2:block/cobblestone_strox",
+    "top": "undead_revamp2:block/cobblestone_strox",
+    "side": "undead_revamp2:block/cobblestone_strox"
+  },
+  "render_type": "solid"
+}

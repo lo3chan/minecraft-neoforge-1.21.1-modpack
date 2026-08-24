@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:kinetic_recharge",
+    "alchemancy:anchored"
+  ],
+
+  "result": [
+    "alchemancy:anchored"
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "com.github.ben-manes.caffeine",
+        "artifact": "caffeine"
+      },
+      "version": {
+        "range": "[3.2.1,)",
+        "artifactVersion": "3.2.1"
+      },
+      "path": "META-INF/jars/caffeine-3.2.1.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-fixes-worldgen-vanilla-bugs"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-fixes-worldgen-vanilla-bugs-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-rewrites-chunkio"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-rewrites-chunkio-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "net.objecthunter",
+        "artifact": "exp4j"
+      },
+      "version": {
+        "range": "[0.4.8,)",
+        "artifactVersion": "0.4.8"
+      },
+      "path": "META-INF/jars/exp4j-0.4.8.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.github.bawnorton.mixinsquared",
+        "artifact": "mixinsquared-neoforge"
+      },
+      "version": {
+        "range": "[0.3.7-beta.1,)",
+        "artifactVersion": "0.3.7-beta.1"
+      },
+      "path": "META-INF/jars/mixinsquared-neoforge-0.3.7-beta.1.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-worldgen-general"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-worldgen-general-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-client-uncapvd"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-client-uncapvd-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-fixes-general-threading-issues"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-fixes-general-threading-issues-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-threading-lighting"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-threading-lighting-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-worldgen-vanilla"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-worldgen-vanilla-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-scheduling"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-scheduling-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-rewrites-chunk-system"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-rewrites-chunk-system-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-dfc"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-dfc-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "io.reactivex.rxjava3",
+        "artifact": "rxjava"
+      },
+      "version": {
+        "range": "[3.1.12,)",
+        "artifactVersion": "3.1.12"
+      },
+      "path": "META-INF/jars/rxjava-3.1.12.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-math"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-math-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "org.jctools",
+        "artifact": "jctools-core"
+      },
+      "version": {
+        "range": "[4.0.5,)",
+        "artifactVersion": "4.0.5"
+      },
+      "path": "META-INF/jars/jctools-core-4.0.5.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-fixes-chunkio-threading-issues"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-fixes-chunkio-threading-issues-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ibm.async",
+        "artifact": "asyncutil"
+      },
+      "version": {
+        "range": "[0.1.0,)",
+        "artifactVersion": "0.1.0"
+      },
+      "path": "META-INF/jars/asyncutil-0.1.0.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-fixes-worldgen-threading-issues"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-fixes-worldgen-threading-issues-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-natives-math"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-natives-math-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-server-utils"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-server-utils-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "org.reactivestreams",
+        "artifact": "reactive-streams"
+      },
+      "version": {
+        "range": "[1.0.4,)",
+        "artifactVersion": "1.0.4"
+      },
+      "path": "META-INF/jars/reactive-streams-1.0.4.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-allocs"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-allocs-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-notickvd"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-notickvd-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-opts-chunkio"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-opts-chunkio-mc1.21.1-0.4.0-alpha.0.120.jar"
+    },
+    {
+      "identifier": {
+        "group": "com.ishland.c2me",
+        "artifact": "c2me-base"
+      },
+      "version": {
+        "range": "[0.4.0-alpha.0.120,)",
+        "artifactVersion": "0.4.0-alpha.0.120"
+      },
+      "path": "META-INF/jars/c2me-neoforge-base-mc1.21.1-0.4.0-alpha.0.120-all.jar"
+    }
+  ]
+}

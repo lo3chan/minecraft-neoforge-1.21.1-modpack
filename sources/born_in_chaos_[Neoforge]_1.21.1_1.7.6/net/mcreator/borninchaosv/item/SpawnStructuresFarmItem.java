@@ -1,0 +1,22 @@
+package net.mcreator.borninchaosv.item;
+
+import net.mcreator.borninchaosv.procedures.SpawnStructuresFarmPriShchielchkiePravoiKnopkoiMyshiNaBlokieProcedure;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.context.UseOnContext;
+
+public class SpawnStructuresFarmItem extends Item {
+   public SpawnStructuresFarmItem() {
+      super(new Properties().stacksTo(1).fireResistant().rarity(Rarity.COMMON));
+   }
+
+   public InteractionResult useOn(UseOnContext context) {
+      super.useOn(context);
+      SpawnStructuresFarmPriShchielchkiePravoiKnopkoiMyshiNaBlokieProcedure.execute(
+         context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getPlayer()
+      );
+      return InteractionResult.SUCCESS;
+   }
+}

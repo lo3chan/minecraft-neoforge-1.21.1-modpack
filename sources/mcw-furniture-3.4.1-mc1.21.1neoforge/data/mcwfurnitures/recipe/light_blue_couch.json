@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "couch",
+  "pattern" : [ "B", "A" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwfurnitures:light_blue_chaise"
+    },
+    "B" : {
+      "item" : "minecraft:light_blue_wool"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:light_blue_couch"
+  }
+}

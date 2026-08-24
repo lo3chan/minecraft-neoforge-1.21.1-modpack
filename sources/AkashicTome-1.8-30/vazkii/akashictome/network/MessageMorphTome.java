@@ -1,0 +1,51 @@
+package vazkii.akashictome.network;
+
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import vazkii.akashictome.MorphingHandler;
+import vazkii.akashictome.Registries;
+
+public record MessageMorphTome(String modid) implements CustomPacketPayload {
+   public static final StreamCodec<FriendlyByteBuf, MessageMorphTome> CODEC = CustomPacketPayload.codec(MessageMorphTome::serialize, MessageMorphTome::new);
+   public static final Type<MessageMorphTome> ID = new Type(ResourceLocation.fromNamespaceAndPath("akashictome", "morph_tome"));
+
+   public MessageMorphTome(FriendlyByteBuf buf) {
+      this(buf.readUtf());
+   }
+
+   public void serialize(FriendlyByteBuf buf) {
+      buf.writeUtf(this.modid);
+   }
+
+   public Type<? extends CustomPacketPayload> type() {
+      return ID;
+   }
+
+   public static void handle(MessageMorphTome msg, IPayloadContext ctx) {
+      ctx.enqueueWork(() -> {
+         if (ctx.player() instanceof ServerPlayer player) {
+            ItemStack tomeStack = player.getMainHandItem();
+            InteractionHand hand = InteractionHand.MAIN_HAND;
+            boolean hasTome = !tomeStack.isEmpty() && tomeStack.is((Item)Registries.TOME.get());
+            if (!hasTome) {
+               tomeStack = player.getOffhandItem();
+               hasTome = !tomeStack.isEmpty() && tomeStack.is((Item)Registries.TOME.get());
+               hand = InteractionHand.OFF_HAND;
+            }
+
+            if (hasTome) {
+               ItemStack newStack = MorphingHandler.getShiftStackForMod(tomeStack, msg.modid);
+               player.setItemInHand(hand, newStack);
+            }
+         }
+      });
+   }
+}

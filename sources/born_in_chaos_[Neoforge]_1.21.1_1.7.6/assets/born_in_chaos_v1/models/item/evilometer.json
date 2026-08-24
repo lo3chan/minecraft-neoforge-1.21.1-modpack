@@ -1,0 +1,32 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "born_in_chaos_v1:item/evilometer"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "born_in_chaos_v1:evilometer_little_evil": 1
+      },
+      "model": "born_in_chaos_v1:item/evilometer_0"
+    },
+    {
+      "predicate": {
+        "born_in_chaos_v1:evilometer_growing_evil": 1
+      },
+      "model": "born_in_chaos_v1:item/evilometer_1"
+    },
+    {
+      "predicate": {
+        "born_in_chaos_v1:evilometer_great_evil": 1
+      },
+      "model": "born_in_chaos_v1:item/evilometer_2"
+    },
+    {
+      "predicate": {
+        "born_in_chaos_v1:evilometer_pure_evil": 1
+      },
+      "model": "born_in_chaos_v1:item/evilometer_3"
+    }
+  ]
+}

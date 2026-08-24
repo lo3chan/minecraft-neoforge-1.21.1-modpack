@@ -1,0 +1,8 @@
+{
+  "comparator_output": 11,
+  "description": {
+    "translate": "jukebox_song.deep_aether.faent"
+  },
+  "length_in_seconds": 223.0,
+  "sound_event": "deep_aether:item.music_disc.faent"
+}

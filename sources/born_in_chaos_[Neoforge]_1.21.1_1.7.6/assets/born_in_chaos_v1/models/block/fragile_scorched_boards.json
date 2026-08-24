@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/opdosk4",
+    "up": "born_in_chaos_v1:block/opdosk4",
+    "north": "born_in_chaos_v1:block/opdosk4",
+    "east": "born_in_chaos_v1:block/opdosk4",
+    "south": "born_in_chaos_v1:block/opdosk4",
+    "west": "born_in_chaos_v1:block/opdosk4",
+    "particle": "born_in_chaos_v1:block/opdosk4"
+  },
+  "render_type": "solid"
+}

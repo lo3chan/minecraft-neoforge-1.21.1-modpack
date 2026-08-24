@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:granite"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfences:granite_railing_gate"
+  },
+  "group" : "fences"
+}

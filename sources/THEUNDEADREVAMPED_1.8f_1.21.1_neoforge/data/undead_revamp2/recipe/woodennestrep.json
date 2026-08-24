@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bbb",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "tag": "minecraft:planks"
+    },
+    "b": {
+      "item": "undead_revamp2:the_somnolenceextract"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:woodennest",
+    "count": 1
+  }
+}

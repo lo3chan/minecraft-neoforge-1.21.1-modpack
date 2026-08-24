@@ -1,0 +1,273 @@
+package mezz.jei.gui.overlay.bookmarks.history;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import mezz.jei.api.helpers.IColorHelper;
+import mezz.jei.api.runtime.IIngredientManager;
+import mezz.jei.api.runtime.IScreenHelper;
+import mezz.jei.common.config.HistoryDisplaySide;
+import mezz.jei.common.config.IClientConfig;
+import mezz.jei.common.config.IClientToggleState;
+import mezz.jei.common.config.IIngredientFilterConfig;
+import mezz.jei.common.config.IIngredientGridConfig;
+import mezz.jei.common.gui.elements.ScalableDrawable;
+import mezz.jei.common.input.IInternalKeyMappings;
+import mezz.jei.common.network.IConnectionToServer;
+import mezz.jei.common.util.ImmutablePoint2i;
+import mezz.jei.common.util.ImmutableRect2i;
+import mezz.jei.gui.ghost.GhostIngredientDragManager;
+import mezz.jei.gui.input.IClickableIngredientInternal;
+import mezz.jei.gui.input.IDragHandler;
+import mezz.jei.gui.input.IDraggableIngredientInternal;
+import mezz.jei.gui.input.IRecipeFocusSource;
+import mezz.jei.gui.overlay.elements.IElement;
+import mezz.jei.gui.overlay.history.LookupHistoryOverlayLayout;
+import mezz.jei.gui.overlay.ingredients.GuiExclusionAreaShadow;
+import mezz.jei.gui.overlay.ingredients.IIngredientGridSource;
+import mezz.jei.gui.overlay.ingredients.IngredientGrid;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.util.Mth;
+import org.jetbrains.annotations.Nullable;
+
+public class LookupHistoryOverlay implements IRecipeFocusSource, ILookupHistoryOverlay {
+   public static final int SLOT_HEIGHT = LookupHistoryOverlayLayout.SLOT_HEIGHT;
+   private final IngredientGrid contents;
+   private final ScalableDrawable background;
+   private final ScalableDrawable slotBackground;
+   private final ScalableDrawable exclusionAreaShadow;
+   private final IIngredientGridSource lookupHistory;
+   private final IIngredientGridConfig historyListConfig;
+   private final IClientConfig clientConfig;
+   private final HistoryDisplaySide ownerDisplaySide;
+   private final GhostIngredientDragManager ghostIngredientDragManager;
+   private Set<ImmutableRect2i> guiExclusionAreas = Set.of();
+   private ImmutableRect2i backgroundArea = ImmutableRect2i.EMPTY;
+   private ImmutableRect2i slotBackgroundArea = ImmutableRect2i.EMPTY;
+   private int rows;
+   private boolean layoutDirty = true;
+
+   public LookupHistoryOverlay(
+      IIngredientManager ingredientManager,
+      IIngredientGridSource lookupHistory,
+      IInternalKeyMappings keyMappings,
+      IIngredientGridConfig historyListConfig,
+      IIngredientFilterConfig ingredientFilterConfig,
+      ScalableDrawable background,
+      ScalableDrawable slotBackground,
+      ScalableDrawable exclusionAreaShadow,
+      IClientConfig clientConfig,
+      HistoryDisplaySide ownerDisplaySide,
+      IClientToggleState toggleState,
+      IScreenHelper screenHelper,
+      IConnectionToServer serverConnection,
+      IColorHelper colorHelper
+   ) {
+      this.clientConfig = clientConfig;
+      this.lookupHistory = lookupHistory;
+      this.historyListConfig = historyListConfig;
+      this.background = background;
+      this.slotBackground = slotBackground;
+      this.exclusionAreaShadow = exclusionAreaShadow;
+      this.contents = new IngredientGrid(
+         ingredientManager, historyListConfig, ingredientFilterConfig, clientConfig, toggleState, serverConnection, keyMappings, colorHelper, false
+      );
+      this.ghostIngredientDragManager = new GhostIngredientDragManager(this.contents, screenHelper, ingredientManager, toggleState);
+      this.ownerDisplaySide = ownerDisplaySide;
+      lookupHistory.addSourceListChangedListener(this::markLayoutDirty);
+   }
+
+   public boolean isListDisplayed() {
+      this.updateLayoutIfDirty();
+      return this.clientConfig.lookupHistoryEnabled().getValue() && this.isDisplayedOnThisSide() && this.contents.hasRoom();
+   }
+
+   @Override
+   public boolean isDisplayedOnThisSide() {
+      return this.ownerDisplaySide.equals(this.clientConfig.lookupHistoryDisplaySide().getValue());
+   }
+
+   public IIngredientGridSource getLookupHistory() {
+      return this.lookupHistory;
+   }
+
+   @Override
+   public int getDisplayHeight() {
+      return getDisplayHeight(this.clientConfig.maxLookupHistoryRows().getValue(), this.historyListConfig.drawBackground().getValue());
+   }
+
+   public static int getDisplayHeight(int maxRows, boolean drawBackground) {
+      return LookupHistoryOverlayLayout.getDisplayHeight(maxRows, drawBackground);
+   }
+
+   @Override
+   public void updateBounds(ImmutableRect2i availableArea, Set<ImmutableRect2i> guiExclusionAreas, @Nullable ImmutablePoint2i mouseExclusionPoint) {
+      this.guiExclusionAreas = guiExclusionAreas;
+      LookupHistoryOverlayLayout layout = LookupHistoryOverlayLayout.calculate(this.historyListConfig, availableArea);
+      this.contents.updateBounds(layout.availableGridArea(), guiExclusionAreas, mouseExclusionPoint);
+      this.backgroundArea = layout.backgroundArea();
+      this.slotBackgroundArea = layout.slotBackgroundArea();
+      int rows = this.contents.getArea().getHeight() / SLOT_HEIGHT;
+      this.rows = Math.min(rows, this.clientConfig.maxLookupHistoryRows().getValue());
+   }
+
+   @Override
+   public void updateLayout() {
+      List<IElement<?>> ingredientList = this.lookupHistory.getElements();
+      this.contents.set(0, ingredientList);
+      this.layoutDirty = false;
+   }
+
+   private void markLayoutDirty() {
+      this.layoutDirty = true;
+   }
+
+   private void updateLayoutIfDirty() {
+      if (this.layoutDirty) {
+         this.updateLayout();
+      }
+   }
+
+   private void drawLine(GuiGraphics guiGraphics, ImmutableRect2i lineArea, int argbColor) {
+      for (LookupHistoryOverlay.LineSegment segment : calculateLineSegments(lineArea, this.guiExclusionAreas)) {
+         drawLineSegment(guiGraphics, segment.x1(), segment.x2(), lineArea.y(), lineArea.height(), argbColor);
+      }
+   }
+
+   private static void drawLineSegment(GuiGraphics guiGraphics, int x1, int x2, int y, int height, int argbColor) {
+      int availableWidth = x2 - x1;
+      if (availableWidth > 0) {
+         int dashWidth = 8;
+         int spacing = 6;
+         if (availableWidth < 22) {
+            guiGraphics.fill(Math.min(x1 + 8, x2), y, x1, y + height, argbColor);
+         } else {
+            int interval = 14;
+            int dashCount = availableWidth / 14 + 1;
+            float floatInterval = (float)(availableWidth - 8) / (dashCount - 1);
+
+            for (int i = 0; i < dashCount; i++) {
+               float x = x1 + i * floatInterval;
+               guiGraphics.fill((int)Mth.clamp(x + 8.0F, x1, x2), y, (int)Mth.clamp(x, x1, x2), y + height, argbColor);
+            }
+         }
+      }
+   }
+
+   static List<LookupHistoryOverlay.LineSegment> calculateLineSegments(ImmutableRect2i lineArea, Set<ImmutableRect2i> guiExclusionAreas) {
+      if (lineArea.isEmpty()) {
+         return List.of();
+      } else if (guiExclusionAreas.isEmpty()) {
+         return List.of(new LookupHistoryOverlay.LineSegment(lineArea.x(), lineArea.x() + lineArea.width()));
+      } else {
+         List<LookupHistoryOverlay.LineSegment> blockedSegments = guiExclusionAreas.stream()
+            .filter(lineArea::intersects)
+            .map(
+               exclusionArea -> new LookupHistoryOverlay.LineSegment(
+                  Math.max(lineArea.x(), exclusionArea.x()), Math.min(lineArea.x() + lineArea.width(), exclusionArea.x() + exclusionArea.width())
+               )
+            )
+            .filter(segment -> segment.x1() < segment.x2())
+            .sorted(Comparator.comparingInt(LookupHistoryOverlay.LineSegment::x1))
+            .toList();
+         if (blockedSegments.isEmpty()) {
+            return List.of(new LookupHistoryOverlay.LineSegment(lineArea.x(), lineArea.x() + lineArea.width()));
+         } else {
+            List<LookupHistoryOverlay.LineSegment> lineSegments = new ArrayList<>();
+            int currentX = lineArea.x();
+            int lineRight = lineArea.x() + lineArea.width();
+
+            for (LookupHistoryOverlay.LineSegment blockedSegment : blockedSegments) {
+               if (blockedSegment.x1() > currentX) {
+                  lineSegments.add(new LookupHistoryOverlay.LineSegment(currentX, blockedSegment.x1()));
+               }
+
+               currentX = Math.max(currentX, blockedSegment.x2());
+            }
+
+            if (currentX < lineRight) {
+               lineSegments.add(new LookupHistoryOverlay.LineSegment(currentX, lineRight));
+            }
+
+            return List.copyOf(lineSegments);
+         }
+      }
+   }
+
+   public void draw(Minecraft minecraft, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+      this.updateLayoutIfDirty();
+      if (this.isListDisplayed()) {
+         this.contents.draw(minecraft, guiGraphics, mouseX, mouseY);
+         if (!this.historyListConfig.drawBackground().getValue()) {
+            ImmutableRect2i area = this.contents.getArea();
+            int startY = area.getY() + area.getHeight() - this.rows * SLOT_HEIGHT - 3;
+            int color = -6974059;
+            ImmutableRect2i lineArea = new ImmutableRect2i(area.getX(), startY, area.getWidth(), 1);
+            this.drawLine(guiGraphics, lineArea, color);
+         }
+      }
+   }
+
+   public void drawBackground(GuiGraphics guiGraphics) {
+      if (this.isListDisplayed() && this.historyListConfig.drawBackground().getValue()) {
+         this.background.draw(guiGraphics, this.backgroundArea);
+         this.slotBackground.draw(guiGraphics, this.slotBackgroundArea);
+         GuiExclusionAreaShadow.draw(guiGraphics, this.exclusionAreaShadow, this.backgroundArea, this.guiExclusionAreas);
+      }
+   }
+
+   public void drawTooltips(Minecraft minecraft, GuiGraphics guiGraphics, int mouseX, int mouseY) {
+      this.updateLayoutIfDirty();
+      if (this.isListDisplayed()) {
+         this.ghostIngredientDragManager.drawTooltips(minecraft, guiGraphics, mouseX, mouseY);
+         this.contents.drawTooltips(minecraft, guiGraphics, mouseX, mouseY);
+      }
+   }
+
+   public void tick() {
+      if (this.isListDisplayed()) {
+         this.contents.tick();
+      }
+   }
+
+   public ImmutableRect2i getArea() {
+      return this.contents.getArea();
+   }
+
+   @Override
+   public void close() {
+      this.guiExclusionAreas = Set.of();
+      this.backgroundArea = ImmutableRect2i.EMPTY;
+      this.slotBackgroundArea = ImmutableRect2i.EMPTY;
+      this.ghostIngredientDragManager.stopDrag();
+   }
+
+   public void drawOnForeground(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+      this.updateLayoutIfDirty();
+      if (this.isListDisplayed()) {
+         this.ghostIngredientDragManager.drawOnForeground(guiGraphics, mouseX, mouseY);
+      }
+   }
+
+   @Override
+   public Stream<IClickableIngredientInternal<?>> getIngredientUnderMouse(double mouseX, double mouseY) {
+      this.updateLayoutIfDirty();
+      return this.isListDisplayed() ? this.contents.getIngredientUnderMouse(mouseX, mouseY) : Stream.empty();
+   }
+
+   @Override
+   public Stream<IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double mouseX, double mouseY) {
+      this.updateLayoutIfDirty();
+      return this.isListDisplayed() ? this.contents.getDraggableIngredientUnderMouse(mouseX, mouseY) : Stream.empty();
+   }
+
+   public IDragHandler createDragHandler() {
+      return this.ghostIngredientDragManager.createDragHandler();
+   }
+
+   record LineSegment(int x1, int x2) {
+   }
+}

@@ -1,0 +1,43 @@
+package net.joefoxe.hexerei.item.custom;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
+public class CustomItemRenderer {
+   @OnlyIn(Dist.CLIENT)
+   protected Minecraft minecraft = Minecraft.getInstance();
+   @OnlyIn(Dist.CLIENT)
+   private final CustomItemRenderer.Renderer renderer = new CustomItemRenderer.Renderer();
+
+   @OnlyIn(Dist.CLIENT)
+   public void renderByItem(
+      ItemStack stack, ItemDisplayContext displayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay
+   ) {
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   public CustomItemRenderer.Renderer getRenderer() {
+      return this.renderer;
+   }
+
+   @OnlyIn(Dist.CLIENT)
+   protected class Renderer extends BlockEntityWithoutLevelRenderer {
+      public Renderer() {
+         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
+      }
+
+      @OnlyIn(Dist.CLIENT)
+      public void renderByItem(
+         ItemStack stack, ItemDisplayContext pDisplayContext, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay
+      ) {
+         poseStack.translate(-0.2, 0.1, 0.1);
+         CustomItemRenderer.this.renderByItem(stack, pDisplayContext, poseStack, multiBufferSource, light, overlay);
+      }
+   }
+}

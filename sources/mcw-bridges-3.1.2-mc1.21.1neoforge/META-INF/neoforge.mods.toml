@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+logoFile="bridgeslogo.png"
+[[mods]]
+modId="mcwbridges"
+version="3.1.2"
+displayName="Macaw's Bridges"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/macaws-bridges"
+updateJSONURL="https://raw.githubusercontent.com/sketchmacaw/macawsmods/master/bridges.json"
+credits=""
+authors="Sketch Macaw & Peachy Macaw"
+description="Connect the world with bridges!"

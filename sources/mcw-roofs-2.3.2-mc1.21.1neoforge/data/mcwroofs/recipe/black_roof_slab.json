@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:black_terracotta"
+  },
+  "result" : {
+    "count" : 2,
+    "id" : "mcwroofs:black_roof_slab"
+  },
+  "group" : "roofs"
+}

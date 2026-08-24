@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: rhino
+Specification-Vendor: latvian.dev
+Specification-Version: 1
+Implementation-Title: Rhino-1.21
+Implementation-Version: 2101.2.8-build.91
+Implementation-Vendor: latvian.dev
+Implementation-Timestamp: 2026-07-19T10:16:01+0000
+

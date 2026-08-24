@@ -1,0 +1,57 @@
+package com.alonie.brbe.mixins.pins;
+
+import com.alonie.brbe.BetterRecipeBook;
+import com.alonie.brbe.generic.pins.PinnableRecipeCollection;
+import com.alonie.brbe.mixins.accessors.KeyMappingAccessor;
+import com.alonie.brbe.util.BRBTextures;
+import java.util.List;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.screens.recipebook.RecipeButton;
+import net.minecraft.client.gui.screens.recipebook.RecipeCollection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+@Mixin({RecipeButton.class})
+public abstract class RecipeButtonMixin extends AbstractWidget {
+   protected RecipeButtonMixin(int i, int j, int k, int l, Component component) {
+      super(i, j, k, l, component);
+   }
+
+   @Shadow
+   public abstract RecipeCollection getCollection();
+
+   @Inject(
+      method = {"getTooltipText"},
+      locals = LocalCapture.CAPTURE_FAILHARD,
+      at = {@At("RETURN")}
+   )
+   public void getTooltip(CallbackInfoReturnable<List<Component>> cir, ItemStack itemStack, List<Component> list) {
+      list.add(Component.empty());
+      if (BetterRecipeBook.pinnedRecipeManager.has(PinnableRecipeCollection.of(this.getCollection()))) {
+         list.add(Component.translatable("brb.gui.pin.remove", new Object[]{((KeyMappingAccessor)BetterRecipeBook.PIN_MAPPING).getKey().getDisplayName()}));
+      } else {
+         list.add(Component.translatable("brb.gui.pin.add", new Object[]{((KeyMappingAccessor)BetterRecipeBook.PIN_MAPPING).getKey().getDisplayName()}));
+      }
+   }
+
+   @Inject(
+      method = {"renderWidget"},
+      at = {@At(
+         value = "RETURN",
+         target = "Lnet/minecraft/client/gui/GuiGraphics;renderFakeItem(Lnet/minecraft/world/item/ItemStack;II)V"
+      )}
+   )
+   public void renderWidget_renderFakeItem(GuiGraphics gui, int x, int y, float delta, CallbackInfo ci) {
+      if (BetterRecipeBook.pinnedRecipeManager.has(PinnableRecipeCollection.of(this.getCollection()))) {
+         gui.blitSprite(BRBTextures.RECIPE_BOOK_PIN_SPRITE, this.getX() - 4, this.getY() - 4, 32, 32);
+      }
+   }
+}

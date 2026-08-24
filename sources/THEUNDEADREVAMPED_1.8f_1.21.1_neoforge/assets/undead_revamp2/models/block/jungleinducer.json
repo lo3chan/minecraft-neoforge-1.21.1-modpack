@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/inducer_jungle_top",
+    "up": "undead_revamp2:block/inducer_jungle_top",
+    "north": "undead_revamp2:block/jungle_inducer",
+    "east": "undead_revamp2:block/jungle_inducer",
+    "south": "undead_revamp2:block/jungle_inducer",
+    "west": "undead_revamp2:block/jungle_inducer",
+    "particle": "undead_revamp2:block/inducer_jungle_top"
+  },
+  "render_type": "solid"
+}

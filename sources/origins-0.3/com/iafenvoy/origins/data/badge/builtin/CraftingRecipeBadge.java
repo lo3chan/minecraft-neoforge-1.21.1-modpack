@@ -1,0 +1,32 @@
+package com.iafenvoy.origins.data.badge.builtin;
+
+import com.iafenvoy.origins.data.badge.Badge;
+import com.iafenvoy.origins.util.codec.MiscCodecs;
+import com.iafenvoy.origins.util.codec.WildcardCodec;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+
+public record CraftingRecipeBadge(ResourceLocation sprite, ResourceLocation recipe, boolean fromPower, Optional<Component> prefix, Optional<Component> suffix)
+   implements Badge {
+   public static final MapCodec<CraftingRecipeBadge> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            ResourceLocation.CODEC.fieldOf("sprite").forGetter(CraftingRecipeBadge::sprite),
+            WildcardCodec.INSTANCE.fieldOf("recipe").forGetter(CraftingRecipeBadge::recipe),
+            Codec.BOOL.optionalFieldOf("from_power", false).forGetter(CraftingRecipeBadge::fromPower),
+            MiscCodecs.TRANSLATE_FIRST.optionalFieldOf("prefix").forGetter(CraftingRecipeBadge::prefix),
+            MiscCodecs.TRANSLATE_FIRST.optionalFieldOf("suffix").forGetter(CraftingRecipeBadge::suffix)
+         )
+         .apply(i, CraftingRecipeBadge::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Badge> codec() {
+      return CODEC;
+   }
+}

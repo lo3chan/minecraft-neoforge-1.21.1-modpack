@@ -1,0 +1,104 @@
+{
+  "mappings": {
+    "dev/corgitaco/dataanchor/mixin/BlockEntityMixin": {
+      "loadStatic": "Lnet/minecraft/class_2586;method_11005(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;Lnet/minecraft/class_7225$class_7874;)Lnet/minecraft/class_2586;",
+      "saveWithFullMetadata": "Lnet/minecraft/class_2586;method_38242(Lnet/minecraft/class_7225$class_7874;)Lnet/minecraft/class_2487;",
+      "setLevel": "Lnet/minecraft/class_2586;method_31662(Lnet/minecraft/class_1937;)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/ChunkAccessMixin": {
+      "<init>": "Lnet/minecraft/class_2791;<init>(Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;Lnet/minecraft/class_5539;Lnet/minecraft/class_2378;J[Lnet/minecraft/class_2826;Lnet/minecraft/class_6749;)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/ChunkMapMixin": {
+      "sendChunk": "Lnet/minecraft/class_8608;method_52388(Lnet/minecraft/class_3244;Lnet/minecraft/class_3218;Lnet/minecraft/class_2818;)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/ChunkMixin": {
+      "setBlockState": "method_12010(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;"
+    },
+    "dev/corgitaco/dataanchor/mixin/ChunkSerializerMixin": {
+      "read": "Lnet/minecraft/class_2852;method_12395(Lnet/minecraft/class_3218;Lnet/minecraft/class_4153;Lnet/minecraft/class_9240;Lnet/minecraft/class_1923;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2839;",
+      "write": "Lnet/minecraft/class_2852;method_12410(Lnet/minecraft/class_3218;Lnet/minecraft/class_2791;)Lnet/minecraft/class_2487;"
+    },
+    "dev/corgitaco/dataanchor/mixin/EntityMixin": {
+      "<init>": "Lnet/minecraft/class_1297;<init>(Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)V",
+      "load": "Lnet/minecraft/class_1297;method_5651(Lnet/minecraft/class_2487;)V",
+      "saveWithoutId": "Lnet/minecraft/class_1297;method_5647(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;",
+      "tick": "Lnet/minecraft/class_1297;method_5773()V"
+    },
+    "dev/corgitaco/dataanchor/mixin/LevelChunkMixin": {
+      "removeBlockEntity": "Lnet/minecraft/class_2818;method_12041(Lnet/minecraft/class_2338;)V",
+      "setBlockEntity": "Lnet/minecraft/class_2818;method_12007(Lnet/minecraft/class_2586;)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/LevelMixin": {
+      "Lnet/minecraft/world/level/block/entity/TickingBlockEntity;tick()V": "Lnet/minecraft/class_5562;method_31703()V",
+      "tickBlockEntities": "Lnet/minecraft/class_1937;method_18471()V"
+    },
+    "dev/corgitaco/dataanchor/mixin/PlayerListMixin": {
+      "respawn": "Lnet/minecraft/class_3324;method_14556(Lnet/minecraft/class_3222;ZLnet/minecraft/class_1297$class_5529;)Lnet/minecraft/class_3222;"
+    },
+    "dev/corgitaco/dataanchor/mixin/ServerEntityMixin": {
+      "(Ljava/lang/Iterable;)Lnet/minecraft/network/protocol/game/ClientboundBundlePacket;": "(Ljava/lang/Iterable;)Lnet/minecraft/class_8042;",
+      "addPairing": "Lnet/minecraft/class_3231;method_18760(Lnet/minecraft/class_3222;)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/ServerLevelMixin": {
+      "addDuringTeleport": "Lnet/minecraft/class_3218;method_18769(Lnet/minecraft/class_1297;)V",
+      "addPlayer": "Lnet/minecraft/class_3218;method_18771(Lnet/minecraft/class_3222;)V",
+      "addRespawnedPlayer": "Lnet/minecraft/class_3218;method_18215(Lnet/minecraft/class_3222;)V",
+      "tickChunk": "Lnet/minecraft/class_3218;method_18203(Lnet/minecraft/class_2818;I)V"
+    },
+    "dev/corgitaco/dataanchor/mixin/client/LevelMixin": {
+      "tickBlockEntities": "Lnet/minecraft/class_1937;method_18471()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "dev/corgitaco/dataanchor/mixin/BlockEntityMixin": {
+        "loadStatic": "Lnet/minecraft/class_2586;method_11005(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2487;Lnet/minecraft/class_7225$class_7874;)Lnet/minecraft/class_2586;",
+        "saveWithFullMetadata": "Lnet/minecraft/class_2586;method_38242(Lnet/minecraft/class_7225$class_7874;)Lnet/minecraft/class_2487;",
+        "setLevel": "Lnet/minecraft/class_2586;method_31662(Lnet/minecraft/class_1937;)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/ChunkAccessMixin": {
+        "<init>": "Lnet/minecraft/class_2791;<init>(Lnet/minecraft/class_1923;Lnet/minecraft/class_2843;Lnet/minecraft/class_5539;Lnet/minecraft/class_2378;J[Lnet/minecraft/class_2826;Lnet/minecraft/class_6749;)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/ChunkMapMixin": {
+        "sendChunk": "Lnet/minecraft/class_8608;method_52388(Lnet/minecraft/class_3244;Lnet/minecraft/class_3218;Lnet/minecraft/class_2818;)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/ChunkMixin": {
+        "setBlockState": "method_12010(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;"
+      },
+      "dev/corgitaco/dataanchor/mixin/ChunkSerializerMixin": {
+        "read": "Lnet/minecraft/class_2852;method_12395(Lnet/minecraft/class_3218;Lnet/minecraft/class_4153;Lnet/minecraft/class_9240;Lnet/minecraft/class_1923;Lnet/minecraft/class_2487;)Lnet/minecraft/class_2839;",
+        "write": "Lnet/minecraft/class_2852;method_12410(Lnet/minecraft/class_3218;Lnet/minecraft/class_2791;)Lnet/minecraft/class_2487;"
+      },
+      "dev/corgitaco/dataanchor/mixin/EntityMixin": {
+        "<init>": "Lnet/minecraft/class_1297;<init>(Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)V",
+        "load": "Lnet/minecraft/class_1297;method_5651(Lnet/minecraft/class_2487;)V",
+        "saveWithoutId": "Lnet/minecraft/class_1297;method_5647(Lnet/minecraft/class_2487;)Lnet/minecraft/class_2487;",
+        "tick": "Lnet/minecraft/class_1297;method_5773()V"
+      },
+      "dev/corgitaco/dataanchor/mixin/LevelChunkMixin": {
+        "removeBlockEntity": "Lnet/minecraft/class_2818;method_12041(Lnet/minecraft/class_2338;)V",
+        "setBlockEntity": "Lnet/minecraft/class_2818;method_12007(Lnet/minecraft/class_2586;)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/LevelMixin": {
+        "Lnet/minecraft/world/level/block/entity/TickingBlockEntity;tick()V": "Lnet/minecraft/class_5562;method_31703()V",
+        "tickBlockEntities": "Lnet/minecraft/class_1937;method_18471()V"
+      },
+      "dev/corgitaco/dataanchor/mixin/PlayerListMixin": {
+        "respawn": "Lnet/minecraft/class_3324;method_14556(Lnet/minecraft/class_3222;ZLnet/minecraft/class_1297$class_5529;)Lnet/minecraft/class_3222;"
+      },
+      "dev/corgitaco/dataanchor/mixin/ServerEntityMixin": {
+        "(Ljava/lang/Iterable;)Lnet/minecraft/network/protocol/game/ClientboundBundlePacket;": "(Ljava/lang/Iterable;)Lnet/minecraft/class_8042;",
+        "addPairing": "Lnet/minecraft/class_3231;method_18760(Lnet/minecraft/class_3222;)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/ServerLevelMixin": {
+        "addDuringTeleport": "Lnet/minecraft/class_3218;method_18769(Lnet/minecraft/class_1297;)V",
+        "addPlayer": "Lnet/minecraft/class_3218;method_18771(Lnet/minecraft/class_3222;)V",
+        "addRespawnedPlayer": "Lnet/minecraft/class_3218;method_18215(Lnet/minecraft/class_3222;)V",
+        "tickChunk": "Lnet/minecraft/class_3218;method_18203(Lnet/minecraft/class_2818;I)V"
+      },
+      "dev/corgitaco/dataanchor/mixin/client/LevelMixin": {
+        "tickBlockEntities": "Lnet/minecraft/class_1937;method_18471()V"
+      }
+    }
+  }
+}

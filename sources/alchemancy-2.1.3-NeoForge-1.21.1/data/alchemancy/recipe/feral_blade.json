@@ -1,0 +1,24 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:sharp",
+    "alchemancy:swift",
+    "alchemancy:dexterous"
+  ],
+
+  "infusables": [
+    {
+      "item": "minecraft:big_dripleaf"
+    }
+  ],
+
+  "catalyst": {
+    "item": "minecraft:iron_sword"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:feral_blade"
+  }
+}

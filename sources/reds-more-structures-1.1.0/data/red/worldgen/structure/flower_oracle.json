@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:jigsaw",
+    "biomes": [
+        "minecraft:meadow",
+        "minecraft:flower_forest",
+        "minecraft:sunflower_plains"
+      ],
+    "step": "surface_structures",
+    "spawn_overrides": {},
+    "terrain_adaptation": "beard_thin",
+    "start_pool": "red:flower_oracle",
+    "size": 6,
+    "start_height": {
+      "absolute": 0
+    },
+    "project_start_to_heightmap": "WORLD_SURFACE_WG",
+    "max_distance_from_center": 40,
+    "use_expansion_hack": false
+}

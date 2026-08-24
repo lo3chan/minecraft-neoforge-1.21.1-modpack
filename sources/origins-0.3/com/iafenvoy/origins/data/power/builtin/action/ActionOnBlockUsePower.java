@@ -1,0 +1,140 @@
+package com.iafenvoy.origins.data.power.builtin.action;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data._common.InteractionPowerSettings;
+import com.iafenvoy.origins.data.action.BlockAction;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.condition.BlockCondition;
+import com.iafenvoy.origins.data.power.Power;
+import com.iafenvoy.origins.util.MiscUtil;
+import com.iafenvoy.origins.util.codec.ExtraEnumCodecs;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class ActionOnBlockUsePower extends Power {
+   public static final MapCodec<ActionOnBlockUsePower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            InteractionPowerSettings.CODEC.forGetter(ActionOnBlockUsePower::getInteractionSettings),
+            EntityAction.optionalCodec("entity_action").forGetter(ActionOnBlockUsePower::getEntityAction),
+            BlockAction.optionalCodec("block_action").forGetter(ActionOnBlockUsePower::getBlockAction),
+            BlockCondition.optionalCodec("block_condition").forGetter(ActionOnBlockUsePower::getBlockCondition),
+            Direction.CODEC.listOf().optionalFieldOf("directions", List.of(Direction.values())).forGetter(ActionOnBlockUsePower::getDirections),
+            ExtraEnumCodecs.INTERACTION_RESULT
+               .optionalFieldOf("interaction_result", InteractionResult.SUCCESS)
+               .forGetter(ActionOnBlockUsePower::getInteractionResult)
+         )
+         .apply(i, ActionOnBlockUsePower::new)
+   );
+   private final InteractionPowerSettings interactionSettings;
+   private final EntityAction entityAction;
+   private final BlockAction blockAction;
+   private final BlockCondition blockCondition;
+   private final List<Direction> directions;
+   private final InteractionResult interactionResult;
+
+   public ActionOnBlockUsePower(
+      Power.BaseSettings settings,
+      InteractionPowerSettings interactionSettings,
+      EntityAction entityAction,
+      BlockAction blockAction,
+      BlockCondition blockCondition,
+      List<Direction> directions,
+      InteractionResult interactionResult
+   ) {
+      super(settings);
+      this.interactionSettings = interactionSettings;
+      this.entityAction = entityAction;
+      this.blockAction = blockAction;
+      this.blockCondition = blockCondition;
+      this.directions = directions;
+      this.interactionResult = interactionResult;
+   }
+
+   public InteractionPowerSettings getInteractionSettings() {
+      return this.interactionSettings;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   public BlockAction getBlockAction() {
+      return this.blockAction;
+   }
+
+   public BlockCondition getBlockCondition() {
+      return this.blockCondition;
+   }
+
+   public List<Direction> getDirections() {
+      return this.directions;
+   }
+
+   public InteractionResult getInteractionResult() {
+      return this.interactionResult;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   public Optional<InteractionResult> tryExecute(Entity entity, BlockPos pos, Direction direction, InteractionHand hand) {
+      return entity instanceof LivingEntity living && this.check(entity.level(), pos, direction, hand, living.getItemInHand(hand))
+         ? Optional.of(this.executeAction(entity, pos, direction, hand))
+         : Optional.empty();
+   }
+
+   public boolean check(Level level, BlockPos blockPos, Direction direction, InteractionHand hand, ItemStack heldStack) {
+      if (!this.interactionSettings.appliesTo(level, hand, heldStack)) {
+         return false;
+      } else {
+         return !this.directions.contains(direction) ? false : this.blockCondition.test(level, blockPos);
+      }
+   }
+
+   public InteractionResult executeAction(Entity entity, BlockPos blockPos, Direction direction, InteractionHand hand) {
+      this.blockAction.execute(entity.level(), blockPos, Optional.ofNullable(direction));
+      this.entityAction.execute(entity);
+      if (entity instanceof LivingEntity living) {
+         this.interactionSettings.performActorItemStuff(living, hand);
+      }
+
+      return this.interactionResult;
+   }
+
+   @SubscribeEvent(
+      priority = EventPriority.LOW
+   )
+   public static void onBlockUse(RightClickBlock event) {
+      Entity entity = event.getEntity();
+      PowerHelper.get(entity)
+         .streamActive(ActionOnBlockUsePower.class)
+         .flatMap(x -> x.tryExecute(entity, event.getPos(), event.getFace(), event.getHand()).stream())
+         .reduce(MiscUtil::reduce)
+         .ifPresent(res -> {
+            if (res.consumesAction()) {
+               event.setCancellationResult(res);
+               event.setCanceled(true);
+            }
+         });
+   }
+}

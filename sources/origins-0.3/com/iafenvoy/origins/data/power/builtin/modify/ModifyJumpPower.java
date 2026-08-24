@@ -1,0 +1,69 @@
+package com.iafenvoy.origins.data.power.builtin.modify;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data._common.helper.ModifierPowerHelper;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.power.Power;
+import com.iafenvoy.origins.util.codec.CombinedCodecs;
+import com.iafenvoy.origins.util.math.Modifier;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingEvent.LivingJumpEvent;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class ModifyJumpPower extends Power implements ModifierPowerHelper {
+   public static final MapCodec<ModifyJumpPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            CombinedCodecs.MODIFIER.fieldOf("modifier").forGetter(ModifyJumpPower::getModifier),
+            EntityAction.optionalCodec("entity_action").forGetter(ModifyJumpPower::getEntityAction)
+         )
+         .apply(i, ModifyJumpPower::new)
+   );
+   private final List<Modifier> modifier;
+   private final EntityAction entityAction;
+
+   public ModifyJumpPower(Power.BaseSettings settings, List<Modifier> modifier, EntityAction entityAction) {
+      super(settings);
+      this.modifier = modifier;
+      this.entityAction = entityAction;
+   }
+
+   @Override
+   public List<Modifier> getModifier() {
+      return this.modifier;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @SubscribeEvent(
+      priority = EventPriority.LOW
+   )
+   public static void livingJump(LivingJumpEvent event) {
+      Entity player = event.getEntity();
+      double modified = PowerHelper.get(player).reduce(ModifyJumpPower.class, event.getEntity().getDeltaMovement().y, (h, value, power) -> {
+         power.entityAction.execute(player);
+         return power.modify(h, value);
+      });
+      Vec3 vel = player.getDeltaMovement();
+      double delta = modified - vel.y;
+      if (delta != 0.0) {
+         player.setDeltaMovement(vel.add(0.0, delta, 0.0));
+      }
+   }
+}

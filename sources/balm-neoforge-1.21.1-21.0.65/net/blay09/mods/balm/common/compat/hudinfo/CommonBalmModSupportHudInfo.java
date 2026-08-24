@@ -1,0 +1,34 @@
+package net.blay09.mods.balm.common.compat.hudinfo;
+
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import net.blay09.mods.balm.api.compat.hudinfo.BalmModSupportHudInfo;
+import net.blay09.mods.balm.api.compat.hudinfo.BlockInfoProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+
+public class CommonBalmModSupportHudInfo implements BalmModSupportHudInfo {
+   private final List<BlockInfoProvider> globalBlockInfoProviders = new CopyOnWriteArrayList<>();
+   private final Multimap<Block, BlockInfoProvider> blockInfoProviders = Multimaps.synchronizedListMultimap(ArrayListMultimap.create());
+
+   @Override
+   public void registerGlobalBlockInfo(ResourceLocation identifier, BlockInfoProvider provider) {
+      this.globalBlockInfoProviders.add(provider);
+   }
+
+   @Override
+   public void registerBlockInfo(ResourceLocation identifier, Block block, BlockInfoProvider provider) {
+      this.blockInfoProviders.put(block, provider);
+   }
+
+   public List<BlockInfoProvider> getBlockInfoProviders(Block block) {
+      ArrayList<BlockInfoProvider> result = new ArrayList<>();
+      result.addAll(this.blockInfoProviders.get(block));
+      result.addAll(this.globalBlockInfoProviders);
+      return result;
+   }
+}

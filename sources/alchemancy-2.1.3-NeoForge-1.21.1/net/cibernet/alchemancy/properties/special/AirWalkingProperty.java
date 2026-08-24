@@ -1,0 +1,121 @@
+package net.cibernet.alchemancy.properties.special;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import net.cibernet.alchemancy.item.components.InfusedPropertiesHelper;
+import net.cibernet.alchemancy.properties.HollowProperty;
+import net.cibernet.alchemancy.properties.Property;
+import net.cibernet.alchemancy.properties.SparklingProperty;
+import net.cibernet.alchemancy.properties.data.IDataHolder;
+import net.cibernet.alchemancy.registries.AlchemancyProperties;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ClickAction;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.CommonHooks;
+
+public class AirWalkingProperty extends Property implements IDataHolder<Double> {
+   public static final DustParticleOptions PARTICLES = new DustParticleOptions(Vec3.fromRGB24(4718526).toVector3f(), 1.5F);
+
+   @Override
+   public void onStackedOverMe(
+      ItemStack carriedItem, ItemStack stack, Player player, ClickAction clickAction, SlotAccess carriedSlot, Slot stackedOnSlot, AtomicBoolean isCancelled
+   ) {
+      if ((
+            !InfusedPropertiesHelper.hasProperty(stack, AlchemancyProperties.HOLLOW)
+               || ((HollowProperty)AlchemancyProperties.HOLLOW.get()).getData(stack).isEmpty()
+         )
+         && carriedItem.isEmpty()) {
+         this.removeData(stack);
+      }
+   }
+
+   @Override
+   public void onItemPickedUp(Player player, ItemStack stack, ItemEntity itemEntity) {
+      this.removeData(stack);
+   }
+
+   @Override
+   public void onInventoryTick(Entity user, ItemStack stack, Level level, int inventorySlot, boolean isCurrentItem) {
+      if (inventorySlot != 36) {
+         this.removeData(stack);
+      }
+   }
+
+   @Override
+   public void onEquippedTick(LivingEntity user, EquipmentSlot slot, ItemStack stack) {
+      if (slot != EquipmentSlot.FEET && slot != EquipmentSlot.BODY) {
+         this.removeData(stack);
+      } else if (!user.isShiftKeyDown()) {
+         if (this.getData(stack) == null || user.onGround()) {
+            this.setData(stack, user.getY() + user.getDeltaMovement().y);
+         } else if (this.getData(stack) != null) {
+            double y = this.getData(stack);
+            Vec3 vec = user.getDeltaMovement();
+            if (user.getY() + vec.y <= y) {
+               if (user.getY() < y) {
+                  y = user.getY();
+                  this.setData(stack, y);
+               }
+
+               if (!user.onGround()) {
+                  CommonHooks.onLivingFall(user, user.fallDistance, 0.0F);
+               }
+
+               user.resetFallDistance();
+               user.setOnGround(user.getY() <= y);
+               user.setDeltaMovement(new Vec3(vec.x, Math.min(Math.max(y - user.getY(), vec.y), 1.0), vec.z));
+               playParticles(user, y, stack, 5);
+            }
+         }
+      }
+   }
+
+   public static void playParticles(Entity user, double y, ItemStack stack, int amount) {
+      if (user.level() instanceof ServerLevel serverLevel) {
+         serverLevel.sendParticles(
+            SparklingProperty.getParticles(stack).orElse(PARTICLES),
+            user.getX(),
+            y,
+            user.getZ(),
+            amount,
+            user.getBbWidth() * 0.5F,
+            0.0,
+            user.getBbWidth() * 0.5F,
+            0.0
+         );
+      }
+   }
+
+   @Override
+   public int getColor(ItemStack stack) {
+      return 4718526;
+   }
+
+   public Double readData(CompoundTag tag) {
+      return tag.getDouble("target_y");
+   }
+
+   public CompoundTag writeData(final Double data) {
+      return new CompoundTag() {
+         {
+            if (data != null) {
+               this.putDouble("target_y", data);
+            }
+         }
+      };
+   }
+
+   public Double getDefaultData() {
+      return null;
+   }
+}

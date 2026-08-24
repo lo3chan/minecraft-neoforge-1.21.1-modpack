@@ -1,0 +1,29 @@
+package com.iafenvoy.origins.data.badge.builtin;
+
+import com.iafenvoy.origins.data.badge.Badge;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
+
+public record KeybindBadge(ResourceLocation sprite, String text, String key) implements Badge {
+   public static final MapCodec<KeybindBadge> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            ResourceLocation.CODEC.fieldOf("sprite").forGetter(KeybindBadge::sprite),
+            Codec.STRING.optionalFieldOf("text", "").forGetter(KeybindBadge::text),
+            Codec.STRING.optionalFieldOf("key", "key.origins.primary_active").forGetter(KeybindBadge::key)
+         )
+         .apply(i, KeybindBadge::new)
+   );
+
+   public KeybindBadge(ResourceLocation sprite, String text) {
+      this(sprite, text, "key.origins.primary_active");
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Badge> codec() {
+      return CODEC;
+   }
+}

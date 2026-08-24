@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:nightmare_stalker_skull"
+    },
+    "title": {
+      "translate": "advancements.fighting_nightmares.title"
+    },
+    "description": {
+      "translate": "advancements.fighting_nightmares.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fighting_nightmares_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 10
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

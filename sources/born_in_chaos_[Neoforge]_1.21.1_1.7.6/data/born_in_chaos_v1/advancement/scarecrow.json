@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:pumpkin_spirit_icon"
+    },
+    "title": {
+      "translate": "advancements.scarecrow.title"
+    },
+    "description": {
+      "translate": "advancements.scarecrow.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "scarecrow_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 16
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Specification-Title: Patchouli
+Specification-Vendor: vazkii
+Specification-Version: 1
+Implementation-Title: Patchouli
+Implementation-Version: 1.21.1-93-NEOFORGE
+Implementation-Vendor: vazkii
+

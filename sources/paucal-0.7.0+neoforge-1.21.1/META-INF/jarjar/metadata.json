@@ -1,0 +1,15 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "blue.endless",
+        "artifact": "jankson"
+      },
+      "version": {
+        "range": "[1.2.2,)",
+        "artifactVersion": "1.2.2"
+      },
+      "path": "META-INF/jars/jankson-1.2.2.jar"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "undead_revamp2:blocks/oakinducer",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "undead_revamp2:oakinducer"
+        }
+      ]
+    }
+  ]
+}

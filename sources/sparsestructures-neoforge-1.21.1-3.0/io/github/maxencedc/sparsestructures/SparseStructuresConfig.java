@@ -1,0 +1,49 @@
+package io.github.maxencedc.sparsestructures;
+
+import com.google.gson.JsonObject;
+import java.util.List;
+import net.minecraft.resources.ResourceKey;
+
+public class SparseStructuresConfig {
+   private final double spreadFactor;
+   private final boolean idBasedSalt;
+   public List<CustomSpreadFactors> customSpreadFactors;
+
+   public double spreadFactor() {
+      return this.spreadFactor;
+   }
+
+   public boolean idBasedSalt() {
+      return this.idBasedSalt;
+   }
+
+   public List<CustomSpreadFactors> customSpreadFactors() {
+      return this.customSpreadFactors;
+   }
+
+   public SparseStructuresConfig(double spreadFactor, boolean idBasedSalt, List<CustomSpreadFactors> customSpreadFactors) {
+      this.spreadFactor = spreadFactor;
+      this.idBasedSalt = idBasedSalt;
+      this.customSpreadFactors = customSpreadFactors;
+   }
+
+   public double getSpreadFactor(ResourceKey resourceKey, JsonObject jsonObject) {
+      double factor = SparseStructuresCommon.config.spreadFactor();
+
+      for (CustomSpreadFactors s : this.customSpreadFactors) {
+         if (s != null) {
+            String structure_set = resourceKey.location().toString();
+            String structure = s.structure();
+            if (structure_set.equals(structure)
+               || jsonObject.getAsJsonArray("structures").asList().stream().anyMatch(p -> p.getAsJsonObject().get("structure").getAsString().equals(structure))
+               )
+             {
+               factor = s.factor();
+               break;
+            }
+         }
+      }
+
+      return factor;
+   }
+}

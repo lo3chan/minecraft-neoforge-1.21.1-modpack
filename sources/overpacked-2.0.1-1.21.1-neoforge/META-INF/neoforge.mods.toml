@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "overpacked"
+version = "2.0.1"
+displayName = "Overpacked"
+displayURL = "https://bobophones.github.io/overpacked"
+logoFile="logo.png"
+authors = "Ktotachka, KoteykaTheCat"
+description = '''This mod was created by the awesome guys from Nycto Team. If you have any questions or find a bug, be sure to let us know on the community Discord server. Stay tuned for future updates and enjoy the mod.'''
+
+[[mixins]]
+config = "overpacked.mixins.json"
+
+[[dependencies."overpacked"]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."overpacked"]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."overpacked"]]
+modId = "bobo_lib"
+type = "required"
+versionRange = "[1.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."overpacked"]]
+modId = "curios"
+type = "required"
+versionRange = "[9.2.0+1.21.1,)"
+ordering = "AFTER"
+side = "BOTH"

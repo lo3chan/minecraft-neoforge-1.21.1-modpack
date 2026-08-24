@@ -1,0 +1,63 @@
+package com.mrcrayfish.configured.client.screen.widget;
+
+import com.mojang.blaze3d.platform.GlStateManager.DestFactor;
+import com.mojang.blaze3d.platform.GlStateManager.SourceFactor;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button.OnPress;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+
+public class IconButton extends ConfiguredButton {
+   public static final ResourceLocation ICONS = ResourceLocation.fromNamespaceAndPath("configured", "textures/gui/icons.png");
+   private final Component label;
+   private final int u;
+   private final int v;
+
+   public IconButton(int x, int y, int u, int v, OnPress onPress) {
+      this(x, y, u, v, 20, CommonComponents.EMPTY, onPress);
+   }
+
+   public IconButton(int x, int y, int u, int v, int width, Component label, OnPress onPress) {
+      super(x, y, width, 20, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
+      this.label = label;
+      this.u = u;
+      this.v = v;
+   }
+
+   @Override
+   public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+      super.renderWidget(graphics, mouseX, mouseY, partialTick);
+      Minecraft mc = Minecraft.getInstance();
+      RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+      RenderSystem.enableDepthTest();
+      RenderSystem.enableBlend();
+      RenderSystem.defaultBlendFunc();
+      RenderSystem.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
+      int contentWidth = 10 + mc.font.width(this.label) + (!this.label.getString().isEmpty() ? 4 : 0);
+      boolean renderIcon = contentWidth <= this.width;
+      if (!renderIcon) {
+         contentWidth = mc.font.width(this.label);
+      }
+
+      int iconX = this.getX() + (this.width - contentWidth) / 2;
+      int iconY = this.getY() + 5;
+      float brightness = this.active ? 1.0F : 0.5F;
+      if (renderIcon) {
+         RenderSystem.setShaderColor(brightness, brightness, brightness, this.alpha);
+         graphics.blit(ICONS, iconX, iconY, 0, this.u, this.v, 11, 11, 64, 64);
+      }
+
+      RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+      int textColor = (this.active ? 16777215 : 10526880) | Mth.ceil(this.alpha * 255.0F) << 24;
+      graphics.drawString(mc.font, this.label, iconX + 14, iconY + 1, textColor);
+   }
+
+   protected MutableComponent createNarrationMessage() {
+      return wrapDefaultNarrationMessage(this.label);
+   }
+}

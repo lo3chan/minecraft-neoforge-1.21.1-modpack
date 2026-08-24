@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a a",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "undead_revamp2:bostroxingot"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:bostroxset_boots",
+    "count": 1
+  }
+}

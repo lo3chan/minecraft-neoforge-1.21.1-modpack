@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "fuzs/visualworkbench/mixin/WorldGenRegionMixin": {
+      "setBlock": "Lnet/minecraft/class_3233;method_30092(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;II)Z"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/visualworkbench/mixin/WorldGenRegionMixin": {
+        "setBlock": "Lnet/minecraft/class_3233;method_30092(Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;II)Z"
+      }
+    }
+  }
+}

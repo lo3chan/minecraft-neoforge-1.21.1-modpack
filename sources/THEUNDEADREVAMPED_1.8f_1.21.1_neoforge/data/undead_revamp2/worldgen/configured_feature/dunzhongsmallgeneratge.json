@@ -1,0 +1,17 @@
+{
+  "type": "undead_revamp2:dunzhongsmallgeneratge",
+  "config": {
+    "structure": "undead_revamp2:bossroom",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": [
+      "minecraft:crying_obsidian",
+      "minecraft:reinforced_deepslate"
+    ],
+    "offset": [
+      0,
+      -2,
+      0
+    ]
+  }
+}

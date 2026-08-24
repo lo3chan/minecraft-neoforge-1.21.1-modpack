@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "undead_revamp2:block/bostroxslabs"
+    },
+    "type=top": {
+      "model": "undead_revamp2:block/bostroxslabs_top"
+    },
+    "type=double": {
+      "model": "undead_revamp2:block/bostroxslabs_full"
+    }
+  }
+}

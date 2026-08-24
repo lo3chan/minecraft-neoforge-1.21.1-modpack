@@ -1,0 +1,23 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "kitchen_sink",
+  "pattern" : [ "CDC", "ABA", "ABA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:stripped_birch_log"
+    },
+    "B" : {
+      "item" : "minecraft:water_bucket"
+    },
+    "C" : {
+      "item" : "minecraft:birch_slab"
+    },
+    "D" : {
+      "item" : "minecraft:cauldron"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:stripped_birch_kitchen_sink"
+  }
+}

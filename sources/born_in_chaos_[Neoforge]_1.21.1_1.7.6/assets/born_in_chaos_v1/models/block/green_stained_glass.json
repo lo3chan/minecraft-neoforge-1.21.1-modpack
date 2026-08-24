@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/vitrag3",
+    "up": "born_in_chaos_v1:block/vitrag3",
+    "north": "born_in_chaos_v1:block/vitrag3",
+    "east": "born_in_chaos_v1:block/vitrag3",
+    "south": "born_in_chaos_v1:block/vitrag3",
+    "west": "born_in_chaos_v1:block/vitrag3",
+    "particle": "born_in_chaos_v1:block/vitrag3"
+  },
+  "render_type": "translucent"
+}

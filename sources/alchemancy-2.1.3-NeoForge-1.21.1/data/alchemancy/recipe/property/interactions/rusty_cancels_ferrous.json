@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:rusty",
+    "alchemancy:ferrous"
+  ],
+
+  "result": [
+    "alchemancy:rusty"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "undead_revamp2:rawbostrox"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:bostroxslabs",
+    "count": 3
+  }
+}

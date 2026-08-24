@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "undead_revamp2:block/coffinbroad"
+    },
+    "facing=east": {
+      "model": "undead_revamp2:block/coffinbroad",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "undead_revamp2:block/coffinbroad",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "undead_revamp2:block/coffinbroad",
+      "y": 270
+    }
+  }
+}

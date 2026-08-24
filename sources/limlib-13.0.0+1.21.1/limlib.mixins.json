@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "package": "org.dimdev.limlib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "refmap": "limlib.refmap.json",
+  "mixins": [
+    "ChunkStatusMixin",
+    "ServerPlayerEntityMixin",
+    "accessor.BlockEntityTypeAccessor"
+  ],
+  "client": [
+    "client.BackgroundRendererMixin",
+    "client.ChannelMixin",
+    "client.ClientWorldMixin",
+    "client.DimensionVisualEffectsMixin",
+    "client.GameRendererMixin",
+    "client.MinecraftClientMixin",
+    "client.SoundSystemMixin",
+    "client.WorldRendererAfterMixin",
+    "client.WorldRendererBeforeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

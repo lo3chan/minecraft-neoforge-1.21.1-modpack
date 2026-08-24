@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/oak_log_top_inducer",
+    "up": "undead_revamp2:block/oak_log_top_inducer",
+    "north": "undead_revamp2:block/oak_log_inducer",
+    "east": "undead_revamp2:block/oak_log_inducer",
+    "south": "undead_revamp2:block/oak_log_inducer",
+    "west": "undead_revamp2:block/oak_log_inducer",
+    "particle": "undead_revamp2:block/oak_log_top_inducer"
+  },
+  "render_type": "solid"
+}

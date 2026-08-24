@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstonepetasi",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstonesix",
+    "particle": "born_in_chaos_v1:block/tombstonesix",
+    "0": "born_in_chaos_v1:block/tombstonesix",
+    "1": "born_in_chaos_v1:block/petasiname"
+  },
+  "render_type": "cutout"
+}

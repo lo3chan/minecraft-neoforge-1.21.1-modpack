@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "undead_revamp2:block/chiseled_dripstonepillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "undead_revamp2:block/chiseled_dripstonepillar"
+    },
+    "axis=z": {
+      "model": "undead_revamp2:block/chiseled_dripstonepillar",
+      "x": 90
+    }
+  }
+}

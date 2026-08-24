@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:rawbostrox"
+    },
+    {
+      "item": "undead_revamp2:rawbostrox"
+    },
+    {
+      "item": "undead_revamp2:rawbostrox"
+    },
+    {
+      "item": "undead_revamp2:rawbostrox"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:bostrokestone",
+    "count": 1
+  }
+}

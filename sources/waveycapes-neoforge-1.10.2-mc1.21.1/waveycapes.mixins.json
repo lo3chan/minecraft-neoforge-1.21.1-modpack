@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "dev.tr7zw.waveycapes.mixin",
+    "mixins": [],
+    "client": [
+        "LivingEntityRendererMixin",
+        "PlayerMixin",
+        "PlayerRendererMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

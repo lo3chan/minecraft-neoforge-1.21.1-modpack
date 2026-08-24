@@ -1,0 +1,29 @@
+package net.joefoxe.hexerei.items;
+
+import javax.annotation.Nonnull;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
+
+public class JarSlot extends SlotItemHandler {
+   private final int index;
+
+   public JarSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+      super(itemHandler, index, xPosition, yPosition);
+      this.index = index;
+   }
+
+   public boolean mayPickup(Player playerIn) {
+      return true;
+   }
+
+   public int getMaxStackSize(@Nonnull ItemStack stack) {
+      return ((JarHandler)this.getItemHandler()).getStackLimit(this.index, stack);
+   }
+
+   public boolean isSameInventory(Slot other) {
+      return other instanceof JarSlot && ((JarSlot)other).getItemHandler() == this.getItemHandler();
+   }
+}

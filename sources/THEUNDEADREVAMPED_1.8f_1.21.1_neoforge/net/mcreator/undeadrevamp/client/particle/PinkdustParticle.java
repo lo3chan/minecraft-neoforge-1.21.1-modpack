@@ -1,0 +1,61 @@
+package net.mcreator.undeadrevamp.client.particle;
+
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class PinkdustParticle extends TextureSheetParticle {
+   private final SpriteSet spriteSet;
+
+   public static PinkdustParticle.PinkdustParticleProvider provider(SpriteSet spriteSet) {
+      return new PinkdustParticle.PinkdustParticleProvider(spriteSet);
+   }
+
+   protected PinkdustParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
+      super(world, x, y, z);
+      this.spriteSet = spriteSet;
+      this.setSize(0.1F, 0.1F);
+      this.quadSize *= 0.4F;
+      this.lifetime = Math.max(1, 30 + (this.random.nextInt(36) - 18));
+      this.gravity = -0.1F;
+      this.hasPhysics = true;
+      this.xd = vx * 0.1;
+      this.yd = vy * 0.1;
+      this.zd = vz * 0.1;
+      this.setSpriteFromAge(spriteSet);
+   }
+
+   public int getLightColor(float partialTick) {
+      return 15728880;
+   }
+
+   public ParticleRenderType getRenderType() {
+      return ParticleRenderType.PARTICLE_SHEET_LIT;
+   }
+
+   public void tick() {
+      super.tick();
+      if (!this.removed) {
+         this.setSprite(this.spriteSet.get(this.age / 3 % 1 + 1, 1));
+      }
+   }
+
+   public static class PinkdustParticleProvider implements ParticleProvider<SimpleParticleType> {
+      private final SpriteSet spriteSet;
+
+      public PinkdustParticleProvider(SpriteSet spriteSet) {
+         this.spriteSet = spriteSet;
+      }
+
+      public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+         return new PinkdustParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+      }
+   }
+}

@@ -1,0 +1,179 @@
+package io.wispforest.owo.ui.component;
+
+import com.mojang.blaze3d.systems.RenderSystem;
+import io.wispforest.owo.mixin.ui.access.ButtonWidgetAccessor;
+import io.wispforest.owo.mixin.ui.access.ClickableWidgetAccessor;
+import io.wispforest.owo.ui.core.Color;
+import io.wispforest.owo.ui.core.CursorStyle;
+import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.Sizing;
+import io.wispforest.owo.ui.parsing.UIModel;
+import io.wispforest.owo.ui.parsing.UIModelParsingException;
+import io.wispforest.owo.ui.parsing.UIParsing;
+import io.wispforest.owo.ui.util.NinePatchTexture;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.WidgetTooltipHolder;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import org.w3c.dom.Element;
+
+public class ButtonComponent extends Button {
+   public static final ResourceLocation ACTIVE_TEXTURE = ResourceLocation.fromNamespaceAndPath("owo", "button/active");
+   public static final ResourceLocation HOVERED_TEXTURE = ResourceLocation.fromNamespaceAndPath("owo", "button/hovered");
+   public static final ResourceLocation DISABLED_TEXTURE = ResourceLocation.fromNamespaceAndPath("owo", "button/disabled");
+   protected ButtonComponent.Renderer renderer = ButtonComponent.Renderer.VANILLA;
+   protected boolean textShadow = true;
+
+   protected ButtonComponent(Component message, Consumer<ButtonComponent> onPress) {
+      super(0, 0, 0, 0, message, button -> onPress.accept((ButtonComponent)button), Button.DEFAULT_NARRATION);
+      this.sizing(Sizing.content());
+   }
+
+   public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+      this.renderer.draw((OwoUIDrawContext)context, this, delta);
+      Font textRenderer = Minecraft.getInstance().font;
+      int color = this.active ? 16777215 : 10526880;
+      if (this.textShadow) {
+         context.drawCenteredString(textRenderer, this.getMessage(), this.getX() + this.width / 2, this.getY() + (this.height - 8) / 2, color);
+      } else {
+         context.drawString(
+            textRenderer,
+            this.getMessage(),
+            (int)(this.getX() + this.width / 2.0F - textRenderer.width(this.getMessage()) / 2.0F),
+            (int)(this.getY() + (this.height - 8) / 2.0F),
+            color,
+            false
+         );
+      }
+
+      WidgetTooltipHolder tooltip = ((ClickableWidgetAccessor)this).owo$getTooltip();
+      if (this.isHovered && tooltip.get() != null) {
+         context.renderTooltip(textRenderer, tooltip.get().toCharSequence(Minecraft.getInstance()), DefaultTooltipPositioner.INSTANCE, mouseX, mouseY);
+      }
+   }
+
+   public ButtonComponent onPress(Consumer<ButtonComponent> onPress) {
+      ((ButtonWidgetAccessor)this).owo$setOnPress(button -> onPress.accept((ButtonComponent)button));
+      return this;
+   }
+
+   public ButtonComponent renderer(ButtonComponent.Renderer renderer) {
+      this.renderer = renderer;
+      return this;
+   }
+
+   public ButtonComponent.Renderer renderer() {
+      return this.renderer;
+   }
+
+   public ButtonComponent textShadow(boolean textShadow) {
+      this.textShadow = textShadow;
+      return this;
+   }
+
+   public boolean textShadow() {
+      return this.textShadow;
+   }
+
+   public ButtonComponent active(boolean active) {
+      this.active = active;
+      return this;
+   }
+
+   public boolean active() {
+      return this.active;
+   }
+
+   public void parseProperties(UIModel model, Element element, Map<String, Element> children) {
+      super.parseProperties(model, element, children);
+      UIParsing.apply(children, "text", UIParsing::parseText, this::setMessage);
+      UIParsing.apply(children, "text-shadow", UIParsing::parseBool, this::textShadow);
+      UIParsing.apply(children, "renderer", ButtonComponent.Renderer::parse, this::renderer);
+   }
+
+   protected CursorStyle owo$preferredCursorStyle() {
+      return CursorStyle.HAND;
+   }
+
+   @FunctionalInterface
+   public interface Renderer {
+      ButtonComponent.Renderer VANILLA = (matrices, button, delta) -> {
+         RenderSystem.enableDepthTest();
+         ResourceLocation texture = button.active
+            ? (button.isHovered ? ButtonComponent.HOVERED_TEXTURE : ButtonComponent.ACTIVE_TEXTURE)
+            : ButtonComponent.DISABLED_TEXTURE;
+         NinePatchTexture.draw(texture, matrices, button.getX(), button.getY(), button.width, button.height);
+      };
+
+      static ButtonComponent.Renderer flat(int color, int hoveredColor, int disabledColor) {
+         return (context, button, delta) -> {
+            RenderSystem.enableDepthTest();
+            if (button.active) {
+               if (button.isHovered) {
+                  context.fill(button.getX(), button.getY(), button.getX() + button.width, button.getY() + button.height, hoveredColor);
+               } else {
+                  context.fill(button.getX(), button.getY(), button.getX() + button.width, button.getY() + button.height, color);
+               }
+            } else {
+               context.fill(button.getX(), button.getY(), button.getX() + button.width, button.getY() + button.height, disabledColor);
+            }
+         };
+      }
+
+      static ButtonComponent.Renderer texture(ResourceLocation texture, int u, int v, int textureWidth, int textureHeight) {
+         return (context, button, delta) -> {
+            int renderV = v;
+            if (!button.active) {
+               renderV = v + button.height * 2;
+            } else if (button.isHovered()) {
+               renderV = v + button.height;
+            }
+
+            RenderSystem.enableDepthTest();
+            context.blit(texture, button.getX(), button.getY(), u, renderV, button.width, button.height, textureWidth, textureHeight);
+         };
+      }
+
+      void draw(OwoUIDrawContext var1, ButtonComponent var2, float var3);
+
+      static ButtonComponent.Renderer parse(Element element) {
+         List<Element> children = UIParsing.allChildrenOfType(element, (short)1);
+         if (children.size() > 1) {
+            throw new UIModelParsingException("'renderer' declaration may only contain a single child");
+         } else {
+            Element rendererElement = children.get(0);
+            String var3 = rendererElement.getNodeName();
+
+            return switch (var3) {
+               case "vanilla" -> VANILLA;
+               case "flat" -> {
+                  UIParsing.expectAttributes(rendererElement, "color", "hovered-color", "disabled-color");
+                  yield flat(
+                     Color.parseAndPack(rendererElement.getAttributeNode("color")),
+                     Color.parseAndPack(rendererElement.getAttributeNode("hovered-color")),
+                     Color.parseAndPack(rendererElement.getAttributeNode("disabled-color"))
+                  );
+               }
+               case "texture" -> {
+                  UIParsing.expectAttributes(rendererElement, "texture", "u", "v", "texture-width", "texture-height");
+                  yield texture(
+                     UIParsing.parseIdentifier(rendererElement.getAttributeNode("texture")),
+                     UIParsing.parseUnsignedInt(rendererElement.getAttributeNode("u")),
+                     UIParsing.parseUnsignedInt(rendererElement.getAttributeNode("v")),
+                     UIParsing.parseUnsignedInt(rendererElement.getAttributeNode("texture-width")),
+                     UIParsing.parseUnsignedInt(rendererElement.getAttributeNode("texture-height"))
+                  );
+               }
+               default -> throw new UIModelParsingException("Unknown button renderer '" + rendererElement.getNodeName() + "'");
+            };
+         }
+      }
+   }
+}

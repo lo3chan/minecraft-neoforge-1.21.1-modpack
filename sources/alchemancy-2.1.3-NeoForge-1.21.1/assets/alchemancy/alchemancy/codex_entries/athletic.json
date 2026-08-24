@@ -1,0 +1,12 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:athletic.flavor"
+  },
+  "functions": [
+    "while_worn_boots",
+    "while_worn"
+  ],
+  "innate": [
+    "alchemancy:mechanical_boots"
+  ]
+}

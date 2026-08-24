@@ -1,0 +1,2 @@
+execute as @e[tag=BlessedBlade] run execute positioned as @s align xz run particle minecraft:enchant ~0.5 ~2.25 ~0.5 0.1 0 0.1 0 1
+kill @e[type=minecraft:armor_stand,tag=BlessedBlade,nbt=!{HandItems:[{count:1}]}]

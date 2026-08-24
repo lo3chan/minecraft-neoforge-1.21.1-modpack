@@ -1,0 +1,8 @@
+{
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "born_in_chaos_v1:block/opdosk",
+    "particle": "born_in_chaos_v1:block/opdosk"
+  },
+  "render_type": "solid"
+}

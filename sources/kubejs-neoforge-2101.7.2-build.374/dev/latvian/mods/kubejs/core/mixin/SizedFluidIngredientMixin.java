@@ -1,0 +1,14 @@
+package dev.latvian.mods.kubejs.core.mixin;
+
+import dev.latvian.mods.kubejs.core.SizedFluidIngredientKJS;
+import dev.latvian.mods.rhino.util.RemapPrefixForJS;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+import org.spongepowered.asm.mixin.Mixin;
+
+@RemapPrefixForJS("kjs$")
+@Mixin(
+   value = {SizedFluidIngredient.class},
+   remap = false
+)
+public abstract class SizedFluidIngredientMixin implements SizedFluidIngredientKJS {
+}

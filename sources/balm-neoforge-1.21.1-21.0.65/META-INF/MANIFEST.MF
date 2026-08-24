@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: Balm
+Specification-Vendor: BlayTheNinth
+Specification-Version: 21.0.65
+Implementation-Title: neoforge
+Implementation-Version: 21.0.65
+Implementation-Vendor: BlayTheNinth
+Built-On-Minecraft: 1.21.1
+MixinConfigs: balm.mixins.json,balm.neoforge.mixins.json
+

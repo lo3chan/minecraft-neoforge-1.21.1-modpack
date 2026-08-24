@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "moonlight:block/spawn_box_block_top",
+		"side": "moonlight:block/spawn_box_block"
+	}
+}

@@ -1,0 +1,39 @@
+package me.flashyreese.mods.sodiumextra.mixin.toasts;
+
+import java.util.Deque;
+import me.flashyreese.mods.sodiumextra.client.util.ToastFilter;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.toasts.Toast;
+import net.minecraft.client.gui.components.toasts.ToastComponent;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({ToastComponent.class})
+public class MixinToastManager {
+   @Shadow
+   @Final
+   private Deque<Toast> queued;
+
+   @Inject(
+      method = {"addToast"},
+      at = {@At("HEAD")},
+      cancellable = true
+   )
+   public void goodByeToasts(Toast toast, CallbackInfo ci) {
+      if (!ToastFilter.isEnabled(toast)) {
+         ci.cancel();
+      }
+   }
+
+   @Inject(
+      method = {"render"},
+      at = {@At("HEAD")}
+   )
+   private void removeDisabledQueuedToasts(GuiGraphics guiGraphics, CallbackInfo ci) {
+      this.queued.removeIf(toast -> !ToastFilter.isEnabled(toast));
+   }
+}

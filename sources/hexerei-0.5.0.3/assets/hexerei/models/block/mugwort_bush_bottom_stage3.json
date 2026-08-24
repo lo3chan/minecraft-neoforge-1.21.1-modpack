@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "hexerei:block/mugwort_bush_bottom_stage3",
+    "particle": "hexerei:block/mugwort_bush_bottom_stage3"
+  },
+  "render_type": "cutout"
+}

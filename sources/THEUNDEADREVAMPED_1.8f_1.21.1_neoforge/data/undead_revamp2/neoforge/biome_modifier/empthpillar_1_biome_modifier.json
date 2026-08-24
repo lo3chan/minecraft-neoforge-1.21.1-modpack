@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "dripstone_caves",
+  "features": "undead_revamp2:empthpillar_1",
+  "step": "surface_structures"
+}

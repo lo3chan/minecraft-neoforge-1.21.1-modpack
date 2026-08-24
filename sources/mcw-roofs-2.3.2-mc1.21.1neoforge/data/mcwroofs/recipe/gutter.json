@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "A A", " A " ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:iron_nugget"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:rain_gutter"
+  }
+}

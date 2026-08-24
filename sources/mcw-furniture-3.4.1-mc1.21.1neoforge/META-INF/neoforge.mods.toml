@@ -1,0 +1,14 @@
+license="All Rights Reserved"
+modLoader="javafml"
+loaderVersion="[1,)"
+
+logoFile="furnitureslogo.png"
+[[mods]]
+modId="mcwfurnitures"
+version="3.4.1"
+displayName="Macaw's Furniture"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/macaws-furniture"
+updateJSONURL="https://raw.githubusercontent.com/sketchmacaw/macawsmods/master/furniture.json"
+credits=""
+authors="Sketch Macaw"
+description="Chairs, Wardrobes, Drawers, Tables, Desks and more..!"

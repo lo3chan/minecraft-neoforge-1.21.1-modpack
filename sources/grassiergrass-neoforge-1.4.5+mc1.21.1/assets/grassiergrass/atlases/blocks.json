@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "grassiergrass:block/blade"
+    },
+    {
+      "type": "single",
+      "resource": "grassiergrass:block/wind_blade"
+    },
+    {
+      "type": "single",
+      "resource": "grassiergrass:block/grass_bands"
+    },
+    {
+      "type": "single",
+      "resource": "grassiergrass:block/grass_tapered"
+    }
+  ]
+}

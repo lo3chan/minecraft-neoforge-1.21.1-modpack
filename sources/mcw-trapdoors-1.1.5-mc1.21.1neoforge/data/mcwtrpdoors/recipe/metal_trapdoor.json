@@ -1,0 +1,16 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "ABA", "ABA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:iron_ingot"
+    },
+    "B" : {
+      "item" : "minecraft:glass_pane"
+    }
+  },
+  "result" : {
+    "count" : 2,
+    "id" : "mcwtrpdoors:metal_trapdoor"
+  }
+}

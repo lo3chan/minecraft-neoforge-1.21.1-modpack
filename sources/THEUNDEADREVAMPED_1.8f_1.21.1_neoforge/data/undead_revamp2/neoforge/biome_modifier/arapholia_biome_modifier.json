@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "plains",
+    "taiga"
+  ],
+  "features": "undead_revamp2:arapholia",
+  "step": "vegetal_decoration"
+}

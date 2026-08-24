@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:dripstone_block"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:chiseled_dripstonepillar",
+    "count": 6
+  }
+}

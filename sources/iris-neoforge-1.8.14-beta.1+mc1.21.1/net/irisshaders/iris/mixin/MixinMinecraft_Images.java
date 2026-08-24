@@ -1,0 +1,42 @@
+package net.irisshaders.iris.mixin;
+
+import java.io.IOException;
+import net.irisshaders.iris.Iris;
+import net.irisshaders.iris.platform.IrisPlatformHelpers;
+import net.irisshaders.iris.shaderpack.texture.CustomTextureData;
+import net.irisshaders.iris.shaderpack.texture.TextureFilteringData;
+import net.irisshaders.iris.targets.backed.NativeImageBackedCustomTexture;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.main.GameConfig;
+import net.minecraft.resources.ResourceLocation;
+import org.apache.commons.io.IOUtils;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({Minecraft.class})
+public class MixinMinecraft_Images {
+   @Inject(
+      method = {"<init>"},
+      at = {@At("TAIL")}
+   )
+   private void iris$setupImages(GameConfig arg, CallbackInfo ci) {
+      if (!IrisPlatformHelpers.getInstance().isModLoaded("fabric-resource-loader-v0")) {
+         try {
+            Minecraft.getInstance()
+               .getTextureManager()
+               .register(
+                  ResourceLocation.fromNamespaceAndPath("iris", "textures/gui/widgets.png"),
+                  new NativeImageBackedCustomTexture(
+                     new CustomTextureData.PngData(
+                        new TextureFilteringData(false, false), IOUtils.toByteArray(Iris.class.getResourceAsStream("/assets/iris/textures/gui/widgets.png"))
+                     )
+                  )
+               );
+         } catch (IOException var4) {
+            throw new RuntimeException(var4);
+         }
+      }
+   }
+}

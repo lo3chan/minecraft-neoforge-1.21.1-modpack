@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:blackstone"
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwpaths:blackstone_clover_paving"
+  },
+  "group" : "paths"
+}

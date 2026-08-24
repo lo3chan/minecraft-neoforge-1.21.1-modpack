@@ -1,0 +1,125 @@
+package jeresources.entry;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import jeresources.api.drop.LootDrop;
+import jeresources.api.util.ItemHelper;
+import jeresources.api.util.LootFunctionHelper;
+import jeresources.platform.ILootTableHelper;
+import jeresources.platform.Services;
+import jeresources.registry.DungeonRegistry;
+import jeresources.util.LootTableFetcher;
+import jeresources.util.LootTableHelper;
+import mezz.jei.api.recipe.IFocus;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+
+public class DungeonEntry {
+   private Set<LootDrop> drops = new TreeSet<>();
+   private String name;
+   private int maxStacks;
+   private int minStacks;
+
+   public DungeonEntry(String name, LootTable lootTable) {
+      this.name = name;
+      float[] tmpMinStacks = new float[]{0.0F};
+      float[] tmpMaxStacks = new float[]{0.0F};
+      LootTableFetcher lootTables = LootTableHelper.getLootTableFetcher();
+      this.handleTable(lootTable, lootTables, tmpMinStacks, tmpMaxStacks);
+      this.minStacks = Mth.floor(tmpMinStacks[0]);
+      this.maxStacks = Mth.floor(tmpMaxStacks[0]);
+   }
+
+   private void handleTable(LootTable lootTable, LootTableFetcher lootTables, float[] tmpMinStacks, float[] tmpMaxStacks) {
+      ILootTableHelper lootTableHelper = Services.PLATFORM.getLootTableHelper();
+
+      for (LootPool pool : LootTableHelper.getPools(lootTable)) {
+         tmpMinStacks[0] += LootFunctionHelper.getMin(lootTableHelper.getRolls(pool));
+         tmpMaxStacks[0] += LootFunctionHelper.getMax(lootTableHelper.getRolls(pool)) + LootFunctionHelper.getMax(lootTableHelper.getBonusRolls(pool));
+         float totalWeight = LootTableHelper.getLootEntries(pool)
+            .stream()
+            .filter(entry -> entry instanceof LootPoolSingletonContainer)
+            .map(entry -> (LootPoolSingletonContainer)entry)
+            .mapToInt(entry -> entry.weight)
+            .sum();
+         LootTableHelper.getLootEntries(pool)
+            .stream()
+            .filter(entry -> entry instanceof LootItem)
+            .map(entry -> (LootItem)entry)
+            .map(entry -> new LootDrop((Item)entry.item.value(), entry.weight / totalWeight, entry.functions))
+            .forEach(this.drops::add);
+         LootTableHelper.getLootEntries(pool)
+            .stream()
+            .filter(entry -> entry instanceof DynamicLoot)
+            .map(entry -> (DynamicLoot)entry)
+            .map(entry -> lootTables.getLootTable(ResourceKey.create(Registries.LOOT_TABLE, entry.name)))
+            .forEach(table -> this.handleTable(table, lootTables, tmpMinStacks, tmpMaxStacks));
+      }
+   }
+
+   public boolean containsItem(ItemStack itemStack) {
+      return this.drops.stream().anyMatch(drop -> drop.item.is(itemStack.getItem()));
+   }
+
+   public String getName() {
+      String name = DungeonRegistry.categoryToLocalKeyMap.get(this.name);
+      return name == null ? this.name : name;
+   }
+
+   public List<ItemStack> getItemStacks(IFocus<ItemStack> focus) {
+      return this.drops
+         .stream()
+         .map(drop -> drop.item)
+         .filter(
+            stack -> focus == null
+               || ItemStack.isSameItem(
+                  ItemHelper.copyStackWithSize(stack, ((ItemStack)focus.getTypedValue().getIngredient()).getCount()),
+                  (ItemStack)focus.getTypedValue().getIngredient()
+               )
+         )
+         .collect(Collectors.toList());
+   }
+
+   public List<ItemStack> getItemStacks(Stream<IFocus<ItemStack>> focuses) {
+      return this.getItemStacks(focuses.findFirst().orElse(null));
+   }
+
+   public int getMaxStacks() {
+      return this.maxStacks;
+   }
+
+   public int getMinStacks() {
+      return this.minStacks;
+   }
+
+   public LootDrop getChestDrop(ItemStack ingredient) {
+      return this.drops.stream().filter(drop -> ItemStack.isSameItem(drop.item, ingredient)).findFirst().orElse(null);
+   }
+
+   public int amountOfItems(IFocus<ItemStack> focus) {
+      return this.getItemStacks(focus).size();
+   }
+
+   public List<ItemStack> getItems(IFocus<ItemStack> focus, int slot, int slots) {
+      List<ItemStack> list = this.getItemStacks(focus).subList(slot, slot + 1);
+
+      for (int n = 1; n < this.amountOfItems(focus) / slots + 1; n++) {
+         list.add(this.amountOfItems(focus) <= slot + slots * n ? null : this.getItemStacks(focus).get(slot + slots * n));
+      }
+
+      list.removeIf(Objects::isNull);
+      return list;
+   }
+}

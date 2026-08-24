@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Better-Witch-Huts/issues"
+
+[[mods]]
+    modId="betterwitchhuts"
+    version="1.21.1-NeoForge-4.1.1"
+    displayName="YUNG's Better Witch Huts"
+    credits="Thanks so much to all my patrons!"
+	authors="YUNGNICKYOUNG, Acarii"
+    description="Adds new and improved witch huts to swamps!"
+	logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-better-witch-huts-neoforge"
+
+[modproperties.betterwitchhuts]
+    catalogueImageIcon="catalogue_icon.png"
+    catalogueBackground="catalogue_background.png"
+
+[[dependencies.betterwitchhuts]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+
+[[dependencies.betterwitchhuts]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.0,)"
+
+[[dependencies.betterwitchhuts]]
+    modId="yungsapi"
+    versionRange="[1.21.1-NeoForge-5.1.2,)"
+    type="required"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config = "betterwitchhuts.mixins.json"

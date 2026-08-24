@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/lifestealerskull",
+  "textures": {
+    "all": "born_in_chaos_v1:block/lifestealerskull",
+    "particle": "born_in_chaos_v1:block/lifestealerskull",
+    "1": "born_in_chaos_v1:block/lifestealerskull"
+  },
+  "render_type": "cutout"
+}

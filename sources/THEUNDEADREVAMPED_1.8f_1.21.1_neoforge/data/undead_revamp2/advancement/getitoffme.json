@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "undead_revamp2:arapoholiaspray"
+    },
+    "title": {
+      "translate": "advancements.getitoffme.title"
+    },
+    "description": {
+      "translate": "advancements.getitoffme.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "getitoffme_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 3
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

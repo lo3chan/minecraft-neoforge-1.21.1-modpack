@@ -1,0 +1,63 @@
+package me.flashyreese.mods.sodiumextra.compat;
+
+import com.mojang.blaze3d.vertex.VertexFormat;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+
+public class IrisCompat {
+   private static boolean irisPresent;
+   private static MethodHandle handleRenderingShadowPass;
+   private static MethodHandle handleShaderPackInUse;
+   private static Object apiInstance;
+   private static VertexFormat terrainFormat;
+
+   public static boolean isRenderingShadowPass() {
+      if (irisPresent) {
+         try {
+            return (boolean)handleRenderingShadowPass.invoke((Object)apiInstance);
+         } catch (Throwable var1) {
+            var1.printStackTrace();
+         }
+      }
+
+      return false;
+   }
+
+   public static boolean isShaderPackInUse() {
+      if (irisPresent) {
+         try {
+            return (boolean)handleShaderPackInUse.invoke((Object)apiInstance);
+         } catch (Throwable var1) {
+            var1.printStackTrace();
+         }
+      }
+
+      return false;
+   }
+
+   public static VertexFormat getTerrainFormat() {
+      return terrainFormat;
+   }
+
+   public static boolean isIrisPresent() {
+      return irisPresent;
+   }
+
+   static {
+      try {
+         Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
+         apiInstance = api.cast(api.getDeclaredMethod("getInstance").invoke(null));
+         handleRenderingShadowPass = MethodHandles.lookup().findVirtual(api, "isRenderingShadowPass", MethodType.methodType(boolean.class));
+         handleShaderPackInUse = MethodHandles.lookup().findVirtual(api, "isShaderPackInUse", MethodType.methodType(boolean.class));
+         Class<?> irisVertexFormatsClass = Class.forName("net.irisshaders.iris.vertices.IrisVertexFormats");
+         Field terrainField = irisVertexFormatsClass.getDeclaredField("TERRAIN");
+         terrainFormat = (VertexFormat)terrainField.get(null);
+         irisPresent = true;
+      } catch (NoSuchMethodException | NoSuchFieldException | IllegalAccessException | InvocationTargetException | ClassNotFoundException var3) {
+         irisPresent = false;
+      }
+   }
+}

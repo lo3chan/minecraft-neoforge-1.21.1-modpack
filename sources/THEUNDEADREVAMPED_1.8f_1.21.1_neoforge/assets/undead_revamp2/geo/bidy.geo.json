@@ -1,0 +1,104 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.bidy",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "main",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "body",
+					"parent": "main",
+					"pivot": [0, 4, -6],
+					"cubes": [
+						{"origin": [-3, 3, -6], "size": [6, 2, 8], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "head2",
+					"parent": "body",
+					"pivot": [0, 4, -6],
+					"rotation": [52.5, 0, 0],
+					"cubes": [
+						{"origin": [-2, 2, -10], "size": [4, 4, 4], "uv": [0, 29]}
+					]
+				},
+				{
+					"name": "rightarm",
+					"parent": "body",
+					"pivot": [-3, 4, -5],
+					"rotation": [-140, 0, 0],
+					"cubes": [
+						{"origin": [-5, 3, -6], "size": [2, 2, 7], "uv": [24, 25]}
+					]
+				},
+				{
+					"name": "leftarm",
+					"parent": "body",
+					"pivot": [3, 4, -5],
+					"rotation": [-137.5, 0, 0],
+					"cubes": [
+						{"origin": [3, 3, -6], "size": [2, 2, 7], "uv": [13, 23]}
+					]
+				},
+				{
+					"name": "leftleg",
+					"parent": "body",
+					"pivot": [1, 4, 2],
+					"rotation": [-37.5, 0, 0],
+					"cubes": [
+						{"origin": [0, 3, 2], "size": [3, 2, 7], "uv": [21, 3]}
+					]
+				},
+				{
+					"name": "rightleg",
+					"parent": "body",
+					"pivot": [-2, 4, 2],
+					"rotation": [-35, 0, 0],
+					"cubes": [
+						{"origin": [-3, 3, 2], "size": [3, 2, 7], "uv": [0, 20]}
+					]
+				},
+				{
+					"name": "blobs",
+					"parent": "body",
+					"pivot": [1, 5, 0],
+					"rotation": [0, 0, 50]
+				},
+				{
+					"name": "blob1",
+					"parent": "blobs",
+					"pivot": [2, 5, 0],
+					"cubes": [
+						{"origin": [-1, 5, -3], "size": [5, 4, 6], "uv": [0, 10]}
+					]
+				},
+				{
+					"name": "blob2",
+					"parent": "blobs",
+					"pivot": [1, 3, 0],
+					"cubes": [
+						{"origin": [-2, 2, -3], "size": [4, 3, 6], "pivot": [1, 5, 0], "rotation": [0, -12.5, -5], "uv": [16, 14]}
+					]
+				},
+				{
+					"name": "blobl2",
+					"parent": "blobs",
+					"pivot": [1, 4, -5],
+					"cubes": [
+						{"origin": [-1, 2, -7], "size": [3, 5, 4], "pivot": [1, 5, 0], "rotation": [0, -15, 30], "uv": [34, 0]}
+					]
+				}
+			]
+		}
+	]
+}

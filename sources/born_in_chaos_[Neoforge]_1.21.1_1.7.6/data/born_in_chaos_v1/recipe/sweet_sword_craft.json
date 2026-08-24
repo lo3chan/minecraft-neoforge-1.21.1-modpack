@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "aba",
+    " c "
+  ],
+  "key": {
+    "a": {
+      "item": "born_in_chaos_v1:holiday_candy"
+    },
+    "b": {
+      "item": "born_in_chaos_v1:cultivated_pumpkin"
+    },
+    "c": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "born_in_chaos_v1:sweet_sword",
+    "count": 1
+  }
+}

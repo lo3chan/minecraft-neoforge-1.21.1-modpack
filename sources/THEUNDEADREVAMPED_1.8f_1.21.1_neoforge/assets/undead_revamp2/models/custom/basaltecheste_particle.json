@@ -1,0 +1,6 @@
+{
+  "parent": "undead_revamp2:displaysettings/coffin.item",
+  "textures": {
+    "particle": "undead_revamp2:block/sarcophagus"
+  }
+}

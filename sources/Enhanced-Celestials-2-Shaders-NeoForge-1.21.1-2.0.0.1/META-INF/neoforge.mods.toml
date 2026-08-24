@@ -1,0 +1,61 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2/issues"
+[[mods]]
+modId = "enhancedcelestials2shaders"
+version = "2.0.0.1"
+displayName = "Enhanced Celestials 2: Shaders"
+displayURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2"
+authors = "Corgi Taco"
+description = '''
+Shader Support For Enhanced Celestials 2
+'''
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "enhancedcelestials2core"
+type = "required"
+versionRange = "[2.0.1.1,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "corgilib"
+type = "required"
+versionRange = "[5.0.0.9,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "sodium"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.enhancedcelestials2shaders]]
+modId = "iris"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[mixins]]
+config = "enhancedcelestials2shaders.mixins.json"
+[[mixins]]
+config = "enhancedcelestials2shaders.neoforge.mixins.json"
+

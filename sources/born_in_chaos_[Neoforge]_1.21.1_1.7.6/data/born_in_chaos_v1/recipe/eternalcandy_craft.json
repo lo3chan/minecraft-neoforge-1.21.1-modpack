@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "def",
+    " g "
+  ],
+  "key": {
+    "a": {
+      "item": "born_in_chaos_v1:caramel_pepper"
+    },
+    "b": {
+      "item": "born_in_chaos_v1:chocolate_heart"
+    },
+    "c": {
+      "item": "born_in_chaos_v1:gummy_vampire_teeth"
+    },
+    "d": {
+      "item": "born_in_chaos_v1:mint_candy"
+    },
+    "e": {
+      "item": "born_in_chaos_v1:transmuting_elixir"
+    },
+    "f": {
+      "item": "born_in_chaos_v1:coffee_candy"
+    },
+    "g": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "born_in_chaos_v1:eternal_candy",
+    "count": 1
+  }
+}

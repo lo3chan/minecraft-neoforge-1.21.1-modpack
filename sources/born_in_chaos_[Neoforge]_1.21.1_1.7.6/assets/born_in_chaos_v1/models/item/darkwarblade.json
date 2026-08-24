@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "born_in_chaos_v1:custom/greatdarksword",
+    "textures": {
+      "0": "born_in_chaos_v1:block/greatdarksword"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/dark_warblade"
+      },
+      "gui_light": "front"
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/dark_warblade"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/dark_warblade"
+      }
+    }
+  }
+}

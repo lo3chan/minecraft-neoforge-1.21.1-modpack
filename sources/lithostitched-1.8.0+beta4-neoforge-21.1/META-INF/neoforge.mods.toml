@@ -1,0 +1,33 @@
+license = "MIT"
+
+modLoader="javafml"
+loaderVersion="[1,)"
+
+[[mods]]
+modId = "lithostitched"
+displayName = "Lithostitched"
+version = "1.8.0+beta4"
+authors = "Apollo"
+description = "A library mod with new configurability and compatibility enhancements for worldgen"
+
+iconFile = "pack.png"
+#displayURL = "..."
+#issueTrackerUrl = "..."
+
+[[mixins]]
+config = "lithostitched.mixins.json"
+
+[[dependencies.lithostitched]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21, 1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+
+[[dependencies.lithostitched]]
+modId = "apollib"
+type = "required"
+versionRange = "[1.2.0,)"
+ordering = "NONE"
+side = "BOTH"

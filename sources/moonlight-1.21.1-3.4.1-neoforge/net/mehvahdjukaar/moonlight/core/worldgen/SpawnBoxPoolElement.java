@@ -1,0 +1,96 @@
+package net.mehvahdjukaar.moonlight.core.worldgen;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import net.mehvahdjukaar.moonlight.api.MoonlightRegistry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElementType;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool.Projection;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
+
+public class SpawnBoxPoolElement extends StructurePoolElement {
+   public static final MapCodec<SpawnBoxPoolElement> CODEC = RecordCodecBuilder.mapCodec(
+      instance -> instance.group(
+            Vec3i.CODEC.fieldOf("size").forGetter(e -> e.size),
+            Vec3i.CODEC.fieldOf("offset").forGetter(e -> e.offset),
+            Codec.STRING.fieldOf("target_name").forGetter(e -> e.targetName)
+         )
+         .apply(instance, SpawnBoxPoolElement::new)
+   );
+   private final Vec3i size;
+   private final Vec3i offset;
+   private final String targetName;
+
+   public SpawnBoxPoolElement(Vec3i size, Vec3i offset, String targetName) {
+      super(Projection.RIGID);
+      this.size = size;
+      this.offset = offset;
+      this.targetName = targetName;
+   }
+
+   public String getTargetName() {
+      return this.targetName;
+   }
+
+   public Vec3i getSize(StructureTemplateManager structureTemplateManager, Rotation rotation) {
+      return switch (rotation) {
+         case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> new Vec3i(this.size.getZ(), this.size.getY(), this.size.getX());
+         default -> this.size;
+      };
+   }
+
+   public List<StructureBlockInfo> getShuffledJigsawBlocks(
+      StructureTemplateManager structureTemplateManager, BlockPos pos, Rotation rotation, RandomSource random
+   ) {
+      return List.of();
+   }
+
+   public BoundingBox getBoundingBox(StructureTemplateManager structureTemplateManager, BlockPos spawnBoxPos, Rotation rotation) {
+      BlockPos startPos = spawnBoxPos.offset(this.offset);
+      BlockPos toPivotRelative = spawnBoxPos.subtract(startPos);
+      StructurePlaceSettings settings = new StructurePlaceSettings().setRotation(rotation).setRotationPivot(toPivotRelative).setMirror(Mirror.NONE);
+      return getBoundingBox(startPos, settings.getRotation(), settings.getRotationPivot(), settings.getMirror(), this.size);
+   }
+
+   private static BoundingBox getBoundingBox(BlockPos startPos, Rotation rotation, BlockPos pivotPos, Mirror mirror, Vec3i size) {
+      Vec3i vec3i = size.offset(-1, -1, -1);
+      BlockPos blockPos = StructureTemplate.transform(BlockPos.ZERO, mirror, rotation, pivotPos);
+      BlockPos blockPos2 = StructureTemplate.transform(BlockPos.ZERO.offset(vec3i), mirror, rotation, pivotPos);
+      return BoundingBox.fromCorners(blockPos, blockPos2).move(startPos);
+   }
+
+   public boolean place(
+      StructureTemplateManager structureTemplateManager,
+      WorldGenLevel worldGenLevel,
+      StructureManager structureManager,
+      ChunkGenerator chunkGenerator,
+      BlockPos blockPos,
+      BlockPos blockPos2,
+      Rotation rotation,
+      BoundingBox boundingBox,
+      RandomSource randomSource,
+      LiquidSettings liquidSettings,
+      boolean bl
+   ) {
+      return true;
+   }
+
+   public StructurePoolElementType<?> getType() {
+      return MoonlightRegistry.SPAWN_BOX_POOL_ELEMENT.get();
+   }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "undead_revamp2:spiiterfriedegg"
+    },
+    "title": {
+      "translate": "advancements.nowyouknow.title"
+    },
+    "description": {
+      "translate": "advancements.nowyouknow.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "nowyouknow_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 3
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

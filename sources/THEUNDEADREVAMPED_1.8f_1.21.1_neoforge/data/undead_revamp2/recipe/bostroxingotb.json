@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    {
+      "item": "undead_revamp2:bostroxingot"
+    }
+  ],
+  "result": {
+    "id": "undead_revamp2:blockofbostrox",
+    "count": 1
+  }
+}

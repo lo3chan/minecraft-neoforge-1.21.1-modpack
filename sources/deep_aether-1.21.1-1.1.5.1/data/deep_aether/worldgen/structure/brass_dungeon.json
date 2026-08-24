@@ -1,0 +1,61 @@
+{
+  "type": "deep_aether:brass_dungeon",
+  "biomes": "#deep_aether:has_brass_dungeon",
+  "minY": 184,
+  "processor_settings": {
+    "boss_room_processors": "deep_aether:bronze_boss_room",
+    "room_processors": "deep_aether:bronze_boss_room"
+  },
+  "rangeY": 5,
+  "spawn_overrides": {
+    "aether:aether_aerwhale": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "aether:aether_darkness_monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "aether:aether_sky_monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "aether:aether_surface_monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "axolotls": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "misc": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "monster": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "underground_water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_ambient": {
+      "bounding_box": "full",
+      "spawns": []
+    },
+    "water_creature": {
+      "bounding_box": "full",
+      "spawns": []
+    }
+  },
+  "step": "surface_structures"
+}

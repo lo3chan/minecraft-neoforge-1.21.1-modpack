@@ -1,0 +1,46 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2/issues"
+[[mods]]
+modId = "enhancedcelestials2core"
+version = "2.0.3.0"
+displayName = "Enhanced Celestials 2: Core"
+displayURL = "https://github.com/CorgiTaco-MC/Enhanced-Celestials-2"
+authors = "Corgi Taco"
+credits = ""
+description = '''
+A minecraft mod adding new Lunar Events!
+'''
+[[dependencies.enhancedcelestials2core]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2core]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2core]]
+modId = "corgilib"
+type = "required"
+versionRange = "[5.0.0.9,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.enhancedcelestials2core]]
+modId = "dataanchor"
+type = "required"
+versionRange = "[2.0.0.16,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "enhancedcelestials2core.mixins.json"
+[[mixins]]
+config = "enhancedcelestials2core.neoforge.mixins.json"

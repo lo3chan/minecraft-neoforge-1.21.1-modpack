@@ -1,0 +1,25 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "LGPL-3.0"
+
+[[mods]]
+modId = "open_in_inventory"
+version = "2.0.2"
+displayName = "Open In Inventory"
+authors = "Zank"
+description = "Open guidebooks, backpacks, handhelds and more with a single click in inventory"
+logoFile = "icon.png"
+logoBlur = false
+
+[[mixins]]
+config = "template-common.mixins.json"
+
+[[dependencies.open_in_inventory]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21, 1.21.1]"
+
+[[dependencies.open_in_inventory]]
+modId = "architectury"
+mandatory = true
+versionRange = "[0.0,)" # for some reason you can't just leave it to be the default value

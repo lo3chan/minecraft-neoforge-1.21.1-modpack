@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#is_overworld",
+  "features": "undead_revamp2:dunzhongbiggeneration",
+  "step": "underground_structures"
+}

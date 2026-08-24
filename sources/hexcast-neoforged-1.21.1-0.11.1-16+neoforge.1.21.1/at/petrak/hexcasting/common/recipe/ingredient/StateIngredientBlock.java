@@ -1,0 +1,77 @@
+package at.petrak.hexcasting.common.recipe.ingredient;
+
+import com.google.gson.JsonObject;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class StateIngredientBlock implements StateIngredient {
+   private final Block block;
+
+   public StateIngredientBlock(Block block) {
+      this.block = block;
+   }
+
+   @Override
+   public boolean test(BlockState blockState) {
+      return this.block == blockState.getBlock();
+   }
+
+   @Override
+   public BlockState pick(Random random) {
+      return this.block.defaultBlockState();
+   }
+
+   @Override
+   public JsonObject serialize() {
+      JsonObject object = new JsonObject();
+      object.addProperty("type", "block");
+      object.addProperty("block", BuiltInRegistries.BLOCK.getKey(this.block).toString());
+      return object;
+   }
+
+   @Override
+   public void write(FriendlyByteBuf buffer) {
+      buffer.writeVarInt(1);
+      buffer.writeVarInt(BuiltInRegistries.BLOCK.getId(this.block));
+   }
+
+   @Override
+   public List<ItemStack> getDisplayedStacks() {
+      return this.block.asItem() == Items.AIR ? Collections.emptyList() : Collections.singletonList(new ItemStack(this.block));
+   }
+
+   @Override
+   public List<BlockState> getDisplayed() {
+      return Collections.singletonList(this.block.defaultBlockState());
+   }
+
+   public Block getBlock() {
+      return this.block;
+   }
+
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) {
+         return true;
+      } else {
+         return o != null && this.getClass() == o.getClass() ? this.block == ((StateIngredientBlock)o).block : false;
+      }
+   }
+
+   @Override
+   public int hashCode() {
+      return this.block.hashCode();
+   }
+
+   @Override
+   public String toString() {
+      return "StateIngredientBlock{" + this.block + "}";
+   }
+}

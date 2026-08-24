@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:infernal_medicine_icon"
+    },
+    "title": {
+      "translate": "advancements.infernal_medicine.title"
+    },
+    "description": {
+      "translate": "advancements.infernal_medicine.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "infernal_medicine_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 30
+  },
+  "parent": "born_in_chaos_v1:transmutalogy"
+}

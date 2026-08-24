@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Liminal Library
+Specification-Vendor: LudoCrypt, Waterpicker
+Specification-Version: 13.0.0
+Implementation-Title: neoforge
+Implementation-Version: 13.0.0
+Implementation-Vendor: LudoCrypt, Waterpicker
+Built-On-Minecraft: 1.21.1
+

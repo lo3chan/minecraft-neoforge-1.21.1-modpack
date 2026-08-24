@@ -1,0 +1,27 @@
+package at.petrak.hexcasting.common.blocks.decoration;
+
+import at.petrak.hexcasting.common.lib.HexBlockSetTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public class BlockHexDoor extends DoorBlock {
+   public BlockHexDoor(Properties $$0) {
+      super(HexBlockSetTypes.EDIFIED_WOOD, $$0);
+   }
+
+   public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+      return true;
+   }
+
+   public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+      return 20;
+   }
+
+   public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+      return 5;
+   }
+}

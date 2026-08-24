@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "efe"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "undead_revamp2:blockofbostrox"
+    },
+    "c": {
+      "item": "undead_revamp2:bostroxingot"
+    },
+    "d": {
+      "item": "undead_revamp2:huntereye"
+    },
+    "e": {
+      "item": "minecraft:diamond_block"
+    },
+    "f": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:wincallerfan",
+    "count": 1
+  }
+}

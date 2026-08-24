@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "org.dimdev.limlib.client.specialmodels.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "refmap": "limlib.refmap.json",
+  "minVersion": "0.8",
+  "client": [
+    "BlockModelDeserializerMixin",
+    "BlockModelMixin",
+    "LevelRendererMixin",
+    "MultiPartBakedModelAccessor",
+    "RenderTypeMixin",
+    "SectionBufferBuilderPackMixin",
+    "ShaderInstanceMixin",
+    "SimpleBakedModelMixin",
+    "WeightedBakedModelAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

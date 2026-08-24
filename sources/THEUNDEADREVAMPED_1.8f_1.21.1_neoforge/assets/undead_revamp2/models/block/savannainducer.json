@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/inducer_savanna_top",
+    "up": "undead_revamp2:block/inducer_savanna_top",
+    "north": "undead_revamp2:block/savanna_inducer",
+    "east": "undead_revamp2:block/savanna_inducer",
+    "south": "undead_revamp2:block/savanna_inducer",
+    "west": "undead_revamp2:block/savanna_inducer",
+    "particle": "undead_revamp2:block/inducer_savanna_top"
+  },
+  "render_type": "solid"
+}

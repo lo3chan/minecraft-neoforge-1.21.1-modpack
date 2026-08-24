@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab",
+    "cd"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:bone_meal"
+    },
+    "b": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "item": "undead_revamp2:devilurchin"
+    },
+    "d": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "id": "minecraft:gunpowder",
+    "count": 8
+  }
+}

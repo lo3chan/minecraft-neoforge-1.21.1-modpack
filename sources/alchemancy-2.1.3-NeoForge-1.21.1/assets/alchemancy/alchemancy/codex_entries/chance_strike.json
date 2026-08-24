@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:chance_strike.flavor"
+  },
+  "functions": [
+    "modify_damage",
+    "on_attack",
+    "receive_damage_worn",
+    "other_effects"
+  ]
+}

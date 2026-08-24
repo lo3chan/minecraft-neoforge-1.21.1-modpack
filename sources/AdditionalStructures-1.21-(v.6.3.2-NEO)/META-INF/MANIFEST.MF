@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: additionalstructures
+Specification-Vendor: XxRexRaptorxX (RexRaptor)
+Specification-Version: 1.21-6.3.2
+Implementation-Title: Additional-Structures
+Implementation-Version: 1.21-(v.6.3.2-NEO)
+Implementation-Vendor: XxRexRaptorxX (RexRaptor)
+Implementation-Timestamp: 2025-05-27T20:29:25+0200
+

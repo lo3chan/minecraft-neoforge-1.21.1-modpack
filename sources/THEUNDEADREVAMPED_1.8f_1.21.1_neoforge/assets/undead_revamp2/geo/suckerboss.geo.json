@@ -1,0 +1,86 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.suckerboss",
+				"texture_width": 96,
+				"texture_height": 96,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "main",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "keen",
+					"parent": "main",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "keen",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-5.5, 0, -5.5], "size": [11, 11, 11], "uv": [0, 0], "mirror": true},
+						{"origin": [-5, 0.5, -5], "size": [10, 10, 10], "uv": [24, 22]}
+					]
+				},
+				{
+					"name": "head2",
+					"parent": "head",
+					"pivot": [0, 9, -5.5],
+					"cubes": [
+						{"origin": [0, 1, -5.5], "size": [0, 16, 16], "uv": [1, 39]}
+					]
+				},
+				{
+					"name": "head3",
+					"parent": "head",
+					"pivot": [0, 9, -5.5],
+					"rotation": [0, 22.5, 0],
+					"cubes": [
+						{"origin": [0, 1, -5.5], "size": [0, 16, 16], "uv": [1, 39]}
+					]
+				},
+				{
+					"name": "head4",
+					"parent": "head",
+					"pivot": [0, 9, -5.5],
+					"rotation": [0, -22.5, 0],
+					"cubes": [
+						{"origin": [0, 1, -5.5], "size": [0, 16, 16], "uv": [1, 39], "mirror": true}
+					]
+				},
+				{
+					"name": "wing2",
+					"parent": "head",
+					"pivot": [-4, 5, 0],
+					"cubes": [
+						{"origin": [-21.5, -1, 0], "size": [16, 11, 0], "uv": [1, 43]}
+					]
+				},
+				{
+					"name": "wing1",
+					"parent": "head",
+					"pivot": [4, 5, 0],
+					"cubes": [
+						{"origin": [5.5, -1, 0], "size": [16, 11, 0], "uv": [1, 43], "mirror": true}
+					]
+				},
+				{
+					"name": "tongue",
+					"parent": "head",
+					"pivot": [0, 1.5, -5],
+					"rotation": [45, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 0.5, -9], "size": [3, 1, 4], "uv": [44, 7]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#c:obsidians",
+    "minecraft:ender_chest",
+    {
+      "id": "#c:furnaces/obsidian",
+      "required": false
+    }
+  ]
+}

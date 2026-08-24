@@ -1,0 +1,17 @@
+{
+  "block.enhancedcelestials2core.meteor": "Метеор",
+  "block.enhancedcelestials2core.space_moss_block": "Блок космомха",
+  "block.enhancedcelestials2core.space_moss_carpet": "Ковёр из космомха",
+  "block.enhancedcelestials2core.space_moss_grass": "Трава космомха",
+  "enhancedcelestials2core.commands.disabled": "Лунные события отключены для этого мира!",
+  "enhancedcelestials2core.commands.lunarevent_missing": "'%s' не является лунным событием!",
+  "enhancedcelestials2core.lunarforecast.days_left": "(через %s дней)",
+  "enhancedcelestials2core.lunarforecast.empty": "Нет предстоящих лунных событий.",
+  "enhancedcelestials2core.lunarforecast.header": "Текущий лунный прогноз:\n%s",
+  "enhancedcelestials2core.lunarforecast.recompute": "Лунный прогноз пересчитан.",
+  "enhancedcelestials2core.sleep.fail": "Сейчас вы не можете поспать, так как лунное событие этому препятствует.",
+  "entity.enhancedcelestials2core.meteor": "Метеор",
+  "entity.enhancedcelestials2core.space_moss_bug": "Космомоховой жук",
+  "item.enhancedcelestials2core.space_moss_bug_spawn_egg": "Яйцо призыва космомохового жука"
+}
+

@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "end_table",
+  "pattern" : [ "A", "B" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwfurnitures:acacia_table"
+    },
+    "B" : {
+      "item" : "minecraft:acacia_log"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:acacia_end_table"
+  }
+}

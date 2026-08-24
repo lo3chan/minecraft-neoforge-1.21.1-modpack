@@ -1,0 +1,10 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:wildfire.flavor"
+  },
+  "functions": [
+    "while_in_inventory",
+    "while_equipped",
+    "while_worn"
+  ]
+}

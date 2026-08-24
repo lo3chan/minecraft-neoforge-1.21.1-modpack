@@ -1,0 +1,36 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "[4,)" #mandatory
+license = "MIT" # Review your options at https://choosealicense.com/.
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]] #mandatory
+modId = "sparsestructures" #mandatory
+version = "3.0" #mandatory
+displayName = "SparseStructures" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional (see https://docs.neoforged.net/docs/misc/updatechecker/)
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional (displayed in the mod UI)
+logoFile="sparsestructures.png" #optional
+credits="All GitHub contributors, jaredlll08 for the Multiloader template, kshrubb for the help with testing, the modding community and BisectHosting (use code MAX)!" #optional
+authors = "MaxenceDC" #optional
+description = "Makes all structures more spread out. Configurable.\n\nIf you want to support me, you can use code MAX at BisectHosting for 25% off!" #mandatory (Supports multiline text)
+[[mixins]]
+config = "sparsestructures.mixins.json"
+[[mixins]]
+config = "sparsestructures.neoforge.mixins.json"
+[[dependencies.sparsestructures]] #optional
+modId = "neoforge" #mandatory
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "[21.1.162,)" #mandatory
+ordering = "NONE" # The order that this dependency should load in relation to your mod, required to be either 'BEFORE' or 'AFTER' if the dependency is not mandatory
+side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
+[[dependencies.sparsestructures]]
+modId = "minecraft"
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "[1.21.1, 1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+# Features are specific properties of the game environment, that you may want to declare you require. This example declares
+# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
+# stop your mod loading on the server for example.
+#[features.sparsestructures]
+#openGLVersion="[3.2,)"

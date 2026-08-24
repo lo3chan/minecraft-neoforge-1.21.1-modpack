@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:waxed",
+    "alchemancy:rusty"
+  ],
+
+  "result": [
+    "alchemancy:waxed"
+  ]
+}

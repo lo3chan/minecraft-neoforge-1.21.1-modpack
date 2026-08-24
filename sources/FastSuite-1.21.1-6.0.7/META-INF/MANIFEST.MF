@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: FastSuite
+Specification-Vendor: Shadows_of_Fire
+Specification-Version: 6.0.7
+Implementation-Title: FastSuite
+Implementation-Version: 6.0.7
+Implementation-Vendor: Shadows_of_Fire
+Implementation-Timestamp: 2026-06-18T21:18:55-0400
+

@@ -1,0 +1,1106 @@
+{
+  "dfjn": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:doors3_online-audio-converter.com",
+        "stream": true
+      }
+    ]
+  },
+  "door1": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:shieldhit1",
+        "stream": false
+      }
+    ]
+  },
+  "door2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:shieldhit2",
+        "stream": false
+      }
+    ]
+  },
+  "serpumpkinheadm": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:halloween_update",
+        "stream": true
+      }
+    ]
+  },
+  "restless_spirit_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:restless_spirit_idle1",
+        "stream": false
+      }
+    ]
+  },
+  "restless_spirit_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:restless_spirit_hurt1",
+        "stream": false
+      }
+    ]
+  },
+  "restless_spirit_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:restless_spirit_death2",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_trasher_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:skeleton_trasher_step2",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_trasher_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:skeleton_trasher_attack",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_trasher_block1": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:skeleton_trasher_block1",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_trasher_block2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:skeleton_trasher_block2",
+        "stream": false
+      }
+    ]
+  },
+  "skeleton_trasher_block3": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:skeleton_trasher_block3",
+        "stream": false
+      }
+    ]
+  },
+  "nightmare_stalker_roar": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:nightmare_stalker_roar",
+        "stream": false
+      }
+    ]
+  },
+  "spirit_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:spirit_idle",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_death",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_hurt1": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_hurt1",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_hurt2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_hurt2",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_idle1": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_idle1",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_attack2",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_curse_mark": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_curse_mark",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_death1",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_hurt1",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_idle3",
+        "stream": false
+      }
+    ]
+  },
+  "fallen_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fallen_step1",
+        "stream": false
+      }
+    ]
+  },
+  "persecutor_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:persecutor_death",
+        "stream": false
+      }
+    ]
+  },
+  "persecutor_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:persecutor_hurt2",
+        "stream": false
+      }
+    ]
+  },
+  "persecutor_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:persecutor_idle3",
+        "stream": false
+      }
+    ]
+  },
+  "persecutor_scream": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:persecutor_scream",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_death2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_death2",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_death1": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_death1",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_idle2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_idle2",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_hurt11": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_hurt1.1",
+        "stream": false
+      }
+    ]
+  },
+  "vortex_hurt21": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:vortex_hurt2.1",
+        "stream": false
+      }
+    ]
+  },
+  "hah": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:hah",
+        "stream": false
+      }
+    ]
+  },
+  "haha": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:hah",
+        "stream": false
+      }
+    ]
+  },
+  "doorblokc": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:shieldhit1",
+        "stream": false
+      }
+    ]
+  },
+  "doorblokc2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:shieldhit2",
+        "stream": false
+      }
+    ]
+  },
+  "halloween": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:halloween_update",
+        "stream": false
+      }
+    ]
+  },
+  "doorsdisc": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:doors3_online-audio-converter.com",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_roar": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_roar",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_dead": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_dead",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_step2",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_hit": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_hit",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_hurt_1",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkin_spirit_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkin_spirit_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkin_spirit_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkin_spirit_death",
+        "stream": false
+      }
+    ]
+  },
+  "stalker_roar_distant": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stalker_roar_distant",
+        "stream": false
+      }
+    ]
+  },
+  "hound_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:wolf_death",
+        "stream": false
+      }
+    ]
+  },
+  "hound_hit": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:wolf_getting_damage",
+        "stream": false
+      }
+    ]
+  },
+  "hound_ambient": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:wolf_growl_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "hound_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:wolf_growl_attack",
+        "stream": false
+      }
+    ]
+  },
+  "seared_spirit_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:seared_spirit_death_ogg_mono",
+        "stream": false
+      }
+    ]
+  },
+  "houndtrap": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:hound_trap",
+        "stream": false
+      }
+    ]
+  },
+  "dark_warlblade_atak": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:dark_warlblade_sfx_2_heavy",
+        "stream": false
+      }
+    ]
+  },
+  "stomach_open": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:stomach_open",
+        "stream": false
+      }
+    ]
+  },
+  "clown_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:clown_step",
+        "stream": false
+      }
+    ]
+  },
+  "clown_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:clown_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "clown_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:clown_death",
+        "stream": false
+      }
+    ]
+  },
+  "zombie_clown_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:zombie_clown_attack",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_ambient": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_death",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "gadfly_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:gadfly_idle",
+        "stream": false
+      }
+    ]
+  },
+  "gadfly_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:gadfly_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "gadfly_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:gadfly_death",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_ambient2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_ambient2",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_hurt2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_hurt2",
+        "stream": false
+      }
+    ]
+  },
+  "corpse_fly_death2": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:corpse_fly_death2",
+        "stream": false
+      }
+    ]
+  },
+  "fish_slap": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fish_slap",
+        "stream": false
+      }
+    ]
+  },
+  "swarmer_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:swarmer_idle",
+        "stream": false
+      }
+    ]
+  },
+  "swarmer_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:swarmer_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "swarmer_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:swarmer_death",
+        "stream": false
+      }
+    ]
+  },
+  "crab_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:crab_death",
+        "stream": false
+      }
+    ]
+  },
+  "crab_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:crab_idle",
+        "stream": false
+      }
+    ]
+  },
+  "crab_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:crab_step",
+        "stream": false
+      }
+    ]
+  },
+  "crab_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:crab_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "glutton_fish_ambient": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:glutton_fish_ambient",
+        "stream": false
+      }
+    ]
+  },
+  "glutton_fish_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:glutton_fish_attack",
+        "stream": false
+      }
+    ]
+  },
+  "glutton_fish_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:glutton_fish_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "glutton_fish_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:glutton_fish_death",
+        "stream": false
+      }
+    ]
+  },
+  "fly_move": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:fly_move",
+        "stream": false
+      }
+    ]
+  },
+  "brute_zombie_attack": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:brute_zombie_attack",
+        "stream": false
+      }
+    ]
+  },
+  "brute_zombie_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:brute_zombie_step",
+        "stream": false
+      }
+    ]
+  },
+  "zombie_brute_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:zombie_brute_death",
+        "stream": false
+      }
+    ]
+  },
+  "zombie_brute_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:zombie_brute_hurt1",
+        "stream": false
+      }
+    ]
+  },
+  "zombie_brute_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:zombie_brute_idle1",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkinhead_reload": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkinhead_reload",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkinhead_gun_fire": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkinhead_gun_fire",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkinhead_bomb_curse": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkinhead_bomb_curse",
+        "stream": false
+      }
+    ]
+  },
+  "charm_of_stealth_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:charm_of_stealth_use",
+        "stream": false
+      }
+    ]
+  },
+  "charm_of_endurance_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:charm_of_endurance_use",
+        "stream": false
+      }
+    ]
+  },
+  "charm_of_strenght_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:charm_of_strenght_use",
+        "stream": false
+      }
+    ]
+  },
+  "charm_of_rage_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:charm_of_rage_use",
+        "stream": false
+      }
+    ]
+  },
+  "charm_of_protection_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:charm_of_protection_use",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_death",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_idle",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_spawn_mobs": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_spawn_mobs",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_step",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_teleport": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_teleport",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_shoot": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "obsession": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:chaos_spirit_posses",
+        "stream": false
+      }
+    ]
+  },
+  "chaos_spirit_haunt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:chaos_spirit_haunt",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_alert": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_alert",
+        "stream": false
+      }
+    ]
+  },
+  "nsstep": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:ns_step_4",
+        "stream": false
+      }
+    ]
+  },
+  "step5": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:step5",
+        "stream": false
+      }
+    ]
+  },
+  "step_st": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:step1",
+        "stream": false
+      }
+    ]
+  },
+  "lifestealer_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:lifestealer_hurt_2",
+        "stream": false
+      }
+    ]
+  },
+  "lifestealer_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:lifestealer_idle_2",
+        "stream": false
+      }
+    ]
+  },
+  "lifestealer_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:lifestealer_death_2",
+        "stream": false
+      }
+    ]
+  },
+  "lifestealer_scream": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:lifestealer_scream_1",
+        "stream": false
+      }
+    ]
+  },
+  "lifestealer_scream_ap": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:lifestealer_scream_2",
+        "stream": false
+      }
+    ]
+  },
+  "magic_staff_shoot": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:magic_staff_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkin_staff_shoot": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkin_staff_shoot",
+        "stream": false
+      }
+    ]
+  },
+  "pumpkin_hit": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:pumpkin_hit",
+        "stream": false
+      }
+    ]
+  },
+  "spider_splash": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:spider_splash",
+        "stream": false
+      }
+    ]
+  },
+  "mother_spider_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:mother_spider_step",
+        "stream": false
+      }
+    ]
+  },
+  "mother_spider_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:mother_spider_idle",
+        "stream": false
+      }
+    ]
+  },
+  "missionary_stun": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:missionary_stun",
+        "stream": false
+      }
+    ]
+  },
+  "mother_spider_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:mother_spider_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "spider_mother_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:spider_mother_death",
+        "stream": false
+      }
+    ]
+  },
+  "haha_lord": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:haha_lord",
+        "stream": false
+      }
+    ]
+  },
+  "bonk": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:bonk",
+        "stream": false
+      }
+    ]
+  },
+  "bonk_hit": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:bonk_hit",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_death",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_roar": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_roar",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_idle",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_blow": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_blow",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_horn_use": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_horn_use",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_alert_far": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_alert_far",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_alert": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_alert",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_alert_close": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_alert_close",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "krampus_step": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:krampus_step",
+        "stream": false
+      }
+    ]
+  },
+  "minion_blow": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:minion_blow",
+        "stream": false
+      }
+    ]
+  },
+  "minion_death": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:minion_death",
+        "stream": false
+      }
+    ]
+  },
+  "minion_hurt": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:minion_hurt",
+        "stream": false
+      }
+    ]
+  },
+  "minion_idle": {
+    "sounds": [
+      {
+        "name": "born_in_chaos_v1:minion_idle",
+        "stream": false
+      }
+    ]
+  }
+}

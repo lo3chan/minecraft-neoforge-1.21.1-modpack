@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = ">=21.1.22"
+license = "LGPL-3.0"
+issueTrackerURL = "https://github.com/Steveplays28/noisium/issues"
+
+[[mods]]
+modId = "noisium"
+version = "2.3.0+mc1.21-1.21.1"
+displayName = "Noisium"
+authors = "Steveplays28"
+description = '''
+Optimises worldgen performance for a better gameplay experience.
+'''
+logoFile = "assets/noisium/icon.png"
+displayURL = "https://github.com/Steveplays28/noisium"
+
+[[mixins]]
+config = "noisium-common.mixins.json"
+
+[mc-publish]
+curseforge = "930207"
+modrinth = "KuNKN7d2"
+
+[[dependencies.noisium]]
+modId = "minecraft"
+type = "required"
+versionRange = ">=1.21 <=1.21.1"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.noisium]]
+modId = "neoforge"
+type = "required"
+versionRange = ">=21.1.22"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.noisium]]
+modId = "biox"
+type = "incompatible"
+reason = "Crashes the game during world generation."
+ordering = "NONE"
+side = "BOTH"

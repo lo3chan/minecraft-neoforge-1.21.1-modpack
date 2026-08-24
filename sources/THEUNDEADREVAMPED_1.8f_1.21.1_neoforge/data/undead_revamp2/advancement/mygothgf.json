@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:player_head"
+    },
+    "title": {
+      "translate": "advancements.mygothgf.title"
+    },
+    "description": {
+      "translate": "advancements.mygothgf.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mygothgf_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "undead_revamp2:defeatundeadbosses"
+}

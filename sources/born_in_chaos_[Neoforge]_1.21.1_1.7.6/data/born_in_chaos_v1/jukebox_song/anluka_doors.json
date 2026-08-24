@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "item.born_in_chaos_v1.anluka_doors.desc"
+  },
+  "length_in_seconds": 92,
+  "sound_event": "born_in_chaos_v1:doorsdisc"
+}

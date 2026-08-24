@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "undead_revamp2:cloggerupgrade"
+  },
+  "base": {
+    "item": "minecraft:golden_helmet"
+  },
+  "addition": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "undead_revamp2:cloggerarmor_helmet"
+  }
+}

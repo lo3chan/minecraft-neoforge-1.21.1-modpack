@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Enhanced Celestials 2: Core
+Specification-Vendor: Corgi Taco
+Specification-Version: 2.0.3.0
+Implementation-Title: NeoForge
+Implementation-Version: 2.0.3.0
+Implementation-Vendor: Corgi Taco
+Built-On-Minecraft: 1.21.1
+

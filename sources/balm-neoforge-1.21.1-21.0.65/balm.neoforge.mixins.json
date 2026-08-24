@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.blay09.mods.balm.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CropBlockMixin",
+    "StemBlockMixin",
+    "ReloadableServerResourcesMixin",
+    "SlotAccessor",
+    "MinecraftServerMixin",
+    "EntityMixin",
+    "LootTableMixin",
+    "PlayerListMixin"
+  ],
+  "client": [
+    "AbstractContainerScreenAccessor",
+    "CheckboxAccessor",
+    "ImageButtonAccessor",
+    "KeyMappingAccessor",
+    "MouseHandlerAccessor",
+    "ScreenAccessor",
+    "ModelBakeryMixin",
+    "OptionsScreenMixin",
+    "MinecraftMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

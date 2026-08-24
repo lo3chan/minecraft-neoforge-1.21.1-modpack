@@ -1,0 +1,13 @@
+{
+  "values": {
+    "minecraft:rotten_flesh": {
+      "chance": 0.56
+    },
+    "born_in_chaos_v1:rotten_fish": {
+      "chance": 0.85
+    },
+    "born_in_chaos_v1:sea_terror_eye": {
+      "chance": 0.7
+    }
+  }
+}

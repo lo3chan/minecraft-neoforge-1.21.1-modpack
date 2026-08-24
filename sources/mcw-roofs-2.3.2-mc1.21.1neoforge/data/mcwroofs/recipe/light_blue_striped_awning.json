@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "awnings",
+  "pattern" : [ "BAB" ],
+  "key" : {
+    "B" : {
+      "item" : "minecraft:light_blue_carpet"
+    },
+    "A" : {
+      "item" : "minecraft:white_carpet"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:light_blue_striped_awning"
+  }
+}

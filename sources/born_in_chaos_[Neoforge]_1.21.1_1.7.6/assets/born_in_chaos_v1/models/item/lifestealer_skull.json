@@ -1,0 +1,25 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "born_in_chaos_v1:custom/lifestealerskull",
+    "textures": {
+      "1": "born_in_chaos_v1:block/lifestealerskull"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/lifestealer_skull_item"
+      },
+      "gui_light": "front"
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "born_in_chaos_v1:item/lifestealer_skull_item"
+      }
+    }
+  }
+}

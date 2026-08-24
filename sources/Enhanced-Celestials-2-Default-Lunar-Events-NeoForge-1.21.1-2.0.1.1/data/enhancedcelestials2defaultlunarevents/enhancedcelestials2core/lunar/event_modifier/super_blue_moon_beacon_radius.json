@@ -1,0 +1,6 @@
+{
+  "type": "enhancedcelestials2core:beacon_radius",
+  "settings": {
+    "amplifier": 2.0
+  }
+}

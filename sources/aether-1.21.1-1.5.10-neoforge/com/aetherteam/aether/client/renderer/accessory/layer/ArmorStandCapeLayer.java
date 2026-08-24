@@ -1,0 +1,76 @@
+package com.aetherteam.aether.client.renderer.accessory.layer;
+
+import com.aetherteam.aether.client.renderer.AetherModelLayers;
+import com.aetherteam.aether.client.renderer.accessory.model.CapeModel;
+import com.aetherteam.aether.item.accessories.cape.CapeItem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import io.wispforest.accessories.api.AccessoriesCapability;
+import io.wispforest.accessories.api.AccessoriesContainer;
+import io.wispforest.accessories.api.slot.SlotTypeReference;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ArmorStandModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+public class ArmorStandCapeLayer extends RenderLayer<ArmorStand, ArmorStandModel> {
+   private static final ResourceLocation SWUFF_CAPE_LOCATION = ResourceLocation.fromNamespaceAndPath(
+      "aether", "textures/models/accessory/capes/swuff_accessory.png"
+   );
+   private final CapeModel cape = new CapeModel(Minecraft.getInstance().getEntityModels().bakeLayer(AetherModelLayers.CAPE));
+
+   public ArmorStandCapeLayer(RenderLayerParent<ArmorStand, ArmorStandModel> renderer) {
+      super(renderer);
+   }
+
+   public void render(
+      PoseStack poseStack,
+      MultiBufferSource buffer,
+      int packedLight,
+      ArmorStand livingEntity,
+      float limbSwing,
+      float limbSwingAmount,
+      float partialTick,
+      float ageInTicks,
+      float netHeadYaw,
+      float headPitch
+   ) {
+      SlotTypeReference identifier = CapeItem.getStaticIdentifier();
+      AccessoriesCapability accessories = AccessoriesCapability.get(livingEntity);
+      if (accessories != null) {
+         AccessoriesContainer accessoriesContainer = accessories.getContainer(identifier);
+         if (accessoriesContainer != null) {
+            ItemStack itemStack = accessoriesContainer.getAccessories().getItem(0);
+            if (!itemStack.isEmpty() && itemStack.getItem() instanceof CapeItem capeItem) {
+               ResourceLocation texture = capeItem.getCapeTexture();
+               if (itemStack.getHoverName().getString().equalsIgnoreCase("swuff_'s cape")) {
+                  texture = SWUFF_CAPE_LOCATION;
+               }
+
+               if (!livingEntity.isInvisible() && texture != null) {
+                  ItemStack itemstack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
+                  if (!itemstack.is(Items.ELYTRA)) {
+                     poseStack.pushPose();
+                     poseStack.translate(0.0F, 0.0F, 0.0925F);
+                     poseStack.mulPose(Axis.XP.rotationDegrees(3.0F));
+                     poseStack.mulPose(Axis.ZP.rotationDegrees(0.0F));
+                     poseStack.mulPose(Axis.YP.rotationDegrees(180.0F));
+                     VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.entitySolid(texture));
+                     this.cape.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
+                     poseStack.popPose();
+                  }
+               }
+            }
+         }
+      }
+   }
+}

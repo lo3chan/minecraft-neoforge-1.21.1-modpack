@@ -1,0 +1,214 @@
+package net.mehvahdjukaar.moonlight.api.resources;
+
+import com.google.common.base.Preconditions;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Map.Entry;
+import java.util.function.BiFunction;
+import java.util.function.UnaryOperator;
+import net.mehvahdjukaar.moonlight.api.misc.TriFunction;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.resources.recipe.BlockTypeSwapIngredient;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipePattern;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.crafting.StonecutterRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipePattern.Data;
+import org.jetbrains.annotations.NotNull;
+
+public class RecipeTemplate {
+   private static final Map<Class<? extends Recipe<?>>, TriFunction<Recipe<?>, BlockType, BlockType, Recipe<?>>> REMAPPERS = new HashMap<>();
+
+   public static <R extends Recipe<?>> void registerSimple(Class<R> type, RecipeTemplate.RecipeFactory<R> factory) {
+      register(type, (r, f, t) -> createSimple(r, factory, f, t));
+   }
+
+   @Deprecated(
+      forRemoval = true
+   )
+   public static <R extends Recipe<?>> void register(Class<R> type, BiFunction<R, UnaryOperator<ItemStack>, R> factory) {
+      if (PlatHelper.isDev()) {
+         throw new UnsupportedOperationException("You must register this using RecipeTemplate.register()");
+      }
+   }
+
+   public static <R extends Recipe<?>> void register(Class<R> type, TriFunction<R, BlockType, BlockType, R> factory) {
+      REMAPPERS.put(type, (r, f, t) -> factory.apply((R)r, f, t));
+   }
+
+   @Deprecated(
+      forRemoval = true
+   )
+   public static <T extends BlockType, R extends Recipe<?>> RecipeHolder<?> makeSimilarRecipe(R original, T originalMat, T destinationMat, String newId) {
+      return makeSimilarRecipe(original, originalMat, destinationMat, ResourceLocation.parse(newId));
+   }
+
+   public static <T extends BlockType, R extends Recipe<?>> RecipeHolder<?> makeSimilarRecipe(
+      R original, @NotNull T originalMat, @NotNull T destinationMat, ResourceLocation newId
+   ) {
+      Class<? extends Recipe> clazz = original.getClass();
+      TriFunction<Recipe<?>, BlockType, BlockType, Recipe<?>> remapper = REMAPPERS.get(clazz);
+      if (remapper == null) {
+         throw new UnsupportedOperationException("Recipe class " + clazz + " not supported. You must register it using RecipeTemplate.register()");
+      } else {
+         if (newId.getPath().endsWith("_oak")) {
+            newId = newId.withPath(p -> p + "/" + destinationMat.getAppendableId());
+         }
+
+         Preconditions.checkNotNull(original, "Found null from block type for remapping for recipe " + originalMat + " with id " + newId);
+         Preconditions.checkNotNull(originalMat, "Found null from block type for remapping for recipe " + originalMat + " with id " + newId);
+         Recipe<?> remapped = remapper.apply(original, originalMat, destinationMat);
+         return new RecipeHolder(newId, remapped);
+      }
+   }
+
+   private static <R extends Recipe<?>> R createSimple(R or, RecipeTemplate.RecipeFactory<R> factory, @NotNull BlockType from, @NotNull BlockType to) {
+      Preconditions.checkNotNull(from, "Found null from block type for recipe remapping on recipe " + or);
+      Preconditions.checkNotNull(to, "Found null to block type for recipe remapping on recipe " + or);
+      List<Ingredient> newList = convertIngredients(or.getIngredients(), from, to);
+      ItemStack originalResult = or.getResultItem(RegistryAccess.EMPTY);
+      ItemStack newResult = convertItemStack(originalResult, from, to);
+      NonNullList<Ingredient> ingredients = NonNullList.of(Ingredient.EMPTY, newList.toArray(Ingredient[]::new));
+      CraftingBookCategory cat = CraftingBookCategory.MISC;
+      if (or instanceof CraftingRecipe cr) {
+         cat = cr.category();
+      }
+
+      return factory.create(or.getGroup(), cat, newResult, ingredients);
+   }
+
+   private static ShapedRecipe createShaped(ShapedRecipe or, @NotNull BlockType from, @NotNull BlockType to) {
+      Preconditions.checkNotNull(from, "Found null from block type for recipe remapping on recipe " + or);
+      Preconditions.checkNotNull(to, "Found null to block type for recipe remapping on recipe " + or);
+      List<Ingredient> newList = convertIngredients(or.getIngredients(), from, to);
+      ItemStack originalResult = or.getResultItem(RegistryAccess.EMPTY);
+      ItemStack newResult = convertItemStack(originalResult, from, to);
+      NonNullList<Ingredient> ingredients = NonNullList.of(Ingredient.EMPTY, newList.toArray(Ingredient[]::new));
+      ShapedRecipePattern pattern = new ShapedRecipePattern(
+         or.getWidth(), or.getHeight(), ingredients, Optional.of(packRecipePattern(or.getWidth(), or.getHeight(), ingredients))
+      );
+      return new ShapedRecipe(or.getGroup(), or.category(), pattern, newResult);
+   }
+
+   private static Data packRecipePattern(int width, int height, NonNullList<Ingredient> ingredients) {
+      Map<Character, Ingredient> key = new HashMap<>();
+      List<String> pattern = new ArrayList<>();
+      char nextSymbol = 'A';
+
+      for (int row = 0; row < height; row++) {
+         StringBuilder rowPattern = new StringBuilder();
+
+         for (int col = 0; col < width; col++) {
+            Ingredient ingredient = (Ingredient)ingredients.get(row * width + col);
+            if (ingredient.isEmpty()) {
+               rowPattern.append(' ');
+            } else {
+               Character symbol = null;
+
+               for (Entry<Character, Ingredient> entry : key.entrySet()) {
+                  if (entry.getValue() == ingredient) {
+                     symbol = entry.getKey();
+                     break;
+                  }
+               }
+
+               if (symbol == null) {
+                  symbol = nextSymbol++;
+                  key.put(symbol, ingredient);
+               }
+
+               rowPattern.append(symbol);
+            }
+         }
+
+         pattern.add(rowPattern.toString());
+      }
+
+      return new Data(key, pattern);
+   }
+
+   public static <T extends BlockType> ItemStack convertItemStack(ItemStack original, T from, T to) {
+      Item changed = BlockType.changeItemType(original.getItem(), from, to);
+      if (changed == null) {
+         throw new UnsupportedOperationException(
+            "Failed to convert item stack: could not change " + original.getItem() + " from " + from.getId() + " to " + to.getId()
+         );
+      } else {
+         return original.transmuteCopy(changed);
+      }
+   }
+
+   @Deprecated(
+      forRemoval = true
+   )
+   @NotNull
+   public static <R extends Recipe<?>> List<Ingredient> convertIngredients(NonNullList<Ingredient> or, UnaryOperator<ItemStack> typeChanger) {
+      List<Ingredient> newList = new ArrayList<>(or);
+
+      for (int i = 0; i < newList.size(); i++) {
+         Ingredient ingredient = (Ingredient)or.get(i);
+         if (!ingredient.isEmpty()) {
+            ItemStack intItem = typeChanger.apply(ingredient.getItems()[0]);
+            if (intItem != null) {
+               newList.set(i, Ingredient.of(new ItemStack[]{intItem}));
+            }
+         }
+      }
+
+      return newList;
+   }
+
+   @NotNull
+   public static <R extends Recipe<?>> List<Ingredient> convertIngredients(NonNullList<Ingredient> or, @NotNull BlockType from, @NotNull BlockType to) {
+      List<Ingredient> newList = new ArrayList<>();
+      Map<Ingredient, Ingredient> convertedMap = new HashMap<>();
+
+      for (Ingredient ingredient : or) {
+         if (ingredient.isEmpty()) {
+            newList.add(ingredient);
+         } else {
+            newList.add(convertedMap.computeIfAbsent(ingredient, i -> BlockTypeSwapIngredient.create(i, from, to)));
+         }
+      }
+
+      return newList;
+   }
+
+   static {
+      register(ShapedRecipe.class, RecipeTemplate::createShaped);
+      registerSimple(ShapelessRecipe.class, ShapelessRecipe::new);
+      registerSimple(
+         StonecutterRecipe.class, (group, category, result, ingredients) -> new StonecutterRecipe(group, (Ingredient)ingredients.getFirst(), result)
+      );
+      register(
+         SmeltingRecipe.class,
+         (recipe, oldType, newType) -> createSimple(
+            recipe,
+            (group, category, result, ingredients) -> new SmeltingRecipe(
+               group, recipe.category(), (Ingredient)ingredients.getFirst(), result, recipe.getExperience(), recipe.getCookingTime()
+            ),
+            oldType,
+            newType
+         )
+      );
+   }
+
+   public interface RecipeFactory<R extends Recipe<?>> {
+      R create(String var1, CraftingBookCategory var2, ItemStack var3, NonNullList<Ingredient> var4);
+   }
+}

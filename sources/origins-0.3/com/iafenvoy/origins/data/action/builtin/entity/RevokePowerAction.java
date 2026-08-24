@@ -1,0 +1,43 @@
+package com.iafenvoy.origins.data.action.builtin.entity;
+
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.power.Power;
+import com.iafenvoy.origins.util.codec.WildcardCodec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
+
+public record RevokePowerAction(Optional<Holder<Power>> power, Optional<ResourceLocation> source) implements EntityAction {
+   public static final MapCodec<RevokePowerAction> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.CODEC.optionalFieldOf("power").forGetter(RevokePowerAction::power),
+            WildcardCodec.INSTANCE.optionalFieldOf("source").forGetter(RevokePowerAction::source)
+         )
+         .apply(i, RevokePowerAction::new)
+   );
+
+   @NotNull
+   @Override
+   public MapCodec<? extends EntityAction> codec() {
+      return CODEC;
+   }
+
+   @Override
+   public void execute(@NotNull Entity source) {
+      Optional<OriginDataHolder> optional = OriginDataHolder.optional(source);
+      if (!optional.isEmpty()) {
+         OriginDataHolder holder = optional.get();
+         if (this.power.isPresent() && this.source.isPresent()) {
+            holder.revokePower(this.source.get(), this.power.get());
+         } else {
+            this.power.ifPresent(holder::revokeAllPowers);
+            this.source.ifPresent(holder::revokeAllPowers);
+         }
+      }
+   }
+}

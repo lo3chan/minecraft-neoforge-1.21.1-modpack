@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "io.github.razordevs.aeroblender.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "aeroblender.refmap.json",
+  "mixins": [
+    "LayeredNoiseUtilMixin",
+    "LevelUtilsMixin",
+    "NoiseGeneratorSettingsMixin",
+    "RegionMixin",
+    "RegionTypeMixin",
+    "RuleCategoryMixin",
+    "SurfaceRuleManagerAccessor",
+    "SurfaceRuleManagerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

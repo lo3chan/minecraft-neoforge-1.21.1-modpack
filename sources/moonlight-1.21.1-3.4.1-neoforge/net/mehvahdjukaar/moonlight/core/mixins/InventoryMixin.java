@@ -1,0 +1,61 @@
+package net.mehvahdjukaar.moonlight.core.mixins;
+
+import com.llamalad7.mixinextras.sugar.Local;
+import java.util.List;
+import net.mehvahdjukaar.moonlight.api.events.IDropItemOnDeathEvent;
+import net.mehvahdjukaar.moonlight.api.events.MoonlightEventsHelper;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.At.Shift;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin({Inventory.class})
+public abstract class InventoryMixin {
+   @Shadow
+   @Final
+   public Player player;
+   @Unique
+   private ItemStack moonlight$toRestore = null;
+
+   @Inject(
+      method = {"dropAll"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Ljava/util/List;get(I)Ljava/lang/Object;",
+         shift = Shift.BEFORE
+      )}
+   )
+   public void ml$fireDropEvent(CallbackInfo ci, @Local List<ItemStack> list, @Local int i) {
+      if (this.player.isDeadOrDying() || this.player.dead) {
+         ItemStack stack = list.get(i);
+         IDropItemOnDeathEvent event = IDropItemOnDeathEvent.create(stack, this.player, true);
+         MoonlightEventsHelper.postEvent(event, IDropItemOnDeathEvent.class);
+         if (event.isCanceled()) {
+            list.set(i, ItemStack.EMPTY);
+            this.moonlight$toRestore = event.getReturnItemStack();
+         }
+      }
+   }
+
+   @Inject(
+      method = {"dropAll"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Ljava/util/List;get(I)Ljava/lang/Object;",
+         shift = Shift.AFTER
+      )}
+   )
+   public void ml$restoreNotDropped(CallbackInfo ci, @Local List<ItemStack> list, @Local int i) {
+      if (this.moonlight$toRestore != null) {
+         list.set(i, this.moonlight$toRestore);
+         this.moonlight$toRestore = null;
+      }
+   }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/brievnovierkh1",
+    "up": "born_in_chaos_v1:block/brievnovierkh1",
+    "north": "born_in_chaos_v1:block/smoldering_scorched_wood",
+    "east": "born_in_chaos_v1:block/smoldering_scorched_wood",
+    "south": "born_in_chaos_v1:block/smoldering_scorched_wood",
+    "west": "born_in_chaos_v1:block/smoldering_scorched_wood",
+    "particle": "born_in_chaos_v1:block/brievnovierkh1"
+  },
+  "render_type": "solid"
+}

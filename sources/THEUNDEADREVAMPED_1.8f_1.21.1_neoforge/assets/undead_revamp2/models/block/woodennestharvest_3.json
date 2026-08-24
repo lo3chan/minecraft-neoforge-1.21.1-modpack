@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "undead_revamp2:block/woodennestbottom",
+    "up": "undead_revamp2:block/woodennesttop",
+    "north": "undead_revamp2:block/woodennest_stage3",
+    "east": "undead_revamp2:block/woodennest_stage3",
+    "south": "undead_revamp2:block/woodennest_stage3",
+    "west": "undead_revamp2:block/woodennest_stage3",
+    "particle": "undead_revamp2:block/woodennestbottom"
+  },
+  "render_type": "solid"
+}

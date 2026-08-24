@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "barn_trapdoors",
+  "pattern" : [ "AAA", "ABA", "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo"
+    },
+    "B" : {
+      "item" : "mcwtrpdoors:bamboo_glass_trapdoor"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwtrpdoors:bamboo_barn_trapdoor"
+  }
+}

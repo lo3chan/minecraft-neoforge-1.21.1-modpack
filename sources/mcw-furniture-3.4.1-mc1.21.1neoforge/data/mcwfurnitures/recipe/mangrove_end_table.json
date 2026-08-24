@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "end_table",
+  "pattern" : [ "A", "B" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwfurnitures:mangrove_table"
+    },
+    "B" : {
+      "item" : "minecraft:mangrove_log"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:mangrove_end_table"
+  }
+}

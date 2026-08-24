@@ -1,0 +1,14 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:home_run.flavor"
+  },
+  "functions": [
+    "modify_damage",
+    "activate",
+    "attribute_modifier"
+  ],
+  "innate": [
+    "alchemancy:home_run_bat",
+    "alchemancy:bada_bat"
+  ]
+}

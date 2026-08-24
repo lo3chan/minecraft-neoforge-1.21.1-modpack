@@ -1,0 +1,21 @@
+{
+  "open_in_inventory.tooltip.": "",
+  "open_in_inventory.tooltip.use": "Right Click to open",
+  "open_in_inventory.config.": "",
+  "open_in_inventory.config.refresh": "Refresh config in-game using `/open-in-inventory refresh` command",
+  "open_in_inventory.config.enabled_items": "format: ItemID, or { stack: ItemStack, sneak?: boolean }, ? means optional\nItemID is a string, for example `example_mod:bag`. You can use template to support multiple items at once, for example `example:{color}_bag`\nUse `/open-in-inventory replaceTemplate ...` command to view valid templates. You can also use `{a|b|c}` style template for one-time usage",
+  "open_in_inventory.config.debug": "Debug logging",
+  "open_in_inventory.config.open_delay": "delay (in tick) from swapping item to main hand to use such item",
+  "open_in_inventory.config.require_single_stack": "Prevent open-in-inventory from applying to item stacks containing more than one item",
+  "open_in_inventory.config.require_empty_main_hand": "Disable open-in-inventory when player is holding something in main hand",
+  "open_in_inventory.config.screen_blacklist": "Class name of screen in which this mod will be disabled",
+  "open_in_inventory.command.": "",
+  "open_in_inventory.command.refresh": "Config and action state refreshed",
+  "open_in_inventory.command.add": "Added %s item(s) to config, hover to preview",
+  "open_in_inventory.command.add.show": "Collected %s item(s): %s",
+  "open_in_inventory.command.add.option.": "Short form of: %s",
+  "open_in_inventory.command.add.option.hotbar": "Collect all valid stacks (instead of stack on main hand) in hotbar",
+  "open_in_inventory.command.add.option.wildcard": "ignore extra data (e.g. NBT)",
+  "open_in_inventory.command.add.option.sneak": "sneak when performing action",
+  "open_in_inventory.command.add.option.show": "show collected action without adding them to config"
+}

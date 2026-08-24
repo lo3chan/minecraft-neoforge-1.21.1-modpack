@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/rottensoil",
+    "up": "born_in_chaos_v1:block/rottensoil",
+    "north": "born_in_chaos_v1:block/rottensoil",
+    "east": "born_in_chaos_v1:block/rottensoil",
+    "south": "born_in_chaos_v1:block/rottensoil",
+    "west": "born_in_chaos_v1:block/rottensoil",
+    "particle": "born_in_chaos_v1:block/rottensoil"
+  },
+  "render_type": "solid"
+}

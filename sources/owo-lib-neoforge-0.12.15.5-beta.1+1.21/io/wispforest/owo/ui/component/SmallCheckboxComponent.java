@@ -1,0 +1,143 @@
+package io.wispforest.owo.ui.component;
+
+import io.wispforest.owo.ui.base.BaseComponent;
+import io.wispforest.owo.ui.core.Color;
+import io.wispforest.owo.ui.core.CursorStyle;
+import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.Sizing;
+import io.wispforest.owo.ui.parsing.UIModel;
+import io.wispforest.owo.ui.parsing.UIParsing;
+import io.wispforest.owo.ui.util.UISounds;
+import io.wispforest.owo.util.EventSource;
+import io.wispforest.owo.util.EventStream;
+import io.wispforest.owo.util.Observable;
+import java.util.Map;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.resources.ResourceLocation;
+import org.w3c.dom.Element;
+
+public class SmallCheckboxComponent extends BaseComponent {
+   public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("owo", "textures/gui/smol_checkbox.png");
+   protected final EventStream<SmallCheckboxComponent.OnChanged> checkedEvents = SmallCheckboxComponent.OnChanged.newStream();
+   protected final Observable<Component> label;
+   protected boolean labelShadow = false;
+   protected boolean checked = false;
+
+   public SmallCheckboxComponent(Component label) {
+      this.cursorStyle(CursorStyle.HAND);
+      this.label = Observable.of(label);
+      this.label.observe(text -> this.notifyParentIfMounted());
+   }
+
+   public SmallCheckboxComponent() {
+      this(null);
+   }
+
+   @Override
+   public void draw(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+      if (this.label.get() != null) {
+         context.drawString(Minecraft.getInstance().font, this.label.get(), this.x + 13 + 2, this.y + 3, Color.WHITE.argb(), this.labelShadow);
+      }
+
+      context.blit(TEXTURE, this.x, this.y, 13, 13, 0.0F, 0.0F, 13, 13, 32, 16);
+      if (this.checked) {
+         context.blit(TEXTURE, this.x, this.y, 13, 13, 16.0F, 0.0F, 13, 13, 32, 16);
+      }
+   }
+
+   @Override
+   protected int determineHorizontalContentSize(Sizing sizing) {
+      return this.label.get() != null ? 15 + Minecraft.getInstance().font.width((FormattedText)this.label.get()) : 13;
+   }
+
+   @Override
+   protected int determineVerticalContentSize(Sizing sizing) {
+      return 13;
+   }
+
+   @Override
+   public boolean onMouseDown(double mouseX, double mouseY, int button) {
+      boolean result = super.onMouseDown(mouseX, mouseY, button);
+      if (button == 0) {
+         this.toggle();
+         return true;
+      } else {
+         return result;
+      }
+   }
+
+   @Override
+   public boolean onKeyPress(int keyCode, int scanCode, int modifiers) {
+      boolean result = super.onKeyPress(keyCode, scanCode, modifiers);
+      if (keyCode != 257 && keyCode != 335 && keyCode != 32) {
+         return result;
+      } else {
+         this.toggle();
+         return true;
+      }
+   }
+
+   @Override
+   public boolean canFocus(io.wispforest.owo.ui.core.Component.FocusSource source) {
+      return true;
+   }
+
+   public void toggle() {
+      this.checked(!this.checked);
+      UISounds.playInteractionSound();
+   }
+
+   public EventSource<SmallCheckboxComponent.OnChanged> onChanged() {
+      return this.checkedEvents.source();
+   }
+
+   public SmallCheckboxComponent checked(boolean checked) {
+      this.checked = checked;
+      this.checkedEvents.sink().onChanged(this.checked);
+      return this;
+   }
+
+   public boolean checked() {
+      return this.checked;
+   }
+
+   public SmallCheckboxComponent label(Component label) {
+      this.label.set(label);
+      return this;
+   }
+
+   public Component label() {
+      return this.label.get();
+   }
+
+   public SmallCheckboxComponent labelShadow(boolean labelShadow) {
+      this.labelShadow = labelShadow;
+      return this;
+   }
+
+   public boolean labelShadow() {
+      return this.labelShadow;
+   }
+
+   @Override
+   public void parseProperties(UIModel model, Element element, Map<String, Element> children) {
+      super.parseProperties(model, element, children);
+      UIParsing.apply(children, "label", UIParsing::parseText, this::label);
+      UIParsing.apply(children, "label-shadow", UIParsing::parseBool, this::labelShadow);
+      UIParsing.apply(children, "checked", UIParsing::parseBool, this::checked);
+   }
+
+   public interface OnChanged {
+      void onChanged(boolean var1);
+
+      static EventStream<SmallCheckboxComponent.OnChanged> newStream() {
+         return new EventStream<>(subscribers -> value -> {
+            for (SmallCheckboxComponent.OnChanged subscriber : subscribers) {
+               subscriber.onChanged(value);
+            }
+         });
+      }
+   }
+}

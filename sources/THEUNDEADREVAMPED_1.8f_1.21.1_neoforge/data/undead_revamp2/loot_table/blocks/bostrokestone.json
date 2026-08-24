@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "undead_revamp2:blocks/bostrokestone",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "undead_revamp2:rawbostrox",
+          "functions": [
+            {
+              "count": 4,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+package dev.latvian.mods.kubejs.level.ruletest;
+
+import com.mojang.serialization.MapCodec;
+import java.util.function.Supplier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public interface KubeJSRuleTests {
+   DeferredRegister<RuleTestType<?>> REGISTRY = DeferredRegister.create(Registries.RULE_TEST, "kubejs");
+   Supplier<RuleTestType<InvertRuleTest>> INVERT = register("invert", InvertRuleTest.CODEC);
+   Supplier<RuleTestType<AlwaysFalseRuleTest>> ALWAYS_FALSE = register("always_false", AlwaysFalseRuleTest.CODEC);
+   Supplier<RuleTestType<AllMatchRuleTest>> ALL_MATCH = register("all_match", AllMatchRuleTest.CODEC);
+   Supplier<RuleTestType<AnyMatchRuleTest>> ANY_MATCH = register("any_match", AnyMatchRuleTest.CODEC);
+
+   static <P extends RuleTest> Supplier<RuleTestType<P>> register(String id, MapCodec<P> codec) {
+      RuleTestType<P> type = () -> codec;
+      return REGISTRY.register(id, () -> type);
+   }
+}

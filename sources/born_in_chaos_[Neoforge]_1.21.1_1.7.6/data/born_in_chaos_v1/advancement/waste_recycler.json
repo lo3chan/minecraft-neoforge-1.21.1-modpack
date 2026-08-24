@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:spiny_shell"
+    },
+    "title": {
+      "translate": "advancements.waste_recycler.title"
+    },
+    "description": {
+      "translate": "advancements.waste_recycler.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "waste_recycler_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 14
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

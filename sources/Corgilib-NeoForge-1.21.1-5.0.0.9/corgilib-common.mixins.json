@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "corgitaco.corgilib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "DelegatingOpsMixin",
+    "MixinEntity",
+    "MixinServerLevel",
+    "MixinStructureBlock",
+    "chunk.MixinChunkAccess",
+    "chunk.MixinChunkSerializer",
+    "chunk.MixinLevelChunk"
+  ],
+  "client": [
+    "client.MixinMouseHandler"
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

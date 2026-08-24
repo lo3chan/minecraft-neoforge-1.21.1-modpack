@@ -1,0 +1,40 @@
+package net.cibernet.alchemancy.network;
+
+import io.netty.buffer.ByteBuf;
+import java.util.List;
+import net.cibernet.alchemancy.registries.AlchemancyDataAttachments;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload.Type;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+
+public record S2CEntitySyncTintColorPayload(int entityId, List<Integer> tintColor) implements CustomPacketPayload {
+   public static final Type<S2CEntitySyncTintColorPayload> TYPE = new Type(
+      ResourceLocation.fromNamespaceAndPath("alchemancy", "s2c/attachment/entity_sync_tint_color")
+   );
+   public static final StreamCodec<ByteBuf, S2CEntitySyncTintColorPayload> STREAM_CODEC = StreamCodec.composite(
+      ByteBufCodecs.VAR_INT,
+      S2CEntitySyncTintColorPayload::entityId,
+      ByteBufCodecs.VAR_INT.apply(ByteBufCodecs.list()),
+      S2CEntitySyncTintColorPayload::tintColor,
+      S2CEntitySyncTintColorPayload::new
+   );
+
+   public S2CEntitySyncTintColorPayload(Entity entity) {
+      this(entity.getId(), (List<Integer>)entity.getData(AlchemancyDataAttachments.ENTITY_TINT));
+   }
+
+   public Type<? extends CustomPacketPayload> type() {
+      return TYPE;
+   }
+
+   public static void handleDataOnMain(S2CEntitySyncTintColorPayload payload, IPayloadContext context) {
+      Entity entity = context.player().level().getEntity(payload.entityId());
+      if (entity != null) {
+         entity.setData(AlchemancyDataAttachments.ENTITY_TINT, payload.tintColor());
+      }
+   }
+}

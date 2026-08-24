@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Specification-Title: continents
+Specification-Vendor: Stardust Labs
+Specification-Version: 1.1.14
+Implementation-Title: continents
+Implementation-Version: 1.1.14
+Implementation-Vendor: Stardust Labs
+Implementation-Timestamp: 2025-07-08T18:11:14+0200

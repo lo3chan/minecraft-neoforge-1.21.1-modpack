@@ -1,0 +1,14 @@
+{
+  "type": "undead_revamp2:structure_feature",
+  "config": {
+    "structure": "undead_revamp2:bohut_1",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      0,
+      -1,
+      0
+    ]
+  }
+}

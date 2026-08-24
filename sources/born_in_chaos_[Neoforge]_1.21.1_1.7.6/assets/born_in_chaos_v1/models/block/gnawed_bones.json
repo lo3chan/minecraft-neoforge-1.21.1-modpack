@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/grudbone",
+  "textures": {
+    "all": "born_in_chaos_v1:block/bonereb",
+    "particle": "born_in_chaos_v1:block/bonereb",
+    "0": "born_in_chaos_v1:block/bonereb"
+  },
+  "render_type": "cutout"
+}

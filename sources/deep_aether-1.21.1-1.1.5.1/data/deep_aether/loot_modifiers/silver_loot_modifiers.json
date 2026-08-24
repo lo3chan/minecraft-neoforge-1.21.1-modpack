@@ -1,0 +1,27 @@
+{
+  "type": "deep_aether:aether_dungeon_loot",
+  "chanceToSpawn": 0.0,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "aether:chests/dungeon/silver/silver_dungeon"
+    }
+  ],
+  "items": [
+    {
+      "data": {
+        "count": 1,
+        "id": "deep_aether:skyjade"
+      },
+      "weight": 90
+    },
+    {
+      "data": {
+        "count": 2,
+        "id": "deep_aether:skyjade"
+      },
+      "weight": 10
+    }
+  ],
+  "totalWeight": 100
+}

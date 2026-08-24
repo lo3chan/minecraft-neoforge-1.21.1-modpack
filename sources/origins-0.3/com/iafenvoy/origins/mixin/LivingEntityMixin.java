@@ -1,0 +1,342 @@
+package com.iafenvoy.origins.mixin;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data._common.WeightedSoundEntry;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyAirSpeedPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyDeathSoundPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectAmplifierPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectDurationPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyEffectTypePower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyFallingPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyFoodPower;
+import com.iafenvoy.origins.data.power.builtin.modify.ModifyHurtSoundPower;
+import com.iafenvoy.origins.data.power.builtin.prevent.PreventEntityCollisionPower;
+import com.iafenvoy.origins.data.power.builtin.regular.ClimbingPower;
+import com.iafenvoy.origins.data.power.builtin.regular.EdibleItemPower;
+import com.iafenvoy.origins.data.power.builtin.regular.FreezePower;
+import com.iafenvoy.origins.data.power.builtin.regular.IgnoreWaterPower;
+import com.iafenvoy.origins.data.power.builtin.regular.LikeWaterPower;
+import com.iafenvoy.origins.data.power.builtin.regular.WalkOnFluidPower;
+import com.iafenvoy.origins.data.power.builtin.regular.WaterBreathingPower;
+import com.iafenvoy.origins.mixin.accessor.MobEffectInstanceAccessor;
+import com.iafenvoy.origins.util.WaterBreathingHelper;
+import com.iafenvoy.origins.util.WeightedRandomSelector;
+import com.iafenvoy.origins.util.wrapper.Mutable;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.sugar.Local;
+import com.llamalad7.mixinextras.sugar.Share;
+import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import java.util.List;
+import java.util.Optional;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.Vec3;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.At.Shift;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+@Mixin({LivingEntity.class})
+public abstract class LivingEntityMixin extends Entity {
+   @Shadow
+   private Optional<BlockPos> lastClimbablePos;
+
+   public LivingEntityMixin(EntityType<?> entityType, Level level) {
+      super(entityType, level);
+   }
+
+   @Unique
+   private LivingEntity origins$self() {
+      return (LivingEntity)this;
+   }
+
+   @Inject(
+      method = {"aiStep"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getTicksFrozen()I"
+      )}
+   )
+   private void handleFrozen(CallbackInfo ci) {
+      if (PowerHelper.get(this.origins$self()).anyActive(FreezePower.class, x -> true)) {
+         this.isInPowderSnow = true;
+      }
+   }
+
+   @ModifyVariable(
+      method = {"travel"},
+      at = @At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/level/Level;getFluidState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;"
+      ),
+      name = {"d0"}
+   )
+   private double modifyFalling(double d0) {
+      return this.getDeltaMovement().y > 0.0 ? d0 : ModifyFallingPower.apply(this.origins$self(), d0);
+   }
+
+   @ModifyExpressionValue(
+      method = {"travel"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D",
+         ordinal = 0
+      )}
+   )
+   private double handleSpeedInWater(double original) {
+      return PowerHelper.get(this).anyActive(IgnoreWaterPower.class) ? 1.0 : original;
+   }
+
+   @ModifyExpressionValue(
+      method = {"travel"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getFluidFallingAdjustedMovement(DZLnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;"
+      )}
+   )
+   private Vec3 origins$modifyFluidMovement(Vec3 original, @Local(ordinal = 0) double fallVelocity) {
+      return PowerHelper.get(this).anyActive(LikeWaterPower.class) && Math.abs(original.y - fallVelocity / 16.0) < 0.025
+         ? new Vec3(original.x, 0.0, original.z)
+         : original;
+   }
+
+   @ModifyReturnValue(
+      method = {"onClimbable"},
+      at = {@At("RETURN")}
+   )
+   private boolean handleClimbing(boolean original) {
+      if (original) {
+         return true;
+      } else if (this.isSpectator()) {
+         return false;
+      } else if (PowerHelper.get(this).anyActive(ClimbingPower.class, x -> x.canClimb(this))) {
+         this.lastClimbablePos = Optional.of(this.blockPosition());
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   @ModifyReturnValue(
+      method = {"isSuppressingSlidingDownLadder"},
+      at = {@At("RETURN")}
+   )
+   private boolean handleClimbingHold(boolean original) {
+      return original || PowerHelper.get(this).anyActive(ClimbingPower.class, x -> x.canHold(this));
+   }
+
+   @ModifyVariable(
+      method = {"eat*"},
+      at = @At("HEAD"),
+      argsOnly = true
+   )
+   private ItemStack modifyEatenItemStack(ItemStack original) {
+      if (this.origins$self() instanceof Player) {
+         return original;
+      } else {
+         Mutable.Stack stack = Mutable.stack(original);
+         ModifyFoodPower.modifyStack(this.level(), this.origins$self(), stack);
+         return stack.get();
+      }
+   }
+
+   @WrapWithCondition(
+      method = {"eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;addEatEffect(Lnet/minecraft/world/food/FoodProperties;)V"
+      )}
+   )
+   private boolean preventApplyingFoodEffects(LivingEntity instance, FoodProperties foodProperties) {
+      return PowerHelper.get(instance).noneActive(ModifyFoodPower.class, ModifyFoodPower::shouldPreventEffects);
+   }
+
+   @ModifyVariable(
+      method = {"addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z"},
+      at = @At("HEAD"),
+      argsOnly = true
+   )
+   private MobEffectInstance modifyEffect(MobEffectInstance effect) {
+      Holder<MobEffect> effectType = effect.getEffect();
+      int originalAmp = effect.getAmplifier();
+      int originalDur = effect.getDuration();
+      Holder<MobEffect> newEffect = PowerHelper.get(this.origins$self())
+         .getFirst(ModifyEffectTypePower.class, p -> p.getEffect().contains(effectType))
+         .map(ModifyEffectTypePower::getNewEffect)
+         .orElse(effectType);
+      int amplifier = PowerHelper.get(this.origins$self()).modify(ModifyEffectAmplifierPower.class, p -> p.doesApply(effectType), originalAmp);
+      int duration = PowerHelper.get(this.origins$self()).modify(ModifyEffectDurationPower.class, p -> p.doesApply(effectType), originalDur);
+      return effectType == newEffect && amplifier == originalAmp && duration == originalDur
+         ? effect
+         : new MobEffectInstance(
+            newEffect, duration, amplifier, effect.isAmbient(), effect.isVisible(), effect.showIcon(), ((MobEffectInstanceAccessor)effect).getHiddenEffect()
+         );
+   }
+
+   @ModifyExpressionValue(
+      method = {"getFrictionInfluencedSpeed(F)F"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getFlyingSpeed()F"
+      )}
+   )
+   private float modifyFlySpeed(float original) {
+      return PowerHelper.get(this.origins$self()).modify(ModifyAirSpeedPower.class, original);
+   }
+
+   @Inject(
+      method = {"canStandOnFluid"},
+      at = {@At("HEAD")},
+      cancellable = true
+   )
+   private void modifyWalkableFluids(FluidState fluid, CallbackInfoReturnable<Boolean> cir) {
+      if (PowerHelper.get(this.origins$self()).anyActive(WalkOnFluidPower.class, x -> fluid.is(x.getFluid()))) {
+         cir.setReturnValue(true);
+      }
+   }
+
+   @Inject(
+      method = {"doPush"},
+      at = {@At("HEAD")},
+      cancellable = true
+   )
+   private void preventPushing(Entity target, CallbackInfo ci) {
+      Entity self = this.origins$self();
+      if (PowerHelper.get(self).anyActive(PreventEntityCollisionPower.class, x -> x.getBiEntityCondition().test(self, target))
+         || PowerHelper.get(target).anyActive(PreventEntityCollisionPower.class, x -> x.getBiEntityCondition().test(target, self))) {
+         ci.cancel();
+      }
+   }
+
+   @ModifyReturnValue(
+      method = {"canBreatheUnderwater"},
+      at = {@At("RETURN")}
+   )
+   private boolean origins$breatheUnderwater(boolean original) {
+      return original || PowerHelper.get(this).anyActive(WaterBreathingPower.class);
+   }
+
+   @Inject(
+      method = {"baseTick"},
+      at = {@At("TAIL")}
+   )
+   private void origins$waterBreathingTick(CallbackInfo ci) {
+      WaterBreathingHelper.tick(this.origins$self());
+   }
+
+   @ModifyReturnValue(
+      method = {"eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;"},
+      at = {@At("RETURN")}
+   )
+   private ItemStack origins$handleEdibleItemActions(ItemStack result, Level level, ItemStack originalStack, FoodProperties foodProperties) {
+      LivingEntity self = this.origins$self();
+      EdibleItemPower.get(originalStack.copy(), self).ifPresent(power -> {
+         power.executeEntityAction(self);
+         power.executeItemActions(self, Mutable.stack(result).toSlotAccess());
+      });
+      return result;
+   }
+
+   @ModifyExpressionValue(
+      method = {"playHurtSound", "handleDamageEvent"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getHurtSound(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;"
+      )}
+   )
+   private SoundEvent modifyHurtSound(SoundEvent original, @Share("hurtSoundEntry") LocalRef<WeightedSoundEntry.SoundHolder> ref) {
+      List<ModifyHurtSoundPower> powers = PowerHelper.get(this.origins$self()).listActive(ModifyHurtSoundPower.class);
+      if (powers.stream().anyMatch(ModifyHurtSoundPower::isMuted)) {
+         return null;
+      } else {
+         WeightedSoundEntry.SoundHolder holder = WeightedRandomSelector.selectRandomByWeight(
+            powers.stream().flatMap(ModifyHurtSoundPower::streamSoundHolder).toList()
+         );
+         ref.set(holder);
+         return holder != null ? null : original;
+      }
+   }
+
+   @Inject(
+      method = {"playHurtSound", "handleDamageEvent"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getHurtSound(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;",
+         shift = Shift.AFTER
+      )}
+   )
+   private void playModifiedHurtSound(CallbackInfo ci, @Share("hurtSoundEntry") LocalRef<WeightedSoundEntry.SoundHolder> ref) {
+      WeightedSoundEntry.SoundHolder entry = (WeightedSoundEntry.SoundHolder)ref.get();
+      if (entry != null) {
+         entry.playSound(this::playSound);
+      }
+   }
+
+   @ModifyExpressionValue(
+      method = {"hurt", "handleEntityEvent"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getDeathSound()Lnet/minecraft/sounds/SoundEvent;"
+      )}
+   )
+   private SoundEvent modifyDeathSound(SoundEvent original, @Share("deathSoundEntry") LocalRef<WeightedSoundEntry.SoundHolder> ref) {
+      List<ModifyDeathSoundPower> powers = PowerHelper.get(this.origins$self()).listActive(ModifyDeathSoundPower.class);
+      if (powers.stream().anyMatch(ModifyDeathSoundPower::isMuted)) {
+         return null;
+      } else {
+         WeightedSoundEntry.SoundHolder holder = WeightedRandomSelector.selectRandomByWeight(
+            powers.stream().flatMap(ModifyDeathSoundPower::streamSoundHolder).toList()
+         );
+         ref.set(holder);
+         return holder != null ? null : original;
+      }
+   }
+
+   @Inject(
+      method = {"hurt"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getDeathSound()Lnet/minecraft/sounds/SoundEvent;",
+         shift = Shift.AFTER
+      )}
+   )
+   private void playModifiedDeathSound1(CallbackInfoReturnable<Boolean> cir, @Share("deathSoundEntry") LocalRef<WeightedSoundEntry.SoundHolder> ref) {
+      WeightedSoundEntry.SoundHolder entry = (WeightedSoundEntry.SoundHolder)ref.get();
+      if (entry != null) {
+         entry.playSound(this::playSound);
+      }
+   }
+
+   @Inject(
+      method = {"handleEntityEvent"},
+      at = {@At(
+         value = "INVOKE",
+         target = "Lnet/minecraft/world/entity/LivingEntity;getDeathSound()Lnet/minecraft/sounds/SoundEvent;",
+         shift = Shift.AFTER
+      )}
+   )
+   private void playModifiedDeathSound2(CallbackInfo cir, @Share("deathSoundEntry") LocalRef<WeightedSoundEntry.SoundHolder> ref) {
+      WeightedSoundEntry.SoundHolder entry = (WeightedSoundEntry.SoundHolder)ref.get();
+      if (entry != null) {
+         entry.playSound(this::playSound);
+      }
+   }
+}

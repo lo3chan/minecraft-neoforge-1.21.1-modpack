@@ -1,0 +1,188 @@
+package com.yungnickyoung.minecraft.yungsapi.api.autoregister;
+
+import com.google.common.collect.ImmutableSet;
+import com.yungnickyoung.minecraft.yungsapi.autoregister.AutoRegisterEntry;
+import java.util.function.Supplier;
+import net.minecraft.Util;
+import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityAttachment;
+import net.minecraft.world.entity.EntityAttachments;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.EntityType.EntityFactory;
+import net.minecraft.world.flag.FeatureFlag;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
+
+public class AutoRegisterEntityType<T extends Entity> extends AutoRegisterEntry<EntityType<T>> {
+   private Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder> attributesBuilderSupplier;
+
+   public static <U extends Entity> AutoRegisterEntityType<U> of(Supplier<EntityType<U>> entityTypeSupplier) {
+      return new AutoRegisterEntityType<>(entityTypeSupplier);
+   }
+
+   public AutoRegisterEntityType<T> attributes(Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder> attributesBuilderSupplier) {
+      this.attributesBuilderSupplier = attributesBuilderSupplier;
+      return this;
+   }
+
+   public boolean hasAttributes() {
+      return this.attributesBuilderSupplier != null;
+   }
+
+   public Supplier<net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder> getAttributesSupplier() {
+      return this.attributesBuilderSupplier;
+   }
+
+   private AutoRegisterEntityType(Supplier<EntityType<T>> entityTypeSupplier) {
+      super(entityTypeSupplier);
+   }
+
+   public static class Builder<T extends Entity> {
+      private final EntityFactory<T> factory;
+      private final MobCategory category;
+      private ImmutableSet<Block> immuneTo = ImmutableSet.of();
+      private boolean serialize = true;
+      private boolean summon = true;
+      private boolean fireImmune;
+      private boolean canSpawnFarFromPlayer;
+      private int clientTrackingRange = 5;
+      private int updateInterval = 3;
+      private EntityDimensions dimensions = EntityDimensions.scalable(0.6F, 1.8F);
+      private float spawnDimensionsScale = 1.0F;
+      private net.minecraft.world.entity.EntityAttachments.Builder attachments = EntityAttachments.builder();
+      private FeatureFlagSet requiredFeatures = FeatureFlags.VANILLA_SET;
+
+      private Builder(EntityFactory<T> entityFactory, MobCategory mobCategory) {
+         this.factory = entityFactory;
+         this.category = mobCategory;
+         this.canSpawnFarFromPlayer = mobCategory == MobCategory.CREATURE || mobCategory == MobCategory.MISC;
+      }
+
+      public static <T extends Entity> AutoRegisterEntityType.Builder<T> of(EntityFactory<T> entityFactory, MobCategory mobCategory) {
+         return new AutoRegisterEntityType.Builder<>(entityFactory, mobCategory);
+      }
+
+      public AutoRegisterEntityType.Builder<T> sized(float width, float height) {
+         this.dimensions = EntityDimensions.scalable(width, height);
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> spawnDimensionsScale(float scale) {
+         this.spawnDimensionsScale = scale;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> eyeHeight(float eyeHeight) {
+         this.dimensions = this.dimensions.withEyeHeight(eyeHeight);
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> passengerAttachments(float... attachments) {
+         for (float attachment : attachments) {
+            this.attachments = this.attachments.attach(EntityAttachment.PASSENGER, 0.0F, attachment, 0.0F);
+         }
+
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> passengerAttachments(Vec3... attachments) {
+         for (Vec3 attachment : attachments) {
+            this.attachments = this.attachments.attach(EntityAttachment.PASSENGER, attachment);
+         }
+
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> vehicleAttachment(Vec3 attachment) {
+         return this.attach(EntityAttachment.VEHICLE, attachment);
+      }
+
+      public AutoRegisterEntityType.Builder<T> ridingOffset(float offset) {
+         return this.attach(EntityAttachment.VEHICLE, 0.0F, -offset, 0.0F);
+      }
+
+      public AutoRegisterEntityType.Builder<T> nameTagOffset(float offset) {
+         return this.attach(EntityAttachment.NAME_TAG, 0.0F, offset, 0.0F);
+      }
+
+      public AutoRegisterEntityType.Builder<T> attach(EntityAttachment attachment, float x, float y, float z) {
+         this.attachments = this.attachments.attach(attachment, x, y, z);
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> attach(EntityAttachment attachment, Vec3 attachPos) {
+         this.attachments = this.attachments.attach(attachment, attachPos);
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> noSummon() {
+         this.summon = false;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> noSave() {
+         this.serialize = false;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> fireImmune() {
+         this.fireImmune = true;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> immuneTo(Block... blocks) {
+         this.immuneTo = ImmutableSet.copyOf(blocks);
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> canSpawnFarFromPlayer() {
+         this.canSpawnFarFromPlayer = true;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> clientTrackingRange(int chunkRange) {
+         this.clientTrackingRange = chunkRange;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> updateInterval(int interval) {
+         this.updateInterval = interval;
+         return this;
+      }
+
+      public AutoRegisterEntityType.Builder<T> requiredFeatures(FeatureFlag... $$0) {
+         this.requiredFeatures = FeatureFlags.REGISTRY.subset($$0);
+         return this;
+      }
+
+      public EntityType<T> build() {
+         return new EntityType(
+            this.factory,
+            this.category,
+            this.serialize,
+            this.summon,
+            this.fireImmune,
+            this.canSpawnFarFromPlayer,
+            this.immuneTo,
+            this.dimensions,
+            this.spawnDimensionsScale,
+            this.clientTrackingRange,
+            this.updateInterval,
+            this.requiredFeatures
+         );
+      }
+
+      public EntityType<T> build(String s) {
+         if (this.serialize) {
+            Util.fetchChoiceType(References.ENTITY_TREE, s);
+         }
+
+         return this.build();
+      }
+   }
+}

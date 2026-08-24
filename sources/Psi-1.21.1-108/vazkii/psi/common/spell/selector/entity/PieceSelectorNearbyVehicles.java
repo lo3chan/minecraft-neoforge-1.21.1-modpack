@@ -1,0 +1,24 @@
+package vazkii.psi.common.spell.selector.entity;
+
+import java.util.function.Predicate;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.Minecart;
+import vazkii.psi.api.spell.Spell;
+import vazkii.psi.api.spell.SpellContext;
+
+public class PieceSelectorNearbyVehicles extends PieceSelectorNearby {
+   public PieceSelectorNearbyVehicles(Spell spell) {
+      super(spell);
+   }
+
+   @Override
+   public Predicate<Entity> getTargetPredicate(SpellContext context) {
+      return e -> e instanceof Minecart
+         || e instanceof Boat
+         || e instanceof AbstractHorse && ((AbstractHorse)e).isSaddled()
+         || e instanceof Pig && ((Pig)e).isSaddled();
+   }
+}

@@ -1,0 +1,389 @@
+Manifest-Version: 1.0
+Specification-Title: FerriteCore
+Specification-Vendor: malte0811
+Implementation-Title: NeoForge
+Implementation-Vendor: malte0811
+Implementation-Timestamp: 2026-01-25T13:59:39+0100
+Timestampe: 1769345979924
+Built-On-Java: 21.0.9+10 (Red Hat, Inc.)
+Build-On-Minecraft: 1.21.1
+
+Name: malte0811/ferritecore/mixin/config/FerriteConfig$ConfigBuilder.cla
+ ss
+SHA-384-Digest: r82aQoytNiAeUyyYbBHQsOrPC63kTSI8aU3siwXqYNfPFb041k3WtosL
+ PmYb7dBu
+
+Name: malte0811/ferritecore/mixin/config/FerriteMixinConfig$LithiumSuppo
+ rtState.class
+SHA-384-Digest: VpmPqQUJnjo601+ILSR3s+vIXTeH9rKI6FieOyCMqeV2//9cCJgikw29
+ cl4RUgAb
+
+Name: malte0811/ferritecore/mixin/mrl/Config.class
+SHA-384-Digest: H8/HsbRuvfilVvC0+Mli+06lDDPBvY3hv0jjBxw2WjZhl+JdR652PVfp
+ EAQ195NB
+
+Name: malte0811/ferritecore/mixin/predicates/Config.class
+SHA-384-Digest: IcrAYB8Uo4DZvpQCofVcSHFPQN26lXjbrx1qtUfkyB3pNgBKmHFaQ5DW
+ pnJdxzPL
+
+Name: malte0811/ferritecore/ModMainForge.class
+SHA-384-Digest: Xb5O6dUEF2PrBXznt5o69EE9aBVOOzN/exr2baTPZW0AZ7PJxAzW7W/8
+ OEcm0LUK
+
+Name: malte0811/ferritecore/mixin/predicates/AndConditionMixin.class
+SHA-384-Digest: KRhuvWSmm+ggyHYt3YLvt+QIP12+JnKykMg+jU2BglpKsC1KxUY+o4Gf
+ ensX5aSW
+
+Name: malte0811/ferritecore/mixin/accessors/VoxelShapeAccess.class
+SHA-384-Digest: hMgKcZwAhVfHuFzjedIAt69eMzRvV5Vf6aa33THoYXd3/OfVairP8waz
+ X/qSRXZD
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$1.class
+SHA-384-Digest: EGdyC0x/6vFUUhplhDp+kClgHaiZm0WLudagheCXqT2kbnCnqvh58IZ8
+ 3K9qjQYV
+
+Name: malte0811/ferritecore/util/Constants.class
+SHA-384-Digest: g+5la+1FsjCaFo/j365sKMCLJAMBAx9AdD1matm/uNcx/t27zVvry71U
+ 8BYB9XKK
+
+Name: ferritecore.dedupbakedquad.mixin.json
+SHA-384-Digest: Aiy/WMxzHAciYMytKQV48UmoWevuqyBWL37dbFgQUkpDktRDTEtdkKAL
+ 5aaGph1p
+
+Name: malte0811/ferritecore/util/SmallThreadingDetector$GlobalCrashHandl
+ er.class
+SHA-384-Digest: p4B8+lH+BLWOf6pMd4p1FWj0yTDWB+rEgTyOLyePsuN+8268YkRuFT7n
+ 8s29+BlX
+
+Name: malte0811/ferritecore/util/SmallThreadingDetector$ThreadRole.class
+SHA-384-Digest: 9KvLZ5uss+jI4J766Rmdo6tDslLkCErLn+LLxUJkRYmhTLG4yrkBanyV
+ 9yNyVDjb
+
+Name: malte0811/ferritecore/mixin/accessors/SliceShapeAccess.class
+SHA-384-Digest: fLRUNm5sHH7YIzW3oe2eGavhPnPb13/8m9wXnqJ1yzQV1yta4IErMYsL
+ IQUnRmLI
+
+Name: malte0811/ferritecore/mixin/config/FerriteConfig.class
+SHA-384-Digest: qnTaC0VrIoVx/kX6CBeHxz8Nsh1omZPRLVbfKNj+Cjm+/G5JYHghoVgY
+ jxMkMAaE
+
+Name: malte0811/ferritecore/mixin/blockstatecache/Config.class
+SHA-384-Digest: XHsdWkh6lu66+DUUNwTUP/aYy8f005Fovd6E4LsulgwSjkXOBoZ9HpY3
+ iw2WHeVH
+
+Name: malte0811/ferritecore/mixin/datacomponents/Config.class
+SHA-384-Digest: qUFdVkm0NwsgjNqYYu7vgJphX5UnXPQIOg1NvbqACB25WILPOg8usIb2
+ oZMFEwH7
+
+Name: malte0811/ferritecore/hash/SliceShapeHash.class
+SHA-384-Digest: 2CVarSCVbFt9zZSKY+LftC2Gy28sYkMSEjBfCRYRTOkEIukV+UM/dHMU
+ +pv0NIuB
+
+Name: malte0811/ferritecore/IPlatformHooks.class
+SHA-384-Digest: imG52QHOa2omu5C1RuK92s2FFwgXkudCEQLD+E8aEACRP9fnZvzVsDth
+ 8ZSDOp51
+
+Name: malte0811/ferritecore/mixin/threaddetec/PalettedContainerMixin.cla
+ ss
+SHA-384-Digest: l8/iAdcawegRmu/VnPwbzdFAWefXFPxgfeAjj3Qa83+eGGMCBXFTyDwK
+ 5Pwz29mN
+
+Name: malte0811/ferritecore/mixin/dedupmultipart/MixinMultipartBuilder.c
+ lass
+SHA-384-Digest: 4QpAPQ0Wqj+YoqO6IQ3tBYeyvHQqXAXIxMRhBK1oun0wA4/bRhXp4ju1
+ 5bPOq+Vf
+
+Name: malte0811/ferritecore/ducks/FastMapStateHolder.class
+SHA-384-Digest: P4Png4IcElGnIakOG1630dFsVsb/gTggmr+oiqf6AN/l2KIZntsLY59n
+ 3S8NSL5A
+
+Name: malte0811/ferritecore/mixin/fastmap/Config.class
+SHA-384-Digest: v6q/jCT88k29w6w2SwJfSmNOku10vJaj3f7aRnVNh5ZTJ3YtJzNwMJ5o
+ 7CEcEcAh
+
+Name: malte0811/ferritecore/fastmap/table/FastmapNeighborTable.class
+SHA-384-Digest: fdy0hIDkkZdgC6lRBC3aXuo3osMYbdPqMTF1ZjgFQF7X1T764Aw+eBxP
+ y3mPQujX
+
+Name: malte0811/ferritecore/hash/VoxelShapeHash.class
+SHA-384-Digest: jDs/mrDRBEEGvI1A/MBPPaytU/Slhj0G5K3Dxwx7DJHNNae8y5w7NVa2
+ crl/o0K7
+
+Name: malte0811/ferritecore/mixin/predicates/OrConditionMixin.class
+SHA-384-Digest: lhnpoqFXcBd0NOPYMLGojwNg9R19jzp7dEOxd7OcivIZkdQeSzktuVMc
+ omWgF9wX
+
+Name: malte0811/ferritecore/impl/Deduplicator$1.class
+SHA-384-Digest: q+Fl3kPLT8SdJj+MJ4KlQcSrPIXqZ1+7Nmr54ixobsqwJNlY2JT/y0nU
+ d1BEUd5+
+
+Name: ferritecore.dedupmultipart.mixin.json
+SHA-384-Digest: fXqSTHOBb4SPXcfL8Gwf1dTMO8nJD/xL9PtxxwF+cavhN6Ejyg9BZDL8
+ +4CbFqee
+
+Name: logo.png
+SHA-384-Digest: b8foF9u+1zAJFrxPbmbIAnBJ1yD8aKqY5EbfbnVRj3XJl7hRuc8V8Kdm
+ pydVeh7n
+
+Name: malte0811/ferritecore/ducks/BlockStateCacheAccess.class
+SHA-384-Digest: K9DBmOyZm4qE/MYhVg1ZmQf7MNcrk9RFPFgWNQHIGFjHhaVumOXU/dCG
+ bnT+woez
+
+Name: malte0811/ferritecore/mixin/platform/ConfigFileHandler.class
+SHA-384-Digest: kQ/H0Zq89hMwVU5PipnrzkxDn6zzfONHgKF0lI5nHhgSN5cYLqtuitAI
+ SDqwGKWR
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$WeirdVanillaDirectio
+ nIndexer.class
+SHA-384-Digest: YoXq8lar30FXQtwnkZRYIu4R5radA6FkR5IhrDi13atcbXpgzB89VIjA
+ 791Co+Gj
+
+Name: malte0811/ferritecore/impl/BlockStateCacheImpl.class
+SHA-384-Digest: 8dF3gTAal3wlxCny3RGIUqma6YYPksfbf3HXhltl8M54q4szm9QxwupR
+ Ytbq/+ko
+
+Name: ferritecore.mrl.mixin.json
+SHA-384-Digest: 1Gn/BKI4KUAuWRan2+bOrsjZkDlyq+CiJqQ9KKezPewOKxPMfwNbDG8Q
+ xqy9aEO1
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$GenericIndexer.class
+SHA-384-Digest: TlUUQjw8fAwp9GACqcaGXerY8FfBi1U2hM2VVk89BrjA98N+DO6CyA0A
+ rCiLjdZq
+
+Name: malte0811/ferritecore/impl/KeyValueConditionImpl$KeyValuePair.clas
+ s
+SHA-384-Digest: u0EL4XBxvcxCiydY3s51JjMx7W5/h56HKiuogjUuGGakZeSAMFXCEf/d
+ WTriz86I
+
+Name: malte0811/ferritecore/mixin/accessors/ArrayVSAccess.class
+SHA-384-Digest: y6hI+FojsAqSVL43HtkhmTZQrEytvzSMd8AqBl4L5m6sY0V9N4cc1bgU
+ 0wMDyZDH
+
+Name: malte0811/ferritecore/mixin/config/IPlatformConfigHooks$OverrideCa
+ llback.class
+SHA-384-Digest: wQxgjJVZvU3wOitK/1917ZOGND0t/ZkQzSnzXshwHQ2U1Jx0x3scWtdx
+ tXkIvPhr
+
+Name: malte0811/ferritecore/mixin/predicates/KeyValueConditionMixin.clas
+ s
+SHA-384-Digest: 6VHv3BWUe3XEGHC+SKjQLKJ3omnGIZlDVoAHhNb2A4qCXCQwhcjvXEZZ
+ EFlqjpBW
+
+Name: malte0811/ferritecore/fastmap/BinaryFastMapKey.class
+SHA-384-Digest: iqdcZQ5TdvEBXijQmFDfbnPaHppaN4au2ckcjmjRnGqQTeTo5K4hi/CQ
+ lKkva5Jf
+
+Name: malte0811/ferritecore/mixin/config/FerriteMixinConfig.class
+SHA-384-Digest: HMARboqWX0BLobwp74m+KFwAv7TAVZQfFQewrqAk/uh+lfhUi+qQ33aG
+ PU2skTtl
+
+Name: malte0811/ferritecore/fastmap/table/NeighborTableBase.class
+SHA-384-Digest: Nf78l/KG6Nr/DfKagou60FB7ORmOmyDkbBuMakwYL3IfDUkZd7c4TZTO
+ CK0D0FFn
+
+Name: malte0811/ferritecore/mixin/fastmap/FastMapStateHolderMixin.class
+SHA-384-Digest: Ikv64zsnx7zXe6g3kX00J41FAi6+uFfXp2RXWo0ff8D7nL/czGTwsV9i
+ pZMpTdAn
+
+Name: ferritecore.blockstatecache.mixin.json
+SHA-384-Digest: 2KSTcFtFMxp9HfWe9JnsGB6PZa4X91BJkHOvhHLQUwxvPrdLO3ahU4iR
+ q9KO/IRR
+
+Name: malte0811/ferritecore/mixin/config/IPlatformConfigHooks.class
+SHA-384-Digest: dUQq8++6sSxNLqkNy5/YaFoI0XZaREzdRKitRZeat9/cUMhkXZHBc4kP
+ IXPoWmHF
+
+Name: malte0811/ferritecore/impl/Deduplicator.class
+SHA-384-Digest: SepjV8HnvCvEBWyIDWk7DrL1QZXRmAhZlS+bvYymggDe9/3Ev2PynT2f
+ Ht+TdEnx
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$IntIndexer.class
+SHA-384-Digest: wJeXazSOIw19sL8HN6VgVvidT49pkfTH9l9lf940eLAVINiGjSstE1MJ
+ R5DHH156
+
+Name: META-INF/neoforge.mods.toml
+SHA-384-Digest: KkkbSBWAdUftA5cMVBXcalsCuH34Evn+Vj/MKLklIU8gxayHa65BEXvX
+ QvUDPENv
+
+Name: malte0811/ferritecore/fastmap/CompactFastMapKey.class
+SHA-384-Digest: /p3iCSCowmrSdfviUApSj5GrcWHAfdjJ7E8bT20XgEf3bUTUU2Boxmw/
+ 3Nsyp+tU
+
+Name: ferritecore.threaddetec.mixin.json
+SHA-384-Digest: HEUjsNB2rhQ2YJmntZtN8lXCuF18S3M983b2WQM4GWQKo2Ui93TyPUdC
+ oF8y3tMT
+
+Name: malte0811/ferritecore/mixin/dedupmultipart/MixinMultipartModel.cla
+ ss
+SHA-384-Digest: it7XX6ePgDZogXlQjgmJ9WMcsQHip/S/jj1iq1AmbDSwrXkPyimf+q6b
+ GSv11rBp
+
+Name: malte0811/ferritecore/fastmap/table/CrashNeighborTable.class
+SHA-384-Digest: 23uk8RcyEG638hulcDiPJlFdznZQR30s1qxJgpag+nfIYhZSaZwmqY7P
+ NxVjdFOB
+
+Name: malte0811/ferritecore/mixin/accessors/BitSetDVSAccess.class
+SHA-384-Digest: esrXEag2ttcBgj1DjmAWjBicQfyCA/kxRL4xIkkk22mPxxQ+vXMlowd2
+ fpOv3NEB
+
+Name: malte0811/ferritecore/mixin/dedupmultipart/Config.class
+SHA-384-Digest: BvbqrtnCxOe9JJWuEsFiEE8Ss36y3e1HdG+esFDFeMINodAuvCWF4NlO
+ H5IzR2cR
+
+Name: malte0811/ferritecore/impl/ModelSidesImpl.class
+SHA-384-Digest: V/zemW82khTrYlhc+ROKCOsaY3L/uBc2xnIbDO0XLNw72R6B5IeaaG6z
+ 9q+7HTrs
+
+Name: ferritecore.fastmap.mixin.json
+SHA-384-Digest: owrjD5lm5Zk3Zr37sRlb+offOn7P4ByalksIncsdEEbpwpa2YV9bK4/n
+ +rPWWsIH
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$EnumIndexer.class
+SHA-384-Digest: qoM6cSjEohLKbBGQKpH4sYLxcnc91dOQfTQAhANAALxfhU5JNl4Ruf60
+ dnk7a75n
+
+Name: malte0811/ferritecore/util/SmallThreadingDetector.class
+SHA-384-Digest: znOsjpey8Lyjty/jQVYNohJrIqeUw465Jgk3N4+O5MKKvhPJ33XcTZGU
+ BqX13aph
+
+Name: malte0811/ferritecore/impl/FastMapEntryMap.class
+SHA-384-Digest: J9kkvspdsuX/LwQ7+KEr6GbTSrCoQNYl6V2IFO4Z+Q41PSnkgu6x+NOp
+ WmgcTSE0
+
+Name: malte0811/ferritecore/mixin/config/FerriteConfig$Option.class
+SHA-384-Digest: DFLTTM44Cj07MkPKRDqqbeOrMTl092Dbftcj8B6qCT5debEi2YLQ8YD9
+ 8x+jBop0
+
+Name: malte0811/ferritecore/mixin/datacomponents/PatchedDataComponentMap
+ Mixin.class
+SHA-384-Digest: SPOA574bfBSub9rRRnHaa/eZmum/0uS0AJpeeJ8IAiS06HmSCyqNqVee
+ le3uEgia
+
+Name: malte0811/ferritecore/fastmap/FastMapKey.class
+SHA-384-Digest: ub3MZJeXXgwVf5K19QeC8kFo/ci5FDiVVFw0kzDUtfK2Lo0mMOyAwmO7
+ FsMrOwsY
+
+Name: malte0811/ferritecore/util/SmallThreadingDetector$CrashingState.cl
+ ass
+SHA-384-Digest: /1BYKkud5FILs9R8QKMYn9cEYt476DTuxjLV96L6Se4CSK19FNbzj0md
+ txPn5SG6
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer.class
+SHA-384-Digest: A144EWLD40X5ZfaMtXwXbpb4PARfhIc8f4swTsnT23XXn2Fy0CzYder6
+ np8f038h
+
+Name: malte0811/ferritecore/util/PredicateHelper.class
+SHA-384-Digest: u3tjJ5TB8a+4gv22yf8rUG3gHwsJwpMTIDQ8ArjsqplyaB9GbsVR1yxM
+ 8V9mDiKQ
+
+Name: malte0811/ferritecore/mixin/dedupbakedquad/SimpleModelBuilderMixin
+ .class
+SHA-384-Digest: 3hTW4dVLOGbaMAvpyTazlzjrHA3jPQ/b+xk7AaSc/SKS1pNoLB2Z2xXw
+ FEZPYK6A
+
+Name: ferritecore.modelsides.mixin.json
+SHA-384-Digest: gcpB7xoMJHDwxBIsS4aiUuuomSzXCG8V5HB0F4Q59ZCT+EMjUD29MlOE
+ 9+Us+d5Z
+
+Name: malte0811/ferritecore/mixin/accessors/DiscreteVSAccess.class
+SHA-384-Digest: +zAFVciGEwhn12FCkjWKfyy5OwDGzsv97L6Ld2vp4nT/t5AsrOB48nF9
+ OfqnEnIj
+
+Name: malte0811/ferritecore/mixin/modelsides/Config.class
+SHA-384-Digest: AwBzKURV0NtQs34QpBf/G9vT2nNGANUrA5TuETb1xdJyYM9Zaue8DjqC
+ QQGAQJqx
+
+Name: malte0811/ferritecore/fastmap/FastMap.class
+SHA-384-Digest: n1jB1l8xmZpKPWhjvrLaaB1ANNZnlAWbTeFGXA67hHSJyo/iM21Utsm9
+ 1NXFmGXz
+
+Name: malte0811/ferritecore/ModClientForge.class
+SHA-384-Digest: zJqm4kkNcZ4OhKUDPXZ4i0Tb88xKyv0aRNSYjjFM9w+59KuBKC278z3c
+ 9ThCvMYy
+
+Name: malte0811/ferritecore/mixin/blockstatecache/BlockStateCacheMixin.c
+ lass
+SHA-384-Digest: 1ifcO0zF60fAkA/RpbAS0SnVilVzvVOyVHL0A4LrjluUgez1DYygAhOI
+ 7Zkf5uq8
+
+Name: malte0811/ferritecore/fastmap/PropertyIndexer$BoolIndexer.class
+SHA-384-Digest: Py8sqUYlLsLSq2ObMMpaVV1b9C6pMenrk0MfEMei8hgCwGsHaOiuGIBO
+ +B4fwJsB
+
+Name: pack.mcmeta
+SHA-384-Digest: YilgkzFfq21twIc6l8X0ijs0tov67iM85AKLiEBWiF8tZup/If+Yy8su
+ 2/l4m7v+
+
+Name: malte0811/ferritecore/PlatformHooks.class
+SHA-384-Digest: B8Dr4TTaBQQ8cnXrTqfVOzB2l++1B4UF2szoiuTF9wXqwteXFThBdB7u
+ ALtkTHtf
+
+Name: malte0811/ferritecore/hash/ArrayVoxelShapeHash.class
+SHA-384-Digest: Kl7Oaa/NPX73rjduw4tNC+Un2a0Z5xwWLTpZH9X5PzVRNRWIhwVkD5iK
+ CCej9Dau
+
+Name: malte0811/ferritecore/mixin/threaddetec/Config.class
+SHA-384-Digest: x05dcxuigizBX98651+9eFZ7j2tGCucpKCz+5/aGWDPv+MOipS5IhVux
+ nP5OCG6Z
+
+Name: malte0811/ferritecore/mixin/modelsides/SimpleBakedModelMixin.class
+SHA-384-Digest: 29PnRommhK62uJ5xdLOgZza4IkYIPEkba1rtm9VMRDXOpe1RFa0T7Rf+
+ MUs7ox3Z
+
+Name: roadrunner.overrides.properties
+SHA-384-Digest: GHxmRk2E9kRqVQoOxCvWun3GRV71aztBSX77OlL13tboFYemzjNfrF4O
+ YxVpBxHN
+
+Name: malte0811/ferritecore/mixin/accessors/BakedQuadAccess.class
+SHA-384-Digest: YNqmUwwHhStcdu20p35ZtciKVcC5wnTsXHN8Cq2X1vCMbKi+szYJocMi
+ w7GGSo0/
+
+Name: malte0811/ferritecore/hash/DiscreteVSHash.class
+SHA-384-Digest: B+Zeqj2FAugomjupbgHjfa20G/nw/ugK7gdkThEk5sg09+TfqPKCLblG
+ kB7bSojt
+
+Name: malte0811/ferritecore/mixin/blockstatecache/BlockStateBaseMixin.cl
+ ass
+SHA-384-Digest: 9tkJzibVmKJn0z16AbcNoRbJSndM3L58ZBkv0NJpY7UFT9CXHKdkNuYr
+ Ui5iN0RA
+
+Name: malte0811/ferritecore/ducks/SmallThreadDetectable.class
+SHA-384-Digest: 9zQdXyowPXcwXUTiQRNwqVY0UKhxIDUUpdDJF7WFBz23psd3yIJp7VJI
+ BUXxtOVv
+
+Name: malte0811/ferritecore/mixin/accessors/SubShapeAccess.class
+SHA-384-Digest: jdFbBneaMMQoN2+YDGyUeIymy7DFQs8TRTkoRKyD590AVcvwLrJjvXC3
+ 1ITFUfyz
+
+Name: malte0811/ferritecore/impl/KeyValueConditionImpl.class
+SHA-384-Digest: e+0E4+hWc7wpW4syoB1QBUt1mipaP4MNFfheUJdkLvPpzWI25xPDnefa
+ ZYIpHldZ
+
+Name: malte0811/ferritecore/hash/LambdaBasedHash.class
+SHA-384-Digest: 7Sbt7GSKZsj2zS/QngXJu+KFor36r0tJRH782BruATMqxlI/y6FMyYpB
+ /bKouesh
+
+Name: malte0811/ferritecore/impl/StateHolderImpl.class
+SHA-384-Digest: 2T8XtlEeCvib8uXgiFpOJRmP5JZhMET+tznSygLDQ3y86hNkQ4s/iorA
+ EHgNky9W
+
+Name: ferritecore.datacomponents.mixin.json
+SHA-384-Digest: tZJLLQAo8rYNwrD/rnNam4mev1eWTIm1q2vYalZB8rnR5c/2agAIHCr4
+ aJNP/5B4
+
+Name: malte0811/ferritecore/mixin/mrl/ModelResourceLocationMixin.class
+SHA-384-Digest: ZOngLCh2+eGoA4VFNmXR0wzPEhxf+c17InGIa8GUoZN4ha4Mem4sxpsK
+ 88xOp0R4
+
+Name: malte0811/ferritecore/mixin/dedupbakedquad/Config.class
+SHA-384-Digest: n/JjuAOgJT1DrqY03X8ckZLa2/WE3S1K3LE7AV80cZqbn7mC8LeqOnPS
+ +iFosJBX
+
+Name: ferritecore.accessors.mixin.json
+SHA-384-Digest: CRdg7DK5clYJGChsg46UWqvTTAgfjyiTYbpe7msHSsasIVBgTobcPtuZ
+ quKoQVu7
+
+Name: ferritecore.predicates.mixin.json
+SHA-384-Digest: tZ6wLL+K9vUP1AmxeNOeH3cUFvXHHBffPrBzyXkljnqcOeyf6QABofLF
+ CT5Ow028
+

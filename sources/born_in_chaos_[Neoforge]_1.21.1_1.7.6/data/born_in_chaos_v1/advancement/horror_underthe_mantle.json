@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:lifestealer_bone"
+    },
+    "title": {
+      "translate": "advancements.horror_underthe_mantle.title"
+    },
+    "description": {
+      "translate": "advancements.horror_underthe_mantle.descr"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "horror_underthe_mantle_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 15
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

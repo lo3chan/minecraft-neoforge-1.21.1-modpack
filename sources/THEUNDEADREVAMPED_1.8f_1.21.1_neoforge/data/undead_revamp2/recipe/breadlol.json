@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cde",
+    "afa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:wheat"
+    },
+    "b": {
+      "item": "minecraft:brown_mushroom"
+    },
+    "c": {
+      "item": "minecraft:carrot"
+    },
+    "d": {
+      "item": "undead_revamp2:ancientbread"
+    },
+    "e": {
+      "item": "minecraft:chicken"
+    },
+    "f": {
+      "item": "minecraft:red_mushroom"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:coffinbroad",
+    "count": 1
+  }
+}

@@ -1,0 +1,58 @@
+package com.aetherteam.aether.data.resources.registries;
+
+import com.aetherteam.aether.data.resources.builders.AetherBiomeBuilders;
+import java.util.OptionalLong;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.BiomeSource;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.dimension.DimensionType.MonsterSettings;
+import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+
+public class AetherDimensions {
+   private static final ResourceLocation AETHER_LEVEL_ID = ResourceLocation.fromNamespaceAndPath("aether", "the_aether");
+   public static final ResourceKey<DimensionType> AETHER_DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, AETHER_LEVEL_ID);
+   public static final ResourceKey<Level> AETHER_LEVEL = ResourceKey.create(Registries.DIMENSION, AETHER_LEVEL_ID);
+   public static final ResourceKey<LevelStem> AETHER_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, AETHER_LEVEL_ID);
+
+   public static void bootstrapDimensionType(BootstrapContext<DimensionType> context) {
+      context.register(
+         AETHER_DIMENSION_TYPE,
+         new DimensionType(
+            OptionalLong.empty(),
+            true,
+            false,
+            false,
+            true,
+            1.0,
+            true,
+            false,
+            0,
+            256,
+            256,
+            BlockTags.INFINIBURN_OVERWORLD,
+            ResourceLocation.fromNamespaceAndPath("aether", "the_aether"),
+            0.0F,
+            new MonsterSettings(false, false, UniformInt.of(0, 7), 0)
+         )
+      );
+   }
+
+   public static void bootstrapLevelStem(BootstrapContext<LevelStem> context) {
+      HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
+      HolderGetter<NoiseGeneratorSettings> noiseSettings = context.lookup(Registries.NOISE_SETTINGS);
+      HolderGetter<DimensionType> dimensionTypes = context.lookup(Registries.DIMENSION_TYPE);
+      BiomeSource source = AetherBiomeBuilders.buildAetherBiomeSource(biomes);
+      NoiseBasedChunkGenerator aetherChunkGen = new NoiseBasedChunkGenerator(source, noiseSettings.getOrThrow(AetherNoiseSettings.SKYLANDS));
+      context.register(AETHER_LEVEL_STEM, new LevelStem(dimensionTypes.getOrThrow(AETHER_DIMENSION_TYPE), aetherChunkGen));
+   }
+}

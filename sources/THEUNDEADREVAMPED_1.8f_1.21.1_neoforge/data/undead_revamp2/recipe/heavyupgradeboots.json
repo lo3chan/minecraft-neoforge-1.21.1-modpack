@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "undead_revamp2:heavyupgrade"
+  },
+  "base": {
+    "item": "minecraft:leather_boots"
+  },
+  "addition": {
+    "item": "minecraft:green_dye"
+  },
+  "result": {
+    "id": "undead_revamp2:primodialarmour_boots"
+  }
+}

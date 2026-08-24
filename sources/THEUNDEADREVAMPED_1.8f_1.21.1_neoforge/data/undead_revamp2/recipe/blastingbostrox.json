@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "experience": 1,
+  "cookingtime": 120,
+  "ingredient": {
+    "item": "undead_revamp2:rawbostrox"
+  },
+  "result": {
+    "id": "undead_revamp2:bostroxingot"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/mossbric",
+    "up": "born_in_chaos_v1:block/mossbric",
+    "north": "born_in_chaos_v1:block/mossbric",
+    "east": "born_in_chaos_v1:block/mossbric",
+    "south": "born_in_chaos_v1:block/mossbric",
+    "west": "born_in_chaos_v1:block/mossbric",
+    "particle": "born_in_chaos_v1:block/mossbric"
+  },
+  "render_type": "solid"
+}

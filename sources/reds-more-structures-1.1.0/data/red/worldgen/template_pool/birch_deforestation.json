@@ -1,0 +1,15 @@
+{
+    "name": "red:birch_deforestation",
+    "fallback": "minecraft:empty",
+    "elements": [
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:legacy_single_pool_element",
+                "projection": "rigid",
+                "processors": "minecraft:empty",
+                "location": "red:birch_deforestation"
+            }
+        }
+    ]
+}

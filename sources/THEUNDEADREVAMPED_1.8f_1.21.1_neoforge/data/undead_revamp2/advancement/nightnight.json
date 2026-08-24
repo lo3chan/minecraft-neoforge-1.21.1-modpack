@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:red_bed"
+    },
+    "title": {
+      "translate": "advancements.nightnight.title"
+    },
+    "description": {
+      "translate": "advancements.nightnight.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "nightnight_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "undead_revamp2:theundeadchallenges"
+}

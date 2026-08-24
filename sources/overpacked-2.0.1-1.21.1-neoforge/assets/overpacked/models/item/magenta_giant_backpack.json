@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "overpacked:item/magenta_giant_backpack"
+  }
+}

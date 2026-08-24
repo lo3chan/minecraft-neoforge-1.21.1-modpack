@@ -1,0 +1,10 @@
+{
+  "parent": "born_in_chaos_v1:custom/tombstoneplug",
+  "textures": {
+    "all": "born_in_chaos_v1:block/tombstoneplug",
+    "particle": "born_in_chaos_v1:block/tombstoneplug",
+    "0": "born_in_chaos_v1:block/tombstoneplug",
+    "1": "born_in_chaos_v1:block/nameplug"
+  },
+  "render_type": "cutout"
+}

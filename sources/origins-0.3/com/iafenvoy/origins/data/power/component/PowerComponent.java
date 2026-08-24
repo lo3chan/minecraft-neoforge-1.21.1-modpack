@@ -1,0 +1,40 @@
+package com.iafenvoy.origins.data.power.component;
+
+import com.iafenvoy.origins.attachment.OriginDataHolder;
+import com.iafenvoy.origins.data.power.component.builtin.EmptyComponent;
+import com.iafenvoy.origins.data.power.reference.PowerHolder;
+import com.iafenvoy.origins.util.codec.DefaultedCodec;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import java.util.function.Function;
+import org.jetbrains.annotations.NotNull;
+
+public abstract class PowerComponent {
+   public static final Codec<PowerComponent> CODEC = DefaultedCodec.registryDispatch(
+      PowerComponentRegistries.POWER_COMPONENT_TYPE, PowerComponent::codec, Function.identity(), PowerComponent::createEmpty
+   );
+   private boolean dirty = false;
+
+   private static PowerComponent createEmpty() {
+      return new EmptyComponent();
+   }
+
+   @NotNull
+   public abstract MapCodec<? extends PowerComponent> codec();
+
+   public void tick(OriginDataHolder holder, PowerHolder parent) {
+   }
+
+   public boolean isDirty() {
+      if (!this.dirty) {
+         return false;
+      } else {
+         this.dirty = false;
+         return true;
+      }
+   }
+
+   public void markDirty() {
+      this.dirty = true;
+   }
+}

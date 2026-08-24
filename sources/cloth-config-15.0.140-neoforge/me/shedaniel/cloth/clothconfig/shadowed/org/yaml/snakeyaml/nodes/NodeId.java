@@ -1,0 +1,8 @@
+package me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.nodes;
+
+public enum NodeId {
+   scalar,
+   sequence,
+   mapping,
+   anchor;
+}

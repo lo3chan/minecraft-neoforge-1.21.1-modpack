@@ -1,0 +1,100 @@
+package io.github.razordevs.deep_aether.datagen.tags;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
+
+public class DATags {
+   public static class Biomes {
+      public static final TagKey<Biome> IS_NOT_SWAMP = tag("is_not_swamp");
+      public static final TagKey<Biome> CAN_QUAIL_SPAWN = tag("can_quail_spawn");
+      public static final TagKey<Biome> HAS_BRASS_DUNGEON = tag("has_brass_dungeon");
+      public static final TagKey<Biome> IS_CLOUD = tag("is_cloud");
+      public static final TagKey<Biome> IS_RAIN_CLOUD = tag("is_rain_cloud");
+
+      private static TagKey<Biome> tag(String name) {
+         return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+
+   public static class Blocks {
+      public static final TagKey<Block> ROSEROOT_LOGS = tag("roseroot_logs");
+      public static final TagKey<Block> YAGROOT_LOGS = tag("yagroot_logs");
+      public static final TagKey<Block> CRUDEROOT_LOGS = tag("cruderoot_logs");
+      public static final TagKey<Block> CONBERRY_LOGS = tag("conberry_logs");
+      public static final TagKey<Block> SUNROOT_LOGS = tag("sunroot_logs");
+      public static final TagKey<Block> CAN_GOLDEN_VINES_SURVIVE_ON = tag("can_golden_vines_survive_on");
+      public static final TagKey<Block> NIMBUS_BLOCKS = tag("nimbus_blocks");
+      public static final TagKey<Block> STERLING_AERCLOUD_REPLACEABLE = tag("sterling_aercloud_replaceable");
+      public static final TagKey<Block> TOTEMS = tag("totems");
+      public static final TagKey<Block> HAS_GLOWING_SPORES = tag("has_glowing_spores");
+
+      private static TagKey<Block> tag(String name) {
+         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+
+   public static class DamageTypes {
+      public static final TagKey<DamageType> EOTS_IMMUNE = tag("eots_immune");
+
+      private static TagKey<DamageType> tag(String name) {
+         return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+
+   public static class Entities {
+      public static final TagKey<EntityType<?>> STERLING_AERCLOUD_BLACKLIST = tag("sterling_aercloud_blacklist");
+      public static final TagKey<EntityType<?>> WIND_CHARGE_BLACKLIST = tag("wind_charge_blacklist");
+      public static final TagKey<EntityType<?>> FRIENDLY_WIND_CHARGE_BLACKLIST = tag("friendly_wind_charge_blacklist");
+      public static final TagKey<EntityType<?>> SLIDER_SLAM_BLACKLIST = tag("slider_slam_blacklist");
+
+      private static TagKey<EntityType<?>> tag(String name) {
+         return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+
+   public static class Fluids {
+      public static final TagKey<Fluid> POISON = tag("poison");
+
+      private static TagKey<Fluid> tag(String name) {
+         return TagKey.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+
+   public static class Items {
+      public static final TagKey<Item> ROSEROOT_LOGS = tag("roseroot_logs");
+      public static final TagKey<Item> YAGROOT_LOGS = tag("yagroot_logs");
+      public static final TagKey<Item> CRUDEROOT_LOGS = tag("cruderoot_logs");
+      public static final TagKey<Item> CONBERRY_LOGS = tag("conberry_logs");
+      public static final TagKey<Item> SUNROOT_LOGS = tag("sunroot_logs");
+      public static final TagKey<Item> CRAFTS_ROSEROOT_PLANKS = tag("crafts_roseroot_planks");
+      public static final TagKey<Item> CRAFTS_YAGROOT_PLANKS = tag("crafts_yagroot_planks");
+      public static final TagKey<Item> CRAFTS_CRUDEROOT_PLANKS = tag("crafts_cruderoot_planks");
+      public static final TagKey<Item> CRAFTS_CONBERRY_PLANKS = tag("crafts_conberry_planks");
+      public static final TagKey<Item> CRAFTS_SUNROOT_PLANKS = tag("crafts_sunroot_planks");
+      public static final TagKey<Item> CRAFTS_MOSSY_BLOCKS = tag("crafts_mossy_blocks");
+      public static final TagKey<Item> STRATUS_REPAIRING = tag("stratus_repairing");
+      public static final TagKey<Item> STRATUS_ARMOR = tag("skyjade_armor");
+      public static final TagKey<Item> SKYJADE_REPAIRING = tag("skyjade_repairing");
+      public static final TagKey<Item> SKYJADE_ARMOR = tag("skyjade_armor");
+      public static final TagKey<Item> STORM_REPAIRING = tag("storm_repairing");
+      public static final TagKey<Item> STORM_ARMOR = tag("storm_repairing");
+      public static final TagKey<Item> IS_GOLDEN_SWET_BALL = tag("is_golden_swet_ball");
+      public static final TagKey<Item> NIMBUS_BLOCKS = tag("nimbus_blocks");
+      public static final TagKey<Item> BRASS_DUNGEON_LOOT = tag("brass_dungeon_loot");
+      public static final TagKey<Item> FLAWLESS_ITEMS = tag("flawless_items");
+      public static final TagKey<Item> POISON_BUCKET = tag("poison_bucket");
+      public static final TagKey<Item> SQUASH_SLICE = tag("squash_slice");
+      public static final TagKey<Item> QUAIL_FOOD = tag("quail_food");
+
+      private static TagKey<Item> tag(String name) {
+         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("deep_aether", name));
+      }
+   }
+}

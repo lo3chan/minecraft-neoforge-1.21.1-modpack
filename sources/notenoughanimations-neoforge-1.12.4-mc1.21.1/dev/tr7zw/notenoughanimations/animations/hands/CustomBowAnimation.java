@@ -1,0 +1,71 @@
+package dev.tr7zw.notenoughanimations.animations.hands;
+
+import dev.tr7zw.notenoughanimations.access.PlayerData;
+import dev.tr7zw.notenoughanimations.util.AnimationUtil;
+import dev.tr7zw.notenoughanimations.versionless.NEABaseMod;
+import dev.tr7zw.notenoughanimations.versionless.animations.BodyPart;
+import dev.tr7zw.notenoughanimations.versionless.animations.BowAnimation;
+import dev.tr7zw.transition.mc.EntityUtil;
+import java.util.EnumSet;
+import lombok.Generated;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.HumanoidModel.ArmPose;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
+
+public class CustomBowAnimation extends VanillaProjectileWeaponAnimation {
+   private final EnumSet<ArmPose> twoHandedAnimations = EnumSet.of(ArmPose.BOW_AND_ARROW);
+
+   @Override
+   public boolean isEnabled() {
+      return NEABaseMod.config.bowAnimation == BowAnimation.CUSTOM_V1;
+   }
+
+   @Override
+   public void apply(AbstractClientPlayer entity, PlayerData data, PlayerModel model, BodyPart part, float delta, float tickCounter) {
+      ModelPart mainArm = model.rightArm;
+      ModelPart offArm = model.leftArm;
+      BodyPart mainPart = BodyPart.RIGHT_ARM;
+      BodyPart offPart = BodyPart.LEFT_ARM;
+      boolean bowInLeftHand = entity.getMainArm() == HumanoidArm.RIGHT && entity.getUsedItemHand() == InteractionHand.OFF_HAND
+         || entity.getMainArm() == HumanoidArm.LEFT && entity.getUsedItemHand() == InteractionHand.MAIN_HAND;
+      if (bowInLeftHand) {
+         mainArm = model.leftArm;
+         offArm = model.rightArm;
+         mainPart = BodyPart.LEFT_ARM;
+         offPart = BodyPart.RIGHT_ARM;
+      }
+
+      int invert = bowInLeftHand ? -1 : 1;
+      if (part == mainPart) {
+         mainArm.yRot = invert * Mth.clamp(-0.1F + AnimationUtil.wrapDegrees(-model.head.xRot), -1.25F, 0.5F);
+         mainArm.xRot = Mth.clamp(-1.5707964F + invert * AnimationUtil.wrapDegrees(model.head.yRot), -2.0F, 0.0F);
+         mainArm.zRot += invert * 1.5F;
+      }
+
+      if (part == offPart) {
+         offArm.yRot = invert * Mth.clamp(0.1F + AnimationUtil.wrapDegrees(-model.head.xRot), -1.05F, 0.7F);
+         offArm.xRot = Mth.clamp(-1.5707964F + invert * AnimationUtil.wrapDegrees(model.head.yRot) + 0.8F, -1.05F, -0.65F);
+         offArm.zRot += invert * 1.5F;
+      }
+
+      if (part == BodyPart.BODY && NEABaseMod.config.customBowRotationLock) {
+         if (bowInLeftHand) {
+            entity.yBodyRot = EntityUtil.getYRot(entity) + 40.0F;
+            entity.yBodyRotO = entity.yRotO + 40.0F;
+         } else {
+            entity.yBodyRot = EntityUtil.getYRot(entity) - 40.0F;
+            entity.yBodyRotO = entity.yRotO - 40.0F;
+         }
+      }
+   }
+
+   @Generated
+   @Override
+   public EnumSet<ArmPose> getTwoHandedAnimations() {
+      return this.twoHandedAnimations;
+   }
+}

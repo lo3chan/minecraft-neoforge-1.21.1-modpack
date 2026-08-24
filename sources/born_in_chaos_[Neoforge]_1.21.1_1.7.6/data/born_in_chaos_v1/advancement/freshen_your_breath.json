@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "born_in_chaos_v1:mint_candy"
+    },
+    "title": {
+      "translate": "advancements.freshen_your_breath.title"
+    },
+    "description": {
+      "translate": "advancements.freshen_your_breath.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "freshen_your_breath_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 12
+  },
+  "parent": "born_in_chaos_v1:bornin_chaos"
+}

@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:nether_bricks"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwbridges:nether_bricks_bridge_stair"
+  },
+  "group" : "stonecutting"
+}

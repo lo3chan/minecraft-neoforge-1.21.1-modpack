@@ -1,0 +1,231 @@
+package net.diebuddies.physics;
+
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.PoseStack.Pose;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import net.diebuddies.opengl.TextureHelper;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.core.Vec3i;
+import net.minecraft.util.FastColor.ARGB32;
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.lwjgl.system.MemoryStack;
+
+public class BlockEntityVertexConsumer implements VertexConsumer {
+   private Model model = new Model();
+   private Mesh mesh;
+   private int vertCount = 0;
+   private Vector3f tmpPos = new Vector3f();
+   private Vector3f tmpNormal = new Vector3f();
+   private Vector3f tmp1 = new Vector3f();
+   private Vector3f tmp2 = new Vector3f();
+
+   public BlockEntityVertexConsumer() {
+      this.mesh = this.model.mesh = new Mesh();
+   }
+
+   public void validateModel() {
+      int faceCount = this.mesh.positions.size() / 4;
+      int indicesFaceCount = this.mesh.indices.size() / 6;
+      if (faceCount != indicesFaceCount) {
+         this.mesh.indices.clear();
+         int index = 0;
+
+         for (int i = 0; i < faceCount; i++) {
+            this.mesh.indices.add(index);
+            this.mesh.indices.add(index + 1);
+            this.mesh.indices.add(index + 2);
+            this.mesh.indices.add(index);
+            this.mesh.indices.add(index + 2);
+            this.mesh.indices.add(index + 3);
+            index += 4;
+         }
+
+         if (this.mesh.positions.size() != this.mesh.normals.size()) {
+            for (int i = this.mesh.normals.size(); i < this.mesh.positions.size(); i++) {
+               int face = i / 4;
+               Vector3f pos0 = this.mesh.positions.get(face * 4 + 1);
+               Vector3f pos1 = this.mesh.positions.get(face * 4 + 2);
+               Vector3f pos2 = this.mesh.positions.get(face * 4 + 3);
+               Vector3f tmp0 = pos1.sub(pos0, this.tmp1);
+               Vector3f tmp1 = pos2.sub(pos0, this.tmp2);
+               Vector3f normal = tmp0.cross(tmp1);
+               float length = normal.lengthSquared();
+               if (length != 0.0) {
+                  normal.mul(1.0F / length);
+               } else {
+                  normal.set(0.0, 1.0, 0.0);
+               }
+
+               this.mesh.normals.add(normal);
+            }
+         }
+      }
+   }
+
+   public VertexConsumer addVertex(float x, float y, float z) {
+      this.mesh.positions.add(new Vector3f(x, y, z));
+      this.model.textureID = TextureHelper.getLoadedTextures();
+      return this;
+   }
+
+   public VertexConsumer setColor(int red, int green, int blue, int alpha) {
+      this.mesh.addColor(red, green, blue, alpha);
+      return this;
+   }
+
+   public VertexConsumer setUv(float u, float v) {
+      this.mesh.uvs.add(new Vector2f(u, v));
+      return this;
+   }
+
+   public VertexConsumer setUv1(int u, int v) {
+      return this;
+   }
+
+   public VertexConsumer setUv2(int u, int v) {
+      return this;
+   }
+
+   public VertexConsumer setNormal(float x, float y, float z) {
+      this.mesh.normals.add(new Vector3f(x, y, z));
+      return this;
+   }
+
+   public VertexConsumer addVertex(Matrix4f matrix, float x, float y, float z) {
+      this.tmpPos.set(x, y, z);
+      matrix.transformPosition(this.tmpPos);
+      this.mesh.positions.add(new Vector3f(this.tmpPos.x(), this.tmpPos.y(), this.tmpPos.z()));
+      this.model.textureID = TextureHelper.getLoadedTextures();
+      return this;
+   }
+
+   public VertexConsumer setNormal(Pose pose, float x, float y, float z) {
+      this.tmpNormal.set(x, y, z);
+      pose.transformNormal(x, y, z, this.tmpNormal);
+      this.mesh.normals.add(new Vector3f(this.tmpNormal.x(), this.tmpNormal.y(), this.tmpNormal.z()));
+      return this;
+   }
+
+   public void putBulkData(
+      Pose matrixEntry,
+      BakedQuad quad,
+      float[] brightnesses,
+      float red,
+      float green,
+      float blue,
+      float alpha,
+      int[] lights,
+      int overlay,
+      boolean useQuadColorData
+   ) {
+      int[] js = quad.getVertices();
+      Vec3i faceNormal = quad.getDirection().getNormal();
+      this.tmpNormal.set(faceNormal.getX(), faceNormal.getY(), faceNormal.getZ());
+      Matrix4f matrix4f = matrixEntry.pose();
+      matrixEntry.normal().transform(this.tmpNormal);
+      int integerSize = DefaultVertexFormat.BLOCK.getVertexSize() / 4;
+      int j = js.length / integerSize;
+      this.model.textureID = TextureHelper.getLoadedTextures();
+      PhysicsMod.getCurrentInstance().itemStackEntity.shade = quad.isShade();
+      MemoryStack stack = MemoryStack.stackPush();
+
+      try {
+         ByteBuffer byteBuffer = stack.malloc(DefaultVertexFormat.BLOCK.getVertexSize());
+         IntBuffer intBuffer = byteBuffer.asIntBuffer();
+
+         for (int k = 0; k < j; k++) {
+            intBuffer.clear();
+            intBuffer.put(js, k * integerSize, integerSize);
+            float f = byteBuffer.getFloat(0);
+            float g = byteBuffer.getFloat(4);
+            float h = byteBuffer.getFloat(8);
+            float r;
+            float s;
+            float t;
+            if (useQuadColorData) {
+               float l = (byteBuffer.get(12) & 255) * 0.003921569F;
+               float v = (byteBuffer.get(13) & 255) * 0.003921569F;
+               float w = (byteBuffer.get(14) & 255) * 0.003921569F;
+               r = l * red;
+               s = v * green;
+               t = w * blue;
+            } else {
+               r = red;
+               s = green;
+               t = blue;
+            }
+
+            float v = byteBuffer.getFloat(16);
+            float w = byteBuffer.getFloat(20);
+            this.tmpPos.set(f, g, h);
+            matrix4f.transformPosition(this.tmpPos);
+            this.mesh.positions.add(new Vector3f(this.tmpPos.x(), this.tmpPos.y(), this.tmpPos.z()));
+            this.mesh.addColor(r, s, t);
+            this.mesh.normals.add(new Vector3f(this.tmpNormal.x(), this.tmpNormal.y(), this.tmpNormal.z()));
+            this.mesh.uvs.add(new Vector2f(v, w));
+         }
+
+         int index = this.mesh.positions.size() - 4;
+         this.mesh.indices.add(index);
+         this.mesh.indices.add(index + 1);
+         this.mesh.indices.add(index + 2);
+         this.mesh.indices.add(index);
+         this.mesh.indices.add(index + 2);
+         this.mesh.indices.add(index + 3);
+      } catch (Throwable var30) {
+         if (stack != null) {
+            try {
+               stack.close();
+            } catch (Throwable var29) {
+               var30.addSuppressed(var29);
+            }
+         }
+
+         throw var30;
+      }
+
+      if (stack != null) {
+         stack.close();
+      }
+   }
+
+   public void addVertex(float x, float y, float z, int color, float u, float v, int overlay, int light, float normalX, float normalY, float normalZ) {
+      this.vertCount++;
+      this.model.textureID = TextureHelper.getLoadedTextures();
+      this.mesh.positions.add(new Vector3f(x, y, z));
+      this.mesh.addColor(ARGB32.red(color) / 255.0F, ARGB32.green(color) / 255.0F, ARGB32.blue(color) / 255.0F, ARGB32.alpha(color) / 255.0F);
+      this.mesh.normals.add(new Vector3f(normalX, normalY, normalZ));
+      this.mesh.uvs.add(new Vector2f(u, v));
+      if (this.vertCount == 4) {
+         this.vertCount = 0;
+         int index = this.mesh.positions.size() - 4;
+         this.mesh.indices.add(index);
+         this.mesh.indices.add(index + 1);
+         this.mesh.indices.add(index + 2);
+         this.mesh.indices.add(index);
+         this.mesh.indices.add(index + 2);
+         this.mesh.indices.add(index + 3);
+      }
+   }
+
+   public VertexConsumer setColor(float red, float green, float blue, float alpha) {
+      this.mesh.addColor(red, green, blue, alpha);
+      return this;
+   }
+
+   public VertexConsumer setLight(int uv) {
+      return this;
+   }
+
+   public VertexConsumer setOverlay(int uv) {
+      return this;
+   }
+
+   public Model getModel() {
+      return this.model;
+   }
+}

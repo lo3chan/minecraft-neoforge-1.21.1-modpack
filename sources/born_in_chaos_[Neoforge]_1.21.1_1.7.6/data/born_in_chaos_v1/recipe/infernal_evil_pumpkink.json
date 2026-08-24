@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "born_in_chaos_v1:evil_carved_pumpkin"
+    },
+    {
+      "item": "born_in_chaos_v1:smoldering_infernal_ember"
+    },
+    {
+      "tag": "minecraft:candles"
+    }
+  ],
+  "result": {
+    "id": "born_in_chaos_v1:infernal_evil_pumpkin",
+    "count": 1
+  }
+}

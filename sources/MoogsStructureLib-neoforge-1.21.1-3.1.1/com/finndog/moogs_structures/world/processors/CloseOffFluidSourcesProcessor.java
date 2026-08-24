@@ -1,0 +1,119 @@
+package com.finndog.moogs_structures.world.processors;
+
+import com.finndog.moogs_structures.modinit.MoogsStructuresProcessors;
+import com.finndog.moogs_structures.utils.GeneralUtils;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import java.util.List;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.SectionPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.WorldGenRegion;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
+import net.minecraft.world.level.material.FluidState;
+
+public class CloseOffFluidSourcesProcessor extends StructureProcessor {
+   public static final MapCodec<CloseOffFluidSourcesProcessor> CODEC = RecordCodecBuilder.mapCodec(
+      instance -> instance.group(
+            Codec.mapPair(BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block"), Codec.intRange(1, 2147483647).fieldOf("weight"))
+               .codec()
+               .listOf()
+               .fieldOf("weighted_list_of_replacement_blocks")
+               .forGetter(processor -> processor.weightedReplacementBlocks),
+            Codec.BOOL.fieldOf("ignore_down").orElse(false).forGetter(processor -> processor.ignoreDown),
+            Codec.BOOL.fieldOf("if_air_in_world").orElse(false).forGetter(processor -> processor.ifAirInWorld)
+         )
+         .apply(instance, instance.stable(CloseOffFluidSourcesProcessor::new))
+   );
+   private final List<Pair<Block, Integer>> weightedReplacementBlocks;
+   private final boolean ignoreDown;
+   private final boolean ifAirInWorld;
+
+   public CloseOffFluidSourcesProcessor(List<Pair<Block, Integer>> weightedReplacementBlocks, boolean ignoreDown, boolean ifAirInWorld) {
+      this.weightedReplacementBlocks = weightedReplacementBlocks;
+      this.ignoreDown = ignoreDown;
+      this.ifAirInWorld = ifAirInWorld;
+   }
+
+   public StructureBlockInfo processBlock(
+      LevelReader levelReader, BlockPos pos, BlockPos pos2, StructureBlockInfo infoIn1, StructureBlockInfo infoIn2, StructurePlaceSettings settings
+   ) {
+      ChunkPos currentChunkPos = new ChunkPos(infoIn2.pos());
+      if (!infoIn2.state().is(Blocks.STRUCTURE_VOID) && infoIn2.state().getFluidState().isEmpty()) {
+         if (levelReader instanceof WorldGenRegion worldGenRegion && !worldGenRegion.getCenter().equals(currentChunkPos)) {
+            return infoIn2;
+         } else {
+            if (!GeneralUtils.isFullCube(levelReader, infoIn2.pos(), infoIn2.state()) || !infoIn2.state().blocksMotion()) {
+               ChunkAccess currentChunk = levelReader.getChunk(currentChunkPos.x, currentChunkPos.z);
+               if (this.ifAirInWorld && !currentChunk.getBlockState(infoIn2.pos()).isAir()) {
+                  return infoIn2;
+               }
+
+               MutableBlockPos mutable = new MutableBlockPos();
+
+               for (Direction direction : Direction.values()) {
+                  if (!this.ignoreDown || direction != Direction.DOWN) {
+                     mutable.set(infoIn2.pos()).move(direction);
+                     if (mutable.getY() >= currentChunk.getMinBuildHeight() && mutable.getY() < currentChunk.getMaxBuildHeight()) {
+                        if (currentChunkPos.x != mutable.getX() >> 4 || currentChunkPos.z != mutable.getZ() >> 4) {
+                           currentChunk = levelReader.getChunk(mutable);
+                           currentChunkPos = new ChunkPos(mutable);
+                        }
+
+                        LevelHeightAccessor levelHeightAccessor = currentChunk.getHeightAccessorForGeneration();
+                        if (levelReader instanceof WorldGenLevel
+                           && mutable.getY() >= levelHeightAccessor.getMinBuildHeight()
+                           && mutable.getY() < levelHeightAccessor.getMaxBuildHeight()) {
+                           int sectionYIndex = currentChunk.getSectionIndex(mutable.getY());
+                           LevelChunkSection levelChunkSection = currentChunk.getSection(sectionYIndex);
+                           if (levelChunkSection != null) {
+                              FluidState fluidState = levelChunkSection.getFluidState(
+                                 SectionPos.sectionRelative(mutable.getX()),
+                                 SectionPos.sectionRelative(mutable.getY()),
+                                 SectionPos.sectionRelative(mutable.getZ())
+                              );
+                              if (fluidState.isSource()) {
+                                 RandomSource random = settings.getRandom(infoIn2.pos());
+                                 Block replacementBlock = GeneralUtils.getRandomEntry(this.weightedReplacementBlocks, random);
+                                 levelChunkSection.setBlockState(
+                                    SectionPos.sectionRelative(mutable.getX()),
+                                    SectionPos.sectionRelative(mutable.getY()),
+                                    SectionPos.sectionRelative(mutable.getZ()),
+                                    replacementBlock.defaultBlockState(),
+                                    false
+                                 );
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+
+            return infoIn2;
+         }
+      } else {
+         return infoIn2;
+      }
+   }
+
+   protected StructureProcessorType<?> getType() {
+      return MoogsStructuresProcessors.CLOSE_OFF_FLUID_SOURCES_PROCESSOR.get();
+   }
+}

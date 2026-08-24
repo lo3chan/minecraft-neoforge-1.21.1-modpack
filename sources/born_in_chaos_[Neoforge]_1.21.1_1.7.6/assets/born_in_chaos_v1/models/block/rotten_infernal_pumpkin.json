@@ -1,0 +1,9 @@
+{
+  "parent": "born_in_chaos_v1:custom/rotteninfernalpumpkin",
+  "textures": {
+    "all": "born_in_chaos_v1:block/rotteninfernalpumpkin",
+    "particle": "born_in_chaos_v1:block/ticwaz2",
+    "0": "born_in_chaos_v1:block/rotteninfernalpumpkin"
+  },
+  "render_type": "cutout"
+}

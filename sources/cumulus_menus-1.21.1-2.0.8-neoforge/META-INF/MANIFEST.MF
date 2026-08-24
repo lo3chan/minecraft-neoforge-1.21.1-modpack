@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Cumulus
+Specification-Vendor: AlphaMode, Blodhgarm, bconlon
+Specification-Version: 1.21.1-2.0.8-neoforge
+Implementation-Title: neoforge
+Implementation-Version: 1.21.1-2.0.8-neoforge
+Implementation-Vendor: AlphaMode, Blodhgarm, bconlon
+Built-On-Minecraft: 1.21.1
+

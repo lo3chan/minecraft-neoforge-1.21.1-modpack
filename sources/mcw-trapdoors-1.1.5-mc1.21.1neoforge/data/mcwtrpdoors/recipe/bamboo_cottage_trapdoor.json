@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "cottage_trapdoors",
+  "pattern" : [ "AAA", "ABA", "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo"
+    },
+    "B" : {
+      "item" : "mcwtrpdoors:print_cottage"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwtrpdoors:bamboo_cottage_trapdoor"
+  }
+}

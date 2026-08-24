@@ -1,0 +1,65 @@
+package com.iafenvoy.origins.data.power.builtin.action;
+
+import com.iafenvoy.origins.attachment.PowerHelper;
+import com.iafenvoy.origins.data.action.EntityAction;
+import com.iafenvoy.origins.data.condition.DamageCondition;
+import com.iafenvoy.origins.data.power.HasCooldownPower;
+import com.iafenvoy.origins.data.power.Power;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.world.entity.Entity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Post;
+import org.jetbrains.annotations.NotNull;
+
+@EventBusSubscriber
+public class AttackerActionWhenHitPower extends HasCooldownPower {
+   public static final MapCodec<AttackerActionWhenHitPower> CODEC = RecordCodecBuilder.mapCodec(
+      i -> i.group(
+            Power.BaseSettings.CODEC.forGetter(Power::getSettings),
+            HasCooldownPower.CooldownSettings.CODEC.forGetter(HasCooldownPower::getCooldown),
+            EntityAction.CODEC.fieldOf("entity_action").forGetter(AttackerActionWhenHitPower::getEntityAction),
+            DamageCondition.optionalCodec("damage_condition").forGetter(AttackerActionWhenHitPower::getDamageCondition)
+         )
+         .apply(i, AttackerActionWhenHitPower::new)
+   );
+   private final EntityAction entityAction;
+   private final DamageCondition damageCondition;
+
+   public AttackerActionWhenHitPower(
+      Power.BaseSettings settings, HasCooldownPower.CooldownSettings cooldown, EntityAction entityAction, DamageCondition damageCondition
+   ) {
+      super(settings, cooldown);
+      this.entityAction = entityAction;
+      this.damageCondition = damageCondition;
+   }
+
+   public EntityAction getEntityAction() {
+      return this.entityAction;
+   }
+
+   public DamageCondition getDamageCondition() {
+      return this.damageCondition;
+   }
+
+   @NotNull
+   @Override
+   public MapCodec<? extends Power> codec() {
+      return CODEC;
+   }
+
+   @SubscribeEvent
+   public static void onLivingHurt(Post event) {
+      Entity entity = event.getEntity();
+      Entity source = event.getSource().getEntity();
+      if (source != null) {
+         PowerHelper.get(entity)
+            .execute(
+               AttackerActionWhenHitPower.class,
+               p -> p.damageCondition.test(event.getSource(), event.getNewDamage()),
+               (h, p) -> p.getCooldownComponent(h).useIfReady(() -> p.entityAction.execute(source))
+            );
+      }
+   }
+}

@@ -1,0 +1,31 @@
+{
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.rise": "\u201c血月\u201d升起了\u2026\u2026 远处正传来亡灵的低语声\u2026\u2026",
+  "enhancedcelestials2defaultlunarevents.notification.blood_moon.set": "\u201c血月\u201d落下了\u2026\u2026 亡灵们开始燃烧\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.rise": "\u201c蓝月\u201d升起了\u2026\u2026 你感到幸运！",
+  "enhancedcelestials2defaultlunarevents.notification.blue_moon.set": "\u201c蓝月\u201d落下了\u2026\u2026 你不再感到幸运\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.rise": "\u201c丰收之月\u201d升起了\u2026\u2026 你的庄稼将获得丰收。",
+  "enhancedcelestials2defaultlunarevents.notification.harvest_moon.set": "\u201c丰收之月\u201d落下了\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.rise": "\u201c超级血月\u201d升起了\u2026\u2026 远处正传来亡灵的低语声\u2026\u2026",
+  "enhancedcelestials2defaultlunarevents.notification.super_blood_moon.set": "\u201c超级血月\u201d落下了\u2026\u2026 亡灵们开始燃烧\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.rise": "\u201c超级蓝月\u201d升起了\u2026\u2026 你感到非常幸运！",
+  "enhancedcelestials2defaultlunarevents.notification.super_blue_moon.set": "\u201c超级蓝月\u201d落下了\u2026\u2026 你不再感到非常幸运\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.rise": "\u201c超级丰收之月\u201d升起了\u2026\u2026 你的庄稼将有非凡的收获。",
+  "enhancedcelestials2defaultlunarevents.notification.super_harvest_moon.set": "\u201c超级丰收之月\u201d落下了\u2026\u2026",
+
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.rise": "\u201c超级月亮\u201d升起了\u2026\u2026 史莱姆开始在附近生成。",
+  "enhancedcelestials2defaultlunarevents.notification.super_moon.set": "\u201c超级月亮\u201d落下了\u2026\u2026",
+
+  "lunar.event.enhancedcelestials2defaultlunarevents.blood_moon": "血月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.blue_moon": "蓝月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.harvest_moon": "丰收之月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.moon": "月亮",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blood_moon": "超级血月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_blue_moon": "超级蓝月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_harvest_moon": "超级丰收之月",
+  "lunar.event.enhancedcelestials2defaultlunarevents.super_moon": "超级月亮"
+}

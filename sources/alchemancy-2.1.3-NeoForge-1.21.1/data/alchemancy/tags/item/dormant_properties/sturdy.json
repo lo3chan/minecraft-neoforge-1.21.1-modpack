@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#alchemancy:materials/stone",
+
+    "minecraft:obsidian",
+    "minecraft:gilded_blackstone",
+
+    "minecraft:armadillo_scute",
+    "minecraft:wolf_armor",
+    "minecraft:turtle_scute",
+    "minecraft:turtle_helmet"
+  ]
+}

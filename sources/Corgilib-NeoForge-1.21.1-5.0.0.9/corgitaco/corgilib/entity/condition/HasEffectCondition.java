@@ -1,0 +1,49 @@
+package corgitaco.corgilib.entity.condition;
+
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import corgitaco.corgilib.serialization.codec.CodecUtil;
+import java.util.List;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffect;
+
+public class HasEffectCondition implements Condition {
+   public static final Codec<HasEffectCondition> CODEC = RecordCodecBuilder.create(
+      builder -> builder.group(
+            CodecUtil.EFFECT_CODEC.listOf().fieldOf("effects").forGetter(hasEffectCondition -> hasEffectCondition.effects),
+            Codec.BOOL.fieldOf("has_any").forGetter(hasEffectCondition -> hasEffectCondition.hasAny)
+         )
+         .apply(builder, HasEffectCondition::new)
+   );
+   private final List<MobEffect> effects;
+   private final boolean hasAny;
+
+   public HasEffectCondition(List<MobEffect> effects, boolean hasAny) {
+      this.effects = effects;
+      if (effects.isEmpty()) {
+         throw new IllegalArgumentException("Effects condition requires at least 1 effect to check against.");
+      } else {
+         this.hasAny = hasAny;
+      }
+   }
+
+   @Override
+   public boolean passes(ConditionContext conditionContext) {
+      for (MobEffect effect : this.effects) {
+         if (this.hasAny) {
+            return conditionContext.entity().hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect));
+         }
+
+         if (!conditionContext.entity().hasEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect))) {
+            return false;
+         }
+      }
+
+      return true;
+   }
+
+   @Override
+   public Codec<? extends Condition> codec() {
+      return CODEC;
+   }
+}

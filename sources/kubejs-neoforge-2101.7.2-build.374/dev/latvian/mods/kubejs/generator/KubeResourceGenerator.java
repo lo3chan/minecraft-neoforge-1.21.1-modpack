@@ -1,0 +1,29 @@
+package dev.latvian.mods.kubejs.generator;
+
+import com.google.gson.JsonElement;
+import dev.latvian.mods.kubejs.event.KubeEvent;
+import dev.latvian.mods.kubejs.script.data.GeneratedData;
+import dev.latvian.mods.kubejs.util.RegistryAccessContainer;
+import java.nio.charset.StandardCharsets;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
+
+public interface KubeResourceGenerator extends KubeEvent {
+   RegistryAccessContainer getRegistries();
+
+   void add(GeneratedData data);
+
+   @Nullable
+   GeneratedData getGenerated(ResourceLocation id);
+
+   default void flush() {
+   }
+
+   default void text(ResourceLocation id, String content) {
+      this.add(new GeneratedData(id, () -> content.getBytes(StandardCharsets.UTF_8)));
+   }
+
+   default void json(ResourceLocation id, JsonElement json) {
+      this.add(GeneratedData.json(id, () -> json));
+   }
+}

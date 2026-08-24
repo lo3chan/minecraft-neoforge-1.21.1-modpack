@@ -1,0 +1,20 @@
+{
+  "type": "deep_aether:aether_dungeon_loot",
+  "chanceToSpawn": 0.0,
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "aether:chests/dungeon/bronze/bronze_dungeon_reward"
+    }
+  ],
+  "items": [
+    {
+      "data": {
+        "count": 1,
+        "id": "deep_aether:music_disc_atta"
+      },
+      "weight": 40
+    }
+  ],
+  "totalWeight": 100
+}

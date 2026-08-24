@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "undead_revamp2:chiseled_dripstonepillar"
+    },
+    "b": {
+      "item": "minecraft:smooth_basalt"
+    }
+  },
+  "result": {
+    "id": "undead_revamp2:chiseleddripstonepillarbottom",
+    "count": 1
+  }
+}

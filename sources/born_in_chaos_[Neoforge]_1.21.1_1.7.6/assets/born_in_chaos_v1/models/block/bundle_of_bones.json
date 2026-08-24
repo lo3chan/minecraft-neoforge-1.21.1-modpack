@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "born_in_chaos_v1:block/sviazka_kostiei2",
+    "up": "born_in_chaos_v1:block/sviazka_kostiei2",
+    "north": "born_in_chaos_v1:block/sviazka_kostiei",
+    "east": "born_in_chaos_v1:block/sviazka_kostiei",
+    "south": "born_in_chaos_v1:block/sviazka_kostiei",
+    "west": "born_in_chaos_v1:block/sviazka_kostiei",
+    "particle": "born_in_chaos_v1:block/sviazka_kostiei2"
+  },
+  "render_type": "solid"
+}

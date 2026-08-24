@@ -1,0 +1,24 @@
+package net.cibernet.alchemancy.properties;
+
+import net.minecraft.util.FastColor.ARGB32;
+import net.minecraft.world.item.ItemStack;
+
+public class SeethroughProperty extends Property implements ITintModifier {
+   private static final int ALPHA = 120;
+   private static final int DEFAULT_TINT = ARGB32.color(120, 255, 255, 255);
+
+   @Override
+   public int getTint(ItemStack stack, int tintIndex, int originalTint, int currentTint) {
+      return currentTint == -1 ? DEFAULT_TINT : ARGB32.color(120, currentTint);
+   }
+
+   @Override
+   public boolean modifiesAlpha() {
+      return true;
+   }
+
+   @Override
+   public int getColor(ItemStack stack) {
+      return 13691625;
+   }
+}

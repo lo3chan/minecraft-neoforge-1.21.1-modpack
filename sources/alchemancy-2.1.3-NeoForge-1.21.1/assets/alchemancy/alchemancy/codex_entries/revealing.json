@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:revealing.flavor"
+  },
+  "functions": [
+    "while_worn_helmet"
+  ],
+  "innate": [
+    "alchemancy:property_visor"
+  ]
+}

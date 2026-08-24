@@ -1,0 +1,44 @@
+package DistantHorizons.libraries.electronwill.nightconfig.toml;
+
+import DistantHorizons.libraries.electronwill.nightconfig.core.CommentedConfig;
+import DistantHorizons.libraries.electronwill.nightconfig.core.io.CharacterInput;
+import DistantHorizons.libraries.electronwill.nightconfig.core.io.ParsingException;
+import java.util.List;
+
+final class ArrayParser {
+   static List<?> parse(CharacterInput input, TomlParser parser, CommentedConfig parentConfig) {
+      List<Object> list = parser.createList();
+      boolean first = true;
+
+      while (true) {
+         char firstChar = Toml.readUsefulChar(input);
+         if (firstChar == ']') {
+            return list;
+         }
+
+         if (firstChar == ',') {
+            if (first) {
+               throw new ParsingException("Invalid array: [,]");
+            }
+
+            throw new ParsingException("Invalid double comma in array.");
+         }
+
+         Object value = ValueParser.parse(input, firstChar, parser, parentConfig);
+         list.add(value);
+         char after = Toml.readUsefulChar(input);
+         if (after == ']') {
+            return list;
+         }
+
+         if (after != ',') {
+            throw new ParsingException("Invalid separator '" + after + "' in array.");
+         }
+
+         first = false;
+      }
+   }
+
+   private ArrayParser() {
+   }
+}

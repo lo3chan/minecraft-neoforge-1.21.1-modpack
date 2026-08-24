@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "net.Pandarix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+  ],
+  "mixins": [
+    "AddCreeperGoalsMixin",
+    "AddSkeletonGoalsMixin",
+    "ArmadilloBrushingMixin",
+    "BrushItemMixin",
+    "ElytraStartupMixin",
+    "FasterBrushingMixin",
+    "PenetratingStrikeMixin",
+    "TorrentTotemItemTickMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

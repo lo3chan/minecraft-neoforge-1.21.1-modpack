@@ -1,0 +1,14 @@
+{
+  "name": {
+    "translate": "screen.infusion_codex.attribute_modifier"
+  },
+
+  "entries": {
+    "values": [
+
+    ],
+    "functions": [
+      "attribute_modifier"
+    ]
+  }
+}

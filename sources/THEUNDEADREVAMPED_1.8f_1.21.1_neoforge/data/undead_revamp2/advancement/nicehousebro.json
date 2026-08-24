@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:wither_skeleton_skull"
+    },
+    "title": {
+      "translate": "advancements.nicehousebro.title"
+    },
+    "description": {
+      "translate": "advancements.nicehousebro.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "nicehousebro_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "undead_revamp2:defeatundeadbosses"
+}

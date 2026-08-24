@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Nyf's Spiders
+Specification-Vendor: Nyfaria
+Specification-Version: 3.0.1
+Implementation-Title: neoforge
+Implementation-Version: 3.0.1
+Implementation-Vendor: Nyfaria
+Built-On-Minecraft: 1.21.1
+

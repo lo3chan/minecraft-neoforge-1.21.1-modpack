@@ -1,0 +1,14 @@
+{
+  "name": {
+    "translate": "screen.infusion_codex.on_attack"
+  },
+
+  "entries": {
+    "values": [
+
+    ],
+    "functions": [
+      "on_attack"
+    ]
+  }
+}
