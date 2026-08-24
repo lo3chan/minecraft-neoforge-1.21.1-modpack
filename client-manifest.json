@@ -2,9 +2,9 @@
   "modpackName": "The Council",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 126,
+  "totalMods": 124,
   "clientOnlyModsCount": 23,
-  "serverAndSharedModsCount": 105,
+  "serverAndSharedModsCount": 103,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -137,8 +137,6 @@
     "yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar",
     "rhino-2101.2.8-build.91.jar",
     "kubejs-neoforge-2101.7.2-build.374.jar",
-    "recipebookplus-neoforge-1.21.1-1.0.4.jar",
-    "polymorph-neoforge-1.1.0+1.21.1.jar",
-    "craftingtweaks-neoforge-1.21.1-21.1.11.jar"
+    "recipebookplus-neoforge-1.21.1-1.0.4.jar"
   ]
 }
