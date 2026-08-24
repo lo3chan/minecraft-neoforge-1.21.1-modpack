@@ -2,9 +2,9 @@
   "modpackName": "The Council",
   "minecraftVersion": "1.21.1",
   "modLoader": "NeoForge 21.1.248",
-  "totalMods": 129,
+  "totalMods": 130,
   "clientOnlyModsCount": 23,
-  "serverAndSharedModsCount": 107,
+  "serverAndSharedModsCount": 108,
   "server": {
     "host": "itso",
     "lanAddress": "192.168.1.113:33377",
@@ -142,6 +142,7 @@
     "Corgilib-NeoForge-1.21.1-5.0.0.9.jar",
     "Data_Anchor-neoforge-1.21.1-2.0.0.16.jar",
     "Enhanced-Celestials-2-Core-NeoForge-1.21.1-2.0.3.0.jar",
-    "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar"
+    "Enhanced-Celestials-2-Default-Lunar-Events-NeoForge-1.21.1-2.0.1.1.jar",
+    "THEUNDEADREVAMPED_1.8f_1.21.1_neoforge.jar"
   ]
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "minecraft": "1.21.1",
   "modloader": "NeoForge 21.1.248",
-  "totalMods": 129,
+  "totalMods": 130,
   "mods": [
     {
       "id": "minecraft",
@@ -227,6 +227,13 @@
       "name": "Structory",
       "file": "Structory_26.2_v1.3.7.jar",
       "version": "1.3.17",
+      "type": "mod"
+    },
+    {
+      "id": "geckolib",
+      "name": "Undead_revamp2",
+      "file": "THEUNDEADREVAMPED_1.8f_1.21.1_neoforge.jar",
+      "version": "1.0.1",
       "type": "mod"
     },
     {

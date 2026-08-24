@@ -1,5 +1,5 @@
-// KubeJS Server Script - Magic Armor Restriction (Clean Jam)
-// Maximum allowed armor value: 12.0 (Chainmail tier / Endgame Mage cap)
+// KubeJS Server Script - Magic Armor Restriction & Psimetal Exosuit Balance (Clean Jam)
+// Maximum allowed armor value for casting: 12.0 (Chainmail tier / Endgame Mage cap)
 // Zero armor toughness allowed for spellcasters
 
 function checkMagicArmorThreshold(event) {
