@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:generic",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:map",
+          "functions": [
+            {
+              "function": "minecraft:exploration_map",
+              "destination": "joshie:blossom_blade",
+              "decoration": "red_x",
+              "zoom": 2,
+              "search_radius": 100,
+              "skip_existing_chunks": false
+            },
+            {
+              "function": "minecraft:set_name",
+              "target": "custom_name",
+              "name": {
+                "text": "Blossom Blade Explorer Map",
+                "color": "light_purple",
+                "italic": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
