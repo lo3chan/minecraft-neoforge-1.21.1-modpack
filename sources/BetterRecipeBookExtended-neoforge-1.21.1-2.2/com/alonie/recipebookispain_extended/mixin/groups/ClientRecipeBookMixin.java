@@ -62,13 +62,7 @@ public abstract class ClientRecipeBookMixin {
          }
 
          RecipeBookDebugLogger.onRbipFilterCollections(searchCategory.name(), allBase.size(), matching.size(), true);
-         if (matching.isEmpty() && !allBase.isEmpty()) {
-            RecipeBookIsPain.LOGGER
-               .warn("[RBIP] No recipes match tab '{}' in {}, showing all {}", activeTab.getDisplayName().getString(), searchCategory.name(), allBase.size());
-            return allBase;
-         } else {
-            return matching;
-         }
+         return matching;
       } else {
          if (RecipeBookDebugLogger.enabled && category == RecipeBookCategories.UNKNOWN) {
             RecipeBookDebugLogger.onRbipFilterCollections(category.name(), 0, 0, RecipeBookIsPain.activeCreativeTab != null);
