@@ -42,12 +42,9 @@ public class RecipeBookComponentMixin {
       if (this.searchBox != null) {
          String text = this.searchBox.getValue();
          if (text != null && !text.isEmpty()) {
-            SearchQuery query = SearchQuery.parse(text);
-            if (query.isAdvanced()) {
-               this.betterRecipeBook$savedSearchText = text;
-               this.betterRecipeBook$parsedQuery = query;
-               this.searchBox.setValue("");
-            }
+            this.betterRecipeBook$savedSearchText = text;
+            this.betterRecipeBook$parsedQuery = SearchQuery.parse(text);
+            this.searchBox.setValue("");
          }
       }
    }

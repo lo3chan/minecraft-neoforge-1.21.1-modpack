@@ -351,6 +351,20 @@ public abstract class RecipeBookWidgetMixin implements RecipeBookScrollAccess {
                   }
                }
             }
+
+            if (this.rbip$pinnedTab != null && this.rbip$pinnedTab.visible && this.rbip$pinnedTab.isMouseOver(mx, my)) {
+               RecipeBookIsPain.activeCreativeTab = null;
+               RecipeBookIsPain.activeFurnaceType = null;
+               if (this.selectedTab != null && this.selectedTab != this.rbip$pinnedTab) {
+                  this.selectedTab.setStateTriggered(false);
+               }
+               this.rbip$pinnedTab.setStateTriggered(true);
+               this.selectedTab = this.rbip$pinnedTab;
+               RecipeBookIsPain.LOGGER.info("[RBIP] Selected Search Tab -> cleared activeCreativeTab");
+               ((RecipeBookComponentAccessor)this).updateCollectionsInvoker(false);
+               cir.setReturnValue(true);
+               return;
+            }
          }
       }
    }
