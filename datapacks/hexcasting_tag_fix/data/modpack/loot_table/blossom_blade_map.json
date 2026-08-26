@@ -10,10 +10,10 @@
           "functions": [
             {
               "function": "minecraft:exploration_map",
-              "destination": "joshie:blossom_blade",
+              "destination": "#modpack:blossom_blade",
               "decoration": "red_x",
               "zoom": 2,
-              "search_radius": 100,
+              "search_radius": 200,
               "skip_existing_chunks": false
             },
             {
