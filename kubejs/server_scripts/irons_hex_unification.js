@@ -33,18 +33,13 @@ ServerEvents.recipes(event => {
     event.remove({ output: 'irons_spellbooks:graybeard_staff' })
     event.remove({ output: 'irons_spellbooks:staff_of_the_nines' })
     event.remove({ output: 'irons_spellbooks:hither_thither_wand' })
-    event.remove({ output: 'irons_spellbooks:firebrand' })
-    event.remove({ output: 'irons_spellbooks:dreadsword' })
-    event.remove({ output: 'irons_spellbooks:truthseeker' })
     event.remove({ output: 'irons_spellbooks:spellbreaker' })
     event.remove({ output: 'irons_spellbooks:magehunter' })
     event.remove({ output: 'irons_spellbooks:hellrazor' })
     event.remove({ output: 'irons_spellbooks:twilight_gale' })
     event.remove({ output: 'irons_spellbooks:decrepit_scythe' })
 
-    // Purge Consumables (Teas, Ales, Elixirs, Tinctures, Shriving Stones)
-    event.remove({ output: 'irons_spellbooks:casters_tea' })
-    event.remove({ output: 'irons_spellbooks:fire_ale' })
+    // Purge Consumables (Elixirs, Tinctures, Shriving Stones)
     event.remove({ output: 'irons_spellbooks:netherward_tincture' })
     event.remove({ output: 'irons_spellbooks:tincture_of_forgetfulness' })
     event.remove({ output: 'irons_spellbooks:shriving_stone' })
@@ -140,72 +135,4 @@ ServerEvents.recipes(event => {
         C: '#c:chests/wooden',
         P: '#minecraft:planks'
     })
-})
-
-// =========================================================================
-// 4. LOOT TABLE PURGES (SCRUBBING ELIXIRS, TEAS, RUNES & SPELLBOOKS FROM CHESTS)
-// =========================================================================
-LootJS.modifiers(event => {
-    event.addLootTypeModifier(LootType.CHEST)
-        .removeLoot('irons_spellbooks:casters_tea')
-        .removeLoot('irons_spellbooks:fire_ale')
-        .removeLoot('irons_spellbooks:netherward_tincture')
-        .removeLoot('irons_spellbooks:tincture_of_forgetfulness')
-        .removeLoot('irons_spellbooks:shriving_stone')
-        .removeLoot(/irons_spellbooks:.*_elixir/)
-        .removeLoot(/irons_spellbooks:.*_ink/)
-        .removeLoot(/irons_spellbooks:.*_rune/)
-        .removeLoot(/irons_spellbooks:.*_upgrade_orb/)
-        .removeLoot(/irons_spellbooks:.*_spell_book/)
-        .removeLoot(/irons_spellbooks:.*_ring/)
-        .removeLoot(/irons_spellbooks:.*_amulet/)
-        .removeLoot(/irons_spellbooks:.*_talisman/)
-        .removeLoot('wind_spellbooks:wind_spell_book')
-        .removeLoot('wind_spellbooks:wind_staff')
-        .removeLoot('wind_spellbooks:wind_rune')
-        .removeLoot('wind_spellbooks:wind_upgrade_orb')
-        .removeLoot('alshanex_familiars:familiar_spellbook')
-        .removeLoot('alshanex_familiars:familiar_tome')
-        .removeLoot(/alshanex_familiars:.*_trinket/)
-        .removeLoot(/alshanex_familiars:.*_curio/)
-        .removeLoot(/alshanex_familiars:magic_.*/)
-})
-
-// =========================================================================
-// 5. HEX MEDIA COMPANION EMPOWERMENT & COURIER LINKING
-// =========================================================================
-ItemEvents.entityInteracted(event => {
-    const item = event.getItem()
-    const target = event.getTarget()
-    const player = event.getPlayer()
-
-    if (!target || !player) return
-    const typeStr = target.getType().toString().toLowerCase()
-
-    // Check if target is an Alshanex familiar entity
-    if (typeStr.includes('familiar') || typeStr.includes('alshanex')) {
-        // 1. Charged Amethyst -> Hex Overcharge (Speed, Strength & Glowing Aura)
-        if (item.getId() === 'hexcasting:charged_amethyst') {
-            if (!player.isCreative()) item.shrink(1)
-            target.potionEffects.add('minecraft:speed', 6000, 1, false, true)
-            target.potionEffects.add('minecraft:strength', 6000, 1, false, true)
-            target.potionEffects.add('minecraft:glowing', 6000, 0, false, false)
-            target.potionEffects.add('minecraft:regeneration', 600, 1, false, true)
-            player.tell('§d[Hex Casting]§r Your familiar channels the Charged Amethyst, becoming §bOvercharged§r!')
-            event.server.runCommandSilent(playsound minecraft:block.amethyst_block.chime player @a    1.0 1.5)
-            event.server.runCommandSilent(particle minecraft:electric_spark    0.3 0.3 0.3 0.1 20)
-            event.cancel()
-        }
-        // 2. Amethyst Shard -> Minor Harmonic Resonance (Resistance & Speed)
-        else if (item.getId() === 'minecraft:amethyst_shard') {
-            if (!player.isCreative()) item.shrink(1)
-            target.potionEffects.add('minecraft:resistance', 3600, 0, false, true)
-            target.potionEffects.add('minecraft:speed', 3600, 0, false, true)
-            target.potionEffects.add('minecraft:regeneration', 200, 0, false, true)
-            player.tell('§d[Hex Casting]§r Your familiar resonates with the Amethyst Shard, gaining §aResonance Protection§r!')
-            event.server.runCommandSilent(playsound minecraft:block.amethyst_block.hit player @a    1.0 1.2)
-            event.server.runCommandSilent(particle minecraft:totem_of_undying    0.2 0.2 0.2 0.05 10)
-            event.cancel()
-        }
-    }
 })
