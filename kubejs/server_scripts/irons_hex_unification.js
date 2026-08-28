@@ -42,6 +42,14 @@ ServerEvents.recipes(event => {
     event.remove({ output: 'irons_spellbooks:twilight_gale' })
     event.remove({ output: 'irons_spellbooks:decrepit_scythe' })
 
+    // Purge Consumables (Teas, Ales, Elixirs, Tinctures, Shriving Stones)
+    event.remove({ output: 'irons_spellbooks:casters_tea' })
+    event.remove({ output: 'irons_spellbooks:fire_ale' })
+    event.remove({ output: 'irons_spellbooks:netherward_tincture' })
+    event.remove({ output: 'irons_spellbooks:tincture_of_forgetfulness' })
+    event.remove({ output: 'irons_spellbooks:shriving_stone' })
+    event.remove({ output: /irons_spellbooks:.*_elixir/ })
+
     // Purge Wind's Spellbooks Modded Progression
     event.remove({ output: 'wind_spellbooks:wind_spell_book' })
     event.remove({ output: 'wind_spellbooks:wind_staff' })
@@ -94,4 +102,33 @@ ServerEvents.recipes(event => {
     event.shaped('wind_spellbooks:aeromancer_chestplate', ['W W', 'FAF', 'WWW'], { W: 'minecraft:white_wool', F: 'minecraft:feather', A: 'minecraft:amethyst_shard' })
     event.shaped('wind_spellbooks:aeromancer_leggings', ['WWW', 'F F', 'W W'], { W: 'minecraft:white_wool', F: 'minecraft:feather' })
     event.shaped('wind_spellbooks:aeromancer_boots', ['W W', 'F F', '   '], { W: 'minecraft:white_wool', F: 'minecraft:feather' })
+})
+
+// =========================================================================
+// 3. LOOT TABLE PURGES (SCRUBBING ELIXIRS, TEAS, RUNES & SPELLBOOKS FROM CHESTS)
+// =========================================================================
+LootJS.modifiers(event => {
+    event.addLootTypeModifier(LootType.CHEST)
+        .removeLoot('irons_spellbooks:casters_tea')
+        .removeLoot('irons_spellbooks:fire_ale')
+        .removeLoot('irons_spellbooks:netherward_tincture')
+        .removeLoot('irons_spellbooks:tincture_of_forgetfulness')
+        .removeLoot('irons_spellbooks:shriving_stone')
+        .removeLoot(/irons_spellbooks:.*_elixir/)
+        .removeLoot(/irons_spellbooks:.*_ink/)
+        .removeLoot(/irons_spellbooks:.*_rune/)
+        .removeLoot(/irons_spellbooks:.*_upgrade_orb/)
+        .removeLoot(/irons_spellbooks:.*_spell_book/)
+        .removeLoot(/irons_spellbooks:.*_ring/)
+        .removeLoot(/irons_spellbooks:.*_amulet/)
+        .removeLoot(/irons_spellbooks:.*_talisman/)
+        .removeLoot('wind_spellbooks:wind_spell_book')
+        .removeLoot('wind_spellbooks:wind_staff')
+        .removeLoot('wind_spellbooks:wind_rune')
+        .removeLoot('wind_spellbooks:wind_upgrade_orb')
+        .removeLoot('alshanex_familiars:familiar_spellbook')
+        .removeLoot('alshanex_familiars:familiar_tome')
+        .removeLoot(/alshanex_familiars:.*_trinket/)
+        .removeLoot(/alshanex_familiars:.*_curio/)
+        .removeLoot(/alshanex_familiars:magic_.*/)
 })
