@@ -28,6 +28,20 @@ ServerEvents.recipes(event => {
     event.remove({ output: /irons_spellbooks:.*_amulet/ })
     event.remove({ output: /irons_spellbooks:.*_talisman/ })
 
+    // Purge Overpowered / MMO Weapons & Staves
+    event.remove({ output: 'irons_spellbooks:pyrium_staff' })
+    event.remove({ output: 'irons_spellbooks:graybeard_staff' })
+    event.remove({ output: 'irons_spellbooks:staff_of_the_nines' })
+    event.remove({ output: 'irons_spellbooks:hither_thither_wand' })
+    event.remove({ output: 'irons_spellbooks:firebrand' })
+    event.remove({ output: 'irons_spellbooks:dreadsword' })
+    event.remove({ output: 'irons_spellbooks:truthseeker' })
+    event.remove({ output: 'irons_spellbooks:spellbreaker' })
+    event.remove({ output: 'irons_spellbooks:magehunter' })
+    event.remove({ output: 'irons_spellbooks:hellrazor' })
+    event.remove({ output: 'irons_spellbooks:twilight_gale' })
+    event.remove({ output: 'irons_spellbooks:decrepit_scythe' })
+
     // Purge Wind's Spellbooks Modded Progression
     event.remove({ output: 'wind_spellbooks:wind_spell_book' })
     event.remove({ output: 'wind_spellbooks:wind_staff' })
