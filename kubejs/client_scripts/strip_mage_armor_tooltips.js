@@ -1,5 +1,5 @@
-// KubeJS Client Script - Strip Modded Stats, Spell Power, Mana, and RPG Tooltips
-ItemEvents.tooltip(event => {
+// KubeJS 1.21.1 Client Script - Strip Modded Stats, Spell Power, Mana, and RPG Tooltips
+ItemEvents.modifyTooltips(event => {
     // 1. All Mage Robes & Armor
     const mageArmors = [
         /irons_spellbooks:.*_helmet/,
@@ -30,11 +30,10 @@ ItemEvents.tooltip(event => {
         'wind_spellbooks:wind_staff'
     ]
 
-    // Combine arrays with concat (Rhino ES5/ES6 compatibility)
     const allPatterns = mageArmors.concat(moddedWeapons)
 
     allPatterns.forEach(pattern => {
-        event.add(pattern, (item, advanced, text) => {
+        event.modify(pattern, (item, text) => {
             for (let i = text.length - 1; i >= 1; i--) {
                 let lineStr = text.get(i).getString()
                 if (
