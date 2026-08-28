@@ -1,60 +1,41 @@
-// KubeJS Server Script - Magic Armor Restriction & Psimetal Exosuit Balance (Clean Jam)
-// Maximum allowed armor value for casting: 12.0 (Chainmail tier / Endgame Mage cap)
-// Zero armor toughness allowed for spellcasters
+// KubeJS Server Script - Magic Armor Restriction & Spell Power Neutralizer
+// Neutralizes all Iron's Spells custom spell power and mana attributes from armor
 
-function getPlayerArmorStats(player) {
-    let armor = 0.0
-    let toughness = 0.0
-
-    try {
-        armor = player.getAttributeValue('minecraft:generic.armor')
-        toughness = player.getAttributeValue('minecraft:generic.armor_toughness')
-    } catch (e) {
-        try {
-            armor = player.armorValue
-        } catch (err) {
-            armor = 0.0
-        }
-    }
-    return { armor: armor, toughness: toughness }
-}
-
-function checkMagicArmorThreshold(event) {
+PlayerEvents.tick(event => {
     let player = event.player
-    if (!player || player.isCreative()) return
+    if (!player || player.age % 20 !== 0) return // Check every 1 second
 
-    let stats = getPlayerArmorStats(player)
-    let totalArmor = stats.armor
-    let totalToughness = stats.toughness
+    // If player has any active irons_spellbooks attribute modifiers, remove them
+    const ironsAttributes = [
+        'irons_spellbooks:fire_spell_power',
+        'irons_spellbooks:ice_spell_power',
+        'irons_spellbooks:lightning_spell_power',
+        'irons_spellbooks:holy_spell_power',
+        'irons_spellbooks:ender_spell_power',
+        'irons_spellbooks:blood_spell_power',
+        'irons_spellbooks:evocation_spell_power',
+        'irons_spellbooks:nature_spell_power',
+        'irons_spellbooks:eldritch_spell_power',
+        'irons_spellbooks:max_mana',
+        'irons_spellbooks:mana_regen',
+        'irons_spellbooks:cooldown_reduction',
+        'irons_spellbooks:cast_time_reduction',
+        'irons_spellbooks:spell_resist'
+    ]
 
-    if (totalArmor > 12.0 || totalToughness > 0) {
-        let item = event.item
-        let id = '' + item.id
-
-        // Hexcasting: Active Staves, Truncheons, Wands
-        if (id.startsWith('hexcasting:staff') || id.startsWith('hexcasting:truncheon') || id.startsWith('hexcasting:wand')) {
-            event.cancel()
-            player.displayClientMessage(
-                Component.literal('§5[Hex] Dense armor blocks the resonance of Media! (Armor: ' + totalArmor + '/12, Toughness: ' + totalToughness + '/0)'),
-                true
-            )
-            player.playSound('hexcasting:casting.cast.fail', 0.8, 1.0)
-            return
-        }
-
-        // Hexcasting: Stored Spells (Cyphers, Trinkets, Artifacts)
-        if (id.startsWith('hexcasting:cypher') || id.startsWith('hexcasting:trinket') || id.startsWith('hexcasting:artifact')) {
-            event.cancel()
-            player.displayClientMessage(
-                Component.literal('§5[Hex] Armor interference jams stored spell activation! (Armor: ' + totalArmor + '/12, Toughness: ' + totalToughness + '/0)'),
-                true
-            )
-            player.playSound('hexcasting:casting.cast.fail', 0.8, 1.0)
-            return
-        }
-    }
-}
-
-ItemEvents.rightClicked(event => {
-    checkMagicArmorThreshold(event)
+    ironsAttributes.forEach(attrId => {
+        try {
+            let instance = player.getAttribute(attrId)
+            if (instance) {
+                let base = instance.getBaseValue()
+                // Clear any non-base modifiers
+                let mods = instance.getModifiers()
+                if (mods && mods.size() > 0) {
+                    let toRemove = []
+                    mods.forEach(m => toRemove.push(m))
+                    toRemove.forEach(m => instance.removeModifier(m.id()))
+                }
+            }
+        } catch (e) {}
+    })
 })
