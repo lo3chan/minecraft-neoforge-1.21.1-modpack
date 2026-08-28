@@ -66,6 +66,7 @@ ServerEvents.recipes(event => {
     event.remove({ output: /alshanex_familiars:magic_power_.*/ })
     event.remove({ output: /alshanex_familiars:magic_level_.*/ })
     event.remove({ output: /alshanex_familiars:magic_resist_.*/ })
+    event.remove({ output: 'alshanex_familiars:shrinking_station' })
 
     // Fix Undead Revamp smoke bomb recipe with stack size overflow
     event.remove({ id: 'undead_revamp2:smokebombrep' })
@@ -102,10 +103,47 @@ ServerEvents.recipes(event => {
     event.shaped('wind_spellbooks:aeromancer_chestplate', ['W W', 'FAF', 'WWW'], { W: 'minecraft:white_wool', F: 'minecraft:feather', A: 'minecraft:amethyst_shard' })
     event.shaped('wind_spellbooks:aeromancer_leggings', ['WWW', 'F F', 'W W'], { W: 'minecraft:white_wool', F: 'minecraft:feather' })
     event.shaped('wind_spellbooks:aeromancer_boots', ['W W', 'F F', '   '], { W: 'minecraft:white_wool', F: 'minecraft:feather' })
+
+    // =========================================================================
+    // 3. HEX CASTING & VANILLA FAMILIAR CRAFTING CONVERSIONS
+    // =========================================================================
+    // Shrinking Station (Hex Alchemy: Amethyst + Glass + Lightning Rods + Stone)
+    event.shaped('alshanex_familiars:shrinking_station', [
+        'AGA',
+        'RLR',
+        ' S '
+    ], {
+        A: 'minecraft:amethyst_shard',
+        G: 'minecraft:tinted_glass',
+        R: 'minecraft:lightning_rod',
+        L: '#minecraft:logs',
+        S: 'minecraft:smooth_stone'
+    })
+
+    // Companion Bed
+    event.shaped('alshanex_familiars:pet_bed', [
+        ' W ',
+        'PPP',
+        '   '
+    ], {
+        W: '#minecraft:wool',
+        P: '#minecraft:planks'
+    })
+
+    // Companion Storage
+    event.shaped('alshanex_familiars:familiar_storage', [
+        ' A ',
+        ' C ',
+        ' P '
+    ], {
+        A: 'minecraft:amethyst_shard',
+        C: '#c:chests/wooden',
+        P: '#minecraft:planks'
+    })
 })
 
 // =========================================================================
-// 3. LOOT TABLE PURGES (SCRUBBING ELIXIRS, TEAS, RUNES & SPELLBOOKS FROM CHESTS)
+// 4. LOOT TABLE PURGES (SCRUBBING ELIXIRS, TEAS, RUNES & SPELLBOOKS FROM CHESTS)
 // =========================================================================
 LootJS.modifiers(event => {
     event.addLootTypeModifier(LootType.CHEST)
@@ -131,4 +169,43 @@ LootJS.modifiers(event => {
         .removeLoot(/alshanex_familiars:.*_trinket/)
         .removeLoot(/alshanex_familiars:.*_curio/)
         .removeLoot(/alshanex_familiars:magic_.*/)
+})
+
+// =========================================================================
+// 5. HEX MEDIA COMPANION EMPOWERMENT & COURIER LINKING
+// =========================================================================
+ItemEvents.entityInteracted(event => {
+    const item = event.getItem()
+    const target = event.getTarget()
+    const player = event.getPlayer()
+
+    if (!target || !player) return
+    const typeStr = target.getType().toString().toLowerCase()
+
+    // Check if target is an Alshanex familiar entity
+    if (typeStr.includes('familiar') || typeStr.includes('alshanex')) {
+        // 1. Charged Amethyst -> Hex Overcharge (Speed, Strength & Glowing Aura)
+        if (item.getId() === 'hexcasting:charged_amethyst') {
+            if (!player.isCreative()) item.shrink(1)
+            target.potionEffects.add('minecraft:speed', 6000, 1, false, true)
+            target.potionEffects.add('minecraft:strength', 6000, 1, false, true)
+            target.potionEffects.add('minecraft:glowing', 6000, 0, false, false)
+            target.potionEffects.add('minecraft:regeneration', 600, 1, false, true)
+            player.tell('§d[Hex Casting]§r Your familiar channels the Charged Amethyst, becoming §bOvercharged§r!')
+            event.server.runCommandSilent(playsound minecraft:block.amethyst_block.chime player @a    1.0 1.5)
+            event.server.runCommandSilent(particle minecraft:electric_spark    0.3 0.3 0.3 0.1 20)
+            event.cancel()
+        }
+        // 2. Amethyst Shard -> Minor Harmonic Resonance (Resistance & Speed)
+        else if (item.getId() === 'minecraft:amethyst_shard') {
+            if (!player.isCreative()) item.shrink(1)
+            target.potionEffects.add('minecraft:resistance', 3600, 0, false, true)
+            target.potionEffects.add('minecraft:speed', 3600, 0, false, true)
+            target.potionEffects.add('minecraft:regeneration', 200, 0, false, true)
+            player.tell('§d[Hex Casting]§r Your familiar resonates with the Amethyst Shard, gaining §aResonance Protection§r!')
+            event.server.runCommandSilent(playsound minecraft:block.amethyst_block.hit player @a    1.0 1.2)
+            event.server.runCommandSilent(particle minecraft:totem_of_undying    0.2 0.2 0.2 0.05 10)
+            event.cancel()
+        }
+    }
 })
