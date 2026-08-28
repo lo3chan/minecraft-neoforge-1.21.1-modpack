@@ -30,7 +30,8 @@ ItemEvents.tooltip(event => {
         'wind_spellbooks:wind_staff'
     ]
 
-    const allPatterns = [...mageArmors, ...moddedWeapons]
+    // Combine arrays with concat (Rhino ES5/ES6 compatibility)
+    const allPatterns = mageArmors.concat(moddedWeapons)
 
     allPatterns.forEach(pattern => {
         event.add(pattern, (item, advanced, text) => {
