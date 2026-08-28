@@ -36,6 +36,15 @@ ServerEvents.recipes(event => {
     event.remove({ output: /wind_spellbooks:.*_orb/ })
     event.remove({ output: /wind_spellbooks:.*_ring/ })
 
+    // Purge Alshanex's Familiars MMO Stat Curios & Spellbooks
+    event.remove({ output: 'alshanex_familiars:familiar_spellbook' })
+    event.remove({ output: 'alshanex_familiars:familiar_tome' })
+    event.remove({ output: /alshanex_familiars:.*_trinket/ })
+    event.remove({ output: /alshanex_familiars:.*_curio/ })
+    event.remove({ output: /alshanex_familiars:magic_power_.*/ })
+    event.remove({ output: /alshanex_familiars:magic_level_.*/ })
+    event.remove({ output: /alshanex_familiars:magic_resist_.*/ })
+
     // Fix Undead Revamp smoke bomb recipe with stack size overflow
     event.remove({ id: 'undead_revamp2:smokebombrep' })
 
