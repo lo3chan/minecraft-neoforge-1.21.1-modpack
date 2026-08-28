@@ -1,10 +1,13 @@
-// KubeJS Server Script - Complete Hex Casting & Spells Realignment Architecture
+// KubeJS Server Script - Master Hex Casting & Spells Realignment Architecture
 // 100% pure Hex Casting interface, Vanilla workstation conversions, High-Tax Media, and Thematic Overcharged Relics
 
 // =========================================================================
-// 1. RECIPE PURGES (ELIMINATING MODDED WORKSTATIONS, SPELLBOOKS, INKS, RUNES & RPG ACCESSORIES)
+// 1. RECIPE & ITEM PURGES (PURGING MODDED WORKSTATIONS, INKS, RUNES & BOOKS)
 // =========================================================================
 ServerEvents.recipes(event => {
+    // 0. Remove broken client-only recipes that cause dedicated server / recipe indexer errors
+    event.remove({ type: 'alchemancy:player_head_transmutation' })
+
     // Purge Iron's Spells Modded Crafting Tables
     event.remove({ output: 'irons_spellbooks:inscription_table' })
     event.remove({ output: 'irons_spellbooks:arcane_anvil' })
@@ -29,16 +32,16 @@ ServerEvents.recipes(event => {
     event.remove({ output: 'wind_spellbooks:wind_spell_book' })
     event.remove({ output: 'wind_spellbooks:wind_staff' })
     event.remove({ output: 'wind_spellbooks:wind_rune' })
-    event.remove({ output: 'wind_spellbooks:scroll_wind' })
     event.remove({ output: 'wind_spellbooks:wind_upgrade_orb' })
     event.remove({ output: /wind_spellbooks:.*_orb/ })
     event.remove({ output: /wind_spellbooks:.*_ring/ })
 
+    // Fix Undead Revamp smoke bomb recipe with stack size overflow
+    event.remove({ id: 'undead_revamp2:smokebombrep' })
+
     // =========================================================================
     // 2. CRAFTING RECIPES FOR PURE VISUAL MAGE ROBES (<= 12 ARMOR / 0 TOUGHNESS)
     // =========================================================================
-    // Mage Robes are crafted using Wool + Amethyst Shards + Gold/Leather (Pure visual/light armor)
-    
     // Pyromancer Robes (Elementalist Tier - 10 Armor)
     event.shaped('irons_spellbooks:pyromancer_helmet', ['WWW', 'WAW', '   '], { W: 'minecraft:red_wool', A: 'minecraft:amethyst_shard' })
     event.shaped('irons_spellbooks:pyromancer_chestplate', ['W W', 'WAW', 'WWW'], { W: 'minecraft:red_wool', A: 'minecraft:amethyst_shard' })
