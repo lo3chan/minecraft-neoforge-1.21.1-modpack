@@ -33,27 +33,23 @@ ItemEvents.modifyTooltips(event => {
     const allPatterns = mageArmors.concat(moddedWeapons)
 
     allPatterns.forEach(pattern => {
-        event.modify(pattern, (item, text) => {
-            for (let i = text.length - 1; i >= 1; i--) {
-                let lineStr = text.get(i).getString()
-                if (
-                    lineStr.includes('Spell Power') ||
-                    lineStr.includes('Max Mana') ||
-                    lineStr.includes('Mana Regen') ||
-                    lineStr.includes('Cooldown') ||
-                    lineStr.includes('Cast Time') ||
-                    lineStr.includes('Spell Resist') ||
-                    lineStr.includes('Spell Slots') ||
-                    lineStr.includes('Active Spell') ||
-                    lineStr.includes('Right-Click to cast') ||
-                    lineStr.includes('When on') ||
-                    lineStr.includes('Slot:') ||
-                    lineStr.includes('Imbued') ||
-                    lineStr.includes('Upgrade') ||
-                    lineStr.includes('Rarity') ||
-                    lineStr.includes('School Affinity')
-                ) {
-                    text.remove(i)
+        event.modify(pattern, tooltip => {
+            if (!tooltip) return
+            try {
+                // In KubeJS 7, tooltip.remove(textPredicate) removes lines matching string or regex
+                tooltip.remove(/Spell Power|Max Mana|Mana Regen|Cooldown|Cast Time|Spell Resist|Spell Slots|Active Spell|Right-Click to cast|When on|Slot:|Imbued|Upgrade|Rarity|School Affinity/)
+            } catch (err) {
+                // Fallback safe iteration if tooltip is list
+                if (typeof tooltip.length === 'number') {
+                    for (let i = tooltip.length - 1; i >= 0; i--) {
+                        let line = tooltip[i]
+                        if (line && line.getString) {
+                            let s = line.getString()
+                            if (s.indexOf('Spell') !== -1 || s.indexOf('Mana') !== -1 || s.indexOf('Cooldown') !== -1) {
+                                tooltip.remove(i)
+                            }
+                        }
+                    }
                 }
             }
         })
