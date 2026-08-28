@@ -1,0 +1,14 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "chain",
+  "pattern" : [ " A ", "  A", " A " ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:copper_ingot"
+    }
+  },
+  "result" : {
+    "count" : 3,
+    "id" : "mcwlights:copper_chain"
+  }
+}

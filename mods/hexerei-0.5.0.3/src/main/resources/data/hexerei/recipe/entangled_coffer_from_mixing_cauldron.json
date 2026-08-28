@@ -1,0 +1,46 @@
+{
+  "type": "hexerei:mixingcauldron",
+  "fluid": {
+    "id": "hexerei:potion",
+    "components": {
+      "hexerei:potion_bottle_type": {
+        "Bottle": "REGULAR"
+      },
+      "minecraft:potion_contents": {
+        "potion": "minecraft:swiftness"
+      }
+    },
+    "amount": 1000
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "item": "hexerei:moon_dust"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "hexerei:moon_dust"
+    },
+    {
+      "item": "hexerei:coffer"
+    },
+    {
+      "item": "hexerei:moon_dust"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "hexerei:moon_dust"
+    }
+  ],
+  "output": {
+    "id": "hexerei:entangled_coffer",
+    "count": 2
+  },
+  "heatRequirement": "heated"
+}

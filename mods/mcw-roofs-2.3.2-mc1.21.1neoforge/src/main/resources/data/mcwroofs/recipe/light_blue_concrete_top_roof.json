@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:light_blue_concrete"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:light_blue_concrete_top_roof"
+  },
+  "group" : "roofs"
+}

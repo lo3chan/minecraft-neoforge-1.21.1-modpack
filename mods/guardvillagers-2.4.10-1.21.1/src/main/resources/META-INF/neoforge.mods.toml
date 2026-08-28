@@ -1,0 +1,45 @@
+
+modLoader="javafml" #mandatory
+loaderVersion="[2,)" #mandatory
+license="MIT for code, assets are ARR"
+issueTrackerURL="https://github.com/seymourimadeit/guardvillagers/issues" #optional
+[[mods]] #mandatory
+modId="guardvillagers" #mandatory
+version="2.4.10" #mandatory
+displayName="Guard Villagers" #mandatory
+authors="TallestEgg, HadeZ/SadNya69 for the textures." #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/guard-villagers" #optional
+updateJSONURL = "https://api.modrinth.com/updates/H1sntfo8/forge_updates.json"
+logoFile="guard_villagers.png" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''Need some help with pest control? The Guards are ready to help!'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.guardvillagers]] #optional
+    # the modid of the dependency
+    modId="neoforge" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    type='required' #mandatory
+    # The version range of the dependency
+    versionRange="[20.4,)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the dependency is not mandatory
+    # BEFORE - This mod is loaded BEFORE the dependency
+    # AFTER - This mod is loaded AFTER the dependency
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT, or SERVER
+    side="BOTH"
+# Here's another dependency
+[[dependencies.guardvillagers]]
+    modId="minecraft"
+    type='required'
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
+    versionRange="[1.21.1, 1.22)"
+    ordering="NONE"
+    side="BOTH"
+[[mixins]]
+    config="guardvillagers.mixins.json"
+
+# Features are specific properties of the game environment, that you may want to declare you require. This example declares
+# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
+# stop your mod loading on the server for example.
+#[features.guardvillagers]
+#openGLVersion="[3.2,)"

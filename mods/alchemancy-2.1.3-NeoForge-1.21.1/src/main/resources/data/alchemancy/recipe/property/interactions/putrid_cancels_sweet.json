@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:sweet",
+    "alchemancy:putrid"
+  ],
+
+  "result": [
+    "alchemancy:putrid"
+  ]
+}

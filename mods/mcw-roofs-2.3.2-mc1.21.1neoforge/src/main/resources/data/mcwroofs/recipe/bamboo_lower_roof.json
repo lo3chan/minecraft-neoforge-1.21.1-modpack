@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "lower",
+  "pattern" : [ " WW", "WWS" ],
+  "key" : {
+    "W" : {
+      "item" : "minecraft:bamboo_block"
+    },
+    "S" : {
+      "item" : "minecraft:stick"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwroofs:bamboo_lower_roof"
+  }
+}

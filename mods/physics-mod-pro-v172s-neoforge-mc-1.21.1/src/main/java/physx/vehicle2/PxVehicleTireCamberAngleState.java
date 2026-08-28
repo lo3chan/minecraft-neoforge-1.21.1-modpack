@@ -1,0 +1,70 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package physx.vehicle2;
+
+import physx.NativeObject;
+
+public class PxVehicleTireCamberAngleState
+extends NativeObject {
+    public static final int SIZEOF = PxVehicleTireCamberAngleState.__sizeOf();
+    public static final int ALIGNOF = 8;
+
+    private static native int __sizeOf();
+
+    public static PxVehicleTireCamberAngleState wrapPointer(long address) {
+        return address != 0L ? new PxVehicleTireCamberAngleState(address) : null;
+    }
+
+    public static PxVehicleTireCamberAngleState arrayGet(long baseAddress, int index) {
+        if (baseAddress == 0L) {
+            throw new NullPointerException("baseAddress is 0");
+        }
+        return PxVehicleTireCamberAngleState.wrapPointer(baseAddress + (long)SIZEOF * (long)index);
+    }
+
+    protected PxVehicleTireCamberAngleState(long address) {
+        super(address);
+    }
+
+    public PxVehicleTireCamberAngleState() {
+        this.address = PxVehicleTireCamberAngleState._PxVehicleTireCamberAngleState();
+    }
+
+    private static native long _PxVehicleTireCamberAngleState();
+
+    public void destroy() {
+        if (this.address == 0L) {
+            throw new IllegalStateException(this + " is already deleted");
+        }
+        if (this.isExternallyAllocated) {
+            throw new IllegalStateException(this + " is externally allocated and cannot be manually destroyed");
+        }
+        PxVehicleTireCamberAngleState._delete_native_instance(this.address);
+        this.address = 0L;
+    }
+
+    private static native long _delete_native_instance(long var0);
+
+    public float getCamberAngle() {
+        this.checkNotNull();
+        return PxVehicleTireCamberAngleState._getCamberAngle(this.address);
+    }
+
+    private static native float _getCamberAngle(long var0);
+
+    public void setCamberAngle(float value) {
+        this.checkNotNull();
+        PxVehicleTireCamberAngleState._setCamberAngle(this.address, value);
+    }
+
+    private static native void _setCamberAngle(long var0, float var2);
+
+    public void setToDefault() {
+        this.checkNotNull();
+        PxVehicleTireCamberAngleState._setToDefault(this.address);
+    }
+
+    private static native void _setToDefault(long var0);
+}
+

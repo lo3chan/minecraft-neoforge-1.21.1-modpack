@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:mud_bricks"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwpaths:mud_brick_flagstone_stairs"
+  },
+  "group" : "stairs"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "hexerei:block/budding_selenite"
+  },
+  "render_type": "translucent"
+}

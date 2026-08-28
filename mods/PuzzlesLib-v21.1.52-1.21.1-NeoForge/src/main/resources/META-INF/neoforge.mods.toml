@@ -1,0 +1,41 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "MPL-2.0"
+issueTrackerURL = "https://github.com/Fuzss/puzzleslib/issues"
+
+[[mods]]
+modId = "puzzleslib"
+displayName = "Puzzles Lib"
+description = "Why it's called Puzzles, you ask? That's the puzzle!"
+version = "21.1.52"
+authors = "Fuzs"
+logoFile = "mod_banner.png"
+logoBlur = false
+displayURL = "https://github.com/Fuzss/puzzleslib"
+updateJSONURL = "https://raw.githubusercontent.com/Fuzss/modresources/main/update/puzzleslib.json"
+displayTest = "MATCH_VERSION"
+
+[[mixins]]
+config="puzzleslib.common.mixins.json"
+
+[[mixins]]
+config="puzzleslib.neoforge.mixins.json"
+
+[[dependencies.puzzleslib]]
+modId = "neoforge"
+mandatory = true
+type = "required"
+versionRange = "[21.1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.puzzleslib]]
+modId = "minecraft"
+mandatory = true
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
+
+[modproperties.puzzleslib]
+catalogueImageIcon = "mod_logo.png"

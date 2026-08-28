@@ -1,0 +1,25 @@
+license = "MIT"
+
+modLoader="javafml"
+loaderVersion="[1,)"
+
+[[mods]]
+modId = "deeper_oceans"
+displayName = "Deeper Oceans"
+version = "2.0.1"
+authors = "Apollo"
+description = "Oceans, but deeper! Wild, isn't it?"
+
+logoFile = "pack.png"
+#displayURL = "..."
+#issueTrackerUrl = "..."
+
+[[mixins]]
+config = "deeper_oceans.mixins.json"
+
+[[dependencies.deeper_oceans]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21, 1.21.1]"
+ordering = "NONE"
+side = "BOTH"

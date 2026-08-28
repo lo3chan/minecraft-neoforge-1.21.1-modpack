@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:scattershot.flavor"
+  },
+  "functions": [
+    "when_used",
+    "stacked_over",
+    "when_shot_from_dispenser",
+    "other_effects"
+  ]
+}

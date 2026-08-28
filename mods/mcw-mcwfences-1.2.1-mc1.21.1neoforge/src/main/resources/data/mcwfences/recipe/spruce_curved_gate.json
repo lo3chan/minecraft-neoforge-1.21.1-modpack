@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "curved_gate",
+  "pattern" : [ "B A", "BAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:spruce_planks"
+    },
+    "B" : {
+      "item" : "minecraft:spruce_log"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwfences:spruce_curved_gate"
+  }
+}

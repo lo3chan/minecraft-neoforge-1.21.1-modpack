@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "at/petrak/paucal/api/mixin/AccessorTagsProvider": {
+      "getOrCreateRawBuilder": "method_27169(Lnet/minecraft/class_6862;)Lnet/minecraft/class_3495;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "at/petrak/paucal/api/mixin/AccessorTagsProvider": {
+        "getOrCreateRawBuilder": "method_27169(Lnet/minecraft/class_6862;)Lnet/minecraft/class_3495;"
+      }
+    }
+  }
+}

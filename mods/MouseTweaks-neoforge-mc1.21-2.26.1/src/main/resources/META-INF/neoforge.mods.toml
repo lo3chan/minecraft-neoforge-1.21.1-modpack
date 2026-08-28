@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="BSD-3-Clause"
+issueTrackerURL="https://github.com/YaLTeR/MouseTweaks/issues"
+
+[[mods]]
+modId="mousetweaks"
+version="2.26.1"
+displayName="Mouse Tweaks"
+displayURL="https://minecraft.curseforge.com/projects/mouse-tweaks"
+logoFile="mousetweaks_logo.png"
+credits="Contributors: mezz, juliand665, panoskj, FabiClawZ, ErrorMikey."
+authors="Ivan Molodetskikh (YaLTeR)"
+description="A mod that enhances the inventory management by adding various additional functions to the usual mouse buttons."
+
+[[mixins]]
+config="mousetweaks.mixins.json"

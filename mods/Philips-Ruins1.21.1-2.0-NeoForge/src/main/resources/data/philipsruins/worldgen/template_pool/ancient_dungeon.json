@@ -1,0 +1,134 @@
+{
+  "name": "philipsruins:ancient_dungeon",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_0",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_1",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_2",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_3",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_4",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_5",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_6",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_7",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_8",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_9",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_10",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_11",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_12",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_dungeon_13",
+        "processors": "philipsruins:ruins_processor"
+      }
+    }
+  ]
+}
+
+

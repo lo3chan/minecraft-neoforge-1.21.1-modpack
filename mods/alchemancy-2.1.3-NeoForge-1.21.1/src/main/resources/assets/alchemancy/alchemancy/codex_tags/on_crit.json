@@ -1,0 +1,14 @@
+{
+  "name": {
+    "translate": "screen.infusion_codex.on_crit"
+  },
+
+  "entries": {
+    "values": [
+
+    ],
+    "functions": [
+      "on_crit"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "mappings": {
+    "fuzs/eternalnether/mixin/PiglinAiMixin": {
+      "angerNearbyPiglins": "Lnet/minecraft/class_4838;method_24733(Lnet/minecraft/class_1657;Z)V",
+      "isWearingGold": "Lnet/minecraft/class_4838;method_24719(Lnet/minecraft/class_1309;)Z"
+    },
+    "fuzs/eternalnether/mixin/PiglinBruteAiMixin": {
+      "findNearestValidAttackTarget": "Lnet/minecraft/class_5420;method_30247(Lnet/minecraft/class_5418;)Ljava/util/Optional;",
+      "setAngerTarget": "Lnet/minecraft/class_5420;method_35198(Lnet/minecraft/class_5419;Lnet/minecraft/class_1309;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/eternalnether/mixin/PiglinAiMixin": {
+        "angerNearbyPiglins": "Lnet/minecraft/class_4838;method_24733(Lnet/minecraft/class_1657;Z)V",
+        "isWearingGold": "Lnet/minecraft/class_4838;method_24719(Lnet/minecraft/class_1309;)Z"
+      },
+      "fuzs/eternalnether/mixin/PiglinBruteAiMixin": {
+        "findNearestValidAttackTarget": "Lnet/minecraft/class_5420;method_30247(Lnet/minecraft/class_5418;)Ljava/util/Optional;",
+        "setAngerTarget": "Lnet/minecraft/class_5420;method_35198(Lnet/minecraft/class_5419;Lnet/minecraft/class_1309;)V"
+      }
+    }
+  }
+}

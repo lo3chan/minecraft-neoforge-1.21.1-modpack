@@ -1,0 +1,18 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:shocking",
+    "alchemancy:ender",
+    "alchemancy:phasing"
+  ],
+  "catalyst": {
+    "item": "alchemancy:nimbus_belt"
+  },
+
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:shifting_lightning_belt"
+  }
+}

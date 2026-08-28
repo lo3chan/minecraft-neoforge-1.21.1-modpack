@@ -1,0 +1,6 @@
+accessWidener	v2	named
+
+# RenderType.create(...) is private static in vanilla; GrassRenderType subclasses RenderType to
+# reach it. NeoForge's patched Minecraft already exposes it, but the common project compiles against
+# unpatched vanilla and Fabric needs it widened at runtime.
+accessible	method	net/minecraft/client/renderer/RenderType	create	(Ljava/lang/String;Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/vertex/VertexFormat$Mode;IZZLnet/minecraft/client/renderer/RenderType$CompositeState;)Lnet/minecraft/client/renderer/RenderType$CompositeRenderType;

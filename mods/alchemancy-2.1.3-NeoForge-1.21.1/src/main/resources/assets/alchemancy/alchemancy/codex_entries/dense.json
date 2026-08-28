@@ -1,0 +1,13 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:dense.flavor"
+  },
+  "functions": [
+    "modify_damage",
+    "on_fall"
+  ],
+  "innate": [
+    "alchemancy:rocket_powered_hammer",
+    "alchemancy:barrels_warhammer"
+  ]
+}

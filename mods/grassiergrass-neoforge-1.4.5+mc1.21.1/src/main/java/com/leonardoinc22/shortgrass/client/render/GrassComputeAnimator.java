@@ -1,0 +1,253 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.mojang.blaze3d.vertex.VertexFormat
+ *  com.mojang.blaze3d.vertex.VertexFormatElement
+ *  com.mojang.logging.LogUtils
+ *  org.lwjgl.opengl.GL
+ *  org.lwjgl.opengl.GL11C
+ *  org.lwjgl.opengl.GL13C
+ *  org.lwjgl.opengl.GL15C
+ *  org.lwjgl.opengl.GL20C
+ *  org.lwjgl.opengl.GL30C
+ *  org.lwjgl.opengl.GL42C
+ *  org.lwjgl.opengl.GL43C
+ *  org.lwjgl.opengl.GLCapabilities
+ *  org.slf4j.Logger
+ */
+package com.leonardoinc22.shortgrass.client.render;
+
+import com.leonardoinc22.shortgrass.client.render.GrassShaderUniforms;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormatElement;
+import com.mojang.logging.LogUtils;
+import java.nio.ByteBuffer;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11C;
+import org.lwjgl.opengl.GL13C;
+import org.lwjgl.opengl.GL15C;
+import org.lwjgl.opengl.GL20C;
+import org.lwjgl.opengl.GL30C;
+import org.lwjgl.opengl.GL42C;
+import org.lwjgl.opengl.GL43C;
+import org.lwjgl.opengl.GLCapabilities;
+import org.slf4j.Logger;
+
+final class GrassComputeAnimator {
+    private static final String COMPUTE_SOURCE = "#version 430\nlayout(local_size_x = 64) in;\nlayout(std430, binding = 0) readonly buffer InBuf { uint inData[]; };\nlayout(std430, binding = 1) buffer OutBuf { uint outData[]; };\n\nuniform int uVertexCount;\nuniform int uIsPlant;\nuniform float uNoiseScale;\nuniform vec2 uNoiseScrollOffset;\nuniform float uWindStrength;\nuniform vec2 uWindDirection;\nuniform float uWindFlutterPhase;\nuniform float uPlantBobPhase;\nuniform float uBladeVisualHeight;\nuniform float uBladeWidth;\nuniform float uHeightVariation;\nuniform float uStyleVanilla;\nuniform vec4 uTrailParams;\nuniform vec2 uTrailNoiseOrigin; // trail-field origin mod NOISE_TILE, for plant center recovery\nuniform vec3 uModelOffset;\nuniform sampler2D uNoiseTexture;\nuniform sampler2D uTrailTexture;\n\nuniform uint uInStrideU, uInPosU, uInUv0U, uInUv2U, uInColorU;\nuniform uint uOutStrideB, uOutPosB, uOutNormalB;\n\nconst float MAX_WIND_INTENSITY = 5.0;\nconst float MAX_ROTATION_RADIANS = 1.05;\nconst float BEND_AMOUNT = 0.1;\nconst float BEND_LOWER_CONTROL_HEIGHT = 0.45;\nconst float BEND_UPPER_CONTROL_HEIGHT = 0.82;\nconst float BEND_LOWER_CONTROL_FRACTION = 0.0;\nconst float BEND_UPPER_CONTROL_FRACTION = 0.22;\nconst float BEND_TIP_FRACTION = 1.0;\nconst float FLUTTER_SPEED_STEPS = 64.0;\nconst float FLUTTER_SPEED_MIN_STEP = 58.0;\nconst float FLUTTER_SPEED_MAX_STEP = 70.0;\nconst float CLUMP_COORD_SCALE = 2.0;\nconst float WIND_CURVE_ROTATION = 0.4;\nconst float WIND_CURVE_PEAK_ROTATION = 0.52;\nconst float WIND_CURVE_LOWER_ROTATION_FRACTION = 0.30;\nconst float WIND_CURVE_UPPER_ROTATION_FRACTION = 0.72;\nconst float REST_CURVE_ROTATION_MIN = -0.52;\nconst float REST_CURVE_ROTATION_MAX = 0.52;\nconst float REST_CURVE_FADE_END = 0.35;\nconst float HEIGHT_NOISE_SCALE = 1.0;\nconst float HEIGHT_NOISE_CONTRAST = 1.35;\nconst float HEIGHT_NOISE_BIAS = 0.5;\nconst float HEIGHT_NOISE_THIN_WIDTH = 0.65;\n// Regional blade length comes from the stationary height noise alone (mirrors\n// grass_blades.vsh and GrassClumpField).\nconst float HEIGHT_NOISE_SHORT_MULTIPLIER = 0.1;\nconst float HEIGHT_NOISE_TALL_MULTIPLIER = 1.28;\nconst float REGIONAL_LENGTH_FRACTION = 0.59;\n// Floor for the final blade length, in blocks; keeps the blade from inverting at high\n// height-variation.\nconst float MIN_BLADE_LENGTH = 0.02;\nconst float TALL_PLANT_LENGTH_MULTIPLIER = 3.0;\nconst float LEAN_RESPONSE_MIN = 0.3;\nconst float LEAN_RESPONSE_MAX = 0.78;\nconst float BLADE_BASE_WIDTH = 0.060;\nconst float BLADE_MIDDLE_WIDTH = 0.045;\nconst float BLADE_TIP_WIDTH = 0.0075;\nconst float BLADE_SPLIT_FRACTION = 0.6666667;\nconst float SEGMENTED_WIDTH = 0.050;\nconst float TAPERED_WIDTH_SCALE = 0.8333333;\nconst float DEFAULT_ANIMATION_BLADE_LENGTH = 0.5075;\nconst float TRAIL_CURVE_SUPPRESSION = 0.9;\nconst float TRAIL_FLUTTER_SUPPRESSION = 1.0;\nconst float PER_BLADE_HEIGHT_MIN = 0.88;\nconst float PER_BLADE_HEIGHT_MAX = 1.14;\nconst float PER_BLADE_WIDTH_COMPENSATION = 0.12;\n// Clump Voronoi field (grid scale 6, jitter 0.72) is precomputed into uNoiseTexture G/B/A by\n// tools/bake_clump.py; see sampleClump.\nconst float CLUMP_WIDTH_MIN = 0.92;\nconst float CLUMP_WIDTH_MAX = 1.08;\nconst float CLUMP_LEAN_COHESION = 0.42;\nconst float CLUMP_REST_COHESION = 0.55;\n// Resting lean toward the clump centre at the rim (radians). A sub-linear distance curve\n// spreads visible curvature farther into each clump while keeping the exact centre upright\n// and rim unchanged.\nconst float CLUMP_INWARD_ROTATION = 0.21;\nconst float CLUMP_INWARD_DISTANCE_CURVE = 0.55;\nconst float CAMERA_FACE_STRENGTH = 0.38;\nconst float CAMERA_FACE_START_DISTANCE = 2.0;\nconst float CAMERA_FACE_END_DISTANCE = 42.0;\nconst float CAMERA_FACE_MIN_HEIGHT = 0.08;\nconst float PLANT_SWAY_STRENGTH = 0.32;\nconst float PLANT_SWAY_BASE_LEAN = 0.4;\nconst float PLANT_SWAY_GUST_RANGE = 0.8;\nconst float PLANT_BOB_STRENGTH = 0.06;\nconst float PLANT_IDLE_BOB_STRENGTH = 0.14;\nconst float PLANT_WIND_FIELD_SCALE = 0.5;\nconst float TRAIL_WIND_SUPPRESSION = 0.95;\nconst float PLANT_TRAIL_PUSH = 1.2;\n// World size of the noise tile baked into noiseCoord (GrassGeometry.NOISE_WORLD_TILE_BLOCKS).\nconst float NOISE_TILE = 32.0;\nconst float MAX_LIGHTMAP_SKY = 240.0;\n\n// Minecraft BLOCK-format normal is packed signed normalized bytes.\n// Up vegetation normal = (0, 127, 0, 0) => bytes 00 7F 00 00.\nconst uint PACKED_UP_NORMAL = 0x00007F00u;\n\nvec2 wrappedPixelCenter(vec2 pixel, vec2 textureSizePixels) {\n    return (mod(pixel, textureSizePixels) + 0.5) / textureSizePixels;\n}\n\nfloat sampleSmoothNoise(vec2 uv) {\n    vec2 size = vec2(textureSize(uNoiseTexture, 0));\n    vec2 pixel = fract(uv) * size - 0.5;\n    vec2 base = floor(pixel);\n    vec2 blend = smoothstep(vec2(0.0), vec2(1.0), fract(pixel));\n    return texture(uNoiseTexture, (base + blend + 0.5) / size).r;\n}\n\nvec4 sampleSmoothTrail(vec2 uv) {\n    vec2 textureSizePixels = vec2(textureSize(uTrailTexture, 0));\n    vec2 halfPixel = 0.5 / textureSizePixels;\n    vec2 clampedUv = clamp(uv, halfPixel, vec2(1.0) - halfPixel);\n    vec2 pixel = clampedUv * textureSizePixels - 0.5;\n    vec2 pixelFloor = floor(pixel);\n    vec2 blend = smoothstep(vec2(0.0), vec2(1.0), fract(pixel));\n    vec2 baseUv = (pixelFloor + 0.5) / textureSizePixels;\n    vec2 pixelStep = 1.0 / textureSizePixels;\n    vec2 maxUv = vec2(1.0) - halfPixel;\n    vec4 bottomLeft = texture(uTrailTexture, clamp(baseUv, halfPixel, maxUv));\n    vec4 bottomRight = texture(uTrailTexture, clamp(baseUv + vec2(pixelStep.x, 0.0), halfPixel, maxUv));\n    vec4 topLeft = texture(uTrailTexture, clamp(baseUv + vec2(0.0, pixelStep.y), halfPixel, maxUv));\n    vec4 topRight = texture(uTrailTexture, clamp(baseUv + pixelStep, halfPixel, maxUv));\n    return mix(mix(bottomLeft, bottomRight, blend.x), mix(topLeft, topRight, blend.x), blend.y);\n}\n\nstruct TrailData {\n    vec2 dir;\n    float strength;\n    float effect;\n    float windMultiplier;\n};\n\nTrailData sampleTrailAt(vec2 position) {\n    if (uTrailParams.w <= 0.0) {\n        return TrailData(vec2(0.0), 0.0, 0.0, 1.0);\n    }\n\n    vec2 trailUv = (position - uTrailParams.xy) * uTrailParams.z;\n    vec2 trailInside = step(vec2(0.0), trailUv) * step(trailUv, vec2(1.0));\n    vec4 trailSample = sampleSmoothTrail(trailUv);\n\n    vec2 dir = trailSample.rg * 2.0 - 1.0;\n    float dirLength = length(dir);\n    dir = dirLength > 0.001 ? dir / dirLength : vec2(0.0, 0.0);\n\n    float strength = trailSample.b * trailInside.x * trailInside.y * uTrailParams.w;\n    float effect = clamp(strength, 0.0, 1.0);\n    float windMultiplier = 1.0 - effect * TRAIL_WIND_SUPPRESSION;\n\n    return TrailData(dir, strength, effect, windMultiplier);\n}\n\nfloat hash2D(vec2 p) {\n    vec3 p3 = fract(vec3(p.xyx) * 0.1031);\n    p3 += dot(p3, p3.yzx + 33.33);\n    return fract((p3.x + p3.y) * p3.z);\n}\n\n// clump.x/y/z baked into uNoiseTexture G/B/A by tools/bake_clump.py; point-fetch at the texel\n// center so per-cell values don't bilinear-smear across borders, independent of the filter.\nvec3 sampleClump(vec2 coord) {\n    vec2 textureSizePixels = vec2(textureSize(uNoiseTexture, 0));\n    vec2 pixel = floor(fract(coord) * textureSizePixels);\n    return texture(uNoiseTexture, wrappedPixelCenter(pixel, textureSizePixels)).gba;\n}\n\n// Direction from a blade toward its clump centre. The baked distance field (clump.z, the\n// A channel) rises away from the centre, so its negative gradient points inward. Central\n// differences a few texels apart lift the gradient above 8-bit quantisation; a clump cell\n// (~85 texels) is far wider, so the samples stay inside it. Returns 0 on the ridge between\n// cells, where the inward direction is undefined.\nvec2 clumpToCenterDir(vec2 coord) {\n    vec2 texStep = 2.0 / vec2(textureSize(uNoiseTexture, 0));\n    float zxp = sampleClump(coord + vec2(texStep.x, 0.0)).z;\n    float zxn = sampleClump(coord - vec2(texStep.x, 0.0)).z;\n    float zyp = sampleClump(coord + vec2(0.0, texStep.y)).z;\n    float zyn = sampleClump(coord - vec2(0.0, texStep.y)).z;\n    vec2 grad = vec2(zxp - zxn, zyp - zyn);\n    float len = length(grad);\n    return len > 0.0001 ? -grad / len : vec2(0.0);\n}\n\nfloat stationaryHeightNoise(vec2 coord) {\n    float noise = sampleSmoothNoise(coord * HEIGHT_NOISE_SCALE);\n    noise = clamp((noise - HEIGHT_NOISE_BIAS) * HEIGHT_NOISE_CONTRAST\n            + HEIGHT_NOISE_BIAS, 0.0, 1.0);\n    return smoothstep(0.0, 1.0, noise);\n}\n\n// Half-width around the spine. Pass BLADE_TIP_WIDTH to recover the baked centerline (use for\n// the centerline subtract); pass tipWidth 0.0 for the drawn blade so a tapered tip ends in a\n// true point. Mirrors grass_blades.vsh bladeWidth().\nfloat bladeWidth(float h, float tipWidth) {\n    if (uStyleVanilla > 0.5) {\n        return SEGMENTED_WIDTH * uBladeWidth;\n    }\n    float taperedWidth = uBladeWidth * TAPERED_WIDTH_SCALE;\n    if (h <= BLADE_SPLIT_FRACTION) {\n        return mix(BLADE_BASE_WIDTH, BLADE_MIDDLE_WIDTH, h / BLADE_SPLIT_FRACTION)\n                * taperedWidth;\n    }\n    return mix(BLADE_MIDDLE_WIDTH, tipWidth,\n            (h - BLADE_SPLIT_FRACTION) / (1.0 - BLADE_SPLIT_FRACTION))\n            * taperedWidth;\n}\n\nvec3 cubicBezier(vec3 p0, vec3 p1, vec3 p2, vec3 p3, float t) {\n    float invT = 1.0 - t;\n    return invT * invT * invT * p0\n         + 3.0 * invT * invT * t * p1\n         + 3.0 * invT * t * t * p2\n         + t * t * t * p3;\n}\n\nvec3 rotatedSpinePoint(vec3 basePoint, vec2 dir, float visualLength,\n        float animationLength, float height, float rotation) {\n    vec3 point = basePoint;\n    point.xz += dir * (sin(rotation) * animationLength * height);\n    point.y += cos(rotation) * visualLength * height;\n    return point;\n}\n\nfloat windCurveResponse(float rotation) {\n    float rise = smoothstep(0.0, WIND_CURVE_PEAK_ROTATION, rotation);\n    float fall = 1.0 - smoothstep(WIND_CURVE_PEAK_ROTATION, MAX_ROTATION_RADIANS,\n            rotation);\n    return rise * fall;\n}\n\nvec2 cameraFacingSideDir(vec3 center, vec2 originalSideDir, float height) {\n    vec2 toCamera = -center.xz;\n    float dist = length(toCamera);\n    if (dist < 0.001 || height < CAMERA_FACE_MIN_HEIGHT) {\n        return originalSideDir;\n    }\n    toCamera /= dist;\n    vec2 cameraSideDir = vec2(-toCamera.y, toCamera.x);\n    if (dot(cameraSideDir, originalSideDir) < 0.0) {\n        cameraSideDir = -cameraSideDir;\n    }\n    float edgeOn = 1.0 - abs(dot(originalSideDir, cameraSideDir));\n    float distanceFade = 1.0 - smoothstep(CAMERA_FACE_START_DISTANCE,\n            CAMERA_FACE_END_DISTANCE, dist);\n    float amount = CAMERA_FACE_STRENGTH * edgeOn * distanceFade;\n    return normalize(mix(originalSideDir, cameraSideDir, amount));\n}\n\nfloat skyWindResponse(uint packedLight) {\n    return clamp(float((packedLight >> 16u) & 0xFFFFu) / MAX_LIGHTMAP_SKY, 0.0, 1.0);\n}\n\nvoid writeUintAtByte(uint byteOff, uint val) {\n    uint u = byteOff >> 2u;\n    uint rem = (byteOff & 3u) * 8u;\n    if (rem == 0u) {\n        outData[u] = val;\n    } else {\n        outData[u] = bitfieldInsert(outData[u], val, int(rem), int(32u - rem));\n        outData[u + 1u] = bitfieldInsert(outData[u + 1u], val >> (32u - rem), 0, int(rem));\n    }\n}\n\nvoid main() {\n    uint idx = gl_GlobalInvocationID.x;\n    if (idx >= uint(uVertexCount)) return;\n\n    uint bi = idx * uInStrideU;\n\n    vec3 restPos = vec3(uintBitsToFloat(inData[bi + uInPosU]),\n                        uintBitsToFloat(inData[bi + uInPosU + 1u]),\n                        uintBitsToFloat(inData[bi + uInPosU + 2u]));\n\n    vec2 noiseCoord = vec2(uintBitsToFloat(inData[bi + uInUv0U]),\n                           uintBitsToFloat(inData[bi + uInUv0U + 1u]));\n\n    uint packedLight = inData[bi + uInUv2U];\n    uint packedColor = inData[bi + uInColorU];\n\n    float height = clamp(float((packedColor >> 24u) & 0xFFu) / 255.0, 0.0, 1.0);\n    float height2 = height * height;\n\n    vec3 pos = restPos;\n\n    vec2 windDir = length(uWindDirection) > 0.001\n            ? normalize(uWindDirection)\n            : vec2(1.0, 0.0);\n    vec2 crossWindDir = vec2(-windDir.y, windDir.x);\n    vec3 cameraPos = restPos + uModelOffset;\n\n    if (uIsPlant != 0) {\n        // Sample the trail once per plant, at the block CENTER -- never per vertex.\n        // The two crossed sprites' corners sit at different XZ; sampling each\n        // independently shears them apart. noiseCoord = frac(worldCenter / NOISE_TILE)\n        // is shared by every vertex, so recover the block center in trail-field space\n        // and pick the representative nearest this vertex (its own plant's center).\n        vec2 vertexTrail = cameraPos.xz - uTrailParams.xy;\n        vec2 centerMod = mod(NOISE_TILE * noiseCoord - uTrailNoiseOrigin, NOISE_TILE);\n        vec2 plantCenter = vertexTrail\n                + mod(centerMod - vertexTrail + 0.5 * NOISE_TILE, NOISE_TILE)\n                - 0.5 * NOISE_TILE;\n        TrailData trail = sampleTrailAt(plantCenter + uTrailParams.xy);\n        vec2 trailDir = length(trail.dir) > 0.001 ? trail.dir : windDir;\n        float trailStrength = trail.strength;\n        float trailWindMultiplier = trail.windMultiplier;\n\n        float windField = sampleSmoothNoise(noiseCoord * PLANT_WIND_FIELD_SCALE + uNoiseScrollOffset);\n        float lean = PLANT_SWAY_BASE_LEAN + windField * PLANT_SWAY_GUST_RANGE;\n        pos.xz += windDir * (lean * uWindStrength * trailWindMultiplier * height2 * PLANT_SWAY_STRENGTH);\n\n        float bobStrength = max(uWindStrength, PLANT_IDLE_BOB_STRENGTH);\n        float phase = dot(noiseCoord, vec2(97.0, 151.0));\n        float bob = sin(uPlantBobPhase + phase) * PLANT_BOB_STRENGTH * height2;\n        pos.xz += crossWindDir * (bob * bobStrength * trailWindMultiplier);\n        pos.xz += trailDir * (trailStrength * height2 * PLANT_TRAIL_PUSH);\n    } else {\n        float windIntensity = max(uWindStrength, 0.0) * skyWindResponse(packedLight);\n        float windAmount = clamp(windIntensity, 0.0, 1.0);\n        float noiseBias = clamp(windIntensity / MAX_WIND_INTENSITY, 0.0, 1.0);\n\n        float packedBladeData = float(packedColor & 0xFFu);\n        float rightSide = step(128.0, packedBladeData);\n        float sideSign = mix(-1.0, 1.0, rightSide);\n        float bladeDataWithoutSide = packedBladeData - rightSide * 128.0;\n        float heightClass = floor(bladeDataWithoutSide / 32.0);\n        float angleBucket = bladeDataWithoutSide - heightClass * 32.0;\n        float sideAngle = angleBucket / 31.0 * 6.2831853;\n        vec2 originalSideDir = vec2(cos(sideAngle), sin(sideAngle));\n\n        height2 = height * height;\n\n        pos = cameraPos;\n\n        float heightNoise = stationaryHeightNoise(noiseCoord);\n        vec2 clumpCoord = noiseCoord * CLUMP_COORD_SCALE;\n        vec3 clump = sampleClump(clumpCoord);\n        float clumpInfluence = 0.6 + 0.4 * (1.0 - smoothstep(0.25, 0.85, clump.z));\n        float clumpWidthMultiplier = mix(1.0, mix(CLUMP_WIDTH_MIN, CLUMP_WIDTH_MAX,\n                smoothstep(0.0, 1.0, clump.y)), clumpInfluence);\n\n        // Short grass/fern (class 1) match grass-field height; only tall grass stays taller.\n        float bladeLengthMultiplier = heightClass < 1.5 ? 1.0 : TALL_PLANT_LENGTH_MULTIPLIER;\n\n        float baseBladeLength = uBladeVisualHeight * bladeLengthMultiplier;\n\n        float bladeHeightRandom = hash2D(\n                noiseCoord + vec2(angleBucket * 0.071, heightClass * 13.37));\n        float shapedBladeRandom = smoothstep(0.0, 1.0, bladeHeightRandom);\n\n        float perBladeHeightMultiplier = mix(PER_BLADE_HEIGHT_MIN,\n                PER_BLADE_HEIGHT_MAX, shapedBladeRandom);\n        float perBladeWidthMultiplier = mix(1.0 + PER_BLADE_WIDTH_COMPENSATION,\n                1.0 - PER_BLADE_WIDTH_COMPENSATION, shapedBladeRandom);\n\n        float regionalWidth = mix(HEIGHT_NOISE_THIN_WIDTH, 1.0, heightNoise)\n                * clumpWidthMultiplier\n                * perBladeWidthMultiplier;\n\n        // Regional length: broad stationary tall/short patches from the height noise,\n        // damped so the patches read as gentle regions. Clump no longer touches length.\n        float heightMultiplier = mix(HEIGHT_NOISE_SHORT_MULTIPLIER,\n                HEIGHT_NOISE_TALL_MULTIPLIER, heightNoise);\n        float regionalExtraLength = baseBladeLength * (heightMultiplier - 1.0)\n                * REGIONAL_LENGTH_FRACTION;\n        float perBladeExtraLength = baseBladeLength * (perBladeHeightMultiplier - 1.0);\n        // uHeightVariation is the user height-variation scale: 1.0 = default, 0 = uniform blades (mirrors grass_blades.vsh).\n        float totalExtraLength = (regionalExtraLength + perBladeExtraLength) * uHeightVariation;\n\n        // Clamp the length, then feed the clamp back into the displacement below. Both\n        // terms go negative in short regions and uHeightVariation scales them past\n        // -1x baseBladeLength, so displacing by the raw value would invert the blade.\n        float bladeLength = max(baseBladeLength + totalExtraLength, MIN_BLADE_LENGTH);\n        totalExtraLength = bladeLength - baseBladeLength;\n\n        pos.y += totalExtraLength * height;\n\n        float bakedWidth = bladeWidth(height, BLADE_TIP_WIDTH);\n\n        vec3 sourceCenter = pos;\n        sourceCenter.xz -= originalSideDir * sideSign * bakedWidth;\n\n        // Critical stamp/trail fix for Iris compute:\n        // sample the trail from the blade center, not from each vertex.\n        // If left/right vertices sample independently, a single blade can\n        // be pulled in opposite directions and visibly expand/split.\n        TrailData trail = sampleTrailAt(sourceCenter.xz);\n        vec2 trailDir = length(trail.dir) > 0.001 ? trail.dir : windDir;\n        float trailStrength = trail.strength;\n        float trailEffect = trail.effect;\n        float trailWindMultiplier = trail.windMultiplier;\n\n        float windNoise = sampleSmoothNoise(noiseCoord * uNoiseScale + uNoiseScrollOffset);\n        float localWind = mix(windNoise, 1.0, noiseBias);\n\n        float leanRandom = mix(hash2D(noiseCoord + vec2(43.17, 11.91)),\n                clump.y, CLUMP_LEAN_COHESION * clumpInfluence);\n        float leanResponse = mix(LEAN_RESPONSE_MIN, LEAN_RESPONSE_MAX, leanRandom);\n\n        float resistedWind = localWind * windAmount * leanResponse;\n        float windRotation = clamp(resistedWind, 0.0, 1.0) * MAX_ROTATION_RADIANS;\n\n        resistedWind *= trailWindMultiplier;\n        windRotation *= trailWindMultiplier;\n\n        float trailRotation = clamp(trailStrength, 0.0, 1.0)\n                * MAX_ROTATION_RADIANS;\n\n        // Resting tuft: lean each blade toward its clump centre so a clump reads as a\n        // rounded mound instead of every blade curving the same way. Bias the centre-distance\n        // upward so middle blades curve visibly too; rim blades still lean most, and wind\n        // takes over as it rises.\n        vec2 toClumpCenter = clumpToCenterDir(clumpCoord);\n        float curvedClumpDistance = pow(clamp(clump.z, 0.0, 1.0),\n                CLUMP_INWARD_DISTANCE_CURVE);\n        float inwardRotation = curvedClumpDistance * CLUMP_INWARD_ROTATION\n                * (1.0 - windAmount);\n\n        vec2 leanVector = windDir * windRotation + trailDir * trailRotation\n                + toClumpCenter * inwardRotation;\n        float leanLength = length(leanVector);\n        float rotation = clamp(leanLength, 0.0, MAX_ROTATION_RADIANS);\n        vec2 leanDir = leanLength > 0.001 ? leanVector / leanLength : windDir;\n        vec2 crossLeanDir = vec2(-leanDir.y, leanDir.x);\n\n        float windForceMagnitude = clamp(max(resistedWind, trailStrength), 0.0,\n                1.0);\n\n        // Constant-width strip for both styles (matches grass_blades.vsh); the shape texture\n        // carves the taper / draws the bands. bakedWidth above stays tapered so the centerline\n        // recovered from the CPU quad doesn't drift.\n        float drawnWidth = uStyleVanilla > 0.5\n                ? SEGMENTED_WIDTH * uBladeWidth\n                : BLADE_BASE_WIDTH * uBladeWidth * TAPERED_WIDTH_SCALE;\n        float width = drawnWidth * regionalWidth;\n\n        float animationBladeLength = max(bladeLength,\n                DEFAULT_ANIMATION_BLADE_LENGTH * bladeLengthMultiplier);\n\n        vec3 basePoint = sourceCenter;\n        basePoint.y -= bladeLength * height;\n\n        float windCurveRotation = WIND_CURVE_ROTATION\n                * windCurveResponse(rotation);\n        windCurveRotation *= 1.0 - trailEffect * TRAIL_CURVE_SUPPRESSION;\n\n        float restCurveRandom = mix(hash2D(noiseCoord + vec2(7.13, 91.77)),\n                clump.x, CLUMP_REST_COHESION * clumpInfluence);\n        float restCurveFade = 1.0 - smoothstep(0.0, REST_CURVE_FADE_END,\n                windForceMagnitude);\n        float restCurveRotation = mix(REST_CURVE_ROTATION_MIN,\n                REST_CURVE_ROTATION_MAX, restCurveRandom) * restCurveFade;\n        restCurveRotation *= 1.0 - trailEffect * TRAIL_CURVE_SUPPRESSION;\n\n        float tipRotation = rotation + windCurveRotation + restCurveRotation;\n\n        vec3 tipPoint = rotatedSpinePoint(basePoint, leanDir, bladeLength,\n                animationBladeLength, 1.0, tipRotation);\n\n        float bendCalmness = 1.0 - smoothstep(0.25, 0.85, windForceMagnitude);\n        // Stable, independently salted phase per blade. Use the full circle so\n        // neighbouring blades do not inherit coherent timing from their clump.\n        float bendPhase = hash2D(noiseCoord + vec2(\n                angleBucket * 0.371 + 19.19,\n                heightClass * 7.13 + 53.71)) * 6.2831853;\n        float speedRandom = hash2D(noiseCoord + vec2(\n                angleBucket * 1.913 + 73.17,\n                heightClass * 11.71 + 29.43));\n        float speedStep = floor(mix(FLUTTER_SPEED_MIN_STEP,\n                FLUTTER_SPEED_MAX_STEP + 1.0, speedRandom));\n        float bendWave = sin(uWindFlutterPhase\n                * (speedStep / FLUTTER_SPEED_STEPS) + bendPhase);\n        float bend = bendWave * BEND_AMOUNT * animationBladeLength\n                * bendCalmness;\n        bend *= 1.0 - trailEffect * TRAIL_FLUTTER_SUPPRESSION;\n\n        vec2 bendOffset = crossLeanDir * bend;\n\n        vec3 lowerControlPoint = rotatedSpinePoint(basePoint, leanDir, bladeLength,\n                animationBladeLength, BEND_LOWER_CONTROL_HEIGHT,\n                rotation\n                        + windCurveRotation * WIND_CURVE_LOWER_ROTATION_FRACTION\n                        + restCurveRotation * WIND_CURVE_LOWER_ROTATION_FRACTION);\n        lowerControlPoint.xz += bendOffset * BEND_LOWER_CONTROL_FRACTION;\n\n        vec3 upperControlPoint = rotatedSpinePoint(basePoint, leanDir, bladeLength,\n                animationBladeLength, BEND_UPPER_CONTROL_HEIGHT,\n                rotation\n                        + windCurveRotation * WIND_CURVE_UPPER_ROTATION_FRACTION\n                        + restCurveRotation * WIND_CURVE_UPPER_ROTATION_FRACTION);\n        upperControlPoint.xz += bendOffset * BEND_UPPER_CONTROL_FRACTION;\n\n        tipPoint.xz += bendOffset * BEND_TIP_FRACTION;\n\n        vec3 bladeCenter = cubicBezier(basePoint, lowerControlPoint,\n                upperControlPoint, tipPoint, height);\n\n        pos = bladeCenter;\n\n        vec2 visualSideDir = cameraFacingSideDir(sourceCenter, originalSideDir,\n                height);\n        pos.xz += visualSideDir * sideSign * width;\n\n        pos -= uModelOffset;\n    }\n\n    uint bo = idx * uOutStrideB + uOutPosB;\n    writeUintAtByte(bo + 0u, floatBitsToUint(pos.x));\n    writeUintAtByte(bo + 4u, floatBitsToUint(pos.y));\n    writeUintAtByte(bo + 8u, floatBitsToUint(pos.z));\n\n    // Critical Iris lighting fix:\n    // Compute animation only changes position, but Iris/vanilla still reads\n    // NORMAL from the animated output VBO. Force vegetation normals upward.\n    writeUintAtByte(idx * uOutStrideB + uOutNormalB, PACKED_UP_NORMAL);\n}\n";
+    private static final Logger LOGGER = LogUtils.getLogger();
+    private static boolean initialized;
+    private static boolean loggedFirstDispatch;
+    private static boolean loggedFirstDispatchError;
+    private static int program;
+    private static int previousProgram;
+    private static int savedSsbo0;
+    private static int savedSsbo1;
+    private static int previousActiveTexture;
+    private static int previousTexture0;
+    private static int previousTexture1;
+    private static int locVertexCount;
+    private static int locIsPlant;
+    private static int locNoiseScale;
+    private static int locNoiseScrollOffset;
+    private static int locWindStrength;
+    private static int locWindDirection;
+    private static int locWindFlutterPhase;
+    private static int locPlantBobPhase;
+    private static int locBladeVisualHeight;
+    private static int locBladeWidth;
+    private static int locHeightVariation;
+    private static int locStyleVanilla;
+    private static int locTrailParams;
+    private static int locTrailNoiseOrigin;
+    private static int locModelOffset;
+    private static int locInStrideU;
+    private static int locInPosU;
+    private static int locInUv0U;
+    private static int locInUv2U;
+    private static int locInColorU;
+    private static int locOutStrideB;
+    private static int locOutPosB;
+    private static int locOutNormalB;
+    private static int locNoiseTexture;
+    private static int locTrailTexture;
+
+    private GrassComputeAnimator() {
+    }
+
+    static boolean isAvailable() {
+        GrassComputeAnimator.ensureInitialized();
+        return program != 0;
+    }
+
+    static Layout layout(VertexFormat input, VertexFormat drawn) {
+        return new Layout(input.getVertexSize() / 4, input.getOffset(VertexFormatElement.POSITION) / 4, input.getOffset(VertexFormatElement.UV0) / 4, input.getOffset(VertexFormatElement.UV2) / 4, input.getOffset(VertexFormatElement.COLOR) / 4, drawn.getVertexSize(), drawn.getOffset(VertexFormatElement.POSITION), drawn.getOffset(VertexFormatElement.NORMAL));
+    }
+
+    static void begin(int noiseTextureId, int trailTextureId, boolean zeroWind) {
+        if (program == 0) {
+            return;
+        }
+        previousProgram = GL11C.glGetInteger((int)35725);
+        savedSsbo0 = GL30C.glGetIntegeri((int)37075, (int)0);
+        savedSsbo1 = GL30C.glGetIntegeri((int)37075, (int)1);
+        previousActiveTexture = GL11C.glGetInteger((int)34016);
+        GL13C.glActiveTexture((int)33984);
+        previousTexture0 = GL11C.glGetInteger((int)32873);
+        GL13C.glActiveTexture((int)33985);
+        previousTexture1 = GL11C.glGetInteger((int)32873);
+        GL13C.glActiveTexture((int)33984);
+        GL20C.glUseProgram((int)program);
+        GL20C.glUniform1f((int)locNoiseScale, (float)GrassShaderUniforms.noiseScale());
+        GL20C.glUniform2f((int)locNoiseScrollOffset, (float)(zeroWind ? 0.0f : GrassShaderUniforms.noiseScrollX()), (float)(zeroWind ? 0.0f : GrassShaderUniforms.noiseScrollZ()));
+        GL20C.glUniform1f((int)locWindStrength, (float)(zeroWind ? 0.0f : GrassShaderUniforms.windStrength()));
+        GL20C.glUniform2f((int)locWindDirection, (float)GrassShaderUniforms.windX(), (float)GrassShaderUniforms.windZ());
+        GL20C.glUniform1f((int)locWindFlutterPhase, (float)(zeroWind ? 0.0f : GrassShaderUniforms.windFlutterPhase()));
+        GL20C.glUniform1f((int)locPlantBobPhase, (float)(zeroWind ? 0.0f : GrassShaderUniforms.plantBobPhase()));
+        GL20C.glUniform1f((int)locBladeVisualHeight, (float)GrassShaderUniforms.bladeVisualHeight());
+        GL20C.glUniform1f((int)locBladeWidth, (float)GrassShaderUniforms.bladeWidth());
+        GL20C.glUniform1f((int)locHeightVariation, (float)GrassShaderUniforms.heightVariation());
+        GL20C.glUniform1f((int)locStyleVanilla, (float)GrassShaderUniforms.styleVanilla());
+        GL20C.glUniform1i((int)locNoiseTexture, (int)0);
+        GL20C.glUniform1i((int)locTrailTexture, (int)1);
+        GL13C.glActiveTexture((int)33984);
+        GL11C.glBindTexture((int)3553, (int)noiseTextureId);
+        GL13C.glActiveTexture((int)33985);
+        GL11C.glBindTexture((int)3553, (int)trailTextureId);
+        GL13C.glActiveTexture((int)33984);
+    }
+
+    static void computeInto(int inputGl, int outputGl, Layout layout, int vertexCount, boolean plant, float offX, float offY, float offZ, boolean zeroTrail) {
+        int error;
+        boolean firstDispatch;
+        if (program == 0 || layout == null || vertexCount <= 0 || inputGl == 0 || outputGl == 0) {
+            return;
+        }
+        boolean bl = firstDispatch = !loggedFirstDispatch;
+        if (firstDispatch) {
+            loggedFirstDispatch = true;
+            LOGGER.info("[grassiergrass] first Iris compute dispatch: vertices={}, inGl={}, outGl={}", new Object[]{vertexCount, inputGl, outputGl});
+        }
+        GL30C.glUniform1ui((int)locInStrideU, (int)layout.inStrideU());
+        GL30C.glUniform1ui((int)locInPosU, (int)layout.inPosU());
+        GL30C.glUniform1ui((int)locInUv0U, (int)layout.inUv0U());
+        GL30C.glUniform1ui((int)locInUv2U, (int)layout.inUv2U());
+        GL30C.glUniform1ui((int)locInColorU, (int)layout.inColorU());
+        GL30C.glUniform1ui((int)locOutStrideB, (int)layout.outStrideB());
+        GL30C.glUniform1ui((int)locOutPosB, (int)layout.outPosB());
+        GL30C.glUniform1ui((int)locOutNormalB, (int)layout.outNormalB());
+        GL20C.glUniform1i((int)locVertexCount, (int)vertexCount);
+        GL20C.glUniform1i((int)locIsPlant, (int)(plant ? 1 : 0));
+        GL20C.glUniform4f((int)locTrailParams, (float)GrassShaderUniforms.trailOriginX(), (float)GrassShaderUniforms.trailOriginZ(), (float)GrassShaderUniforms.trailInverseWorldSize(), (float)(zeroTrail ? 0.0f : GrassShaderUniforms.trailStrength()));
+        GL20C.glUniform2f((int)locTrailNoiseOrigin, (float)GrassShaderUniforms.trailNoiseOriginX(), (float)GrassShaderUniforms.trailNoiseOriginZ());
+        GL20C.glUniform3f((int)locModelOffset, (float)offX, (float)offY, (float)offZ);
+        GL30C.glBindBufferBase((int)37074, (int)0, (int)inputGl);
+        GL30C.glBindBufferBase((int)37074, (int)1, (int)outputGl);
+        GL43C.glDispatchCompute((int)((vertexCount + 63) / 64), (int)1, (int)1);
+        if (firstDispatch && !loggedFirstDispatchError && (error = GL11C.glGetError()) != 0) {
+            loggedFirstDispatchError = true;
+            LOGGER.error("[grassiergrass] Iris compute dispatch GL error: 0x{}", (Object)Integer.toHexString(error));
+        }
+    }
+
+    static void barrierAfterCompute() {
+        if (program != 0) {
+            GL42C.glMemoryBarrier((int)-1);
+        }
+    }
+
+    static void end() {
+        if (program == 0) {
+            return;
+        }
+        GL30C.glBindBufferBase((int)37074, (int)0, (int)savedSsbo0);
+        GL30C.glBindBufferBase((int)37074, (int)1, (int)savedSsbo1);
+        GL13C.glActiveTexture((int)33985);
+        GL11C.glBindTexture((int)3553, (int)previousTexture1);
+        GL13C.glActiveTexture((int)33984);
+        GL11C.glBindTexture((int)3553, (int)previousTexture0);
+        GL13C.glActiveTexture((int)previousActiveTexture);
+        GL20C.glUseProgram((int)previousProgram);
+    }
+
+    static int createBufferFromBytes(ByteBuffer data) {
+        int id = GL15C.glGenBuffers();
+        GL15C.glBindBuffer((int)36663, (int)id);
+        GL15C.glBufferData((int)36663, (ByteBuffer)data, (int)35044);
+        GL15C.glBindBuffer((int)36663, (int)0);
+        return id;
+    }
+
+    static void deleteBuffer(int id) {
+        if (id != 0) {
+            GL15C.glDeleteBuffers((int)id);
+        }
+    }
+
+    private static void ensureInitialized() {
+        boolean computeCaps;
+        if (initialized) {
+            return;
+        }
+        initialized = true;
+        GLCapabilities caps = GL.getCapabilities();
+        boolean bl = computeCaps = caps.OpenGL43 || caps.GL_ARB_compute_shader && caps.GL_ARB_shader_storage_buffer_object;
+        if (!computeCaps) {
+            LOGGER.warn("[grassiergrass] compute unavailable; static grass under Iris shaderpacks");
+            return;
+        }
+        int shader = GL20C.glCreateShader((int)37305);
+        GL20C.glShaderSource((int)shader, (CharSequence)COMPUTE_SOURCE);
+        GL20C.glCompileShader((int)shader);
+        if (GL20C.glGetShaderi((int)shader, (int)35713) == 0) {
+            LOGGER.error("[grassiergrass] compute shader compile failed: {}", (Object)GL20C.glGetShaderInfoLog((int)shader));
+            GL20C.glDeleteShader((int)shader);
+            return;
+        }
+        int linkedProgram = GL20C.glCreateProgram();
+        GL20C.glAttachShader((int)linkedProgram, (int)shader);
+        GL20C.glLinkProgram((int)linkedProgram);
+        GL20C.glDeleteShader((int)shader);
+        if (GL20C.glGetProgrami((int)linkedProgram, (int)35714) == 0) {
+            LOGGER.error("[grassiergrass] compute program link failed: {}", (Object)GL20C.glGetProgramInfoLog((int)linkedProgram));
+            GL20C.glDeleteProgram((int)linkedProgram);
+            return;
+        }
+        program = linkedProgram;
+        locVertexCount = GrassComputeAnimator.uniform("uVertexCount");
+        locIsPlant = GrassComputeAnimator.uniform("uIsPlant");
+        locNoiseScale = GrassComputeAnimator.uniform("uNoiseScale");
+        locNoiseScrollOffset = GrassComputeAnimator.uniform("uNoiseScrollOffset");
+        locWindStrength = GrassComputeAnimator.uniform("uWindStrength");
+        locWindDirection = GrassComputeAnimator.uniform("uWindDirection");
+        locWindFlutterPhase = GrassComputeAnimator.uniform("uWindFlutterPhase");
+        locPlantBobPhase = GrassComputeAnimator.uniform("uPlantBobPhase");
+        locBladeVisualHeight = GrassComputeAnimator.uniform("uBladeVisualHeight");
+        locBladeWidth = GrassComputeAnimator.uniform("uBladeWidth");
+        locHeightVariation = GrassComputeAnimator.uniform("uHeightVariation");
+        locStyleVanilla = GrassComputeAnimator.uniform("uStyleVanilla");
+        locTrailParams = GrassComputeAnimator.uniform("uTrailParams");
+        locTrailNoiseOrigin = GrassComputeAnimator.uniform("uTrailNoiseOrigin");
+        locModelOffset = GrassComputeAnimator.uniform("uModelOffset");
+        locInStrideU = GrassComputeAnimator.uniform("uInStrideU");
+        locInPosU = GrassComputeAnimator.uniform("uInPosU");
+        locInUv0U = GrassComputeAnimator.uniform("uInUv0U");
+        locInUv2U = GrassComputeAnimator.uniform("uInUv2U");
+        locInColorU = GrassComputeAnimator.uniform("uInColorU");
+        locOutStrideB = GrassComputeAnimator.uniform("uOutStrideB");
+        locOutPosB = GrassComputeAnimator.uniform("uOutPosB");
+        locOutNormalB = GrassComputeAnimator.uniform("uOutNormalB");
+        locNoiseTexture = GrassComputeAnimator.uniform("uNoiseTexture");
+        locTrailTexture = GrassComputeAnimator.uniform("uTrailTexture");
+        LOGGER.info("[grassiergrass] GPU compute Iris grass animation ready");
+    }
+
+    private static int uniform(String name) {
+        return GL20C.glGetUniformLocation((int)program, (CharSequence)name);
+    }
+
+    record Layout(int inStrideU, int inPosU, int inUv0U, int inUv2U, int inColorU, int outStrideB, int outPosB, int outNormalB) {
+    }
+}
+

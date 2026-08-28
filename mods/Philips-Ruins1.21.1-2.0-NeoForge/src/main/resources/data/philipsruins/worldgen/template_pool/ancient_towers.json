@@ -1,0 +1,87 @@
+{
+  "name": "philipsruins:ancient_towers",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_0",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_1",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_2",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_3",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_4",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_5",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_6",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_7",
+        "processors": "philipsruins:ruins_processor"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "philipsruins:ancient_tower_8",
+        "processors": "philipsruins:ruins_processor"
+      }
+    }
+  ]
+}

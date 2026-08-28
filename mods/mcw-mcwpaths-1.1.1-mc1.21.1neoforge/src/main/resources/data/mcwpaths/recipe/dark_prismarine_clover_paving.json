@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:dark_prismarine"
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwpaths:dark_prismarine_clover_paving"
+  },
+  "group" : "paths"
+}

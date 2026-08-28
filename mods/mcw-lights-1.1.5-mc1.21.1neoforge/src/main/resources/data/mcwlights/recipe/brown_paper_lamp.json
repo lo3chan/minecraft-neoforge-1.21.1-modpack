@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "group" : "paper_lamp",
+  "ingredients" : [ {
+    "item" : "mcwlights:white_paper_lamp"
+  }, {
+    "item" : "minecraft:brown_dye"
+  } ],
+  "result" : {
+    "count" : 1,
+    "id" : "mcwlights:brown_paper_lamp"
+  }
+}

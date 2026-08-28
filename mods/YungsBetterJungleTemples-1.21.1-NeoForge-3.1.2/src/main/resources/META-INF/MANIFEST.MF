@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: YungsBetterJungleTemples
+Specification-Vendor: YUNGNICKYOUNG
+Specification-Version: 1.21.1-NeoForge-3.1.2
+Implementation-Title: NeoForge
+Implementation-Version: 1.21.1-NeoForge-3.1.2
+Implementation-Vendor: YUNGNICKYOUNG
+Built-On-Minecraft: 1.21.1
+

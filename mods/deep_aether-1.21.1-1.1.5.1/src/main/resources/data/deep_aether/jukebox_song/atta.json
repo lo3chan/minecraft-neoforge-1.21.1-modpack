@@ -1,0 +1,8 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "jukebox_song.deep_aether.atta"
+  },
+  "length_in_seconds": 129.0,
+  "sound_event": "deep_aether:item.music_disc.atta"
+}

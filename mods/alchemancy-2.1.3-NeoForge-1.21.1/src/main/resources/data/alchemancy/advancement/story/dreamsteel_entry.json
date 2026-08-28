@@ -1,0 +1,28 @@
+{
+  "parent": "alchemancy:story/find_netherite",
+  "criteria": {
+    "apply_property": {
+      "conditions": {},
+      "trigger": "alchemancy:discover_property"
+    },
+    "has_netherite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:netherite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite"
+    ],
+    [
+      "apply_property"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

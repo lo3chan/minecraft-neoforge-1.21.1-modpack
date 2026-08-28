@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "alchemancy:paradox_pearl",
+    "alchemancy:void_pearl",
+    "alchemancy:microscopic_lens",
+    "alchemancy:macroscopic_lens",
+    "alchemancy:feral_blade"
+  ]
+}

@@ -1,0 +1,7 @@
+-cp
+C:\Users\hatir\AppData\Roaming\gdlauncher_carbon\data\instances\server pack\instance\mods\BetterRecipeBookExtended-neoforge-1.21.1-2.2.jar;C:\Users\hatir\AppData\Roaming\gdlauncher_carbon\data\libraries\net\neoforged\neoforge\21.1.248\neoforge-21.1.248-client.jar;C:\Users\hatir\AppData\Roaming\gdlauncher_carbon\data\libraries\net\minecraft\client\1.21.1\client-1.21.1-official.jar;C:\Users\hatir\AppData\Roaming\gdlauncher_carbon\data\libraries\org\spongepowered\mixin\0.8.7\mixin-0.8.7.jar
+-d
+f:/Documents/Zim/minecraft-neoforge-1.21.1-modpack/brbe_build
+-encoding
+UTF-8
+-proc:none

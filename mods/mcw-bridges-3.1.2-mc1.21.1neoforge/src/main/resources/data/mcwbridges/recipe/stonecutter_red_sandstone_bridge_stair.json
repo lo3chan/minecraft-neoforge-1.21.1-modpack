@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:red_sandstone"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwbridges:red_sandstone_bridge_stair"
+  },
+  "group" : "stonecutting"
+}

@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "LGPL-3.0"
+issueTrackerURL = "https://github.com/RazorDevs/AeroBlender/issues"
+
+[[mods]]
+modId = "aeroblender"
+version = "1.0.0"
+displayName = "AeroBlender"
+updateJSONURL = "https://github.com/RazorDevs/AeroBlender//raw/1.21-1.0/update.json"
+displayURL = "https://modrinth.com/mod/aeroblender"
+logoFile = "AeroBlender.png"
+credits = "Credits goes to Glitchfiend Mods."
+authors = "razordevs"
+description = '''AeroBlender is a library mod for adding biomes in a simple and compatible manner with Aether's biome/terrain system, using Terrablender.'''
+
+[[dependencies.aeroblender]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.72,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.aeroblender]]
+modId = "minecraft"
+type = "required"
+versionRange="[1.21.1,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.aeroblender]]
+modId = "terrablender"
+type = "required"
+versionRange="[1.21.1-4.1.0.0,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.aeroblender]]
+modId = "aether"
+type = "required"
+versionRange="[1.5.1-beta.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "aeroblender.mixins.json"

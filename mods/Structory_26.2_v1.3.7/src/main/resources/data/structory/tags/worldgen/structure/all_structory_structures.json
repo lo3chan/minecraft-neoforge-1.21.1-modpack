@@ -1,0 +1,19 @@
+{
+    "values": [
+        "structory:abandoned_camp",
+        "structory:abandoned_chapel",
+        "structory:boat",
+        "structory:dense_forest_ruin",
+        "structory:firetower",
+        "structory:graveyard",
+        "structory:jungle_ruin",
+        "structory:northern_ruin",
+        "structory:old_manor",
+        "structory:outcast_villager_desert",
+        "structory:outcast_villager_grassy",
+        "structory:ruin_grassy",
+        "structory:swamp_ruin",
+        "structory:taiga_ruin_surface",
+        "structory:taiga_ruin_underground"
+    ]
+}

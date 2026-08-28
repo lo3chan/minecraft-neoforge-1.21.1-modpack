@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:prismarine_bricks"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:prismarine_brick_upper_steep_roof"
+  },
+  "group" : "roofs"
+}

@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "steep",
+  "pattern" : [ " W", "WW", "WS" ],
+  "key" : {
+    "W" : {
+      "item" : "minecraft:spruce_log"
+    },
+    "S" : {
+      "item" : "minecraft:stick"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwroofs:spruce_steep_roof"
+  }
+}

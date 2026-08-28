@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:wet",
+    "alchemancy:frosted"
+  ],
+
+  "result": [
+    "alchemancy:frosted"
+  ]
+}

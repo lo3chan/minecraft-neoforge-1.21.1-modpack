@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: SparseStructures
+Specification-Vendor: MaxenceDC
+Specification-Version: 3.0
+Implementation-Title: neoforge
+Implementation-Version: 3.0
+Implementation-Vendor: MaxenceDC
+Built-On-Minecraft: 1.21.1
+

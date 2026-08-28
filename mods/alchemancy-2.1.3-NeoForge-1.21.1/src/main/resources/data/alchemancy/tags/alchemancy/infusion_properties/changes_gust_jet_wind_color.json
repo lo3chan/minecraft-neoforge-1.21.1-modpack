@@ -1,0 +1,24 @@
+{
+  "values": [
+    "alchemancy:burning",
+    "alchemancy:wet",
+    "alchemancy:frosted",
+    "alchemancy:shocking",
+    "alchemancy:flammable",
+    "alchemancy:bouncy",
+    "alchemancy:sluggish",
+    "alchemancy:poisonous",
+    "alchemancy:decaying",
+    "alchemancy:tipsy",
+    "alchemancy:blinding",
+    "alchemancy:glowing_aura",
+    "alchemancy:grappling",
+    "alchemancy:spiking",
+    "alchemancy:energy_sapper",
+    "alchemancy:flame_emperor",
+    "alchemancy:voidtouch",
+    "alchemancy:infected",
+    "alchemancy:dripping",
+    "alchemancy:seeded"
+  ]
+}

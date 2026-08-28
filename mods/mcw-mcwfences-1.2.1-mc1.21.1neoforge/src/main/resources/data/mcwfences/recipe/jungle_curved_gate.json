@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "curved_gate",
+  "pattern" : [ "B A", "BAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:jungle_planks"
+    },
+    "B" : {
+      "item" : "minecraft:jungle_log"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwfences:jungle_curved_gate"
+  }
+}

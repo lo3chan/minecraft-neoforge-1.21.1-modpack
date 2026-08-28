@@ -1,0 +1,16 @@
+
+{
+  "type": "alchemancy:forged_property",
+
+  "infusables": [
+    {
+      "item": "alchemancy:alchemical_extract"
+    }
+  ],
+
+  "properties": [
+    "alchemancy:decaying"
+  ],
+
+  "result": "alchemancy:corrosive"
+}

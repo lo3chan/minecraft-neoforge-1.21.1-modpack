@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/MarkusBordihn/BOs-Mods-Optimizer/issues"
+
+[[mods]]
+modId = "mods_optimizer"
+version = "${file.jarVersion}"
+displayName = "Mods Optimizer"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/mods-optimizer/"
+logoFile = "logo.png"
+credits = ""
+authors = "Markus Bordihn"
+description = '''Automatic and realtime server bundling (one mod pack for client/server) and mod clean up for better performance and less crashes.'''
+displayTest = "NONE"
+
+[[dependencies.mods_optimizer]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.mods_optimizer]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"

@@ -1,0 +1,20 @@
+{
+  "type" : "minecraft:crafting_shaped",
+    "group" : "garden_lights",
+  "pattern" : [ " N ", " L ", " I " ],
+  "key" : {
+    "N" : {
+      "item" : "minecraft:iron_nugget"
+    },
+    "L" : {
+      "item" : "minecraft:glowstone_dust"
+    },
+    "I" : {
+      "item" : "minecraft:iron_ingot"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwlights:thin_garden_light"
+  }
+}

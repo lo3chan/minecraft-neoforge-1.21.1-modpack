@@ -1,0 +1,20 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "classic",
+  "pattern" : [ "L", "F", "S" ],
+  "key" : {
+    "L" : {
+      "item" : "minecraft:soul_lantern"
+    },
+    "F" : {
+      "tag" : "minecraft:wooden_fences"
+    },
+    "S" : {
+      "item" : "minecraft:stone_brick_wall"
+    }
+  },
+  "result" : {
+    "count" : 3,
+    "id" : "mcwlights:soul_classic_street_lamp"
+  }
+}

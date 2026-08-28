@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/Vazkii/AkashicTome"
+license="Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License"
+
+[[mods]]
+modId="akashictome"
+displayName="Akashic Tome"
+version="${file.jarVersion}"
+authors="Vazkii, MoreThanHidden, Uraneptus"
+description='''The book to end all books.'''
+
+[[dependencies.akashictome]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.akashictome]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21,)"
+    ordering="NONE"
+    side="BOTH"

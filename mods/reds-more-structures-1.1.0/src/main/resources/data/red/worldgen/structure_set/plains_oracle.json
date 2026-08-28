@@ -1,0 +1,20 @@
+{
+  "structures": [
+    {
+      "structure": "red:plains_oracle",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "exclusion_zone": {
+      "other_set": "minecraft:villages",
+      "chunk_count": 4
+    },
+    "salt": 12387312,
+    "separation": 18,
+    "spacing": 36,
+    "frequency_reduction_method": "legacy_type_1",
+    "frequency": 0.4
+  }
+}

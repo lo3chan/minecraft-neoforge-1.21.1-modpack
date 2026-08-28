@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "windows_pane",
+  "pattern" : [ "AAA", "ABA", "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "mcwwindows:window_base"
+    },
+    "B" : {
+      "item" : "minecraft:stripped_oak_log"
+    }
+  },
+  "result" : {
+    "count" : 8,
+    "id" : "mcwwindows:stripped_oak_pane_window"
+  }
+}

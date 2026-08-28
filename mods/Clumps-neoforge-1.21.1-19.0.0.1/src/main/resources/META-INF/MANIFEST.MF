@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: Clumps
+Specification-Vendor: Jared
+Specification-Version: 19.0.0.1
+Implementation-Title: neoforge
+Implementation-Version: 19.0.0.1
+Implementation-Vendor: Jared
+Built-On-Java: 21.0.3+9-LTS (Eclipse Adoptium)
+Build-On-Minecraft: 1.21.1
+

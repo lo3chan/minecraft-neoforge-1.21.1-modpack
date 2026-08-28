@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:phase_step.flavor"
+  },
+  "functions": [
+    "while_equipped"
+  ],
+  "innate": [
+    "alchemancy:phasing_ring"
+  ]
+}

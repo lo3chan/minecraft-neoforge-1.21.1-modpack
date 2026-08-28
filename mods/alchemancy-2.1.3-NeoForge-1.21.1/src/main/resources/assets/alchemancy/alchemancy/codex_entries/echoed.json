@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:echoed.flavor"
+  },
+  "functions": [
+    "on_attack",
+    "modify_damage",
+    "on_crit",
+    "activate"
+  ]
+}

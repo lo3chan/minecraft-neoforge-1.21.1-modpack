@@ -1,0 +1,3 @@
+"f:\\Documents\\Zim\\minecraft-neoforge-1.21.1-modpack\\sources\\BetterRecipeBookExtended-neoforge-1.21.1-2.2\\com\\alonie\\recipebookispain_extended\\mixin\\widget\\RecipeBookWidgetMixin.java"
+"f:\\Documents\\Zim\\minecraft-neoforge-1.21.1-modpack\\sources\\BetterRecipeBookExtended-neoforge-1.21.1-2.2\\com\\alonie\\recipebookispain_extended\\mixin\\groups\\ClientRecipeBookMixin.java"
+"f:\\Documents\\Zim\\minecraft-neoforge-1.21.1-modpack\\sources\\BetterRecipeBookExtended-neoforge-1.21.1-2.2\\com\\alonie\\brbe\\mixins\\search\\RecipeBookComponentMixin.java"

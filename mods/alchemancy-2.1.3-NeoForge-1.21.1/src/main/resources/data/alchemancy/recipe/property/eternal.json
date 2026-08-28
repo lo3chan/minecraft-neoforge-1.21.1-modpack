@@ -1,0 +1,13 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:voidborn",
+    "alchemancy:fire_resistant",
+    "alchemancy:ancient",
+    "alchemancy:insulated",
+    "alchemancy:smooth"
+  ],
+
+  "result": "alchemancy:eternal"
+}

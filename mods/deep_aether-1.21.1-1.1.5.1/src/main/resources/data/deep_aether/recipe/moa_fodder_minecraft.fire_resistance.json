@@ -1,0 +1,35 @@
+{
+  "type": "deep_aether:combining",
+  "category": "combinable_fodder",
+  "experience": 0.1,
+  "ingredients": [
+    {
+      "item": "aether:golden_amber"
+    },
+    {
+      "item": "deep_aether:frozen_goldenleaf_berries"
+    },
+    {
+      "item": "aether:icestone"
+    }
+  ],
+  "output": {
+    "components": {
+      "deep_aether:moa_fodder": {
+        "effect": {
+          "amplifier": 1,
+          "duration": 14400,
+          "id": "minecraft:fire_resistance",
+          "neoforge:cures": [
+            "protected_by_totem",
+            "milk"
+          ],
+          "show_icon": true
+        }
+      }
+    },
+    "count": 1,
+    "id": "deep_aether:moa_fodder"
+  },
+  "processing_time": 100
+}

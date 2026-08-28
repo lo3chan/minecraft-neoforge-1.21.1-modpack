@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:overgrowth",
+    "alchemancy:shearing"
+  ],
+
+  "result": [
+    "alchemancy:shearing"
+  ]
+}

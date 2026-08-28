@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:prismarine"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfences:prismarine_railing_gate"
+  },
+  "group" : "fences"
+}

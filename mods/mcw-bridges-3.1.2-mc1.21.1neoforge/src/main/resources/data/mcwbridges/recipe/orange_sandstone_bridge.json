@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "stone_bridges",
+  "pattern" : [ "F F", "WWW" ],
+  "key" : {
+    "F" : {
+      "item" : "minecraft:red_sandstone_wall"
+    },
+    "W" : {
+      "item" : "minecraft:red_sandstone_slab"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwbridges:orange_sandstone_bridge"
+  }
+}

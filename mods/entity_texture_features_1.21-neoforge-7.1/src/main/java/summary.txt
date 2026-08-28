@@ -1,0 +1,9 @@
+Summary for C:\Users\hatir\AppData\Roaming\gdlauncher_carbon\data\instances\server pack\instance\mods\entity_texture_features_1.21-neoforge-7.1.jar
+Decompiled with CFR 0.152
+
+
+traben.entity_texture_features.features.texture_handlers.ETFTextureVariator
+----------------------------
+
+logDebugMessageIfNeeded(traben.entity_texture_features.features.texture_handlers.ETFTexture traben.entity_texture_features.features.state.ETFEntityRenderState )
+  Unable to fully structure code

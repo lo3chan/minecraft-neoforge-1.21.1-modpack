@@ -1,0 +1,6 @@
+// 1.21.1	2025-10-08T15:08:54.8151372	Tags for minecraft:worldgen/biome mod id deep_aether
+250743eee6bebf7e46b0e2d111780bdc0501a345 data/aether/tags/worldgen/biome/is_aether.json
+a885ae35630376da925dfa188dda48b9b2c759f3 data/deep_aether/tags/worldgen/biome/can_quail_spawn.json
+2a433b200af847fa9c2b1760720b521d9c31c9db data/deep_aether/tags/worldgen/biome/has_brass_dungeon.json
+539075619e0276f1c2c4cd0072eb22b2032af9ca data/deep_aether/tags/worldgen/biome/is_cloud.json
+83d9bc464ebf88ce1d020807f74a438ccd52fdda data/deep_aether/tags/worldgen/biome/is_not_swamp.json

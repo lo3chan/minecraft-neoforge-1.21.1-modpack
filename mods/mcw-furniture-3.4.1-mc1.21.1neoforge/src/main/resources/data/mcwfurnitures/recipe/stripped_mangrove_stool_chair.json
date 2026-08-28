@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "stool_chair",
+  "pattern" : [ "A", "A", "B" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:stripped_mangrove_log"
+    },
+    "B" : {
+      "item" : "minecraft:mangrove_fence"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwfurnitures:stripped_mangrove_stool_chair"
+  }
+}

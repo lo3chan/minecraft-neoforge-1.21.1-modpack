@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "group" : "window_items",
+  "ingredients" : [ {
+    "item" : "mcwwindows:window_half_bar_base"
+  }, {
+    "item" : "mcwwindows:window_half_bar_base"
+  } ],
+  "result" : {
+    "count" : 2,
+    "id" : "mcwwindows:window_centre_bar_base"
+  }
+}

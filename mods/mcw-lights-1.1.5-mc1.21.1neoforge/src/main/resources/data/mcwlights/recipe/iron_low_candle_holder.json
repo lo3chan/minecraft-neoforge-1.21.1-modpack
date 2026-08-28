@@ -1,0 +1,20 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "low_candle_holder",
+  "pattern" : [ " C ", " B ", " A " ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:iron_ingot"
+    },
+    "B" : {
+      "item" : "minecraft:honeycomb"
+    },
+    "C" : {
+      "item" : "minecraft:string"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwlights:iron_low_candle_holder"
+  }
+}

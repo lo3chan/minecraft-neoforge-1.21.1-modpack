@@ -1,0 +1,16 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ " F ", "WFF", " W " ],
+  "key" : {
+    "F" : {
+      "item" : "minecraft:iron_nugget"
+    },
+    "W" : {
+      "item" : "minecraft:iron_ingot"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwbridges:pliers"
+  }
+}

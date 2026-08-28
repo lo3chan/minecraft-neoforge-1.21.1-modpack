@@ -1,0 +1,78 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+# issueTrackerURL = ""
+license = "LGPL-3.0"
+
+[[mods]]
+modId = "limlib"
+version = "13.0.0"
+displayName = "Liminal Library"
+# updateJSONURL = "https://change.me.example.invalid/updates.json"
+# displayURL = "https://change.me.to.your.mods.homepage.example.invalid/"
+credits = ""
+authors = "LudoCrypt, Waterpicker"
+#enumExtensions = "META-INF/limlib.enumextensions.json"
+description = '''A library for liminal mods'''
+logoFile = "assets/limlib/icon.png"
+
+[[mixins]]
+config = "limlib.mixins.json"
+
+[[mixins]]
+config = "limlib.neoforge.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-neoforge.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-iris.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-sable.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-sable-sodium.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-sodium.mixins.json"
+
+[[mixins]]
+config = "limlib.specialmodels-sodium-neoforge.mixins.json"
+
+[[dependencies.limlib]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.219,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.limlib]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1, 1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.limlib]]
+modId = "sable"
+type = "optional"
+versionRange = "[2.0.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.limlib]]
+modId = "sodium"
+type = "optional"
+versionRange = "[0.8.12,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.limlib]]
+modId = "iris"
+type = "optional"
+versionRange = "[1.8.14-beta.1,)"
+ordering = "NONE"
+side = "CLIENT"

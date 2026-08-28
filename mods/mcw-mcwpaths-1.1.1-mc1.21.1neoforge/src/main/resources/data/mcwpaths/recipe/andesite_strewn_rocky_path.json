@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:andesite"
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwpaths:andesite_strewn_rocky_path"
+  },
+  "group" : "paths"
+}

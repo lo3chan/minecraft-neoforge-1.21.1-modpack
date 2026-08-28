@@ -1,0 +1,36 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Api/issues"
+
+[[mods]]
+    modId="yungsapi"
+    version="1.21.1-NeoForge-5.1.8"
+    displayName="YUNG's API"
+    credits="Thanks so much to all my patrons!"
+    authors="YUNGNICKYOUNG"
+    description="API Library for YUNG's minecraft mods."
+    logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-api-neoforge"
+
+[modproperties.yungsapi]
+    catalogueImageIcon="catalogue_icon.png"
+    catalogueBackground="catalogue_background.png"
+
+[[dependencies.yungsapi]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+    ordering = "NONE"
+
+[[dependencies.yungsapi]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.0,)"
+    ordering = "NONE"
+
+[[mixins]]
+    config = "yungsapi.mixins.json"
+
+[[mixins]]
+    config = "yungsapi_neoforge.mixins.json"

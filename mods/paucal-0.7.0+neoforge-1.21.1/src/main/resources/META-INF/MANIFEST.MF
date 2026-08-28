@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Build-On-Minecraft: 0.7.0
+Implementation-Vendor: petra-kat
+Implementation-Title: Neoforge
+Timestampe: 1725231322755
+Specification-Version: 0.7.0+neoforge-1.21.1
+Implementation-Version: 0.7.0+neoforge-1.21.1
+Built-On-Java: 21.0.4+7-LTS Eclipse Adoptium
+Specification-Title: paucal
+Implementation-Timestamp: 2024-09-01T17:55:22+0000
+Specification-Vendor: petra-kat
+

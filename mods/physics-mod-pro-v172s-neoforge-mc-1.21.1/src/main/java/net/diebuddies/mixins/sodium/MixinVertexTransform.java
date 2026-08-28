@@ -1,0 +1,61 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.renderer.SpriteCoordinateExpander
+ *  org.joml.Vector2f
+ *  org.lwjgl.system.MemoryUtil
+ *  org.spongepowered.asm.mixin.Mixin
+ *  org.spongepowered.asm.mixin.Pseudo
+ *  org.spongepowered.asm.mixin.injection.At
+ *  org.spongepowered.asm.mixin.injection.Coerce
+ *  org.spongepowered.asm.mixin.injection.Inject
+ *  org.spongepowered.asm.mixin.injection.callback.CallbackInfo
+ */
+package net.diebuddies.mixins.sodium;
+
+import net.diebuddies.compat.Sodium;
+import net.diebuddies.physics.BlockEntityVertexConsumerProvider;
+import net.diebuddies.physics.Mesh;
+import net.diebuddies.physics.Model;
+import net.diebuddies.physics.PhysicsMod;
+import net.diebuddies.physics.StarterClient;
+import net.minecraft.client.renderer.SpriteCoordinateExpander;
+import org.joml.Vector2f;
+import org.lwjgl.system.MemoryUtil;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Coerce;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Pseudo
+@Mixin(value={SpriteCoordinateExpander.class}, priority=2010)
+public class MixinVertexTransform {
+    @Inject(at={@At(value="HEAD")}, method={"transform"}, remap=false)
+    private static void physicsmod$transformSprite(long ptr, int count, @Coerce Object format, float minU, float minV, float maxU, float maxV, CallbackInfo info) {
+        if (PhysicsMod.sodiumCatch && StarterClient.sodium) {
+            Model model = BlockEntityVertexConsumerProvider.currentConsumer.getModel();
+            if (model == null) {
+                return;
+            }
+            float textureWidth = maxU - minU;
+            float textureHeight = maxV - minV;
+            Mesh mesh = model.mesh;
+            int counter = 0;
+            long offsetUV = Sodium.getTextureElementOffset(format);
+            long stride = Sodium.getStride(format);
+            for (int i = mesh.sodiumUVOffset; i < mesh.uvs.size() && counter < count; ++i, ++counter) {
+                Vector2f uv = mesh.uvs.get(i);
+                float u = MemoryUtil.memGetFloat((long)(ptr + offsetUV + 0L));
+                float v = MemoryUtil.memGetFloat((long)(ptr + offsetUV + 4L));
+                uv.x = minU + textureWidth * u;
+                uv.y = minV + textureHeight * v;
+                ptr += stride;
+            }
+            mesh.sodiumUVOffset = mesh.uvs.size();
+        }
+    }
+}
+

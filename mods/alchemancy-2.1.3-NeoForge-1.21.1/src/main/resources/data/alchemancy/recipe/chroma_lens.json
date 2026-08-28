@@ -1,0 +1,22 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:scoping"
+  ],
+
+  "infusables": [
+    {
+      "tag": "c:dyes/white"
+    }
+  ],
+
+  "catalyst": {
+    "tag": "c:glass_panes/colorless"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "alchemancy:chroma_lens"
+  }
+}

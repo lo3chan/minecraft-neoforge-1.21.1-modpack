@@ -1,0 +1,40 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "com.aetherteam.cumulus",
+        "artifact": "cumulus_menus"
+      },
+      "version": {
+        "range": "[1.21.1-2.0.7-neoforge,)",
+        "artifactVersion": "1.21.1-2.0.7-neoforge"
+      },
+      "path": "META-INF/jarjar/cumulus_menus-1.21.1-2.0.7-neoforge.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "com.aetherteam.nitrogen",
+        "artifact": "nitrogen_internals"
+      },
+      "version": {
+        "range": "[1.21.1-1.1.25-neoforge,)",
+        "artifactVersion": "1.21.1-1.1.25-neoforge"
+      },
+      "path": "META-INF/jarjar/nitrogen_internals-1.21.1-1.1.25-neoforge.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "io.wispforest",
+        "artifact": "accessories-neoforge"
+      },
+      "version": {
+        "range": "[1.1.0-beta.48+1.21.1,)",
+        "artifactVersion": "1.1.0-beta.48+1.21.1"
+      },
+      "path": "META-INF/jarjar/accessories-neoforge-1.1.0-beta.48+1.21.1.jar",
+      "isObfuscated": false
+    }
+  ]
+}

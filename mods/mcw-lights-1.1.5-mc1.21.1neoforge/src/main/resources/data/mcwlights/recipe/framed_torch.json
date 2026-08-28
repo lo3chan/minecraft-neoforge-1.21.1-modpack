@@ -1,0 +1,24 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "special_torches",
+  "pattern" : [ "NCN", " S ", " N " ],
+  "key" : {
+    "N" : {
+      "item" : "minecraft:iron_nugget"
+    },
+    "C": [
+		{
+			"item": "minecraft:coal"
+		},
+		{
+			"item": "minecraft:charcoal"
+		}],
+    "S" : {
+      "item" : "minecraft:stick"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwlights:framed_torch"
+  }
+}

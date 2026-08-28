@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "type": "minecraft:ender_dragon"
+      }
+    }
+  ],
+  "item": "ends_delight:dragon_leg",
+  "type": "ends_delight:dragon_leg"
+}

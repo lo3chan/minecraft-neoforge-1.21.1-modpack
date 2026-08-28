@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "hexerei:belladonna_plant",
+    "hexerei:mandrake_plant",
+    "hexerei:yellow_dock_bush",
+    "hexerei:mugwort_bush",
+    "minecraft:cave_vines",
+    "minecraft:cave_vines_plant",
+    "minecraft:sweet_berry_bush",
+    "#minecraft:crops"
+
+  ]
+}

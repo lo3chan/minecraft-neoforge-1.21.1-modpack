@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+
+license="CC-BY-NC-ND-4.0"
+
+[[mods]]
+    modId="t_and_t"
+    version="1.13.11"
+    displayName="Towns and Towers"
+    authors="Kubek and Biban_Auriu, Cristelknight999"
+    displayURL="https://modrinth.com/mod/towns-and-towers"
+    logoFile= "pack.png"
+    description="Spice up your world with new villages, pillager outposts, and even new ships!"
+    displayTest="IGNORE_ALL_VERSION"
+
+[[dependencies.t_and_t]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.230,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.t_and_t]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.t_and_t]]
+    modId="cristellib"
+    type="required"
+    versionRange="[3.1.7,)"
+    ordering="NONE"
+    side="BOTH"

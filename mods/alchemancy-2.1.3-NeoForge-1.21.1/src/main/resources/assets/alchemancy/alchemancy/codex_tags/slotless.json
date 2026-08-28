@@ -1,0 +1,11 @@
+{
+  "name": {
+    "translate": "screen.infusion_codex.tag.slotless"
+  },
+
+  "entries": {
+    "values": [
+      "#alchemancy:slotless"
+    ]
+  }
+}

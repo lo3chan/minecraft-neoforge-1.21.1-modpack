@@ -1,0 +1,45 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.mojang.blaze3d.vertex.PoseStack
+ *  net.minecraft.client.gui.GuiGraphics
+ *  net.minecraft.network.chat.Component
+ */
+package mezz.jei.library.transfer;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import java.util.Collection;
+import mezz.jei.api.gui.ingredient.IRecipeSlotView;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.library.transfer.RecipeTransferErrorTooltip;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.network.chat.Component;
+
+public class RecipeTransferErrorMissingSlots
+extends RecipeTransferErrorTooltip {
+    private static final int HIGHLIGHT_COLOR = 0x66FF0000;
+    private final Collection<IRecipeSlotView> slots;
+
+    public RecipeTransferErrorMissingSlots(Component message, Collection<IRecipeSlotView> slots) {
+        super(message);
+        this.slots = slots;
+    }
+
+    @Override
+    public void showError(GuiGraphics guiGraphics, int mouseX, int mouseY, IRecipeSlotsView recipeSlotsView, int recipeX, int recipeY) {
+        PoseStack poseStack = guiGraphics.pose();
+        poseStack.pushPose();
+        poseStack.translate((float)recipeX, (float)recipeY, 0.0f);
+        for (IRecipeSlotView slot : this.slots) {
+            slot.drawHighlight(guiGraphics, 0x66FF0000);
+        }
+        poseStack.popPose();
+    }
+
+    @Override
+    public int getMissingCountHint() {
+        return this.slots.size();
+    }
+}
+

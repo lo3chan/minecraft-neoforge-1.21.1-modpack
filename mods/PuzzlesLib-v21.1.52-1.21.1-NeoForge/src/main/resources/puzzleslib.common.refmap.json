@@ -1,0 +1,64 @@
+{
+  "mappings": {
+    "fuzs/puzzleslib/mixin/AbstractMinecartMixin": {
+      "createMinecart": "Lnet/minecraft/class_1688;method_7523(Lnet/minecraft/class_3218;DDDLnet/minecraft/class_1688$class_1689;Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1688;"
+    },
+    "fuzs/puzzleslib/mixin/DataCommandsMixin": {
+      "<clinit>": "Lnet/minecraft/class_3164;<clinit>()V",
+      "Lnet/minecraft/server/commands/data/DataCommands;ALL_PROVIDERS:Ljava/util/List;": "Lnet/minecraft/class_3164;field_13790:Ljava/util/List;"
+    },
+    "fuzs/puzzleslib/mixin/EnchantCommandMixin": {
+      "register": "Lnet/minecraft/class_3048;method_13243(Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/class_7157;)V"
+    },
+    "fuzs/puzzleslib/mixin/client/ClientSuggestionProviderMixin": {
+      "getSelectedEntities": "Lnet/minecraft/class_637;method_9269()Ljava/util/Collection;"
+    },
+    "fuzs/puzzleslib/mixin/client/EditBoxMixin": {
+      "deleteText(I)V": "Lnet/minecraft/class_342;method_16873(I)V",
+      "getWordPosition(IIZ)I": "Lnet/minecraft/class_342;method_1864(IIZ)I",
+      "keyPressed": "Lnet/minecraft/class_342;method_25404(III)Z",
+      "onClick": "Lnet/minecraft/class_342;method_25348(DD)V"
+    },
+    "fuzs/puzzleslib/mixin/client/ModelBakeryMixin": {
+      "<init>": "Lnet/minecraft/class_1088;<init>(Lnet/minecraft/class_324;Lnet/minecraft/class_3695;Ljava/util/Map;Ljava/util/Map;)V"
+    },
+    "fuzs/puzzleslib/mixin/server/DedicatedServerSettingsMixin": {
+      "<init>": "Lnet/minecraft/class_3807;<init>(Ljava/nio/file/Path;)V"
+    },
+    "fuzs/puzzleslib/mixin/server/EulaMixin": {
+      "readFile": "Lnet/minecraft/class_2981;method_12867()Z"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/puzzleslib/mixin/AbstractMinecartMixin": {
+        "createMinecart": "Lnet/minecraft/class_1688;method_7523(Lnet/minecraft/class_3218;DDDLnet/minecraft/class_1688$class_1689;Lnet/minecraft/class_1799;Lnet/minecraft/class_1657;)Lnet/minecraft/class_1688;"
+      },
+      "fuzs/puzzleslib/mixin/DataCommandsMixin": {
+        "<clinit>": "Lnet/minecraft/class_3164;<clinit>()V",
+        "Lnet/minecraft/server/commands/data/DataCommands;ALL_PROVIDERS:Ljava/util/List;": "Lnet/minecraft/class_3164;field_13790:Ljava/util/List;"
+      },
+      "fuzs/puzzleslib/mixin/EnchantCommandMixin": {
+        "register": "Lnet/minecraft/class_3048;method_13243(Lcom/mojang/brigadier/CommandDispatcher;Lnet/minecraft/class_7157;)V"
+      },
+      "fuzs/puzzleslib/mixin/client/ClientSuggestionProviderMixin": {
+        "getSelectedEntities": "Lnet/minecraft/class_637;method_9269()Ljava/util/Collection;"
+      },
+      "fuzs/puzzleslib/mixin/client/EditBoxMixin": {
+        "deleteText(I)V": "Lnet/minecraft/class_342;method_16873(I)V",
+        "getWordPosition(IIZ)I": "Lnet/minecraft/class_342;method_1864(IIZ)I",
+        "keyPressed": "Lnet/minecraft/class_342;method_25404(III)Z",
+        "onClick": "Lnet/minecraft/class_342;method_25348(DD)V"
+      },
+      "fuzs/puzzleslib/mixin/client/ModelBakeryMixin": {
+        "<init>": "Lnet/minecraft/class_1088;<init>(Lnet/minecraft/class_324;Lnet/minecraft/class_3695;Ljava/util/Map;Ljava/util/Map;)V"
+      },
+      "fuzs/puzzleslib/mixin/server/DedicatedServerSettingsMixin": {
+        "<init>": "Lnet/minecraft/class_3807;<init>(Ljava/nio/file/Path;)V"
+      },
+      "fuzs/puzzleslib/mixin/server/EulaMixin": {
+        "readFile": "Lnet/minecraft/class_2981;method_12867()Z"
+      }
+    }
+  }
+}

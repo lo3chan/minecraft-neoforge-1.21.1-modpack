@@ -1,0 +1,9 @@
+{
+  "config.deeper_oceans.title": "Deeper Oceans Config",
+  "config.deeper_oceans.option.depth_multiplier": "Depth Multiplier",
+  "config.deeper_oceans.option.depth_multiplier.tooltip": "How much deeper the oceans should be relative to vanilla.",
+  "config.deeper_oceans.option.monument_offset": "Monument Offset",
+  "config.deeper_oceans.option.monument_offset.tooltip": "How much vanilla Ocean Monuments should be offset to compensate for deeper oceans.",
+  "config.deeper_oceans.option.disable_deep_ocean_trial_chambers": "Disable Deep Ocean Trial Chambers",
+  "config.deeper_oceans.option.disable_deep_ocean_trial_chambers.tooltip": "Disables Trial Chamber spawning in Deep Ocean biomes."
+}

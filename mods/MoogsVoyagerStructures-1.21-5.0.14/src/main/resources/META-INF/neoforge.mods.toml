@@ -1,0 +1,14 @@
+
+modLoader = 'javafml'
+loaderVersion = '[1,)'
+license = 'GNU Lesser General Public License v3.0'
+showAsResourcePack = false
+mods = [
+	{ modId = 'mvs', version = '5.0.14', displayName = "MoogsVoyagerStructures", description = '160+ structures made with vanilla blocks and entities bringing life to your world! Discover loot, enemies, & villagers along the way!', logoFile = 'assets/mvs/icon.png', credits = 'Built by Phantax', authors = 'FinnDog', displayURL = 'https://www.curseforge.com/minecraft/mc-mods/moogs-voyager-structures' },
+]
+[[dependencies.mvs]]
+modId = "moogs_structures"
+mandatory = true
+versionRange = "[1.0.0,)"
+ordering = "NONE"
+side = "BOTH"

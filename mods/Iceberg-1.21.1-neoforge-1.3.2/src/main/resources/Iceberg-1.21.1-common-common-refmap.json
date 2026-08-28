@@ -1,0 +1,156 @@
+{
+  "mappings": {
+    "com/anthonyhilyard/iceberg/mixin/ClientPacketListenerMixin": {
+      "Lnet/minecraft/world/item/ItemStack;shrink(I)V": "Lnet/minecraft/class_1799;method_7934(I)V",
+      "handleTakeItemEntity": "Lnet/minecraft/class_634;method_11150(Lnet/minecraft/class_2775;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/ClientTextTooltipMixin": {
+      "getHeight": "Lnet/minecraft/class_5683;method_32661()I",
+      "getWidth": "Lnet/minecraft/class_5683;method_32664(Lnet/minecraft/class_327;)I",
+      "renderText": "Lnet/minecraft/class_5683;method_32665(Lnet/minecraft/class_327;IILorg/joml/Matrix4f;Lnet/minecraft/class_4597$class_4598;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/GuiGraphicsInvoker": {
+      "renderTooltipInternal": "method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/GuiGraphicsMixin": {
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;": "Lnet/minecraft/class_8000;method_47944(IIIIII)Lorg/joml/Vector2ic;",
+      "renderTooltipInternal": "Lnet/minecraft/class_332;method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/GuiMixin": {
+      "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/ItemMixin": {
+      "getPlayerPOVHitResult": "Lnet/minecraft/class_1792;method_7872(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_3959$class_242;)Lnet/minecraft/class_3965;"
+    },
+    "com/anthonyhilyard/iceberg/mixin/LivingEntityMixin": {
+      "onItemPickup": "Lnet/minecraft/class_1309;method_29499(Lnet/minecraft/class_1542;)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/MinecraftMixin": {
+      "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15405(Ljava/lang/String;)V",
+      "runTick": "Lnet/minecraft/class_310;method_1523(Z)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/PlayerAdvancementsMixin": {
+      "award": "Lnet/minecraft/class_2985;method_12878(Lnet/minecraft/class_8779;Ljava/lang/String;)Z"
+    },
+    "com/anthonyhilyard/iceberg/mixin/ScreenMixin": {
+      "getTooltipFromItem": "Lnet/minecraft/class_437;method_25408(Lnet/minecraft/class_310;Lnet/minecraft/class_1799;)Ljava/util/List;"
+    },
+    "com/anthonyhilyard/iceberg/mixin/TextColorMixin": {
+      "<init>(I)V": "Lnet/minecraft/class_5251;<init>(I)V",
+      "<init>(ILjava/lang/String;)V": "Lnet/minecraft/class_5251;<init>(ILjava/lang/String;)V",
+      "parseColor": "Lnet/minecraft/class_5251;method_27719(Ljava/lang/String;)Lcom/mojang/serialization/DataResult;"
+    },
+    "com/anthonyhilyard/iceberg/mixin/TooltipRenderUtilMixin": {
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderHorizontalLine(Lnet/minecraft/client/gui/GuiGraphics;IIIII)V": "Lnet/minecraft/class_8002;method_47951(Lnet/minecraft/class_332;IIIII)V",
+      "renderFrameGradient": "Lnet/minecraft/class_8002;method_47948(Lnet/minecraft/class_332;IIIIIII)V",
+      "renderHorizontalLine": "Lnet/minecraft/class_8002;method_47951(Lnet/minecraft/class_332;IIIII)V",
+      "renderRectangle": "Lnet/minecraft/class_8002;method_47950(Lnet/minecraft/class_332;IIIIII)V",
+      "renderVerticalLine": "Lnet/minecraft/class_8002;method_47949(Lnet/minecraft/class_332;IIIII)V",
+      "renderVerticalLineGradient": "Lnet/minecraft/class_8002;method_47947(Lnet/minecraft/class_332;IIIIII)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelib/AzArmorModelMixin": {
+      "Lmod/azure/azurelib/rewrite/render/armor/AzArmorRendererPipeline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelib/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelib/rewrite/render/armor/AzArmorRendererPipeline;render(Lnet/minecraft/class_4587;Lmod/azure/azurelib/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+      "renderToBuffer": "Lmod/azure/azurelib/rewrite/render/armor/AzArmorModel;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelib/GeoArmorRendererMixin": {
+      "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelib/core/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lmod/azure/azurelib/core/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+      "renderToBuffer": "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelib/HumanoidArmorLayerMixin": {
+      "render": "Lnet/minecraft/class_970;method_17157(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;ILnet/minecraft/class_1309;FFFFFF)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelibarmor/AzArmorModelMixin": {
+      "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorRendererPipeline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelibarmor/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorRendererPipeline;render(Lnet/minecraft/class_4587;Lmod/azure/azurelibarmor/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+      "renderToBuffer": "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorModel;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelibarmor/GeoArmorRendererMixin": {
+      "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelibarmor/core/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lmod/azure/azurelibarmor/core/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+      "renderToBuffer": "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/azurelibarmor/HumanoidArmorLayerMixin": {
+      "render": "Lnet/minecraft/class_970;method_17157(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;ILnet/minecraft/class_1309;FFFFFF)V"
+    },
+    "com/anthonyhilyard/iceberg/mixin/geckolib/GeoArmorRendererMixin": {
+      "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+      "renderToBuffer": "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/anthonyhilyard/iceberg/mixin/ClientPacketListenerMixin": {
+        "Lnet/minecraft/world/item/ItemStack;shrink(I)V": "Lnet/minecraft/class_1799;method_7934(I)V",
+        "handleTakeItemEntity": "Lnet/minecraft/class_634;method_11150(Lnet/minecraft/class_2775;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/ClientTextTooltipMixin": {
+        "getHeight": "Lnet/minecraft/class_5683;method_32661()I",
+        "getWidth": "Lnet/minecraft/class_5683;method_32664(Lnet/minecraft/class_327;)I",
+        "renderText": "Lnet/minecraft/class_5683;method_32665(Lnet/minecraft/class_327;IILorg/joml/Matrix4f;Lnet/minecraft/class_4597$class_4598;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/GuiGraphicsInvoker": {
+        "renderTooltipInternal": "method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/GuiGraphicsMixin": {
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;": "Lnet/minecraft/class_8000;method_47944(IIIIII)Lorg/joml/Vector2ic;",
+        "renderTooltipInternal": "Lnet/minecraft/class_332;method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/GuiMixin": {
+        "render": "Lnet/minecraft/class_329;method_1753(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/ItemMixin": {
+        "getPlayerPOVHitResult": "Lnet/minecraft/class_1792;method_7872(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_3959$class_242;)Lnet/minecraft/class_3965;"
+      },
+      "com/anthonyhilyard/iceberg/mixin/LivingEntityMixin": {
+        "onItemPickup": "Lnet/minecraft/class_1309;method_29499(Lnet/minecraft/class_1542;)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/MinecraftMixin": {
+        "Lnet/minecraft/util/profiling/ProfilerFiller;popPush(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15405(Ljava/lang/String;)V",
+        "runTick": "Lnet/minecraft/class_310;method_1523(Z)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/PlayerAdvancementsMixin": {
+        "award": "Lnet/minecraft/class_2985;method_12878(Lnet/minecraft/class_8779;Ljava/lang/String;)Z"
+      },
+      "com/anthonyhilyard/iceberg/mixin/ScreenMixin": {
+        "getTooltipFromItem": "Lnet/minecraft/class_437;method_25408(Lnet/minecraft/class_310;Lnet/minecraft/class_1799;)Ljava/util/List;"
+      },
+      "com/anthonyhilyard/iceberg/mixin/TextColorMixin": {
+        "<init>(I)V": "Lnet/minecraft/class_5251;<init>(I)V",
+        "<init>(ILjava/lang/String;)V": "Lnet/minecraft/class_5251;<init>(ILjava/lang/String;)V",
+        "parseColor": "Lnet/minecraft/class_5251;method_27719(Ljava/lang/String;)Lcom/mojang/serialization/DataResult;"
+      },
+      "com/anthonyhilyard/iceberg/mixin/TooltipRenderUtilMixin": {
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderHorizontalLine(Lnet/minecraft/client/gui/GuiGraphics;IIIII)V": "Lnet/minecraft/class_8002;method_47951(Lnet/minecraft/class_332;IIIII)V",
+        "renderFrameGradient": "Lnet/minecraft/class_8002;method_47948(Lnet/minecraft/class_332;IIIIIII)V",
+        "renderHorizontalLine": "Lnet/minecraft/class_8002;method_47951(Lnet/minecraft/class_332;IIIII)V",
+        "renderRectangle": "Lnet/minecraft/class_8002;method_47950(Lnet/minecraft/class_332;IIIIII)V",
+        "renderVerticalLine": "Lnet/minecraft/class_8002;method_47949(Lnet/minecraft/class_332;IIIII)V",
+        "renderVerticalLineGradient": "Lnet/minecraft/class_8002;method_47947(Lnet/minecraft/class_332;IIIIII)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelib/AzArmorModelMixin": {
+        "Lmod/azure/azurelib/rewrite/render/armor/AzArmorRendererPipeline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelib/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelib/rewrite/render/armor/AzArmorRendererPipeline;render(Lnet/minecraft/class_4587;Lmod/azure/azurelib/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+        "renderToBuffer": "Lmod/azure/azurelib/rewrite/render/armor/AzArmorModel;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelib/GeoArmorRendererMixin": {
+        "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelib/core/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lmod/azure/azurelib/core/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+        "renderToBuffer": "Lmod/azure/azurelib/common/api/client/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelib/HumanoidArmorLayerMixin": {
+        "render": "Lnet/minecraft/class_970;method_17157(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;ILnet/minecraft/class_1309;FFFFFF)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelibarmor/AzArmorModelMixin": {
+        "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorRendererPipeline;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelibarmor/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorRendererPipeline;render(Lnet/minecraft/class_4587;Lmod/azure/azurelibarmor/rewrite/model/AzBakedModel;Ljava/lang/Object;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+        "renderToBuffer": "Lmod/azure/azurelibarmor/rewrite/render/armor/AzArmorModel;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelibarmor/GeoArmorRendererMixin": {
+        "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lmod/azure/azurelibarmor/core/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lmod/azure/azurelibarmor/core/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+        "renderToBuffer": "Lmod/azure/azurelibarmor/common/api/client/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/azurelibarmor/HumanoidArmorLayerMixin": {
+        "render": "Lnet/minecraft/class_970;method_17157(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;ILnet/minecraft/class_1309;FFFFFF)V"
+      },
+      "com/anthonyhilyard/iceberg/mixin/geckolib/GeoArmorRendererMixin": {
+        "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;defaultRender(Lcom/mojang/blaze3d/vertex/PoseStack;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/renderer/RenderType;Lcom/mojang/blaze3d/vertex/VertexConsumer;FFI)V": "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;defaultRender(Lnet/minecraft/class_4587;Lsoftware/bernie/geckolib/animatable/GeoAnimatable;Lnet/minecraft/class_4597;Lnet/minecraft/class_1921;Lnet/minecraft/class_4588;FFI)V",
+        "renderToBuffer": "Lsoftware/bernie/geckolib/renderer/GeoArmorRenderer;method_2828(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;III)V"
+      }
+    }
+  }
+}

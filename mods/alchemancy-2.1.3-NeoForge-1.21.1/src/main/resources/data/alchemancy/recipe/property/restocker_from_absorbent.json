@@ -1,0 +1,10 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:absorbent",
+    "alchemancy:compact"
+  ],
+
+  "result": "alchemancy:restocker"
+}

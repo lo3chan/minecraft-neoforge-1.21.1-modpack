@@ -1,0 +1,16 @@
+{
+  "type": "alchemancy:forged_item",
+
+  "properties": [
+    "alchemancy:sweet"
+  ],
+
+  "catalyst": {
+    "tag": "c:seeds"
+  },
+
+  "result": {
+    "count": 1,
+    "id": "minecraft:cocoa_beans"
+  }
+}

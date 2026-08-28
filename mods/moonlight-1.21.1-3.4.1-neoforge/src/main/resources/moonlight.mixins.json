@@ -1,0 +1,29 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.mehvahdjukaar.moonlight.core.mixins.platform",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ClientHooksMixin",
+    "ClientLanguagesMixin",
+    "ItemMixin",
+    "SelfCustomBakedModel",
+    "SelfCustomModelLoaderMixin",
+    "SelfExtraModelDataProvider",
+    "SelfModFluidRendererPropertiesMixin"
+  ],
+  "mixins": [
+    "BeeGoalMixin",
+    "ConditionHackMixin",
+    "ConfigTrackerMixin",
+    "ContextAwareReloadListenerAccessor",
+    "FireBlockMixin",
+    "HoldingPlayerMixin",
+    "MinecraftServerMixin",
+    "SelfEntitySpawnDataMixin",
+    "SelfModFlowingFluidMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

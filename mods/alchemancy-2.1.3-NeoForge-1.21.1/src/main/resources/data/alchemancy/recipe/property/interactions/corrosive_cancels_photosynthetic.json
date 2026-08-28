@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+  "properties": [
+    "alchemancy:corrosive",
+    "alchemancy:photosynthetic"
+  ],
+
+  "result": [
+    "alchemancy:corrosive"
+  ]
+}

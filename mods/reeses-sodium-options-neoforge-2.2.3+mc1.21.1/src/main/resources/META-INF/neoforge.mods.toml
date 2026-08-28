@@ -1,0 +1,51 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "MIT"
+
+[[mods]]
+modId = "reeses_sodium_options"
+
+version = "2.2.3+mc1.21.1"
+displayName = "Reese's Sodium Options"
+
+logoFile = "assets/reeses-sodium-options/icon.png" #optional
+
+authors = "FlashyReese"
+
+description = '''
+Replaces Sodium's Options Screen
+'''
+
+[[dependencies.reeses_sodium_options]]
+modId = "minecraft"
+type = "required"
+versionRange = "1.21.1"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.reeses_sodium_options]]
+modId = "sodium"
+type = "required"
+versionRange = "[0.8.12,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.reeses_sodium_options]]
+modId = "controlify"
+type = "optional"
+versionRange = "[3.0.0,)"
+ordering = "AFTER"
+side = "CLIENT"
+
+[[dependencies.reeses_sodium_options]]
+modId = "sodiumoptionsapi"
+type = "incompatible"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[mixins]]
+config = "reeses-sodium-options.mixins.json"
+
+[modproperties.reeses_sodium_options]
+"sodium:config_api_user" = "me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfigEntryPoint"

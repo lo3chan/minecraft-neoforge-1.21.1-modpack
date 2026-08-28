@@ -1,0 +1,10 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:swift.flavor"
+  },
+  "functions": [
+    "while_worn_leggings",
+    "while_held_mainhand",
+    "while_using"
+  ]
+}

@@ -1,0 +1,336 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.nbt.CollectionTag
+ *  net.minecraft.nbt.CompoundTag
+ *  net.minecraft.nbt.NumericTag
+ *  net.minecraft.nbt.Tag
+ *  org.jetbrains.annotations.NotNull
+ *  org.jetbrains.annotations.Nullable
+ */
+package traben.entity_texture_features.features.property_reading.properties.optifine_properties;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+import java.util.function.Function;
+import net.minecraft.nbt.CollectionTag;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NumericTag;
+import net.minecraft.nbt.Tag;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import traben.entity_texture_features.features.property_reading.properties.RandomProperty;
+import traben.entity_texture_features.features.property_reading.properties.generic_properties.SimpleIntegerArrayProperty;
+import traben.entity_texture_features.features.property_reading.properties.generic_properties.StringArrayOrRegexProperty;
+import traben.entity_texture_features.features.state.ETFEntityRenderState;
+import traben.entity_texture_features.utils.ETFUtils2;
+
+public class NBTProperty
+extends RandomProperty {
+    private final Map<String, NBTTester> NBT_MAP;
+    private boolean printAll = false;
+    private final String prefix;
+    protected static final CompoundTag INTENTIONAL_FAILURE = new CompoundTag();
+    private static Set<String> crashMessages = new HashSet<String>();
+    private boolean nullMessage = true;
+
+    protected NBTProperty(Properties properties, int propertyNum, String nbtPrefix) throws RandomProperty.RandomPropertyException {
+        this.prefix = nbtPrefix;
+        String keyPrefix = this.prefix + "." + propertyNum + ".";
+        this.NBT_MAP = new LinkedHashMap<String, NBTTester>();
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            String key = entry.getKey().toString();
+            if (key == null || !key.startsWith(keyPrefix)) continue;
+            String nbtName = key.replaceFirst(keyPrefix, "");
+            String instruction = entry.getValue().toString().trim().replace("print_raw:", "print:raw:");
+            if (!nbtName.isBlank() && !instruction.isBlank()) {
+                this.printAll = this.printAll || instruction.startsWith("print_all:");
+                this.NBT_MAP.put(nbtName, NBTTester.of(nbtName, instruction));
+                continue;
+            }
+            throw new RandomProperty.RandomPropertyException("NBT failed, as instruction or nbt name was blank: " + keyPrefix + nbtName + "=" + instruction);
+        }
+        if (this.NBT_MAP.isEmpty()) {
+            throw new RandomProperty.RandomPropertyException("NBT failed as the final testing map was empty");
+        }
+    }
+
+    public static NBTProperty getPropertyOrNull(Properties properties, int propertyNum) {
+        try {
+            return new NBTProperty(properties, propertyNum, "nbt");
+        }
+        catch (RandomProperty.RandomPropertyException e) {
+            return null;
+        }
+    }
+
+    private static boolean isStringValidInt(String string) {
+        try {
+            Integer.parseInt(string);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    @Nullable
+    protected CompoundTag getEntityNBT(ETFEntityRenderState entity) {
+        return entity.nbt();
+    }
+
+    @Override
+    protected boolean testEntityInternal(ETFEntityRenderState entity) {
+        CompoundTag entityNBT;
+        if (entity == null) {
+            if (this.printAll || this.nullMessage) {
+                this.nullMessage = false;
+                ETFUtils2.logError(this.prefix + " test failed reading null entity NBT: ");
+            }
+            return false;
+        }
+        try {
+            entityNBT = this.getEntityNBT(entity);
+        }
+        catch (Exception e) {
+            String crashMessage = e.getMessage();
+            if (this.printAll || !crashMessages.contains(crashMessage)) {
+                if (!this.printAll) {
+                    crashMessages.add(crashMessage);
+                }
+                ETFUtils2.logError(this.prefix + " test crashed reading entity NBT: " + crashMessage);
+                e.printStackTrace();
+            }
+            throw e;
+        }
+        if (entityNBT == INTENTIONAL_FAILURE) {
+            if (this.printAll) {
+                ETFUtils2.logMessage(this.prefix + " property [full] print:\n<NBT is missing>");
+            }
+            return false;
+        }
+        if (entityNBT == null || entityNBT.isEmpty()) {
+            if (this.printAll) {
+                ETFUtils2.logMessage(this.prefix + " property [full] print:\n<NBT is empty or missing>");
+            }
+            ETFUtils2.logError(this.prefix + " test failed, as could not read entity NBT");
+            return false;
+        }
+        if (this.printAll) {
+            ETFUtils2.logMessage(this.prefix + " property [full] print:\n" + this.formatNbtPretty(entityNBT));
+        }
+        return this.testAllNBTCases(entityNBT);
+    }
+
+    protected boolean testAllNBTCases(CompoundTag entityNBT) {
+        for (Map.Entry<String, NBTTester> nbtPropertyEntry : this.NBT_MAP.entrySet()) {
+            boolean doesTestPass;
+            NBTTester data = nbtPropertyEntry.getValue();
+            List<Tag> finalNBTElement = this.findNBTElements(entityNBT, nbtPropertyEntry.getKey());
+            if (finalNBTElement == null) {
+                doesTestPass = data.wantsBlank;
+            } else {
+                boolean found = false;
+                for (Tag nbt : finalNBTElement) {
+                    if (nbt != null && (found = data.tester.apply(nbt).booleanValue())) break;
+                }
+                doesTestPass = found;
+            }
+            if (data.print) {
+                String printString = finalNBTElement == null ? "<NBT component not found>" : finalNBTElement.stream().map(NBTProperty::getAsString).reduce("", (a, b) -> a + "\n" + b);
+                ETFUtils2.logMessage(this.prefix + " NBT property [single] print data: " + nbtPropertyEntry.getKey() + "=" + printString);
+                ETFUtils2.logMessage(this.prefix + " NBT property [single] print result: " + (data.inverts != doesTestPass));
+            }
+            if (data.inverts != doesTestPass) continue;
+            return false;
+        }
+        return true;
+    }
+
+    private static String getAsString(Tag nbt) {
+        return nbt.getAsString();
+    }
+
+    private static Number getAsNumber(NumericTag nbt) {
+        return nbt.getAsNumber();
+    }
+
+    public String formatNbtPretty(CompoundTag nbt) {
+        String input = NBTProperty.getAsString((Tag)nbt);
+        StringBuilder output = new StringBuilder();
+        int indent = 1;
+        boolean inString = false;
+        block7: for (int i = 0; i < input.length(); ++i) {
+            char c = input.charAt(i);
+            if (inString && c != '\"') {
+                output.append(c);
+                continue;
+            }
+            switch (c) {
+                case '[': 
+                case '{': {
+                    output.append(c).append('\n');
+                    output.append(" ".repeat(indent += 4));
+                    continue block7;
+                }
+                case ']': 
+                case '}': {
+                    output.append('\n').append(" ".repeat(indent -= 4)).append(c);
+                    continue block7;
+                }
+                case ',': {
+                    output.append(c).append('\n').append(" ".repeat(indent));
+                    continue block7;
+                }
+                case '\"': {
+                    inString = !inString;
+                    output.append(c);
+                    continue block7;
+                }
+                case ':': {
+                    output.append(c).append(" ");
+                    continue block7;
+                }
+                default: {
+                    output.append(c);
+                }
+            }
+        }
+        return output.toString().replaceAll("\\{\\s+}", "{}").replaceAll("\\[\\s+]", "[]");
+    }
+
+    @Nullable
+    private List<Tag> findNBTElements(CompoundTag entityNBT, String nbtIdentifier) {
+        String[] instructions = nbtIdentifier.split("\\.");
+        int index = 0;
+        return this.findByIteration((Tag)entityNBT, instructions, index);
+    }
+
+    @Nullable
+    private List<Tag> findByIteration(Tag element, String[] instructions, int index) {
+        if (index >= instructions.length || element == null) {
+            return null;
+        }
+        String instruction = instructions[index];
+        List<Tag> nextElements = null;
+        if (element instanceof CompoundTag) {
+            CompoundTag nbtCompound = (CompoundTag)element;
+            Tag single = nbtCompound.get(instruction);
+            if (single != null) {
+                boolean notFinalInstruction = index < instructions.length - 1;
+                nextElements = notFinalInstruction ? this.findByIteration(single, instructions, index + 1) : Collections.singletonList(single);
+            }
+        } else if (element instanceof CollectionTag) {
+            CollectionTag nbtList = (CollectionTag)element;
+            nextElements = this.handleListInstruction((CollectionTag<Tag>)nbtList, instructions, index);
+        }
+        if (nextElements == null || nextElements.isEmpty()) {
+            return null;
+        }
+        return nextElements;
+    }
+
+    @Nullable
+    private List<Tag> handleListInstruction(CollectionTag<Tag> nbtList, String[] instructions, int index) {
+        boolean notFinalInstruction;
+        if (index >= instructions.length || nbtList == null) {
+            return null;
+        }
+        String instruction = instructions[index];
+        boolean bl = notFinalInstruction = index < instructions.length - 1;
+        if ("*".equals(instruction)) {
+            if (notFinalInstruction) {
+                ArrayList<Tag> result = new ArrayList<Tag>();
+                for (Tag tag : nbtList) {
+                    List<Tag> find = this.findByIteration(tag, instructions, index + 1);
+                    if (find == null) continue;
+                    result.addAll(find);
+                }
+                return result.isEmpty() ? null : result;
+            }
+            return nbtList.stream().toList();
+        }
+        if (notFinalInstruction && NBTProperty.isStringValidInt(instruction)) {
+            try {
+                return Collections.singletonList((Tag)nbtList.get(Integer.parseInt(instruction)));
+            }
+            catch (IndexOutOfBoundsException e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    @NotNull
+    public String[] getPropertyIds() {
+        return new String[]{"nbt"};
+    }
+
+    @Override
+    protected String getPrintableRuleInfo() {
+        return null;
+    }
+
+    public record NBTTester(boolean inverts, Function<Tag, Boolean> tester, boolean wantsBlank, boolean print) {
+        public static NBTTester of(String nbtId, String instructionMaybePrint) throws RandomProperty.RandomPropertyException {
+            try {
+                String instruction;
+                String step1 = instructionMaybePrint.replaceFirst("^print_all:", "");
+                boolean printSingle = step1.startsWith("print:");
+                String step2 = printSingle ? step1.substring(6) : step1;
+                boolean invert = step2.startsWith("!");
+                String string = instruction = invert ? step2.substring(1) : step2;
+                if (instruction.startsWith("raw:")) {
+                    StringArrayOrRegexProperty.RegexAndPatternPropertyMatcher matcher;
+                    String raw = instruction.replaceFirst("raw:", "");
+                    boolean blank = raw.isBlank();
+                    StringArrayOrRegexProperty.RegexAndPatternPropertyMatcher regexAndPatternPropertyMatcher = matcher = blank ? String::isBlank : StringArrayOrRegexProperty.getStringMatcher_Regex_Pattern_List_Single(raw);
+                    if (matcher == null) {
+                        throw new RandomProperty.RandomPropertyException("NBT failed, as raw: instruction was invalid: " + instruction);
+                    }
+                    return new NBTTester(invert, s -> matcher.testString(NBTProperty.getAsString(s)), blank, printSingle);
+                }
+                if (instruction.startsWith("exists:")) {
+                    boolean exists = instruction.contains("exists:true");
+                    boolean notExists = instruction.contains("exists:false");
+                    return new NBTTester(invert, s -> exists, notExists, printSingle);
+                }
+                if (instruction.startsWith("range:")) {
+                    SimpleIntegerArrayProperty.IntRange range = SimpleIntegerArrayProperty.getIntRange(instruction.replaceFirst("range:", ""));
+                    return new NBTTester(invert, s -> {
+                        if (s instanceof NumericTag) {
+                            NumericTag nbtNumber = (NumericTag)s;
+                            return range.isWithinRange(NBTProperty.getAsNumber(nbtNumber).intValue());
+                        }
+                        ETFUtils2.logWarn("Invalid range for non-number NBT: " + nbtId + "=" + instruction);
+                        return false;
+                    }, false, printSingle);
+                }
+                StringArrayOrRegexProperty.RegexAndPatternPropertyMatcher matcher = StringArrayOrRegexProperty.getStringMatcher_Regex_Pattern_List_Single(instruction);
+                if (matcher == null) {
+                    throw new RandomProperty.RandomPropertyException("NBT failed, as instruction was invalid: " + instruction);
+                }
+                return new NBTTester(invert, s -> {
+                    String test = s instanceof NumericTag ? NBTProperty.getAsString(s).replaceAll("[^\\d.]", "") : NBTProperty.getAsString(s);
+                    return matcher.testString(test);
+                }, false, printSingle);
+            }
+            catch (RandomProperty.RandomPropertyException e) {
+                throw e;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                throw new RandomProperty.RandomPropertyException("NBT failed, unexpected exception: " + e.getMessage());
+            }
+        }
+    }
+}
+

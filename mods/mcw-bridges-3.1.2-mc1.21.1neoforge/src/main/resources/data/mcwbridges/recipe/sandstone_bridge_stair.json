@@ -1,0 +1,14 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "stone_stairs",
+  "pattern" : [ "  F", " FF", "FFF" ],
+  "key" : {
+    "F" : {
+      "item" : "mcwbridges:sandstone_bridge"
+    }
+  },
+  "result" : {
+    "count" : 6,
+    "id" : "mcwbridges:sandstone_bridge_stair"
+  }
+}

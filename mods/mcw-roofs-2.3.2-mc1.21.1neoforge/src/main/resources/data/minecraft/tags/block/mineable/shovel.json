@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+	  "mcwroofs:grass_roof",
+	  "mcwroofs:grass_attic_roof",
+	  "mcwroofs:grass_top_roof",
+	  "mcwroofs:grass_lower_roof",
+	  "mcwroofs:grass_steep_roof",
+	  "mcwroofs:grass_upper_lower_roof",
+	  "mcwroofs:grass_upper_steep_roof"
+  ]
+}

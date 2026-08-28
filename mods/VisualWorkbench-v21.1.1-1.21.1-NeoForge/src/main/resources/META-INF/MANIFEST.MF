@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Specification-Title: Visual Workbench
+Specification-Version: 21.1.1
+Specification-Vendor: Fuzs
+Implementation-Title: Visual Workbench
+Implementation-Version: 21.1.1
+Implementation-Vendor: Fuzs
+Implementation-Timestamp: 2025-07-22T12:04:02+0200
+Implementation-Timestamp-Milli: 1753178642401
+Implementation-URL: https://github.com/Fuzss/visualworkbench
+Built-On-Java: 21.0.7+6-LTS (Amazon.com Inc.)
+Built-On-Minecraft: 1.21.1
+

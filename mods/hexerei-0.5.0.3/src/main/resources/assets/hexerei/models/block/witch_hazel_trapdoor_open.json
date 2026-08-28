@@ -1,0 +1,23 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "hexerei:block/witch_hazel_trapdoor"
+  },
+  "children": {
+    "cutout": {
+      "parent": "minecraft:block/template_trapdoor_open",
+      "render_type": "minecraft:cutout",
+      "textures": {
+        "texture": "hexerei:block/witch_hazel_trapdoor_cutout"
+      }
+    },
+    "translucent": {
+      "parent": "minecraft:block/template_trapdoor_open",
+      "render_type": "minecraft:translucent",
+      "textures": {
+        "texture": "hexerei:block/witch_hazel_trapdoor_glass"
+      }
+    }
+  },
+  "loader": "neoforge:composite"
+}

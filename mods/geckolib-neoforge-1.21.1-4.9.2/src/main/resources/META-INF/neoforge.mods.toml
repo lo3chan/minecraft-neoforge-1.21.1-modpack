@@ -1,0 +1,39 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/bernie-g/geckolib/issues"
+license="MIT"
+
+[[mods]]
+    modId="geckolib"
+    version="4.9.2"
+    displayName="GeckoLib 4"
+    displayURL="http://geckolib.com/"
+    logoFile="geckolib.png"
+    credits="Gecko, Eliot, AzureDoom, DerToaster, Tslat, Witixin"
+    authors="Gecko, Eliot, AzureDoom, DerToaster, Tslat, Witixin"
+    description='''
+GeckoLib is an animation engine for Minecraft Mods, with support for complex 3D keyframe-based animations, 30+ easings, concurrent animation support, sound and particle keyframes, event keyframes, and more.
+'''
+
+[[mixins]]
+    config = "geckolib.mixins.json"
+
+[[accessTransformers]]
+    file = "META-INF/accesstransformer.cfg"
+
+[[dependencies.geckolib]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.150,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.geckolib]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.geckolib]]
+    modId="geckoanimfix"
+    type="incompatible"
+    side="BOTH"

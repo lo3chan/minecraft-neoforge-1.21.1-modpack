@@ -1,0 +1,34 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "[2,)" #mandatory
+license = "ARR" # Review your options at https://choosealicense.com/.
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+[[mods]] #mandatory
+modId = "nyfsspiders" #mandatory
+version = "3.0.1" #mandatory
+displayName = "Nyf's Spiders" #mandatory
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional (see https://docs.neoforged.net/docs/misc/updatechecker/)
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional (displayed in the mod UI)
+logoFile="nyfsspiders.png" #optional
+credits="" #optional
+authors = "Nyfaria" #optional
+description = '''Vanilla spiders are not yet creepy enough for you? You wish spiders would ?oactually climb properly?r?!Nyf's Spiders enables spiders to walk along walls and ceilings and it also improves their AI such that they can find their way around almost any obstacle!''' #mandatory (Supports multiline text)
+[[mixins]]
+config = "nyfsspiders.mixins.json"
+[[dependencies.nyfsspiders]] #optional
+modId = "neoforge" #mandatory
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "[2,)" #mandatory
+ordering = "NONE" # The order that this dependency should load in relation to your mod, required to be either 'BEFORE' or 'AFTER' if the dependency is not mandatory
+side = "BOTH" # Side this dependency is applied on - 'BOTH', 'CLIENT' or 'SERVER'
+[[dependencies.nyfsspiders]]
+modId = "minecraft"
+type="required" #mandatory (Can be one of "required", "optional", "incompatible" or "discouraged")
+versionRange = "[1.21, 1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+# Features are specific properties of the game environment, that you may want to declare you require. This example declares
+# that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
+# stop your mod loading on the server for example.
+#[features.nyfsspiders]
+#openGLVersion="[3.2,)"

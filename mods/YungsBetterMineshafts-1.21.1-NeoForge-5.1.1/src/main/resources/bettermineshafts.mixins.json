@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.yungnickyoung.minecraft.bettermineshafts.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "bettermineshafts.refmap.json",
+  "mixins": [
+    "BlockBehaviourAccessor",
+    "BoundingBoxAccessor",
+    "DisableVanillaMineshaftsMixin",
+    "LocateVanillaMineshaftCommandMixin",
+    "SuppressLogMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

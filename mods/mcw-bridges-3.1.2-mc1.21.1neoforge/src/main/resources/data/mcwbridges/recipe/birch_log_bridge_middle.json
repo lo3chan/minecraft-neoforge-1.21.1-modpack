@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "log_bridges",
+  "pattern" : [ "F F", "WWW" ],
+  "key" : {
+    "F" : {
+      "item" : "minecraft:birch_fence"
+    },
+    "W" : {
+      "item" : "minecraft:birch_slab"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwbridges:birch_log_bridge_middle"
+  }
+}

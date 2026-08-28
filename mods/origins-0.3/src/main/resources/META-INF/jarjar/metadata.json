@@ -1,0 +1,40 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "maven.modrinth",
+        "artifact": "AdditionalEntityAttributes"
+      },
+      "version": {
+        "range": "[6oJLT6m7,)",
+        "artifactVersion": "6oJLT6m7"
+      },
+      "path": "META-INF/jarjar/AdditionalEntityAttributes-6oJLT6m7.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "maven.modrinth",
+        "artifact": "caelus"
+      },
+      "version": {
+        "range": "[KsfI4QsR,)",
+        "artifactVersion": "KsfI4QsR"
+      },
+      "path": "META-INF/jarjar/caelus-KsfI4QsR.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "maven.modrinth",
+        "artifact": "integration"
+      },
+      "version": {
+        "range": "[U0ktPJaQ,)",
+        "artifactVersion": "U0ktPJaQ"
+      },
+      "path": "META-INF/jarjar/integration-U0ktPJaQ.jar",
+      "isObfuscated": false
+    }
+  ]
+}

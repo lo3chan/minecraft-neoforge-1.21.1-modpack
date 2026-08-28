@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:gambling",
+    "alchemancy:interactable",
+    "alchemancy:hellbent"
+  ],
+
+  "result": "alchemancy:chance_strike"
+}

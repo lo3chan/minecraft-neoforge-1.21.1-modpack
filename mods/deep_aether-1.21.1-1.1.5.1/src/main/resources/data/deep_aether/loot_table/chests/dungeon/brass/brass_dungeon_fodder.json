@@ -1,0 +1,111 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.3,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "deep_aether:moa_fodder"
+        }
+      ],
+      "functions": [
+        {
+          "components": {
+            "deep_aether:moa_fodder": {
+              "effect": {
+                "amplifier": 1,
+                "duration": 14400,
+                "id": "minecraft:fire_resistance",
+                "neoforge:cures": [
+                  "protected_by_totem",
+                  "milk"
+                ],
+                "show_icon": true
+              }
+            }
+          },
+          "function": "minecraft:set_components"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.3,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "deep_aether:moa_fodder"
+        }
+      ],
+      "functions": [
+        {
+          "components": {
+            "deep_aether:moa_fodder": {
+              "effect": {
+                "amplifier": 1,
+                "duration": 14400,
+                "id": "minecraft:jump_boost",
+                "neoforge:cures": [
+                  "protected_by_totem",
+                  "milk"
+                ],
+                "show_icon": true
+              }
+            }
+          },
+          "function": "minecraft:set_components"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.3,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "deep_aether:moa_fodder"
+        }
+      ],
+      "functions": [
+        {
+          "components": {
+            "deep_aether:moa_fodder": {
+              "effect": {
+                "amplifier": 1,
+                "duration": 14400,
+                "id": "deep_aether:moa_bonus_jumps",
+                "neoforge:cures": [
+                  "protected_by_totem",
+                  "milk"
+                ],
+                "show_icon": true
+              }
+            }
+          },
+          "function": "minecraft:set_components"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "deep_aether:chests/dungeon/brass/brass_dungeon_fodder"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "hexerei:block/willow_vines_plant"
+  },
+  "render_type": "cutout"
+}

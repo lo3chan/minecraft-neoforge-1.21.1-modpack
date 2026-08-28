@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+issueTrackerURL="https://github.com/tr7zw/EntityCulling/issues"
+
+license="tr7zw Protective License"
+[[mods]]
+modId="entityculling"
+version="1.10.5"
+displayName="EntityCulling"
+displayURL="https://modrinth.com/mod/entityculling"
+logoFile="icon.png"
+authors="tr7zw"
+description='''
+This mod uses async path-tracing to hide Tiles/Entities that are not visible.
+'''
+displayTest="IGNORE_ALL_VERSION"
+[[mixins]]
+config="entityculling.mixins.json"
+[[dependencies.entityculling]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.entityculling]]
+    modId="neoforge"
+    type="required"
+    versionRange="[20.2,)"
+    ordering="NONE"
+    side="BOTH"

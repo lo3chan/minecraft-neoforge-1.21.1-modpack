@@ -1,0 +1,38 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package net.diebuddies.physics.settings.cloth;
+
+import net.diebuddies.physics.settings.gui.legacy.LegacyObjectSelectionList;
+
+public abstract class BaseEntry
+extends LegacyObjectSelectionList.Entry<BaseEntry> {
+    protected final LegacyObjectSelectionList objectSelectionList;
+    private Object object;
+
+    protected BaseEntry(LegacyObjectSelectionList objectSelectionList, Object object) {
+        this.objectSelectionList = objectSelectionList;
+        this.object = object;
+    }
+
+    public boolean isSelected() {
+        return this.objectSelectionList.getSelected() == this;
+    }
+
+    public boolean mouseClicked(double d, double e, int i) {
+        if (!this.isSelected()) {
+            this.objectSelectionList.setSelected(this);
+            return true;
+        }
+        return false;
+    }
+
+    public Object getUserData() {
+        return this.object;
+    }
+
+    public void setUserData(Object object) {
+        this.object = object;
+    }
+}
+

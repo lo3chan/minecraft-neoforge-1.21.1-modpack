@@ -1,0 +1,43 @@
+modLoader = "javafml"
+loaderVersion = "*"
+license = "MIT"
+displayURL = "https://github.com/TreyRuffy/BetterF3/"
+issueTrackerURL="https://github.com/TreyRuffy/BetterF3/issues/"
+
+[[mods]]
+modId = "betterf3"
+version = "11.0.3"
+displayName = "BetterF3"
+updateJSONURL="https://api.modrinth.com/updates/betterf3/forge_updates.json"
+displayURL="https://modrinth.com/mod/betterf3"
+logoFile="icon.png"
+authors = "TreyRuffy and cominixo"
+description = '''
+Better F3 for Minecraft NeoForge
+Replaces Minecraft's original debug HUD with a highly customizable, more human-readable HUD.
+
+The creator would like to thank:
+- cominixo for creating the Fabric version of the mod
+- Nirewen for creating the icon
+'''
+
+[[accessTransformers]]
+file = "META-INF/accesstransformer.cfg"
+
+[[mixins]]
+config = "betterf3.neoforge.mixins.json"
+
+[[mixins]]
+config = "betterf3.mixins.json"
+
+[[dependencies.betterf3]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.betterf3]]
+modId = "cloth_config"
+versionRange = "[15.0.0,)"
+mandatory = true

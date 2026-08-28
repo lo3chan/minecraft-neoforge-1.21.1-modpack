@@ -1,0 +1,63 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.Options
+ *  net.minecraft.client.gui.components.AbstractWidget
+ *  net.minecraft.client.gui.components.Button
+ *  net.minecraft.client.gui.screens.Screen
+ *  net.minecraft.network.chat.Component
+ */
+package net.diebuddies.physics.settings.vines;
+
+import net.diebuddies.physics.settings.ButtonSettings;
+import net.diebuddies.physics.settings.gui.legacy.LegacyOption;
+import net.diebuddies.physics.settings.vines.BlockSearchScreen;
+import net.diebuddies.physics.settings.vines.ValueChanged;
+import net.diebuddies.physics.vines.BlockFilter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.Options;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+
+public class BlockOption
+extends LegacyOption {
+    private String text;
+    private String block;
+    private boolean canBeNull;
+    private ValueChanged changed;
+    private Screen parent;
+    private Button button;
+    private BlockFilter filter;
+
+    public BlockOption(String text, String block, boolean canBeNull, Screen parent, ValueChanged changed) {
+        super(text);
+        this.text = text;
+        this.block = block;
+        this.canBeNull = canBeNull;
+        this.changed = changed;
+        this.parent = parent;
+    }
+
+    @Override
+    public AbstractWidget createButton(Options options, int i, int j, int k) {
+        this.button = ButtonSettings.builder(i, j, k, 20, (Component)Component.literal((String)(this.text + ": " + this.block)), button -> Minecraft.getInstance().setScreen((Screen)new BlockSearchScreen(this.parent, this, this.filter, this.canBeNull)));
+        return this.button;
+    }
+
+    public void setFilter(BlockFilter filter) {
+        this.filter = filter;
+    }
+
+    public void setBlock(String block) {
+        this.block = block;
+        if (this.button != null) {
+            this.button.setMessage((Component)Component.literal((String)(this.text + ": " + (block == null ? "null" : block))));
+        }
+        this.changed.changed(block);
+    }
+}
+

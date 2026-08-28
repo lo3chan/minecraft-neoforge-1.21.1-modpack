@@ -1,0 +1,36 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+issueTrackerURL="https://github.com/TwelveIterations/InventoryEssentials/issues"
+[[mods]]
+modId="inventoryessentials"
+version="21.1.18"
+displayName="Inventory Essentials"
+displayURL="https://mods.twelveiterations.com/minecraft/inventory-essentials"
+displayTest="NONE"
+logoFile="inventoryessentials.png"
+credits="BlayTheNinth"
+authors="BlayTheNinth"
+description='''Basic inventory tweaks. Lightweight and compatible.'''
+[[mixins]]
+config = "inventoryessentials.mixins.json"
+[[mixins]]
+config = "inventoryessentials.neoforge.mixins.json"
+[[dependencies.inventoryessentials]]
+modId="neoforge"
+type="required"
+versionRange="[21-beta,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.inventoryessentials]]
+modId="minecraft"
+type="required"
+versionRange="[1.21,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.inventoryessentials]]
+modId="balm"
+type="required"
+versionRange="[21.0.48,)"
+ordering="NONE"
+side="BOTH"

@@ -1,0 +1,70 @@
+{
+  "mappings": {
+    "fuzs/puzzleslib/neoforge/mixin/AbstractPackResourcesNeoForgeMixin": {
+      "getMetadataFromStream": "Lnet/minecraft/server/packs/AbstractPackResources;getMetadataFromStream(Lnet/minecraft/server/packs/metadata/MetadataSectionSerializer;Ljava/io/InputStream;)Ljava/lang/Object;"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/EnchantedCountIncreaseFunctionNeoForgeMixin": {
+      "run": "Lnet/minecraft/world/level/storage/loot/functions/EnchantedCountIncreaseFunction;run(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/EnchantmentHelperNeoForgeMixin": {
+      "lambda$processEquipmentDropChance$24": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;lambda$processEquipmentDropChance$24(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Holder;ILnet/minecraft/world/item/enchantment/EnchantedItemInUse;)V",
+      "lambda$processEquipmentDropChance$26": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;lambda$processEquipmentDropChance$26(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Holder;ILnet/minecraft/world/item/enchantment/EnchantedItemInUse;)V"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/LootItemRandomChanceWithEnchantedBonusConditionNeoForgeMixin": {
+      "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z": "Lnet/minecraft/world/level/storage/loot/predicates/LootItemRandomChanceWithEnchantedBonusCondition;test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/accessor/BiomeSpecialEffectsBuilderNeoForgeAccessor": {
+      "ambientAdditionsSettings": "ambientAdditionsSettings:Ljava/util/Optional;",
+      "ambientLoopSoundEvent": "ambientLoopSoundEvent:Ljava/util/Optional;",
+      "ambientMoodSettings": "ambientMoodSettings:Ljava/util/Optional;",
+      "ambientParticle": "ambientParticle:Ljava/util/Optional;",
+      "backgroundMusic": "backgroundMusic:Ljava/util/Optional;",
+      "foliageColorOverride": "foliageColorOverride:Ljava/util/Optional;",
+      "grassColorOverride": "grassColorOverride:Ljava/util/Optional;"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/accessor/MobSpawnSettingsBuilderNeoForgeAccessor": {
+      "mobSpawnCosts": "mobSpawnCosts:Ljava/util/Map;"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/client/accessor/BlockColorsNeoForgeAccessor": {
+      "blockColors": "blockColors:Ljava/util/Map;"
+    },
+    "fuzs/puzzleslib/neoforge/mixin/client/accessor/ItemColorsNeoForgeAccessor": {
+      "itemColors": "itemColors:Ljava/util/Map;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "fuzs/puzzleslib/neoforge/mixin/AbstractPackResourcesNeoForgeMixin": {
+        "getMetadataFromStream": "Lnet/minecraft/server/packs/AbstractPackResources;getMetadataFromStream(Lnet/minecraft/server/packs/metadata/MetadataSectionSerializer;Ljava/io/InputStream;)Ljava/lang/Object;"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/EnchantedCountIncreaseFunctionNeoForgeMixin": {
+        "run": "Lnet/minecraft/world/level/storage/loot/functions/EnchantedCountIncreaseFunction;run(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;)Lnet/minecraft/world/item/ItemStack;"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/EnchantmentHelperNeoForgeMixin": {
+        "lambda$processEquipmentDropChance$24": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;lambda$processEquipmentDropChance$24(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Holder;ILnet/minecraft/world/item/enchantment/EnchantedItemInUse;)V",
+        "lambda$processEquipmentDropChance$26": "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;lambda$processEquipmentDropChance$26(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/damagesource/DamageSource;Lorg/apache/commons/lang3/mutable/MutableFloat;Lnet/minecraft/util/RandomSource;Lnet/minecraft/core/Holder;ILnet/minecraft/world/item/enchantment/EnchantedItemInUse;)V"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/LootItemRandomChanceWithEnchantedBonusConditionNeoForgeMixin": {
+        "test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z": "Lnet/minecraft/world/level/storage/loot/predicates/LootItemRandomChanceWithEnchantedBonusCondition;test(Lnet/minecraft/world/level/storage/loot/LootContext;)Z"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/accessor/BiomeSpecialEffectsBuilderNeoForgeAccessor": {
+        "ambientAdditionsSettings": "ambientAdditionsSettings:Ljava/util/Optional;",
+        "ambientLoopSoundEvent": "ambientLoopSoundEvent:Ljava/util/Optional;",
+        "ambientMoodSettings": "ambientMoodSettings:Ljava/util/Optional;",
+        "ambientParticle": "ambientParticle:Ljava/util/Optional;",
+        "backgroundMusic": "backgroundMusic:Ljava/util/Optional;",
+        "foliageColorOverride": "foliageColorOverride:Ljava/util/Optional;",
+        "grassColorOverride": "grassColorOverride:Ljava/util/Optional;"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/accessor/MobSpawnSettingsBuilderNeoForgeAccessor": {
+        "mobSpawnCosts": "mobSpawnCosts:Ljava/util/Map;"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/client/accessor/BlockColorsNeoForgeAccessor": {
+        "blockColors": "blockColors:Ljava/util/Map;"
+      },
+      "fuzs/puzzleslib/neoforge/mixin/client/accessor/ItemColorsNeoForgeAccessor": {
+        "itemColors": "itemColors:Ljava/util/Map;"
+      }
+    }
+  }
+}

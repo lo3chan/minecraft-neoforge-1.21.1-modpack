@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:sweet",
+    "alchemancy:friendly",
+    "alchemancy:lustrous"
+  ],
+
+  "result": "alchemancy:charming"
+}

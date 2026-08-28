@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Specification-Title: Eternal Nether
+Specification-Version: 21.1.3
+Specification-Vendor: Izofar, Fuzs
+Implementation-Title: Eternal Nether
+Implementation-Version: 21.1.3
+Implementation-Vendor: Izofar, Fuzs
+Implementation-Timestamp: 2025-07-10T10:15:53+0200
+Implementation-Timestamp-Milli: 1752135353134
+Implementation-URL: https://github.com/Fuzss/eternalnether
+Built-On-Java: 21.0.7+6-LTS (Amazon.com Inc.)
+Built-On-Minecraft: 1.21.1
+

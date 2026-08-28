@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:sponge"
+    },
+    "X": {
+      "item": "alchemancy:lead_ingot"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "result": {
+    "id": "alchemancy:leaden_sponge"
+  },
+  "show_notification": true
+}

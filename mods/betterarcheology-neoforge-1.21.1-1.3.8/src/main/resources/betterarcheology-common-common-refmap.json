@@ -1,0 +1,66 @@
+{
+  "mappings": {
+    "net/Pandarix/mixin/AddCreeperGoalsMixin": {
+      "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/class_1355;method_6277(ILnet/minecraft/class_1352;)V",
+      "registerGoals": "Lnet/minecraft/class_1548;method_5959()V"
+    },
+    "net/Pandarix/mixin/AddSkeletonGoalsMixin": {
+      "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/class_1355;method_6277(ILnet/minecraft/class_1352;)V",
+      "registerGoals": "Lnet/minecraft/class_1547;method_5959()V"
+    },
+    "net/Pandarix/mixin/ArmadilloBrushingMixin": {
+      "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z": "Lnet/minecraft/class_1799;method_31574(Lnet/minecraft/class_1792;)Z",
+      "mobInteract": "Lnet/minecraft/class_9069;method_5992(Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;"
+    },
+    "net/Pandarix/mixin/BrushItemMixin": {
+      "Lnet/minecraft/world/item/BrushItem;getUseDuration(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I": "Lnet/minecraft/class_8162;method_7881(Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;)I",
+      "onUseTick": "Lnet/minecraft/class_8162;method_7852(Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;I)V"
+    },
+    "net/Pandarix/mixin/ElytraStartupMixin": {
+      "startFallFlying": "Lnet/minecraft/class_1657;method_23669()V"
+    },
+    "net/Pandarix/mixin/FasterBrushingMixin": {
+      "Lnet/minecraft/world/level/block/entity/BrushableBlockEntity;unpackLootTable(Lnet/minecraft/world/entity/player/Player;)V": "Lnet/minecraft/class_8174;method_49217(Lnet/minecraft/class_1657;)V",
+      "brush": "Lnet/minecraft/class_8174;method_49215(JLnet/minecraft/class_1657;Lnet/minecraft/class_2350;)Z"
+    },
+    "net/Pandarix/mixin/PenetratingStrikeMixin": {
+      "getDamageProtection": "Lnet/minecraft/class_1890;method_8219(Lnet/minecraft/class_3218;Lnet/minecraft/class_1309;Lnet/minecraft/class_1282;)F"
+    },
+    "net/Pandarix/mixin/TorrentTotemItemTickMixin": {
+      "checkAutoSpinAttack": "Lnet/minecraft/class_1309;method_6035(Lnet/minecraft/class_238;Lnet/minecraft/class_238;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "net/Pandarix/mixin/AddCreeperGoalsMixin": {
+        "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/class_1355;method_6277(ILnet/minecraft/class_1352;)V",
+        "registerGoals": "Lnet/minecraft/class_1548;method_5959()V"
+      },
+      "net/Pandarix/mixin/AddSkeletonGoalsMixin": {
+        "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/class_1355;method_6277(ILnet/minecraft/class_1352;)V",
+        "registerGoals": "Lnet/minecraft/class_1547;method_5959()V"
+      },
+      "net/Pandarix/mixin/ArmadilloBrushingMixin": {
+        "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z": "Lnet/minecraft/class_1799;method_31574(Lnet/minecraft/class_1792;)Z",
+        "mobInteract": "Lnet/minecraft/class_9069;method_5992(Lnet/minecraft/class_1657;Lnet/minecraft/class_1268;)Lnet/minecraft/class_1269;"
+      },
+      "net/Pandarix/mixin/BrushItemMixin": {
+        "Lnet/minecraft/world/item/BrushItem;getUseDuration(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I": "Lnet/minecraft/class_8162;method_7881(Lnet/minecraft/class_1799;Lnet/minecraft/class_1309;)I",
+        "onUseTick": "Lnet/minecraft/class_8162;method_7852(Lnet/minecraft/class_1937;Lnet/minecraft/class_1309;Lnet/minecraft/class_1799;I)V"
+      },
+      "net/Pandarix/mixin/ElytraStartupMixin": {
+        "startFallFlying": "Lnet/minecraft/class_1657;method_23669()V"
+      },
+      "net/Pandarix/mixin/FasterBrushingMixin": {
+        "Lnet/minecraft/world/level/block/entity/BrushableBlockEntity;unpackLootTable(Lnet/minecraft/world/entity/player/Player;)V": "Lnet/minecraft/class_8174;method_49217(Lnet/minecraft/class_1657;)V",
+        "brush": "Lnet/minecraft/class_8174;method_49215(JLnet/minecraft/class_1657;Lnet/minecraft/class_2350;)Z"
+      },
+      "net/Pandarix/mixin/PenetratingStrikeMixin": {
+        "getDamageProtection": "Lnet/minecraft/class_1890;method_8219(Lnet/minecraft/class_3218;Lnet/minecraft/class_1309;Lnet/minecraft/class_1282;)F"
+      },
+      "net/Pandarix/mixin/TorrentTotemItemTickMixin": {
+        "checkAutoSpinAttack": "Lnet/minecraft/class_1309;method_6035(Lnet/minecraft/class_238;Lnet/minecraft/class_238;)V"
+      }
+    }
+  }
+}

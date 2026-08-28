@@ -1,0 +1,5 @@
+cc.cosmetica.include.twelvemonkeys.imageio.stream.BufferedFileImageInputStreamSpi
+cc.cosmetica.include.twelvemonkeys.imageio.stream.BufferedRAFImageInputStreamSpi
+cc.cosmetica.include.twelvemonkeys.imageio.stream.BufferedInputStreamImageInputStreamSpi
+# Use SPI loading as a hook for early profile activation
+cc.cosmetica.include.twelvemonkeys.imageio.color.ProfileDeferralActivator$Spi

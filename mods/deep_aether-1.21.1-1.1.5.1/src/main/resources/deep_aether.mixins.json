@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "package": "io.github.razordevs.deep_aether.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "deep_aether.refmap.json",
+  "mixins": [
+    "BrewingFuelMenuMixin",
+    "BrewingFuelMixin",
+    "GlovesMixin",
+    "TriviaGeneratorMixin",
+    "block.AercloudMixin",
+    "block.BlockBehaviourMixin",
+    "block.LavaFluidMixin",
+    "block.PointedDripstoneBlockMixin",
+    "block.PowderedSnowMixin",
+    "entity.AerwhaleMixin",
+    "entity.ItemEntityMixin"
+  ],
+  "client": [
+    "AetherSkyRenderEffectsAccessor",
+    "entity.AerwhaleModelMixin",
+    "entity.AerwhaleRendererMixin",
+    "entity.ClassicAerwhaleModelMixin",
+    "entity.HumanoidArmorLayerMixin",
+    "entity.LivingEntityRendererMixin",
+    "entity.SliderGlowLayerMixin",
+    "entity.SliderRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

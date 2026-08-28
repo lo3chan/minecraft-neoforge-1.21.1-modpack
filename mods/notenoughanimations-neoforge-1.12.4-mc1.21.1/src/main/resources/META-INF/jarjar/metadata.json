@@ -1,0 +1,26 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "dev.tr7zw",
+        "artifact": "TRender"
+      },
+      "version": {
+        "range": "[1.0.15-1.21.1-neoforge-SNAPSHOT,)",
+        "artifactVersion": "1.0.15-1.21.1-neoforge-SNAPSHOT"
+      },
+      "path": "META-INF/jars/TRender-1.0.15-1.21.1-neoforge-SNAPSHOT.jar"
+    },
+    {
+      "identifier": {
+        "group": "dev.tr7zw",
+        "artifact": "TRansition"
+      },
+      "version": {
+        "range": "[1.0.21-1.21.1-neoforge-SNAPSHOT,)",
+        "artifactVersion": "1.0.21-1.21.1-neoforge-SNAPSHOT"
+      },
+      "path": "META-INF/jars/TRansition-1.0.21-1.21.1-neoforge-SNAPSHOT.jar"
+    }
+  ]
+}

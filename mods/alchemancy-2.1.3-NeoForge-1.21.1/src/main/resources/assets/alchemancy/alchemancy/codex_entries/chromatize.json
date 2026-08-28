@@ -1,0 +1,12 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:chromatize.flavor"
+  },
+  "functions": [
+    "activate",
+    "when_shot"
+  ],
+  "innate": [
+    "alchemancy:chroma_lens"
+  ]
+}

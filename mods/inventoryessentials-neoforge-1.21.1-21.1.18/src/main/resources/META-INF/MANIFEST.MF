@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Specification-Title: Inventory Essentials
+Specification-Vendor: BlayTheNinth
+Specification-Version: 21.1.18
+Implementation-Title: neoforge
+Implementation-Version: 21.1.18
+Implementation-Vendor: BlayTheNinth
+Built-On-Minecraft: 1.21.1
+MixinConfigs: inventoryessentials.mixins.json,inventoryessentials.neofor
+ ge.mixins.json
+

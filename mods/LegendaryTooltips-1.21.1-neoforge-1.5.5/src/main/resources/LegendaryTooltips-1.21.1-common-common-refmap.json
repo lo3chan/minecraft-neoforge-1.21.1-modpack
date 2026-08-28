@@ -1,0 +1,74 @@
+{
+  "mappings": {
+    "com/anthonyhilyard/legendarytooltips/mixin/BakedGlyphMixin": {
+      "Lcom/mojang/blaze3d/vertex/VertexConsumer;setColor(FFFF)Lcom/mojang/blaze3d/vertex/VertexConsumer;": "Lnet/minecraft/class_4588;method_22915(FFFF)Lnet/minecraft/class_4588;",
+      "render": "Lnet/minecraft/class_382;method_2025(ZFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V"
+    },
+    "com/anthonyhilyard/legendarytooltips/mixin/GuiGraphicsMixin": {
+      "Lcom/mojang/blaze3d/vertex/PoseStack;popPose()V": "Lnet/minecraft/class_4587;method_22909()V",
+      "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V": "Lnet/minecraft/class_4587;method_22903()V",
+      "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V": "Lnet/minecraft/class_4587;method_46416(FFF)V",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;getWidth(Lnet/minecraft/client/gui/Font;)I": "Lnet/minecraft/class_5684;method_32664(Lnet/minecraft/class_327;)I",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;renderImage(Lnet/minecraft/client/gui/Font;IILnet/minecraft/client/gui/GuiGraphics;)V": "Lnet/minecraft/class_5684;method_32666(Lnet/minecraft/class_327;IILnet/minecraft/class_332;)V",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;renderText(Lnet/minecraft/client/gui/Font;IILorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V": "Lnet/minecraft/class_5684;method_32665(Lnet/minecraft/class_327;IILorg/joml/Matrix4f;Lnet/minecraft/class_4597$class_4598;)V",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;": "Lnet/minecraft/class_8000;method_47944(IIIIII)Lorg/joml/Vector2ic;",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderTooltipBackground(Lnet/minecraft/client/gui/GuiGraphics;IIIII)V": "Lnet/minecraft/class_8002;method_47946(Lnet/minecraft/class_332;IIIII)V",
+      "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderTooltipBackground(Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIII)V": "Lnet/minecraft/class_8002;renderTooltipBackground(Lnet/minecraft/class_332;IIIIIIIII)V",
+      "method_51743": "Lnet/minecraft/class_332;method_51743(IIII)V",
+      "renderTooltipInternal": "Lnet/minecraft/class_332;method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+    },
+    "com/anthonyhilyard/legendarytooltips/mixin/ItemStackMixin": {
+      "Lnet/minecraft/world/entity/player/Player;getAttributeBaseValue(Lnet/minecraft/core/Holder;)D": "Lnet/minecraft/class_1657;method_45326(Lnet/minecraft/class_6880;)D",
+      "addModifierTooltip": "Lnet/minecraft/class_1799;method_57364(Ljava/util/function/Consumer;Lnet/minecraft/class_1657;Lnet/minecraft/class_6880;Lnet/minecraft/class_1322;)V"
+    },
+    "com/anthonyhilyard/legendarytooltips/mixin/KeyboardHandlerMixin": {
+      "Lnet/minecraft/client/gui/screens/Screen;keyReleased(III)Z": "Lnet/minecraft/class_437;method_16803(III)Z",
+      "method_1454": "Lnet/minecraft/class_309;method_1454(ILnet/minecraft/class_437;[ZIII)V"
+    },
+    "com/anthonyhilyard/legendarytooltips/mixin/MouseHandlerMixin": {
+      "Lnet/minecraft/client/gui/screens/Screen;mouseScrolled(DDDD)Z": "Lnet/minecraft/class_437;method_25401(DDDD)Z",
+      "onScroll": "Lnet/minecraft/class_312;method_1598(JDD)V"
+    },
+    "com/anthonyhilyard/legendarytooltips/mixin/ScreenMixin": {
+      "keyPressed(III)Z": "Lnet/minecraft/class_437;method_25404(III)Z",
+      "onClose": "Lnet/minecraft/class_437;method_25419()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/anthonyhilyard/legendarytooltips/mixin/BakedGlyphMixin": {
+        "Lcom/mojang/blaze3d/vertex/VertexConsumer;setColor(FFFF)Lcom/mojang/blaze3d/vertex/VertexConsumer;": "Lnet/minecraft/class_4588;method_22915(FFFF)Lnet/minecraft/class_4588;",
+        "render": "Lnet/minecraft/class_382;method_2025(ZFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V"
+      },
+      "com/anthonyhilyard/legendarytooltips/mixin/GuiGraphicsMixin": {
+        "Lcom/mojang/blaze3d/vertex/PoseStack;popPose()V": "Lnet/minecraft/class_4587;method_22909()V",
+        "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V": "Lnet/minecraft/class_4587;method_22903()V",
+        "Lcom/mojang/blaze3d/vertex/PoseStack;translate(FFF)V": "Lnet/minecraft/class_4587;method_46416(FFF)V",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;getWidth(Lnet/minecraft/client/gui/Font;)I": "Lnet/minecraft/class_5684;method_32664(Lnet/minecraft/class_327;)I",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;renderImage(Lnet/minecraft/client/gui/Font;IILnet/minecraft/client/gui/GuiGraphics;)V": "Lnet/minecraft/class_5684;method_32666(Lnet/minecraft/class_327;IILnet/minecraft/class_332;)V",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent;renderText(Lnet/minecraft/client/gui/Font;IILorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;)V": "Lnet/minecraft/class_5684;method_32665(Lnet/minecraft/class_327;IILorg/joml/Matrix4f;Lnet/minecraft/class_4597$class_4598;)V",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;": "Lnet/minecraft/class_8000;method_47944(IIIIII)Lorg/joml/Vector2ic;",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderTooltipBackground(Lnet/minecraft/client/gui/GuiGraphics;IIIII)V": "Lnet/minecraft/class_8002;method_47946(Lnet/minecraft/class_332;IIIII)V",
+        "Lnet/minecraft/client/gui/screens/inventory/tooltip/TooltipRenderUtil;renderTooltipBackground(Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIII)V": "Lnet/minecraft/class_8002;renderTooltipBackground(Lnet/minecraft/class_332;IIIIIIIII)V",
+        "method_51743": "Lnet/minecraft/class_332;method_51743(IIII)V",
+        "renderTooltipInternal": "Lnet/minecraft/class_332;method_51435(Lnet/minecraft/class_327;Ljava/util/List;IILnet/minecraft/class_8000;)V"
+      },
+      "com/anthonyhilyard/legendarytooltips/mixin/ItemStackMixin": {
+        "Lnet/minecraft/world/entity/player/Player;getAttributeBaseValue(Lnet/minecraft/core/Holder;)D": "Lnet/minecraft/class_1657;method_45326(Lnet/minecraft/class_6880;)D",
+        "addModifierTooltip": "Lnet/minecraft/class_1799;method_57364(Ljava/util/function/Consumer;Lnet/minecraft/class_1657;Lnet/minecraft/class_6880;Lnet/minecraft/class_1322;)V"
+      },
+      "com/anthonyhilyard/legendarytooltips/mixin/KeyboardHandlerMixin": {
+        "Lnet/minecraft/client/gui/screens/Screen;keyReleased(III)Z": "Lnet/minecraft/class_437;method_16803(III)Z",
+        "method_1454": "Lnet/minecraft/class_309;method_1454(ILnet/minecraft/class_437;[ZIII)V"
+      },
+      "com/anthonyhilyard/legendarytooltips/mixin/MouseHandlerMixin": {
+        "Lnet/minecraft/client/gui/screens/Screen;mouseScrolled(DDDD)Z": "Lnet/minecraft/class_437;method_25401(DDDD)Z",
+        "onScroll": "Lnet/minecraft/class_312;method_1598(JDD)V"
+      },
+      "com/anthonyhilyard/legendarytooltips/mixin/ScreenMixin": {
+        "keyPressed(III)Z": "Lnet/minecraft/class_437;method_25404(III)Z",
+        "onClose": "Lnet/minecraft/class_437;method_25419()V"
+      }
+    }
+  }
+}

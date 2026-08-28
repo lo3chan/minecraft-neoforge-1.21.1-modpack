@@ -1,0 +1,35 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.gui.GuiGraphics
+ *  net.minecraft.client.gui.navigation.ScreenPosition
+ */
+package mezz.jei.library.gui.widgets;
+
+import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.widgets.IRecipeWidget;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.navigation.ScreenPosition;
+
+public class DrawableWidget
+implements IRecipeWidget {
+    private final IDrawable drawable;
+    private final ScreenPosition position;
+
+    public DrawableWidget(IDrawable drawable, int xPos, int yPos) {
+        this.drawable = drawable;
+        this.position = new ScreenPosition(xPos, yPos);
+    }
+
+    @Override
+    public ScreenPosition getPosition() {
+        return this.position;
+    }
+
+    @Override
+    public void drawWidget(GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        this.drawable.draw(guiGraphics);
+    }
+}
+

@@ -1,0 +1,64 @@
+{
+  "mappings": {
+    "me/cominixo/betterf3/mixin/DebugMixin": {
+      "Lnet/minecraft/client/gui/components/DebugScreenOverlay$AllocationRateCalculator;bytesAllocatedPerSecond(J)J": "Lnet/minecraft/class_340$class_7412;method_43448(J)J",
+      "Lnet/minecraft/util/profiling/ProfilerFiller;push(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15396(Ljava/lang/String;)V",
+      "getSystemInformation": "Lnet/minecraft/class_340;method_1839()Ljava/util/List;",
+      "method_51746": "Lnet/minecraft/class_340;method_51746(Lnet/minecraft/class_332;)V",
+      "render": "Lnet/minecraft/class_340;method_1846(Lnet/minecraft/class_332;)V"
+    },
+    "me/cominixo/betterf3/mixin/KeyboardMixin": {
+      "Lnet/minecraft/client/gui/components/ChatComponent;addMessage(Lnet/minecraft/network/chat/Component;)V": "Lnet/minecraft/class_338;method_1812(Lnet/minecraft/class_2561;)V",
+      "Lnet/minecraft/client/gui/components/DebugScreenOverlay;toggleOverlay()V": "Lnet/minecraft/class_340;method_53539()V",
+      "handleDebugKeys": "Lnet/minecraft/class_309;method_1468(I)Z",
+      "keyPress": "Lnet/minecraft/class_309;method_1466(JIIII)V"
+    },
+    "me/cominixo/betterf3/mixin/autof3/DebugOptionMixin": {
+      "<init>": "Lnet/minecraft/class_340;<init>(Lnet/minecraft/class_310;)V",
+      "reset": "Lnet/minecraft/class_340;method_53545()V",
+      "showDebugScreen": "Lnet/minecraft/class_340;method_53536()Z"
+    },
+    "me/cominixo/betterf3/mixin/bossbar/BossbarMixin": {
+      "render": "Lnet/minecraft/class_337;method_1796(Lnet/minecraft/class_332;)V"
+    },
+    "me/cominixo/betterf3/mixin/debugcrosshair/DebugCrosshairMixin": {
+      "Lnet/minecraft/client/gui/components/DebugScreenOverlay;showDebugScreen()Z": "Lnet/minecraft/class_340;method_53536()Z",
+      "renderCrosshair": "Lnet/minecraft/class_329;method_1736(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V"
+    },
+    "me/cominixo/betterf3/mixin/scoreboard/ScoreboardMixin": {
+      "displayScoreboardSidebar": "Lnet/minecraft/class_329;method_1757(Lnet/minecraft/class_332;Lnet/minecraft/class_266;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "me/cominixo/betterf3/mixin/DebugMixin": {
+        "Lnet/minecraft/client/gui/components/DebugScreenOverlay$AllocationRateCalculator;bytesAllocatedPerSecond(J)J": "Lnet/minecraft/class_340$class_7412;method_43448(J)J",
+        "Lnet/minecraft/util/profiling/ProfilerFiller;push(Ljava/lang/String;)V": "Lnet/minecraft/class_3695;method_15396(Ljava/lang/String;)V",
+        "getSystemInformation": "Lnet/minecraft/class_340;method_1839()Ljava/util/List;",
+        "method_51746": "Lnet/minecraft/class_340;method_51746(Lnet/minecraft/class_332;)V",
+        "render": "Lnet/minecraft/class_340;method_1846(Lnet/minecraft/class_332;)V"
+      },
+      "me/cominixo/betterf3/mixin/KeyboardMixin": {
+        "Lnet/minecraft/client/gui/components/ChatComponent;addMessage(Lnet/minecraft/network/chat/Component;)V": "Lnet/minecraft/class_338;method_1812(Lnet/minecraft/class_2561;)V",
+        "Lnet/minecraft/client/gui/components/DebugScreenOverlay;toggleOverlay()V": "Lnet/minecraft/class_340;method_53539()V",
+        "handleDebugKeys": "Lnet/minecraft/class_309;method_1468(I)Z",
+        "keyPress": "Lnet/minecraft/class_309;method_1466(JIIII)V"
+      },
+      "me/cominixo/betterf3/mixin/autof3/DebugOptionMixin": {
+        "<init>": "Lnet/minecraft/class_340;<init>(Lnet/minecraft/class_310;)V",
+        "reset": "Lnet/minecraft/class_340;method_53545()V",
+        "showDebugScreen": "Lnet/minecraft/class_340;method_53536()Z"
+      },
+      "me/cominixo/betterf3/mixin/bossbar/BossbarMixin": {
+        "render": "Lnet/minecraft/class_337;method_1796(Lnet/minecraft/class_332;)V"
+      },
+      "me/cominixo/betterf3/mixin/debugcrosshair/DebugCrosshairMixin": {
+        "Lnet/minecraft/client/gui/components/DebugScreenOverlay;showDebugScreen()Z": "Lnet/minecraft/class_340;method_53536()Z",
+        "renderCrosshair": "Lnet/minecraft/class_329;method_1736(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V"
+      },
+      "me/cominixo/betterf3/mixin/scoreboard/ScoreboardMixin": {
+        "displayScoreboardSidebar": "Lnet/minecraft/class_329;method_1757(Lnet/minecraft/class_332;Lnet/minecraft/class_266;)V"
+      }
+    }
+  }
+}

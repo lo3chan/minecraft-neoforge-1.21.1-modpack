@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Better-Strongholds/issues"
+
+[[mods]]
+    modId="betterstrongholds"
+    version="1.21.1-NeoForge-5.1.3"
+    displayName="YUNG's Better Strongholds"
+    credits="Thanks so much to all my patrons!"
+	authors="YUNGNICKYOUNG, Acarii"
+    description="A complete redesign of Minecraft's strongholds!"
+	logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-better-strongholds-neoforge"
+
+[modproperties.betterstrongholds]
+    catalogueImageIcon="catalogue_icon.png"
+    catalogueBackground="catalogue_background.png"
+
+[[dependencies.betterstrongholds]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+
+[[dependencies.betterstrongholds]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.0,)"
+
+[[dependencies.betterstrongholds]]
+    modId="yungsapi"
+    versionRange="[1.21.1-NeoForge-5.1.4,)"
+    type="required"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config = "betterstrongholds.mixins.json"

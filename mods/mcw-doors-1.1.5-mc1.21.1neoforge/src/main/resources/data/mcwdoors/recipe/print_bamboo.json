@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "prints",
+  "pattern" : [ " A ", "ABA", " A " ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:paper"
+    },
+    "B" : {
+      "item" : "minecraft:bamboo_door"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwdoors:print_bamboo"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" : [ "FRF", "WWW" ],
+  "key" : {
+    "F" : {
+      "tag" : "minecraft:wooden_fences"
+    },
+    "W" : {
+      "tag" : "minecraft:wooden_slabs"
+    },
+    "R" : {
+      "item" : "minecraft:red_dye"
+    }
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwbridges:asian_red_bridge"
+  }
+}

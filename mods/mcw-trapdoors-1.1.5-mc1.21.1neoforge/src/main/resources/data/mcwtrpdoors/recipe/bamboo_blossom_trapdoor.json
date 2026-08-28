@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "blossom_trapdoors",
+  "pattern" : [ "AAA", "ABA", "AAA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:bamboo"
+    },
+    "B" : {
+      "item" : "mcwtrpdoors:print_blossom"
+    }
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwtrpdoors:bamboo_blossom_trapdoor"
+  }
+}

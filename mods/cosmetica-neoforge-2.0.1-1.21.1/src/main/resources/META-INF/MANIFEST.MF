@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: imageio-webp-3.12.0.jar imageio-metadata-3.12.0.jar imageio-
+ core-3.12.0.jar common-image-3.12.0.jar common-io-3.12.0.jar common-lan
+ g-3.12.0.jar
+

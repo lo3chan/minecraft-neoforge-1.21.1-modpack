@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "CC-BY-NC-4.0"
+
+[[mods]]
+modId = "bobo_lib"
+version = "1.1"
+displayName = "Bobo Lib"
+displayURL = "https://bobophones.github.io"
+logoFile="logo.png"
+authors = "KoteykaTheCat"
+description = '''A small library for Bobophones mods to prevent code duplication and add some useful features'''
+
+[[mixins]]
+config = "bobo_lib.mixins.json"
+
+[[dependencies."bobo_lib"]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."bobo_lib"]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"

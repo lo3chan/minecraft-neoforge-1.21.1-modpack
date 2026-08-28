@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+logoFile="windowslogo.png"
+[[mods]]
+modId="mcwwindows"
+version="2.4.2"
+displayName="Macaw's Windows"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/macaws-windows"
+updateJSONURL="https://raw.githubusercontent.com/sketchmacaw/macawsmods/master/window.json"
+credits=""
+authors="Sketch Macaw & Peachy Macaw"
+description="Build Windows, Sills, Blinds, Shutters, Mosaic Windows and more!"

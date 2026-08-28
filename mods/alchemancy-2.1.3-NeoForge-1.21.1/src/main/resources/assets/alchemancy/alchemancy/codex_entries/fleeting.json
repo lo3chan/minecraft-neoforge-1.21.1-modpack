@@ -1,0 +1,9 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:fleeting.flavor"
+  },
+  "functions": [
+    "while_in_inventory",
+    "when_dropped"
+  ]
+}

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Specification-Title: nullscape
+Specification-Vendor: Stardust Labs
+Specification-Version: 1.2.14
+Implementation-Title: nullscape
+Implementation-Version: 1.2.14
+Implementation-Vendor: Stardust Labs
+Implementation-Timestamp: 2025-10-06T22:15:44+0200

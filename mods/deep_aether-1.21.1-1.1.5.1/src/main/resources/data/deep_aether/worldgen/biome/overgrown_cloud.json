@@ -1,0 +1,69 @@
+{
+  "carvers": {},
+  "creature_spawn_probability": 0.25,
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 9671612,
+    "foliage_color": 11073528,
+    "grass_color": 10021818,
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "deep_aether:music.deep_aether"
+    },
+    "sky_color": 12632319,
+    "water_color": 16101631,
+    "water_fog_color": 329011
+  },
+  "features": [
+    [
+      "deep_aether:aercloud_cloud_overgrown"
+    ],
+    [
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+    ],
+    [],
+    [
+    ],
+    [
+      "deep_aether:aercloud_roots",
+      "deep_aether:overgrown_cloud_mushroom_trees",
+      "deep_aether:aercloud_grass"
+    ],
+    [
+      "deep_aether:aercloud_roots_carpet"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {
+
+  },
+  "spawners": {
+    "aether:aether_aerwhale": [],
+    "aether:aether_darkness_monster": [],
+    "aether:aether_sky_monster": [],
+    "aether:aether_surface_monster": [],
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "aether:aerbunny",
+        "maxCount": 7,
+        "minCount": 6,
+        "weight": 11
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.8
+}

@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:granite"
+  },
+  "result" : {
+    "count" : 4,
+    "id" : "mcwpaths:granite_crystal_floor_path"
+  },
+  "group" : "paths"
+}

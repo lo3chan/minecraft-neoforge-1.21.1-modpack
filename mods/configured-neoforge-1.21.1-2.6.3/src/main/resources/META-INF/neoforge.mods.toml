@@ -1,0 +1,50 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+license = "GNU Lesser General Public License v3.0"
+
+[[mods]]
+modId = "configured"
+version = "2.6.3"
+displayName = "Configured"
+#updateJSONURL = "https://mrcrayfish.com/api/mod_update/neoforge/configured"
+displayURL = "https://mrcrayfish.com/mods?id=configured"
+logoFile = "assets/configured/banner.png"
+authors = "MrCrayfish"
+description = '''Creates a simple GUI config for every mod!'''
+
+[[dependencies.configured]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.211,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.configured]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.configured]]
+modId = "framework"
+type = "optional"
+versionRange = "[0.13.5,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.configured]]
+modId = "jei"
+type = "optional"
+versionRange = "[19.25.0.322,)"
+ordering = "NONE"
+side = "BOTH"
+
+[modproperties.configured]
+catalogueImageIcon = "assets/configured/icon.png"
+catalogueBackground = "assets/configured/background.png"
+configuredProviders = [
+    "com.mrcrayfish.configured.impl.neoforge.NeoForgeConfigProvider",
+    "com.mrcrayfish.configured.impl.framework.FrameworkConfigProvider",
+    "com.mrcrayfish.configured.impl.jei.JeiConfigProvider"
+]

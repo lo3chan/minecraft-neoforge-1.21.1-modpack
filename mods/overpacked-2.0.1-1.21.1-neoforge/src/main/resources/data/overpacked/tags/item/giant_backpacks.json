@@ -1,0 +1,38 @@
+{
+  "values": [
+    "overpacked:giant_backpack",
+    "overpacked:white_giant_backpack",
+    "overpacked:orange_giant_backpack",
+    "overpacked:magenta_giant_backpack",
+    "overpacked:light_blue_giant_backpack",
+    "overpacked:yellow_giant_backpack",
+    "overpacked:lime_giant_backpack",
+    "overpacked:pink_giant_backpack",
+    "overpacked:gray_giant_backpack",
+    "overpacked:light_gray_giant_backpack",
+    "overpacked:cyan_giant_backpack",
+    "overpacked:purple_giant_backpack",
+    "overpacked:blue_giant_backpack",
+    "overpacked:brown_giant_backpack",
+    "overpacked:green_giant_backpack",
+    "overpacked:red_giant_backpack",
+    "overpacked:black_giant_backpack",
+
+    { "id": "overpacked:maroon_giant_backpack", "required": false },
+    { "id": "overpacked:rose_giant_backpack", "required": false },
+    { "id": "overpacked:coral_giant_backpack", "required": false },
+    { "id": "overpacked:indigo_giant_backpack", "required": false },
+    { "id": "overpacked:navy_giant_backpack", "required": false },
+    { "id": "overpacked:slate_giant_backpack", "required": false },
+    { "id": "overpacked:olive_giant_backpack", "required": false },
+    { "id": "overpacked:amber_giant_backpack", "required": false },
+    { "id": "overpacked:beige_giant_backpack", "required": false },
+    { "id": "overpacked:teal_giant_backpack", "required": false },
+    { "id": "overpacked:mint_giant_backpack", "required": false },
+    { "id": "overpacked:aqua_giant_backpack", "required": false },
+    { "id": "overpacked:verdant_giant_backpack", "required": false },
+    { "id": "overpacked:forest_giant_backpack", "required": false },
+    { "id": "overpacked:ginger_giant_backpack", "required": false },
+    { "id": "overpacked:tan_giant_backpack", "required": false }
+  ]
+}

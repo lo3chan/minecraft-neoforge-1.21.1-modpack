@@ -1,0 +1,42 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.mojang.blaze3d.vertex.VertexConsumer
+ *  net.minecraft.client.renderer.MultiBufferSource
+ *  net.minecraft.client.renderer.MultiBufferSource$BufferSource
+ *  net.minecraft.client.renderer.RenderType
+ *  org.spongepowered.asm.mixin.Mixin
+ *  org.spongepowered.asm.mixin.injection.At
+ *  org.spongepowered.asm.mixin.injection.Inject
+ *  org.spongepowered.asm.mixin.injection.ModifyVariable
+ *  org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
+ */
+package traben.entity_texture_features.mixin.mixins;
+
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import traben.entity_texture_features.compat.SodiumGetBufferInjector;
+import traben.entity_texture_features.features.ETFRenderContext;
+
+@Mixin(value={MultiBufferSource.BufferSource.class}, priority=800)
+public class MixinVertexConsumerProvider$Immediate {
+    @ModifyVariable(method={"getBuffer"}, at=@At(value="HEAD"), index=1, argsOnly=true)
+    private RenderType etf$modifyRenderLayer(RenderType value) {
+        return ETFRenderContext.modifyRenderLayerIfRequired(value);
+    }
+
+    @Inject(method={"getBuffer"}, at={@At(value="RETURN")})
+    private void etf$injectIntoGetBufferReturn(RenderType renderLayer, CallbackInfoReturnable<VertexConsumer> cir) {
+        VertexConsumer returned = (VertexConsumer)cir.getReturnValue();
+        ETFRenderContext.insertETFDataIntoVertexConsumer((MultiBufferSource)this, renderLayer, returned);
+        SodiumGetBufferInjector.inject((MultiBufferSource)this, renderLayer, returned);
+    }
+}
+

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: Immersive Gateways
+Specification-Vendor: Luke100000
+Specification-Version: 0.0.6
+Implementation-Title: neoforge
+Implementation-Version: 0.0.6
+Implementation-Vendor: Luke100000
+Built-On-Minecraft: 1.21.1
+MixinConfigs: immersive_gateways.mixins.json
+

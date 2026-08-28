@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="LGPLv3"
+issueTrackerURL="https://github.com/yungnickyoung/YUNGs-Menu-Tweaks/issues"
+
+[[mods]]
+    modId="yungsmenutweaks"
+    version="1.21.1-NeoForge-2.1.2"
+    displayName="YUNG's Menu Tweaks"
+    credits="Thanks so much to all my patrons!"
+    authors="YUNGNICKYOUNG"
+    description="A small, lightweight mod that makes browsing menus a lot easier!"
+    logoFile="logo.png"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/yungs-menu-tweaks-neoforge"
+
+[modproperties.yungsmenutweaks]
+    catalogueImageIcon="icon.png"
+    catalogueBackground="catalogue_background.png"
+
+[[dependencies.yungsmenutweaks]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21, 1.22)"
+
+[[dependencies.yungsmenutweaks]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0.0,)"
+
+[[dependencies.yungsmenutweaks]]
+    modId="yungsapi"
+    versionRange="[1.21.1-NeoForge-5.1.2,)"
+    type="required"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config = "yungsmenutweaks.mixins.json"
+
+[[mixins]]
+    config = "yungsmenutweaks_neoforge.mixins.json"

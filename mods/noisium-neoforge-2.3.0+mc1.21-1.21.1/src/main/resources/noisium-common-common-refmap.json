@@ -1,0 +1,34 @@
+{
+  "mappings": {
+    "io/github/steveplays28/noisium/mixin/GenerationShapeConfigMixin": {
+      "<init>": "Lnet/minecraft/class_5309;<init>(IIII)V",
+      "horizontalCellBlockCount": "Lnet/minecraft/class_5309;method_39546()I",
+      "verticalCellBlockCount": "Lnet/minecraft/class_5309;method_39545()I"
+    },
+    "io/github/steveplays28/noisium/mixin/NoiseChunkGeneratorMixin": {
+      "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;Z)Lnet/minecraft/block/BlockState;": "Lnet/minecraft/class_2826;method_12256(IIILnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;",
+      "populateNoise(Lnet/minecraft/world/gen/chunk/Blender;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/noise/NoiseConfig;Lnet/minecraft/world/chunk/Chunk;II)Lnet/minecraft/world/chunk/Chunk;": "Lnet/minecraft/class_3754;method_33754(Lnet/minecraft/class_6748;Lnet/minecraft/class_5138;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;II)Lnet/minecraft/class_2791;"
+    },
+    "io/github/steveplays28/noisium/mixin/compat/lithium/LithiumNoiseChunkGeneratorMixin": {
+      "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;Z)Lnet/minecraft/block/BlockState;": "Lnet/minecraft/class_2826;method_12256(IIILnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;",
+      "populateNoise(Lnet/minecraft/world/gen/chunk/Blender;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/noise/NoiseConfig;Lnet/minecraft/world/chunk/Chunk;II)Lnet/minecraft/world/chunk/Chunk;": "Lnet/minecraft/class_3754;method_33754(Lnet/minecraft/class_6748;Lnet/minecraft/class_5138;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;II)Lnet/minecraft/class_2791;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "io/github/steveplays28/noisium/mixin/GenerationShapeConfigMixin": {
+        "<init>": "Lnet/minecraft/class_5309;<init>(IIII)V",
+        "horizontalCellBlockCount": "Lnet/minecraft/class_5309;method_39546()I",
+        "verticalCellBlockCount": "Lnet/minecraft/class_5309;method_39545()I"
+      },
+      "io/github/steveplays28/noisium/mixin/NoiseChunkGeneratorMixin": {
+        "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;Z)Lnet/minecraft/block/BlockState;": "Lnet/minecraft/class_2826;method_12256(IIILnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;",
+        "populateNoise(Lnet/minecraft/world/gen/chunk/Blender;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/noise/NoiseConfig;Lnet/minecraft/world/chunk/Chunk;II)Lnet/minecraft/world/chunk/Chunk;": "Lnet/minecraft/class_3754;method_33754(Lnet/minecraft/class_6748;Lnet/minecraft/class_5138;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;II)Lnet/minecraft/class_2791;"
+      },
+      "io/github/steveplays28/noisium/mixin/compat/lithium/LithiumNoiseChunkGeneratorMixin": {
+        "Lnet/minecraft/world/chunk/ChunkSection;setBlockState(IIILnet/minecraft/block/BlockState;Z)Lnet/minecraft/block/BlockState;": "Lnet/minecraft/class_2826;method_12256(IIILnet/minecraft/class_2680;Z)Lnet/minecraft/class_2680;",
+        "populateNoise(Lnet/minecraft/world/gen/chunk/Blender;Lnet/minecraft/world/gen/StructureAccessor;Lnet/minecraft/world/gen/noise/NoiseConfig;Lnet/minecraft/world/chunk/Chunk;II)Lnet/minecraft/world/chunk/Chunk;": "Lnet/minecraft/class_3754;method_33754(Lnet/minecraft/class_6748;Lnet/minecraft/class_5138;Lnet/minecraft/class_7138;Lnet/minecraft/class_2791;II)Lnet/minecraft/class_2791;"
+      }
+    }
+  }
+}

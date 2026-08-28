@@ -1,0 +1,72 @@
+{
+  "mappings": {
+    "cc/cosmetica/cosmetica/mixin/KeyboardHandlerMixin": {
+      "keyPress": "Lnet/minecraft/class_309;method_1466(JIIII)V"
+    },
+    "cc/cosmetica/cosmetica/mixin/MinecraftMixin": {
+      "setLevel": "Lnet/minecraft/class_310;method_1481(Lnet/minecraft/class_638;Lnet/minecraft/class_434$class_9678;)V"
+    },
+    "cc/cosmetica/cosmetica/mixin/button/OptionsScreenMixin": {
+      "Lnet/minecraft/client/gui/screens/options/OptionsScreen;openScreenButton(Lnet/minecraft/network/chat/Component;Ljava/util/function/Supplier;)Lnet/minecraft/client/gui/components/Button;": "Lnet/minecraft/class_429;method_47625(Lnet/minecraft/class_2561;Ljava/util/function/Supplier;)Lnet/minecraft/class_4185;",
+      "init": "Lnet/minecraft/class_429;method_25426()V"
+    },
+    "cc/cosmetica/cosmetica/mixin/gui/FakePlayerRendererMixin": {
+      "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V": "Lnet/minecraft/class_4587;method_22903()V",
+      "drawLivingEntity": "Lcc/cosmetica/kupe/impl/fakeplayer/FakePlayerRenderer;drawLivingEntity(Lcc/cosmetica/kupe/api/gui/GUIPlayer;Lcc/cosmetica/kupe/api/Context;FFLnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V"
+    },
+    "cc/cosmetica/cosmetica/mixin/keybinds/KeyMappingAccessor": {
+      "key": "field_1655:Lnet/minecraft/class_3675$class_306;"
+    },
+    "cc/cosmetica/cosmetica/mixin/keybinds/KeyMappingMixin": {
+      "<clinit>": "Lnet/minecraft/class_304;<clinit>()V",
+      "click": "Lnet/minecraft/class_304;method_1420(Lnet/minecraft/class_3675$class_306;)V",
+      "resetMapping": "Lnet/minecraft/class_304;method_1426()V",
+      "set": "Lnet/minecraft/class_304;method_1416(Lnet/minecraft/class_3675$class_306;Z)V"
+    },
+    "cc/cosmetica/cosmetica/mixin/keybinds/LevelRendererTickMixin": {
+      "tick": "Lnet/minecraft/class_761;method_3252()V"
+    },
+    "cc/cosmetica/cosmetica/mixin/keybinds/OptionsMixin": {
+      "load": "Lnet/minecraft/class_315;method_1636()V"
+    },
+    "cc/cosmetica/cosmetica/mixin/snipe/GameRendererMixin": {
+      "pick": "Lnet/minecraft/class_757;method_3190(F)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "cc/cosmetica/cosmetica/mixin/KeyboardHandlerMixin": {
+        "keyPress": "Lnet/minecraft/class_309;method_1466(JIIII)V"
+      },
+      "cc/cosmetica/cosmetica/mixin/MinecraftMixin": {
+        "setLevel": "Lnet/minecraft/class_310;method_1481(Lnet/minecraft/class_638;Lnet/minecraft/class_434$class_9678;)V"
+      },
+      "cc/cosmetica/cosmetica/mixin/button/OptionsScreenMixin": {
+        "Lnet/minecraft/client/gui/screens/options/OptionsScreen;openScreenButton(Lnet/minecraft/network/chat/Component;Ljava/util/function/Supplier;)Lnet/minecraft/client/gui/components/Button;": "Lnet/minecraft/class_429;method_47625(Lnet/minecraft/class_2561;Ljava/util/function/Supplier;)Lnet/minecraft/class_4185;",
+        "init": "Lnet/minecraft/class_429;method_25426()V"
+      },
+      "cc/cosmetica/cosmetica/mixin/gui/FakePlayerRendererMixin": {
+        "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V": "Lnet/minecraft/class_4587;method_22903()V",
+        "drawLivingEntity": "Lcc/cosmetica/kupe/impl/fakeplayer/FakePlayerRenderer;drawLivingEntity(Lcc/cosmetica/kupe/api/gui/GUIPlayer;Lcc/cosmetica/kupe/api/Context;FFLnet/minecraft/class_4587;Lnet/minecraft/class_4597;I)V"
+      },
+      "cc/cosmetica/cosmetica/mixin/keybinds/KeyMappingAccessor": {
+        "key": "field_1655:Lnet/minecraft/class_3675$class_306;"
+      },
+      "cc/cosmetica/cosmetica/mixin/keybinds/KeyMappingMixin": {
+        "<clinit>": "Lnet/minecraft/class_304;<clinit>()V",
+        "click": "Lnet/minecraft/class_304;method_1420(Lnet/minecraft/class_3675$class_306;)V",
+        "resetMapping": "Lnet/minecraft/class_304;method_1426()V",
+        "set": "Lnet/minecraft/class_304;method_1416(Lnet/minecraft/class_3675$class_306;Z)V"
+      },
+      "cc/cosmetica/cosmetica/mixin/keybinds/LevelRendererTickMixin": {
+        "tick": "Lnet/minecraft/class_761;method_3252()V"
+      },
+      "cc/cosmetica/cosmetica/mixin/keybinds/OptionsMixin": {
+        "load": "Lnet/minecraft/class_315;method_1636()V"
+      },
+      "cc/cosmetica/cosmetica/mixin/snipe/GameRendererMixin": {
+        "pick": "Lnet/minecraft/class_757;method_3190(F)V"
+      }
+    }
+  }
+}

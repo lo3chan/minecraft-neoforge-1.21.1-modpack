@@ -1,0 +1,210 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.google.common.collect.ImmutableList
+ *  com.google.common.collect.ImmutableListMultimap
+ *  net.minecraft.resources.ResourceLocation
+ *  org.jetbrains.annotations.Unmodifiable
+ */
+package mezz.jei.library.recipes;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableListMultimap;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import mezz.jei.api.gui.IRecipeLayoutDrawable;
+import mezz.jei.api.gui.drawable.IScalableDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotDrawable;
+import mezz.jei.api.ingredients.IIngredientSupplier;
+import mezz.jei.api.ingredients.ITypedIngredient;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.IRecipeCatalystLookup;
+import mezz.jei.api.recipe.IRecipeCategoriesLookup;
+import mezz.jei.api.recipe.IRecipeLookup;
+import mezz.jei.api.recipe.IRecipeManager;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.advanced.IRecipeButtonControllerFactory;
+import mezz.jei.api.recipe.category.IRecipeCategory;
+import mezz.jei.api.recipe.category.extensions.IRecipeCategoryDecorator;
+import mezz.jei.api.runtime.IIngredientManager;
+import mezz.jei.common.Internal;
+import mezz.jei.common.gui.RecipeLayoutDrawableErrored;
+import mezz.jei.common.gui.elements.DrawableBlank;
+import mezz.jei.common.util.ErrorUtil;
+import mezz.jei.common.util.Pair;
+import mezz.jei.library.gui.ingredients.CycleTimer;
+import mezz.jei.library.gui.ingredients.ICycler;
+import mezz.jei.library.gui.recipes.RecipeLayout;
+import mezz.jei.library.gui.recipes.layout.builder.RecipeSlotBuilder;
+import mezz.jei.library.recipes.RecipeCatalystLookup;
+import mezz.jei.library.recipes.RecipeCategoriesLookup;
+import mezz.jei.library.recipes.RecipeLookup;
+import mezz.jei.library.recipes.RecipeManagerInternal;
+import mezz.jei.library.util.IngredientSupplierHelper;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Unmodifiable;
+
+public class RecipeManager
+implements IRecipeManager {
+    private final RecipeManagerInternal internal;
+    private final IIngredientManager ingredientManager;
+    private final ImmutableListMultimap<RecipeType<?>, IRecipeCategoryDecorator<?>> recipeCategoryDecorators;
+    private final List<IRecipeButtonControllerFactory> recipeButtonControllerFactories;
+
+    public RecipeManager(RecipeManagerInternal internal, IIngredientManager ingredientManager, ImmutableListMultimap<RecipeType<?>, IRecipeCategoryDecorator<?>> recipeCategoryDecorators, List<IRecipeButtonControllerFactory> recipeButtonControllerFactories) {
+        this.internal = internal;
+        this.ingredientManager = ingredientManager;
+        this.recipeCategoryDecorators = recipeCategoryDecorators;
+        this.recipeButtonControllerFactories = recipeButtonControllerFactories;
+    }
+
+    @Override
+    public <R> IRecipeLookup<R> createRecipeLookup(RecipeType<R> recipeType) {
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        return new RecipeLookup<R>(recipeType, this.internal, this.ingredientManager);
+    }
+
+    @Override
+    public IRecipeCategoriesLookup createRecipeCategoryLookup() {
+        return new RecipeCategoriesLookup(this.internal, this.ingredientManager);
+    }
+
+    @Override
+    public <T> IRecipeCategory<T> getRecipeCategory(RecipeType<T> recipeType) {
+        return this.internal.getRecipeCategory(recipeType);
+    }
+
+    @Override
+    public IRecipeCatalystLookup createRecipeCatalystLookup(RecipeType<?> recipeType) {
+        return new RecipeCatalystLookup(recipeType, this.internal);
+    }
+
+    @Override
+    public <T> void addRecipes(RecipeType<T> recipeType, List<T> recipes) {
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        ErrorUtil.checkNotNull(recipes, "recipes");
+        ErrorUtil.validateRecipes(recipeType, recipes);
+        ErrorUtil.assertMainThread();
+        this.internal.addRecipes(recipeType, recipes);
+    }
+
+    private <T> @Unmodifiable List<IRecipeCategoryDecorator<T>> getRecipeCategoryDecorators(RecipeType<T> recipeType) {
+        ImmutableList decorators = this.recipeCategoryDecorators.get(recipeType);
+        return (List)decorators;
+    }
+
+    @Override
+    public <T> IRecipeLayoutDrawable<T> createRecipeLayoutDrawableOrShowError(IRecipeCategory<T> recipeCategory, T recipe, IFocusGroup focusGroup) {
+        int borderPadding;
+        IScalableDrawable recipeBackground;
+        ErrorUtil.checkNotNull(recipeCategory, "recipeCategory");
+        ErrorUtil.checkNotNull(recipe, "recipe");
+        ErrorUtil.checkNotNull(focusGroup, "focusGroup");
+        RecipeType<T> recipeType = recipeCategory.getRecipeType();
+        List<IRecipeCategoryDecorator<T>> decorators = this.getRecipeCategoryDecorators(recipeType);
+        if (recipeCategory.needsRecipeBorder()) {
+            recipeBackground = Internal.getTextures().getRecipeBackground();
+            borderPadding = 4;
+        } else {
+            recipeBackground = DrawableBlank.EMPTY;
+            borderPadding = 0;
+        }
+        return RecipeLayout.create(recipeCategory, decorators, recipe, focusGroup, this.ingredientManager, recipeBackground, borderPadding).orElseGet(() -> new RecipeLayoutDrawableErrored<Object>(recipeCategory, recipe, recipeBackground, borderPadding));
+    }
+
+    @Override
+    public <T> Optional<IRecipeLayoutDrawable<T>> createRecipeLayoutDrawable(IRecipeCategory<T> recipeCategory, T recipe, IFocusGroup focusGroup) {
+        int borderPadding;
+        IScalableDrawable recipeBackground;
+        ErrorUtil.checkNotNull(recipeCategory, "recipeCategory");
+        ErrorUtil.checkNotNull(recipe, "recipe");
+        ErrorUtil.checkNotNull(focusGroup, "focusGroup");
+        RecipeType<T> recipeType = recipeCategory.getRecipeType();
+        List<IRecipeCategoryDecorator<T>> decorators = this.getRecipeCategoryDecorators(recipeType);
+        if (recipeCategory.needsRecipeBorder()) {
+            recipeBackground = Internal.getTextures().getRecipeBackground();
+            borderPadding = 4;
+        } else {
+            recipeBackground = DrawableBlank.EMPTY;
+            borderPadding = 0;
+        }
+        return RecipeLayout.create(recipeCategory, decorators, recipe, focusGroup, this.ingredientManager, recipeBackground, borderPadding);
+    }
+
+    @Override
+    public <T> Optional<IRecipeLayoutDrawable<T>> createRecipeLayoutDrawable(IRecipeCategory<T> recipeCategory, T recipe, IFocusGroup focusGroup, IScalableDrawable background, int borderSize) {
+        ErrorUtil.checkNotNull(recipeCategory, "recipeCategory");
+        ErrorUtil.checkNotNull(recipe, "recipe");
+        ErrorUtil.checkNotNull(focusGroup, "focusGroup");
+        ErrorUtil.checkNotNull(background, "background");
+        RecipeType<T> recipeType = recipeCategory.getRecipeType();
+        List<IRecipeCategoryDecorator<T>> decorators = this.getRecipeCategoryDecorators(recipeType);
+        return RecipeLayout.create(recipeCategory, decorators, recipe, focusGroup, this.ingredientManager, background, borderSize);
+    }
+
+    @Override
+    public IRecipeSlotDrawable createRecipeSlotDrawable(RecipeIngredientRole role, List<Optional<ITypedIngredient<?>>> ingredients, Set<Integer> focusedIngredients, int ingredientCycleOffset) {
+        RecipeSlotBuilder builder = new RecipeSlotBuilder(this.ingredientManager, 0, role);
+        builder.addOptionalTypedIngredients((List)ingredients);
+        CycleTimer cycleTimer = CycleTimer.create(ingredientCycleOffset);
+        Pair<Integer, IRecipeSlotDrawable> result = builder.build(focusedIngredients, (ICycler)cycleTimer);
+        return result.second();
+    }
+
+    @Override
+    public <T> IIngredientSupplier getRecipeIngredients(IRecipeCategory<T> recipeCategory, T recipe) {
+        return IngredientSupplierHelper.getIngredientSupplier(recipe, recipeCategory, this.ingredientManager);
+    }
+
+    @Override
+    public <T> void hideRecipes(RecipeType<T> recipeType, Collection<T> recipes) {
+        ErrorUtil.checkNotNull(recipes, "recipe");
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        ErrorUtil.validateRecipes(recipeType, recipes);
+        ErrorUtil.assertMainThread();
+        this.internal.hideRecipes(recipeType, recipes);
+    }
+
+    @Override
+    public <T> void unhideRecipes(RecipeType<T> recipeType, Collection<T> recipes) {
+        ErrorUtil.checkNotNull(recipes, "recipe");
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        ErrorUtil.validateRecipes(recipeType, recipes);
+        ErrorUtil.assertMainThread();
+        this.internal.unhideRecipes(recipeType, recipes);
+    }
+
+    @Override
+    public void hideRecipeCategory(RecipeType<?> recipeType) {
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        ErrorUtil.assertMainThread();
+        this.internal.hideRecipeCategory(recipeType);
+    }
+
+    @Override
+    public void unhideRecipeCategory(RecipeType<?> recipeType) {
+        ErrorUtil.checkNotNull(recipeType, "recipeType");
+        ErrorUtil.assertMainThread();
+        this.internal.unhideRecipeCategory(recipeType);
+    }
+
+    @Override
+    public <T> Optional<RecipeType<T>> getRecipeType(ResourceLocation recipeUid, Class<? extends T> recipeClass) {
+        return this.internal.getRecipeType(recipeUid, recipeClass);
+    }
+
+    @Override
+    public Optional<RecipeType<?>> getRecipeType(ResourceLocation recipeUid) {
+        return this.internal.getRecipeType(recipeUid);
+    }
+
+    @Override
+    public List<IRecipeButtonControllerFactory> getRecipeButtonControllerFactories() {
+        return this.recipeButtonControllerFactories;
+    }
+}
+

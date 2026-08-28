@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#alchemancy:materials/moss",
+    "minecraft:ice",
+    "minecraft:packed_ice",
+    "minecraft:blue_ice",
+    "minecraft:tropical_fish"
+  ]
+}

@@ -1,0 +1,121 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.Nonnull
+ */
+package net.diebuddies.util.cpp;
+
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.Reader;
+import javax.annotation.Nonnull;
+import net.diebuddies.util.cpp.Feature;
+import net.diebuddies.util.cpp.LexerException;
+import net.diebuddies.util.cpp.LexerSource;
+import net.diebuddies.util.cpp.Preprocessor;
+import net.diebuddies.util.cpp.Token;
+
+public class CppReader
+extends Reader
+implements Closeable {
+    private final Preprocessor cpp;
+    private String token;
+    private int idx;
+
+    public CppReader(final @Nonnull Reader r) {
+        this.cpp = new Preprocessor(new LexerSource(this, r, true){
+
+            @Override
+            public String getName() {
+                return "<CppReader Input@" + System.identityHashCode(r) + ">";
+            }
+        });
+        this.token = "";
+        this.idx = 0;
+    }
+
+    public CppReader(@Nonnull Preprocessor p) {
+        this.cpp = p;
+        this.token = "";
+        this.idx = 0;
+    }
+
+    @Nonnull
+    public Preprocessor getPreprocessor() {
+        return this.cpp;
+    }
+
+    public void addMacro(@Nonnull String name) throws LexerException {
+        this.cpp.addMacro(name);
+    }
+
+    public void addMacro(@Nonnull String name, @Nonnull String value) throws LexerException {
+        this.cpp.addMacro(name, value);
+    }
+
+    private boolean refill() throws IOException {
+        try {
+            assert (this.cpp != null) : "cpp is null : was it closed?";
+            if (this.token == null) {
+                return false;
+            }
+            while (this.idx >= this.token.length()) {
+                Token tok = this.cpp.token();
+                switch (tok.getType()) {
+                    case 265: {
+                        this.token = null;
+                        return false;
+                    }
+                    case 260: 
+                    case 261: {
+                        if (!this.cpp.getFeature(Feature.KEEPCOMMENTS)) {
+                            this.token = " ";
+                            break;
+                        }
+                    }
+                    default: {
+                        this.token = tok.getText();
+                    }
+                }
+                this.idx = 0;
+            }
+            return true;
+        }
+        catch (LexerException e) {
+            IOException _e = new IOException(String.valueOf(e));
+            _e.initCause(e);
+            throw _e;
+        }
+    }
+
+    @Override
+    public int read() throws IOException {
+        if (!this.refill()) {
+            return -1;
+        }
+        return this.token.charAt(this.idx++);
+    }
+
+    @Override
+    public int read(char[] cbuf, int off, int len) throws IOException {
+        if (this.token == null) {
+            return -1;
+        }
+        for (int i = 0; i < len; ++i) {
+            int ch = this.read();
+            if (ch == -1) {
+                return i;
+            }
+            cbuf[off + i] = (char)ch;
+        }
+        return len;
+    }
+
+    @Override
+    public void close() throws IOException {
+        this.cpp.close();
+        this.token = null;
+    }
+}
+

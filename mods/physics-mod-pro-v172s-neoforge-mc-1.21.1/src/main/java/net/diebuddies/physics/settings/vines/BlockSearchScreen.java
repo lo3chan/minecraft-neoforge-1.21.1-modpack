@@ -1,0 +1,89 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiGraphics
+ *  net.minecraft.client.gui.components.EditBox
+ *  net.minecraft.client.gui.components.events.GuiEventListener
+ *  net.minecraft.client.gui.screens.Screen
+ *  net.minecraft.locale.Language
+ *  net.minecraft.network.chat.CommonComponents
+ *  net.minecraft.network.chat.Component
+ */
+package net.diebuddies.physics.settings.vines;
+
+import net.diebuddies.physics.settings.ButtonSettings;
+import net.diebuddies.physics.settings.blocks.BlockSelectionList;
+import net.diebuddies.physics.settings.gui.legacy.LegacyOptionsSubScreen;
+import net.diebuddies.physics.settings.vines.BlockEntry;
+import net.diebuddies.physics.settings.vines.BlockOption;
+import net.diebuddies.physics.vines.BlockFilter;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.locale.Language;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
+
+public class BlockSearchScreen
+extends LegacyOptionsSubScreen {
+    private static String searchText = "";
+    private BlockSelectionList list;
+    private BlockOption option;
+    private boolean canBeNull;
+    private BlockFilter filter;
+
+    public BlockSearchScreen(Screen parent, BlockOption option, BlockFilter filter, boolean canBeNull) {
+        super(parent, null, (Component)Component.translatable((String)"physicsmod.menu.blocks.search.title"));
+        this.filter = filter;
+        this.option = option;
+        this.canBeNull = canBeNull;
+    }
+
+    protected void init() {
+        this.list = new BlockSelectionList(this.minecraft, this.filter, this.width, this.height, 32, this.height - 32, 25);
+        this.addRenderableWidget((GuiEventListener)this.list);
+        int offset = this.canBeNull ? 0 : 45;
+        EditBox search = new EditBox(Minecraft.getInstance().font, this.width / 2 - 175 + offset, this.height - 27, 80, 20, (Component)Component.literal((String)""));
+        search.setValue(searchText);
+        this.checkSearchText(searchText, search);
+        search.setResponder(changedText -> this.checkSearchText((String)changedText, search));
+        this.addRenderableWidget((GuiEventListener)search);
+        this.addRenderableWidget((GuiEventListener)ButtonSettings.builder(this.width / 2 - 85 + offset, this.height - 27, 80, 20, CommonComponents.GUI_CANCEL, button -> this.minecraft.setScreen(this.lastScreen)));
+        this.addRenderableWidget((GuiEventListener)ButtonSettings.builder(this.width / 2 + 5 + offset, this.height - 27, 80, 20, (Component)Component.translatable((String)"physicsmod.gui.select"), button -> {
+            if (this.list.getSelected() != null) {
+                this.option.setBlock(((BlockEntry)this.list.getSelected()).getText());
+                this.minecraft.setScreen(this.lastScreen);
+            }
+        }));
+        if (this.canBeNull) {
+            this.addRenderableWidget((GuiEventListener)ButtonSettings.builder(this.width / 2 + 95, this.height - 27, 80, 20, (Component)Component.translatable((String)"physicsmod.gui.noblock"), button -> {
+                this.option.setBlock(null);
+                this.minecraft.setScreen(this.lastScreen);
+            }));
+        }
+    }
+
+    private void checkSearchText(String searchText, EditBox search) {
+        BlockSearchScreen.searchText = searchText;
+        if (searchText.isEmpty()) {
+            search.setSuggestion(Language.getInstance().getOrDefault("physicsmod.gui.search"));
+        } else {
+            search.setSuggestion("");
+        }
+        this.list.filter = searchText;
+        this.list.refreshEntries();
+    }
+
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        super.render(guiGraphics, mouseX, mouseY, delta);
+        guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 15, 0xFFFFFF);
+    }
+
+    public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+    }
+}
+

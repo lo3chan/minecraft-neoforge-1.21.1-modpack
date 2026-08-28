@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Specification-Title: Puzzles Lib
+Specification-Version: 21.1.52
+Specification-Vendor: Fuzs
+Implementation-Title: Puzzles Lib
+Implementation-Version: 21.1.52
+Implementation-Vendor: Fuzs
+Implementation-Timestamp: 2026-06-15T10:04:08+0200
+Implementation-Timestamp-Milli: 1781510648349
+Implementation-URL: https://github.com/Fuzss/puzzleslib
+Built-On-Java: 21.0.9+10-LTS (Eclipse Adoptium)
+Built-On-Minecraft: 1.21.1
+

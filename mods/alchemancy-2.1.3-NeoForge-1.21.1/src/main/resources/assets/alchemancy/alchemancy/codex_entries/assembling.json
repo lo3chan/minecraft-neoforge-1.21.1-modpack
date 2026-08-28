@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:assembling.flavor"
+  },
+  "functions": [
+    "stacked_on",
+    "while_rooted",
+    "activate",
+    "other_effects"
+  ]
+}

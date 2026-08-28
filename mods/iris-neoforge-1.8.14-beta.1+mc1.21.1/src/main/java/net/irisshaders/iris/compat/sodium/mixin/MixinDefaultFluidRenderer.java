@@ -1,0 +1,96 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.llamalad7.mixinextras.sugar.Local
+ *  net.caffeinemc.mods.sodium.client.model.quad.ModelQuadView
+ *  net.caffeinemc.mods.sodium.client.model.quad.properties.ModelQuadFacing
+ *  net.caffeinemc.mods.sodium.client.render.chunk.compile.buffers.ChunkModelBuilder
+ *  net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.DefaultFluidRenderer
+ *  net.caffeinemc.mods.sodium.client.render.chunk.terrain.material.Material
+ *  net.caffeinemc.mods.sodium.client.render.chunk.translucent_sorting.TranslucentGeometryCollector
+ *  net.caffeinemc.mods.sodium.client.render.chunk.vertex.format.ChunkVertexEncoder$Vertex
+ *  net.minecraft.core.BlockPos
+ *  org.spongepowered.asm.mixin.Mixin
+ *  org.spongepowered.asm.mixin.Unique
+ *  org.spongepowered.asm.mixin.injection.At
+ *  org.spongepowered.asm.mixin.injection.Inject
+ *  org.spongepowered.asm.mixin.injection.ModifyArg
+ *  org.spongepowered.asm.mixin.injection.callback.CallbackInfo
+ */
+package net.irisshaders.iris.compat.sodium.mixin;
+
+import com.llamalad7.mixinextras.sugar.Local;
+import net.caffeinemc.mods.sodium.client.model.quad.ModelQuadView;
+import net.caffeinemc.mods.sodium.client.model.quad.properties.ModelQuadFacing;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.buffers.ChunkModelBuilder;
+import net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.DefaultFluidRenderer;
+import net.caffeinemc.mods.sodium.client.render.chunk.terrain.material.Material;
+import net.caffeinemc.mods.sodium.client.render.chunk.translucent_sorting.TranslucentGeometryCollector;
+import net.caffeinemc.mods.sodium.client.render.chunk.vertex.format.ChunkVertexEncoder;
+import net.irisshaders.iris.shaderpack.materialmap.WorldRenderingSettings;
+import net.irisshaders.iris.vertices.sodium.terrain.ChunkVertexExtension;
+import net.irisshaders.iris.vertices.sodium.terrain.VertexEncoderInterface;
+import net.minecraft.core.BlockPos;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(value={DefaultFluidRenderer.class})
+public class MixinDefaultFluidRenderer
+implements VertexEncoderInterface {
+    @Unique
+    private int blockId;
+    @Unique
+    private int lastBlockId;
+    @Unique
+    private byte isFluid;
+    @Unique
+    private byte lightEmission;
+    @Unique
+    private int localX;
+    @Unique
+    private int localY;
+    @Unique
+    private int localZ;
+
+    @ModifyArg(method={"render"}, at=@At(value="INVOKE", target="Lnet/caffeinemc/mods/sodium/client/render/chunk/compile/pipeline/DefaultFluidRenderer;updateQuad(Lnet/caffeinemc/mods/sodium/client/model/quad/ModelQuadViewMutable;Lnet/caffeinemc/mods/sodium/client/world/LevelSlice;Lnet/minecraft/core/BlockPos;Lnet/caffeinemc/mods/sodium/client/model/light/LightPipeline;Lnet/minecraft/core/Direction;Lnet/caffeinemc/mods/sodium/client/model/quad/properties/ModelQuadFacing;FLnet/caffeinemc/mods/sodium/client/model/color/ColorProvider;Lnet/minecraft/world/level/material/FluidState;)V", ordinal=2))
+    private float setBrightness(float br) {
+        return WorldRenderingSettings.INSTANCE.shouldDisableDirectionalShading() ? 1.0f : br;
+    }
+
+    @Override
+    public void beginBlock(int blockId, byte isFluid, byte lightEmission, int x, int y, int z) {
+        this.blockId = blockId;
+        this.isFluid = isFluid;
+        this.lightEmission = lightEmission;
+        this.localX = x;
+        this.localY = y;
+        this.localZ = z;
+    }
+
+    @Override
+    public void overrideBlock(int anInt) {
+        if (this.lastBlockId != -1) {
+            this.lastBlockId = this.blockId;
+        }
+        this.blockId = anInt;
+    }
+
+    @Override
+    public void restoreBlock() {
+        if (this.lastBlockId != -1) {
+            this.blockId = this.lastBlockId;
+            this.lastBlockId = -1;
+        }
+    }
+
+    @Inject(method={"writeQuad"}, at={@At(value="FIELD", target="Lnet/caffeinemc/mods/sodium/client/render/chunk/vertex/format/ChunkVertexEncoder$Vertex;x:F")})
+    private void iris$writeVertex(ChunkModelBuilder builder, TranslucentGeometryCollector collector, Material material, BlockPos offset, ModelQuadView quad, ModelQuadFacing facing, boolean flip, CallbackInfo ci, @Local ChunkVertexEncoder.Vertex vertex) {
+        ((ChunkVertexExtension)vertex).iris$setData(this.lightEmission, this.isFluid, this.blockId, this.localX, this.localY, this.localZ);
+    }
+}
+

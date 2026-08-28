@@ -1,0 +1,12 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:blinking.flavor"
+  },
+  "functions": [
+    "while_worn",
+    "activate"
+  ],
+  "innate": [
+    "alchemancy:shifting_lightning_belt"
+  ]
+}

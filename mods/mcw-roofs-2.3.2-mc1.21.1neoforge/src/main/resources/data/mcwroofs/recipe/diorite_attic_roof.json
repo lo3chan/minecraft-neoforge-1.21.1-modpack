@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:diorite"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwroofs:diorite_attic_roof"
+  },
+  "group" : "roofs"
+}

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: YungsBetterMineshafts
+Specification-Vendor: YUNGNICKYOUNG
+Specification-Version: 1.21.1-NeoForge-5.1.1
+Implementation-Title: NeoForge
+Implementation-Version: 1.21.1-NeoForge-5.1.1
+Implementation-Vendor: YUNGNICKYOUNG
+Built-On-Minecraft: 1.21.1
+

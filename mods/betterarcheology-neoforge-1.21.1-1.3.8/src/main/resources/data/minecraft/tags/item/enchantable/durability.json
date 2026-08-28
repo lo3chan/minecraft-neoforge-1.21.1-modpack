@@ -1,0 +1,11 @@
+{
+  "values": [
+    {
+      "id": "#c:tools/brush",
+      "required": false
+    },
+    "betterarcheology:iron_brush",
+    "betterarcheology:diamond_brush",
+    "betterarcheology:netherite_brush"
+  ]
+}

@@ -1,0 +1,290 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.caffeinemc.mods.sodium.client.config.structure.ModOptions
+ *  net.minecraft.client.gui.GuiGraphics
+ *  net.minecraft.client.gui.components.Renderable
+ *  net.minecraft.client.gui.components.events.GuiEventListener
+ *  net.minecraft.client.gui.screens.Screen
+ *  net.minecraft.resources.ResourceLocation
+ *  org.apache.commons.lang3.Validate
+ *  org.jetbrains.annotations.NotNull
+ */
+package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Consumer;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.AbstractFrame;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.OptionRow;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab.Tab;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab.TabGroupModel;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab.TabRail;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab.TabSelectionState;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.state.Holder;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.resources.ResourceLocation;
+import org.apache.commons.lang3.Validate;
+import org.jetbrains.annotations.NotNull;
+
+public class TabFrame
+extends AbstractFrame {
+    public static final int TAB_HEIGHT = 18;
+    public static final int TAB_HEADER_HEIGHT = 18;
+    public static final int TAB_HEADER_VERSION_HEIGHT = 22;
+    public static final int TAB_HEADER_PADDING = 4;
+    public static final int TAB_RAIL_MIN_WIDTH = 120;
+    public static final int TAB_RAIL_MAX_WIDTH = 220;
+    public static final int TAB_RAIL_PADDING = 24;
+    public static final int TAB_RAIL_SCROLL_PADDING = 32;
+    public static final double TAB_RAIL_MAX_WIDTH_RATIO = 0.35;
+    private final TabRail tabRail;
+    private final TabSelectionState tabSelection;
+    private final LayoutBounds frameSection;
+    private final List<Tab<?>> tabs = new ArrayList();
+    private final Runnable onSetTab;
+    private final Holder<Boolean> scrollSelectedTabIntoView;
+    private final Holder<Integer> optionPageScrollBarOffset;
+
+    public TabFrame(LayoutBounds dim, Screen screen, ModOptions modOptions, boolean renderOutline, List<Tab<?>> tabs, Runnable onSetTab, Holder<String> tabRailSelectedTab, Holder<String> tabRailSelectedGroup, Holder<Integer> tabRailScrollBarOffset, Holder<Boolean> scrollSelectedTabIntoView, Holder<Integer> optionPageScrollBarOffset, Set<String> manuallyCollapsedTabGroups, OptionStateStore optionStateStore) {
+        super(dim, screen, renderOutline, modOptions);
+        this.tabs.addAll(tabs);
+        this.scrollSelectedTabIntoView = scrollSelectedTabIntoView;
+        this.optionPageScrollBarOffset = optionPageScrollBarOffset;
+        TabGroupModel tabGroupModel = new TabGroupModel(this.tabs, tabRailSelectedGroup, manuallyCollapsedTabGroups);
+        LayoutBounds frameDim = this.getFrameDim();
+        this.tabRail = new TabRail(frameDim, this.tabs, tabGroupModel, tabRailScrollBarOffset, optionStateStore);
+        this.tabSelection = new TabSelectionState(this.tabs, tabRailSelectedTab, screen);
+        this.frameSection = this.tabRail.createFrameSection(frameDim);
+        this.onSetTab = onSetTab;
+        this.tabSelection.restorePersistedTab(this.tabRail::showRestoredSelectedTab);
+        this.buildFrame();
+        int selectedPageScrollOffset = this.optionPageScrollBarOffset.getOrDefault(0);
+        this.tabSelection.warmInactiveFrames(this.frameSection);
+        this.optionPageScrollBarOffset.set(selectedPageScrollOffset);
+    }
+
+    public static Builder createBuilder() {
+        return new Builder();
+    }
+
+    public void setTab(Optional<Tab<?>> tab) {
+        this.tabSelection.setSelectedTab(tab);
+        this.tabRail.selectGroupFor(tab);
+        if (this.onSetTab != null) {
+            this.onSetTab.run();
+        }
+        this.tabSelection.activateSelectedTab();
+        this.buildFrame();
+    }
+
+    public void refreshFromState() {
+        int selectedPageScrollOffset = this.optionPageScrollBarOffset.getOrDefault(0);
+        this.tabSelection.restorePersistedTab(this.tabRail::showRestoredSelectedTab);
+        this.tabRail.selectGroupFor(this.tabSelection.selectedTab());
+        this.tabSelection.activateSelectedTab();
+        this.tabSelection.refreshFrames(this.frameSection);
+        this.optionPageScrollBarOffset.set(selectedPageScrollOffset);
+        this.buildFrame();
+    }
+
+    @Override
+    public void buildFrame() {
+        this.children.clear();
+        this.optionRows.clear();
+        this.tabSelection.ensureSelectedTab(this.tabRail::showRestoredSelectedTab);
+        LayoutBounds frameDim = this.getFrameDim();
+        this.tabRail.updateScrollState(frameDim);
+        this.tabRail.rebuildTabs(this.children, this.tabSelection.selectedTab(), tab -> this.setTab(Optional.of(tab)), this::buildFrame);
+        this.tabSelection.rebuildSelectedFrame(this.frameSection, this.children);
+        this.tabRail.addScrollBar(this.children);
+        if (this.scrollSelectedTabIntoView.getOrDefault(false).booleanValue()) {
+            this.scrollSelectedTabIntoView.set(false);
+            this.tabRail.scrollSelectedTabIntoView(frameDim);
+        }
+        super.buildFrame();
+        this.registerFocusListener(element -> this.tabRail.scrollFocusedWidgetIntoView((GuiEventListener)element, frameDim));
+    }
+
+    @Override
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        LayoutBounds frameDim = this.getFrameDim();
+        AbstractFrame selectedFrame = this.tabSelection.selectedFrame();
+        BaseWidget scrollBar = this.tabRail.scrollBar();
+        this.applyScissor(guiGraphics, frameDim.x(), frameDim.y(), frameDim.width(), frameDim.height(), () -> {
+            for (GuiEventListener child : this.children) {
+                if (child == selectedFrame || child == scrollBar || !(child instanceof Renderable)) continue;
+                Renderable renderable = (Renderable)child;
+                renderable.render(guiGraphics, mouseX, mouseY, delta);
+            }
+        });
+        if (selectedFrame != null) {
+            selectedFrame.render(guiGraphics, mouseX, mouseY, delta);
+        }
+        this.tabRail.extractScrollBar(guiGraphics, mouseX, mouseY, delta);
+    }
+
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        return this.getFrameDim().contains(mouseX, mouseY) && super.mouseClicked(mouseX, mouseY, button) || this.tabRail.mouseClicked(mouseX, mouseY, button);
+    }
+
+    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+        return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY) || this.tabRail.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+    }
+
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        return super.mouseReleased(mouseX, mouseY, button) || this.tabRail.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount) || this.tabRail.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
+    }
+
+    public List<Tab<?>> getTabs() {
+        return this.tabs;
+    }
+
+    public AbstractFrame getSelectedFrame() {
+        return this.tabSelection.selectedFrame();
+    }
+
+    public Optional<Tab<?>> getSelectedTab() {
+        return this.tabSelection.selectedTab();
+    }
+
+    public Optional<String> getSelectedTabKey() {
+        return this.tabSelection.selectedTabKey();
+    }
+
+    public OptionRow findSelectedOptionRow(ResourceLocation optionId) {
+        return this.tabSelection.findSelectedOptionRow(optionId);
+    }
+
+    public OptionRow findFirstSelectedOptionRow() {
+        return this.tabSelection.findFirstSelectedOptionRow();
+    }
+
+    public OptionRow findLastSelectedOptionRow() {
+        return this.tabSelection.findLastSelectedOptionRow();
+    }
+
+    public OptionRow findFirstVisibleSelectedOptionRow() {
+        return this.tabSelection.findFirstVisibleSelectedOptionRow();
+    }
+
+    public OptionRow findLastVisibleSelectedOptionRow() {
+        return this.tabSelection.findLastVisibleSelectedOptionRow();
+    }
+
+    public boolean scrollSelectedPageToStart() {
+        return this.tabSelection.scrollSelectedPageToStart();
+    }
+
+    public boolean scrollSelectedPageToEnd() {
+        return this.tabSelection.scrollSelectedPageToEnd();
+    }
+
+    public boolean scrollSelectedPage(int direction) {
+        return this.tabSelection.scrollSelectedPage(direction);
+    }
+
+    public static class Builder {
+        private final List<Tab<?>> functions = new ArrayList();
+        private LayoutBounds dim;
+        private boolean renderOutline;
+        private Runnable onSetTab;
+        private Holder<String> tabRailSelectedTab = new Holder<Object>(null);
+        private Holder<String> tabRailSelectedGroup = new Holder<Object>(null);
+        private Holder<Integer> tabRailScrollBarOffset = new Holder<Integer>(0);
+        private Holder<Boolean> scrollSelectedTabIntoView = new Holder<Boolean>(false);
+        private Holder<Integer> optionPageScrollBarOffset = new Holder<Integer>(0);
+        private Set<String> manuallyCollapsedTabGroups = new HashSet<String>();
+        private OptionStateStore optionStateStore;
+        private Screen screen;
+        private ModOptions modOptions;
+
+        public Builder setDimension(LayoutBounds dim) {
+            this.dim = dim;
+            return this;
+        }
+
+        public Builder shouldRenderOutline(boolean renderOutline) {
+            this.renderOutline = renderOutline;
+            return this;
+        }
+
+        public Builder addTabs(Consumer<List<Tab<?>>> tabs) {
+            tabs.accept(this.functions);
+            return this;
+        }
+
+        public Builder onSetTab(Runnable onSetTab) {
+            this.onSetTab = onSetTab;
+            return this;
+        }
+
+        public Builder setTabRailSelectedTab(Holder<String> tabRailSelectedTab) {
+            this.tabRailSelectedTab = tabRailSelectedTab;
+            return this;
+        }
+
+        public Builder setTabRailSelectedGroup(Holder<String> tabRailSelectedGroup) {
+            this.tabRailSelectedGroup = tabRailSelectedGroup;
+            return this;
+        }
+
+        public Builder setTabRailScrollBarOffset(Holder<Integer> tabRailScrollBarOffset) {
+            this.tabRailScrollBarOffset = tabRailScrollBarOffset;
+            return this;
+        }
+
+        public Builder setScrollSelectedTabIntoView(Holder<Boolean> scrollSelectedTabIntoView) {
+            this.scrollSelectedTabIntoView = scrollSelectedTabIntoView;
+            return this;
+        }
+
+        public Builder setOptionPageScrollBarOffset(Holder<Integer> optionPageScrollBarOffset) {
+            this.optionPageScrollBarOffset = optionPageScrollBarOffset;
+            return this;
+        }
+
+        public Builder setManuallyCollapsedTabGroups(Set<String> manuallyCollapsedTabGroups) {
+            this.manuallyCollapsedTabGroups = manuallyCollapsedTabGroups;
+            return this;
+        }
+
+        public Builder setOptionStateStore(OptionStateStore optionStateStore) {
+            this.optionStateStore = optionStateStore;
+            return this;
+        }
+
+        public Builder withScreen(Screen screen) {
+            this.screen = screen;
+            return this;
+        }
+
+        public Builder withModOptions(ModOptions modOptions) {
+            this.modOptions = modOptions;
+            return this;
+        }
+
+        public TabFrame build() {
+            Validate.notNull((Object)this.dim, (String)"Dimension must be specified", (Object[])new Object[0]);
+            Validate.notNull((Object)this.optionStateStore, (String)"Option state store must be specified", (Object[])new Object[0]);
+            return new TabFrame(this.dim, this.screen, this.modOptions, this.renderOutline, this.functions, this.onSetTab, this.tabRailSelectedTab, this.tabRailSelectedGroup, this.tabRailScrollBarOffset, this.scrollSelectedTabIntoView, this.optionPageScrollBarOffset, this.manuallyCollapsedTabGroups, this.optionStateStore);
+        }
+    }
+}
+

@@ -1,0 +1,11 @@
+{
+  "type" : "minecraft:stonecutting",
+  "ingredient" : {
+    "item" : "minecraft:blackstone"
+  },
+  "result" : {
+    "count" : 1,
+    "id" : "mcwpaths:blackstone_running_bond_stairs"
+  },
+  "group" : "stairs"
+}

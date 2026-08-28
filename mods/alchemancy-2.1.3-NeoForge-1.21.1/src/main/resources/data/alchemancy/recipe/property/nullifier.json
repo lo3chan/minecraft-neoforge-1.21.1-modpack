@@ -1,0 +1,11 @@
+{
+  "type": "alchemancy:forged_property",
+
+  "properties": [
+    "alchemancy:restocker",
+    "alchemancy:voidtouch",
+    "alchemancy:clueless"
+  ],
+
+  "result": "alchemancy:nullifier"
+}

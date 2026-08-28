@@ -1,0 +1,8 @@
+{
+    "parent": "block/chain",
+	"render_type": "cutout",
+    "textures": {
+        "particle": "mcwlights:block/copper_chain",
+        "all": "mcwlights:block/copper_chain"
+    }
+}

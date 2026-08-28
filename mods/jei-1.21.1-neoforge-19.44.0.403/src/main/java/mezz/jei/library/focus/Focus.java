@@ -1,0 +1,117 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  org.jetbrains.annotations.Nullable
+ */
+package mezz.jei.library.focus;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+import mezz.jei.api.ingredients.IIngredientType;
+import mezz.jei.api.ingredients.ITypedIngredient;
+import mezz.jei.api.recipe.IFocus;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.runtime.IIngredientManager;
+import mezz.jei.common.util.ErrorUtil;
+import mezz.jei.library.ingredients.TypedIngredient;
+import org.jetbrains.annotations.Nullable;
+
+public final class Focus<V>
+implements IFocus<V>,
+IFocusGroup {
+    private final RecipeIngredientRole role;
+    private final ITypedIngredient<V> value;
+
+    public Focus(RecipeIngredientRole role, ITypedIngredient<V> value) {
+        ErrorUtil.checkNotNull(role, "focus role");
+        ErrorUtil.checkNotNull(value, "focus value");
+        this.role = role;
+        this.value = value;
+    }
+
+    @Override
+    public ITypedIngredient<V> getTypedValue() {
+        return this.value;
+    }
+
+    @Override
+    public RecipeIngredientRole getRole() {
+        return this.role;
+    }
+
+    @Override
+    public <T> Optional<IFocus<T>> checkedCast(IIngredientType<T> ingredientType) {
+        if (this.value.getType() == ingredientType) {
+            Focus cast = this;
+            return Optional.of(cast);
+        }
+        return Optional.empty();
+    }
+
+    public static <V> Focus<V> checkOne(IFocus<V> focus, IIngredientManager ingredientManager) {
+        if (focus instanceof Focus) {
+            return (Focus)focus;
+        }
+        ErrorUtil.checkNotNull(focus, "focus");
+        ITypedIngredient<V> value = focus.getTypedValue();
+        ErrorUtil.checkNotNull(value, "focus typed value");
+        IIngredientType<V> type = value.getType();
+        ErrorUtil.checkNotNull(type, "focus type");
+        V ingredient = value.getIngredient();
+        ErrorUtil.checkNotNull(type, "focus ingredient");
+        RecipeIngredientRole role = focus.getRole();
+        ErrorUtil.checkNotNull(role, "focus typed value role");
+        return Focus.createFromApi(ingredientManager, role, type, ingredient);
+    }
+
+    public static <V> Focus<V> createFromApi(IIngredientManager ingredientManager, RecipeIngredientRole role, IIngredientType<V> ingredientType, V value) {
+        @Nullable ITypedIngredient<V> typedIngredient = TypedIngredient.createAndFilterInvalid(ingredientManager, ingredientType, value, false);
+        if (typedIngredient == null) {
+            throw new IllegalArgumentException("Focus value is invalid: " + ErrorUtil.getIngredientInfo(value, ingredientType, ingredientManager));
+        }
+        return new Focus<V>(role, typedIngredient);
+    }
+
+    public static <V> Focus<V> createFromApi(IIngredientManager ingredientManager, RecipeIngredientRole role, ITypedIngredient<V> typedIngredient) {
+        @Nullable ITypedIngredient<V> typedIngredientCopy = TypedIngredient.defensivelyCopyTypedIngredientFromApi(ingredientManager, typedIngredient);
+        if (typedIngredientCopy == null) {
+            throw new IllegalArgumentException("Focus value is invalid: " + ErrorUtil.getIngredientInfo(typedIngredient.getIngredient(), typedIngredient.getType(), ingredientManager));
+        }
+        return new Focus<V>(role, typedIngredientCopy);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public List<IFocus<?>> getAllFocuses() {
+        return List.of(this);
+    }
+
+    @Override
+    public Stream<IFocus<?>> getFocuses(RecipeIngredientRole role) {
+        if (role == this.role) {
+            return Stream.of(this);
+        }
+        return Stream.empty();
+    }
+
+    @Override
+    public <T> Stream<IFocus<T>> getFocuses(IIngredientType<T> ingredientType) {
+        return this.checkedCast(ingredientType).stream();
+    }
+
+    @Override
+    public <T> Stream<IFocus<T>> getFocuses(IIngredientType<T> ingredientType, RecipeIngredientRole role) {
+        if (role == this.role) {
+            return this.getFocuses(ingredientType);
+        }
+        return Stream.empty();
+    }
+}
+

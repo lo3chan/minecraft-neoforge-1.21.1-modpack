@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:imbued.flavor"
+  },
+  "functions": [
+    "on_attack",
+    "activate",
+    "when_shot",
+    "other_effects"
+  ]
+}

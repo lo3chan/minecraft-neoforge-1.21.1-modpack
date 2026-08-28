@@ -1,0 +1,46 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
+package physx.physics;
+
+import physx.NativeObject;
+
+public class PxQueryFilterCallback
+extends NativeObject {
+    public static final int SIZEOF = PxQueryFilterCallback.__sizeOf();
+    public static final int ALIGNOF = 8;
+
+    protected PxQueryFilterCallback() {
+    }
+
+    private static native int __sizeOf();
+
+    public static PxQueryFilterCallback wrapPointer(long address) {
+        return address != 0L ? new PxQueryFilterCallback(address) : null;
+    }
+
+    public static PxQueryFilterCallback arrayGet(long baseAddress, int index) {
+        if (baseAddress == 0L) {
+            throw new NullPointerException("baseAddress is 0");
+        }
+        return PxQueryFilterCallback.wrapPointer(baseAddress + (long)SIZEOF * (long)index);
+    }
+
+    protected PxQueryFilterCallback(long address) {
+        super(address);
+    }
+
+    public void destroy() {
+        if (this.address == 0L) {
+            throw new IllegalStateException(this + " is already deleted");
+        }
+        if (this.isExternallyAllocated) {
+            throw new IllegalStateException(this + " is externally allocated and cannot be manually destroyed");
+        }
+        PxQueryFilterCallback._delete_native_instance(this.address);
+        this.address = 0L;
+    }
+
+    private static native long _delete_native_instance(long var0);
+}
+

@@ -1,0 +1,17 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "group" : "curtain_rods",
+  "pattern" : [ "ABA" ],
+  "key" : {
+    "A" : {
+      "item" : "minecraft:gold_nugget"
+    },
+    "B" : {
+      "item" : "minecraft:gold_ingot"
+    }
+  },
+  "result" : {
+    "count" : 3,
+    "id" : "mcwwindows:golden_curtain_rod"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "flavor": {
+    "translate": "infusion_codex.alchemancy:eternal_glow.flavor"
+  },
+  "functions": [
+    "while_equipped"
+  ],
+  "innate": [
+    "alchemancy:eternal_glow_ring"
+  ]
+}

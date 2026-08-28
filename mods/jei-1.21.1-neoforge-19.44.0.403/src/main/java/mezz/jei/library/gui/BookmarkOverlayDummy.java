@@ -1,0 +1,33 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  org.jetbrains.annotations.Nullable
+ */
+package mezz.jei.library.gui;
+
+import java.util.Optional;
+import mezz.jei.api.ingredients.IIngredientType;
+import mezz.jei.api.ingredients.ITypedIngredient;
+import mezz.jei.api.runtime.IBookmarkOverlay;
+import org.jetbrains.annotations.Nullable;
+
+public class BookmarkOverlayDummy
+implements IBookmarkOverlay {
+    public static final IBookmarkOverlay INSTANCE = new BookmarkOverlayDummy();
+
+    private BookmarkOverlayDummy() {
+    }
+
+    @Override
+    public Optional<ITypedIngredient<?>> getIngredientUnderMouse() {
+        return Optional.empty();
+    }
+
+    @Override
+    @Nullable
+    public <T> T getIngredientUnderMouse(IIngredientType<T> ingredientType) {
+        return null;
+    }
+}
+

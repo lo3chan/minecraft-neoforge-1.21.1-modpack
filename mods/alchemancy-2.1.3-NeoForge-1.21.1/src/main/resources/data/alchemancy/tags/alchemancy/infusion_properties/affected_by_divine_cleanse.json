@@ -1,0 +1,13 @@
+{
+  "values": [
+    "alchemancy:infected",
+    "alchemancy:dead",
+    "alchemancy:undead",
+    "alchemancy:vampiric",
+    "alchemancy:dirty",
+    "alchemancy:seeded",
+
+    "alchemancy:putrid",
+    "alchemancy:corrosive"
+  ]
+}

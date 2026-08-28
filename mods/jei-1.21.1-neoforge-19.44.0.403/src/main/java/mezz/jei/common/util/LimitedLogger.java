@@ -1,0 +1,49 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  org.apache.logging.log4j.Level
+ *  org.apache.logging.log4j.Logger
+ */
+package mezz.jei.common.util;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
+
+public class LimitedLogger {
+    private final Map<String, Long> logTimes = new HashMap<String, Long>();
+    private final Logger logger;
+    private final long timeBetweenLoggingMs;
+
+    public LimitedLogger(Logger logger, Duration timeBetweenLogging) {
+        this.logger = logger;
+        this.timeBetweenLoggingMs = timeBetweenLogging.toMillis();
+    }
+
+    public void log(Level level, String key, String message, Object ... params) {
+        if (this.logger.isEnabled(level)) {
+            long now = System.currentTimeMillis();
+            Long lastTime = this.logTimes.get(key);
+            if (lastTime == null || now - lastTime > this.timeBetweenLoggingMs) {
+                this.logTimes.put(key, now);
+                this.logger.log(level, message, params);
+            }
+        }
+    }
+
+    public void log(Level level, String key, Consumer<Logger> loggerConsumer) {
+        if (this.logger.isEnabled(level)) {
+            long now = System.currentTimeMillis();
+            Long lastTime = this.logTimes.get(key);
+            if (lastTime == null || now - lastTime > this.timeBetweenLoggingMs) {
+                this.logTimes.put(key, now);
+                loggerConsumer.accept(this.logger);
+            }
+        }
+    }
+}
+

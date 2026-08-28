@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "de/cristelknight/cristellib/mixin/PackSelectionScreenMixin": {
+      "findNewPacks": "Lnet/minecraft/class_5369;method_29981()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "de/cristelknight/cristellib/mixin/PackSelectionScreenMixin": {
+        "findNewPacks": "Lnet/minecraft/class_5369;method_29981()V"
+      }
+    }
+  }
+}

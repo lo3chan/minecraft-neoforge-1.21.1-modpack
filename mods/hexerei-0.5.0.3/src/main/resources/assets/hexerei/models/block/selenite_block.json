@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hexerei:block/selenite_block_top",
+    "side": "hexerei:block/selenite_block"
+  },
+  "render_type": "translucent"
+}
+
+
