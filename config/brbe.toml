@@ -1,0 +1,26 @@
+showModName = false
+scrollAround = true
+keepCentered = false
+expandedRecipeBook = false
+hideReiJeiOverlay = false
+settingsButton = true
+enableBook = true
+showAllRecipesInSurvival = true
+partialCraftingEnabled = false
+partialMarkingEnabled = false
+
+[rbip]
+enableRecipeBookIsPain = false
+enableTabPage = false
+
+[instantCraft]
+showButton = true
+enabled = false
+
+[newRecipes]
+unlockAll = true
+enableBounce = false
+
+[alternativeRecipes]
+onHover = true
+noGrouped = false
